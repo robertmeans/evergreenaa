@@ -1,0 +1,10 @@
+# Options +MultiViews
+# RewriteEngine on
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# all eroneous URL's point back to index.php
+# ErrorDocument 401 http://www.evergreenaa.com/
+# ErrorDocument 404 http://www.evergreenaa.com/
+# ErrorDocument 500 http://www.evergreenaa.com/
+

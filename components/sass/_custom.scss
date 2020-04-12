@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #313131;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+  font-family: Tahoma, Calbri, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+#wrap {
+  width: 98%;
+  max-width: 520px;
+  color: #fff;
+  box-sizing: border-box;
+  margin-top: 80px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // text-align: left;
+}
+p {
+  line-height: 1.5em;
+  margin-top: 1em;
+}
+p.peace {
+  text-align: right;
+  padding-right: 65px;
+}
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+hr {
+  margin: 1.5em auto;
+}
+
+input#myInput,
+input#myInputTwo {
+  font-size: inherit;
+  border: none;
+  background-color: inherit;
+  margin-top: 1.5em;
+  color: #fff;
+  font-family: inherit;
+  width: 100%;
+  max-width: 120px;
+}
+
+button.zoom-id,
+a.zoom {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: #fff;
+  color: #313131;
+  border: 1px solid #757575;
+  border-radius: 3px;
+  padding: 8px 20px;
+  transition: all 0.2s ease;
+  &:hover {
+    background: #757575;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+a.zoom {
+  display: inline-block;
+  margin-top: 1em;
+  text-decoration: none;
+
+}

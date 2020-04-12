@@ -1,0 +1,15 @@
+*config*
+*.sass-cache*
+_images-raw
+_admin-components
+_admin
+_notes
+_video
+Thumbs.db
+node_modules
+trashbin
+vendor
+_db
+.gitattributes
+sftp-config.json
+package-lock.json
