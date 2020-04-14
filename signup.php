@@ -13,7 +13,7 @@
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
 	<form action="" method="post">
-        <h1 class="text-center">Register</h1>
+        <h1 class="text-center">Join here</h1>
 
         <?php if(count($errors) > 0): ?>
             <div class="alert alert-danger">
@@ -23,8 +23,8 @@
             </div>
         <?php endif; ?>
 
-        <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username">
-        <input type="email" class="text" name="email" value="<?= $email; ?>" placeholder="Email address" required>
+        <input type="text" class="text" name="username" value="<?= h($username); ?>" placeholder="Username">
+        <input type="email" class="text" name="email" value="<?= h($email); ?>" placeholder="Email address" required>
         <input type="password" class="text" name="password" placeholder="Password">
         <input type="password" class="text" name="passwordConf" placeholder="Confirm password">
         <!-- <button type="submit" name="signup-btn">Sign Up</button> -->
@@ -36,4 +36,4 @@
 
 </body>
 
-<?php require '_includes/footer-static.php'; ?>
+<?php require '_includes/footer.php'; ?>

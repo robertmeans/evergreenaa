@@ -11,10 +11,12 @@ if (isset($_GET['token'])) {
 
 if (!isset($_SESSION['verified'])) {
 	header('location: home.php');
+	exit;
 }
 
-if (   (isset($_SESSION['verified']) && (!$_SESSION['message']))    ) {
+if ((isset($_SESSION['verified']) && (!$_SESSION['message']))) {
 	header('location: home_private.php');
+	exit;
 }
 
 ?>
@@ -38,7 +40,7 @@ if (   (isset($_SESSION['verified']) && (!$_SESSION['message']))    ) {
 		</div><!-- .alert -->
 		<?php endif; ?>
 
-		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . $_SESSION['username'] . ','; } else { echo ','; } ?></h1>
+		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
 
 		<!-- <a class="welcome-log" href="index.php?logout=1">logout</a> -->
 
@@ -59,4 +61,4 @@ if (   (isset($_SESSION['verified']) && (!$_SESSION['message']))    ) {
 
 </body>
 
-<?php require '_includes/footer-static.php'; ?>
+<?php require '_includes/footer.php'; ?>

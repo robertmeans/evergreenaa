@@ -63,12 +63,13 @@ height: 1px;
 display: flex;
 justify-content: center;
 li:nth-child(1) {
-margin-right: 1em;
+// margin-right: 1em;
 }
 li {
 display: inline-block;
 width: 5em;
 // height: 3em;
+margin: 0 5px;
 & > a {
 position: absolute;
 padding: 0.65em;

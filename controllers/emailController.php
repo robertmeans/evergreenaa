@@ -46,7 +46,7 @@ function sendVerificationEmail($username, $userEmail, $token)
 	<div class="wrapper">
 		<p>Hello ' . $username . ',
 		<p>Thank you for joining this neat project. As I type this we are all buckled down for the Coronavirus which has introduced a new opportunity for AA members to meet. This website is being developed in hopes of providing everyone a safer, more convenient way to manage their Zoom meetings while keeping private information private.</p>
-		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/testing/index.php?token=' . $token . '">Verify your email address</a>
+		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Verify your email address</a>
 		<p>Sincerely,<br>Evergreen Bob</p>
 	</div>
 	
@@ -56,6 +56,7 @@ function sendVerificationEmail($username, $userEmail, $token)
 	// Create a message
 	$message = (new Swift_Message('Verify Your EvergreenAA Registration'))
 	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
+	  ->setBcc('info@evergreenaa.com')
 	  ->setTo($userEmail)
 	  ->setBody($body, 'text/html');
 
@@ -79,7 +80,7 @@ global $mailer;
 	<div class="wrapper">
 		<p>Hello,</p>
 		<p>Please click on the link below to reset your password.</p>
-		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/testing/index.php?password-token=' . $token . '">Reset your password</a>
+		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?password-token=' . $token . '">Reset your password</a>
 		<p>Sincerely,<br>Evergreen Bob</p>
 	</div>
 	

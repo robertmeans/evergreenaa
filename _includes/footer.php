@@ -1,4 +1,4 @@
-<?php
+<?php error_reporting(0);
     function ewd_copyright($startYear) {
         $currentYear = date('Y');
         if ($startYear < $currentYear) {
@@ -221,9 +221,22 @@
 
     <p class="copyright"><?= ewd_copyright(2020); ?> Neighborhood Neighborly Neighbor Bob</p> 
 </footer>
+<?php
+switch ($layout_context) {
+    case 'signup'           :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'reset-password'   :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'password-message' :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'login-page'       :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'index'            :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'home-private'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
+    case 'home-public'      :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
+    case 'forgot-password'  :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    case 'edit-meeting'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+    default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
+}
+?>
 
-<script type="text/javascript" src="js/jquery.backstretch.min.js?<?php echo time(); ?>"></script>
 <script src="js/scripts.js?<?php echo time(); ?>"></script>
-<script src="http://localhost:35729/livereload.js"></script>	
+<!-- <script src="http://localhost:35729/livereload.js"></script>	 -->
 </body>
 </html>

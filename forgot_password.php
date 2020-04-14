@@ -32,4 +32,4 @@
 
 </body>
 
-<?php require '_includes/footer-static.php'; ?>
+<?php require '_includes/footer.php'; ?>

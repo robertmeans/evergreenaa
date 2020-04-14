@@ -9,6 +9,14 @@ When launching:
 
 -------------------------------
 
+When performing sweeping updates (FTP everything to overwrite)
+* Leave OUT:
+	1. /config
+	2. /vendor
+	3. /_includes -> manually do this folder and leave out footers (?)
+
+-------------------------------
+
 PHP Version, Selector & Extensions:
 _images/PHP_version-selector-extensions.jpg
 

@@ -9,6 +9,7 @@ session_start();
 // **Awa: You probably forgot to share the db.php file with me so I commented this out
 require_once 'config/db.php';
 require_once 'controllers/emailController.php';
+require_once '_functions/awyeeah.php';
 
 // set global variables
 $errors = array();
@@ -67,6 +68,15 @@ if (isset($_POST['submit'])) {
 	$password = $_POST['password'];
 	$passwordConf = $_POST['passwordConf'];
 
+	if (empty($username)) {
+		$errors['username'] = "Please enter a username";
+	}
+
+
+	if ((!empty($username)) && (strlen($username) > 16)) {
+		$errors['username'] = "Keep Username 16 characters or less";
+	}
+
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$errors['email'] = "Email is invalid";
 	}
@@ -83,6 +93,10 @@ if (isset($_POST['submit'])) {
 		$errors['password'] = "Password needs at least 4 characters";
 	}
 
+	if ((!empty($password)) && (strlen($password) > 50)) {
+		$errors['password'] = "Keep your password under 50 characters";
+	}
+
 	if ((!empty($password)) && (empty($passwordConf))) {
 		$errors['password'] = "Confirm password";
 	}
@@ -97,7 +111,7 @@ if (isset($_POST['submit'])) {
 
 	// ^ all input is valid on signup -> now 
 	// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
-	// 44:00...
+	// 38:20...
 	$emailQuery = "SELECT * FROM users WHERE email=? LIMIT 1";
 	$stmt = $conn->prepare($emailQuery);
 	$stmt->bind_param('s', $email);
@@ -115,6 +129,8 @@ if (isset($_POST['submit'])) {
 		$errors['email'] = "Email already exists";
 	}
 
+	// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
+	// 42:00
 	if (count($errors) === 0) {
 		$password = password_hash($password, PASSWORD_DEFAULT);
 		$token = bin2hex(random_bytes(50));

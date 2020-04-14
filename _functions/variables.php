@@ -1,5 +1,6 @@
 <?php
 
+	$meeting_id = $row['id'];
 	$mon		= $row['mon'];
 	$tue		= $row['tue'];
 	$wed		= $row['wed'];
@@ -36,6 +37,9 @@
 
 ?>
 				<div class="meeting-details">
+					<?php if (isset($_SESSION['id'])) { // show the edit button if they're logged in ?>
+					<a href="edit-meeting.php?mtg=<?php echo $meeting_id;  ?>"><i class="far fa-edit"></i></a>
+					<?php } ?>
 					<div class="details-left">
 						<p class="meet-time"> <?= $meetHour . ":" . $meetMin . " "?><?php if($amPM != 0) { ?>PM <?php } else { ?>AM <?php } ?><?= $today ?> <?php
 							if ($mens != 0) { ?>| MENS <?php } 
@@ -43,9 +47,7 @@
 						<p>Group: <?= $groupName; ?></p>
 <?php 					if ($dedicated != 0) { ?><p>Dedicated Online Meeting</p><?php } ?>
 <?php 					if ($meetPhone != null) { ?>
-						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?php $meetPhone ?>"><?= $meetPhone ?></a></p>
-
-<?php } ?>
+						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($meetPhone, 0, 3).") ".substr($meetPhone, 3, 3)."-".substr($meetPhone,6); ?>"><?=  "(" .substr($meetPhone, 0, 3).") ".substr($meetPhone, 3, 3)."-".substr($meetPhone,6); ?></a></p><?php } ?>
 <?php 					if ($meetID != 'No ID Necessary') { ?>		
 						<p class="id-num">ID: <input type="text" value="<?= $meetID; ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>

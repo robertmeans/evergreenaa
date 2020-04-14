@@ -34,7 +34,7 @@ include '_includes/head.php';
         </div><!-- .alert -->
         <?php endif; ?>
 
-        <input type="text" class="text" name="email" value="<?php if(isset($email)) { echo $email; } ?>" placeholder="Email address">
+        <input type="text" class="text" name="email" value="<?php if(isset($email)) { echo h($email); } ?>" placeholder="Email address">
                 
         <input type="password" class="text" name="password" placeholder="Password">
         <!-- **Awa: Add remember me option -->
@@ -43,7 +43,8 @@ include '_includes/head.php';
         </label>
         <input type="submit" name="login" class="submit" value="Login">
 
-        <p class="btm-p">Not a member? <a class="log" href="signup.php">Sign up</a></p>
+        <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
+        <!-- <p class="btm-p">Not a member? <a class="log" href="signup.php">Sign up</a></p> -->
         <div style="font-size:0.8em; text-align:center; color:#fff;"><a style="color:#fff;" href="forgot_password.php">Forgot your Password?</a></div>
     </form>
     
@@ -51,4 +52,4 @@ include '_includes/head.php';
 
 </body>
 
-<?php require '_includes/footer-static.php'; ?>
+<?php require '_includes/footer.php'; ?>

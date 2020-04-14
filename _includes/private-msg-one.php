@@ -2,7 +2,7 @@
 	<div class="inside-message-one">
 		<i class="far fa-times-circle"></i>
 		<?php /*<p>Hello <?= $_SESSION['username']; ?>,</p>*/?>
-		<p>Hello<?php if (isset($_SESSION['username'])) { echo ' ' . $_SESSION['username'] . ','; } else { echo ','; } ?></p>
+		<p>Hello<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></p>
 		<!-- <p>If you like what you see and/or have ideas for the site please let me know. While I am not soliciting donations I am not refusing them either.</p> -->
 		<p>Thank you for setting up an account. At the moment there is not much difference between inside and outside your account. This will change soon. </p>
 		<p>If something needs attention on this site please email at the bottom of this page. Whatever you do, don't play <a id="bingo" class="bingo" href="bingo.php" target="_blank">this game</a> during a meeting. </p>

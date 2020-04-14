@@ -1,35 +1,37 @@
 <nav>
 	<ul>
 		<!-- 1st link -->
-		<li><?php
+		<?php
 		switch ($layout_context) {
-			case 'signup' 			:	 																			break;
-			case 'reset-password' 	:	 																			break;
-			case 'password-message' :	 																			break;
-			case 'login-page' 		:	 																			break;
-			case 'index' 			:	 																			break;
-			case 'home-private' 	:	echo "<a id=\"toggle-private-msg-one\" class=\"cc-x\">Readme</a>"; 			break;
-			case 'home-public' 		:	echo "<a id=\"toggle-public-msg-one\" class=\"cc-x why-join\">Readme</a>"; 	break;
-			case 'forgot-password' 	:	 																			break;
-			default 				:	 																			break;
+			case 'signup' 			:	 																						break;
+			case 'reset-password' 	:	 																						break;
+			case 'password-message' :	 																						break;
+			case 'login-page' 		:	 																						break;
+			case 'index' 			:	 																						break;
+			case 'home-private' 	:	echo "<li><a id=\"toggle-private-msg-one\" class=\"cc-x\">Readme</a></li>"; 			break;
+			case 'home-public' 		:	echo "<li><a id=\"toggle-public-msg-one\" class=\"cc-x why-join\">Readme</a></li>"; 	break;
+			case 'forgot-password' 	:	 																						break;
+			case 'edit-meeting' 	:	 																						break;
+			default 				:	 																						break;
 		}
 		?>
-		</li>
+		
 		
 		<!-- 2nd link... -->
-		<li><?php
+		<?php
 		switch ($layout_context) {
-			case 'signup' 			:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			case 'reset-password' 	:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			case 'password-message' :	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			case 'login-page' 		:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			case 'index' 			:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			case 'home-private' 	:	echo "<a class=\"logout\" href=\"logout.php\">Logout</a>"; 				break;
-			case 'home-public' 		:	echo "<a class=\"logout\" href=\"login.php\">Login</a>"; 				break;
-			case 'forgot-password' 	:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
-			default 				:	echo "<a class=\"logout\" href=\"home.php\">Home</a>"; 					break;
+			case 'signup' 			:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'reset-password' 	:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'password-message' :	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'login-page' 		:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'index' 			:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'home-private' 	:	echo "<li><a class=\"logout\" href=\"logout.php\">Logout</a></li>"; 				break;
+			case 'home-public' 		:	echo "<li><a class=\"logout\" href=\"login.php\">Login</a></li>"; 					break;
+			case 'forgot-password' 	:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
+			case 'edit-meeting' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
+			default 				:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 		}
 		?>
-		</li>
+		
 	</ul>
 </nav>

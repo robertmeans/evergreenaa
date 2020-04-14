@@ -115,7 +115,7 @@ ul#weekdays {
 		max-width: 800px;
 		display: flex;
 		flex-direction: column;
-
+		position: relative;
 		margin: 0 auto;
 		// text-align: center;
 
@@ -124,6 +124,14 @@ ul#weekdays {
 			justify-content: center;
 			align-items: center;
 			flex-wrap: wrap;
+			position: relative;
+			i.far.fa-edit {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+				color: #fff;
+				cursor: pointer;
+			}
 			p {
 				line-height: 1.5em;
 			}
