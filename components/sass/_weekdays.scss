@@ -201,6 +201,32 @@ ul#weekdays {
 		}
 	}	
 }
+.collapse-day {
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: sticky; 
+	top: 5px;
+	// nav z-index is 1234580
+	z-index: 1234570;
+}
+.collapse-btn {
+	display: inline-flex;
+	background-color: rgba(0,0,0,1);
+	color: rgba(255,255,255,1);
+	padding: 15px;
+	border-radius: 3px;
+	border: 1px solid #fff;
+	box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.2);
+	transition: background-color 0.2s ease;
+	&:hover {
+		background-color: rgba(0,0,0,0.3);
+	}
+}
+
+
 @media screen and (max-width: 800px) {
 	.backstretch {
 		display: none;

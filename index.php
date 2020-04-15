@@ -10,7 +10,7 @@ if (isset($_GET['token'])) {
 }
 
 if (!isset($_SESSION['verified'])) {
-	header('location: home.php');
+	header('location: login.php');
 	exit;
 }
 

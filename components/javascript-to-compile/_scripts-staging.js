@@ -121,6 +121,15 @@ $('.day').click(function() {
   }
 });
 
+/* collapse day button */
+$('.collapse-day').click(function() {
+  var me = $(this);
+  $('.day-content').not(me).slideUp();
+  $('.day').removeClass('active');
+});
+
+
+
 
 $("#toggle-contact-form").click(function(){
     $(this).toggleClass("active").next().slideToggle(600);

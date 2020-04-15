@@ -163,16 +163,12 @@ if (isset($_POST['submit'])) {
 
 // if user clicks on login
 if (isset($_POST['login'])) {
-	$email = $_POST['email'];
+	$username = $_POST['username'];
 	$password = $_POST['password'];
 
 	// validation
-	if (empty($email)) {
-		$errors['email'] = "Email required";
-	}
-
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$errors['email'] = "Email is invalid";
+	if (empty($username)) {
+		$errors['username'] = "Username or email required";
 	}
 
 	if (empty($password)) {
@@ -183,9 +179,9 @@ if (isset($_POST['login'])) {
 		// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
 		// 1:05:38'ish
 		// $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
-		$sql = "SELECT * FROM users WHERE email=? LIMIT 1";
+		$sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('s', $email);
+		$stmt->bind_param('ss', $username, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$user = $result->fetch_assoc();
@@ -193,8 +189,8 @@ if (isset($_POST['login'])) {
 		if (password_verify($password, $user['password'])) {
 			// login success
 			$_SESSION['id'] = $user['id'];
-			$_SESSION['email'] = $user['email'];
 			$_SESSION['username'] = $user['username'];
+			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
 
 			// at this point you are recognized in the db however we need to determine if
@@ -233,7 +229,7 @@ if (isset($_POST['login'])) {
 
 		} else {
 			// the combination of stuff you typed doesn't match anything in the db
-			$errors['login_fail'] = "Wrong credentials";
+			$errors['login_fail'] = "Wrong credentials. Username is case sensitive.";
 		}
 	}
 }

@@ -8,9 +8,9 @@ require_once 'controllers/authController.php';
 
 <?php require '_includes/head.php'; ?>
 <body>
-<!-- 	<div class="preload">
+	<div class="preload">
 		<p>One day at a time.</p>
-	</div> -->
+	</div>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
@@ -21,6 +21,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-sunday" class="day">Sunday</button>
 		<div id="sunday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -42,6 +43,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-monday" class="day">Monday</button>
 		<div id="monday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -63,6 +65,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-tuesday" class="day">Tuesday</button>
 		<div id="tuesday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -84,6 +87,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-wednesday" class="day">Wednesday</button>
 		<div id="wednesday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -105,6 +109,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-thursday" class="day">Thursday</button>
 		<div id="thursday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -126,6 +131,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-friday" class="day">Friday</button>
 		<div id="friday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php
@@ -147,6 +153,7 @@ require_once 'controllers/authController.php';
 	<li class="ctr-day">
 		<button id="open-saturday" class="day">Saturday</button>
 		<div id="saturday-content" class="day-content">
+		<?php include '_includes/collapse-day.php'; ?>
 			<div class="weekday-wrap">
 
 			<?php

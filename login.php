@@ -34,7 +34,11 @@ include '_includes/head.php';
         </div><!-- .alert -->
         <?php endif; ?>
 
-        <input type="text" class="text" name="email" value="<?php if(isset($email)) { echo h($email); } ?>" placeholder="Email address">
+        <!-- 
+        <input type="text" class="text" name="email" value="<?php //if(isset($email)) { echo h($email); } ?>" placeholder="Email address">
+        -->
+
+        <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
                 
         <input type="password" class="text" name="password" placeholder="Password">
         <!-- **Awa: Add remember me option -->
