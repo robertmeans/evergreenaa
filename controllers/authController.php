@@ -1,8 +1,4 @@
 <?php
-/* updated to PHP v7.2 on GoDaddy and unchecked mysqli and checked nd_mysqli */
-
-// ini_set("display_errors","on");
-// error_reporting(E_ALL && ~E_NOTICE);
 
 session_start();
 
@@ -10,8 +6,10 @@ session_start();
 require_once 'config/db.php';
 require_once 'controllers/emailController.php';
 require_once '_functions/awyeeah.php';
+require_once '_functions/query_functions.php';
 
 // set global variables
+$db = db_connect();
 $errors = array();
 $username = "";
 $email = "";

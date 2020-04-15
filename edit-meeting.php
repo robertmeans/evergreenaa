@@ -30,18 +30,18 @@ $meeting = mysqli_fetch_assoc($result);
 
 <form action="" method="post">
 	<label for="id-name" style="display:block;">Session ID
-		<input type="text" value="<?php echo $_SESSION['id']; ?>">
+		<input type="text" value="<?php echo h($_SESSION['id']); ?>">
 	</label>
 	<label for="mtgid" style="display:block;">Meeting ID
-		<input type="text" name="id_meeting" value="<?php echo $mtg; ?>">
+		<input type="text" name="id_meeting" value="<?php echo h($mtg); ?>">
 	</label>
 
 
 	<label for="group-name" style="display:block;">Group Name 
-		<input type="text" class="text" name="groupname" value="<?php if(isset($meeting['group_name'])) { echo $meeting['group_name']; } ?>">
+		<input type="text" class="text" name="groupname" value="<?php if(isset($meeting['group_name'])) { echo h($meeting['group_name']); } ?>">
 	</label>
 	<label for="additional-notes" style="display:block;">Additional notes 
-		<textarea name="addnotes"><?php if(isset($meeting['add_note'])) { echo $meeting['add_note']; } ?></textarea>
+		<textarea name="addnotes"><?php if(isset($meeting['add_note'])) { echo h($meeting['add_note']); } ?></textarea>
 	</label>
 
 	<input type="submit" name="update-private-mtg" class="submit" value="Update">

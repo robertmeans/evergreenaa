@@ -596,3 +596,38 @@ Stack trace:
 [14-Apr-2020 02:58:43 UTC] PHP Notice:  Undefined index: email in C:\wamp64\www\evergreenaa\index.php on line 47
 [14-Apr-2020 02:58:43 UTC] PHP Notice:  Undefined index: verified in C:\wamp64\www\evergreenaa\index.php on line 53
 [14-Apr-2020 03:05:11 UTC] PHP Notice:  Undefined index: message in C:\wamp64\www\evergreenaa\index.php on line 16
+[14-Apr-2020 14:22:00 UTC] PHP Notice:  Undefined index: message in C:\wamp64\www\evergreenaa\index.php on line 17
+[14-Apr-2020 19:06:21 UTC] PHP Fatal error:  Uncaught Error: Class 'mysqxli' not found in C:\wamp64\www\evergreenaa\config\db.php:5
+Stack trace:
+#0 C:\wamp64\www\evergreenaa\controllers\authController.php(6): require_once()
+#1 C:\wamp64\www\evergreenaa\home_private.php(5): require_once('C:\\wamp64\\www\\e...')
+#2 {main}
+  thrown in C:\wamp64\www\evergreenaa\config\db.php on line 5
+[14-Apr-2020 19:14:51 UTC] PHP Notice:  Undefined index: message in C:\wamp64\www\evergreenaa\index.php on line 17
+[14-Apr-2020 19:31:26 UTC] PHP Notice:  Undefined index: mtg in C:\wamp64\www\evergreenaa\edit-playground.php on line 20
+[14-Apr-2020 19:44:37 UTC] PHP Notice:  Use of undefined constant mysqli_fetch_assoc - assumed 'mysqli_fetch_assoc' in C:\wamp64\www\evergreenaa\edit-playground.php on line 21
+[14-Apr-2020 19:54:33 UTC] PHP Notice:  Undefined index: message in C:\wamp64\www\evergreenaa\index.php on line 17
+[14-Apr-2020 20:11:42 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreenz' in C:\wamp64\www\evergreenaa\config\db.php on line 6
+[14-Apr-2020 20:12:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function confirm_db_connect() in C:\wamp64\www\evergreenaa\config\db.php:10
+Stack trace:
+#0 C:\wamp64\www\evergreenaa\controllers\authController.php(12): db_connect()
+#1 C:\wamp64\www\evergreenaa\edit-playground.php(5): require_once('C:\\wamp64\\www\\e...')
+#2 {main}
+  thrown in C:\wamp64\www\evergreenaa\config\db.php on line 10
+[14-Apr-2020 20:13:47 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreenz' in C:\wamp64\www\evergreenaa\config\db.php on line 6
+[14-Apr-2020 20:13:47 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreenz' in C:\wamp64\www\evergreenaa\config\db.php on line 9
+[14-Apr-2020 20:15:09 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreenz' in C:\wamp64\www\evergreenaa\config\db.php on line 6
+[14-Apr-2020 20:15:09 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreenz' in C:\wamp64\www\evergreenaa\config\db.php on line 9
+[14-Apr-2020 20:33:18 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreens' in C:\wamp64\www\evergreenaa\config\db.php on line 6
+[14-Apr-2020 20:33:18 UTC] PHP Warning:  mysqli_connect(): (HY000/1049): Unknown database 'z_local_aa_evergreens' in C:\wamp64\www\evergreenaa\config\db.php on line 9
+[14-Apr-2020 23:19:48 UTC] PHP Notice:  Undefined variable: meeting in C:\wamp64\www\evergreenaa\edit-playground.php on line 36
+[14-Apr-2020 23:19:48 UTC] PHP Notice:  Undefined variable: meeting in C:\wamp64\www\evergreenaa\edit-playground.php on line 36
+[14-Apr-2020 23:20:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function find_meetng_by_id() in C:\wamp64\www\evergreenaa\edit-playground.php:35
+Stack trace:
+#0 {main}
+  thrown in C:\wamp64\www\evergreenaa\edit-playground.php on line 35
+[14-Apr-2020 23:21:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function find_meetng_by_id() in C:\wamp64\www\evergreenaa\edit-playground.php:35
+Stack trace:
+#0 {main}
+  thrown in C:\wamp64\www\evergreenaa\edit-playground.php on line 35
+[15-Apr-2020 01:36:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in C:\wamp64\www\evergreenaa\_functions\query_functions.php on line 30

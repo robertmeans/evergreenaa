@@ -38,7 +38,7 @@
 ?>
 				<div class="meeting-details">
 					<?php if (isset($_SESSION['id'])) { // show the edit button if they're logged in ?>
-					<a href="edit-meeting.php?mtg=<?php echo $meeting_id;  ?>"><i class="far fa-edit"></i></a>
+					<a href="edit-meeting.php?mtg=<?php echo h(u($meeting_id));  ?>"><i class="far fa-edit"></i></a>
 					<?php } ?>
 					<div class="details-left">
 						<p class="meet-time"> <?= $meetHour . ":" . $meetMin . " "?><?php if($amPM != 0) { ?>PM <?php } else { ?>AM <?php } ?><?= $today ?> <?php
