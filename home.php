@@ -8,9 +8,9 @@ require_once 'controllers/authController.php';
 
 <?php require '_includes/head.php'; ?>
 <body>
-<!-- 	<div class="preload">
+	<div class="preload">
 		<p>One day at a time.</p>
-	</div> -->
+	</div>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
