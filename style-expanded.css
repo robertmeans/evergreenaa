@@ -67,6 +67,15 @@ table {
   clear: both;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 .no-js #loader {
   display: none;
 }
@@ -286,6 +295,10 @@ ul#weekdays li.ctr-day .day-content {
   font-weight: normal;
   font-size: 18px;
 }
+ul#weekdays li.ctr-day button::-moz-focus-inner {
+  outline: none;
+  border: 0;
+}
 ul#weekdays .day {
   font-size: 1.5em;
   font-weight: bold;
@@ -316,6 +329,9 @@ ul#weekdays .day:hover {
   background: #6d94e1 url("_images/aa-logo-light.gif") no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
+}
+ul#weekdays .day:focus {
+  outline: none;
 }
 ul#weekdays .active {
   border-top: 2px solid #fff;
@@ -458,6 +474,8 @@ ul#weekdays .weekday-wrap p.no-meet {
   position: -webkit-sticky;
   position: sticky;
   top: 5px;
+  width: 60px;
+  margin: 0 auto;
   z-index: 1234570;
 }
 
@@ -467,9 +485,9 @@ ul#weekdays .weekday-wrap p.no-meet {
   background-color: black;
   color: white;
   padding: 15px;
-  border-radius: 3px;
+  border-radius: 50%;
   border: 1px solid #fff;
-  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 9px 3px rgba(255, 255, 255, 0.3);
   transition: background-color 0.2s ease;
 }
 .collapse-btn:hover {
@@ -935,7 +953,7 @@ div#success-wrap span.success-msg {
   max-width: 1055px;
 }
 
-div#public-msg-one {
+#public-msg-one {
   cursor: pointer;
   display: -ms-flexbox;
   display: flex;
@@ -950,7 +968,7 @@ div#public-msg-one {
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 1234567;
 }
-div#public-msg-one .inside-message-one {
+#public-msg-one .inside-message-one {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -963,39 +981,39 @@ div#public-msg-one .inside-message-one {
   max-width: 750px;
   background-color: rgba(44, 73, 106, 0.99);
 }
-div#public-msg-one .inside-message-one > i {
+#public-msg-one .inside-message-one > i {
   position: absolute;
   top: 20px;
   right: 20px;
   color: #fff;
   font-size: 1.3em;
 }
-div#public-msg-one .inside-message-one > h1 {
+#public-msg-one .inside-message-one > h1 {
   font-size: 1.3em;
   margin-bottom: 0.5em;
   line-height: 1.3em;
 }
-div#public-msg-one .inside-message-one p {
+#public-msg-one .inside-message-one p {
   color: #fff;
   line-height: 1.5em;
   margin-top: 1em;
 }
-div#public-msg-one .inside-message-one > hr {
+#public-msg-one .inside-message-one > hr {
   margin: 1em auto;
   width: 90%;
 }
-div#public-msg-one .inside-message-one p.aa-link {
+#public-msg-one .inside-message-one p.aa-link {
   margin-top: 1.5em;
 }
-div#public-msg-one .inside-message-one a.bingo {
+#public-msg-one .inside-message-one a.bingo {
   color: #fff;
   text-decoration: underline;
   padding: 0px;
 }
-div#public-msg-one .inside-message-one a.bingo:hover {
+#public-msg-one .inside-message-one a.bingo:hover {
   text-decoration: none;
 }
-div#public-msg-one .inside-message-one a.daccaa {
+#public-msg-one .inside-message-one a.daccaa {
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
@@ -1003,7 +1021,7 @@ div#public-msg-one .inside-message-one a.daccaa {
   transition: all 0.2s ease;
   outline: none;
 }
-div#public-msg-one .inside-message-one a.daccaa:hover {
+#public-msg-one .inside-message-one a.daccaa:hover {
   background-color: #a3abb4;
   color: #fff;
 }
