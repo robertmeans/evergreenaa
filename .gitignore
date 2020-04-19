@@ -10,6 +10,7 @@ node_modules
 trashbin
 vendor
 _db
+php-error.log
 .gitattributes
 sftp-config.json
 package-lock.json
