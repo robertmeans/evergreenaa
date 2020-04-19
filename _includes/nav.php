@@ -8,8 +8,8 @@
 			case 'password-message' :	 																						break;
 			case 'login-page' 		:	 																						break;
 			case 'index' 			:	 																						break;
-			case 'home-private' 	:	echo "<li><a id=\"toggle-private-msg-one\" class=\"cc-x\">Readme</a></li>"; 			break;
-			case 'home-public' 		:	echo "<li><a id=\"toggle-public-msg-one\" class=\"cc-x why-join\">Readme</a></li>"; 	break;
+			case 'home-private' 	:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x\">Readme</a></li>"; 			break;
+			case 'home-public' 		:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x why-join\">Readme</a></li>"; 	break;
 			case 'forgot-password' 	:	 																						break;
 			case 'edit-meeting' 	:	 																						break;
 			default 				:	 																						break;

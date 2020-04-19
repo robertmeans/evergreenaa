@@ -41,10 +41,6 @@
 					<!-- <a href="edit-meeting.php?mtg=<?php // echo h(u($meeting_id));  ?>"><i class="far fa-edit"></i></a> -->
 					<?php // } ?>
 					<div class="details-left">
-						<p class="meet-time"> <?= $meetHour . ":" . $meetMin . " "?><?php if($amPM != 0) { ?>PM <?php } else { ?>AM <?php } ?><?= $today ?> <?php
-							if ($mens != 0) { ?>| MENS <?php } 
-							if ($womens != 0) { ?>| WOMENS <?php } ?></p>
-						<p>Group: <?= $groupName; ?></p>
 <?php 					if ($dedicated != 0) { ?><p>Dedicated Online Meeting</p><?php } ?>
 <?php 					if ($meetPhone != null) { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($meetPhone, 0, 3).") ".substr($meetPhone, 3, 3)."-".substr($meetPhone,6); ?>"><?=  "(" .substr($meetPhone, 0, 3).") ".substr($meetPhone, 3, 3)."-".substr($meetPhone,6); ?></a></p><?php } ?>

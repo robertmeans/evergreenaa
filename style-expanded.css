@@ -277,7 +277,8 @@ ul#weekdays {
   font-size: 2em;
   font-weight: bold;
 }
-ul#weekdays li.ctr-day {
+
+li.ctr-day {
   width: 100%;
   text-align: center;
   display: -ms-flexbox;
@@ -291,15 +292,16 @@ ul#weekdays li.ctr-day {
   -ms-flex-align: center;
       align-items: center;
 }
-ul#weekdays li.ctr-day .day-content {
-  font-weight: normal;
-  font-size: 18px;
-}
-ul#weekdays li.ctr-day button::-moz-focus-inner {
+li.ctr-day button::-moz-focus-inner {
   outline: none;
   border: 0;
 }
-ul#weekdays .day {
+li.ctr-day .day-content {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.day {
   font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
@@ -322,7 +324,7 @@ ul#weekdays .day {
   transition: font-size 0.3s ease, background 0.5s ease;
   /* trippy, trippy background transition. does something with backstretch that results in neat hover effect */
 }
-ul#weekdays .day:hover {
+.day:hover {
   background-color: #fff;
   background-color: white;
   color: #313131;
@@ -330,10 +332,11 @@ ul#weekdays .day:hover {
   background-size: cover;
   background-attachment: fixed;
 }
-ul#weekdays .day:focus {
+.day:focus {
   outline: none;
 }
-ul#weekdays .active {
+
+.active {
   border-top: 2px solid #fff;
   border-bottom: dashed 1px #7e7e7e;
   background-color: #000;
@@ -343,36 +346,76 @@ ul#weekdays .active {
   background-size: cover;
   background-attachment: fixed;
 }
-ul#weekdays .day-content {
+
+.day-content {
   font-size: 18px;
   font-weight: normal;
   border-bottom: 2px solid #fff;
-  padding: 1.5em;
+  padding: 0.5em 1.5em 1.5em;
   background-color: #515151;
   background-color: rgba(81, 81, 81, 0.7);
   width: 100%;
   text-align: left;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
-ul#weekdays .day-content > div > div {
-  padding-bottom: 1em;
-  margin-bottom: 2em;
-  border-bottom: 1px dotted white;
-}
-ul#weekdays .day-content > div > div:last-child {
-  margin-bottom: 0px;
-  border-bottom: none;
-}
-ul#weekdays .weekday-wrap {
+
+.daily-glance-wrap {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
+  margin-top: 1em;
+}
+
+.daily-glance {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: inherit;
+}
+.daily-glance:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.daily-glance .glance-mtg {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
+}
+.daily-glance .glance-group-title {
+  -ms-flex: 2;
+      flex: 2;
+  padding: 0em 0.5em;
+}
+.daily-glance .glance-mtg-type {
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+
+.weekday-wrap {
+  width: 100%;
+  max-width: 900px;
+  padding: 0px 20px 20px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
   position: relative;
   margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
-ul#weekdays .weekday-wrap .meeting-details {
+.weekday-wrap .meeting-details {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -381,27 +424,27 @@ ul#weekdays .weekday-wrap .meeting-details {
       align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-top: 1em;
   position: relative;
 }
-ul#weekdays .weekday-wrap .meeting-details i.far.fa-edit {
+.weekday-wrap .meeting-details i.far.fa-edit {
   position: absolute;
   top: 5px;
   right: 5px;
   color: #fff;
   cursor: pointer;
 }
-ul#weekdays .weekday-wrap .meeting-details p {
+.weekday-wrap .meeting-details p {
   line-height: 1.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details p.meet-time {
+.weekday-wrap .meeting-details p.meet-time {
   font-size: 1.5em;
   margin-bottom: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details p.id-num {
-  margin-top: 1.5em;
+.weekday-wrap .meeting-details p.id-num {
   margin-bottom: 0.75em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-left {
+.weekday-wrap .meeting-details .details-left {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -410,18 +453,18 @@ ul#weekdays .weekday-wrap .meeting-details .details-left {
   padding: 1em;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-ul#weekdays .weekday-wrap .meeting-details .details-left > p.phone-num01 {
+.weekday-wrap .meeting-details .details-left > p.phone-num01 {
   color: #fff;
   margin-top: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-left > p.phone-num01 > i {
+.weekday-wrap .meeting-details .details-left > p.phone-num01 > i {
   margin-right: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-left > p.phone-num01 > a {
+.weekday-wrap .meeting-details .details-left > p.phone-num01 > a {
   color: #fff;
   text-decoration: none;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-right {
+.weekday-wrap .meeting-details .details-right {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -429,20 +472,20 @@ ul#weekdays .weekday-wrap .meeting-details .details-right {
   width: 50%;
   padding: 1em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-right p.add-info {
+.weekday-wrap .meeting-details .details-right p.add-info {
   text-decoration: underline;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-right ul {
+.weekday-wrap .meeting-details .details-right ul {
   list-style-type: disc;
   margin-left: 1em;
 }
-ul#weekdays .weekday-wrap .meeting-details .details-right ul > li {
+.weekday-wrap .meeting-details .details-right ul > li {
   line-height: 1.5em;
   margin-bottom: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details #add-note {
+.weekday-wrap .meeting-details #add-note {
   width: 100%;
   padding: 30px;
   background: rgba(255, 255, 255, 0.75);
@@ -453,30 +496,21 @@ ul#weekdays .weekday-wrap .meeting-details #add-note {
   border-top-left-radius: 0px;
   margin-top: 0.5em;
 }
-ul#weekdays .weekday-wrap .meeting-details #add-note > p {
+.weekday-wrap .meeting-details #add-note > p {
   text-align: left;
 }
-ul#weekdays .weekday-wrap p.no-meet {
+.weekday-wrap p.no-meet {
   text-align: center;
   padding: 50px;
 }
 
 .collapse-day {
   cursor: pointer;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
   position: -webkit-sticky;
   position: sticky;
   top: 5px;
-  width: 60px;
   margin: 0 auto;
-  z-index: 1234570;
+  z-index: 1234561;
 }
 
 .collapse-btn {
@@ -484,8 +518,7 @@ ul#weekdays .weekday-wrap p.no-meet {
   display: inline-flex;
   background-color: black;
   color: white;
-  padding: 15px;
-  border-radius: 50%;
+  padding: 5px 15px;
   border: 1px solid #fff;
   box-shadow: 0px 0px 9px 3px rgba(255, 255, 255, 0.3);
   transition: background-color 0.2s ease;
@@ -503,30 +536,58 @@ ul#weekdays .weekday-wrap p.no-meet {
     display: block;
   }
 
-  ul#weekdays .day {
+  .day {
     font-size: 1.1em;
   }
-  ul#weekdays .day:hover {
+  .day:hover {
     background: none;
     background-color: transparent;
     color: #fff;
   }
-  ul#weekdays .active {
+
+  .active {
     background: none;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
   }
-  ul#weekdays .weekday-wrap .meeting-details {
+
+  .weekday-wrap .meeting-details {
     -ms-flex-direction: column;
         flex-direction: column;
   }
-  ul#weekdays .weekday-wrap .meeting-details .details-left,
-  ul#weekdays .weekday-wrap .meeting-details .details-right {
+  .weekday-wrap .meeting-details .details-left,
+  .weekday-wrap .meeting-details .details-right {
     width: 96%;
   }
-  ul#weekdays .weekday-wrap .meeting-details .details-left {
+  .weekday-wrap .meeting-details .details-left {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .daily-glance {
+    padding: 0.5em;
+    line-height: 1.4em;
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .daily-glance:hover {
+    background-color: inherit;
+  }
+  .daily-glance .glance-group-title {
+    padding: 0em;
+  }
+  .daily-glance .glance-mtg-type {
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+  }
+
+  .day-content {
+    padding: 0.5em 0.5em 1.5em;
+  }
+
+  .daily-glance-wrap {
+    background-color: rgba(45, 74, 107, 0.7);
+    background-color: rgba(0, 0, 0, 0.45);
   }
 }
 input.day-values {
@@ -836,101 +897,6 @@ div#success-wrap span.success-msg {
     display: none;
   }
 }
-#private-msg-one {
-  cursor: pointer;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 1234567;
-}
-#private-msg-one .inside-message-one {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  position: relative;
-  padding: 50px;
-  width: 100%;
-  max-width: 750px;
-  background-color: rgba(44, 73, 106, 0.99);
-}
-#private-msg-one .inside-message-one > i {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #fff;
-  font-size: 1.3em;
-}
-#private-msg-one .inside-message-one > p {
-  color: #fff;
-  line-height: 1.5em;
-  margin-bottom: 1em;
-}
-#private-msg-one .inside-message-one p.info-links {
-  text-align: center;
-  margin-top: 1.5em;
-}
-#private-msg-one .inside-message-one a.extras {
-  color: #fff;
-  text-decoration: none;
-}
-#private-msg-one .inside-message-one a.extras:hover {
-  text-decoration: underline;
-}
-#private-msg-one .inside-message-one a.bingo {
-  color: #fff;
-  text-decoration: underline;
-  padding: 0px;
-}
-#private-msg-one .inside-message-one a.bingo:hover {
-  text-decoration: none;
-}
-#private-msg-one .inside-message-one a.daccaa {
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  background-color: #7088a4;
-  transition: all 0.2s ease;
-  box-shadow: 0 18px 6px -6px rgba(0, 0, 0, 0.5);
-  outline: none;
-  margin: 1.5em auto;
-}
-#private-msg-one .inside-message-one a.daccaa:hover {
-  background-color: #a3abb4;
-  color: #fff;
-}
-
-@media screen and (max-width: 800px) {
-  div#private-msg-one .inside-message-one {
-    padding: 30px 30px 65px;
-    max-width: 96%;
-  }
-  div#private-msg-one .inside-message-one > i {
-    top: 10px;
-    right: 10px;
-  }
-  div#private-msg-one .inside-message-one p.aa-link {
-    margin-bottom: 2em;
-  }
-}
-@media screen and (max-width: 390px) {
-  div#private-msg-one .inside-message-one {
-    padding: 30px 30px 65px;
-  }
-  div#private-msg-one .inside-message-one p.aa-link {
-    margin-bottom: 3em;
-  }
-}
 #bingo-wrap {
   display: -ms-flexbox;
   display: flex;
@@ -953,97 +919,156 @@ div#success-wrap span.success-msg {
   max-width: 1055px;
 }
 
-#public-msg-one {
+#msg-one {
   cursor: pointer;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
   position: relative;
   width: 100%;
   height: 100%;
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 1234567;
-}
-#public-msg-one .inside-message-one {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
   -ms-flex-direction: column;
       flex-direction: column;
+}
+#msg-one .msg-bkg {
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 20px 20px 0px;
+}
+#msg-one .inside-msg-one {
   position: relative;
   padding: 50px;
-  width: 100%;
-  max-width: 750px;
   background-color: rgba(44, 73, 106, 0.99);
+  width: 80%;
+  max-width: 900px;
+  margin-bottom: 20px;
 }
-#public-msg-one .inside-message-one > i {
+#msg-one .inside-msg-one > i {
   position: absolute;
   top: 20px;
   right: 20px;
   color: #fff;
   font-size: 1.3em;
 }
-#public-msg-one .inside-message-one > h1 {
+#msg-one .inside-msg-one > h1 {
   font-size: 1.3em;
   margin-bottom: 0.5em;
   line-height: 1.3em;
 }
-#public-msg-one .inside-message-one p {
+#msg-one .inside-msg-one p {
   color: #fff;
   line-height: 1.5em;
   margin-top: 1em;
 }
-#public-msg-one .inside-message-one > hr {
+#msg-one .inside-msg-one > hr {
   margin: 1em auto;
   width: 90%;
 }
-#public-msg-one .inside-message-one p.aa-link {
+#msg-one .inside-msg-one p.info-links {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
+  margin: 1.5em auto 2em auto;
+}
+#msg-one .inside-msg-one p.info-links > a {
+  color: #fff;
+  background-color: #2c7778;
+  border: 1px solid #fff;
+  padding: 15px;
+  margin-bottom: 1em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 2 1 auto;
+      flex: 2 1 auto;
+  margin: 0.5em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+#msg-one .inside-msg-one p.info-links > a:hover {
+  background-color: rgba(44, 119, 120, 0.5);
+}
+#msg-one .inside-msg-one p.aa-link {
   margin-top: 1.5em;
 }
-#public-msg-one .inside-message-one a.bingo {
+#msg-one .inside-msg-one a.bingo {
   color: #fff;
   text-decoration: underline;
   padding: 0px;
 }
-#public-msg-one .inside-message-one a.bingo:hover {
+#msg-one .inside-msg-one a.bingo:hover {
   text-decoration: none;
 }
-#public-msg-one .inside-message-one a.daccaa {
+#msg-one .inside-msg-one p.daccaa-ctr {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+#msg-one .inside-msg-one a.daccaa {
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
   background-color: #7088a4;
   transition: all 0.2s ease;
+  box-shadow: 0 18px 6px -6px rgba(0, 0, 0, 0.5);
   outline: none;
+  margin: 1.5em auto;
 }
-#public-msg-one .inside-message-one a.daccaa:hover {
+#msg-one .inside-msg-one a.daccaa:hover {
   background-color: #a3abb4;
   color: #fff;
 }
 
 @media screen and (max-width: 800px) {
-  div#public-msg-one .inside-message-one {
-    padding: 30px 30px 65px;
-    max-width: 96%;
+  #msg-one .msg-bkg {
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    overflow-y: auto;
+    padding-top: 50px;
+    padding: 50px 0px 0px;
   }
-  div#public-msg-one .inside-message-one > i {
+  #msg-one .inside-msg-one {
+    padding: 45px 25px 50px;
+    width: 92%;
+    margin-bottom: 120px;
+  }
+  #msg-one .inside-msg-one > i {
     top: 10px;
     right: 10px;
   }
-  div#public-msg-one .inside-message-one p.aa-link {
+  #msg-one .inside-msg-one p.info-links {
     margin-bottom: 2em;
   }
 }
 @media screen and (max-width: 390px) {
-  div#public-msg-one .inside-message-one {
-    padding: 30px 30px 65px;
-  }
-  div#public-msg-one .inside-message-one p.aa-link {
+  #msg-one .inside-msg-one p.aa-link {
     margin-bottom: 3em;
   }
 }
@@ -1399,6 +1424,10 @@ span.yo-email {
 }
 
 @media screen and (max-width: 600px) {
+  #landing {
+    height: auto;
+    margin: 1em auto;
+  }
   #landing > form {
     padding: 30px 20px 40px;
   }

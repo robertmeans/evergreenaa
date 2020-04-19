@@ -322,6 +322,8 @@ span.yo-email {
 
 @media screen and (max-width: 600px) {
 	#landing {
+		height: auto;
+		margin: 1em auto;
 		& > form {
 			padding: 30px 20px 40px;
 			label[for="remember_me"] {

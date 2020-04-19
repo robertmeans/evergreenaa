@@ -631,3 +631,6 @@ Stack trace:
 #0 {main}
   thrown in C:\wamp64\www\evergreenaa\edit-playground.php on line 35
 [15-Apr-2020 01:36:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in C:\wamp64\www\evergreenaa\_functions\query_functions.php on line 30
+[18-Apr-2020 15:18:19 UTC] PHP Warning:  require(_functions/meeting-details): failed to open stream: No such file or directory in C:\wamp64\www\evergreenaa\home.php on line 40
+[18-Apr-2020 15:18:19 UTC] PHP Fatal error:  require(): Failed opening required '_functions/meeting-details' (include_path='.;C:\php\pear') in C:\wamp64\www\evergreenaa\home.php on line 40
+[18-Apr-2020 16:25:50 UTC] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in C:\wamp64\www\evergreenaa\_functions\daily-glance.php on line 31
