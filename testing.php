@@ -111,7 +111,7 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE wed != 0 ORDER BY meet_time;";
+				$sql 			= "SELECT * FROM meetings WHERE wed !=0 AND id_user='".$_SESSION['id']."' ORDER BY meet_time;";
 				$allData 		= mysqli_query($conn, $sql);
 				$resultCheck 	= mysqli_num_rows($allData);
 

@@ -40,7 +40,7 @@ function remember_me()
 			$user = $result->fetch_assoc();
 
 			// put user in session (log them in)
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
@@ -188,7 +188,7 @@ if (isset($_POST['login'])) {
 
 		if (password_verify($password, $user['password'])) {
 			// login success
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
@@ -215,7 +215,7 @@ if (isset($_POST['login'])) {
 
 					// Update the token field of that particular user record in the database 
 					// with the newly generated token 
-					$update_token_query = "UPDATE users SET token='$token' WHERE id=" . $user['id'];
+					$update_token_query = "UPDATE users SET token='$token' WHERE id=" . $user['id_user'];
 					if (mysqli_query($conn, $update_token_query)) {
 						// Set and send a cookie called token to be stored on the user's browswer 
 						// so that they can be remembered next time they come to the website 
@@ -249,7 +249,7 @@ function verifyUser($token) {
 
 		if (mysqli_query($conn, $update_query)) {
 			// login success
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = 1;
