@@ -1458,7 +1458,7 @@ span.yo-email {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   line-height: 1.5em;
-  padding-bottom: 50px;
+  padding: 100px 20px;
 }
 
 .manage-simple-intro {
@@ -1479,6 +1479,9 @@ span.yo-email {
 }
 .manage-simple-content > h1 {
   font-size: 1.4em;
+}
+.manage-simple-content > h1.edit-h1 {
+  margin-bottom: 1em;
 }
 
 .manage-glance-wrap {
@@ -1511,6 +1514,118 @@ span.yo-email {
 }
 .manage-glance .glance-mtg-type {
   padding: 0 2em;
+}
+
+a.manage-edit {
+  color: white;
+  transition: all 0.2s ease;
+}
+a.manage-edit:hover {
+  color: #96ff00;
+}
+
+.weekday-edit-wrap {
+  width: 100%;
+  max-width: 900px;
+  padding: 0px 20px 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.weekday-edit-wrap .meeting-details {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  position: relative;
+}
+.weekday-edit-wrap .meeting-details i.far.fa-edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.weekday-edit-wrap .meeting-details p {
+  line-height: 1.5em;
+}
+.weekday-edit-wrap .meeting-details p.meet-time {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details p.id-num {
+  margin-bottom: 0.75em;
+}
+.weekday-edit-wrap .meeting-details .details-left {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 50%;
+  padding: 1em;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 {
+  color: #fff;
+  margin-top: 0.5em;
+  margin: 0.5em 0 1.5em;
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 > i {
+  margin-right: 0.5em;
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 > a {
+  color: #fff;
+  text-decoration: none;
+}
+.weekday-edit-wrap .meeting-details .details-right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 50%;
+  padding: 1em;
+}
+.weekday-edit-wrap .meeting-details .details-right p.add-info {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details .details-right ul {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+.weekday-edit-wrap .meeting-details .details-right ul > li {
+  line-height: 1.5em;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details #add-note {
+  width: 100%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #313131;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0px;
+  margin-top: 0.5em;
+}
+.weekday-edit-wrap .meeting-details #add-note > p {
+  text-align: left;
+}
+.weekday-edit-wrap p.no-meet {
+  text-align: center;
+  padding: 50px;
 }
 
 form#manage-mtg {
@@ -1548,15 +1663,6 @@ form#manage-mtg input[type="radio"] {
   width: 1.3em;
   height: 1.3em;
 }
-form#manage-mtg .ampm {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  width: 80px;
-}
 form#manage-mtg input.mtg-update,
 form#manage-mtg input.mtg-update-url {
   font-size: 1.1em;
@@ -1564,6 +1670,10 @@ form#manage-mtg input.mtg-update-url {
   padding: 0.2em;
   width: 10em;
   margin-bottom: 1em;
+}
+form#manage-mtg input.mtg-update.group-name {
+  width: 96%;
+  max-width: 28em;
 }
 form#manage-mtg input.mtg-update-url {
   width: 16em;
@@ -1576,7 +1686,7 @@ form#manage-mtg textarea#meeturl {
   padding: 0.2em;
   font-size: 1.1em;
 }
-form#manage-mtg textarea#meetNotes {
+form#manage-mtg textarea.meetNotes {
   width: 100%;
   font-size: 1.1em;
   padding: 30px;

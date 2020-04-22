@@ -8,7 +8,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	line-height: 1.5em;
-	padding-bottom: 50px;
+	padding: 100px 20px;
 }
 .manage-simple-intro {
 	width: 100%;
@@ -26,6 +26,9 @@
 	max-width: 900px;
 	& > h1 {
 		font-size: 1.4em;
+	}
+	& > h1.edit-h1 {
+		margin-bottom: 1em;
 	}
 
 }
@@ -56,6 +59,108 @@
 	}
 	.glance-mtg-type {
 		padding: 0 2em;
+	}
+}
+	a.manage-edit {
+		color: rgba(255,255,255,1);
+		transition: all 0.2s ease;
+		&:hover {
+			color: rgba(150,255,0,1);
+		}
+	}
+
+.weekday-edit-wrap {
+	width: 100%;
+	max-width: 900px;
+	padding: 0px 20px 20px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,0.3);
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	.meeting-details {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-top: 1em;
+		position: relative;
+		i.far.fa-edit {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: #fff;
+			cursor: pointer;
+		}
+		p {
+			line-height: 1.5em;
+		}
+		p.meet-time {
+			font-size: 1.5em;
+			margin-bottom: 0.5em;
+		}
+		p.id-num {
+			// margin-top: 1.5em;
+			margin-bottom: 0.75em;
+		}
+		.details-left {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+			padding: 1em;
+			border-right: 1px solid rgba(255,255,255,0.2);
+			& > p.phone-num01 {
+				color: #fff;
+				margin-top: 0.5em;
+				margin: 0.5em 0 1.5em;
+				& > i {
+					margin-right: 0.5em;
+				}
+				& > a {
+					color: #fff;
+					text-decoration: none;
+				}
+			}
+		}
+		.details-right {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+			padding: 1em;
+			p.add-info {
+				text-decoration: underline;
+				font-weight: bold;
+				margin-bottom: 0.5em;
+			}
+			ul {
+				list-style-type: disc;
+				margin-left: 1em;
+			}
+			ul > li {
+				line-height: 1.5em;
+				margin-bottom: 0.5em;
+			}
+		}
+		#add-note {
+			width: 100%;
+			padding: 30px;
+			background: rgba(255,255,255,0.75);
+			color: #313131;
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 0px;
+			border-bottom-left-radius: 10px;
+			border-top-left-radius: 0px;
+			margin-top: 0.5em;
+			& > p {
+				text-align: left;
+			}
+		}
+	}
+	p.no-meet {
+		text-align: center;
+		padding: 50px;
 	}
 }
 
@@ -92,12 +197,6 @@ form#manage-mtg {
 		height: 1.3em;
 		// vertical-align: middle;
 	}
-	.ampm {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 80px;
-	}
 	input.mtg-update,
 	input.mtg-update-url {
 		font-size: 1.1em;
@@ -105,6 +204,10 @@ form#manage-mtg {
 		padding: 0.2em;
 		width: 10em;
 		margin-bottom: 1em;
+	}
+	input.mtg-update.group-name {
+		width: 96%;
+		max-width: 28em;
 	}
 	input.mtg-update-url {
 		width: 16em;
@@ -117,7 +220,7 @@ form#manage-mtg {
 		padding: 0.2em;
 		font-size: 1.1em;
 	}
-	textarea#meetNotes {
+	textarea.meetNotes {
 		width: 100%;
 		font-size: 1.1em;
 	    padding: 30px;

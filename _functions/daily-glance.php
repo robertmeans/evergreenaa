@@ -30,7 +30,7 @@
 				<p><?= $groupName; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if ($open != 0) { echo 'Open meeting'; } else if ($womens != 0) { echo 'Women\'s meeting'; } else if ($mens != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php if ($user_id == $_SESSION['id']) { echo "<i class=\"far fa-edit\"></i>"; } ?></p>
+				<p><?php if ($open != 0) { echo 'Open meeting'; } else if ($womens != 0) { echo 'Women\'s meeting'; } else if ($mens != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php if ($user_id == $_SESSION['id']) { echo "<a class=\"manage-edit\" href=\"manage_edit.php?id=" . h(u($row['id_mtg'])) . "\"><i class=\"far fa-edit\"></i></a>"; } ?></p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->
 	</div>

@@ -93,7 +93,7 @@ function copyToClipboard(elem) {
 $(document).ready(function(){
 
 $(".day-content").hide();
-// $(".weekday-wrap").hide();
+$(".weekday-wrap").hide();
 $("#msg-one").hide();
 $("#email-bob").hide();
 
@@ -218,6 +218,9 @@ $("#topics").click(function(e) {
     e.stopPropagation();
 });
 $("#daccaa").click(function(e) {
+    e.stopPropagation();
+});
+$(".manage-edit").click(function(e) {
     e.stopPropagation();
 });
 
