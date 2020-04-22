@@ -20,6 +20,7 @@ require_once 'controllers/authController.php';
 
 <?php require '_includes/head.php'; ?>
 <body>
+	<?php // echo $_SESSION['id']; ?>
 	<div class="preload">
 		<p>One day at a time.</p>
 	</div>

@@ -1,0 +1,174 @@
+#manage-wrap {
+	width: 100%;
+	height: auto;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	line-height: 1.5em;
+	padding-bottom: 50px;
+}
+.manage-simple-intro {
+	width: 100%;
+	max-width: 620px;
+	text-align: justify;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #fff;
+	padding-bottom: 0.5em;
+	& > p {
+		margin-bottom: 1em;
+	}
+}
+.manage-simple-content {
+	width: 100%;
+	max-width: 900px;
+	& > h1 {
+		font-size: 1.4em;
+	}
+
+}
+
+.manage-glance-wrap {
+	width: 100%;
+	max-width: 900px;
+	// need this wrap for margin-top
+	// exclusively	
+	margin-top: 1em;
+	cursor: pointer;
+}
+.manage-glance {
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+	padding: 0.5em 1em;
+	background-color: transparent;
+	color: inherit;
+	&:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+	.glance-mtg-time, {
+		flex: 2 1 0;
+	}
+	.glance-group-title {
+		align-self: flex-end;
+	}
+	.glance-mtg-type {
+		padding: 0 2em;
+	}
+}
+
+form#manage-mtg {
+	display: flex;
+	flex-wrap: wrap;
+	.top-info {
+		width: 100%;
+		margin: 0.5em 0;
+	}
+	p.days-held {
+		text-decoration: underline;
+		font-weight: bold;
+		margin-bottom: 0.5em;
+	}
+	p.time-held {
+		text-decoration: underline;
+		font-weight: bold;
+		margin: 0.5em 0;
+	}
+	.mtg-days {
+		display: inline-block;
+	}
+	input.mtg-time {
+		font-size: 1.1em;
+		border: 0;
+		padding: 0.2em;
+		width: 2em;
+		margin-bottom: 1em;
+		text-align: center;
+	}
+	input[type="radio"] {
+		width: 1.3em;
+		height: 1.3em;
+		// vertical-align: middle;
+	}
+	.ampm {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 80px;
+	}
+	input.mtg-update,
+	input.mtg-update-url {
+		font-size: 1.1em;
+		border: 0;
+		padding: 0.2em;
+		width: 10em;
+		margin-bottom: 1em;
+	}
+	input.mtg-update-url {
+		width: 16em;
+	}
+	textarea#meeturl {
+		width: 18em;
+		height: 6em;
+		resize: none;
+		border: 0;
+		padding: 0.2em;
+		font-size: 1.1em;
+	}
+	textarea#meetNotes {
+		width: 100%;
+		font-size: 1.1em;
+	    padding: 30px;
+	    background: rgba(255,255,255,1);
+	    color: #313131;
+	    border-top-right-radius: 10px;
+	    border-bottom-right-radius: 0px;
+	    border-bottom-left-radius: 10px;
+	    border-top-left-radius: 0px;
+	    margin-top: 0.5em;
+	    resize: none;
+	}
+	.update-rt {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+	}
+	input[name="update-mtg"] {
+		background-color: rgba(0,0,0,0.9);
+		font-family: Tahoma, Calbri, sans-serif;
+		color: #fff;
+		font-size: 1em;
+		cursor: pointer;
+		border: 1px solid #fff;
+		padding: 1em 2em;
+		margin-top: 1.5em;
+		transition: all 0.2s ease;
+		&:hover {
+			background-color: rgba(0,0,0,0.2);
+		}
+	}
+	input:checked + span {
+		color: #fff;
+	}
+	input[type="checkbox"] {
+		width: 1.5em;
+		height: 1.5em;
+		vertical-align: middle;
+		color: gray;
+	}
+	input[type="checkbox"]:checked + label {
+		color: #fff;
+		display: inline-block;
+	}
+	label {
+		cursor: pointer;
+		line-height: 1.6em;
+		color: gray;
+	}
+
+
+
+
+}

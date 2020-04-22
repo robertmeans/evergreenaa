@@ -25,10 +25,10 @@
 			case 'password-message' :	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 			case 'login-page' 		:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 			case 'index' 			:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
-			case 'home-private' 	:	echo "<li><a class=\"logout\" href=\"logout.php\">Logout</a></li>"; 				break;
+			case 'home-private' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
 			case 'home-public' 		:	echo "<li><a class=\"logout\" href=\"login.php\">Login</a></li>"; 					break;
 			case 'forgot-password' 	:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
-			case 'edit-meeting' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
+			case 'manage' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
 			default 				:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 		}
 		?>

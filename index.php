@@ -42,8 +42,6 @@ if ((isset($_SESSION['verified']) && (!$_SESSION['message']))) {
 
 		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
 
-		<!-- <a class="welcome-log" href="index.php?logout=1">logout</a> -->
-
 		<?php if(!$_SESSION['verified']): ?>
 			<div class="alert alert-warning">
 				<p>To help keep the riffraff out you need to verify your account. Check your email and click on the link verification that was sent to: <span class="yo-email"><?= $_SESSION['email']; ?></span></p>

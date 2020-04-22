@@ -93,7 +93,7 @@ function copyToClipboard(elem) {
 $(document).ready(function(){
 
 $(".day-content").hide();
-$(".weekday-wrap").hide();
+// $(".weekday-wrap").hide();
 $("#msg-one").hide();
 $("#email-bob").hide();
 
@@ -121,6 +121,22 @@ $('.daily-glance-wrap').click(function() {
 
   $('.weekday-wrap').not(toggle).slideUp();
   $('.daily-glance-wrap').not(active).removeClass('active');
+  $(toggle).slideToggle();
+
+  if ($(active).hasClass('active')) {
+    $(active).removeClass('active');
+  } else {
+    $(active).addClass('active');
+  }
+});
+
+$('.manage-glance-wrap').click(function() {
+
+  var active = $(this);
+  var toggle = $(this).next('.weekday-wrap');
+
+  $('.weekday-wrap').not(toggle).slideUp();
+  $('.manage-glance-wrap').not(active).removeClass('active');
   $(toggle).slideToggle();
 
   if ($(active).hasClass('active')) {
@@ -189,7 +205,6 @@ $(document).click(function() {
 });​
 
 
-
 $("#preamble").click(function(e) {
     e.stopPropagation();
 });
@@ -204,4 +219,17 @@ $("#topics").click(function(e) {
 });
 $("#daccaa").click(function(e) {
     e.stopPropagation();
+});
+
+
+// checkboxes on update forms - prevent multiple options
+
+// open, men's or womens?
+$(".omw").change(function() {
+    $(".omw").not(this).prop('checked', false);
+});
+
+// open or closed mtg? (so you can have open or closed mens or womens but not open and closed by itself)
+$(".oc").change(function() {
+    $(".oc").not(this).prop('checked', false);
 });

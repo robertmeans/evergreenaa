@@ -26,7 +26,7 @@ function find_meeting_by_id($id) {
 	global $db;
 
 	$sql = "SELECT * FROM meetings ";
-	$sql .= "WHERE id='" . $id . "'";
+	$sql .= "WHERE id_user='" . $id . "'";
 	$result = mysqli_query($db, $sql);
 	confirm_result_set($result);
 	$meeting = mysqli_fetch_assoc($result);
