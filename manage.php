@@ -2,7 +2,7 @@
 <?php 
 include 'error-reporting.php';
 
-require_once 'controllers/authController.php';
+require_once 'config/initialize.php';
 
 // off for local testing
 
@@ -34,7 +34,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 			<?php
 				$sql 			= "SELECT * FROM meetings WHERE id_user='" . $_SESSION['id'] . "' ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
+				$allData 		= mysqli_query($db, $sql);
 				$resultCheck 	= mysqli_num_rows($allData);
 
 				if ($resultCheck > 0) {

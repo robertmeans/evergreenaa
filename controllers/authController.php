@@ -4,11 +4,7 @@ session_start();
 
 require_once 'config/db.php';
 require_once 'controllers/emailController.php';
-require_once '_functions/awyeeah.php';
-require_once '_functions/query_functions.php';
 
-// set globals
-$db = db_connect();
 $errors = array();
 $username = "";
 $email = "";

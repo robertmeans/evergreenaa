@@ -1,5 +1,28 @@
 <?php
 
+function get_meetings_for_today($today) {
+    global $db;
+
+    $sql = "SELECT * FROM meetings WHERE ";
+    $sql .= "" . $today . " != 0 ORDER BY meet_time;";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+
+}
+
+
+function edit_meeting($id) {
+    global $db;
+
+    $sql = "SELECT * FROM meetings WHERE ";
+    $sql .= "id_mtg='" . $_GET['id'] . "' ORDER BY meet_time;";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+
+}
+
 function find_all_users() {
 	global $db;
 

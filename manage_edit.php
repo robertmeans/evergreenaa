@@ -2,10 +2,12 @@
 <?php 
 include 'error-reporting.php';
 
-require_once 'controllers/authController.php';
+require_once 'config/initialize.php';
+
+
+$id = $_GET['id'];
 
 // off for local testing
-
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
 	exit();
@@ -32,12 +34,11 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 		<h1 class="edit-h1">Update this Meeting</h1>
  
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE id_mtg='" . $_GET['id'] . "' ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = edit_meeting($id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) {  
 
 					// require '_functions/manage-edit-glance.php'; ?>
 					<div class="weekday-edit-wrap">

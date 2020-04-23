@@ -2,18 +2,18 @@
 <?php 
 include 'error-reporting.php';
 
-require_once 'controllers/authController.php';
+require_once 'config/initialize.php';
 
 // off for local testing
 
-// if (!isset($_SESSION['id'])) {
-// 	header('location: home.php');
-// 	exit();
-// }
-// if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-// 	header('location: home.php');
-// 	exit();
-// }
+if (!isset($_SESSION['id'])) {
+	header('location: home.php');
+	exit();
+}
+if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
+	header('location: home.php');
+	exit();
+}
 
 ?>
 
@@ -36,12 +36,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE sun != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($sunday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -61,12 +60,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE mon != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($monday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -86,12 +84,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE tue != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($tuesday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -111,12 +108,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE wed != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($wednesday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -136,12 +132,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE thu != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($thursday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -161,12 +156,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE fri != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($friday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
 					require '_functions/daily-glance.php'; ?>
@@ -186,12 +180,11 @@ require_once 'controllers/authController.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE sat != 0 ORDER BY meet_time;";
-				$allData 		= mysqli_query($conn, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = get_meetings_for_today($saturday);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
 					require '_functions/daily-glance.php'; ?>

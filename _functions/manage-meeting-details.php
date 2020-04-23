@@ -42,10 +42,10 @@ if (is_post_request()) {
 	$row['add_note'] 		= $_POST['meetNotes'] ?? ''; 
 
 
-	$errors = validate_row($row);
-	if(!empty($errors)) {
-		return $errors;
-	}
+	// $errors = validate_row($row);
+	// if(!empty($errors)) {
+	// 	return $errors;
+	// }
 
 	$sql = "UPDATE meetings SET ";
 	$sql .= "group_name='" 		. $row['group_name'] 	. "', ";

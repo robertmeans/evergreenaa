@@ -1,33 +1,8 @@
-<?php
-
-	$meeting_id = $row['id_mtg'];
-	$user_id	= $row['id_user'];
-
-	$sun		= $row['sun'];	
-	$mon		= $row['mon'];
-	$tue		= $row['tue'];
-	$wed		= $row['wed'];
-	$thu		= $row['thu'];
-	$fri		= $row['fri'];
-	$sat		= $row['sat'];
-
-
-	$meetTime	= $row['meet_time'];
-	$meetHour	= $row['meet_hour'];
-	$meetMin	= $row['meet_min'];
-	$amPM		= $row['am_pm'];
-	$groupName	= $row['group_name'];
-	$open		= $row['code_o'];
-	$womens		= $row['code_w'];
-	$closed		= $row['code_c'];
-	$mens		= $row['code_m'];
-
-?>
 
 	<div class="manage-glance-wrap">
 		<div class="manage-glance">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= substr(h($row['meet_time']), 0, 2) . ":" . substr(h($row['meet_time']), -2) . " "?><?php if($amPM != 0) { ?>PM on <?php } else { ?>AM on <?php } 
+				<p><?= substr(h($row['meet_time']), 0, 2) . ":" . substr(h($row['meet_time']), -2) . " "?><?php if($row['am_pm'] != 0) { ?>PM on <?php } else { ?>AM on <?php } 
 				if ($row['sun'] != 0) { echo " Sun "; } 
 				if ($row['mon'] != 0) { echo " Mon "; }
 				if ($row['tue'] != 0) { echo " Tue "; }

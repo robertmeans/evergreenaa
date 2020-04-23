@@ -12,7 +12,8 @@
 			case 'home-public' 		:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x why-join\">Readme</a></li>"; 			break;
 			case 'forgot-password' 	:	 																						break;
 			case 'edit-meeting' 	:	 																						break;
-			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 						break;
+			// case 'manage' 			:	echo "<li><a class=\"logout\" href=\"logout.php\">Logout</a></li>"; 			break;
+			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			default 				:	 																						break;
 		}
 		?>
