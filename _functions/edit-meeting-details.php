@@ -1,99 +1,4 @@
-<?php
 
-// $mtgID = $row['id_mtg'];
-if(!isset($_GET['id'])) {
-	header('location: index.php');
-}
-$id = $_GET['id'];
-
-// if user clicks UPDATE MEETING
-if (is_post_request()) {
-
-
-	$row = [];
-	$row['id_mtg'] 			= $_POST['id_mtg'] ?? '';
-	$row['sun'] 			= $_POST['sunday'] ?? ''; 
-	$row['mon'] 			= $_POST['monday'] ?? ''; 
-	$row['tue'] 			= $_POST['tuesday'] ?? ''; 
-	$row['wed'] 			= $_POST['wednesday'] ?? ''; 
-	$row['thu'] 			= $_POST['thursday'] ?? ''; 
-	$row['fri'] 			= $_POST['friday'] ?? ''; 
-	$row['sat'] 			= $_POST['saturday'] ?? ''; 
-	$row['meet_time'] 		= ($_POST['mtgHour'] . $_POST['mtgMinute']) ?? '';
-	$row['am_pm'] 			= $_POST['mtgAMPM'] ?? ''; 
-	$row['group_name'] 		= $_POST['groupName'] ?? '';
-	$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['phone']) ?? '';
-	$row['meet_id'] 		= $_POST['idNum'] ?? ''; 
-	$row['meet_pswd'] 		= $_POST['meetingPswd'] ?? ''; 
-	$row['meet_url'] 		= $_POST['meeturl'] ?? '';  
-	$row['dedicated_om'] 	= $_POST['dedicatedOM'] ?? ''; 
-	$row['code_b'] 			= $_POST['bookMtg'] ?? ''; 
-	$row['code_d'] 			= $_POST['discussionMtg'] ?? ''; 
-	$row['code_o'] 			= $_POST['openMtg'] ?? ''; 
-	$row['code_w'] 			= $_POST['womensMtg'] ?? ''; 
-	$row['code_beg'] 		= $_POST['beginnersMtg'] ?? ''; 
-	$row['code_h'] 			= $_POST['handicappedMtg'] ?? ''; 
-	$row['code_c'] 			= $_POST['closedMtg'] ?? ''; 
-	$row['code_m'] 			= $_POST['mensMtg'] ?? ''; 
-	$row['code_ss'] 		= $_POST['stepMtg'] ?? ''; 
-	$row['code_sp'] 		= $_POST['speaker'] ?? ''; 
-	$row['month_speaker'] 	= $_POST['monthlySpeaker'] ?? ''; 
-	$row['potluck'] 		= $_POST['potluckMtg'] ?? ''; 
-	$row['add_note'] 		= $_POST['meetNotes'] ?? ''; 
-
-
-	// $errors = validate_row($row);
-	// if(!empty($errors)) {
-	// 	return $errors;
-	// }
-
-	$sql = "UPDATE meetings SET ";
-	$sql .= "group_name='" 		. $row['group_name'] 	. "', ";
-	$sql .= "sun='" 			. $row['sun'] 			. "', ";
-	$sql .= "mon='" 			. $row['mon'] 			. "', ";
-	$sql .= "tue='" 			. $row['tue'] 			. "', ";
-	$sql .= "wed='" 			. $row['wed'] 			. "', ";
-	$sql .= "thu='" 			. $row['thu'] 			. "', ";
-	$sql .= "fri='" 			. $row['fri'] 			. "', ";
-	$sql .= "sat='" 			. $row['sat'] 			. "', ";
-	$sql .= "meet_time='" 		. $row['meet_time'] 	. "', ";
-	$sql .= "am_pm='" 			. $row['am_pm'] 		. "', ";
-	$sql .= "meet_phone='" 		. $row['meet_phone'] 	. "', ";
-	$sql .= "meet_id='" 		. $row['meet_id'] 		. "', ";
-	$sql .= "meet_pswd='" 		. $row['meet_pswd'] 	. "', ";
-	$sql .= "meet_url='" 		. $row['meet_url'] 		. "', ";
-	$sql .= "dedicated_om='" 	. $row['dedicated_om'] 	. "', ";
-	$sql .= "code_b='" 			. $row['code_b'] 		. "', ";
-	$sql .= "code_d='" 			. $row['code_d'] 		. "', ";
-	$sql .= "code_o='" 			. $row['code_o'] 		. "', ";
-	$sql .= "code_w='" 			. $row['code_w'] 		. "', ";
-	$sql .= "code_beg='" 		. $row['code_beg'] 		. "', ";
-	$sql .= "code_h='" 			. $row['code_h'] 		. "', ";
-	$sql .= "code_c='" 			. $row['code_c'] 		. "', ";
-	$sql .= "code_m='" 			. $row['code_m'] 		. "', ";
-	$sql .= "code_ss='" 		. $row['code_ss'] 		. "', ";
-	$sql .= "code_sp='" 		. $row['code_sp']	 	. "', ";
-	$sql .= "month_speaker='"	. $row['month_speaker'] . "', ";
-	$sql .= "potluck='" 		. $row['potluck'] 		. "', ";
-	$sql .= "add_note='" 		. $row['add_note'] 		. "' ";
-
-	$sql .= "WHERE id_mtg='" . $id . "'";
-	$sql .= "LIMIT 1";
-
-	$result = mysqli_query($db, $sql);
-	// update statements are true/false
-	if($result === true) {
-		header('location: manage.php');
-	} else {
-		// update failed
-		echo mysqli_error($db);
-		db_disconnect($db);
-		exit;
-	}
-
-}
-
-?>
 <div class="meeting-details">
 
 	<form id="manage-mtg" action="manage_edit.php?id=<?= h(u($row['id_mtg'])) ?>" method="post">
@@ -101,29 +6,38 @@ if (is_post_request()) {
 			<p class="days-held">Group name</p>
 			<input type="text" class="mtg-update group-name" name="groupName" value="<?php if ($row['group_name'] != "") { echo h($row['group_name']); } ?>" placeholder="Group name">
 
+	
 			<p class="days-held">Day(s) meeting is held</p>
-		
-	<input type="hidden" name="sunday" value="0">	
-	<label><input type="checkbox" name="sunday" value="1" <?php if ($row['sun'] != 0) { echo "checked"; } ?> /> <span>Sunday</span></label> | 
-
-	<input type="hidden" name="monday" value="0">
-	<label><input type="checkbox" name="monday" value="1" <?php if ($row['mon'] != 0) { echo "checked"; } ?> /> <span>Monday</span></label> | 
-
-	<input type="hidden" name="tuesday" value="0">
-	<label><input type="checkbox" name="tuesday" value="1" <?php if ($row['tue'] != 0) { echo "checked"; } ?> /> <span>Tuesday</span></label> | 
-
-	<input type="hidden" name="wednesday" value="0">
-	<label><input type="checkbox" name="wednesday" value="1" <?php if ($row['wed'] != 0) { echo "checked"; } ?> /> <span>Wednesday</span></label> | 
-
-	<input type="hidden" name="thursday" value="0">
-	<label><input type="checkbox" name="thursday" value="1" <?php if ($row['thu'] != 0) { echo "checked"; } ?> /> <span>Thursday</span></label> | 
-
-	<input type="hidden" name="friday" value="0">
-	<label><input type="checkbox" name="friday" value="1" <?php if ($row['fri'] != 0) { echo "checked"; } ?> /> <span>Friday</span></label> | 
-
-	<input type="hidden" name="saturday" value="0">
-	<label><input type="checkbox" name="saturday" value="1" <?php if ($row['sat'] != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
-
+	<div class="align-days">
+	<div>	
+		<input type="hidden" name="sunday" value="0">	
+		<label><input type="checkbox" name="sunday" value="1" <?php if ($row['sun'] != 0) { echo "checked"; } ?> /> <span>Sunday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="monday" value="0">
+		<label><input type="checkbox" name="monday" value="1" <?php if ($row['mon'] != 0) { echo "checked"; } ?> /> <span>Monday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="tuesday" value="0">
+		<label><input type="checkbox" name="tuesday" value="1" <?php if ($row['tue'] != 0) { echo "checked"; } ?> /> <span>Tuesday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="wednesday" value="0">
+		<label><input type="checkbox" name="wednesday" value="1" <?php if ($row['wed'] != 0) { echo "checked"; } ?> /> <span>Wednesday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="thursday" value="0">
+		<label><input type="checkbox" name="thursday" value="1" <?php if ($row['thu'] != 0) { echo "checked"; } ?> /> <span>Thursday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="friday" value="0">
+		<label><input type="checkbox" name="friday" value="1" <?php if ($row['fri'] != 0) { echo "checked"; } ?> /> <span>Friday</span></label> | 
+	</div>
+	<div>
+		<input type="hidden" name="saturday" value="0">
+		<label><input type="checkbox" name="saturday" value="1" <?php if ($row['sat'] != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
+	</div>
+</div><!-- .align-days -->
 			<p class="time-held">Time</p>
 <div class="mtg-time">			
 	<input type="text" name="mtgHour" class="mtg-time" value="<?php if ($row['meet_time'] != null) { echo substr(h($row['meet_time']), 0, 2); } ?>" placeholder="12"> : <input type="text" name="mtgMinute" class="mtg-time" value ="<?php if ($row['meet_time'] != null) {

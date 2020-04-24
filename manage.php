@@ -15,6 +15,8 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
+$user_id = $_SESSION['id'];
+
 ?>
 
 
@@ -29,16 +31,17 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
 		<p>Welcome to version 1! For now you can only create meetings and manage them here. All meetings will display on the homepage for everyone to see (regardless of whether they are logged in or not). The long-term plan is to allow those with an account (like you) complete control over their experience on this website. Stay tuned...</p>
 	</div>
+	<a href="new_meeting.php" class="new-mtg-btn">Create a new meeting</a>
 	<div class="manage-simple-content">
+
 		<h1>My Meetings</h1>
 
 			<?php
-				$sql 			= "SELECT * FROM meetings WHERE id_user='" . $_SESSION['id'] . "' ORDER BY meet_time;";
-				$allData 		= mysqli_query($db, $sql);
-				$resultCheck 	= mysqli_num_rows($allData);
+				$subject_set = find_meetings_by_id($user_id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($resultCheck > 0) {
-					while ($row = mysqli_fetch_assoc($allData)) { 
+				if ($result > 0) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 
 					require '_functions/manage-glance.php'; ?>
 					<div class="weekday-wrap">
@@ -46,6 +49,8 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
+				} else {
+					echo "<p style=\"margin-top:2em;\">You have no public meetings to manage. This area is going to expand to allow you to manage the meetings you follow, eventually. Stay tuned...</p>";
 				}
 			?>
 

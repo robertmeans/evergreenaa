@@ -14,6 +14,7 @@
 			case 'edit-meeting' 	:	 																						break;
 			// case 'manage' 			:	echo "<li><a class=\"logout\" href=\"logout.php\">Logout</a></li>"; 			break;
 			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
+			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			default 				:	 																						break;
 		}
 		?>
@@ -32,6 +33,7 @@
 			case 'forgot-password' 	:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 			case 'manage' 			:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
 			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
+			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
 			default 				:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 		}
 		?>

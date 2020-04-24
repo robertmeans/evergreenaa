@@ -8,7 +8,17 @@
 				<p><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if ($row['code_o'] != 0) { echo 'Open meeting'; } else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php if ($row['id_user'] == $_SESSION['id']) { ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a><?php } ?></p>
+				<p><?php if ($row['code_o'] != 0) { echo 'Open meeting'; } else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php 
+
+				if (isset($_SESSION['id'])) {
+					if ($row['id_user'] == $_SESSION['id']) { 
+
+						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
+
+					<?php }
+					} ?>
+					
+				</p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->
 	</div>

@@ -26,6 +26,7 @@
 	max-width: 900px;
 	& > h1 {
 		font-size: 1.4em;
+		text-decoration: underline;
 	}
 	& > h1.edit-h1 {
 		margin-bottom: 1em;
@@ -87,6 +88,7 @@
 		flex-wrap: wrap;
 		margin-top: 1em;
 		position: relative;
+		width: 98%;
 		i.far.fa-edit {
 			position: absolute;
 			top: 5px;
@@ -163,13 +165,42 @@
 		padding: 50px;
 	}
 }
+.errors {
+	padding: 1em;
+	border-radius: 2px;
+	border: 1px solid red;
+	margin-bottom: 0.5em;
+	background-color: rgba(255,255,255,0.9);
+	color: red;
+	ul li {
+		list-style: disc;
+		margin-left: 1em;
+	}
+}
+a.new-mtg-btn {
+	margin: 1em 0;
+	padding: 1em 2em;
+	color: #fff;
+	background-color: rgba(0,0,0,0.9);
+	border: 1px solid #fff;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	&:hover {
+		background-color: rgba(255,255,255,0.4);
+	}
+}
 
 form#manage-mtg {
 	display: flex;
 	flex-wrap: wrap;
+	width: 98%;
 	.top-info {
 		width: 100%;
 		margin: 0.5em 0;
+	}
+	.align-days {
+		display: flex;
+		flex-wrap: wrap;
 	}
 	p.days-held {
 		text-decoration: underline;
@@ -213,7 +244,8 @@ form#manage-mtg {
 		width: 16em;
 	}
 	textarea#meeturl {
-		width: 18em;
+		width: 98%;
+		max-width: 18em;
 		height: 6em;
 		resize: none;
 		border: 0;
@@ -238,7 +270,8 @@ form#manage-mtg {
 		justify-content: flex-end;
 		width: 100%;
 	}
-	input[name="update-mtg"] {
+	input[name="update-mtg"],
+	input[name="create-mtg"] {
 		background-color: rgba(0,0,0,0.9);
 		font-family: Tahoma, Calbri, sans-serif;
 		color: #fff;
@@ -249,7 +282,8 @@ form#manage-mtg {
 		margin-top: 1.5em;
 		transition: all 0.2s ease;
 		&:hover {
-			background-color: rgba(0,0,0,0.2);
+			background-color: rgba(255,255,255,0.6);
+			color: rgba(0,0,0,0.9);
 		}
 	}
 	input:checked + span {
@@ -270,8 +304,39 @@ form#manage-mtg {
 		line-height: 1.6em;
 		color: gray;
 	}
-
-
-
-
 }
+
+@media screen and (max-width: 800px) {
+	form#manage-mtg {
+		flex-direction: column;
+	}
+	.weekday-edit-wrap .meeting-details .details-right {
+		padding: 1em 0em;
+		width: 100%;
+	}
+	.weekday-edit-wrap .meeting-details .details-left {
+		border-right: 0px;
+		border-bottom: 1px solid rgba(255,255,255,0.2);
+		padding: 1em 0em;
+		width: 100%;
+	}
+	form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {
+		width: 100%;
+	}
+	form#manage-mtg input[name="update-mtg"] {
+		width: 98%;
+		padding: 1em 0em;
+		text-align: center;
+		font-size: 0.8em;
+	}
+	form#manage-mtg .update-rt {
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 360px) {
+		form#manage-mtg .align-days {
+			flex-direction: column;
+			flex-wrap: nowrap;
+		}
+	}
