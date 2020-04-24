@@ -5,7 +5,7 @@
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
-			<input type="text" class="mtg-update group-name" name="groupname" value="<?= $groupname ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name" name="group_name" value="<?= $group_name ?>" placeholder="Group name">
 
 	
 			<p class="days-held">Day(s) meeting is held</p>
@@ -39,25 +39,25 @@
 		<label><input type="checkbox" name="sat" value="1" <?php if (isset($sat) && ($sat != 0)) { echo "checked"; } ?> /> <span>Saturday</span></label>
 	</div>
 </div><!-- .align-days -->
-			<p class="time-held">Time</p>
+<p class="time-held">Time</p>
 <div class="mtg-time">			
-	<input type="text" name="mtgHour" class="mtg-time" value="<?php if ($time != null) { echo substr(h($time), 0, 2); } ?>" placeholder="12"> : <input type="text" name="mtgMinute" class="mtg-time" value ="<?php if ($time != null) {
-		echo substr(h($time), -2); } ?>" placeholder="00">&nbsp;&nbsp; <label><input type="radio" name="ampm" value="0" <?php
-	 if (isset($ampm) && ($ampm == 0)) { echo "checked"; } ?>> <span>AM </span></label> &nbsp;|&nbsp; <label><input type="radio" name="ampm" value="1" <?php if (isset($ampm) && ($ampm == 1)) { echo "checked"; } ?>> <span> PM</span></label>
+	<input type="text" name="mtgHour" class="mtg-time" value="<?php if ($meet_time != null) { echo substr(h($meet_time), 0, 2); } ?>" placeholder="12"> : <input type="text" name="mtgMinute" class="mtg-time" value ="<?php if ($meet_time != null) {
+		echo substr(h($meet_time), -2); } ?>" placeholder="00">&nbsp;&nbsp; <label><input type="radio" name="am_pm" value="0" <?php
+	 if (isset($am_pm) && ($am_pm == 0)) { echo "checked"; } ?>> <span>AM </span></label> &nbsp;|&nbsp; <label><input type="radio" name="am_pm" value="1" <?php if (isset($am_pm) && ($am_pm == 1)) { echo "checked"; } ?>> <span> PM</span></label>
 </div>
 
 		</div><!-- .top-info -->
 		<div class="details-left">
-			<label for="phone">Phone number</label>
-			<input type="text" class="mtg-update" name="phone" value="<?php
+			<label for="meet_phone">Phone number</label>
+			<input type="text" class="mtg-update" name="meet_phone" value="<?php
 
-			if (isset($phone) && ($phone != "")) { 
-				echo  "(" .substr(h($phone), 0, 3).") ".substr(h($phone), 3, 3)."-".substr(h($phone),6); } ?>" placeholder="10-digit phone #">
+			if (isset($meet_phone) && ($meet_phone != "")) { 
+				echo  "(" .substr(h($meet_phone), 0, 3).") ".substr(h($meet_phone), 3, 3)."-".substr(h($meet_phone),6); } ?>" placeholder="10-digit phone #">
 
-			<label for="idnum">ID number</label>
-			<input type="text" class="mtg-update" name="idnum" value="<?= $idnum ?>" placeholder="ID Number">
-			<label for="meetingpswd">Password</label>
-			<input type="text" class="mtg-update" name="meetingpswd" value="<?= $meetingpswd ?>" placeholder="Password">
+			<label for="meet_id">ID number</label>
+			<input type="text" class="mtg-update" name="meet_id" value="<?= $meet_id ?>" placeholder="ID Number">
+			<label for="meet_pswd">Password</label>
+			<input type="text" class="mtg-update" name="meet_pswd" value="<?= $meet_pswd ?>" placeholder="Password">
 
 			<label for="meeturl">Meeting URL</label>
 			<textarea name="meeturl" id="meeturl" placeholder="http://zoom-address-here/"><?php // $meeturl ?></textarea>
@@ -107,10 +107,10 @@
 			
 	</div><!-- .details-right -->
 
-	<label for="addnotes">Additional notes</label>
-	<textarea name="addnotes" class="meetNotes" placeholder="Do you need to add something important to this meeting? If so, put it here. If not, skip this."><?php
+	<label for="add_note">Additional notes</label>
+	<textarea name="add_note" class="meetNotes" placeholder="Do you need to add something important to this meeting? If so, put it here. If not, skip this."><?php
 
-	if ($addnotes != "") { echo h($addnotes); } ?></textarea>
+	if ($add_note != "") { echo h($add_note); } ?></textarea>
 
 	<div class="update-rt">
 		<input type="submit" name="create-mtg" class="submit" value="POST MEETING">
