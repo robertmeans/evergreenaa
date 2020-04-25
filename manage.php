@@ -3,6 +3,7 @@
 include 'error-reporting.php';
 
 require_once 'config/initialize.php';
+// require_once '_includes/session.php';
 
 // off for local testing
 
@@ -17,11 +18,15 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $user_id = $_SESSION['id'];
 
+// echo delete_success_message();
 ?>
 
 
 <?php require '_includes/head.php'; ?>
 <body>
+<!-- 	<div class="preload">
+		<p>Loading...</p>
+	</div>	 -->
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
@@ -30,6 +35,7 @@ $user_id = $_SESSION['id'];
 	<div class="manage-simple-intro">
 		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
 		<p>Welcome to version 1! For now you can only create meetings and manage them here. All meetings will display on the homepage for everyone to see (regardless of whether they are logged in or not). The long-term plan is to allow those with an account (like you) complete control over their experience on this website. Stay tuned...</p>
+		<p class="logout"><a href="logout.php">Logout</a></p>
 	</div>
 	<a href="new_meeting.php" class="new-mtg-btn">Create a new meeting</a>
 	<div class="manage-simple-content">
@@ -43,9 +49,9 @@ $user_id = $_SESSION['id'];
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 
-					require '_functions/manage-glance.php'; ?>
+					require '_includes/manage-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}

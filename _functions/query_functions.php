@@ -60,7 +60,6 @@ function create_new_meeting($row) {
     db_disconnect($db);
     exit;
   }
-
 }
 
 function update_meeting($id, $row) {
@@ -70,6 +69,9 @@ function update_meeting($id, $row) {
   if (!empty($errors)) {
     return $errors;
   }
+
+  // if am_pm is set to pm do something to make the hour correct
+  // here and see if that'll work
 
   $sql = "UPDATE meetings SET ";
   $sql .= "sun='"           . $row['sun']           . "', ";
@@ -114,6 +116,26 @@ function update_meeting($id, $row) {
       db_disconnect($db);
       exit;
     }  
+}
+
+function delete_meeting($id) {
+  global $db;
+
+  $sql = "DELETE FROM meetings ";
+  $sql .= "WHERE id='" . $id . "' ";
+  $sql .= "LIMIT 1'";
+
+  $result = mysqli_query($db, $sql);
+
+  if($result) {
+    // $_SESSION["message"] = "You deleted that sucker!";
+    return true;
+  } else {
+    // delete failed
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
 }
 
 function edit_meeting($id) {
@@ -168,13 +190,34 @@ function validate_update($row) {
   $errors = [];
 
   if (is_blank($row['group_name'])) {
-    $errors[] = "Name your Meeting! Under 50 characters, please.";
+    $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
   } else if (!has_length($row['group_name'], ['min' => 5, 'max' => 50])) {
-    $errors[] = "Meeting Name needs to be less than 50 characters.";
+    $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
+  }
+
+  if (($row['mtgHour'] > 12) && ($row['mtgHour'] < 24)) {
+    $errors['mtgHour'] = "Please use 12-hour format.";
+  }
+  if ($row['mtgHour'] > 23) {
+    $errors['mtgHour'] = "Whoa! Where'd you come up with an hour like that?! (Please change it.)";
+  }
+  if (($row['mtgHour'] == 0) || ($row['mtgHour'] = "")) {
+    $errors['mtgHour'] = "Add an hour.";
+  }
+
+  if ($row['mtgMinute'] > 59) {
+    $errors['mtgMinute'] = "There are only 59 minutes in an hour!";
+  }
+  if (($row['mtgMinute'] == 0) || ($row['mtgMinute'] = "")) {
+    $errors['mtgMinute'] = "Please don't leave the Minute field blank.";
+  }
+
+
+  if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
+    $errors['meet_phone'] = "Only 10-digit phone numbers.";
   }
 
   return $errors; 
- 
 }
 
 function is_blank($value) {

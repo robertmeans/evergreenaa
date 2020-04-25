@@ -17,8 +17,29 @@
 	margin-bottom: 1em;
 	border-bottom: 1px solid #fff;
 	padding-bottom: 0.5em;
+	position: relative;
 	& > p {
 		margin-bottom: 1em;
+	}
+	i.fa-exclamation-triangle {
+		color: rgba(222,44,13,1);
+		margin-right: 0.2em;
+		font-size: 2em;
+	}
+	& > p.logout {
+		bottom: 5px;
+		right: 0px;
+		text-align: right;
+		padding: 1em 1em 0em;
+		font-size: 0.75em;
+		margin-bottom: 0;
+		& > a {
+			text-decoration: none;
+			color: #fff; 
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }
 .manage-simple-content {
@@ -69,6 +90,14 @@
 			color: rgba(150,255,0,1);
 		}
 	}
+	a.manage-delete {
+		color: rgba(255,255,255,1);
+		margin-left: 1em;
+		transition: all 0.2s ease;
+		&:hover {
+			color: rgba(255,38,0,1);
+		}
+	}	
 
 .weekday-edit-wrap {
 	width: 100%;
@@ -164,14 +193,37 @@
 		text-align: center;
 		padding: 50px;
 	}
+
+	form {
+		display: flex;
+		justify-content: flex-end;
+		// a.cancel {
+		//     background-color: rgba(0,0,0,0.9);
+		//     font-family: Tahoma, Calbri, sans-serif;
+		//     color: #fff;
+		//     text-decoration: none;
+		//     font-size: 1em;
+		//     cursor: pointer;
+		//     border: 1px solid #fff;
+		//     padding: 1em 2em;
+		//     margin-top: 1.5em;
+		//     transition: all 0.2s ease;
+	 //    &:hover {
+		// 	background-color: rgba(255,255,255,0.6);
+		//     color: rgba(0,0,0,0.9);    	
+		// 	}
+	 //    }
+	}
 }
+
 .errors {
 	padding: 1em;
 	border-radius: 2px;
 	border: 1px solid red;
 	margin-bottom: 0.5em;
 	background-color: rgba(255,255,255,0.9);
-	color: red;
+	background-color: rgba(111,23,23,0.9);
+	color: #fff;
 	ul li {
 		list-style: disc;
 		margin-left: 1em;
@@ -182,11 +234,14 @@ a.new-mtg-btn {
 	padding: 1em 2em;
 	color: #fff;
 	background-color: rgba(0,0,0,0.9);
+	background-color: rgba(64,178,8,1);
 	border: 1px solid #fff;
 	text-decoration: none;
 	transition: all 0.2s ease;
+	text-align: center;
 	&:hover {
 		background-color: rgba(255,255,255,0.4);
+		background-color: rgba(64,178,8,0.4);
 	}
 }
 
@@ -202,6 +257,10 @@ form#manage-mtg {
 		display: flex;
 		flex-wrap: wrap;
 	}
+	.align-days.fixerror {
+		background-color: rgba(255,189,192,1);
+		padding: 0.2em;
+	}
 	p.days-held {
 		text-decoration: underline;
 		font-weight: bold;
@@ -215,6 +274,9 @@ form#manage-mtg {
 	.mtg-days {
 		display: inline-block;
 	}
+	input.fixerror {
+		background-color: rgba(255,189,192,1);
+	}
 	input.mtg-time {
 		font-size: 1.1em;
 		border: 0;
@@ -227,6 +289,11 @@ form#manage-mtg {
 		width: 1.3em;
 		height: 1.3em;
 		// vertical-align: middle;
+	}
+	span.fixerror {
+		background-color: rgba(255,189,192,1);
+		padding: 0.5em 1.5em 0.5em 1em;
+		border-radius: 3px;
 	}
 	input.mtg-update,
 	input.mtg-update-url {
@@ -252,6 +319,30 @@ form#manage-mtg {
 		padding: 0.2em;
 		font-size: 1.1em;
 	}
+	input:checked + span {
+		color: #fff;
+	}
+	input[type="checkbox"] {
+		width: 1.5em;
+		height: 1.5em;
+		vertical-align: middle;
+		color: gray;
+	}
+	input[type="checkbox"].fixerror {
+		background-color: rgba(255,189,192,1);
+	}
+	input[type="checkbox"]:checked + label {
+		color: #fff;
+		display: inline-block;
+	}
+	label {
+		cursor: pointer;
+		line-height: 1.6em;
+		color: gray;
+	}
+}
+.btm-notes {
+	width: 100%;
 	textarea.meetNotes {
 		width: 100%;
 		font-size: 1.1em;
@@ -269,12 +360,18 @@ form#manage-mtg {
 		display: flex;
 		justify-content: flex-end;
 		width: 100%;
+			a.cancel {
+			margin-right: 1em;
+		}
 	}
 	input[name="update-mtg"],
-	input[name="create-mtg"] {
+	input[name="create-mtg"],
+	input[name="delete-mtg"],
+	a.cancel {
 		background-color: rgba(0,0,0,0.9);
 		font-family: Tahoma, Calbri, sans-serif;
 		color: #fff;
+		text-decoration: none;
 		font-size: 1em;
 		cursor: pointer;
 		border: 1px solid #fff;
@@ -286,25 +383,27 @@ form#manage-mtg {
 			color: rgba(0,0,0,0.9);
 		}
 	}
-	input:checked + span {
-		color: #fff;
-	}
-	input[type="checkbox"] {
-		width: 1.5em;
-		height: 1.5em;
-		vertical-align: middle;
-		color: gray;
-	}
-	input[type="checkbox"]:checked + label {
-		color: #fff;
-		display: inline-block;
-	}
-	label {
-		cursor: pointer;
-		line-height: 1.6em;
-		color: gray;
-	}
+    input[name="delete-mtg"]  {
+    	background-color: rgba(222,44,13,1);
+    	margin-left: 0.5em;
+    	&:hover {
+    		background-color: rgba(255,0,0,1);
+    		color: #fff;
+    	}
+    }		
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 800px) {
 	form#manage-mtg {
@@ -323,15 +422,39 @@ form#manage-mtg {
 	form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {
 		width: 100%;
 	}
-	form#manage-mtg input[name="update-mtg"] {
-		width: 98%;
-		padding: 1em 0em;
-		text-align: center;
-		font-size: 0.8em;
-	}
+	// .btm-notes input[name="update-mtg"] {
+	// 	width: 98%;
+	// 	padding: 1em 0em;
+	// 	text-align: center;
+	// 	font-size: 0.8em;
+	// }
 	form#manage-mtg .update-rt {
 		justify-content: center;
+		// a.cancel {
+		// width: 98%;
+		// padding: 1em 0em;
+		// text-align: center;
+		// font-size: 0.8em;
+		// }
 	}
+	.weekday-edit-wrap .delete-record {
+		justify-content: center;
+		padding: 0px;
+	}
+	.btm-notes {
+		display: flex;
+		justify-content: center;
+	}
+}
+span.contact-update-message {
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 16px 10px 16px 15px;
+  margin: 60px auto -40px auto;
+  border: 3px solid green;
+  color: green;
+  background-color: #fff;
 }
 
 @media screen and (max-width: 360px) {

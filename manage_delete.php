@@ -1,8 +1,9 @@
-<?php $layout_context = "manage-edit-rev"; ?>
+<?php $layout_context = "manage-delete"; ?>
 <?php 
 include 'error-reporting.php';
 
 require_once 'config/initialize.php';
+// require_once '_includes/session.php';
 
 // off for local testing
 if (!isset($_SESSION['id'])) {
@@ -20,12 +21,18 @@ if (!isset($_GET['id'])) {
 	header('location: index.php');
 }
 
-$id = $_GET['id'];
+// if user clicks UPDATE MEETING
+if (is_post_request()) {
 
-// $subject_set = edit_meeting($id);
-$row = edit_meeting($id);
+	delete_meeting($id);
+	header('location: manage.php');
+
+} else {
+	$id = $_GET['id'];
+}
+	
+	$row = edit_meeting($id);
 ?>
-
 
 <?php require '_includes/head.php'; ?>
 <body>
@@ -34,19 +41,18 @@ $row = edit_meeting($id);
 <div id="manage-wrap">
 	
 <div class="manage-simple-intro">
-	<!-- <p>Take a look. Is everything the way you want it? This is how it appears to everyone in our known interplanetary galactic solarplexus. (Consciousness is a dream.)</p> -->
-	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit" href="manage_edit.php?id=<?= h(u($id)); ?>">edit button</a> and polish this sucker up!</p>
-	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
+	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
+	<p><i class="fas fa-exclamation-triangle"></i> Are you sure you really want to go through with this?</p>
+	<p class="logout"><a href="manage.php">Go back</a></p>
 </div>
 <div class="manage-simple-content">
-	<h1>Quick view</h1>
+	<h1 class="edit-h1">DELETE this Meeting</h1>
 
-		<?php require '_includes/manage-edit-glance.php'; ?>
+		<?php require '_includes/delete-glance.php'; ?>
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/meeting-details.php'; ?>
-		</div><!-- .weekday-wrap -->
+			<?php require '_includes/delete-meeting.php'; ?>
+		</div><!-- .weekday-edit-wrap -->
 </div>
 
 </div><!-- #manage-wrap -->
-
 <?php require '_includes/footer.php'; ?>

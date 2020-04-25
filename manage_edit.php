@@ -33,7 +33,11 @@ if (is_post_request()) {
 	$row['fri'] 			= $_POST['fri'] 										?? ''; 
 	$row['sat'] 			= $_POST['sat'] 										?? ''; 
 	$row['sun'] 			= $_POST['sun'] 										?? '';
-	$row['meet_time'] 		= ($_POST['mtgHour'] . $_POST['mtgMinute']) 			?? '';
+// $row['meet_time'] 		= (preg_replace('/[^0-9]/', '', $_POST['mtgHour']) . preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])) 			?? '';
+
+// $row['mtgHour']			= preg_replace('/[^0-9]/', '', $_POST['mtgHour'])										?? '';
+// $row['mtgMinute']		= preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])									?? '';
+
 	$row['am_pm'] 			= $_POST['am_pm'] 										?? ''; 
 	$row['group_name'] 		= $_POST['group_name'] 									?? '';
 	$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
@@ -78,35 +82,19 @@ if (is_post_request()) {
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
-	<div class="manage-simple-intro">
-		<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-		<p>You look nice today. <i class="far fa-smile"></i></p>
-	</div>
-	<div class="manage-simple-content">
-		<h1 class="edit-h1">Update this Meeting</h1>
-		<?php echo display_errors($errors); ?>
- 
-			<?php
-				
-				// $row = mysqli_fetch_assoc($subject_set);
+<div class="manage-simple-intro">
+	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
+	<p>You look nice today. <i class="far fa-smile"></i></p>
+	<p class="logout"><a href="manage.php">Go back</a></p>
+</div>
+<div class="manage-simple-content">
+	<h1 class="edit-h1">Update this Meeting</h1>
+	<?php echo display_errors($errors); ?>
 
-				// if ($row > 0) {
-					//while ($row = mysqli_fetch_assoc($subject_set)) {  
-
-					// require '_functions/manage-edit-glance.php'; ?>
-					<div class="weekday-edit-wrap">
-						<?php require '_functions/edit-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
-						// mysqli_free_result($row);
-					// } else {
-						// echo "<p>How did you get here? Seriously, could you please copy the URL and email it to me at the bottom of the page? I mean, if you did something silly like add a random number at the end of the URL to see what would happen then I understand how you got here. But otherwise...?</p>";
-					// }
-				//}
-					
-			?>
-	</div>
+		<div class="weekday-edit-wrap">
+			<?php require '_includes/edit-meeting-details.php'; ?>
+		</div><!-- .weekday-wrap -->
+</div>
 
 </div><!-- #manage-wrap -->
-
 <?php require '_includes/footer.php'; ?>

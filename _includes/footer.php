@@ -219,7 +219,7 @@
     </div>
 
 
-    <p class="copyright"><?= ewd_copyright(2020); ?> Neighborhood Neighborly Neighbor Bob</p> 
+    <p class="copyright"><?= ewd_copyright(2020); ?> Evergreen Bob</p> 
 </footer>
 <?php
 switch ($layout_context) {

@@ -14,10 +14,11 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
+$id = $_GET['id'];
+
 if (is_post_request()) {
 
 $row = [];
-$row['id_user'] 		= $_SESSION['id']				 							 ;
 $row['sun'] 			= $_POST['sun'] 										?? '';
 $row['mon'] 			= $_POST['mon'] 										?? '';
 $row['tue'] 			= $_POST['tue'] 										?? '';
@@ -25,18 +26,29 @@ $row['wed'] 			= $_POST['wed'] 										?? '';
 $row['thu'] 			= $_POST['thu'] 										?? '';
 $row['fri'] 			= $_POST['fri'] 										?? '';
 $row['sat']				= $_POST['sat'] 										?? '';
-$row['meet_time'] 		= (preg_replace('/[^0-9]/', '', $_POST['mtgHour']) . preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])) 			?? '';
 
-$row['mtgHour']			= preg_replace('/[^0-9]/', '', $_POST['mtgHour'])										?? '';
-$row['mtgMinute']		= preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])									?? '';
 
-// $row['mtgMinute']		= $_POST['mtgMinute']									?? '';
+
+
+
+
+
+
+// $row['meet_time'] 		= (($_POST['mtgHour']) . $_POST['mtgMinute']))) 	?? '';
+
+$row['meet_time']		= $_POST['meet_time']									?? '';
+
+
+$row['mtgHour']			= preg_replace('/[^0-9]/', '', $_POST['mtgHour'])		?? '';
+$row['mtgMinute']		= preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])		?? '';
+
+$row['mtgMinute']		= $_POST['mtgMinute']									?? '';
 $row['am_pm'] 			= $_POST['am_pm'] 										?? '';
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
-$row['meeturl'] 		= $_POST['meeturl'] 									?? '';
+$row['meet_url'] 		= $_POST['meet_url'] 									?? '';
 $row['dedicated_om'] 	= $_POST['dedicated_om'] 								?? '';
 $row['code_b'] 			= $_POST['code_b'] 										?? '';
 $row['code_d'] 			= $_POST['code_d'] 										?? '';
@@ -52,23 +64,21 @@ $row['month_speaker'] 	= $_POST['month_speaker'] 								?? '';
 $row['potluck'] 		= $_POST['potluck']										?? '';
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
-	$result = create_new_meeting($row);
+	$result = update_meeting($id, $row);
 
 
 	if ($result === true) {
-		$new_id = mysqli_insert_id($db);
-	    header('location: manage_edit_review.php?id=' . $new_id);
+	    header('location: manage_edit_review.php?id=' . $id);
 	} else {
 		$errors = $result;
 
-	if (((isset($_POST['sun']) && $_POST['sun'] == "0") && (isset($_POST['mon']) && $_POST['mon'] == "0")) && (isset($_POST['tue']) && $_POST['tue'] == "0") && (isset($_POST['wed']) && $_POST['wed'] == "0") && (isset($_POST['thu']) && $_POST['thu'] == "0") && (isset($_POST['fri']) && $_POST['fri'] == "0") && (isset($_POST['sat']) && $_POST['sat'] == "0")) {
-	    $errors['sun'] = "Pick a day or days for your meeting.";
-	}
+		if (((isset($_POST['sun']) && $_POST['sun'] == "0") && (isset($_POST['mon']) && $_POST['mon'] == "0")) && (isset($_POST['tue']) && $_POST['tue'] == "0") && (isset($_POST['wed']) && $_POST['wed'] == "0") && (isset($_POST['thu']) && $_POST['thu'] == "0") && (isset($_POST['fri']) && $_POST['fri'] == "0") && (isset($_POST['sat']) && $_POST['sat'] == "0")) {
+		    $errors['sun'] = "Pick a day or days for your meeting.";
+		}
 
-	 if (!isset($_POST['am_pm'])) {
-	 	$errors['am_pm'] = "Choose AM or PM.";
-	}
-
+		 if (!isset($_POST['am_pm'])) {
+		 	$errors['am_pm'] = "Choose AM or PM.";
+		}
 
 	}
 }
@@ -83,14 +93,14 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	
 <div class="manage-simple-intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>You look nice today. <i class="far fa-smile"></i></p>
+	<p>Look like you've got some corrections to make.</p>
 </div>
 <div class="manage-simple-content">
-	<h1 class="edit-h1">Create New Meeting</h1>
+	<h1 class="edit-h1">Update this Meeting</h1>
 	<?php echo display_errors($errors); ?>
 
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/new-meeting-details.php'; ?>
+			<?php require '_includes/correct-update-meeting-details.php'; ?>
 		</div><!-- .weekday-wrap -->
 
 </div>

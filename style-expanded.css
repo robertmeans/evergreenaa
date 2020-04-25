@@ -1468,9 +1468,30 @@ span.yo-email {
   margin-bottom: 1em;
   border-bottom: 1px solid #fff;
   padding-bottom: 0.5em;
+  position: relative;
 }
 .manage-simple-intro > p {
   margin-bottom: 1em;
+}
+.manage-simple-intro i.fa-exclamation-triangle {
+  color: #de2c0d;
+  margin-right: 0.2em;
+  font-size: 2em;
+}
+.manage-simple-intro > p.logout {
+  bottom: 5px;
+  right: 0px;
+  text-align: right;
+  padding: 1em 1em 0em;
+  font-size: 0.75em;
+  margin-bottom: 0;
+}
+.manage-simple-intro > p.logout > a {
+  text-decoration: none;
+  color: #fff;
+}
+.manage-simple-intro > p.logout > a:hover {
+  text-decoration: underline;
 }
 
 .manage-simple-content {
@@ -1523,6 +1544,15 @@ a.manage-edit {
 }
 a.manage-edit:hover {
   color: #96ff00;
+}
+
+a.manage-delete {
+  color: white;
+  margin-left: 1em;
+  transition: all 0.2s ease;
+}
+a.manage-delete:hover {
+  color: #ff2600;
 }
 
 .weekday-edit-wrap {
@@ -1629,6 +1659,12 @@ a.manage-edit:hover {
   text-align: center;
   padding: 50px;
 }
+.weekday-edit-wrap form {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
 
 .errors {
   padding: 1em;
@@ -1636,7 +1672,8 @@ a.manage-edit:hover {
   border: 1px solid red;
   margin-bottom: 0.5em;
   background-color: rgba(255, 255, 255, 0.9);
-  color: red;
+  background-color: rgba(111, 23, 23, 0.9);
+  color: #fff;
 }
 .errors ul li {
   list-style: disc;
@@ -1648,12 +1685,15 @@ a.new-mtg-btn {
   padding: 1em 2em;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.9);
+  background-color: #40b208;
   border: 1px solid #fff;
   text-decoration: none;
   transition: all 0.2s ease;
+  text-align: center;
 }
 a.new-mtg-btn:hover {
   background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(64, 178, 8, 0.4);
 }
 
 form#manage-mtg {
@@ -1673,6 +1713,10 @@ form#manage-mtg .align-days {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+form#manage-mtg .align-days.fixerror {
+  background-color: #ffbdc0;
+  padding: 0.2em;
+}
 form#manage-mtg p.days-held {
   text-decoration: underline;
   font-weight: bold;
@@ -1686,6 +1730,9 @@ form#manage-mtg p.time-held {
 form#manage-mtg .mtg-days {
   display: inline-block;
 }
+form#manage-mtg input.fixerror {
+  background-color: #ffbdc0;
+}
 form#manage-mtg input.mtg-time {
   font-size: 1.1em;
   border: 0;
@@ -1697,6 +1744,11 @@ form#manage-mtg input.mtg-time {
 form#manage-mtg input[type="radio"] {
   width: 1.3em;
   height: 1.3em;
+}
+form#manage-mtg span.fixerror {
+  background-color: #ffbdc0;
+  padding: 0.5em 1.5em 0.5em 1em;
+  border-radius: 3px;
 }
 form#manage-mtg input.mtg-update,
 form#manage-mtg input.mtg-update-url {
@@ -1722,7 +1774,32 @@ form#manage-mtg textarea#meeturl {
   padding: 0.2em;
   font-size: 1.1em;
 }
-form#manage-mtg textarea.meetNotes {
+form#manage-mtg input:checked + span {
+  color: #fff;
+}
+form#manage-mtg input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  color: gray;
+}
+form#manage-mtg input[type="checkbox"].fixerror {
+  background-color: #ffbdc0;
+}
+form#manage-mtg input[type="checkbox"]:checked + label {
+  color: #fff;
+  display: inline-block;
+}
+form#manage-mtg label {
+  cursor: pointer;
+  line-height: 1.6em;
+  color: gray;
+}
+
+.btm-notes {
+  width: 100%;
+}
+.btm-notes textarea.meetNotes {
   width: 100%;
   font-size: 1.1em;
   padding: 30px;
@@ -1735,18 +1812,24 @@ form#manage-mtg textarea.meetNotes {
   margin-top: 0.5em;
   resize: none;
 }
-form#manage-mtg .update-rt {
+.btm-notes .update-rt {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;
       justify-content: flex-end;
   width: 100%;
 }
-form#manage-mtg input[name="update-mtg"],
-form#manage-mtg input[name="create-mtg"] {
+.btm-notes .update-rt a.cancel {
+  margin-right: 1em;
+}
+.btm-notes input[name="update-mtg"],
+.btm-notes input[name="create-mtg"],
+.btm-notes input[name="delete-mtg"],
+.btm-notes a.cancel {
   background-color: rgba(0, 0, 0, 0.9);
   font-family: Tahoma, Calbri, sans-serif;
   color: #fff;
+  text-decoration: none;
   font-size: 1em;
   cursor: pointer;
   border: 1px solid #fff;
@@ -1754,28 +1837,20 @@ form#manage-mtg input[name="create-mtg"] {
   margin-top: 1.5em;
   transition: all 0.2s ease;
 }
-form#manage-mtg input[name="update-mtg"]:hover,
-form#manage-mtg input[name="create-mtg"]:hover {
+.btm-notes input[name="update-mtg"]:hover,
+.btm-notes input[name="create-mtg"]:hover,
+.btm-notes input[name="delete-mtg"]:hover,
+.btm-notes a.cancel:hover {
   background-color: rgba(255, 255, 255, 0.6);
   color: rgba(0, 0, 0, 0.9);
 }
-form#manage-mtg input:checked + span {
+.btm-notes input[name="delete-mtg"] {
+  background-color: #de2c0d;
+  margin-left: 0.5em;
+}
+.btm-notes input[name="delete-mtg"]:hover {
+  background-color: red;
   color: #fff;
-}
-form#manage-mtg input[type="checkbox"] {
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: middle;
-  color: gray;
-}
-form#manage-mtg input[type="checkbox"]:checked + label {
-  color: #fff;
-  display: inline-block;
-}
-form#manage-mtg label {
-  cursor: pointer;
-  line-height: 1.6em;
-  color: gray;
 }
 
 @media screen and (max-width: 800px) {
@@ -1800,18 +1875,35 @@ form#manage-mtg label {
     width: 100%;
   }
 
-  form#manage-mtg input[name="update-mtg"] {
-    width: 98%;
-    padding: 1em 0em;
-    text-align: center;
-    font-size: 0.8em;
-  }
-
   form#manage-mtg .update-rt {
     -ms-flex-pack: center;
         justify-content: center;
   }
+
+  .weekday-edit-wrap .delete-record {
+    -ms-flex-pack: center;
+        justify-content: center;
+    padding: 0px;
+  }
+
+  .btm-notes {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
 }
+span.contact-update-message {
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 16px 10px 16px 15px;
+  margin: 60px auto -40px auto;
+  border: 3px solid green;
+  color: green;
+  background-color: #fff;
+}
+
 @media screen and (max-width: 360px) {
   form#manage-mtg .align-days {
     -ms-flex-direction: column;

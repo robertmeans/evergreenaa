@@ -223,6 +223,9 @@ $("#daccaa").click(function(e) {
 $(".manage-edit").click(function(e) {
     e.stopPropagation();
 });
+$(".manage-delete").click(function(e) {
+    e.stopPropagation();
+});
 
 
 // checkboxes on update forms - prevent multiple options

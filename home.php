@@ -31,9 +31,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -57,9 +57,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Monday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -81,9 +81,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) {  
 					$today = 'Tuesday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -105,9 +105,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -129,9 +129,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -153,9 +153,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -177,9 +177,9 @@ require_once 'config/initialize.php';
 					while ($row = mysqli_fetch_assoc($subject_set)) {  
 					$today = 'Saturday';
 
-					require '_functions/daily-glance.php'; ?>
+					require '_includes/daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_functions/meeting-details.php'; ?>
+						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
