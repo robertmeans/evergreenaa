@@ -50,6 +50,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
@@ -74,6 +75,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #monday-content .day-content -->
 	</li>
@@ -98,6 +100,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
@@ -122,6 +125,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
@@ -146,6 +150,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
@@ -170,6 +175,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #friday-content .day-content -->
 	</li>
@@ -194,6 +200,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #saturday-content .day-content -->
 	</li>

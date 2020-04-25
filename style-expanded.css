@@ -1461,24 +1461,27 @@ span.yo-email {
   padding: 100px 20px;
 }
 
-.manage-simple-intro {
+.manage-simple {
   width: 100%;
-  max-width: 620px;
+  max-width: 900px;
   text-align: justify;
   margin-bottom: 1em;
   border-bottom: 1px solid #fff;
   padding-bottom: 0.5em;
   position: relative;
 }
-.manage-simple-intro > p {
+.manage-simple > h1 {
+  font-size: 1.4em;
+}
+.manage-simple > p {
   margin-bottom: 1em;
 }
-.manage-simple-intro i.fa-exclamation-triangle {
+.manage-simple i.fa-exclamation-triangle {
   color: #de2c0d;
   margin-right: 0.2em;
   font-size: 2em;
 }
-.manage-simple-intro > p.logout {
+.manage-simple > p.logout {
   bottom: 5px;
   right: 0px;
   text-align: right;
@@ -1486,24 +1489,72 @@ span.yo-email {
   font-size: 0.75em;
   margin-bottom: 0;
 }
-.manage-simple-intro > p.logout > a {
+.manage-simple > p.logout > a {
   text-decoration: none;
   color: #fff;
 }
-.manage-simple-intro > p.logout > a:hover {
+.manage-simple > p.logout > a:hover {
   text-decoration: underline;
 }
+.manage-simple.review {
+  border-bottom: none;
+}
+.manage-simple.intro {
+  padding: 0px 2em 0.6em;
+}
+.manage-simple.empty {
+  border-bottom: none;
+}
+.manage-simple.empty > h1 {
+  margin-bottom: 1em;
+}
 
-.manage-simple-content {
+ul.manage-weekdays {
   width: 100%;
   max-width: 900px;
 }
-.manage-simple-content > h1 {
-  font-size: 1.4em;
-  text-decoration: underline;
-}
-.manage-simple-content > h1.edit-h1 {
+ul.manage-weekdays > h1.edit-h1 {
   margin-bottom: 1em;
+}
+ul.manage-weekdays div.manage-day-toggle {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  font-weight: normal;
+  font-size: 1.2em;
+  padding-left: 1em;
+}
+ul.manage-weekdays .day {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  width: 100%;
+  padding: 0.2em;
+  outline: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex: 1;
+      flex: 1;
+  transition: font-size 0.3s ease, background 0.5s ease;
+}
+ul.manage-weekdays .day:hover {
+  background-color: #fff;
+  color: #313131;
+  background: #6d94e1 url(_images/aa-logo-light.gif) no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .manage-glance-wrap {
@@ -1667,7 +1718,7 @@ a.manage-delete:hover {
 }
 
 .errors {
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 2px;
   border: 1px solid red;
   margin-bottom: 0.5em;
@@ -1702,6 +1753,7 @@ form#manage-mtg {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 98%;
+  text-align: left;
 }
 form#manage-mtg .top-info {
   width: 100%;
@@ -1730,7 +1782,8 @@ form#manage-mtg p.time-held {
 form#manage-mtg .mtg-days {
   display: inline-block;
 }
-form#manage-mtg input.fixerror {
+form#manage-mtg input.fixerror,
+form#manage-mtg textarea.fixerror {
   background-color: #ffbdc0;
 }
 form#manage-mtg input.mtg-time {
@@ -1745,7 +1798,8 @@ form#manage-mtg input[type="radio"] {
   width: 1.3em;
   height: 1.3em;
 }
-form#manage-mtg span.fixerror {
+form#manage-mtg span.fixerror,
+form#manage-mtg div.fixerror {
   background-color: #ffbdc0;
   padding: 0.5em 1.5em 0.5em 1em;
   border-radius: 3px;

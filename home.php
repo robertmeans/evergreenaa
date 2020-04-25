@@ -64,6 +64,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #monday-content .day-content -->
 	</li>
@@ -88,6 +89,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
@@ -112,6 +114,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
@@ -136,6 +139,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
@@ -160,6 +164,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #friday-content .day-content -->
 	</li>
@@ -184,6 +189,7 @@ require_once 'config/initialize.php';
 					<?php
 					}
 				}
+				mysqli_free_result($subject_set);
 			?>
 		</div><!-- #saturday-content .day-content -->
 	</li>

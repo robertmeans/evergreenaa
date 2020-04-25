@@ -8,16 +8,16 @@
 <?php 					if ($row['meet_phone'] != null) { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 <?php 					if ($row['meet_id'] != 'No ID Necessary') { ?>		
-						<p class="id-num">ID: <input type="text" value="<?= $row['meet_id']; ?>" class="day-values input-copy" onclick="select();"></p>
+						<p class="id-num">ID: <input type="text" value="<?= h($row['meet_id']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } else { ?>
 						<p class="id-num">ID: No ID necessary</p>
 <?php } ?>
 <?php 					if ($row['meet_pswd'] != null) { ?>
-						<p class="id-num">Password: <input type="text" value="<?= $row['meet_pswd']; ?>" class="day-values input-copy" onclick="select();"></p>
+						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } ?>
-						<p><a href="<?= $row['meet_url']; ?>" class="zoom" target="_blank">JOIN MEETING</a></p>
+						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN MEETING</a></p>
 					</div><!-- .details-left -->
 					<div class="details-right">
 						<p class="add-info">Additional Information</p>
@@ -49,5 +49,5 @@
 <?php  }   ?>
 						</ul>
 					</div><!-- .details-right -->
-					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= $row['add_note'] ?></p></div><?php } ?>
+					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= h($row['add_note']) ?></p></div><?php } ?>
 				</div><!-- .meeting-details -->

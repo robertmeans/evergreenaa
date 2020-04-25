@@ -54,8 +54,20 @@ this page, therefore, needs to retain $_POST variables because information is no
 
 
 
-	<?php /* this is where the magic will happen */ ?>
-	<input type="text" name="meet_time" value="<?php if (($_POST['am_pm'] == 1) && ($_POST['mtgHour'] < 12)) { $meet_time = ($_POST['mtgHour'] + 12) . $_POST['mtgMinute'];  } ?>">
+	<?php /* this is where the magic will happen 
+
+	So far, after hitting "edit" we went to > 
+	manage-edit.php which populates with >
+	edit-meeting-details so that the fields are filled with db values. if a change is made it submits to > 
+	manage-update which populates with > 
+	correct-update-meeting-details.php so the fields are set to $_POST values now.
+
+	this is where we are now - trying to get meet_time to = 4-digits in military time so we can sort by time...
+
+
+
+	*/ ?>
+	<input type="text" name="meet_time" value="<?php if (($_POST['am_pm'] == 1) && ($_POST['mtgHour'] < 12)) { $meet_time = (($_POST['mtgHour'] + 12) . $_POST['mtgMinute']); echo $meet_time;  } ?>">
 
 
 

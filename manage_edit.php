@@ -20,7 +20,8 @@ if (!isset($_GET['id'])) {
 	header('location: index.php');
 }
 
-$id = $_GET['id'];
+// $id = $_GET['id'];
+$id = $_GET['id'] ?? '1';
 
 // if user clicks UPDATE MEETING
 if (is_post_request()) {
@@ -82,12 +83,12 @@ if (is_post_request()) {
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
-<div class="manage-simple-intro">
+<div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>You look nice today. <i class="far fa-smile"></i></p>
+	<p>Why are you so awesome?</p>
 	<p class="logout"><a href="manage.php">Go back</a></p>
 </div>
-<div class="manage-simple-content">
+<div class="manage-simple empty">
 	<h1 class="edit-h1">Update this Meeting</h1>
 	<?php echo display_errors($errors); ?>
 

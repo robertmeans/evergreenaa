@@ -17,8 +17,7 @@
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
 				<p><?php if ($row['id_user'] == $_SESSION['id']) { ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
-
-				<a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="fas fa-minus-circle"></i></a><?php } ?>
+				<?php } ?>
 			</p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->

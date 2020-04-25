@@ -35,7 +35,7 @@ function create_new_meeting($row) {
   $sql .= "'" . $row['meet_phone']     . "', ";
   $sql .= "'" . $row['meet_id']        . "', ";
   $sql .= "'" . $row['meet_pswd']      . "', ";
-  $sql .= "'" . $row['meeturl']        . "', ";
+  $sql .= "'" . $row['meet_url']       . "', ";
   $sql .= "'" . $row['dedicated_om']   . "', ";
   $sql .= "'" . $row['code_b']         . "', ";
   $sql .= "'" . $row['code_d']         . "', ";
@@ -103,7 +103,7 @@ function update_meeting($id, $row) {
   $sql .= "potluck='"       . $row['potluck']       . "', ";
   $sql .= "add_note='"      . $row['add_note']      . "' ";
 
-  $sql .= "WHERE id_mtg='"  . $id . "' ";
+  $sql .= "WHERE id_mtg='"  . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
@@ -122,7 +122,7 @@ function delete_meeting($id) {
   global $db;
 
   $sql = "DELETE FROM meetings ";
-  $sql .= "WHERE id='" . $id . "' ";
+  $sql .= "WHERE id='" . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1'";
 
   $result = mysqli_query($db, $sql);
@@ -142,7 +142,7 @@ function edit_meeting($id) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
-  $sql .= "id_mtg='" . $id . "' ";
+  $sql .= "id_mtg='" . db_escape($db, $id) . "' ";
   // $sql .= "ORDER BY meet_time;";
   // echo $sql; 
   $result = mysqli_query($db, $sql); 
@@ -175,11 +175,27 @@ function find_all_meetings() {
 }
 
 function find_meetings_by_id($id) {
+  global $db;
+
+  $sql = "SELECT * FROM meetings WHERE ";
+  // for some reason (?!) you cannot pass in $today into single quotes.
+  // this cost me countless amount of time.
+  $sql .= "id_user='" . db_escape($db, $id) . "' ";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array  
+}
+
+function find_meetings_by_id_today($id, $today) {
 	global $db;
 
-	$sql = "SELECT * FROM meetings ";
-	$sql .= "WHERE id_user='" . $id . "' ";
+	$sql = "SELECT * FROM meetings WHERE ";
+	// for some reason (?!) you cannot pass in $today into single quotes.
+  // this cost me countless amount of time.
+  $sql .= "id_user='" . db_escape($db, $id) . "' AND " . $today . " !=0 ";
   $sql .= "ORDER BY meet_time;";
+  // echo $sql;
 	$result = mysqli_query($db, $sql);
 	confirm_result_set($result);	
 	return $result; // returns an assoc. array	
@@ -212,9 +228,16 @@ function validate_update($row) {
     $errors['mtgMinute'] = "Please don't leave the Minute field blank.";
   }
 
-
   if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "Only 10-digit phone numbers.";
+  }
+
+  if (is_blank($row['meet_url'])) {
+    $errors['meet_url'] = "You need a URL in order to host an online meeting.";
+  }
+
+  if (($row['dedicated_om'] && $row['code_b'] && $row['code_d'] && $row['code_w'] && $row['code_beg'] && $row['code_h'] && $row['code_sp'] && $row['code_c'] && $row['code_m'] && $row['code_ss'] && $row['month_speaker'] && $row['potluck']) == "0") {
+    $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
   return $errors; 
