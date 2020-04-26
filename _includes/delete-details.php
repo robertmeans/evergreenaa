@@ -53,8 +53,13 @@
 		<div class="btm-notes">
 		<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= $row['add_note'] ?></p></div><?php } ?>
 				
+		<div class="update-rt">
 		<form action="delete_this.php?id=<?= h(u($id)); ?>" method="post">
-		<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">
+		<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">		
+		</form>
+		</div><!-- .update-rt -->
+
 		</div><!-- .btm-notes -->
-	</form>
+
+
 	</div><!-- .meeting-details -->

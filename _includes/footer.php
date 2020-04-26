@@ -218,8 +218,7 @@
 
     </div>
 
-
-    <p class="copyright"><?= ewd_copyright(2020); ?> Evergreen Bob</p> 
+    <p class="copyright"><?= ewd_copyright(2020); ?> <a class="eb" href="http://www.evergreenbob.com" target="_blank">Evergreen Bob</a></p> 
 </footer>
 <?php
 switch ($layout_context) {
@@ -228,9 +227,10 @@ switch ($layout_context) {
     default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
 }
 ?>
-
+<script src="js/jquery.timepicker.min.js?<?php echo time(); ?>"></script>
 <script src="js/scripts.js?<?php echo time(); ?>"></script>
 <script src="http://localhost:35729/livereload.js"></script>	
+
 </body>
 </html>
 <?php

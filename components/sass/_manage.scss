@@ -11,6 +11,14 @@
 	padding: 100px 20px;
 	
 }
+.confirm {
+	align-text: center;
+	font-size: 3.2em;
+	margin-bottom: 0.3em;
+	font-family: 'Special Elite', cursive;
+	color: rgba(222,44,13,1);
+
+}
 .manage-simple {
 	width: 100%;
 	max-width: 900px;
@@ -126,12 +134,50 @@ ul.manage-weekdays {
 		padding: 0 2em;
 	}
 }
+.manage-glance-wrap-review {
+	width: 100%;
+	max-width: 900px;	
+	margin-top: 1em;
+	cursor: default;
+}
+.manage-glance-review {
+	display: flex;
+	justify-content: space-between;
+	cursor: default;
+	padding: 0.5em 1em;
+	background-color: transparent;
+	color: inherit;
+    border-top: 2px solid #fff;
+    border-bottom: dashed 1px #7e7e7e;
+    background-color: #000;
+    background-color: #000;
+    color: #fff;
+    background: #6d94e1 url(_images/aa-logo_active.gif) no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+	&:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+	.glance-mtg-time, {
+		flex: 2 1 0;
+	}
+	.glance-group-title {
+		align-self: flex-end;
+	}
+	.glance-mtg-type {
+		padding: 0em 1.5em 0em 0.5em;
+	}
+}
 	a.manage-edit {
 		color: rgba(255,255,255,1);
 		transition: all 0.2s ease;
+		margin-left: 1em;
 		&:hover {
 			color: rgba(150,255,0,1);
 		}
+	}
+	a.manage-edit.inline {
+		margin-left: 0;
 	}
 	a.manage-delete {
 		color: rgba(255,255,255,1);
@@ -208,6 +254,9 @@ ul.manage-weekdays {
 				font-weight: bold;
 				margin-bottom: 0.5em;
 			}
+			p.add-info.fixerror {
+				color: #8b8586;
+			}
 			ul {
 				list-style-type: disc;
 				margin-left: 1em;
@@ -272,6 +321,7 @@ ul.manage-weekdays {
 		margin-left: 1em;
 	}
 }
+
 a.new-mtg-btn {
 	margin: 1em 0;
 	padding: 1em 2em;
@@ -322,11 +372,11 @@ form#manage-mtg {
 	textarea.fixerror {
 		background-color: rgba(255,189,192,1);
 	}
-	input.mtg-time {
+	input.timepicker {
 		font-size: 1.1em;
 		border: 0;
 		padding: 0.2em;
-		width: 2em;
+		width: 6em;
 		margin-bottom: 1em;
 		text-align: center;
 	}
@@ -356,7 +406,7 @@ form#manage-mtg {
 	input.mtg-update-url {
 		width: 16em;
 	}
-	textarea#meeturl {
+	textarea#meet_url {
 		width: 98%;
 		max-width: 18em;
 		height: 6em;
@@ -367,6 +417,11 @@ form#manage-mtg {
 	}
 	input:checked + span {
 		color: #fff;
+	}
+	.fixerror input:checked + span,
+	 {
+		color: #313131;
+		font-weight: bold;
 	}
 	input[type="checkbox"] {
 		width: 1.5em;

@@ -90,7 +90,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	<?php echo display_errors($errors); ?>
 
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/new-meeting-details.php'; ?>
+			<?php require '_includes/new-details.php'; ?>
 		</div><!-- .weekday-wrap -->
 
 </div>

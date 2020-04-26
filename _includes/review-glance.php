@@ -2,7 +2,8 @@
 	<div class="manage-glance-wrap-review">
 		<div class="manage-glance-review">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= substr(h($row['meet_time']), 0, 2) . ":" . substr(h($row['meet_time']), -2) . " "?><?php if($row['am_pm'] != 0) { ?>PM on <?php } else { ?>AM on <?php } 
+				<p><?= date('g:i A', strtotime($row['meet_time'])); ?>
+				<?php 
 				if ($row['sun'] != 0) { echo " Sun "; } 
 				if ($row['mon'] != 0) { echo " Mon "; }
 				if ($row['tue'] != 0) { echo " Tue "; }

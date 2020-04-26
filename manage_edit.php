@@ -34,12 +34,7 @@ if (is_post_request()) {
 	$row['fri'] 			= $_POST['fri'] 										?? ''; 
 	$row['sat'] 			= $_POST['sat'] 										?? ''; 
 	$row['sun'] 			= $_POST['sun'] 										?? '';
-// $row['meet_time'] 		= (preg_replace('/[^0-9]/', '', $_POST['mtgHour']) . preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])) 			?? '';
-
-// $row['mtgHour']			= preg_replace('/[^0-9]/', '', $_POST['mtgHour'])										?? '';
-// $row['mtgMinute']		= preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])									?? '';
-
-	$row['am_pm'] 			= $_POST['am_pm'] 										?? ''; 
+	$row['meet_time'] 		= $_POST['meet_time'] 									?? '';
 	$row['group_name'] 		= $_POST['group_name'] 									?? '';
 	$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 	$row['meet_id'] 		= $_POST['meet_id'] 									?? ''; 
@@ -86,15 +81,20 @@ if (is_post_request()) {
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
 	<p>Why are you so awesome?</p>
-	<p class="logout"><a href="manage.php">Go back</a></p>
+	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Update this Meeting</h1>
 	<?php echo display_errors($errors); ?>
 
+	<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/edit-meeting-details.php'; ?>
+			<?php require '_includes/edit-details.php'; ?>
 		</div><!-- .weekday-wrap -->
+
+	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>
+
 </div>
 
 </div><!-- #manage-wrap -->

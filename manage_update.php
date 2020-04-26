@@ -1,4 +1,4 @@
-<?php $layout_context = "manage-edit"; ?>
+<?php $layout_context = "manage-update"; ?>
 <?php 
 include 'error-reporting.php';
 
@@ -26,20 +26,7 @@ $row['wed'] 			= $_POST['wed'] 										?? '';
 $row['thu'] 			= $_POST['thu'] 										?? '';
 $row['fri'] 			= $_POST['fri'] 										?? '';
 $row['sat']				= $_POST['sat'] 										?? '';
-
-
-// $row['meet_time'] 		= (($_POST['mtgHour']) . $_POST['mtgMinute']))) 	?? '';
-
 $row['meet_time']		= $_POST['meet_time']									?? '';
-
-
-// $row['mtgHour']			= preg_replace('/[^0-9]/', '', $_POST['mtgHour'])		?? '';
-// $row['mtgMinute']		= preg_replace('/[^0-9]/', '', $_POST['mtgMinute'])		?? '';
-
-$row['mtgHour']			= $_POST['mtgHour']		?? '';
-
-$row['mtgMinute']		= $_POST['mtgMinute']									?? '';
-$row['am_pm'] 			= $_POST['am_pm'] 										?? '';
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
@@ -62,20 +49,10 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 	$result = update_meeting($id, $row);
 
-
 	if ($result === true) {
 	    header('location: manage_edit_review.php?id=' . $id);
 	} else {
 		$errors = $result;
-
-		if (((isset($_POST['sun']) && $_POST['sun'] == "0") && (isset($_POST['mon']) && $_POST['mon'] == "0")) && (isset($_POST['tue']) && $_POST['tue'] == "0") && (isset($_POST['wed']) && $_POST['wed'] == "0") && (isset($_POST['thu']) && $_POST['thu'] == "0") && (isset($_POST['fri']) && $_POST['fri'] == "0") && (isset($_POST['sat']) && $_POST['sat'] == "0")) {
-		    $errors['sun'] = "Pick a day or days for your meeting.";
-		}
-
-		 if (!isset($_POST['am_pm'])) {
-		 	$errors['am_pm'] = "Choose AM or PM.";
-		}
-
 	}
 }
 
@@ -87,17 +64,21 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
-<div class="manage-simple-intro">
+<div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>Look like you've got some corrections to make.</p>
+	<p>Looks like you've got some corrections to make.</p>
 </div>
-<div class="manage-simple-content">
-	<h1 class="edit-h1">Update this Meeting</h1>
+<div class="manage-simple empty">
+	<h1 class="edit-h1">House Keeping</h1>
 	<?php echo display_errors($errors); ?>
 
+	<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/correct-update-meeting-details.php'; ?>
+			<?php require '_includes/update-details.php'; ?>
 		</div><!-- .weekday-wrap -->
+
+	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>		
 
 </div>
 </div><!-- #manage-wrap -->

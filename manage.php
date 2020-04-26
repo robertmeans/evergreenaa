@@ -23,9 +23,9 @@ $user_id = $_SESSION['id'];
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload">
-		<p>Loading...</p>
-	</div>	
+<div class="preload-manage">
+	<p>Loading...</p>
+</div>	
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
@@ -35,7 +35,7 @@ $user_id = $_SESSION['id'];
 		<p>Welcome to version 1! For now you can only create meetings and manage them here. All meetings will display on the homepage for everyone to see (regardless of whether they are logged in or not). The long-term plan is to allow those with an account (like you) complete control over their experience on this website. Stay tuned...</p>
 		<p class="logout"><a href="logout.php">Logout</a></p>
 	</div>
-	<a href="manage_new_meeting.php" class="new-mtg-btn">Create a new meeting</a>
+	<a href="manage_new.php" class="new-mtg-btn">Create a new meeting</a>
 <div class="manage-simple">	
 	<h1>My Meetings</h1>
 </div>

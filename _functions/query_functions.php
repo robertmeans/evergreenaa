@@ -19,9 +19,9 @@ function create_new_meeting($row) {
     }
 
   $sql = "INSERT INTO meetings ";
-  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, am_pm, group_name, meet_phone, meet_id, meet_pswd, meet_url, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
+  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
   $sql .= "VALUES ("; 
-  $sql .= "'" . $row['id_user']        . "', ";
+  $sql .= "'" . db_escape($db, $row['id_user'])        . "', ";
   $sql .= "'" . $row['sun']            . "', ";
   $sql .= "'" . $row['mon']            . "', ";
   $sql .= "'" . $row['tue']            . "', ";
@@ -29,13 +29,12 @@ function create_new_meeting($row) {
   $sql .= "'" . $row['thu']            . "', ";
   $sql .= "'" . $row['fri']            . "', ";
   $sql .= "'" . $row['sat']            . "', ";
-  $sql .= "'" . $row['meet_time']      . "', ";
-  $sql .= "'" . $row['am_pm']          . "', ";
-  $sql .= "'" . $row['group_name']     . "', ";
-  $sql .= "'" . $row['meet_phone']     . "', ";
-  $sql .= "'" . $row['meet_id']        . "', ";
-  $sql .= "'" . $row['meet_pswd']      . "', ";
-  $sql .= "'" . $row['meet_url']       . "', ";
+  $sql .= "'" . date('Hi', strtotime($row['meet_time']))        . "', ";
+  $sql .= "'" . db_escape($db, $row['group_name'])     . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_phone'])     . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_id'])        . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_pswd'])      . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_url'])       . "', ";
   $sql .= "'" . $row['dedicated_om']   . "', ";
   $sql .= "'" . $row['code_b']         . "', ";
   $sql .= "'" . $row['code_d']         . "', ";
@@ -49,9 +48,10 @@ function create_new_meeting($row) {
   $sql .= "'" . $row['code_ss']        . "', ";
   $sql .= "'" . $row['month_speaker']  . "', ";
   $sql .= "'" . $row['potluck']        . "', ";
-  $sql .= "'" . $row['add_note']       . "'";
+  $sql .= "'" . db_escape($db, $row['add_note'])       . "'";
   $sql .= ")";
-  $result = mysqli_query($db, $sql);  
+  $result = mysqli_query($db, $sql);
+  // echo $sql;  
 
   if ($result) {
     return true;
@@ -81,13 +81,12 @@ function update_meeting($id, $row) {
   $sql .= "thu='"           . $row['thu']           . "', ";
   $sql .= "fri='"           . $row['fri']           . "', ";
   $sql .= "sat='"           . $row['sat']           . "', ";
-  $sql .= "group_name='"    . $row['group_name']    . "', ";
-  $sql .= "meet_time='"     . $row['meet_time']     . "', ";
-  $sql .= "am_pm='"         . $row['am_pm']         . "', ";
-  $sql .= "meet_phone='"    . $row['meet_phone']    . "', ";
-  $sql .= "meet_id='"       . $row['meet_id']       . "', ";
-  $sql .= "meet_pswd='"     . $row['meet_pswd']     . "', ";
-  $sql .= "meet_url='"      . $row['meet_url']      . "', ";
+  $sql .= "group_name='"    . db_escape($db, $row['group_name'])    . "', ";
+  $sql .= "meet_time='"     . date('Hi', strtotime($row['meet_time']))        . "', ";
+  $sql .= "meet_phone='"    . db_escape($db, $row['meet_phone'])    . "', ";
+  $sql .= "meet_id='"       . db_escape($db, $row['meet_id'])       . "', ";
+  $sql .= "meet_pswd='"     . db_escape($db, $row['meet_pswd'])     . "', ";
+  $sql .= "meet_url='"      . db_escape($db, $row['meet_url'])      . "', ";
   $sql .= "dedicated_om='"  . $row['dedicated_om']  . "', ";
   $sql .= "code_b='"        . $row['code_b']        . "', ";
   $sql .= "code_d='"        . $row['code_d']        . "', ";
@@ -101,7 +100,7 @@ function update_meeting($id, $row) {
   $sql .= "code_sp='"       . $row['code_sp']       . "', ";
   $sql .= "month_speaker='" . $row['month_speaker'] . "', ";
   $sql .= "potluck='"       . $row['potluck']       . "', ";
-  $sql .= "add_note='"      . $row['add_note']      . "' ";
+  $sql .= "add_note='"      . db_escape($db, $row['add_note'])      . "' ";
 
   $sql .= "WHERE id_mtg='"  . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1";
@@ -211,36 +210,73 @@ function validate_update($row) {
     $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
   }
 
-  if (($row['mtgHour'] > 12) && ($row['mtgHour'] < 24)) {
-    $errors['mtgHour'] = "Please use 12-hour format.";
-  }
-  if ($row['mtgHour'] > 23) {
-    $errors['mtgHour'] = "Whoa! Where'd you come up with an hour like that?! (Please change it.)";
-  }
-  if (($row['mtgHour'] == 0) || ($row['mtgHour'] = "")) {
-    $errors['mtgHour'] = "Add an hour.";
+  if (( $row['sun'] == "0" && 
+        $row['mon'] == "0" && 
+        $row['tue'] == "0" && 
+        $row['wed'] == "0" && 
+        $row['thu'] == "0" && 
+        $row['fri'] == "0" && 
+        $row['sat'] == "0"  )) {
+    $errors['pick_a_day'] = "Pick a day or days for your meeting.";
   }
 
-  if ($row['mtgMinute'] > 59) {
-    $errors['mtgMinute'] = "There are only 59 minutes in an hour!";
-  }
-  if (($row['mtgMinute'] == 0) || ($row['mtgMinute'] = "")) {
-    $errors['mtgMinute'] = "Please don't leave the Minute field blank.";
+   if (is_blank($row['meet_time'])) {
+    $errors['meet_time'] = "Please set a time.";
   }
 
   if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "Only 10-digit phone numbers.";
   }
 
-  if (is_blank($row['meet_url'])) {
-    $errors['meet_url'] = "You need a URL in order to host an online meeting.";
+  if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
+    $errors['meet_phone'] = "You've got too many numbers in your phone number.";
   }
 
-  if (($row['dedicated_om'] && $row['code_b'] && $row['code_d'] && $row['code_w'] && $row['code_beg'] && $row['code_h'] && $row['code_sp'] && $row['code_c'] && $row['code_m'] && $row['code_ss'] && $row['month_speaker'] && $row['potluck']) == "0") {
+    if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
+    $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
+  } 
+
+   if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
+    $errors['meet_pswd'] = "That password is way too long.";
+  } 
+
+  if (is_blank($row['meet_url'])) {
+    $errors['meet_url'] = "You need a URL in order to host an online meeting.";
+  }  
+
+  if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
+      $errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
+  }
+
+  if (( $row['dedicated_om']    == "0"   && 
+        $row['code_o']          == "0"   && 
+        $row['code_w']          == "0"   && 
+        $row['code_m']          == "0"   && 
+        $row['code_c']          == "0"   && 
+        $row['code_beg']        == "0"   && 
+        $row['code_h']          == "0"   && 
+        $row['code_d']          == "0"   && 
+        $row['code_b']          == "0"   && 
+        $row['code_ss']         == "0"   && 
+        $row['code_sp']         == "0"   && 
+        $row['month_speaker']   == "0"   && 
+        $row['potluck']         == "0"   )) {
     $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
+   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 255)) {
+    $errors['add_note'] = "You've got more than 255 characters in your note.";
+  } 
+
   return $errors; 
+}
+
+function validate_url($url) {
+    $path = parse_url($url, PHP_URL_PATH);
+    $encoded_path = array_map('urlencode', explode('/', $path));
+    $url = str_replace($path, implode('/', $encoded_path), $url);
+
+    return filter_var($url, FILTER_VALIDATE_URL) ? true : false;
 }
 
 function is_blank($value) {

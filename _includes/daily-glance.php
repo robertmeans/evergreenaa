@@ -2,7 +2,7 @@
 	<div class="daily-glance-wrap">
 		<div class="daily-glance">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= substr(h($row['meet_time']), 0, 2) . ":" . substr(h($row['meet_time']), -2) . " "?><?php if($row['am_pm'] != 0) { ?>PM<?php } else { ?>AM<?php } ?></p>
+				<p><?= date('g:i A', strtotime($row['meet_time'])); ?></p>
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
 				<p><?= $row['group_name']; ?></p>

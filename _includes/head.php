@@ -27,7 +27,7 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
   	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
-	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Courier+Prime|Caveat&display=swap' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Courier+Prime|Special+Elite|Caveat&display=swap' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" type="text/css">
 
 	<script src="js/jquery_3.4.1.js"></script>
@@ -44,4 +44,5 @@
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="js/preload.js?<?php echo time(); ?>"></script>
+	
 </head>

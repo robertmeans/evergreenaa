@@ -2,7 +2,7 @@
 <?php 
 include 'error-reporting.php';
 
-require_once 'controllers/authController.php'; 
+require_once 'config/initialize.php';
 
 if (isset($_GET['token'])) {
 	$token = $_GET['token'];

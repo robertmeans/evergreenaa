@@ -43,22 +43,11 @@ $row['$add_note'] 		= $_POST['add_note'] 									?? '';
 
 	$result = create_new_meeting($row);
 
-
 	if ($result === true) {
 		$new_id = mysqli_insert_id($db);
 	    header('location: manage_edit_review.php?id=' . $new_id);
 	} else {
 		$errors = $result;
-
-	if (((isset($_POST['sun']) && $_POST['sun'] == "0") && (isset($_POST['mon']) && $_POST['mon'] == "0")) && (isset($_POST['tue']) && $_POST['tue'] == "0") && (isset($_POST['wed']) && $_POST['wed'] == "0") && (isset($_POST['thu']) && $_POST['thu'] == "0") && (isset($_POST['fri']) && $_POST['fri'] == "0") && (isset($_POST['sat']) && $_POST['sat'] == "0")) {
-	    $errors['sun'] = "Pick a day or days for your meeting.";
-	}
-
-	 if (!isset($_POST['am_pm'])) {
-	 	$errors['am_pm'] = "Choose AM or PM.";
-	}
-
-
 	}
 }
 

@@ -23,23 +23,25 @@
 						<p class="add-info">Additional Information</p>
 						<ul>
 						<?php
+							if ($row['dedicated_om'] != 0) 		{ ?> <li>Dedicated Online Meeting</li> 						
+						<?php }	
+							if ($row['code_o'] != 0) 		{ ?> <li>Open Meeting: Anyone may attend</li> 		
+						<?php }
 							if ($row['code_w'] != 0) 		{ ?> <li>Women's Meeting</li> 						
 						<?php }
 							if ($row['code_m'] != 0) 		{ ?> <li>Men's Meeting</li> 						
 						<?php }
-							if ($row['code_o'] != 0) 		{ ?> <li>Open Meeting: Anyone may attend</li> 		
-						<?php }
 							if ($row['code_c'] != 0) 		{ ?> <li>Closed Meeting</li> 						
 						<?php }
 							if ($row['code_beg'] != 0) 			{ ?> <li>Beginner's Meeting</li> 					
+						<?php }
+							if ($row['code_h'] != 0) 	{ ?> <li>Handicap Accessible</li> 
 						<?php }
 							if ($row['code_d'] != 0) 	{ ?> <li>Discussion</li> 							
 						<?php }
 							if ($row['code_b'] != 0) 		{ ?> <li>Book Study</li> 								
 						<?php }
 							if ($row['code_ss'] != 0) 	{ ?> <li>Step Study: We discuss the 12 steps</li> 	
-						<?php }
-							if ($row['code_h'] != 0) 	{ ?> <li>Handicap Accessible</li> 
 						<?php }
 							if ($row['code_sp'] != 0) 	{ ?> <li>Speaker Meeting</li>					
 						<?php }

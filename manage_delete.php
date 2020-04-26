@@ -43,7 +43,7 @@ if (is_post_request()) {
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
 	<p><i class="fas fa-exclamation-triangle"></i> Are you sure you really want to go through with this?</p>
-	<p class="logout"><a href="manage.php">Go back</a></p>
+	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>
@@ -52,7 +52,7 @@ if (is_post_request()) {
 
 		<?php require '_includes/delete-glance.php'; ?>
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/delete-meeting.php'; ?>
+			<?php require '_includes/delete-details.php'; ?>
 		</div><!-- .weekday-edit-wrap -->
 
 	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>

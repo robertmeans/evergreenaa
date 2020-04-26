@@ -87,6 +87,17 @@ function copyToClipboard(elem) {
     return succeed;
 }
 
+/* initialize timepicker */
+/* https://timepicker.co/options/ */
+$(document).ready(function(){
+    $('input.timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    dynamic: false,
+    dropdown: false,
+    scrollbar: false
+    });
+});
+
 
 /* open and close weekday content */
 
