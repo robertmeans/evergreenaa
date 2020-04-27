@@ -183,39 +183,57 @@ setTimeout(function() {
   $("#success-wrap").fadeOut(1500);
 }, 2000);
 
-
-$("#toggle-msg-one").click(function(e) {
+// toggle msg one public
+$("#toggle-public-msg").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 
     var open  = 'Close';
-    var close = 'Readme';
+    var closed = 'Readme';
 
   if ($('#msg-one').is(':hidden')) {
       $("#msg-one").fadeIn(500);
-      $("#toggle-msg-one").html(open); 
+      $("#toggle-public-msg").html(open); 
   } else {
       $("#msg-one").fadeOut(500);
-      $("#toggle-msg-one").html(close); 
+      $("#toggle-public-msg").html(closed); 
   }
 
 });
 
+// toggle msg one private
+$("#toggle-private-msg").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
+    var open  = 'Close';
+    var closed = 'Extras';
+
+  if ($('#msg-one').is(':hidden')) {
+      $("#msg-one").fadeIn(500);
+      $("#toggle-private-msg").html(open); 
+  } else {
+      $("#msg-one").fadeOut(500);
+      $("#toggle-private-msg").html(closed); 
+  }
+
+});
+
+// close msg one when clicking anywhere on page
 $(document).click(function() {
-  var close    = 'Close';
-  var open     = 'Readme';
-  var open_two = 'Readme';
+  // var close    = 'Close';
+  var closed_public     = 'Readme';
+  var closed_private    = 'Extras';
 
   $('#msg-one').fadeOut(500);
-  $("#toggle-msg-one").html(open);
+  $("#toggle-public-msg").html(closed_public);
 
-  $('#msg-one').fadeOut(500);
-  $("#toggle-msg-one").html(open_two); 
+ // $('#msg-one').fadeOut(500);
+  $("#toggle-private-msg").html(closed_private); 
 
 });​
 
-
+// prevent these links from closing msg
 $("#preamble").click(function(e) {
     e.stopPropagation();
 });

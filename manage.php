@@ -32,7 +32,6 @@ $user_id = $_SESSION['id'];
 	
 	<div class="manage-simple intro">
 		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
-		<!-- <p>Welcome to version 1! For now you can only create meetings and manage them here. All meetings will display on the homepage for everyone to see (regardless of whether they are logged in or not). The long-term plan is to allow those with an account (like you) complete control over their experience on this website. Stay tuned...</p> -->
 		<p>The goal here is simple. Through harnessing our network of AA communities around the world we can make AA meetings available 24-7-365 in the comfort of your living room.</p>
 		<p>Online meetings aren't going anywhere. The convenience and practicality is obvious and serves an even larger audience. Let's connect people and save lives.</p>
 		<p class="logout"><a href="logout.php">Logout</a></p>
