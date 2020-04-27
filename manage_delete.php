@@ -39,7 +39,8 @@ if (is_post_request()) {
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
-	
+
+<div class="confirm warning">WARNING!</div>
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
 	<p><i class="fas fa-exclamation-triangle"></i> Are you sure you really want to go through with this?</p>

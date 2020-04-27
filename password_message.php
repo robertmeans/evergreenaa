@@ -1,5 +1,5 @@
 <?php $layout_context = "password-message"; ?>
-<?php require_once 'controllers/authController.php' ?>
+<?php require_once 'config/initialize.php'; ?>
 
 <?php include '_includes/head.php'; ?>
 

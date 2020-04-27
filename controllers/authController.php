@@ -2,7 +2,11 @@
 
 session_start();
 
-require_once 'config/db.php';
+// turned off 04.27
+// require_once 'config/db.php';
+
+// added 04.27 and then turned off
+// require_once 'config/initialize.php';
 require_once 'controllers/emailController.php';
 
 $errors = [];
@@ -12,12 +16,12 @@ $verified = "";
 
 function remember_me()
 {
-	global $connection;
+	global $conn;
 	if (!empty($_COOKIE['token'])) {
 		$token = $_COOKIE['token']; 
 		
 		$sql = "SELECT * FROM users WHERE token=? LIMIT 1";
-		$stmt = $connection->prepare($sql);
+		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('s', $token);
 
 		if ($stmt->execute()) {
@@ -83,7 +87,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	$emailQuery = "SELECT * FROM users WHERE email=? LIMIT 1";
-	$stmt = $connection->prepare($emailQuery);
+	$stmt = $conn->prepare($emailQuery);
 	$stmt->bind_param('s', $email);
 	$stmt->execute();
 
@@ -104,12 +108,12 @@ if (isset($_POST['submit'])) {
 		$verified = false;
 
 		$sql = "INSERT INTO users (username, email, verified, token, password) VALUES (?, ?, ?, ?, ?)";
-		$stmt = $connection->prepare($sql);
+		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('ssdss', $username, $email, $verified, $token, $password);
 
 		if ($stmt-> execute()) {
 			// login user
-			$user_id = $connection->insert_id;
+			$user_id = $conn->insert_id;
 			$_SESSION['id'] = $user_id;
 			$_SESSION['username'] = $username;
 			$_SESSION['email'] = $email;
@@ -149,7 +153,7 @@ if (isset($_POST['login'])) {
 		// having to accept email or username because of how Apple/ios binds these two
 		// in their login management
 		$sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
-		$stmt = $connection->prepare($sql);
+		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('ss', $username, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -177,7 +181,7 @@ if (isset($_POST['login'])) {
 
 					// if so, update token in db
 					$update_token_query = "UPDATE users SET token='$token' WHERE id_user=" . $user['id_user'];
-					if (mysqli_query($connection, $update_token_query)) {
+					if (mysqli_query($conn, $update_token_query)) {
 						// set cookie with same credentials
 						setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
 					}
@@ -198,15 +202,15 @@ if (isset($_POST['login'])) {
 // verify user by token
 function verifyUser($token) {
 
-	global $connection;
+	global $conn;
 	$sql = "SELECT * FROM users WHERE token='$token' LIMIT 1";
-	$result = mysqli_query($connection, $sql);
+	$result = mysqli_query($conn, $sql);
 
 	if (mysqli_num_rows($result) > 0) {
 		$user = mysqli_fetch_assoc($result);
 		$update_query = "UPDATE users SET verified=1 WHERE token='$token'";
 
-		if (mysqli_query($connection, $update_query)) {
+		if (mysqli_query($conn, $update_query)) {
 			// login success
 			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
@@ -238,7 +242,7 @@ if (isset($_POST['forgot-password'])) {
 	if (count($errors) == 0) {
 
 		$sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
-		$result = mysqli_query($connection, $sql);
+		$result = mysqli_query($conn, $sql);
 		$user = mysqli_fetch_assoc($result);
 		$token = $user['token'];
 		sendPasswordResetLink($email, $token);
@@ -265,7 +269,7 @@ if (isset($_POST['reset-password-btn'])) {
 
 	if(count($errors) == 0) {
 		$sql = "UPDATE users SET password='$password' WHERE email='$email'";
-		$result = mysqli_query($connection, $sql);
+		$result = mysqli_query($conn, $sql);
 		if ($result) {
 			$_SESSION['message'] = "Your password was changed successfully. You can now login with your new credentials.";
 			$_SESSION['alert-class'] = "pass-reset";
@@ -277,9 +281,9 @@ if (isset($_POST['reset-password-btn'])) {
 
 function resetPassword($token) 
 {
-	global $connection;
+	global $conn;
 	$sql = "SELECT * FROM users WHERE token='$token' LIMIT 1";
-	$result = mysqli_query($connection, $sql);
+	$result = mysqli_query($conn, $sql);
 	$user = mysqli_fetch_assoc($result);
 	$_SESSION['email'] = $user['email'];
 	header('location: reset_password.php');

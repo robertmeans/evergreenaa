@@ -26,7 +26,6 @@ $id = $_GET['id'];
 $row = edit_meeting($id);
 ?>
 
-
 <?php require '_includes/head.php'; ?>
 <body>
 <?php require '_includes/nav.php'; ?>
@@ -35,7 +34,7 @@ $row = edit_meeting($id);
 	
 <div class="confirm">TEST & CONFIRM!</div>	
 <div class="manage-simple intro">
-	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>">edit button</a> and polish this sucker up!</p>
+	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up!</p>
 	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple review">

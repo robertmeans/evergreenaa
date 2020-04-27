@@ -1547,6 +1547,9 @@ span.yo-email {
   font-size: 3.2em;
   margin-bottom: 0.3em;
   font-family: 'Special Elite', cursive;
+  color: #df9327;
+}
+.confirm.warning {
   color: #de2c0d;
 }
 
@@ -1727,6 +1730,7 @@ a.manage-edit {
   color: white;
   transition: all 0.2s ease;
   margin-left: 1em;
+  text-decoration: none;
 }
 a.manage-edit:hover {
   color: #96ff00;

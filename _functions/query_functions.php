@@ -206,7 +206,7 @@ function validate_update($row) {
 
   if (is_blank($row['group_name'])) {
     $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
-  } else if (!has_length($row['group_name'], ['min' => 5, 'max' => 50])) {
+  } else if (!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
     $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
   }
 
