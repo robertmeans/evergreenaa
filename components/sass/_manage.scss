@@ -66,6 +66,13 @@
 		}
 	}
 }
+@media screen and (max-width: 500px) {
+	.manage-simple {
+		&.intro {
+			padding: 0px 0.2em 0.6em;
+		}
+	}
+}
 ul.manage-weekdays {
 	width: 100%;
 	max-width: 900px;
@@ -134,6 +141,7 @@ ul.manage-weekdays {
 		padding: 0 2em;
 	}
 }
+
 .manage-glance-wrap-review {
 	width: 100%;
 	max-width: 900px;	
@@ -168,25 +176,25 @@ ul.manage-weekdays {
 		padding: 0em 1.5em 0em 0.5em;
 	}
 }
-	a.manage-edit {
-		color: rgba(255,255,255,1);
-		transition: all 0.2s ease;
-		margin-left: 1em;
-		&:hover {
-			color: rgba(150,255,0,1);
-		}
+a.manage-edit {
+	color: rgba(255,255,255,1);
+	transition: all 0.2s ease;
+	margin-left: 1em;
+	&:hover {
+		color: rgba(150,255,0,1);
 	}
-	a.manage-edit.inline {
-		margin-left: 0;
+}
+a.manage-edit.inline {
+	margin-left: 0;
+}
+a.manage-delete {
+	color: rgba(255,255,255,1);
+	margin-left: 1em;
+	transition: all 0.2s ease;
+	&:hover {
+		color: rgba(255,38,0,1);
 	}
-	a.manage-delete {
-		color: rgba(255,255,255,1);
-		margin-left: 1em;
-		transition: all 0.2s ease;
-		&:hover {
-			color: rgba(255,38,0,1);
-		}
-	}	
+}	
 
 .weekday-edit-wrap {
 	width: 100%;
@@ -504,8 +512,6 @@ form#manage-mtg {
 
 
 
-
-
 @media screen and (max-width: 800px) {
 	form#manage-mtg {
 		flex-direction: column;
@@ -544,8 +550,35 @@ form#manage-mtg {
 	}
 	.btm-notes {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
+		width: 98%;
+
 	}
+	.btm-notes .update-rt {
+		flex-wrap: wrap;
+	}
+	.btm-notes input[name="delete-mtg"] {
+		padding: 0.5em;
+	}
+	.manage-glance .glance-group-title {
+		padding: 0em;
+		align-self: flex-start;
+		margin: 0.5em 0;
+	}
+	.manage-glance .glance-mtg-type {
+		padding: 0px;
+		justify-content: center;
+		text-align: right;
+	}
+	ul.manage-weekdays div.manage-day-toggle {
+		padding: 0.5em;
+	}
+	a.manage-delete {
+		margin-left: 1.6em;
+	}
+
+
 }
 span.contact-update-message {
   width: 100%;

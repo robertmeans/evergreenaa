@@ -4,9 +4,6 @@
 <?php include '_includes/head.php'; ?>
 
 <body>
-<?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-one.php'; ?>
-<?php require '_includes/msg-two.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
 	<div id="landing-content">

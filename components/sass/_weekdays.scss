@@ -318,15 +318,13 @@ li.ctr-day {
 			border-bottom: 1px solid rgba(255,255,255,0.2);
 		}
 	}
-	.daily-glance {
+	.daily-glance,
+	.manage-glance {
 		padding: 0.5em;
 		line-height: 1.4em;
 		flex-direction: column;
 		&:hover {
 			background-color: inherit;
-		}
-		.glance-group-title {
-			padding: 0em;
 		}
 		.glance-mtg-type {
 			justify-content: flex-end;
@@ -335,9 +333,13 @@ li.ctr-day {
 	.day-content {
 		padding: 0.5em 0.5em 1.5em;
 	}
-	.daily-glance-wrap {
+	.daily-glance-wrap,
+	.manage-glance-wrap {
 		background-color: rgba(45,74,107,0.7);
 		background-color: rgba(0,0,0,0.45);
+	}
+	.manage-glance .glance-mtg-type {
+		padding: 0px;
 	}
 }
 

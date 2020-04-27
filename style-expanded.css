@@ -232,11 +232,10 @@ nav > ul li > a:hover {
   padding: 12px 0px 8px 0px;
 }
 nav > ul li > a.why-join {
-  background-color: red;
-  background-color: #ff4c4c;
+  background-color: #2ab533;
 }
 nav > ul li > a.why-join:hover {
-  background-color: rgba(255, 76, 76, 0.3);
+  background-color: rgba(42, 181, 51, 0.5);
 }
 nav > ul li > a.login {
   background-color: #d4e8da;
@@ -291,12 +290,10 @@ nav > ul li > a.login:hover {
     padding: 0.65em;
   }
   nav > ul li > a.why-join {
-    background-color: red;
-    background-color: #ff4c4c;
+    background-color: #2ab533;
   }
   nav > ul li > a.why-join:hover {
-    background-color: red;
-    background-color: #ff4c4c;
+    background-color: #2ab533;
   }
 }
 * {
@@ -644,19 +641,19 @@ li.ctr-day .day-content {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .daily-glance {
+  .daily-glance,
+  .manage-glance {
     padding: 0.5em;
     line-height: 1.4em;
     -ms-flex-direction: column;
         flex-direction: column;
   }
-  .daily-glance:hover {
+  .daily-glance:hover,
+  .manage-glance:hover {
     background-color: inherit;
   }
-  .daily-glance .glance-group-title {
-    padding: 0em;
-  }
-  .daily-glance .glance-mtg-type {
+  .daily-glance .glance-mtg-type,
+  .manage-glance .glance-mtg-type {
     -ms-flex-pack: end;
         justify-content: flex-end;
   }
@@ -665,9 +662,14 @@ li.ctr-day .day-content {
     padding: 0.5em 0.5em 1.5em;
   }
 
-  .daily-glance-wrap {
+  .daily-glance-wrap,
+  .manage-glance-wrap {
     background-color: rgba(45, 74, 107, 0.7);
     background-color: rgba(0, 0, 0, 0.45);
+  }
+
+  .manage-glance .glance-mtg-type {
+    padding: 0px;
   }
 }
 input.day-values {
@@ -1596,6 +1598,11 @@ span.yo-email {
   margin-bottom: 1em;
 }
 
+@media screen and (max-width: 500px) {
+  .manage-simple.intro {
+    padding: 0px 0.2em 0.6em;
+  }
+}
 ul.manage-weekdays {
   width: 100%;
   max-width: 900px;
@@ -2082,8 +2089,42 @@ form#manage-mtg label {
   .btm-notes {
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
     -ms-flex-pack: center;
         justify-content: center;
+    width: 98%;
+  }
+
+  .btm-notes .update-rt {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .btm-notes input[name="delete-mtg"] {
+    padding: 0.5em;
+  }
+
+  .manage-glance .glance-group-title {
+    padding: 0em;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    margin: 0.5em 0;
+  }
+
+  .manage-glance .glance-mtg-type {
+    padding: 0px;
+    -ms-flex-pack: center;
+        justify-content: center;
+    text-align: right;
+  }
+
+  ul.manage-weekdays div.manage-day-toggle {
+    padding: 0.5em;
+  }
+
+  a.manage-delete {
+    margin-left: 1.6em;
   }
 }
 span.contact-update-message {

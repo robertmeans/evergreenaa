@@ -8,12 +8,13 @@
 			case 'password-message' :	 																						break;
 			case 'login-page' 		:	 																						break;
 			case 'index' 			:	 																						break;
-			case 'home-private' 	:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x\">Readme</a></li>"; 					break;
+			case 'home-private' 	:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x\">Extras</a></li>"; 					break;
 			case 'home-public' 		:	echo "<li><a id=\"toggle-msg-one\" class=\"cc-x why-join\">Readme</a></li>"; 			break;
 			case 'forgot-password' 	:	 																						break;
 			case 'edit-meeting' 	:	 																						break;
 			// case 'manage' 			:	echo "<li><a class=\"logout\" href=\"logout.php\">Logout</a></li>"; 			break;
 			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
+			case 'manage-new' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			case 'manage-delete' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			default 				:	 																						break;

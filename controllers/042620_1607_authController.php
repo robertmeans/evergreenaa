@@ -35,7 +35,7 @@ function remember_me()
 
 remember_me();
 
-// sign-up
+
 if (isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	$email = $_POST['email'];
@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
 	if (empty($username)) {
 		$errors['username'] = "Please enter a username";
 	}
+
 
 	if ((!empty($username)) && (strlen($username) > 16)) {
 		$errors['username'] = "Keep Username 16 characters or less";
@@ -176,7 +177,7 @@ if (isset($_POST['login'])) {
 					$token = bin2hex(random_bytes(50)); // generate a unique token
 
 					// if so, update token in db
-					$update_token_query = "UPDATE users SET token='$token' WHERE id_user=" . $user['id_user'];
+					$update_token_query = "UPDATE users SET token='$token' WHERE id=" . $user['id_user'];
 					if (mysqli_query($connection, $update_token_query)) {
 						// set cookie with same credentials
 						setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
@@ -269,7 +270,7 @@ if (isset($_POST['reset-password-btn'])) {
 		if ($result) {
 			$_SESSION['message'] = "Your password was changed successfully. You can now login with your new credentials.";
 			$_SESSION['alert-class'] = "pass-reset";
-			header('location: login.php');
+			header('location: index.php');
 			exit(0);
 		}
 	}

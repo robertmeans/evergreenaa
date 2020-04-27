@@ -9,6 +9,11 @@ if (isset($_GET['token'])) {
 	verifyUser($token);
 }
 
+if (isset($_GET['password-token'])) {
+	$passwordToken = $_GET['password-token'];
+	resetPassword($passwordToken);
+}
+
 if (!isset($_SESSION['verified'])) {
 	header('location: home.php');
 	exit;
