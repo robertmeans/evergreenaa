@@ -67,6 +67,82 @@ table {
   clear: both;
 }
 
+/**
+ * jQuery Timepicker - v1.3.5 - 2016-07-10
+ * http://timepicker.co
+ *
+ * Enhances standard form input fields helping users to select (or type) times.
+ *
+ * Copyright (c) 2016 Willington Vega; Licensed MIT, GPL
+ */
+.ui-timepicker-container {
+  position: absolute;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ui-timepicker {
+  box-sizing: content-box;
+  display: block;
+  height: 205px;
+  list-style: none outside none;
+  margin: 0;
+  padding: 0 1px;
+  text-align: center;
+}
+
+.ui-timepicker-viewport {
+  box-sizing: content-box;
+  display: block;
+  height: 205px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.ui-timepicker-standard {
+  font-family: Verdana,Arial,sans-serif;
+  font-size: 1.1em;
+  background-color: #FFF;
+  border: 1px solid #AAA;
+  color: #222;
+  margin: 0;
+  padding: 2px;
+}
+
+.ui-timepicker-standard a {
+  border: 1px solid transparent;
+  color: #222;
+  display: block;
+  padding: .2em .4em;
+  text-decoration: none;
+}
+
+.ui-timepicker-standard .ui-state-hover {
+  background-color: #DADADA;
+  border: 1px solid #999;
+  font-weight: 400;
+  color: #212121;
+}
+
+.ui-timepicker-standard .ui-menu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.ui-timepicker-corners, .ui-timepicker-corners .ui-corner-all {
+  border-radius: 4px;
+}
+
+.ui-timepicker-hidden {
+  display: none;
+}
+
+.ui-timepicker-no-scrollbar .ui-timepicker {
+  border: 0;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -86,7 +162,8 @@ body {
   top: 0;
 }
 
-.preload {
+.preload,
+.preload-manage {
   position: fixed;
   display: -ms-flexbox;
   display: flex;
@@ -100,14 +177,16 @@ body {
   height: 100vh;
   z-index: 4567891;
 }
-.preload > p {
+.preload > p,
+.preload-manage > p {
   font-family: 'Caveat', cursive;
   font-size: 3em;
   color: #fff;
 }
 
 @media screen and (max-width: 600px) {
-  .preload > p {
+  .preload > p,
+  .preload-manage > p {
     font-size: 2em;
   }
 }
@@ -149,15 +228,14 @@ nav > ul li > a {
   transition: all 0.1s ease;
 }
 nav > ul li > a:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 12px 0px 8px 0px;
 }
 nav > ul li > a.why-join {
-  background-color: red;
-  background-color: #ff4c4c;
+  background-color: #2ab533;
 }
 nav > ul li > a.why-join:hover {
-  background-color: rgba(255, 76, 76, 0.3);
+  background-color: rgba(42, 181, 51, 0.5);
 }
 nav > ul li > a.login {
   background-color: #d4e8da;
@@ -212,12 +290,10 @@ nav > ul li > a.login:hover {
     padding: 0.65em;
   }
   nav > ul li > a.why-join {
-    background-color: red;
-    background-color: #ff4c4c;
+    background-color: #2ab533;
   }
   nav > ul li > a.why-join:hover {
-    background-color: red;
-    background-color: #ff4c4c;
+    background-color: #2ab533;
   }
 }
 * {
@@ -565,19 +641,19 @@ li.ctr-day .day-content {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .daily-glance {
+  .daily-glance,
+  .manage-glance {
     padding: 0.5em;
     line-height: 1.4em;
     -ms-flex-direction: column;
         flex-direction: column;
   }
-  .daily-glance:hover {
+  .daily-glance:hover,
+  .manage-glance:hover {
     background-color: inherit;
   }
-  .daily-glance .glance-group-title {
-    padding: 0em;
-  }
-  .daily-glance .glance-mtg-type {
+  .daily-glance .glance-mtg-type,
+  .manage-glance .glance-mtg-type {
     -ms-flex-pack: end;
         justify-content: flex-end;
   }
@@ -586,9 +662,14 @@ li.ctr-day .day-content {
     padding: 0.5em 0.5em 1.5em;
   }
 
-  .daily-glance-wrap {
+  .daily-glance-wrap,
+  .manage-glance-wrap {
     background-color: rgba(45, 74, 107, 0.7);
     background-color: rgba(0, 0, 0, 0.45);
+  }
+
+  .manage-glance .glance-mtg-type {
+    padding: 0px;
   }
 }
 input.day-values {
@@ -832,13 +913,13 @@ footer p.copyright {
   font-size: 12px;
   color: #808080;
 }
-footer p.copyright a {
-  color: inherit;
+footer p.copyright a.eb {
   text-decoration: none;
+  color: inherit;
+  transition: color 0.15s ease;
 }
-footer p.copyright a:hover {
-  color: #fff;
-  text-decoration: underline;
+footer p.copyright a.eb:hover {
+  color: #b2b2b2;
 }
 
 div#success-wrap {
@@ -1441,5 +1522,631 @@ span.yo-email {
 
   #landing-content {
     padding: 30px 20px;
+  }
+}
+#manage-wrap {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  line-height: 1.5em;
+  padding: 100px 20px;
+}
+
+.confirm {
+  align-text: center;
+  font-size: 3.2em;
+  margin-bottom: 0.3em;
+  font-family: 'Special Elite', cursive;
+  color: #df9327;
+}
+.confirm.warning {
+  color: #de2c0d;
+}
+
+.manage-simple {
+  width: 100%;
+  max-width: 900px;
+  text-align: justify;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.5em;
+  position: relative;
+}
+.manage-simple > h1 {
+  font-size: 1.4em;
+}
+.manage-simple > p {
+  margin-bottom: 1em;
+}
+.manage-simple i.fa-exclamation-triangle {
+  color: #de2c0d;
+  margin-right: 0.2em;
+  font-size: 2em;
+}
+.manage-simple > p.logout {
+  bottom: 5px;
+  right: 0px;
+  text-align: right;
+  padding: 1em 1em 0em;
+  font-size: 0.75em;
+  margin-bottom: 0;
+}
+.manage-simple > p.logout > a {
+  text-decoration: none;
+  color: #fff;
+}
+.manage-simple > p.logout > a:hover {
+  text-decoration: underline;
+}
+.manage-simple.review {
+  border-bottom: none;
+}
+.manage-simple.intro {
+  padding: 0px 2em 0.6em;
+}
+.manage-simple.empty {
+  border-bottom: none;
+}
+.manage-simple.empty > h1 {
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .manage-simple.intro {
+    padding: 0px 0.2em 0.6em;
+  }
+}
+ul.manage-weekdays {
+  width: 100%;
+  max-width: 900px;
+}
+ul.manage-weekdays > h1.edit-h1 {
+  margin-bottom: 1em;
+}
+ul.manage-weekdays div.manage-day-toggle {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  font-weight: normal;
+  font-size: 1.2em;
+  padding-left: 1em;
+}
+ul.manage-weekdays .day {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  width: 100%;
+  padding: 0.2em;
+  outline: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex: 1;
+      flex: 1;
+  transition: font-size 0.3s ease, background 0.5s ease;
+}
+ul.manage-weekdays .day:hover {
+  background-color: #fff;
+  color: #313131;
+  background: #6d94e1 url(_images/aa-logo-light.gif) no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.manage-glance-wrap {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.manage-glance {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: inherit;
+}
+.manage-glance:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.manage-glance .glance-mtg-time {
+  -ms-flex: 2 1 0;
+      flex: 2 1 0;
+}
+.manage-glance .glance-group-title {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+.manage-glance .glance-mtg-type {
+  padding: 0 2em;
+}
+
+.manage-glance-wrap-review {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 1em;
+  cursor: default;
+}
+
+.manage-glance-review {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  cursor: default;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: inherit;
+  border-top: 2px solid #fff;
+  border-bottom: dashed 1px #7e7e7e;
+  background-color: #000;
+  background-color: #000;
+  color: #fff;
+  background: #6d94e1 url(_images/aa-logo_active.gif) no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.manage-glance-review:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.manage-glance-review .glance-mtg-time {
+  -ms-flex: 2 1 0;
+      flex: 2 1 0;
+}
+.manage-glance-review .glance-group-title {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+.manage-glance-review .glance-mtg-type {
+  padding: 0em 1.5em 0em 0.5em;
+}
+
+a.manage-edit {
+  color: white;
+  transition: all 0.2s ease;
+  margin-left: 1em;
+  text-decoration: none;
+}
+a.manage-edit:hover {
+  color: #96ff00;
+}
+
+a.manage-edit.inline {
+  margin-left: 0;
+}
+
+a.manage-delete {
+  color: white;
+  margin-left: 1em;
+  transition: all 0.2s ease;
+}
+a.manage-delete:hover {
+  color: #ff2600;
+}
+
+.weekday-edit-wrap {
+  width: 100%;
+  max-width: 900px;
+  padding: 0px 20px 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.weekday-edit-wrap .meeting-details {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  position: relative;
+  width: 98%;
+}
+.weekday-edit-wrap .meeting-details i.far.fa-edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.weekday-edit-wrap .meeting-details p {
+  line-height: 1.5em;
+}
+.weekday-edit-wrap .meeting-details p.meet-time {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details p.id-num {
+  margin-bottom: 0.75em;
+}
+.weekday-edit-wrap .meeting-details .details-left {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 50%;
+  padding: 1em;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 {
+  color: #fff;
+  margin-top: 0.5em;
+  margin: 0.5em 0 1.5em;
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 > i {
+  margin-right: 0.5em;
+}
+.weekday-edit-wrap .meeting-details .details-left > p.phone-num01 > a {
+  color: #fff;
+  text-decoration: none;
+}
+.weekday-edit-wrap .meeting-details .details-right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 50%;
+  padding: 1em;
+}
+.weekday-edit-wrap .meeting-details .details-right p.add-info {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details .details-right p.add-info.fixerror {
+  color: #8b8586;
+}
+.weekday-edit-wrap .meeting-details .details-right ul {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+.weekday-edit-wrap .meeting-details .details-right ul > li {
+  line-height: 1.5em;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details #add-note {
+  width: 100%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #313131;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0px;
+  margin-top: 0.5em;
+}
+.weekday-edit-wrap .meeting-details #add-note > p {
+  text-align: left;
+}
+.weekday-edit-wrap p.no-meet {
+  text-align: center;
+  padding: 50px;
+}
+.weekday-edit-wrap form {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+
+.errors {
+  padding: 1.5em;
+  border-radius: 2px;
+  border: 1px solid red;
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(111, 23, 23, 0.9);
+  color: #fff;
+}
+.errors ul li {
+  list-style: disc;
+  margin-left: 1em;
+}
+
+a.new-mtg-btn {
+  margin: 1em 0;
+  padding: 1em 2em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #40b208;
+  border: 1px solid #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+a.new-mtg-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(64, 178, 8, 0.4);
+}
+
+form#manage-mtg {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 98%;
+  text-align: left;
+}
+form#manage-mtg .top-info {
+  width: 100%;
+  margin: 0.5em 0;
+}
+form#manage-mtg .align-days {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+form#manage-mtg .align-days.fixerror {
+  background-color: #ffbdc0;
+  padding: 0.2em;
+}
+form#manage-mtg p.days-held {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+form#manage-mtg p.time-held {
+  text-decoration: underline;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+form#manage-mtg .mtg-days {
+  display: inline-block;
+}
+form#manage-mtg input.fixerror,
+form#manage-mtg textarea.fixerror {
+  background-color: #ffbdc0;
+}
+form#manage-mtg input.timepicker {
+  font-size: 1.1em;
+  border: 0;
+  padding: 0.2em;
+  width: 6em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+form#manage-mtg input[type="radio"] {
+  width: 1.3em;
+  height: 1.3em;
+}
+form#manage-mtg span.fixerror,
+form#manage-mtg div.fixerror {
+  background-color: #ffbdc0;
+  padding: 0.5em 1.5em 0.5em 1em;
+  border-radius: 3px;
+}
+form#manage-mtg input.mtg-update,
+form#manage-mtg input.mtg-update-url {
+  font-size: 1.1em;
+  border: 0;
+  padding: 0.2em;
+  width: 10em;
+  margin-bottom: 1em;
+}
+form#manage-mtg input.mtg-update.group-name {
+  width: 96%;
+  max-width: 28em;
+}
+form#manage-mtg input.mtg-update-url {
+  width: 16em;
+}
+form#manage-mtg textarea#meet_url {
+  width: 98%;
+  max-width: 18em;
+  height: 6em;
+  resize: none;
+  border: 0;
+  padding: 0.2em;
+  font-size: 1.1em;
+}
+form#manage-mtg input:checked + span {
+  color: #fff;
+}
+form#manage-mtg .fixerror input:checked + span {
+  color: #313131;
+  font-weight: bold;
+}
+form#manage-mtg input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  color: gray;
+}
+form#manage-mtg input[type="checkbox"].fixerror {
+  background-color: #ffbdc0;
+}
+form#manage-mtg input[type="checkbox"]:checked + label {
+  color: #fff;
+  display: inline-block;
+}
+form#manage-mtg label {
+  cursor: pointer;
+  line-height: 1.6em;
+  color: gray;
+}
+
+.btm-notes {
+  width: 100%;
+}
+.btm-notes textarea.meetNotes {
+  width: 100%;
+  font-size: 1.1em;
+  padding: 30px;
+  background: white;
+  color: #313131;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0px;
+  margin-top: 0.5em;
+  resize: none;
+}
+.btm-notes .update-rt {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  width: 100%;
+}
+.btm-notes .update-rt a.cancel {
+  margin-right: 1em;
+}
+.btm-notes input[name="update-mtg"],
+.btm-notes input[name="create-mtg"],
+.btm-notes input[name="delete-mtg"],
+.btm-notes a.cancel {
+  background-color: rgba(0, 0, 0, 0.9);
+  font-family: Tahoma, Calbri, sans-serif;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid #fff;
+  padding: 1em 2em;
+  margin-top: 1.5em;
+  transition: all 0.2s ease;
+}
+.btm-notes input[name="update-mtg"]:hover,
+.btm-notes input[name="create-mtg"]:hover,
+.btm-notes input[name="delete-mtg"]:hover,
+.btm-notes a.cancel:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.9);
+}
+.btm-notes input[name="delete-mtg"] {
+  background-color: #de2c0d;
+  margin-left: 0.5em;
+}
+.btm-notes input[name="delete-mtg"]:hover {
+  background-color: red;
+  color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+  form#manage-mtg {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+
+  .weekday-edit-wrap .meeting-details .details-right {
+    padding: 1em 0em;
+    width: 100%;
+  }
+
+  .weekday-edit-wrap .meeting-details .details-left {
+    border-right: 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1em 0em;
+    width: 100%;
+  }
+
+  form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {
+    width: 100%;
+  }
+
+  form#manage-mtg .update-rt {
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+
+  .weekday-edit-wrap .delete-record {
+    -ms-flex-pack: center;
+        justify-content: center;
+    padding: 0px;
+  }
+
+  .btm-notes {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    width: 98%;
+  }
+
+  .btm-notes .update-rt {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .btm-notes input[name="delete-mtg"] {
+    padding: 0.5em;
+  }
+
+  .manage-glance .glance-group-title {
+    padding: 0em;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    margin: 0.5em 0;
+  }
+
+  .manage-glance .glance-mtg-type {
+    padding: 0px;
+    -ms-flex-pack: center;
+        justify-content: center;
+    text-align: right;
+  }
+
+  ul.manage-weekdays div.manage-day-toggle {
+    padding: 0.5em;
+  }
+
+  a.manage-delete {
+    margin-left: 1.6em;
+  }
+}
+span.contact-update-message {
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 16px 10px 16px 15px;
+  margin: 60px auto -40px auto;
+  border: 3px solid green;
+  color: green;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 360px) {
+  form#manage-mtg .align-days {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
 }

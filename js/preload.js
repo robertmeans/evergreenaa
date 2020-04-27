@@ -5,5 +5,10 @@ function recaptchaCallback() {
 	};
 
 $(window).on('load', function() {
-    $(".preload").delay(500).fadeOut(1000);
+    $(".preload").delay(250).fadeOut(750);
     });
+
+$(window).on('load', function() {
+    $(".preload-manage").delay(200).fadeOut(500);
+    });
+

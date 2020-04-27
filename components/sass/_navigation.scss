@@ -30,15 +30,14 @@ border-bottom-left-radius: 3px;
 border-left: 1px solid #fff;
 transition: all 0.1s ease;
 &:hover {
-	background-color: rgba(255,255,255,0.3);
+	background-color: rgba(0,0,0,0.5);
 	padding: 12px 0px 8px 0px;
 	}
 }
 & > a.why-join {
-background-color: red;
-background-color: rgba(255,76,76,1);
+background-color: rgba(42,181,51,1);
 &:hover {
-background-color: rgba(255,76,76,0.3);
+background-color: rgba(42,181,51,0.5);
 	}
 }
 & > a.login {
@@ -97,11 +96,9 @@ outline: none;
 	}
 }
 & > a.why-join {
-background-color: red;
-background-color: rgba(255,76,76,1);
+background-color: rgba(42,181,51,1);
 &:hover {
-	background-color: red;
-	background-color: rgba(255,76,76,1);
+	background-color: rgba(42,181,51,1);
 					}
 				}
 			}

@@ -87,6 +87,17 @@ function copyToClipboard(elem) {
     return succeed;
 }
 
+/* initialize timepicker */
+/* https://timepicker.co/options/ */
+$(document).ready(function(){
+    $('input.timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    dynamic: false,
+    dropdown: false,
+    scrollbar: false
+    });
+});
+
 
 /* open and close weekday content */
 
@@ -130,6 +141,22 @@ $('.daily-glance-wrap').click(function() {
   }
 });
 
+$('.manage-glance-wrap').click(function() {
+
+  var active = $(this);
+  var toggle = $(this).next('.weekday-wrap');
+
+  $('.weekday-wrap').not(toggle).slideUp();
+  $('.manage-glance-wrap').not(active).removeClass('active');
+  $(toggle).slideToggle();
+
+  if ($(active).hasClass('active')) {
+    $(active).removeClass('active');
+  } else {
+    $(active).addClass('active');
+  }
+});
+
 
 /* collapse day button */
 $('.collapse-day').click(function() {
@@ -156,40 +183,57 @@ setTimeout(function() {
   $("#success-wrap").fadeOut(1500);
 }, 2000);
 
-
-$("#toggle-msg-one").click(function(e) {
+// toggle msg one public
+$("#toggle-public-msg").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 
     var open  = 'Close';
-    var close = 'Readme';
+    var closed = 'Readme';
 
   if ($('#msg-one').is(':hidden')) {
       $("#msg-one").fadeIn(500);
-      $("#toggle-msg-one").html(open); 
+      $("#toggle-public-msg").html(open); 
   } else {
       $("#msg-one").fadeOut(500);
-      $("#toggle-msg-one").html(close); 
+      $("#toggle-public-msg").html(closed); 
   }
 
 });
 
+// toggle msg one private
+$("#toggle-private-msg").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
+    var open  = 'Close';
+    var closed = 'Extras';
+
+  if ($('#msg-one').is(':hidden')) {
+      $("#msg-one").fadeIn(500);
+      $("#toggle-private-msg").html(open); 
+  } else {
+      $("#msg-one").fadeOut(500);
+      $("#toggle-private-msg").html(closed); 
+  }
+
+});
+
+// close msg one when clicking anywhere on page
 $(document).click(function() {
-  var close    = 'Close';
-  var open     = 'Readme';
-  var open_two = 'Readme';
+  // var close    = 'Close';
+  var closed_public     = 'Readme';
+  var closed_private    = 'Extras';
 
   $('#msg-one').fadeOut(500);
-  $("#toggle-msg-one").html(open);
+  $("#toggle-public-msg").html(closed_public);
 
-  $('#msg-one').fadeOut(500);
-  $("#toggle-msg-one").html(open_two); 
+ // $('#msg-one').fadeOut(500);
+  $("#toggle-private-msg").html(closed_private); 
 
 });​
 
-
-
+// prevent these links from closing msg
 $("#preamble").click(function(e) {
     e.stopPropagation();
 });
@@ -204,4 +248,23 @@ $("#topics").click(function(e) {
 });
 $("#daccaa").click(function(e) {
     e.stopPropagation();
+});
+$(".manage-edit").click(function(e) {
+    e.stopPropagation();
+});
+$(".manage-delete").click(function(e) {
+    e.stopPropagation();
+});
+
+
+// checkboxes on update forms - prevent multiple options
+
+// open, men's or womens?
+$(".omw").change(function() {
+    $(".omw").not(this).prop('checked', false);
+});
+
+// open or closed mtg? (so you can have open or closed mens or womens but not open and closed by itself)
+$(".oc").change(function() {
+    $(".oc").not(this).prop('checked', false);
 });

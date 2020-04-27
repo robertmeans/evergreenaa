@@ -2,11 +2,16 @@
 <?php 
 include 'error-reporting.php';
 
-require_once 'controllers/authController.php'; 
+require_once 'config/initialize.php';
 
 if (isset($_GET['token'])) {
 	$token = $_GET['token'];
 	verifyUser($token);
+}
+
+if (isset($_GET['password-token'])) {
+	$passwordToken = $_GET['password-token'];
+	resetPassword($passwordToken);
 }
 
 if (!isset($_SESSION['verified'])) {
@@ -41,8 +46,6 @@ if ((isset($_SESSION['verified']) && (!$_SESSION['message']))) {
 		<?php endif; ?>
 
 		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
-
-		<!-- <a class="welcome-log" href="index.php?logout=1">logout</a> -->
 
 		<?php if(!$_SESSION['verified']): ?>
 			<div class="alert alert-warning">

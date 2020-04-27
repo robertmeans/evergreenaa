@@ -2,29 +2,18 @@
 
 session_start();
 
-// **Awa: You probably forgot to share the db.php file with me so I commented this out
-require_once 'config/db.php';
-require_once 'controllers/emailController.php';
-require_once '_functions/awyeeah.php';
-require_once '_functions/query_functions.php';
+// turned off 04.27
+// require_once 'config/db.php';
 
-// set global variables
-$db = db_connect();
-$errors = array();
+// added 04.27 and then turned off
+// require_once 'config/initialize.php';
+require_once 'controllers/emailController.php';
+
+$errors = [];
 $username = "";
 $email = "";
 $verified = "";
 
-
-/* **Awa: 
-	The remember me functionality uses a cookie called token. 
-	Here's a brief explanation of how cookies work: We had set a cookie on the user's browser when they
-	had logged in with the remember me option selected. Now each time they visit a page
-	(Request a page to be served to them from the server),
-	that token cookie we set earlier will be sent to the server automatically inside the PHP super global 
-	array variable called $_COOKIE. We can then check for the availability of this token, and then if it exists,
-	we will fetch the user with that token (the token is unique to that user) and then log that user in 
-*/
 function remember_me()
 {
 	global $conn;
@@ -40,7 +29,7 @@ function remember_me()
 			$user = $result->fetch_assoc();
 
 			// put user in session (log them in)
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
@@ -48,18 +37,9 @@ function remember_me()
 	} 
 }
 
-/* **Awa: 
-	Execute the remember_me() function to remember the user (log user in automatically) 
-	if they had selected the remember me checkbox the last time they logged in.
-	If this file authController.php is not included in any page, then you might want to 
-	include it in that page for the remember me to work there too. Or you could just define this
-	function inside that file and execute it. I recommend the first option 
-*/
 remember_me();
-	
-// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
-// 30:25
-// if user clicks on the sign up button
+
+// sign-up
 if (isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	$email = $_POST['email'];
@@ -69,7 +49,6 @@ if (isset($_POST['submit'])) {
 	if (empty($username)) {
 		$errors['username'] = "Please enter a username";
 	}
-
 
 	if ((!empty($username)) && (strlen($username) > 16)) {
 		$errors['username'] = "Keep Username 16 characters or less";
@@ -107,18 +86,14 @@ if (isset($_POST['submit'])) {
 		$errors['password'] = "Passwords don't match";
 	}
 
-	// ^ all input is valid on signup -> now 
-	// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
-	// 38:20...
 	$emailQuery = "SELECT * FROM users WHERE email=? LIMIT 1";
 	$stmt = $conn->prepare($emailQuery);
 	$stmt->bind_param('s', $email);
 	$stmt->execute();
 
-/* updated to PHP v7.2 on GoDaddy and unchecked mysqli and checked nd_mysqli */
-/* in order to get this command to work */
+	/* updated to PHP v7.2 on GoDaddy and unchecked mysqli and checked nd_mysqli */
+	/* in order to get this command to work */
 	$result = $stmt->get_result();
-
 
 	$userCount = $result->num_rows;
 	$stmt->close();
@@ -127,8 +102,6 @@ if (isset($_POST['submit'])) {
 		$errors['email'] = "Email already exists";
 	}
 
-	// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
-	// 42:00
 	if (count($errors) === 0) {
 		$password = password_hash($password, PASSWORD_DEFAULT);
 		$token = bin2hex(random_bytes(50));
@@ -176,9 +149,9 @@ if (isset($_POST['login'])) {
 	}
 
 	if (count($errors) === 0) {
-		// https://www.youtube.com/watch?v=8K4Wt37Itc4&list=PL3pyLl-dgiqDt7xKIdvhoSKrR7KqIQ9PQ
-		// 1:05:38'ish
-		// $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
+
+		// having to accept email or username because of how Apple/ios binds these two
+		// in their login management
 		$sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('ss', $username, $username);
@@ -188,14 +161,10 @@ if (isset($_POST['login'])) {
 
 		if (password_verify($password, $user['password'])) {
 			// login success
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
-
-			// at this point you are recognized in the db however we need to determine if
-			// you are verified or not. if so -> home_private, if not -> index for msg
-			// saying you are not verified yet
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
 			// email verification
@@ -205,20 +174,15 @@ if (isset($_POST['login'])) {
 				header('location: index.php');
 				exit();
 			} else {
-				/* **Awa: User is verified and has successfully logged in at this point. 
-					Now we want to check if the user gave instructions to the system to 
-					remember them. We do this by checking if they checked the 'remember me' checkbox
-					on the login form
-				*/
+
+				// user is logged in and verified. did they check the rememberme?
 				if (isset($_POST['remember_me'])) {
 					$token = bin2hex(random_bytes(50)); // generate a unique token
 
-					// Update the token field of that particular user record in the database 
-					// with the newly generated token 
-					$update_token_query = "UPDATE users SET token='$token' WHERE id=" . $user['id'];
+					// if so, update token in db
+					$update_token_query = "UPDATE users SET token='$token' WHERE id_user=" . $user['id_user'];
 					if (mysqli_query($conn, $update_token_query)) {
-						// Set and send a cookie called token to be stored on the user's browswer 
-						// so that they can be remembered next time they come to the website 
+						// set cookie with same credentials
 						setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
 					}
 				}
@@ -235,7 +199,6 @@ if (isset($_POST['login'])) {
 }
 
 
-
 // verify user by token
 function verifyUser($token) {
 
@@ -249,7 +212,7 @@ function verifyUser($token) {
 
 		if (mysqli_query($conn, $update_query)) {
 			// login success
-			$_SESSION['id'] = $user['id'];
+			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = 1;
@@ -277,7 +240,7 @@ if (isset($_POST['forgot-password'])) {
 	}
 
 	if (count($errors) == 0) {
-		// time 12:07 - he says to use prepared statements, not what's below
+
 		$sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
 		$result = mysqli_query($conn, $sql);
 		$user = mysqli_fetch_assoc($result);
@@ -310,7 +273,7 @@ if (isset($_POST['reset-password-btn'])) {
 		if ($result) {
 			$_SESSION['message'] = "Your password was changed successfully. You can now login with your new credentials.";
 			$_SESSION['alert-class'] = "pass-reset";
-			header('location: index.php');
+			header('location: login.php');
 			exit(0);
 		}
 	}
@@ -327,3 +290,4 @@ function resetPassword($token)
 	exit(0);
 
 }
+
