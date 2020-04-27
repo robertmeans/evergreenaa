@@ -1,6 +1,6 @@
 <?php
 
-	$meeting_id = $row['id'];
+	$meeting_id = $row['id_user'];
 	$mon		= $row['mon'];
 	$tue		= $row['tue'];
 	$wed		= $row['wed'];
