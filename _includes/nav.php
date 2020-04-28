@@ -12,6 +12,7 @@
 			case 'home-public' 		:	echo "<li><a id=\"toggle-public-msg\" class=\"cc-x why-join\">Readme</a></li>"; 		break;
 			case 'forgot-password' 	:	 																						break;
 			case 'edit-meeting' 	:	 																						break;
+			case 'email-everyone' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
 			case 'manage-delete' 	:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 				break;
@@ -33,6 +34,7 @@
 			case 'forgot-password' 	:	echo "<li><a class=\"logout\" href=\"home.php\">Home</a></li>"; 					break;
 			case 'manage' 			:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
 			case 'manage-new' 		:	echo "<li><a class=\"logout\" href=\"home_private.php\">Home</a></li>"; 			break;
+			case 'email-everyone' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
 			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
 			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;
 			case 'manage-delete' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 				break;

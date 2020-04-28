@@ -113,11 +113,11 @@
 		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
 
 		<div class="visible">
-			<label class="vis"><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft</span></label>
+			<label class="vis"><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft: For your eyes only.</span></label>
 			
 			<label class="vis"><input type="radio" name="visible" value="1" <?php if ($row['visible'] == "1") { echo "checked"; } ?>> <span>Private: Only logged-in members of EvergreenAA.com will see this.</span></label>
 			
-			<label class="vis"><input type="radio" name="visible" value="2" <?php if ($row['visible'] == "2") { echo "checked"; } ?>> <span>Public: Share this with everyone.</span></label>
+			<label class="vis"><input type="radio" name="visible" value="2" <?php if ($row['visible'] == "2") { echo "checked"; } ?>> <span>Public: Share with everyone.</span></label>
 		</div><!-- .visible -->
 
 		<div class="update-rt">

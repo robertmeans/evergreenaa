@@ -1564,6 +1564,7 @@ span.yo-email {
 }
 .manage-simple > h1 {
   font-size: 1.4em;
+  display: inline-block;
 }
 .manage-simple > p {
   margin-bottom: 1em;
@@ -1638,6 +1639,106 @@ span.yo-email {
 }
 .manage-simple.empty > h1 {
   margin-bottom: 1em;
+}
+
+.manage-simple-admin {
+  width: 100%;
+  max-width: 900px;
+  text-align: justify;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.5em;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.manage-simple-admin > h1 {
+  font-size: 1.4em;
+  display: inline-block;
+}
+.manage-simple-admin > p.admin-email {
+  text-align: right;
+  padding-right: 2em;
+  color: #fff;
+  display: inline-block;
+}
+.manage-simple-admin > p.admin-email > a {
+  color: #fff;
+  text-decoration: none;
+}
+.manage-simple-admin > p.admin-email > a:hover {
+  text-decoration: underline;
+}
+
+.manage-simple-email {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1em;
+  padding: 1em;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+form.admin-email-form {
+  width: 100%;
+  max-width: 560px;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+form.admin-email-form label {
+  display: block;
+}
+form.admin-email-form input[type="text"] {
+  font-size: 1.1em;
+  border: 0;
+  padding: 0.2em;
+  width: 96%;
+  max-width: 20em;
+  margin-bottom: 1em;
+  display: block;
+}
+form.admin-email-form textarea {
+  width: 96%;
+  max-width: 28em;
+  height: 10em;
+  padding: 0.2em;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+form.admin-email-form > .update-rt {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  width: 96%;
+}
+form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-rt > input[type="submit"] {
+  padding: 1em;
+  background-color: black;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  font-size: 1em;
+  -ms-flex: 1;
+      flex: 1;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+form.admin-email-form > .update-rt > a.cancel:hover, form.admin-email-form > .update-rt > input[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+form.admin-email-form > .update-rt > a.cancel {
+  margin-right: 1em;
 }
 
 @media screen and (max-width: 500px) {

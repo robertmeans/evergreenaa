@@ -70,7 +70,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple empty">
-	<h1 class="edit-h1">Create New Meeting</h1>
+	<h1 class="edit-h1">Add a New Meeting</h1>
 	<?php echo display_errors($errors); ?>
 
 		<div class="weekday-edit-wrap">

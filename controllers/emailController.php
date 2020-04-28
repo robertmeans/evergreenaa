@@ -15,43 +15,43 @@ $transport = (new Swift_SmtpTransport('smtpout.secureserver.net', 80))
 $mailer = new Swift_Mailer($transport);
 
 function sendVerificationEmail($username, $userEmail, $token) 
-{
+	{
 	global $mailer;
 
 	$body = '<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Verify EvergreenAA.com Registration</title>
-	<style>
-		.wrapper {
-		  padding: 20px;
-		  color: #444;
-		  font-size: 1.3em;
-		}
-		a {
-		  background-color: #2c496a;
-		  text-decoration: none;
-		  padding: 8px 15px;
-		  border-radius: 5px;
-		  color: #fff;
-		}
-		a:hover {
-			background-color: #9bafc6;
-			color: #313131;
-		}
-	</style>		
-</head>
-<body>
-	<div class="wrapper">
-		<p>Hello ' . $username . ',
-		<p>Thank you for joining this neat project. As I type this we are all buckled down for the Coronavirus which has introduced a new opportunity for AA members to meet. This website is being developed in hopes of providing everyone a safer, more convenient way to manage their Zoom meetings while keeping private information private.</p>
-		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address.
-		<p>Sincerely,<br>Evergreen Bob</p>
-	</div>
-	
-</body>
-</html>';
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Verify EvergreenAA.com Registration</title>
+		<style>
+			.wrapper {
+			  padding: 20px;
+			  color: #444;
+			  font-size: 1.3em;
+			}
+			a {
+			  background-color: #2c496a;
+			  text-decoration: none;
+			  padding: 8px 15px;
+			  border-radius: 5px;
+			  color: #fff;
+			}
+			a:hover {
+				background-color: #9bafc6;
+				color: #313131;
+			}
+		</style>		
+	</head>
+	<body>
+		<div class="wrapper">
+			<p>Hello ' . $username . ',
+			<p>Thank you for joining this neat project. As I type this we are all buckled down for the Coronavirus which has introduced a new opportunity for AA members to meet. This website is being developed in hopes of providing everyone a safer, more convenient way to manage their Zoom meetings while keeping private information private.</p>
+			<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address.
+			<p>Sincerely,<br>Evergreen Bob</p>
+		</div>
+		
+	</body>
+	</html>';
 
 	// Create a message
 	$message = (new Swift_Message('Verify Your EvergreenAA Registration'))
@@ -66,44 +66,44 @@ function sendVerificationEmail($username, $userEmail, $token)
 }
 
 function sendPasswordResetLink($userEmail, $token) 
-{
+	{
 
-global $mailer;
+	global $mailer;
 
 	$body = '<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Reset EvergreenAA.com Password</title>
-	<style>
-		.wrapper {
-		  padding: 20px;
-		  color: #444;
-		  font-size: 1.3em;
-		}
-		a {
-		  background-color: #2c496a;
-		  text-decoration: none;
-		  padding: 8px 15px;
-		  border-radius: 5px;
-		  color: #fff;
-		}
-		a:hover {
-			background-color: #9bafc6;
-			color: #313131;
-		}
-	</style>			
-</head>
-<body>
-	<div class="wrapper">
-		<p>Hello,</p>
-		<p>Please click on the link below to reset your password.</p>
-		<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?password-token=' . $token . '">Click here</a> to reset your password.
-		<p>Sincerely,<br>Evergreen Bob</p>
-	</div>
-	
-</body>
-</html>';
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Reset EvergreenAA.com Password</title>
+		<style>
+			.wrapper {
+			  padding: 20px;
+			  color: #444;
+			  font-size: 1.3em;
+			}
+			a {
+			  background-color: #2c496a;
+			  text-decoration: none;
+			  padding: 8px 15px;
+			  border-radius: 5px;
+			  color: #fff;
+			}
+			a:hover {
+				background-color: #9bafc6;
+				color: #313131;
+			}
+		</style>			
+	</head>
+	<body>
+		<div class="wrapper">
+			<p>Hello,</p>
+			<p>Please click on the link below to reset your password.</p>
+			<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?password-token=' . $token . '">Click here</a> to reset your password.
+			<p>Sincerely,<br>Evergreen Bob</p>
+		</div>
+		
+	</body>
+	</html>';
 
 	// Create a message
 	$message = (new Swift_Message('Reset Your EvergreenAA Password'))
@@ -111,10 +111,59 @@ global $mailer;
 	  ->setTo($userEmail)
 	  ->setBody($body, 'text/html');
 
+	// Send the message
+	$result = $mailer->send($message);
+}
+
+function email_everyone($subject, $message) 
+	{
+	global $mailer;
+
+	$body = '<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Message to EvergreenAA.com Community</title>
+		<style>
+			.wrapper {
+			  padding: 20px;
+			  color: #444;
+			  font-size: 1.3em;
+			}
+			a {
+			  background-color: #2c496a;
+			  text-decoration: none;
+			  padding: 8px 15px;
+			  border-radius: 5px;
+			  color: #fff;
+			}
+			a:hover {
+				background-color: #9bafc6;
+				color: #313131;
+			}
+		</style>		
+	</head>
+	<body>
+		<div class="wrapper">
+			<p>Hello ' . $username . ',
+			<p>Thank you for joining this neat project. As I type this we are all buckled down for the Coronavirus which has introduced a new opportunity for AA members to meet. This website is being developed in hopes of providing everyone a safer, more convenient way to manage their Zoom meetings while keeping private information private.</p>
+			<a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address.
+			<p>Sincerely,<br>Evergreen Bob</p>
+		</div>
+		
+	</body>
+	</html>';
+
+	// Create a message
+	$message = (new Swift_Message('Verify Your EvergreenAA Registration'))
+	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
+	  ->setBcc('info@evergreenaa.com')
+	  ->setTo($userEmail)
+	  ->setBody($body, 'text/html');
+
 
 	// Send the message
 	$result = $mailer->send($message);
-
 }
 
 

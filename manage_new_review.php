@@ -50,7 +50,7 @@ $row = edit_meeting($id);
 
 			<form class="new-review" action="new_review_submit.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
 
-				<label><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft</span></label> 
+				<label><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft: For your eyes only.</span></label> 
 
 				<label><input type="radio" name="visible" value="1" <?php if ($row['visible'] == "1") { echo "checked"; } ?>> <span>Private: Only logged-in members of EvergreenAA.com will see this.</span></label> 
 

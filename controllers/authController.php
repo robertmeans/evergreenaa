@@ -2,17 +2,14 @@
 
 session_start();
 
-// turned off 04.27
-// require_once 'config/db.php';
-
-// added 04.27 and then turned off
-// require_once 'config/initialize.php';
 require_once 'controllers/emailController.php';
 
 $errors = [];
 $username = "";
 $email = "";
 $verified = "";
+$admin = "";
+$visible = "";
 
 function remember_me()
 {
@@ -33,6 +30,7 @@ function remember_me()
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
+			$_SESSION['admin'] = $user['admin'];
 		}
 	} 
 }
@@ -165,6 +163,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
+			$_SESSION['admin'] = $user['admin'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
 			// email verification
