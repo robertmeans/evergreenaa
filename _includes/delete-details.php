@@ -7,7 +7,7 @@
 <?php 					if ($row['dedicated_om'] != 0) { ?><p>Dedicated Online Meeting</p><?php } ?>
 <?php 					if ($row['meet_phone'] != null) { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
-<?php 					if ($row['meet_id'] != 'No ID Necessary') { ?>		
+<?php 					if ($row['meet_id'] != '') { ?>		
 						<p class="id-num">ID: <input type="text" value="<?= $row['meet_id']; ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } else { ?>
@@ -54,12 +54,10 @@
 		<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= $row['add_note'] ?></p></div><?php } ?>
 				
 		<div class="update-rt">
-		<form action="delete_this.php?id=<?= h(u($id)); ?>" method="post">
+		<form action="delete_meeting.php?id=<?= h(u($id)); ?>" method="post">
 		<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">		
 		</form>
 		</div><!-- .update-rt -->
 
 		</div><!-- .btm-notes -->
-
-
 	</div><!-- .meeting-details -->

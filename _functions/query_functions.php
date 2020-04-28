@@ -10,6 +10,31 @@ function get_meetings_for_today($today) {
     return $result;
 }
 
+function get_all_public_meetings_for_today($today) {
+    global $db;
+
+    $sql = "SELECT * FROM meetings WHERE ";
+    $sql .= "" . $today . " != 0 ";
+    $sql .= "AND visible != 0 ";
+    $sql .= "AND visible != 1 ";
+    $sql .= "ORDER BY meet_time;";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
+function get_all_public_and_private_meetings_for_today($today) {
+    global $db;
+
+    $sql = "SELECT * FROM meetings WHERE ";
+    $sql .= "" . $today . " != 0 ";
+    $sql .= "AND visible != 0 ";
+    $sql .= "ORDER BY meet_time;";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
 function create_new_meeting($row) {
   global $db;
 
@@ -74,6 +99,7 @@ function update_meeting($id, $row) {
   // here and see if that'll work
 
   $sql = "UPDATE meetings SET ";
+  $sql .= "visible='"       . $row['visible']           . "', ";
   $sql .= "sun='"           . $row['sun']           . "', ";
   $sql .= "mon='"           . $row['mon']           . "', ";
   $sql .= "tue='"           . $row['tue']           . "', ";
@@ -102,6 +128,27 @@ function update_meeting($id, $row) {
   $sql .= "potluck='"       . $row['potluck']       . "', ";
   $sql .= "add_note='"      . db_escape($db, $row['add_note'])      . "' ";
 
+  $sql .= "WHERE id_mtg='"  . db_escape($db, $id) . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  // UPDATE statements are true/false
+  if($result === true) {
+    return true;
+    } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+      db_disconnect($db);
+      exit;
+    }  
+}
+
+function finalize_new_meeting($id, $row) {
+  global $db;
+
+  $sql = "UPDATE meetings SET ";
+  $sql .= "visible='"       . $row['visible']           . "' ";
+ 
   $sql .= "WHERE id_mtg='"  . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1";
 

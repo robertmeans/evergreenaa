@@ -58,6 +58,42 @@
 	}
 	&.review {
 		border-bottom: none;
+		a.done {
+			margin: 1em auto;
+			padding: 1em 2em;
+			border: 1px solid #fff;
+			background-color: rgba(64,178,8,1);
+			color: #fff;
+			text-decoration: none;
+			display: flex;
+			width: 80%;
+			justify-content: center;
+			align-items: center;
+			&:hover {
+				background-color: rgba(64,178,8,0.4);
+			}
+		}
+
+
+		input.done {
+			margin: 1em auto;
+			padding: 1em 2em;
+			border: 1px solid #fff;
+			background-color: rgba(64,178,8,1);
+			color: #fff;
+			text-decoration: none;
+			display: flex;
+			width: 80%;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			padding: 1em;
+			font-size: 1em;
+			&:hover {
+				background-color: rgba(64,178,8,0.4);
+			}
+		}
+
 	}	
 	&.intro {
 		padding: 0px 2em 0.6em;
@@ -143,6 +179,9 @@ ul.manage-weekdays {
 	.glance-mtg-type {
 		padding: 0 2em;
 	}
+	&.draft {
+		background-color: rgba(32,93,168,0.3);
+	}
 }
 
 .manage-glance-wrap-review {
@@ -178,6 +217,38 @@ ul.manage-weekdays {
 	.glance-mtg-type {
 		padding: 0em 1.5em 0em 0.5em;
 	}
+	&.draft {
+		background: rgba(32,93,168,0.3);
+	}
+}
+form.new-review {
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+	// align-items: center;
+	label {
+		padding: 1em 0.5em;
+		cursor: pointer;
+	}
+	input[type="radio"] {
+		width: 0em;
+		height: 0em;
+	}
+
+
+
+	input:checked + span {
+		color: #fff;
+		font-weight: bold;
+		background-color: rgba(32,93,168,1);
+		padding: 0.5em 2em;
+		display: inline-block;
+		border-radius: 3px;
+	}
+
+
+
+
 }
 a.manage-edit {
 	color: rgba(255,255,255,1);
@@ -392,11 +463,6 @@ form#manage-mtg {
 		margin-bottom: 1em;
 		text-align: center;
 	}
-	input[type="radio"] {
-		width: 1.3em;
-		height: 1.3em;
-		// vertical-align: middle;
-	}
 	span.fixerror,
 	div.fixerror {
 		background-color: rgba(255,189,192,1);
@@ -453,6 +519,9 @@ form#manage-mtg {
 		line-height: 1.6em;
 		color: gray;
 	}
+	label.vis {
+		color: #fff;
+	}
 }
 .btm-notes {
 	width: 100%;
@@ -468,20 +537,51 @@ form#manage-mtg {
 	    border-top-left-radius: 0px;
 	    margin-top: 0.5em;
 	    resize: none;
+	    margin-bottom: 1em;
 	}
 	.update-rt {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-evenly;
 		width: 100%;
-			a.cancel {
-			margin-right: 1em;
-		}
+	}
+	.visible {
+		display: flex;
+		flex-direction: column;
+		padding: 0.5em 1em;
+
+
+	label {
+		padding: 1em 0.5em;
+		cursor: pointer;
+	}
+	input[type="radio"] {
+		width: 0em;
+		height: 0em;
+	}
+
+
+
+	input:checked + span {
+		color: #fff;
+		font-weight: bold;
+		background-color: rgba(32,93,168,1);
+		padding: 0.5em 2em;
+		display: inline-block;
+		border-radius: 3px;
+	}
+
+
+
+
+
+
 	}
 	input[name="update-mtg"],
 	input[name="create-mtg"],
 	input[name="delete-mtg"],
+	input[name="review-mtg"],
 	a.cancel {
-		background-color: rgba(0,0,0,0.9);
+		// background-color: rgba(0,0,0,0.9);
 		font-family: Tahoma, Calbri, sans-serif;
 		color: #fff;
 		text-decoration: none;
@@ -489,13 +589,35 @@ form#manage-mtg {
 		cursor: pointer;
 		border: 1px solid #fff;
 		padding: 1em 2em;
+		margin: 0 0.5em;
+		flex: 1;
+		text-align: center;
 		margin-top: 1.5em;
 		transition: all 0.2s ease;
+	}
+	a.cancel {
+		color: #fff;
+		background-color: rgba(0,0,0,1);
 		&:hover {
-			background-color: rgba(255,255,255,0.6);
-			color: rgba(0,0,0,0.9);
+			background-color: rgba(0,0,0,0.2);
 		}
 	}
+    input[name="review-mtg"]  {
+    	background-color: rgba(255,151,5,1);
+    	margin-left: 0.5em;
+    	&:hover {
+    		background-color: rgba(255,205,5,1);
+    		color: #fff;
+    	}
+    }
+    input[name="update-mtg"]  {
+    	background-color: rgba(32,168,32,1);
+    	margin-left: 0.5em;
+    	&:hover {
+    		background-color: rgba(93,203,93,1);
+    		color: #fff;
+    	}
+    }    	
     input[name="delete-mtg"]  {
     	background-color: rgba(222,44,13,1);
     	margin-left: 0.5em;

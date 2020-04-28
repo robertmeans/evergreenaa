@@ -50,7 +50,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 	if ($result === true) {
 		$new_id = mysqli_insert_id($db);
-	    header('location: manage_edit_review.php?id=' . $new_id);
+	    header('location: manage_new_review.php?id=' . $new_id);
 	} else {
 		$errors = $result;
 	}

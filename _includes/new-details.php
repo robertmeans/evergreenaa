@@ -113,7 +113,7 @@
 		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="create-mtg" class="submit" value="POST MEETING">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="review-mtg" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 

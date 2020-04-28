@@ -42,12 +42,24 @@ $row = edit_meeting($id);
 		
 		<?php if ($row['id_user'] == $_SESSION['id']) { ?>
 
-			<?php require '_includes/review-glance.php'; ?>
+			<?php require '_includes/new-review-glance.php'; ?>
 			<div class="weekday-edit-wrap">
-				<?php require '_includes/review-details.php'; ?>
+				<?php require '_includes/new-review-details.php'; ?>
 
 			</div><!-- .weekday-wrap -->
-			<a class="done" href="manage.php">DONE</a>
+
+			<form class="new-review" action="new_review_submit.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
+
+				<label><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft</span></label> 
+
+				<label><input type="radio" name="visible" value="1" <?php if ($row['visible'] == "1") { echo "checked"; } ?>> <span>Private: Only logged-in members of EvergreenAA.com will see this.</span></label> 
+
+				<label><input type="radio" name="visible" value="2" <?php if ($row['visible'] == "2") { echo "checked"; } ?>> <span>Public: Share with everyone.</span></label>
+
+				<input type="submit" name="update-mtg" class="done" value="DONE">
+			</form>
+			
+			
 			
 		<?php } else { echo "<p style=\"margin-top:1.5em;\">Quit trying to be sneaky.</p>"; } ?>
 </div>

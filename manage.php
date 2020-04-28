@@ -62,7 +62,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_sunday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -87,7 +87,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_monday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -112,7 +112,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_tuesday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -137,7 +137,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_wednesday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -162,7 +162,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_thursday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -187,7 +187,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_friday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
@@ -212,7 +212,7 @@ $user_id = $_SESSION['id'];
 		<?php while ($row = mysqli_fetch_assoc($users_saturday_meetings)) { ?>
 
 			<?php require '_includes/manage-glance.php'; ?>
-			<div class="weekday-wrap">
+			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 

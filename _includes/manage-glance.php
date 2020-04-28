@@ -1,6 +1,6 @@
 
 	<div class="manage-glance-wrap">
-		<div class="manage-glance">
+		<div class="manage-glance<?php if ($row['visible'] == 0) { echo ' draft'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 				<p><?= date('g:i A', strtotime($row['meet_time'])); ?>
 				<?php
@@ -14,7 +14,11 @@
 				?></p>
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
-				<p><?= $row['group_name']; ?></p>
+				<p><?php 
+				if ($row['visible'] == 0) { echo ' [DRAFT] '; }
+				if ($row['visible'] == 1) { echo ' [PRIVATE] '; }  
+				if ($row['visible'] == 2) { echo ' [PUBLIC] '; }
+				?><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
 				<p><?php if ($row['id_user'] == $_SESSION['id']) { ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>

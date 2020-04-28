@@ -24,7 +24,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$subject_set = get_meetings_for_today($sunday);
+				$subject_set = get_all_public_meetings_for_today($sunday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -50,7 +50,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($monday);
+				$subject_set = get_all_public_meetings_for_today($monday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -75,7 +75,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($tuesday);
+				$subject_set = get_all_public_meetings_for_today($tuesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -100,7 +100,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($wednesday);
+				$subject_set = get_all_public_meetings_for_today($wednesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -125,7 +125,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($thursday);
+				$subject_set = get_all_public_meetings_for_today($thursday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -150,7 +150,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($friday);
+				$subject_set = get_all_public_meetings_for_today($friday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -175,7 +175,7 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_meetings_for_today($saturday);
+				$subject_set = get_all_public_meetings_for_today($saturday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {

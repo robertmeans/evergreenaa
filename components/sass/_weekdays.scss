@@ -163,6 +163,9 @@ li.ctr-day {
 	background-color: rgba(0,0,0,0.3);
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
+	&.draft-bkg {
+		//background: url('_images/draft-bkg.png') no-repeat center center;
+		}
 	.meeting-details {
 		display: flex;
 		justify-content: center;
@@ -353,7 +356,7 @@ input.day-values
   color: #fff;
   font-family: inherit;
   width: 100%;
-  max-width: 125px;
+  max-width: 200px;
   font-weight: normal;
   outline: none;
 }

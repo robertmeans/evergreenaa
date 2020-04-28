@@ -19,6 +19,7 @@ $id = $_GET['id'];
 if (is_post_request()) {
 
 $row = [];
+$row['visible'] 		= $_POST['visible'] 										?? '';
 $row['sun'] 			= $_POST['sun'] 										?? '';
 $row['mon'] 			= $_POST['mon'] 										?? '';
 $row['tue'] 			= $_POST['tue'] 										?? '';
