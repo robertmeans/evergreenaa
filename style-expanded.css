@@ -2199,6 +2199,7 @@ form#manage-mtg label.vis {
   -ms-flex-direction: column;
       flex-direction: column;
   padding: 0.5em 1em;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 .btm-notes .visible label {
   padding: 1em 0.5em;

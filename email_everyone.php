@@ -24,19 +24,13 @@ $user_id = $_SESSION['id'];
 
 if (is_post_request()) {
 
-$row = []; 
 $subject = $_POST['subject'] ?? ''; 
 $message = $_POST['message'] ?? '';  
 
-	$result = email_everyone($subject, $message);
+email_everyone($subject, $message);
 
-	if ($result === true) {
-		header('location: manage.php');
-	} else {
-		$errors = $result;
-		//var_dump($errors);
-		// $subject_set = edit_meeting($id);
-	}
+header('location: manage.php');
+
 
 	} else { ?>
 
@@ -64,7 +58,7 @@ $message = $_POST['message'] ?? '';
 		<label>Subject</label>
 		<input type="text" name="subject">
 
-		<textarea name="message-body" id="messaga-body"></textarea>
+		<textarea name="message" id="message-body"></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">

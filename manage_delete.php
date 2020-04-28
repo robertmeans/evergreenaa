@@ -42,8 +42,8 @@ if (is_post_request()) {
 
 <div class="confirm warning">WARNING!</div>
 <div class="manage-simple intro">
-	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p><i class="fas fa-exclamation-triangle"></i> Are you sure you really want to go through with this?</p>
+	
+	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
 	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple empty">

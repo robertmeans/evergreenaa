@@ -102,7 +102,7 @@
 	<label><input type="checkbox" name="code_sp" <?php if ($row['code_sp'] == "1") { echo "checked"; } ?> value="1" /> <span>Guest Speaker</span></label>
 
 	<input type="hidden" name="month_speaker" value="0">
-	<label><input type="checkbox" name="month_speaker" <?php if ($row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Monthly Speaker</span></label>
+	<label><input type="checkbox" name="month_speaker" <?php if ($row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting on last Sunday of month</span></label>
 
 	<input type="hidden" name="potluck" value="0">
 	<label><input type="checkbox" name="potluck" <?php if ($row['potluck'] == "1") { echo "checked"; } ?> value="1" /> <span>Potluck</span></label>
