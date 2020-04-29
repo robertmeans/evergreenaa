@@ -202,11 +202,22 @@ function find_all_users() {
 	global $db;
 
 	$sql 	= "SELECT * FROM users ";
-	$sql 	.= "ORDER BY id ASC";
+	$sql 	.= "ORDER BY id_user ASC";
 	// echo $sql;
 	$result = mysqli_query($db, $sql);
 	confirm_result_set($result);
 	return $result;
+}
+
+function find_all_users_email() {
+  global $db;
+
+  $sql  = "SELECT * FROM users WHERE email != '' ";
+  $sql  .= "ORDER BY id_user ASC";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
 }
 
 function find_all_meetings() {

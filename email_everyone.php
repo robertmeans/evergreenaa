@@ -5,16 +5,14 @@ include 'error-reporting.php';
 require_once 'config/initialize.php';
 // require_once '_includes/session.php';
 
-// off for local testing
 
-if (!isset($_SESSION['id'])) {
-	header('location: home.php');
+// For my eyes only!
+if ($_SESSION['id'] != 1) {
+	header('location: https://www.merriam-webster.com/dictionary/go%20away');
 	exit();
 }
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
-	exit();
-}
+
+
 
 $user_id = $_SESSION['id'];
 
@@ -24,19 +22,32 @@ $user_id = $_SESSION['id'];
 
 if (is_post_request()) {
 
+$email_addresses = $_POST['email_addresses'];
 $subject = $_POST['subject'] ?? ''; 
 $message = $_POST['message'] ?? '';  
 
-email_everyone($subject, $message);
+// until you're ready to use...
+// email_everyone($subject, $email_addresses, nl2br($message));
 
 header('location: manage.php');
 
 
 	} else { ?>
 
+<?php 
 
+$result = find_all_users_email();
 
+	$emails = array();
 
+	while($subject = mysqli_fetch_assoc($result)) {
+		$emails[] = "'" . $subject["email"] . "', ";
+	}
+
+	$email_addresses = substr(implode($emails), 0 , -2);
+	// echo "<br><br><br><div style=\"width:80%;margin:0 auto;padding:1.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
+
+?>
 
 
 
@@ -54,6 +65,8 @@ header('location: manage.php');
 </div>
 <div class="manage-simple-email">
 	<form class="admin-email-form" action="" method="post">
+
+		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
 		
 		<label>Subject</label>
 		<input type="text" name="subject">
@@ -71,4 +84,4 @@ header('location: manage.php');
 
 <?php require '_includes/footer.php'; ?>
 
-<?php } ?>
+<?php mysqli_free_result($result); } ?>

@@ -115,17 +115,16 @@ function sendPasswordResetLink($userEmail, $token)
 	$result = $mailer->send($message);
 }
 
-function email_everyone($subject, $message) 
+function email_everyone($subject, $email_addresses, $message) 
 	{
 	global $mailer;
 
 	// Create a message
 	$message = (new Swift_Message($subject))
 	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
-	  ->setBcc(['info@evergreenaa.com', 'robert@evergreenwebdesign.com', 'robert@robertmeans.com'])
+	  ->setBcc([$email_addresses])
 	  // ->setTo('bob@bobmeans.com')
 	  ->setBody($message, 'text/html');
-
 
 	// Send the message
 	$result = $mailer->send($message);
