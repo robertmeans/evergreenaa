@@ -17,7 +17,8 @@
 				<p><?php 
 				if ($row['visible'] == 0) { echo ' [DRAFT] '; }
 				if ($row['visible'] == 1) { echo ' [PRIVATE] '; }  
-				if ($row['visible'] == 2) { echo ' [PUBLIC] '; }
+				if ($row['visible'] == 2) { echo ' [MEMBERS] '; } // Members only
+				if ($row['visible'] == 3) { echo ' [PUBLIC] '; }
 				?><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">

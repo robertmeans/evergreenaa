@@ -15,8 +15,9 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
-?>
+$user_id = $_SESSION['id'];
 
+?>
 
 <?php require '_includes/head.php'; ?>
 <body>

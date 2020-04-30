@@ -48,18 +48,38 @@ $row = edit_meeting($id);
 
 			</div><!-- .weekday-wrap -->
 
-			<form class="new-review" action="new_review_submit.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
+		<form class="new-review" action="new_review_submit.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
 
-				<label><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft: For your eyes only.</span></label> 
+		<div class="visible">
 
-				<label><input type="radio" name="visible" value="1" <?php if ($row['visible'] == "1") { echo "checked"; } ?>> <span>Private: Only logged-in members of EvergreenAA.com will see this.</span></label> 
+			<h1><i class="fas fa-users" style="margin-right:1em;"></i> Select your audience</h1>
+			<div class="radio-group">
+				<div class='radio<?php if ($row['visible'] == "0") { echo " selected"; } ?>' value="0">
+					Draft | Save for later.
+				</div>
+				<div class='radio<?php if ($row['visible'] == "1") { echo " selected"; } ?>' value="1">
+					Private | Only you will see this.
+				</div>
+				<div class='radio<?php if ($row['visible'] == "2") { echo " selected"; } ?>' value="2">
+					Members Only | Only members of EvergreenAA.com.</div>
+				<div class='radio<?php if ($row['visible'] == "3") { echo " selected"; } ?>' value="3">
+					Public | Share with everyone. No membership required.
+				</div>
 
-				<label><input type="radio" name="visible" value="2" <?php if ($row['visible'] == "2") { echo "checked"; } ?>> <span>Public: Share with everyone.</span></label>
+	<?php /* 	grab value and put it into hidden field to submit 
+				this is also in _includes/manage_new_review */		?>
+				<input type="hidden" name="visible" value="<?php 
+				if ($row['visible'] == "0") { echo "0"; } // Draft 
+				if ($row['visible'] == "1") { echo "1"; } // Private
+				if ($row['visible'] == "2") { echo "2"; } // Members Only
+				if ($row['visible'] == "3") { echo "3"; } // Public
+				?>" />
+			 </div>
 
-				<input type="submit" name="update-mtg" class="done" value="DONE">
-			</form>
-			
-			
+		</div><!-- .visible -->
+
+		<input type="submit" name="update-mtg" class="done" value="DONE">
+		</form>
 			
 		<?php } else { echo "<p style=\"margin-top:1.5em;\">Quit trying to be sneaky.</p>"; } ?>
 </div>

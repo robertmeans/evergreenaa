@@ -57,6 +57,8 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	}
 }
 
+$row = edit_meeting($id);
+
 ?>
 
 <?php require '_includes/head.php'; ?>

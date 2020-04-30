@@ -45,7 +45,7 @@
 
 
 <?php
-    error_reporting(E_ALL ^ E_NOTICE);
+    // error_reporting(E_ALL ^ E_NOTICE);
 
     // set a variable to hold g-recaptcha-response so you can 
     // leave it out of the email body when message is composed
@@ -198,8 +198,8 @@
                 <input required name="name" type="text" id="name" tabindex="10" />
               </li>
               <li>
-                <label class="text" for="email">Email</label>
-                <input name="email" type="email" id="email" tabindex="20" />
+                <label class="text" for="email" required>Email</label>
+                <input name="email" type="email" id="email" tabindex="20" required />
               </li>
               <li>
                 <label class="text" for="comments">Message</label>

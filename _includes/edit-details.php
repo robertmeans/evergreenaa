@@ -113,11 +113,31 @@
 		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
 
 		<div class="visible">
-			<label class="vis"><input type="radio" name="visible" value="0" <?php if ($row['visible'] == "0") { echo "checked"; } ?>> <span>Save as Draft: For your eyes only.</span></label>
-			
-			<label class="vis"><input type="radio" name="visible" value="1" <?php if ($row['visible'] == "1") { echo "checked"; } ?>> <span>Private: Only logged-in members of EvergreenAA.com will see this.</span></label>
-			
-			<label class="vis"><input type="radio" name="visible" value="2" <?php if ($row['visible'] == "2") { echo "checked"; } ?>> <span>Public: Share with everyone.</span></label>
+
+			<h1><i class="fas fa-users" style="margin-right:1em;"></i> Select your audience</h1>
+			<div class="radio-group">
+				<div class='radio<?php if ($row['visible'] == "0") { echo " selected"; } ?>' value="0">
+					Draft | Save for later.
+				</div>
+				<div class='radio<?php if ($row['visible'] == "1") { echo " selected"; } ?>' value="1">
+					Private | Only you will see this.
+				</div>
+				<div class='radio<?php if ($row['visible'] == "2") { echo " selected"; } ?>' value="2">
+					Members Only | Only members of EvergreenAA.com.</div>
+				<div class='radio<?php if ($row['visible'] == "3") { echo " selected"; } ?>' value="3">
+					Public | Share with everyone. No membership required.
+				</div>
+
+	<?php /* 	grab value and put it into hidden field to submit 
+				this is also in _includes/manage_new_review */		?>
+				<input type="hidden" name="visible" value="<?php 
+				if ($row['visible'] == "0") { echo "0"; } // Draft 
+				if ($row['visible'] == "1") { echo "1"; } // Private
+				if ($row['visible'] == "2") { echo "2"; } // Members Only
+				if ($row['visible'] == "3") { echo "3"; } // Public
+				?>" />
+			 </div>
+
 		</div><!-- .visible -->
 
 		<div class="update-rt">

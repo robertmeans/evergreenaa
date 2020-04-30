@@ -1721,7 +1721,7 @@ form.admin-email-form > .update-rt {
       justify-content: flex-end;
   width: 96%;
 }
-form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-rt > input[type="submit"] {
+form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-rt > input[type="submit"], form.admin-email-form > .update-rt > input[type="submit"].revise-email {
   padding: 1em;
   background-color: black;
   text-decoration: none;
@@ -1734,11 +1734,44 @@ form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-r
   text-align: center;
   transition: all 0.2s ease;
 }
-form.admin-email-form > .update-rt > a.cancel:hover, form.admin-email-form > .update-rt > input[type="submit"]:hover {
+form.admin-email-form > .update-rt > a.cancel:hover, form.admin-email-form > .update-rt > input[type="submit"]:hover, form.admin-email-form > .update-rt > input[type="submit"].revise-email:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 form.admin-email-form > .update-rt > a.cancel {
   margin-right: 1em;
+}
+form.admin-email-form > .update-rt > input[type="submit"].submit-email {
+  background-color: #3cba04;
+}
+form.admin-email-form > .update-rt > input[type="submit"].submit-email:hover {
+  background-color: rgba(60, 186, 4, 0.2);
+}
+form.admin-email-form > .update-rt > input[type="submit"].revise-email {
+  margin-right: 1em;
+}
+
+.email-everyone-review {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  color: #313131;
+  line-height: 1.5em;
+  width: 100%;
+  max-width: 750px;
+  padding: 2em;
+  background-color: #fff;
+  margin-bottom: 1em;
+}
+.email-everyone-review h3 {
+  margin-bottom: 0.5em;
+  color: #757575;
+  border-bottom: 1px solid #ccc;
+}
+.email-everyone-review h3.next {
+  margin-top: 1em;
 }
 
 @media screen and (max-width: 500px) {
@@ -1827,6 +1860,13 @@ ul.manage-weekdays .day:hover {
 }
 .manage-glance.draft {
   background-color: rgba(32, 93, 168, 0.3);
+}
+.manage-glance.personal {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.daily-glance.personal {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .manage-glance-wrap-review {
@@ -2198,24 +2238,6 @@ form#manage-mtg label.vis {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  padding: 0.5em 1em;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-.btm-notes .visible label {
-  padding: 1em 0.5em;
-  cursor: pointer;
-}
-.btm-notes .visible input[type="radio"] {
-  width: 0em;
-  height: 0em;
-}
-.btm-notes .visible input:checked + span {
-  color: #fff;
-  font-weight: bold;
-  background-color: #205da8;
-  padding: 0.5em 2em;
-  display: inline-block;
-  border-radius: 3px;
 }
 .btm-notes input[name="update-mtg"],
 .btm-notes input[name="create-mtg"],
@@ -2266,6 +2288,34 @@ form#manage-mtg label.vis {
 .btm-notes input[name="delete-mtg"]:hover {
   background-color: red;
   color: #fff;
+}
+
+.visible {
+  position: relative;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 1em;
+}
+.visible > h1 {
+  width: 100;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.radio {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin: 2px 0;
+}
+
+.radio.selected {
+  border-color: #fff;
+  background-color: #205da8;
 }
 
 @media screen and (max-width: 800px) {

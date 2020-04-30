@@ -31,7 +31,8 @@ if (is_post_request()) {
 	$id = $_GET['id'];
 }
 	
-	$row = edit_meeting($id);
+$row = edit_meeting($id); 
+
 ?>
 
 <?php require '_includes/head.php'; ?>

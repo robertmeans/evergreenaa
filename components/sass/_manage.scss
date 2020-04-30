@@ -180,7 +180,8 @@ form.admin-email-form {
 		justify-content: flex-end;
 		width: 96%;
 		& > a.cancel,
-		& > input[type="submit"] {
+		& > input[type="submit"],
+		& > input[type="submit"].revise-email {
 			padding: 1em;
 			background-color: rgba(0,0,0,1);
 			text-decoration: none;
@@ -198,7 +199,39 @@ form.admin-email-form {
 		& > a.cancel {
 			margin-right: 1em;
 		}
+		& > input[type="submit"].submit-email {
+			background-color: rgba(60,186,4,1);
+			&:hover {
+			background-color: rgba(60,186,4,0.2);
+			}
+		}
+		& > input[type="submit"].revise-email {
+			margin-right: 1em;
+		}
 	}
+}
+
+.email-everyone-review {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	color: #313131;
+	line-height: 1.5em;
+	width: 100%;
+	max-width: 750px;
+	padding: 2em;
+	background-color: #fff;
+	margin-bottom: 1em;
+	h3 {
+		margin-bottom: 0.5em;
+		color: #757575;
+		border-bottom: 1px solid #ccc;
+	}
+	h3.next {
+		margin-top: 1em;
+	}
+
+
 }
 
 @media screen and (max-width: 500px) {
@@ -275,9 +308,15 @@ ul.manage-weekdays {
 	.glance-mtg-type {
 		padding: 0 2em;
 	}
-	&.draft {
+	&.draft {// blue draft
 		background-color: rgba(32,93,168,0.3);
 	}
+	&.personal {// black personal
+		background-color: rgba(0,0,0,0.2);
+	}
+}
+.daily-glance.personal {
+	background-color: rgba(0,0,0,0.2);
 }
 
 .manage-glance-wrap-review {
@@ -643,33 +682,6 @@ form#manage-mtg {
 	.visible {
 		display: flex;
 		flex-direction: column;
-		padding: 0.5em 1em;
-		border: 1px solid rgba(255,255,255,0.6);
-
-	label {
-		padding: 1em 0.5em;
-		cursor: pointer;
-	}
-	input[type="radio"] {
-		width: 0em;
-		height: 0em;
-	}
-
-
-
-	input:checked + span {
-		color: #fff;
-		font-weight: bold;
-		background-color: rgba(32,93,168,1);
-		padding: 0.5em 2em;
-		display: inline-block;
-		border-radius: 3px;
-	}
-
-
-
-
-
 
 	}
 	input[name="update-mtg"],
@@ -726,7 +738,37 @@ form#manage-mtg {
 
 
 
+.visible {
+    position: relative;
+    border: 1px dashed rgba(255,255,255,0.3);
+    padding: 1em;
+    & > h1 {
+    	width: 100;
+    	text-align: center;
+    	font-size: 1.6em;
+    	font-weight: bold;
+    	margin-bottom: 0.5em;
+    }
+}
 
+.radio{
+    display:block;
+    // width:15px;
+    // height: 15px;
+    // border-radius: 100%;
+    width: 100%;
+    padding: 1em;
+    // text-align: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor:pointer;
+    margin: 2px 0; 
+}
+
+.radio.selected {
+    border-color: #fff;
+    background-color: rgba(32,93,168,1);
+}
 
 
 

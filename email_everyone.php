@@ -3,8 +3,6 @@
 include 'error-reporting.php';
 
 require_once 'config/initialize.php';
-// require_once '_includes/session.php';
-
 
 // For my eyes only!
 if ($_SESSION['id'] != 1) {
@@ -12,44 +10,42 @@ if ($_SESSION['id'] != 1) {
 	exit();
 }
 
-
-
-$user_id = $_SESSION['id'];
-
-// echo delete_success_message();
 ?>
 <?php
 
-if (is_post_request()) {
+if ((is_post_request()) && (isset($_POST['email-everyone']))) {
 
 $email_addresses = $_POST['email_addresses'];
-$subject = $_POST['subject'] ?? ''; 
-$message = $_POST['message'] ?? '';  
+// for testing, comment above and uncomment below
+// $email_addresses = 'robert@robertmeans.com';
+// concludes testing
+$msgsubject = $_POST['msgsubject'] ?? ''; 
+$emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  
 
-// until you're ready to use...
-// email_everyone($subject, $email_addresses, nl2br($message));
-
+// if you're happy with the message, send it and head back to manage.php
+email_everyone($msgsubject, $email_addresses, nl2br($emaileveryonemsg));
 header('location: manage.php');
 
-
-	} else { ?>
+	// either revise your message or submit it from here.
+	} else if ((is_post_request()) && (isset($_POST['revise']))) { ?>
 
 <?php 
+
+$msgsubject = $_POST['msgsubject'] ?? ''; 
+$emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 
 $result = find_all_users_email();
 
 	$emails = array();
-
+	// get email addresses ready for sending and put them in a hidden field
 	while($subject = mysqli_fetch_assoc($result)) {
 		$emails[] = "'" . $subject["email"] . "', ";
 	}
-
+	// get rid of the last comma
 	$email_addresses = substr(implode($emails), 0 , -2);
 	// echo "<br><br><br><div style=\"width:80%;margin:0 auto;padding:1.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
 
 ?>
-
-
 
 <?php require '_includes/head.php'; ?>
 <body>	
@@ -64,14 +60,14 @@ $result = find_all_users_email();
 	</p>
 </div>
 <div class="manage-simple-email">
-	<form class="admin-email-form" action="" method="post">
+	<form class="admin-email-form" action="email_everyone_review.php" method="post">
 
 		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
 		
 		<label>Subject</label>
-		<input type="text" name="subject">
+		<input type="text" name="msgsubject" value="<?= $msgsubject; ?>">
 
-		<textarea name="message" id="message-body"></textarea>
+		<textarea name="emaileveryonemsg" id="message-body"><?= $emaileveryonemsg; ?></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
@@ -84,4 +80,41 @@ $result = find_all_users_email();
 
 <?php require '_includes/footer.php'; ?>
 
-<?php mysqli_free_result($result); } ?>
+
+<?php mysqli_free_result($result); } else { // if this is your first visit to the page, here's an empty form ?>
+
+<?php require '_includes/head.php'; ?>
+<body>	
+<?php require '_includes/nav.php'; ?>
+<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<div id="manage-wrap">
+
+<div class="manage-simple-admin">	
+	<h1>Email All Members</h1>
+	<p class="admin-email">
+		<a href="manage.php">Back</a> | <a href="logout.php">Logout</a>
+	</p>
+</div>
+<div class="manage-simple-email">
+	<form class="admin-email-form" action="email_everyone_review.php" method="post">
+
+		<!-- <input type="text" name="email_addresses" value="<?= $email_addresses ?>"> -->
+		
+		<label>Subject</label>
+		<input type="text" name="msgsubject">
+
+		<textarea name="emaileveryonemsg"></textarea>
+
+		<div class="update-rt">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
+		</div><!-- .update-rt -->
+	</div><!-- .btm-notes -->
+	</form>
+</div>
+
+</div><!-- #manage-wrap -->
+
+<?php require '_includes/footer.php'; ?>
+
+
+<?php } ?>

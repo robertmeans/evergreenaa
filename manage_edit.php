@@ -69,7 +69,8 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 		$subject_set = edit_meeting($id);
 	}
 	
-	$row = edit_meeting($id);
+$row = edit_meeting($id);
+
 ?>
 
 <?php require '_includes/head.php'; ?>
