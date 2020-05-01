@@ -421,6 +421,7 @@ li.ctr-day .day-content {
   background: #6d94e1 url("_images/aa-logo_active.gif") no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
+  border-left: 1px solid transparent;
 }
 
 .day-content {
@@ -456,6 +457,10 @@ li.ctr-day .day-content {
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
   color: inherit;
 }
 .daily-glance:hover {
@@ -664,7 +669,6 @@ li.ctr-day .day-content {
 
   .daily-glance-wrap,
   .manage-glance-wrap {
-    background-color: rgba(45, 74, 107, 0.7);
     background-color: rgba(0, 0, 0, 0.45);
   }
 
@@ -1866,7 +1870,11 @@ ul.manage-weekdays .day:hover {
 }
 
 .daily-glance.personal {
-  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 1px solid yellow;
+}
+
+.daily-glance-wrap.active > .daily-glance.personal {
+  border-left: 1px solid transparent;
 }
 
 .manage-glance-wrap-review {

@@ -97,6 +97,7 @@ li.ctr-day {
 	background: #6d94e1 url('_images/aa-logo_active.gif') no-repeat center center fixed;
 	background-size: cover;
 	background-attachment: fixed;
+	border-left: 1px solid transparent;
 }
 	.day-content {
 		font-size: 18px;
@@ -130,6 +131,10 @@ li.ctr-day {
 	cursor: pointer;
 	padding: 0.5em 1em;
 	background-color: transparent;
+	border-top: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	border-left: 1px solid transparent;
 	color: inherit;
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
@@ -338,7 +343,7 @@ li.ctr-day {
 	}
 	.daily-glance-wrap,
 	.manage-glance-wrap {
-		background-color: rgba(45,74,107,0.7);
+		//background-color: rgba(45,74,107,0.7);
 		background-color: rgba(0,0,0,0.45);
 	}
 	.manage-glance .glance-mtg-type {

@@ -7,23 +7,23 @@
 -->
 <head>
 	<meta charset="UTF-8">	
-	<meta http-equiv="cache-control" content="no-cache">
+<!-- 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="0"> -->
 	
 	<title>Evergreen, CO | Online AA Meetings</title>
 	<link rel="icon" type="image/ico" href="_images/favicon.ico">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta name="description" content="A convenient list of online AA meetings in the Evergreen, Colorado area for beautiful, happy people in quarantine everywhere.">
+	<meta name="description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)">
 	<meta name="format-detection" content="telephone=no">
 
 
-	<meta property="og:url" content="https://www.evergreenaa.com" />
+	<meta property="og:url" content="https://www.evergreenaa.com/home.php" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Evergreen, CO | Online AA Meetings" />
-	<meta property="og:image" content="https://www.evergreenaa.com/_images/aa-logo_thumb.jpg" />
+	<meta property="og:title" content="Evergreen AA | Online AA Meetings" />
+	<meta property="og:image" content="https://www.evergreenaa.com/_images/aa-logo.jpg" />
 	<meta property="og:image:alt" content="AA Logo" />
-	<meta property="og:description" content="A convenient list of online AA meetings in the Evergreen, Colorado area for beautiful, happy people in quarantine everywhere." />
+	<meta property="og:description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)" />
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
   	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">

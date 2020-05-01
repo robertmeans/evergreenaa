@@ -316,7 +316,11 @@ ul.manage-weekdays {
 	}
 }
 .daily-glance.personal {
-	background-color: rgba(0,0,0,0.2);
+	// background-color: rgba(0,0,0,0.2);
+	border-left: 1px solid yellow;
+}
+.daily-glance-wrap.active > .daily-glance.personal {
+	border-left: 1px solid transparent;
 }
 
 .manage-glance-wrap-review {
