@@ -340,6 +340,9 @@ $(".manage-edit").click(function(e) {
 $(".manage-delete").click(function(e) {
     e.stopPropagation();
 });
+$(".youtube").click(function(e) {
+    e.stopPropagation();
+});
 
 
 // checkboxes on update forms - prevent multiple options

@@ -115,6 +115,14 @@
     } 
   } 
 }
+
+a.youtube {
+  color: #fff;
+  text-decoration: uderline;
+  &:hover {
+    text-decoration: none;
+  }
+}
 @media screen and (max-width: 800px) {
   #msg-one {
     .msg-bkg {

@@ -1132,6 +1132,14 @@ div#success-wrap span.success-msg {
   color: #fff;
 }
 
+a.youtube {
+  color: #fff;
+  text-decoration: uderline;
+}
+a.youtube:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 800px) {
   #msg-one .msg-bkg {
     -ms-flex-pack: start;
@@ -1847,6 +1855,10 @@ ul.manage-weekdays .day:hover {
   padding: 0.5em 1em;
   background-color: transparent;
   color: inherit;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 .manage-glance:hover {
   background-color: rgba(0, 0, 0, 0.2);
@@ -1866,7 +1878,7 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(32, 93, 168, 0.3);
 }
 .manage-glance.personal {
-  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 1px solid yellow;
 }
 
 .daily-glance.personal {
