@@ -23,7 +23,7 @@ $msgsubject = $_POST['msgsubject'] ?? '';
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  
 
 // if you're happy with the message, send it and head back to manage.php
-email_everyone($msgsubject, $email_addresses, nl2br($emaileveryonemsg));
+email_everyone_BCC($msgsubject, $email_addresses, nl2br($emaileveryonemsg));
 header('location: manage.php');
 
 	// either revise your message or submit it from here.
@@ -34,7 +34,7 @@ header('location: manage.php');
 $msgsubject = $_POST['msgsubject'] ?? ''; 
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 
-$result = find_all_users_email();
+$result = find_all_users();
 
 	$emails = array();
 	// get email addresses ready for sending and put them in a hidden field
@@ -60,7 +60,7 @@ $result = find_all_users_email();
 	</p>
 </div>
 <div class="manage-simple-email">
-	<form class="admin-email-form" action="email_everyone_review.php" method="post">
+	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
 		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
 		
@@ -96,7 +96,7 @@ $result = find_all_users_email();
 	</p>
 </div>
 <div class="manage-simple-email">
-	<form class="admin-email-form" action="email_everyone_review.php" method="post">
+	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
 		<!-- <input type="text" name="email_addresses" value="<?= $email_addresses ?>"> -->
 		

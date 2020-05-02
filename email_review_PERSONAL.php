@@ -17,6 +17,7 @@ if (is_post_request()) {
 
 // $email_addresses = $_POST['email_addresses'];
 $msgsubject = $_POST['msgsubject'] ?? ''; 
+$greeting = $_POST['greeting'] ?? ''; 
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  
 
 
@@ -24,7 +25,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 
 <?php 
 
-$result = find_all_users_email();
+$result = find_all_users();
 
 	$emails = array();
 
@@ -55,15 +56,14 @@ $result = find_all_users_email();
 		<h3>Subject</h3>
 			<p><?php echo $msgsubject; ?></p>
 		<h3 class="next">Message</h3>
-		<p><?php echo $emaileveryonemsg; ?></p>
+		<p><?php echo $greeting . ' Bob,<br><br>' . nl2br($emaileveryonemsg); ?></p>
 	</div>
 
-	<form class="admin-email-form" action="email_everyone.php" method="post">
+	<form class="admin-email-form" action="email_everyone_PERSONAL.php" method="post">
 
-		<!-- <input type="hidden" name="email_addresses" value="<?= $email_addresses; ?>"> -->
-		
-		<!-- <label>Subject</label> -->
 		<input type="hidden" name="msgsubject" value="<?= $msgsubject; ?>">
+		
+		<input type="hidden" name="greeting" value="<?= $greeting; ?>">
 
 		<textarea name="emaileveryonemsg" style="display:none;"><?= $emaileveryonemsg; ?></textarea>
 
