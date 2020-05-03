@@ -81,7 +81,7 @@ $row = edit_meeting($id);
 	
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>Why are you so awesome?</p>
+	<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
 	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
 </div>
 <div class="manage-simple empty">

@@ -188,80 +188,76 @@ $('.radio-group .radio').click(function(){
 
 $(document).ready(function(){
 
-$(".day-content").hide();
-$(".weekday-wrap").hide();
-$("#msg-one").hide();
-$("#email-bob").hide();
+  $(".day-content").hide();
+  $(".weekday-wrap").hide();
+  $("#msg-one").hide();
+  $("#email-bob").hide();
 
-/* toggle days of week */
-$('.day').click(function() {
-  var active = $(this);
-  var toggle = $(this).next('.day-content');
+  /* toggle days of week */
+  $('.day').click(function() {
+    var active = $(this);
+    var toggle = $(this).next('.day-content');
 
-  $('.day-content').not(toggle).slideUp();
-  $('.day').not(active).removeClass('active');
+    $('.day-content').not(toggle).slideUp();
+    $('.day').not(active).removeClass('active');
 
-  $(toggle).slideToggle();
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-
-$('.daily-glance-wrap').click(function() {
-
-  var active = $(this);
-  var toggle = $(this).next('.weekday-wrap');
-
-  $('.weekday-wrap').not(toggle).slideUp();
-  $('.daily-glance-wrap').not(active).removeClass('active');
-  $(toggle).slideToggle();
-
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-$('.manage-glance-wrap').click(function() {
-
-  var active = $(this);
-  var toggle = $(this).next('.weekday-wrap');
-
-  $('.weekday-wrap').not(toggle).slideUp();
-  $('.manage-glance-wrap').not(active).removeClass('active');
-  $(toggle).slideToggle();
-
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-
-/* collapse day button */
-$('.collapse-day').click(function() {
-  var me = $(this);
-  $('.day-content').not(me).slideUp();
-  $('.day').removeClass('active');
-});
-
-
-$("#toggle-contact-form").click(function(){
-    $(this).toggleClass("active").next().slideToggle(600);
-
-    if ($.trim($(this).text()) === 'close') {
-        $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+    $(toggle).slideToggle();
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
     } else {
-        $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+      $(active).addClass('active');
     }
+  });
+
+  $('.daily-glance-wrap').click(function() {
+
+    var active = $(this);
+    var toggle = $(this).next('.weekday-wrap');
+
+    $('.weekday-wrap').not(toggle).slideUp();
+    $('.daily-glance-wrap').not(active).removeClass('active');
+    $(toggle).slideToggle();
+
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
+    } else {
+      $(active).addClass('active');
+    }
+  });
+
+  $('.manage-glance-wrap').click(function() {
+
+    var active = $(this);
+    var toggle = $(this).next('.weekday-wrap');
+
+    $('.weekday-wrap').not(toggle).slideUp();
+    $('.manage-glance-wrap').not(active).removeClass('active');
+    $(toggle).slideToggle();
+
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
+    } else {
+      $(active).addClass('active');
+    }
+  });
+
+  /* collapse day button */
+  $('.collapse-day').click(function() {
+    var me = $(this);
+    $('.day-content').not(me).slideUp();
+    $('.day').removeClass('active');
+  });
+
+  $("#toggle-contact-form").click(function(){
+      $(this).toggleClass("active").next().slideToggle(600);
+
+      if ($.trim($(this).text()) === 'close') {
+          $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+      } else {
+          $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+      }
     return false;
   })
-
 }); /* document.ready end */
 
 setTimeout(function() {

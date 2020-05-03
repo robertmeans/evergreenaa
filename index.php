@@ -1,5 +1,7 @@
-<?php $layout_context = "index"; ?>
 <?php 
+
+$layout_context = "index";
+
 include 'error-reporting.php';
 
 require_once 'config/initialize.php';
@@ -15,7 +17,8 @@ if (isset($_GET['password-token'])) {
 }
 
 if (!isset($_SESSION['verified'])) {
-	header('location: home.php');
+	// header('location: home.php');
+	require 'home.php';
 	exit;
 }
 

@@ -1,5 +1,5 @@
-<?php $layout_context = "home-public"; ?>
-<?php 
+<?php $layout_context = "home-public";
+ 
 include 'error-reporting.php';
 require_once 'config/initialize.php'; 
 

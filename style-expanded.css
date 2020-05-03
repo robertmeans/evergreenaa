@@ -730,6 +730,14 @@ footer {
   -ms-flex: 1;
       flex: 1;
 }
+footer p.form-note {
+  width: 100%;
+  max-width: 400px;
+  margin: 1em auto;
+  text-align: left;
+  line-height: 1.5em;
+  text-align: justify;
+}
 footer button#toggle-contact-form {
   background: none;
   border: none;
@@ -1775,11 +1783,11 @@ form.admin-email-form > .update-rt > input[type="submit"].revise-email {
   margin-right: 1em;
 }
 
-a.whitey {
-  color: #fff;
+a.ytv {
+  color: #96ff00;
   text-decoration: underline;
 }
-a.whitey:hover {
+a.ytv:hover {
   text-decoration: none;
 }
 
