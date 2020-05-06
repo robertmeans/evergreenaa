@@ -1,6 +1,4 @@
-<?php $layout_context = "edit-meeting"; ?>
-<?php
-include 'error-reporting.php';
+<?php $layout_context = "edit-meeting";
 
 require_once 'controllers/authController.php';
 

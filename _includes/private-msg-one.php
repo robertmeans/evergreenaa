@@ -17,7 +17,7 @@
 
 				<a id="topics" class="extras" href="_images/Meeting-Starters.pdf" target="_blank">101 Meeting Starters</a>
 			</p>
-			<p class="daccaa-ctr"><a id="daccaa" class="daccaa" href="http://www.daccaa.org" target="_blank">DACCAA Website</a></p>
+			<!-- <p class="daccaa-ctr"><a id="daccaa" class="daccaa" href="http://www.daccaa.org" target="_blank">DACCAA Website</a></p> -->
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
 </div><!-- #msg-one -->

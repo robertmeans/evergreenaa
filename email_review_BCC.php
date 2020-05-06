@@ -1,6 +1,4 @@
-<?php $layout_context = "email-everyone"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "email-everyone"; 
 
 require_once 'config/initialize.php';
 

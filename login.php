@@ -1,6 +1,4 @@
-<?php $layout_context = "login-page"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "login-page";
 
 require_once 'config/initialize.php';
 
@@ -40,11 +38,19 @@ include '_includes/head.php';
 
         <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
                 
-        <input type="password" class="text" name="password" placeholder="Password">
+        <input type="password" class="text login-pswd" name="password" placeholder="Password">
         <!-- **Awa: Add remember me option -->
-        <label for="remember_me">
-            <input type="checkbox" name="remember_me" id="remember_me">Remember me
-        </label>
+
+        <input type="checkbox" name="remember_me" id="remember_me">
+        <label for="remember_me" class="rm-checked"> 
+            <div class="rm-wrap">
+                <div class="aa-rm-out">
+                    <div class="aa-rm-in"></div>
+                </div>
+                <span class="rm-rm">Remember me</span>
+            </div>
+       </label>
+
         <input type="submit" name="login" class="submit" value="Login">
 
         <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>

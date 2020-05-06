@@ -1,6 +1,5 @@
 <?php 
 
-include 'error-reporting.php';
 require_once 'config/initialize.php';
 
 // off for local testing

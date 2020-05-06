@@ -1085,7 +1085,7 @@ div#success-wrap span.success-msg {
       align-items: center;
   -ms-flex-pack: space-evenly;
       justify-content: space-evenly;
-  margin: 1.5em auto 2em auto;
+  margin: 1.5em auto 1em auto;
 }
 #msg-one .inside-msg-one p.info-links > a {
   color: #fff;
@@ -1105,6 +1105,8 @@ div#success-wrap span.success-msg {
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease;
+  box-shadow: 0 18px 6px -6px rgba(0, 0, 0, 0.5);
+  outline: none;
 }
 #msg-one .inside-msg-one p.info-links > a:hover {
   background-color: rgba(44, 119, 120, 0.5);
@@ -1237,10 +1239,6 @@ a.youtube:hover {
 #landing > form > p {
   margin-bottom: 0.5em;
 }
-#landing > form label[for="remember_me"] {
-  margin-bottom: 0.5em;
-  cursor: pointer;
-}
 #landing > form > input {
   height: 2.5em;
   width: 100%;
@@ -1248,7 +1246,7 @@ a.youtube:hover {
   padding: 0.5em;
   text-align: center;
   font-size: 1em;
-  font-family: 'Architects Daughter', Tahoma, Helvetica, sans-serif;
+  font-family: Tahoma, Calbri, Helvetica, sans-serif;
   background-color: rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.05);
   color: #fff;
@@ -1279,9 +1277,57 @@ a.youtube:hover {
   cursor: pointer;
   border: 1px solid #fff;
   transition: all 0.2s ease;
+  margin-top: 0.5em;
 }
 #landing > form > input.submit:hover {
   background-color: rgba(0, 0, 0, 0.2);
+}
+#landing > form > input.login-pswd {
+  margin-bottom: 0.5em;
+}
+
+.rm-wrap {
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5em 1em;
+}
+
+input[name="remember_me"] {
+  display: none;
+}
+
+.aa-rm-out {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 3px 2px 5px 2px;
+  cursor: pointer;
+  margin-right: 0.5em;
+}
+
+.aa-rm-in {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 17.32px solid white;
+  margin-top: -2px;
+}
+
+.aa-rm-in.checkaroo {
+  border-bottom: 17.32px solid #96ff00;
+}
+
+.rm-rm {
+  color: #fff;
+}
+
+.rm-rm.hot {
+  color: #96ff00;
 }
 
 div.pswd-recovery {
@@ -1495,7 +1541,7 @@ form#logout-form > button {
   padding: 0.5em;
   text-align: center;
   font-size: 1em;
-  font-family: 'Architects Daughter', Tahoma, Helvetica, sans-serif;
+  font-family: Tahoma, Calbri, Helvetica, sans-serif;
 }
 #register > form > button {
   padding: 10px 20px;

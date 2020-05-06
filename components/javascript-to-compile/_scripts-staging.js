@@ -183,6 +183,16 @@ $('.radio-group .radio').click(function(){
     $(this).parent().find('input').val(val);
 });
 
+/* sweet rememberme triangle inside circle all css */
+$('input[name="remember_me"]').change(function(){
+    if($(this).is(":checked")) {
+        $('.aa-rm-in').addClass("checkaroo");
+        $('.rm-rm').addClass("hot");
+    } else {
+        $('.aa-rm-in').removeClass("checkaroo");
+        $('.rm-rm').removeClass("hot");
+    }
+});
 
 /* open and close weekday content */
 

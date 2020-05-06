@@ -1,8 +1,5 @@
 <?php 
-
 $layout_context = "index";
-
-include 'error-reporting.php';
 
 require_once 'config/initialize.php';
 

@@ -1,6 +1,4 @@
-<?php $layout_context = "manage-new"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage-new";
 
 require_once 'config/initialize.php';
 
@@ -67,7 +65,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
 	<p>Meetings save lives. <i class="fas fa-om"></i></p>
-	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
+	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Add a New Meeting</h1>
