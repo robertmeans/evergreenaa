@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
 			// set flash message
 			$_SESSION['message'] = "Success! Almost there...";
 			$_SESSION['alert-class'] = "alert-success";
-			header('location: index.php');
+			header('location:' . WWW_ROOT);
 			exit();
 
 		} else {
@@ -170,7 +170,7 @@ if (isset($_POST['login'])) {
 			if (($user['verified']) === 0) {
 				$_SESSION['message'] = "Email has not been verified";
 				$_SESSION['alert-class'] = "alert-danger";				
-				header('location: index.php');
+				header('location:'. WWW_ROOT);
 				exit();
 			} else {
 
@@ -186,7 +186,9 @@ if (isset($_POST['login'])) {
 					}
 				}
 				// everything checks out -> you're good to go!
-				header('location: home_private.php');
+				// header('location: home_private.php');
+				header('location:' . WWW_ROOT);
+
 				exit();
 			}
 
@@ -218,7 +220,7 @@ function verifyUser($token) {
 			// set flash message
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
-			header('location: login.php');
+			header('location:'. WWW_ROOT);
 			exit();
 		}
 	} else {

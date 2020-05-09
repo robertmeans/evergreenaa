@@ -5,7 +5,7 @@
 			<?php /*<p>Hello <?= $_SESSION['username']; ?>,</p>*/?>
 			<p>Hello<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></p>
 			<!-- <p>If you like what you see and/or have ideas for the site please let me know. While I am not soliciting donations I am not refusing them either.</p> -->
-			<p>Thank you for joining. If you host an online AA meeting you can post it here (see the Manage link at top). The next phase of development will allow you to tailor your own experience on this site. For now, I need to sleep.</p>
+			<p>Thank you for joining. If you host an online AA meeting you can post it here (see the Manage link at top) or you can use this site as your own private meeting organizer. See <a class="youtube" href="https://youtu.be/CC1HlQcmy6c" target="_blank">this short video</a> for an explanation.</p>
 			<p>If something needs attention on this site please email at the bottom of this page.</p>
 
 			<p class="info-links"> 
