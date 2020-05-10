@@ -302,9 +302,9 @@ function validate_update($row) {
     $errors['meet_url'] = "You need a URL in order to host an online meeting.";
   }  
 
-  if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
-      $errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
-  }
+  //if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
+      //$errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
+  //}
 
   if (( $row['dedicated_om']    == "0"   && 
         $row['code_o']          == "0"   && 
