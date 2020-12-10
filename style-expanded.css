@@ -1270,6 +1270,45 @@ a.youtube:hover {
 #landing > form > input:hover {
   background-color: rgba(255, 255, 255, 0);
 }
+#landing > form .showpassword-wrap {
+  margin-bottom: 1em;
+  margin-top: -0.5em;
+  width: 100%;
+  text-align: right;
+  font-size: 0.8em;
+}
+#landing > form .showpassword-wrap button#showLoginPass,
+#landing > form .showpassword-wrap button#showSignupPass {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
+#landing > form .showpassword-wrap button#showLoginPass i.far,
+#landing > form .showpassword-wrap button#showSignupPass i.far {
+  margin-right: 0.5em;
+}
+#landing > form .showpassword-wrap button#showLoginPass.showPassOn,
+#landing > form .showpassword-wrap button#showSignupPass.showPassOn {
+  color: #f5a8a8;
+}
+#landing > form .showpassword-wrap input#unhidepass {
+  width: 1em;
+  margin-right: 0.5em;
+}
+#landing > form .showpassword-wrap .unhide-cursor {
+  cursor: pointer;
+}
+#landing > form .showpassword-wrap input#unhidepass {
+  display: none;
+}
+#landing > form .showpassword-wrap .showPswd.showOn {
+  color: green;
+}
+#landing > form input#showConf {
+  margin-bottom: 0.5em;
+}
 #landing > form > input.submit {
   font-family: Tahoma, Calbri, sans-serif;
   background-color: rgba(0, 0, 0, 0.9);

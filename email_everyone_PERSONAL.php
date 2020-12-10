@@ -73,7 +73,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 		<textarea name="emaileveryonemsg" id="message-body"><?= $emaileveryonemsg; ?></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 	</form>
@@ -116,7 +116,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 		<textarea name="emaileveryonemsg"></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 	</form>

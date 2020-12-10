@@ -194,6 +194,38 @@ $('input[name="remember_me"]').change(function(){
     }
 });
 
+/* show passwords */
+$("button#showLoginPass").click(function(){
+  var x = document.getElementById("password");
+    $(this).toggleClass("showPassOn");
+
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide password') {
+        $(this).html('<i class="far fa-eye"></i> Show password');
+        x.type = "password";
+    } else {
+        $(this).html('<i class="far fa-eye-slash"></i> Hide password');
+        x.type = "text";
+    }
+    return false;
+  });
+
+$("button#showSignupPass").click(function(){
+  var x = document.getElementById("showPassword");
+  var y = document.getElementById("showConf");
+    $(this).toggleClass("showPassOn");
+
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide passwords') {
+        $(this).html('<i class="far fa-eye"></i> Show passwords');
+        x.type = "password";
+        y.type = "password";
+    } else {
+        $(this).html('<i class="far fa-eye-slash"></i> Hide passwords');
+        x.type = "text";
+        y.type = "text";
+    }
+    return false;
+  });
+
 /* open and close weekday content */
 
 $(document).ready(function(){

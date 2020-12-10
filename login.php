@@ -38,8 +38,11 @@ include '_includes/head.php';
 
         <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
                 
-        <input type="password" class="text login-pswd" name="password" placeholder="Password">
-        <!-- **Awa: Add remember me option -->
+        <input type="password" id="password" class="text login-pswd" name="password" placeholder="Password">
+        
+        <div class="showpassword-wrap"> 
+            <button id="showLoginPass"><i class="far fa-eye"></i> Show Password</button>
+        </div>
 
         <input type="checkbox" name="remember_me" id="remember_me">
         <label for="remember_me" class="rm-checked"> 
