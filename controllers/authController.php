@@ -146,6 +146,20 @@ if (isset($_POST['login'])) {
 		$errors['password'] = "Password required";
 	}
 
+	$userQuery = "SELECT * FROM users WHERE username=? LIMIT 2";
+	$stmt = $conn->prepare($userQuery);
+	$stmt->bind_param('s', $username);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$userCount = $result->num_rows;
+	$stmt->close();
+
+	if($userCount > 1) {
+		$errors['usermane'] = "NEAT! This is unusual. There are multiple \"" . $username . "'s\" here AND you have the same password! You'll have to use your email address to login.";
+	}	
+
 	if (count($errors) === 0) {
 
 		// having to accept email or username because of how Apple/ios binds these two
