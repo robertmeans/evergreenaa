@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 
-// Create the Transport
+// Create the Transport > composer require "swiftmailer/swiftmailer:^6.0"
 // https://swiftmailer.symfony.com/docs/introduction.html
 $transport = (new Swift_SmtpTransport('smtpout.secureserver.net', 80))
 // ^^ works with exchange account with Email Routing set to Remote Mail Exchanger
