@@ -1,3 +1,17 @@
+// fundraiser GoFundMe $115 02.05.21
+$(document).ready(function() {
+  $('.foot').click(function() {
+      if($('.foot').hasClass('slide-up')) {
+        $('.foot').addClass('slide-down', 1000, 'easeOutBounce');
+        $('.foot').removeClass('slide-up'); 
+      } else {
+        $('.foot').removeClass('slide-down');
+        $('.foot').addClass('slide-up', 1000, 'easeOutBounce'); 
+      }
+  });
+});
+
+
 // all things backstretch are in jquery.backstretch.min.js
 
 var but = document.getElementsByClassName('btn');

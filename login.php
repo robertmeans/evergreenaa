@@ -32,10 +32,6 @@ include '_includes/head.php';
         </div><!-- .alert -->
         <?php endif; ?>
 
-        <!-- 
-        <input type="text" class="text" name="email" value="<?php //if(isset($email)) { echo h($email); } ?>" placeholder="Email address">
-        -->
-
         <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
                 
         <input type="password" id="password" class="text login-pswd" name="password" placeholder="Password">

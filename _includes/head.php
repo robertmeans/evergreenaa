@@ -31,6 +31,7 @@
 	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" type="text/css">
 
 	<script src="js/jquery_3.4.1.js"></script>
+	<script src="js/jquery_1-12-1_ui_min.js"></script>
 
 	<!-- Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140046709-8"></script>
