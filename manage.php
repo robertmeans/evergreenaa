@@ -1,6 +1,4 @@
-<?php $layout_context = "manage"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage";
 
 require_once 'config/initialize.php';
 // require_once '_includes/session.php';
@@ -32,14 +30,15 @@ $user_id = $_SESSION['id'];
 	
 	<div class="manage-simple intro">
 		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
-		<p>The goal here is simple - make AA meetings available 24-7-365.</p>
-		<p>Let's connect people and save lives.</p>
+		<p>For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
+		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.</p>
 		<p class="logout">
 		<?php
 			if ($_SESSION['admin'] == 1) { 
-				echo "<a href=\"email_everyone.php\">Email Everyone</a> | "; }
+				echo "<a href=\"email_everyone_BCC.php\">BCC All</a> | <a href=\"email_everyone_PERSONAL.php\">Personal All</a> | "; 
+			}
 		?>
-			<a href="logout.php">Logout</a>
+			<a href="home_private.php">Home</a> | <a href="logout.php">Logout</a>
 		</p>
 	</div>
 	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>

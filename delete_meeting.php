@@ -1,6 +1,4 @@
-<?php $layout_context = "manage-delete"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage-delete";
 
 require_once 'config/initialize.php';
 

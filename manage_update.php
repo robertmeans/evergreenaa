@@ -1,6 +1,4 @@
-<?php $layout_context = "manage-update"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage-update";
 
 require_once 'config/initialize.php';
 

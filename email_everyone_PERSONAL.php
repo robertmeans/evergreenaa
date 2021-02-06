@@ -1,6 +1,4 @@
-<?php $layout_context = "email-everyone"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "email-everyone";
 
 require_once 'config/initialize.php';
 
@@ -15,35 +13,33 @@ if ($_SESSION['id'] != 1) {
 
 if ((is_post_request()) && (isset($_POST['email-everyone']))) {
 
-$email_addresses = $_POST['email_addresses'];
-// for testing, comment above and uncomment below
-// $email_addresses = 'robert@robertmeans.com';
-// concludes testing
-$msgsubject = $_POST['msgsubject'] ?? ''; 
-$emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  
+$result = find_all_users();
 
-// if you're happy with the message, send it and head back to manage.php
-email_everyone($msgsubject, $email_addresses, nl2br($emaileveryonemsg));
-header('location: manage.php');
+	while($subject = mysqli_fetch_assoc($result)) {
 
-	// either revise your message or submit it from here.
+	$greeting = $_POST['greeting'];
+	$msgsubject = $_POST['msgsubject']; 
+	$user_name = $subject['username'];
+	$emaileveryonemsg = ($_POST['greeting'] . ' ' . $user_name . ',<br><br>' . $_POST['emaileveryonemsg']) ?? ''; 
+
+		if ($subject['verified'] != 0) {
+		email_everyone_PERSONAL($msgsubject, $subject['email'], nl2br($emaileveryonemsg));
+		// echo $subject['username'] . "<br>";
+		}
+
+	}
+
+	mysqli_free_result($result);
+	header('location: manage.php');
+
+	// revise your message.
 	} else if ((is_post_request()) && (isset($_POST['revise']))) { ?>
 
 <?php 
 
 $msgsubject = $_POST['msgsubject'] ?? ''; 
+$greeting = $_POST['greeting'] ?? '';
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
-
-$result = find_all_users_email();
-
-	$emails = array();
-	// get email addresses ready for sending and put them in a hidden field
-	while($subject = mysqli_fetch_assoc($result)) {
-		$emails[] = "'" . $subject["email"] . "', ";
-	}
-	// get rid of the last comma
-	$email_addresses = substr(implode($emails), 0 , -2);
-	// echo "<br><br><br><div style=\"width:80%;margin:0 auto;padding:1.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
 
 ?>
 
@@ -60,17 +56,24 @@ $result = find_all_users_email();
 	</p>
 </div>
 <div class="manage-simple-email">
-	<form class="admin-email-form" action="email_everyone_review.php" method="post">
-
-		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
+	<form class="admin-email-form" action="email_review_PERSONAL.php" method="post">
 		
 		<label>Subject</label>
 		<input type="text" name="msgsubject" value="<?= $msgsubject; ?>">
 
+		<div class="greeting-string">
+			<label>Greeting</label>
+			<input type="text" name="greeting" class="greeting" value="<?= $greeting ?>">
+		</div>
+		<div class="greeting-string">
+			<label>&nbsp;</label>
+			<?= "Bah-BAY!," ?>
+		</div>
+
 		<textarea name="emaileveryonemsg" id="message-body"><?= $emaileveryonemsg; ?></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 	</form>
@@ -81,7 +84,7 @@ $result = find_all_users_email();
 <?php require '_includes/footer.php'; ?>
 
 
-<?php mysqli_free_result($result); } else { // if this is your first visit to the page, here's an empty form ?>
+<?php } else { // if this is your first visit to the page, here's an empty form ?>
 
 <?php require '_includes/head.php'; ?>
 <body>	
@@ -96,17 +99,24 @@ $result = find_all_users_email();
 	</p>
 </div>
 <div class="manage-simple-email">
-	<form class="admin-email-form" action="email_everyone_review.php" method="post">
+	<form class="admin-email-form" action="email_review_PERSONAL.php" method="post">
 
-		<!-- <input type="text" name="email_addresses" value="<?= $email_addresses ?>"> -->
-		
 		<label>Subject</label>
 		<input type="text" name="msgsubject">
+
+		<div class="greeting-string">
+			<label>Greeting</label>
+			<input type="text" name="greeting" class="greeting">
+		</div>
+		<div class="greeting-string">
+			<label>&nbsp;</label>
+			<?= "Bah-BAY!," ?>
+		</div>
 
 		<textarea name="emaileveryonemsg"></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="SEND">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="admin-email" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 	</form>

@@ -146,20 +146,6 @@ if (isset($_POST['login'])) {
 		$errors['password'] = "Password required";
 	}
 
-	$userQuery = "SELECT * FROM users WHERE username=? LIMIT 2";
-	$stmt = $conn->prepare($userQuery);
-	$stmt->bind_param('s', $username);
-	$stmt->execute();
-
-	$result = $stmt->get_result();
-
-	$userCount = $result->num_rows;
-	$stmt->close();
-
-	if($userCount > 1) {
-		$errors['usermane'] = "NEAT! This is unusual. There are multiple \"" . $username . "'s\" here AND you have the same password! You'll have to use your email address to login.";
-	}	
-
 	if (count($errors) === 0) {
 
 		// having to accept email or username because of how Apple/ios binds these two
@@ -178,7 +164,6 @@ if (isset($_POST['login'])) {
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] = $user['admin'];
-			$_SESSION['token'] = $user['token'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
 			// email verification
@@ -191,8 +176,16 @@ if (isset($_POST['login'])) {
 
 				// user is logged in and verified. did they check the rememberme?
 				if (isset($_POST['remember_me'])) {
-					$token = $_SESSION['token'];
-					setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
+					$token = bin2hex(random_bytes(50)); // generate a unique token
+					// ^^ this creates new token with every login from different device (no good)
+					// $token = "letmein1130201040";
+
+					// if so, update token in db
+					$update_token_query = "UPDATE users SET token='$token' WHERE id_user=" . $user['id_user'];
+					if (mysqli_query($conn, $update_token_query)) {
+						// set cookie with same credentials
+						setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
+					}
 				}
 				// everything checks out -> you're good to go!
 				// header('location: home_private.php');

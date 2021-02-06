@@ -1,6 +1,4 @@
-<?php $layout_context = "email-everyone"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "email-everyone"; 
 
 require_once 'config/initialize.php';
 
@@ -24,7 +22,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 
 <?php 
 
-$result = find_all_users_email();
+$result = find_all_users();
 
 	$emails = array();
 
@@ -55,10 +53,10 @@ $result = find_all_users_email();
 		<h3>Subject</h3>
 			<p><?php echo $msgsubject; ?></p>
 		<h3 class="next">Message</h3>
-		<p><?php echo $emaileveryonemsg; ?></p>
+		<p><?php echo nl2br($emaileveryonemsg); ?></p>
 	</div>
 
-	<form class="admin-email-form" action="email_everyone.php" method="post">
+	<form class="admin-email-form" action="email_everyone_BCC.php" method="post">
 
 		<!-- <input type="hidden" name="email_addresses" value="<?= $email_addresses; ?>"> -->
 		

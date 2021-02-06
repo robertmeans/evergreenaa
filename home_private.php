@@ -1,6 +1,4 @@
-<?php $layout_context = "home-private"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "home-private"; 
 
 require_once 'config/initialize.php';
 

@@ -11,7 +11,7 @@
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="0"> -->
 	
-	<title>Evergreen, CO | Online AA Meetings</title>
+	<title>Evergreen AA | Online AA Meetings</title>
 	<link rel="icon" type="image/ico" href="_images/favicon.ico">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)">

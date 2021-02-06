@@ -1,7 +1,14 @@
 <?php
-session_start();
+require_once 'config/initialize.php';
 
-require "Util.php";
+class Util {       
+    public function clearAuthCookie() {
+        if (isset($_COOKIE["token"])) {
+            setcookie("token", "");
+        }
+    }
+}
+
 $util = new Util();
 
 //Clear Session
@@ -14,5 +21,5 @@ session_destroy();
 // clear cookies
 $util->clearAuthCookie();
 
-header("Location: index.php");
+header('Location:' . WWW_ROOT);
 ?>

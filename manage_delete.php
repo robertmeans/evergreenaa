@@ -1,6 +1,4 @@
-<?php $layout_context = "manage-delete"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage-delete"; 
 
 require_once 'config/initialize.php';
 // require_once '_includes/session.php';
@@ -45,7 +43,7 @@ $row = edit_meeting($id);
 <div class="manage-simple intro">
 	
 	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
-	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
+	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>

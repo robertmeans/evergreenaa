@@ -1,6 +1,4 @@
-<?php $layout_context = "manage-edit"; ?>
-<?php 
-include 'error-reporting.php';
+<?php $layout_context = "manage-edit"; 
 
 require_once 'config/initialize.php';
 
@@ -81,8 +79,8 @@ $row = edit_meeting($id);
 	
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>Why are you so awesome?</p>
-	<p class="logout"><a href="manage.php">Go back to your meeting summary</a></p>
+	<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
+	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Update this Meeting</h1>

@@ -63,7 +63,7 @@
       flex: 1;
       align-items: center;
       justify-content: space-evenly;
-      margin: 1.5em auto 2em auto;
+      margin: 1.5em auto 1em auto;
       & > a {
         color: #fff;
         background-color: rgba(44,119,120,1);
@@ -78,6 +78,8 @@
         text-align: center;
         text-decoration: none;
         transition: background-color 0.2s ease;
+        box-shadow: 0 18px 6px -6px rgba(0,0,0,0.5);
+      outline: none;
         &:hover {
           background-color: rgba(44,119,120,0.5);
         }          
@@ -114,6 +116,14 @@
       }
     } 
   } 
+}
+
+a.youtube {
+  color: #fff;
+  text-decoration: uderline;
+  &:hover {
+    text-decoration: none;
+  }
 }
 @media screen and (max-width: 800px) {
   #msg-one {

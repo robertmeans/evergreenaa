@@ -183,85 +183,123 @@ $('.radio-group .radio').click(function(){
     $(this).parent().find('input').val(val);
 });
 
+/* sweet rememberme triangle inside circle all css */
+$('input[name="remember_me"]').change(function(){
+    if($(this).is(":checked")) {
+        $('.aa-rm-in').addClass("checkaroo");
+        $('.rm-rm').addClass("hot");
+    } else {
+        $('.aa-rm-in').removeClass("checkaroo");
+        $('.rm-rm').removeClass("hot");
+    }
+});
+
+/* show passwords */
+$("button#showLoginPass").click(function(){
+  var x = document.getElementById("password");
+    $(this).toggleClass("showPassOn");
+
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide password') {
+        $(this).html('<i class="far fa-eye"></i> Show password');
+        x.type = "password";
+    } else {
+        $(this).html('<i class="far fa-eye-slash"></i> Hide password');
+        x.type = "text";
+    }
+    return false;
+  });
+
+$("button#showSignupPass").click(function(){
+  var x = document.getElementById("showPassword");
+  var y = document.getElementById("showConf");
+    $(this).toggleClass("showPassOn");
+
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide passwords') {
+        $(this).html('<i class="far fa-eye"></i> Show passwords');
+        x.type = "password";
+        y.type = "password";
+    } else {
+        $(this).html('<i class="far fa-eye-slash"></i> Hide passwords');
+        x.type = "text";
+        y.type = "text";
+    }
+    return false;
+  });
 
 /* open and close weekday content */
 
 $(document).ready(function(){
 
-$(".day-content").hide();
-$(".weekday-wrap").hide();
-$("#msg-one").hide();
-$("#email-bob").hide();
+  $(".day-content").hide();
+  $(".weekday-wrap").hide();
+  $("#msg-one").hide();
+  $("#email-bob").hide();
 
-/* toggle days of week */
-$('.day').click(function() {
-  var active = $(this);
-  var toggle = $(this).next('.day-content');
+  /* toggle days of week */
+  $('.day').click(function() {
+    var active = $(this);
+    var toggle = $(this).next('.day-content');
 
-  $('.day-content').not(toggle).slideUp();
-  $('.day').not(active).removeClass('active');
+    $('.day-content').not(toggle).slideUp();
+    $('.day').not(active).removeClass('active');
 
-  $(toggle).slideToggle();
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-
-$('.daily-glance-wrap').click(function() {
-
-  var active = $(this);
-  var toggle = $(this).next('.weekday-wrap');
-
-  $('.weekday-wrap').not(toggle).slideUp();
-  $('.daily-glance-wrap').not(active).removeClass('active');
-  $(toggle).slideToggle();
-
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-$('.manage-glance-wrap').click(function() {
-
-  var active = $(this);
-  var toggle = $(this).next('.weekday-wrap');
-
-  $('.weekday-wrap').not(toggle).slideUp();
-  $('.manage-glance-wrap').not(active).removeClass('active');
-  $(toggle).slideToggle();
-
-  if ($(active).hasClass('active')) {
-    $(active).removeClass('active');
-  } else {
-    $(active).addClass('active');
-  }
-});
-
-
-/* collapse day button */
-$('.collapse-day').click(function() {
-  var me = $(this);
-  $('.day-content').not(me).slideUp();
-  $('.day').removeClass('active');
-});
-
-
-$("#toggle-contact-form").click(function(){
-    $(this).toggleClass("active").next().slideToggle(600);
-
-    if ($.trim($(this).text()) === 'close') {
-        $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+    $(toggle).slideToggle();
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
     } else {
-        $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+      $(active).addClass('active');
     }
+  });
+
+  $('.daily-glance-wrap').click(function() {
+
+    var active = $(this);
+    var toggle = $(this).next('.weekday-wrap');
+
+    $('.weekday-wrap').not(toggle).slideUp();
+    $('.daily-glance-wrap').not(active).removeClass('active');
+    $(toggle).slideToggle();
+
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
+    } else {
+      $(active).addClass('active');
+    }
+  });
+
+  $('.manage-glance-wrap').click(function() {
+
+    var active = $(this);
+    var toggle = $(this).next('.weekday-wrap');
+
+    $('.weekday-wrap').not(toggle).slideUp();
+    $('.manage-glance-wrap').not(active).removeClass('active');
+    $(toggle).slideToggle();
+
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
+    } else {
+      $(active).addClass('active');
+    }
+  });
+
+  /* collapse day button */
+  $('.collapse-day').click(function() {
+    var me = $(this);
+    $('.day-content').not(me).slideUp();
+    $('.day').removeClass('active');
+  });
+
+  $("#toggle-contact-form").click(function(){
+      $(this).toggleClass("active").next().slideToggle(600);
+
+      if ($.trim($(this).text()) === 'close') {
+          $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+      } else {
+          $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+      }
     return false;
   })
-
 }); /* document.ready end */
 
 setTimeout(function() {
@@ -338,6 +376,9 @@ $(".manage-edit").click(function(e) {
     e.stopPropagation();
 });
 $(".manage-delete").click(function(e) {
+    e.stopPropagation();
+});
+$(".youtube").click(function(e) {
     e.stopPropagation();
 });
 

@@ -33,6 +33,7 @@
         // Call the function post_captcha
 
 /* MUTE FOR LOCAL TESTING ---------------------------------------------------------- */
+        $_POST['g-recaptcha-response'] = '';
         $res = post_captcha($_POST['g-recaptcha-response']);
         if (!$res['success']) {
 
@@ -189,6 +190,7 @@
     <button id="toggle-contact-form"><i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i></button>
 
     <div id="email-bob">
+        <p class="form-note">Note: Hosts are responsible for the content of their meetings. Contact below for technical issues and feature requests. If you would like to personalize this website <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">please see this</a> short YouTube video. <i class="far fa-smile"></i></p>
 
         <form action="" method="post" id="contactForm" onSubmit="return validateEmail(document.forms[0].email.value);">
           
@@ -218,7 +220,7 @@
 
     </div>
 
-    <p class="copyright"><?= ewd_copyright(2020); ?> <a class="eb" href="http://www.evergreenbob.com" target="_blank">Evergreen Bob</a></p> 
+    <p class="copyright"><?= ewd_copyright(2020); ?> <a class="eb" href="http://evergreenbob.com" target="_blank">Evergreen Bob</a></p> 
 </footer>
 <?php
 switch ($layout_context) {
@@ -229,7 +231,7 @@ switch ($layout_context) {
 ?>
 <script src="js/jquery.timepicker.min.js?<?php echo time(); ?>"></script>
 <script src="js/scripts.js?<?php echo time(); ?>"></script>
-<script src="http://localhost:35729/livereload.js"></script>	
+<!-- <script src="http://localhost:35729/livereload.js"></script>	 -->
 
 </body>
 </html>
