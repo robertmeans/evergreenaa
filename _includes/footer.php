@@ -234,15 +234,14 @@ switch ($layout_context) {
 <script src="http://localhost:35729/livereload.js"></script>	
 
 <div class="foot">
-<h3><i class="fas fa-exclamation-circle dmf"></i>Please read this<i class="fas fa-exclamation-circle dml"></i></h3>
+<h3><i class="fas fa-star dmf"></i>A Quick Thank You<i class="fas fa-star dml"></i></h3>
 
 <div class="popup-body">
-<p>Please consider donating towards the $115 annual cost for SSL + hosting for this website. A Gofundme campaign is set up at the link below.</p>
-<p>After much deliberation I have decided to publicly swallow my pride and seek assistance with this expense.</p>
-<p><a href="https://www.gofundme.com/f/hosting-ssl-for-evergreenaacom?utm_source=customer&utm_medium=copy_link&utm_campaign=p_cf+share-flow-1" class="gfm" target="_blank">Contribute here</a></p>
+<p>In case you missed it, there was a fundraiser arranged to aid in the annual costs for this site (hosting + SSL) which was met incredibly fast through remarkable generosity.</p>
+<p>This project represents a labor of love on behalf of my deepest respect and gratitude for this community. While the reward of helping others feeds the soul, your contributions to offset the overhead here will help feed me.</p>
+<p>Thank you sincerely,<br>Bob</p>
 <p class="close">Click anywhere to close.</p>
 </div>
-
 
 </div>
 

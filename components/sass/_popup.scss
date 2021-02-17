@@ -10,6 +10,7 @@
     font-size: 1em;
     color: #000;
     background-color: #ef4141;
+    background-color: #000;
     justify-content: center; /* align horizontal */
     border-top-left-radius:25px;
     border-top-right-radius:25px;
@@ -29,6 +30,10 @@
 {
     bottom: -455px !important;
 }
+
+
+
+
 .foot h3 {
     font-size: 1.5em;
     color: #fff;
@@ -42,7 +47,8 @@
   text-align: left;
   display: block;
   margin: 1em auto;
-  background-color: #fefefe;
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
   padding: 1.5em;
   p {
     line-height: 1.5em;
@@ -99,5 +105,14 @@ i.dml {
     a.gfm {
       width: 98%;
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .foot {
+    width: 96%;
+  }
+  .popup-body {
+    max-width: 98%;
   }
 }

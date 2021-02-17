@@ -2558,6 +2558,7 @@ span.contact-update-message {
   font-size: 1em;
   color: #000;
   background-color: #ef4141;
+  background-color: #000;
   -ms-flex-pack: center;
       justify-content: center;
   /* align horizontal */
@@ -2591,7 +2592,8 @@ span.contact-update-message {
   text-align: left;
   display: block;
   margin: 1em auto;
-  background-color: #fefefe;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
   padding: 1.5em;
 }
 .popup-body p {
@@ -2650,5 +2652,14 @@ i.dml {
   }
   .popup-body a.gfm {
     width: 98%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .foot {
+    width: 96%;
+  }
+
+  .popup-body {
+    max-width: 98%;
   }
 }
