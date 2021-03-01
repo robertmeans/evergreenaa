@@ -1,24 +1,33 @@
 <?php
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 
-// Create the Transport > composer require "swiftmailer/swiftmailer:^6.0"
-// https://swiftmailer.symfony.com/docs/introduction.html
-$transport = (new Swift_SmtpTransport('smtpout.secureserver.net', 80))
-// ^^ works with exchange account with Email Routing set to Remote Mail Exchanger
+function sendVerificationEmail($username, $userEmail, $token) {
+	$mail = new PHPMailer(true);
 
-  ->setUsername(EMAIL)
-  ->setPassword(PASSWORD);
+  try {
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
+      $mail->Username   = EMAIL;
+      $mail->Password   = PASSWORD; 
 
-// Create the Mailer using your created Transport
-$mailer = new Swift_Mailer($transport);
+      //Recipients
+      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      $mail->addAddress($userEmail, $username);     // Add a recipient
+      $mail->addReplyTo($userEmail);
+      // $mail->addCC('cc@example.com');
+      $mail->addBCC('info@evergreenaa.com');
 
-function sendVerificationEmail($username, $userEmail, $token) 
-	{
-	global $mailer;
-
-	$body = '<!DOCTYPE html>
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = 'Verify Your EvergreenAA Registration';
+      $mail->Body    =    '<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -52,25 +61,36 @@ function sendVerificationEmail($username, $userEmail, $token)
 		
 	</body>
 	</html>';
+      $mail->AltBody = 'Hello ' . $username . ', Please copy and paste this verification link into your browser address bar to validate your EvergreenAA.com registration: https://www.evergreenaa.com/index.php?token=' . $token;
 
-	// Create a message
-	$message = (new Swift_Message('Verify Your EvergreenAA Registration'))
-	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
-	  ->setBcc('info@evergreenaa.com')
-	  ->setTo($userEmail)
-	  ->setBody($body, 'text/html');
+      $mail->send();
 
-
-	// Send the message
-	$result = $mailer->send($message);
+  } catch (Exception $e) {
+      echo "Email verification ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: info@evergreenaa.com -- Mailer Error: {$mail->ErrorInfo}";
+  }
 }
 
-function sendPasswordResetLink($userEmail, $token) 
-	{
+function sendPasswordResetLink($userEmail, $token) {
 
-	global $mailer;
+	$mail = new PHPMailer(true);
 
-	$body = '<!DOCTYPE html>
+  try {
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
+      $mail->Username   = EMAIL;
+      $mail->Password   = PASSWORD; 
+
+      //Recipients
+      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      $mail->addAddress($userEmail);     // Add a recipient
+      $mail->addReplyTo($userEmail);
+      // $mail->addCC('cc@example.com');
+      $mail->addBCC('info@evergreenaa.com');
+
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = 'Reset Your EvergreenAA Password';
+      $mail->Body    =    '<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -97,6 +117,7 @@ function sendPasswordResetLink($userEmail, $token)
 	<body>
 		<div class="wrapper">
 			<p>Hello,</p>
+			<p>A request has been made to change the password on your account at EvergreenAA.com. If you did not request this change you can ignore this message.</p>
 			<p>Please click on the link below to reset your password.</p>
 			<p><a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?password-token=' . $token . '">Click here</a> to reset your password.</p>
 			<p>Sincerely,<br>Evergreen Bob</p>
@@ -104,44 +125,67 @@ function sendPasswordResetLink($userEmail, $token)
 		
 	</body>
 	</html>';
+      $mail->AltBody = 'Hello, A request has been made to change the password on your account at EvergreenAA.com. If you did not request this change you can ignore this message. If you did make this request, please copy and paste this link into your browser address bar to reset your password: https://www.evergreenaa.com/index.php?password-token=' . $token;
 
-	// Create a message
-	$message = (new Swift_Message('Reset Your EvergreenAA Password'))
-	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
-	  ->setTo($userEmail)
-	  ->setBody($body, 'text/html');
+      $mail->send();
 
-	// Send the message
-	$result = $mailer->send($message);
+  } catch (Exception $e) {
+      echo "Password reset reqest ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: info@evergreenaa.com -- Mailer Error: {$mail->ErrorInfo}";
+  }
 }
 
-function email_everyone_BCC($subject, $email_addresses, $message) 
-	{
-	global $mailer;
+function email_everyone_BCC($msgsubject, $email_addresses, $message) {
+	$mail = new PHPMailer(true);
 
-	// Create a message
-	$message = (new Swift_Message($subject))
-	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
-	  ->setBcc([$email_addresses])
-	  // ->setTo('bob@bobmeans.com')
-	  ->setBody($message, 'text/html');
+  try {
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
+      $mail->Username   = EMAIL;
+      $mail->Password   = PASSWORD; 
 
-	// Send the message
-	$result = $mailer->send($message);
+      //Recipients
+      $mail->setFrom(EMAIL, 'EvergreenAA Website');
+      $mail->addBCC($email_addresses);
+      // $mail->addBCC('robertmeans01@gmail.com');
+
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = $msgsubject;
+      $mail->Body    = $message;
+
+      $mail->send();
+
+  } catch (Exception $e) {
+      echo "You hit a snag. Messages did not send. -- Mailer Error: {$mail->ErrorInfo}";
+  }
 }
 
-function email_everyone_PERSONAL($subject, $email_address, $message) 
-	{
-	global $mailer;
+function email_everyone_PERSONAL($msgsubject, $send_to, $message) {
+	$mail = new PHPMailer(true);
 
-	// Create a message
-	$message = (new Swift_Message($subject))
-	  ->setFrom([EMAIL=> 'Evergreen AA Website'])
-	  ->setTo($email_address)
-	  ->setBody($message, 'text/html');
+  try {
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
+      $mail->Username   = EMAIL;
+      $mail->Password   = PASSWORD; 
 
-	// Send the message
-	$result = $mailer->send($message);
+      //Recipients
+      $mail->setFrom(EMAIL, 'EvergreenAA Website');
+      $mail->addAddress($send_to);     // Add a recipient
+      $mail->addReplyTo($send_to);
+      // $mail->addAddress('robertmeans01@gmail.com');
+      // $mail->addReplyTo('robertmeans01@gmail.com');
+
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = $msgsubject;
+      $mail->Body    = $message;
+
+      $mail->send();
+
+  } catch (Exception $e) {
+      echo "You hit a snag. Messages did not send. -- Mailer Error: {$mail->ErrorInfo}";
+  }
 }
 
 

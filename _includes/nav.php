@@ -3,20 +3,20 @@
 		<!-- 1st link -->
 		<?php
 		switch ($layout_context) {
-			case 'signup' 			:	break;
+			case 'signup' 					:	break;
 			case 'reset-password' 	:	break;
 			case 'password-message' :	break;
-			case 'login-page' 		:	break;
-			case 'index' 			:	break;
+			case 'login-page' 			:	break;
+			case 'index' 						:	break;
 			case 'forgot-password' 	:	break;
-			case 'edit-meeting' 	:	break;
-			case 'home-private' 	:	echo "<li><a id=\"toggle-private-msg\" class=\"cc-x\">Extras</a></li>"; 		break;
-			case 'home-public' 		:	echo "<li><a id=\"toggle-public-msg\" class=\"cc-x why-join\">Readme</a></li>"; break;
-			case 'email-everyone' 	:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'manage-delete' 	:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			default 				:	 																		break;
+			case 'edit-meeting' 		:	break;
+			case 'home-private' 		:	?><li><a id="toggle-private-msg" class="cc-x">Extras</a></li><?php  				break;
+			case 'home-public' 			:	?><li><a id="toggle-public-msg" class="cc-x why-join">Readme</a></li><?php 	break;
+			case 'email-everyone' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
+			case 'manage-edit' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
+			case 'manage-edit-rev' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
+			case 'manage-delete' 		:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
+			default 								:	break;
 		}
 		?>
 		
@@ -24,21 +24,21 @@
 		<!-- 2nd link... -->
 		<?php
 		switch ($layout_context) {
-			case 'signup' 			:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'reset-password' 	:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'password-message' :	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'login-page' 		:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'index' 			:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'home-private' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 	break;
-			case 'home-public' 		:	echo "<li><a class=\"logout\" href=\"login.php\">Login</a></li>"; 		break;
-			case 'forgot-password' 	:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'manage' 			:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'manage-new' 		:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
-			case 'email-everyone' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 	break;
-			case 'manage-edit' 		:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 	break;
-			case 'manage-edit-rev' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 	break;
-			case 'manage-delete' 	:	echo "<li><a class=\"logout\" href=\"manage.php\">Manage</a></li>"; 	break;
-			default 				:	echo "<li><a class=\"logout\" href=" . WWW_ROOT . ">Home</a></li>"; 	break;
+			case 'signup' 					:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'reset-password' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'password-message' :	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'login-page' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'index' 						:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'home-private' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			case 'home-public' 			:	?><li><a class="logout" href="login.php">Login</a></li><?php 				break;
+			case 'forgot-password' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'manage' 					:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'manage-new' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
+			case 'email-everyone' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			case 'manage-edit' 			:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			case 'manage-edit-rev' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			case 'manage-delete' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			default 								:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
 		}
 		?>
 		

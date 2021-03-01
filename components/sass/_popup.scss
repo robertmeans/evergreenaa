@@ -10,7 +10,7 @@
     font-size: 1em;
     color: #000;
     background-color: #ef4141;
-    background-color: #000;
+    background-color: firebrick;
     justify-content: center; /* align horizontal */
     border-top-left-radius:25px;
     border-top-right-radius:25px;
@@ -19,6 +19,9 @@
     margin-right: auto;
     margin-left: auto;
     bottom: -455px;
+    &:hover {
+      background-color: #000;
+    }
 }
 
 .slide-up
@@ -71,6 +74,9 @@
       background-color: green;
 
     }
+  }
+  em {
+    font-weight: bold;
   } 
 }
 i.dmf {

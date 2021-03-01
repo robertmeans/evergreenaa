@@ -19,9 +19,9 @@ $user_id = $_SESSION['id'];
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload">
+<!-- 	<div class="preload">
 		<p>One day at a time.</p>
-	</div>
+	</div> -->
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/private-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

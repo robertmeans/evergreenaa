@@ -14,15 +14,13 @@ if (isset($_GET['password-token'])) {
 }
 
 if (!isset($_SESSION['verified'])) {
-	// header('location: home.php');
 	require 'home.php';
 	exit;
 }
 
-if ((isset($_SESSION['verified']) && (!$_SESSION['message']))) {
-	// header('location: home_private.php');
+if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!$_SESSION['message']))) {
 	require 'home_private.php';
-	exit;
+	exit();
 }
 
 ?>

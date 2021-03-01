@@ -2,11 +2,11 @@
 $(document).ready(function() {
   $('.foot').click(function() {
       if($('.foot').hasClass('slide-up')) {
-        $('.foot').addClass('slide-down', 1000, 'easeOutBounce');
+        $('.foot').addClass('slide-down', 250, 'linear');
         $('.foot').removeClass('slide-up'); 
       } else {
         $('.foot').removeClass('slide-down');
-        $('.foot').addClass('slide-up', 1000, 'easeOutBounce'); 
+        $('.foot').addClass('slide-up', 250, 'linear'); 
       }
   });
 });

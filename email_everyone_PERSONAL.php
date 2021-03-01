@@ -16,14 +16,14 @@ if ((is_post_request()) && (isset($_POST['email-everyone']))) {
 $result = find_all_users();
 
 	while($subject = mysqli_fetch_assoc($result)) {
-
+	$send_to = $subject['email'];
 	$greeting = $_POST['greeting'];
 	$msgsubject = $_POST['msgsubject']; 
 	$user_name = $subject['username'];
 	$emaileveryonemsg = ($_POST['greeting'] . ' ' . $user_name . ',<br><br>' . $_POST['emaileveryonemsg']) ?? ''; 
 
 		if ($subject['verified'] != 0) {
-		email_everyone_PERSONAL($msgsubject, $subject['email'], nl2br($emaileveryonemsg));
+		email_everyone_PERSONAL($msgsubject, $send_to, nl2br($emaileveryonemsg));
 		// echo $subject['username'] . "<br>";
 		}
 

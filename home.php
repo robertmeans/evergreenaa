@@ -7,9 +7,9 @@ require_once 'config/initialize.php';
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload">
+<!-- 	<div class="preload">
 		<p>One day at a time.</p>
-	</div>
+	</div> -->
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
@@ -195,5 +195,16 @@ require_once 'config/initialize.php';
 
 </ul><!-- #weekdays -->
 </div><!-- #wrap -->
+
+<div class="foot">
+<h3><i class="fas fa-star dmf"></i>Did you know... ?<i class="fas fa-star dml"></i></h3>
+
+<div class="popup-body">
+<p>This site is specifically designed to eliminate "Zoom Bombers". The point of this website is to provide a convenient location to organize all of your <em>PRIVATE</em> meeting information. <a class="youtube" href="https://youtu.be/OQpmtysX8Bo" target="_blank">Please watch this short video</a> for a detailed explanation of how this works.</p>
+<p class="close">Click here to close.</p>
+</div>
+
+</div>
+
 
 <?php require '_includes/footer.php'; ?>

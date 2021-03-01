@@ -233,6 +233,18 @@ switch ($layout_context) {
 <script src="js/scripts.js?<?php echo time(); ?>"></script>
 <script src="http://localhost:35729/livereload.js"></script>	
 
+<div class="foot">
+<h3><i class="fas fa-star dmf"></i>A Quick Thank You<i class="fas fa-star dml"></i></h3>
+
+<div class="popup-body">
+<p>In case you missed it, there was a fundraiser arranged to aid in the annual costs for this site (hosting + SSL) which was met incredibly fast through remarkable generosity.</p>
+<p>This project represents a labor of love on behalf of my deepest respect and gratitude for this community. While the reward of helping others feeds the soul, your contributions to offset the overhead here will help feed me.</p>
+<p>Thank you sincerely,<br>Bob</p>
+<p class="close">Click anywhere to close.</p>
+</div>
+
+</div>
+
 </body>
 </html>
 <?php

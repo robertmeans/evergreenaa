@@ -157,7 +157,7 @@ if (isset($_POST['login'])) {
 	$stmt->close();
 
 	if($userCount > 1) {
-		$errors['usermane'] = "NEAT! This is unusual. There are multiple \"" . $username . "'s\" here AND you have the same password! You'll have to use your email address to login.";
+		$errors['usermane'] = "There are multiple \"" . $username . "'s\" here AND you have the same password... but you don't have the same email address! You'll have to use your email address to login.";
 	}	
 
 	if (count($errors) === 0) {
@@ -169,16 +169,17 @@ if (isset($_POST['login'])) {
 		$stmt->bind_param('ss', $username, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
+		$userCount = $result->num_rows;
 		$user = $result->fetch_assoc();
 
 		if (password_verify($password, $user['password'])) {
 			// login success
-			$_SESSION['id'] = $user['id_user'];
+			$_SESSION['id'] 			= $user['id_user'];
 			$_SESSION['username'] = $user['username'];
-			$_SESSION['email'] = $user['email'];
+			$_SESSION['email'] 		= $user['email'];
 			$_SESSION['verified'] = $user['verified'];
-			$_SESSION['admin'] = $user['admin'];
-			$_SESSION['token'] = $user['token'];
+			$_SESSION['admin'] 		= $user['admin'];
+			$_SESSION['token'] 		= $user['token'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
 			// email verification
@@ -197,13 +198,14 @@ if (isset($_POST['login'])) {
 				// everything checks out -> you're good to go!
 				// header('location: home_private.php');
 				header('location:' . WWW_ROOT);
-
 				exit();
 			}
 
+		} else if ($userCount < 1) {
+			$errors['login_fail'] = "That user does not exist";
 		} else {
 			// the combination of stuff you typed doesn't match anything in the db
-			$errors['login_fail'] = "Wrong credentials. Username is case sensitive.";
+			$errors['login_fail'] = "Wrong Username/Password combination. Note: Username is case sensitive.";
 		}
 	}
 }

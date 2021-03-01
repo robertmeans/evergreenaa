@@ -2558,7 +2558,7 @@ span.contact-update-message {
   font-size: 1em;
   color: #000;
   background-color: #ef4141;
-  background-color: #000;
+  background-color: firebrick;
   -ms-flex-pack: center;
       justify-content: center;
   /* align horizontal */
@@ -2569,6 +2569,9 @@ span.contact-update-message {
   margin-right: auto;
   margin-left: auto;
   bottom: -455px;
+}
+.foot:hover {
+  background-color: #000;
 }
 
 .slide-up {
@@ -2616,6 +2619,9 @@ span.contact-update-message {
 }
 .popup-body a.gfm:hover {
   background-color: green;
+}
+.popup-body em {
+  font-weight: bold;
 }
 
 i.dmf {
