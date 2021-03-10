@@ -863,6 +863,53 @@ footer form#contactForm input#send:active, footer form#contactForm input#send:fo
 footer form#contactForm input#send:visited {
   background: #ccc;
 }
+footer form#contactForm input#emailBob {
+  float: left;
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #233851;
+  background-color: #565656;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+footer form#contactForm input#emailBob:hover {
+  background-color: #82c33a;
+  color: #fff;
+}
+footer form#contactForm input#emailBob:active, footer form#contactForm input#emailBob:focus {
+  outline: none;
+  outline-style: 0;
+}
+footer form#contactForm #msg {
+  margin-top: 0.75em;
+  width: 100%;
+}
+footer form#contactForm #msg .alert-warning {
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+  padding: 0.75em;
+  font-size: 1em;
+  color: #313131;
+  background-color: #ffdddd;
+  border: 1px solid #ff5a5a;
+}
+footer form#contactForm #msg .alert-success {
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+  padding: 0.75em;
+  font-size: 1em;
+  color: #fff;
+  background-color: #82c33a;
+  border: 1px solid #45661f;
+}
+footer form#contactForm span {
+  background: rgba(150, 255, 0, 0.1);
+  padding: 1em;
+  border: 1px solid #96ff00;
+}
 footer button#confirm {
   float: left;
   margin-top: 10px;
