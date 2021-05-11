@@ -17,9 +17,31 @@
 						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } ?>
+<?php 					if ($row['meet_url'] != null) { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN MEETING</a></p>
+<?php } ?>
 					</div><!-- .details-left -->
 					<div class="details-right">
+
+
+
+<?php 				if ($row['meet_addr'] != null) { ?>
+
+						<div id="map">
+							<iframe src="https://maps.googleapis.com/maps/api/staticmap?center=30623+sun+creek+drive+evergreen+co"></iframe>
+						</div>
+
+						<!-- <iframe src="https://google.com/maps/place/30623+sun+creek+drive+evergreen+co" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+
+<?php } ?>
+
+
+
+
+
+
+
+
 						<p class="add-info">Additional Information</p>
 						<ul>
 						<?php

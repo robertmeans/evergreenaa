@@ -17,7 +17,9 @@
 						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } ?>
+<?php 					if ($row['meet_url'] != null) { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN MEETING</a></p>
+<?php } ?>
 					</div><!-- .details-left -->
 					<div class="details-right">
 						<p class="add-info">Additional Information</p>

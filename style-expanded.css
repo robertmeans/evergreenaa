@@ -554,6 +554,11 @@ li.ctr-day .day-content {
   width: 50%;
   padding: 1em;
 }
+.weekday-wrap .meeting-details .details-right #map {
+  width: 96%;
+  height: 180px;
+  margin-bottom: 1em;
+}
 .weekday-wrap .meeting-details .details-right p.add-info {
   text-decoration: underline;
   font-weight: bold;
@@ -2356,7 +2361,17 @@ form#manage-mtg input.mtg-update-url {
 form#manage-mtg textarea#meet_url {
   width: 98%;
   max-width: 18em;
-  height: 6em;
+  height: 2em;
+  resize: none;
+  border: 0;
+  padding: 0.2em;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+form#manage-mtg textarea#meet_addr {
+  width: 98%;
+  max-width: 18em;
+  height: 2em;
   resize: none;
   border: 0;
   padding: 0.2em;

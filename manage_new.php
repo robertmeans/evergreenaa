@@ -29,6 +29,7 @@ $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? ''
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
 $row['meet_url'] 		= $_POST['meet_url'] 									?? '';
+$row['meet_addr'] 		= $_POST['meet_addr'] 									?? '';
 $row['dedicated_om'] 	= $_POST['dedicated_om'] 								?? '';
 $row['code_b'] 			= $_POST['code_b'] 										?? '';
 $row['code_d'] 			= $_POST['code_d'] 										?? '';

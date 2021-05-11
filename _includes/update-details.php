@@ -2,6 +2,7 @@
 <div class="meeting-details">
 
 	<form id="manage-mtg" action="manage_update.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
+		<input type="hidden" name="visible" value="<?= $row['visible']; ?>">
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
@@ -63,6 +64,9 @@
 
 	<label for="meet_url">Meeting URL</label>
 	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
+
+	<label for="meet_addr">Physical Address</label>
+	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>	
 
 	</div><!-- .details-left -->
 	<div class="details-right<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">

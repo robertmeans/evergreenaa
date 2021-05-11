@@ -44,7 +44,7 @@ function create_new_meeting($row) {
     }
 
   $sql = "INSERT INTO meetings ";
-  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
+  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, meet_addr, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
   $sql .= "VALUES ("; 
   $sql .= "'" . db_escape($db, $row['id_user'])        . "', ";
   $sql .= "'" . $row['sun']            . "', ";
@@ -60,6 +60,7 @@ function create_new_meeting($row) {
   $sql .= "'" . db_escape($db, $row['meet_id'])        . "', ";
   $sql .= "'" . db_escape($db, $row['meet_pswd'])      . "', ";
   $sql .= "'" . db_escape($db, $row['meet_url'])       . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_addr'])       . "', ";
   $sql .= "'" . $row['dedicated_om']   . "', ";
   $sql .= "'" . $row['code_b']         . "', ";
   $sql .= "'" . $row['code_d']         . "', ";
@@ -113,6 +114,7 @@ function update_meeting($id, $row) {
   $sql .= "meet_id='"       . db_escape($db, $row['meet_id'])       . "', ";
   $sql .= "meet_pswd='"     . db_escape($db, $row['meet_pswd'])     . "', ";
   $sql .= "meet_url='"      . db_escape($db, $row['meet_url'])      . "', ";
+  $sql .= "meet_addr='"      . db_escape($db, $row['meet_addr'])      . "', ";
   $sql .= "dedicated_om='"  . $row['dedicated_om']  . "', ";
   $sql .= "code_b='"        . $row['code_b']        . "', ";
   $sql .= "code_d='"        . $row['code_d']        . "', ";
@@ -279,17 +281,21 @@ function validate_update($row) {
     $errors['meet_phone'] = "You've got too many numbers in your phone number.";
   }
 
-    if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
+  if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
     $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
   } 
 
-   if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
+  if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
     $errors['meet_pswd'] = "That password is way too long.";
   } 
 
-  if (is_blank($row['meet_url'])) {
-    $errors['meet_url'] = "You need a URL in order to host an online meeting.";
-  }  
+  if (is_blank($row['meet_url']) && is_blank($row['meet_addr'])) {
+    $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
+  }
+
+  if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
+    $errors['meet_addr'] = "255 Character limit on physical address";
+  }
 
   //if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
       //$errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
@@ -311,8 +317,8 @@ function validate_update($row) {
     $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
-   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 255)) {
-    $errors['add_note'] = "You've got more than 255 characters in your note.";
+   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+    $errors['add_note'] = "You've got more than 1,000 characters in your note.";
   } 
 
   return $errors; 

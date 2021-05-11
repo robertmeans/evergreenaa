@@ -61,8 +61,11 @@
 	<label for="meet_pswd">Password</label>
 	<input type="text" class="mtg-update<?php if (isset($errors['meet_pswd'])) { echo " fixerror"; } ?>" name="meet_pswd" value="<?= h($row['meet_pswd']); ?>" placeholder="Password">
 
-	<label for="meet_url">Meeting URL</label>
+	<label for="meet_url">Online URL</label>
 	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
+
+	<label for="meet_addr">Physical Address</label>
+	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>
 
 	</div><!-- .details-left -->
 	<div class="details-right<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">
@@ -110,7 +113,7 @@
 	</div><!-- .details-right -->
 	<div class="btm-notes">
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
+		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="review-mtg" class="submit" value="REVIEW">

@@ -10,6 +10,12 @@ require_once 'config/initialize.php';
 <!-- 	<div class="preload">
 		<p>One day at a time.</p>
 	</div> -->
+
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVGjPB87QSFceli6EMwlRlLxvmewIA1P0&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

@@ -651,7 +651,17 @@ form#manage-mtg {
 	textarea#meet_url {
 		width: 98%;
 		max-width: 18em;
-		height: 6em;
+		height: 2em;
+		resize: none;
+		border: 0;
+		padding: 0.2em;
+		font-size: 1.1em;
+		margin-bottom: 1em;
+	}
+	textarea#meet_addr {
+		width: 98%;
+		max-width: 18em;
+		height: 2em;
 		resize: none;
 		border: 0;
 		padding: 0.2em;
