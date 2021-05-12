@@ -22,16 +22,6 @@ $user_id = $_SESSION['id'];
 <!-- 	<div class="preload">
 		<p>One day at a time.</p>
 	</div> -->
-<script>
-	function initMap() {
-		
-	}
-</script>
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVGjPB87QSFceli6EMwlRlLxvmewIA1P0&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/private-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

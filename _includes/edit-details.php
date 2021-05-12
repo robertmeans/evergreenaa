@@ -113,7 +113,7 @@
 	</div><!-- .details-right -->
 	<div class="btm-notes">
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
+		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h($row['add_note']); ?></textarea>
 
 		<div class="visible">
 

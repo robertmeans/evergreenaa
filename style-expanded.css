@@ -554,14 +554,10 @@ li.ctr-day .day-content {
   width: 50%;
   padding: 1em;
 }
-.weekday-wrap .meeting-details .details-right #map {
-  width: 96%;
-  height: 180px;
-  margin-bottom: 1em;
-}
 .weekday-wrap .meeting-details .details-right p.add-info {
   text-decoration: underline;
   font-weight: bold;
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
 .weekday-wrap .meeting-details .details-right ul {
@@ -723,6 +719,8 @@ a.zoom:hover {
 a.zoom {
   display: inline-block;
   text-decoration: none;
+  width: auto;
+  padding: 0.5em 1em;
 }
 
 footer {
@@ -2260,6 +2258,98 @@ a.manage-delete:hover {
       justify-content: flex-end;
 }
 
+p.add-info {
+  margin-top: 0.5em;
+}
+
+#map {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 1em;
+}
+
+a.map-dir {
+  color: #313131;
+  background-color: #fff;
+  padding: 1em;
+  width: 90%;
+  margin: 0.5em auto;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+a.map-dir:hover {
+  background-color: #757575;
+  color: #fff;
+  cursor: pointer;
+}
+
+.glance-mtg-type i.fa-video,
+.glance-group-title i.fa-video {
+  color: #ea4335;
+}
+
+.glance-mtg-type i.fa-map-marker-alt,
+.glance-group-title i.fa-map-marker-alt {
+  color: #ea4335;
+}
+
+.glance-mtg-type i.fa-video,
+.glance-group-title i.fa-video,
+.glance-mtg-type i.fa-map-marker-alt,
+.glance-group-title i.fa-map-marker-alt {
+  font-size: 0.8em;
+  vertical-align: middle;
+  margin: 0 0.5em 0 0;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  bottom: 100%;
+  left: 50%;
+  padding: 0.5em;
+  line-height: 1.2em;
+  width: 150px;
+  margin-left: -80px;
+  /* Use half of the width (120/2 = 60), to center the tooltip */
+  /* Position the tooltip text - see examples below! */
+  margin-bottom: 8px;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 1234562;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 .errors {
   padding: 1.5em;
   border-radius: 2px;
@@ -2371,7 +2461,7 @@ form#manage-mtg textarea#meet_url {
 form#manage-mtg textarea#meet_addr {
   width: 98%;
   max-width: 18em;
-  height: 2em;
+  height: 4em;
   resize: none;
   border: 0;
   padding: 0.2em;

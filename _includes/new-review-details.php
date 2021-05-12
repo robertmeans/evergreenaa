@@ -22,6 +22,24 @@
 <?php } ?>
 					</div><!-- .details-left -->
 					<div class="details-right">
+
+
+						<div id="map">
+							<iframe
+							  width="100%"
+							  height="180"
+							  style="border:0"
+							  loading="lazy"
+							  allowfullscreen
+							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAVGjPB87QSFceli6EMwlRlLxvmewIA1P0
+							    &q=<?= $row['meet_addr']; ?>">
+							</iframe>
+						</div>
+
+
+
+
+						
 						<p class="add-info">Additional Information</p>
 						<ul>
 						<?php

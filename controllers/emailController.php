@@ -18,11 +18,11 @@ function sendVerificationEmail($username, $userEmail, $token) {
       $mail->Password   = PASSWORD; 
 
       //Recipients
-      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      $mail->setFrom('myevergreenaa@gmail.com', 'Evergreen AA Website');
       $mail->addAddress($userEmail, $username);     // Add a recipient
       $mail->addReplyTo($userEmail);
       // $mail->addCC('cc@example.com');
-      $mail->addBCC('info@evergreenaa.com');
+      $mail->addBCC('myevergreenaa@gmail.com');
 
       // Content
       $mail->isHTML(true);
@@ -66,7 +66,7 @@ function sendVerificationEmail($username, $userEmail, $token) {
       $mail->send();
 
   } catch (Exception $e) {
-      echo "Email verification ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: info@evergreenaa.com -- Mailer Error: {$mail->ErrorInfo}";
+      echo "Email verification ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: myevergreenaa@gmail.com -- Mailer Error: {$mail->ErrorInfo}";
   }
 }
 
@@ -81,11 +81,11 @@ function sendPasswordResetLink($userEmail, $token) {
       $mail->Password   = PASSWORD; 
 
       //Recipients
-      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      $mail->setFrom('myevergreenaa@gmail.com', 'Evergreen AA Website');
       $mail->addAddress($userEmail);     // Add a recipient
       $mail->addReplyTo($userEmail);
       // $mail->addCC('cc@example.com');
-      $mail->addBCC('info@evergreenaa.com');
+      $mail->addBCC('myevergreenaa@gmail.com');
 
       // Content
       $mail->isHTML(true);
@@ -130,7 +130,7 @@ function sendPasswordResetLink($userEmail, $token) {
       $mail->send();
 
   } catch (Exception $e) {
-      echo "Password reset reqest ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: info@evergreenaa.com -- Mailer Error: {$mail->ErrorInfo}";
+      echo "Password reset reqest ran into a server error. This is no bueno and brings shame to my family. If you are so inclined, please copy and paste this message into an email to: myevergreenaa@gmail.com -- Mailer Error: {$mail->ErrorInfo}";
   }
 }
 
@@ -144,7 +144,7 @@ function email_everyone_BCC($msgsubject, $email_addresses, $message) {
       $mail->Password   = PASSWORD; 
 
       //Recipients
-      $mail->setFrom(EMAIL, 'EvergreenAA Website');
+      $mail->setFrom('myevergreenaa@gmail.com', 'EvergreenAA Website');
       $mail->addBCC($email_addresses);
       // $mail->addBCC('robertmeans01@gmail.com');
 
@@ -170,7 +170,7 @@ function email_everyone_PERSONAL($msgsubject, $send_to, $message) {
       $mail->Password   = PASSWORD; 
 
       //Recipients
-      $mail->setFrom(EMAIL, 'EvergreenAA Website');
+      $mail->setFrom('myevergreenaa@gmail.com', 'EvergreenAA Website');
       $mail->addAddress($send_to);     // Add a recipient
       $mail->addReplyTo($send_to);
       // $mail->addAddress('robertmeans01@gmail.com');

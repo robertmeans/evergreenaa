@@ -1,8 +1,6 @@
 
 				<div class="meeting-details">
-					<?php // if (isset($_SESSION['id'])) { // show the edit button if they're logged in ?>
-					<!-- <a href="edit-meeting.php?mtg=<?php // echo h(u($meeting_id));  ?>"><i class="far fa-edit"></i></a> -->
-					<?php // } ?>
+<?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
 					<div class="details-left">
 <?php 					if ($row['dedicated_om'] != 0) { ?><p>Dedicated Online Meeting</p><?php } ?>
 <?php 					if ($row['meet_phone'] != null) { ?>
@@ -10,16 +8,36 @@
 <?php 					if ($row['meet_id'] != '') { ?>		
 						<p class="id-num">ID: <input type="text" value="<?= h($row['meet_id']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
-<?php } else { ?>
-						<p class="id-num">ID: No ID necessary</p>
 <?php } ?>
+
 <?php 					if ($row['meet_pswd'] != null) { ?>
 						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } ?>
-						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN MEETING</a></p>
+<?php     			if ($row['meet_url'] != null) { ?>
+						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM MEETING</a></p>
+<?php } ?>
 					</div><!-- .details-left -->
-					<div class="details-right">
+<?php } ?>
+					<div class="details-right" <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) { echo "style=\"width:100%;\""; } ?>>
+
+<?php 				if ($row['meet_addr'] != null) { ?>
+
+						<div id="map">
+							<iframe
+							  width="100%"
+							  height="180"
+							  style="border:0"
+							  loading="lazy"
+							  allowfullscreen
+							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAVGjPB87QSFceli6EMwlRlLxvmewIA1P0
+							    &q=<?= preg_replace( "/\r|\n/", " ", h($row['meet_addr'])); ?>">
+							</iframe>
+						</div>
+						<p><?= nl2br($row['meet_addr']); ?></p>
+						<a class="map-dir" href="https://maps.apple.com/?q=<?= preg_replace( "/\r|\n/", " ", h($row['meet_addr'])); ?>" target="_blank">Directions</a>
+<?php } ?>
+
 						<p class="add-info">Additional Information</p>
 						<ul>
 						<?php
@@ -51,5 +69,5 @@
 <?php  }   ?>
 						</ul>
 					</div><!-- .details-right -->
-					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= h($row['add_note']) ?></p></div><?php } ?>
+					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
 				</div><!-- .meeting-details -->

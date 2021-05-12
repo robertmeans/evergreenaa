@@ -113,7 +113,7 @@
 	</div><!-- .details-right -->
 	<div class="btm-notes">
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= h(str_replace('\r\n', '', $row['add_note'])); ?></textarea>
+		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= h($row['add_note']); ?></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="review-mtg" class="submit" value="REVIEW">
