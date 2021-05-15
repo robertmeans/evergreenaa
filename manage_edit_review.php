@@ -38,7 +38,7 @@ $row = edit_meeting($id);
 <div class="manage-simple review">
 	<h1>Quick view</h1>
 		
-		<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
 
 			<?php require '_includes/review-glance.php'; ?>
 			<div class="weekday-edit-wrap">

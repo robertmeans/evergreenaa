@@ -44,7 +44,7 @@ function create_new_meeting($row) {
     }
 
   $sql = "INSERT INTO meetings ";
-  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, meet_addr, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
+  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, meet_addr, meet_desc, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
   $sql .= "VALUES ("; 
   $sql .= "'" . db_escape($db, $row['id_user'])        . "', ";
   $sql .= "'" . $row['sun']            . "', ";
@@ -61,6 +61,7 @@ function create_new_meeting($row) {
   $sql .= "'" . db_escape($db, $row['meet_pswd'])      . "', ";
   $sql .= "'" . db_escape($db, $row['meet_url'])       . "', ";
   $sql .= "'" . db_escape($db, $row['meet_addr'])       . "', ";
+  $sql .= "'" . db_escape($db, $row['meet_desc'])       . "', ";
   $sql .= "'" . $row['dedicated_om']   . "', ";
   $sql .= "'" . $row['code_b']         . "', ";
   $sql .= "'" . $row['code_d']         . "', ";
@@ -115,6 +116,7 @@ function update_meeting($id, $row) {
   $sql .= "meet_pswd='"     . db_escape($db, $row['meet_pswd'])     . "', ";
   $sql .= "meet_url='"      . db_escape($db, $row['meet_url'])      . "', ";
   $sql .= "meet_addr='"      . db_escape($db, $row['meet_addr'])      . "', ";
+  $sql .= "meet_desc='"      . db_escape($db, $row['meet_desc'])      . "', ";
   $sql .= "dedicated_om='"  . $row['dedicated_om']  . "', ";
   $sql .= "code_b='"        . $row['code_b']        . "', ";
   $sql .= "code_d='"        . $row['code_d']        . "', ";
@@ -289,12 +291,20 @@ function validate_update($row) {
     $errors['meet_pswd'] = "That password is way too long.";
   } 
 
-  if (is_blank($row['meet_url']) && is_blank($row['meet_addr'])) {
+  if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
     $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
   }
 
   if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
     $errors['meet_addr'] = "255 Character limit on physical address";
+  }
+
+  if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
+    $errors['meet_addr'] = "255 Character limit on descriptive location";
+  }
+
+  if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
+    $errors['meet_addr'] = "You need location information for your map.";
   }
 
   //if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {

@@ -1,56 +1,3 @@
-<?php $layout_context = "manage";
-
-require_once 'config/initialize.php';
-// require_once '_includes/session.php';
-
-// off for local testing
-
-if (!isset($_SESSION['id'])) {
-	header('location: home.php');
-	exit();
-}
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
-	exit();
-}
-
-$user_id = $_SESSION['id'];
-
-// echo delete_success_message();
-?>
-
-<?php require '_includes/head.php'; ?>
-<body>
-<div class="preload-manage">
-	<p>Loading...</p>
-</div>	
-<?php require '_includes/nav.php'; ?>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
-<div id="manage-wrap">
-	
-	<div class="manage-simple intro">
-		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
-		<p>For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
-		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.</p>
-		<p class="logout">
-		<?php
-			if ($_SESSION['admin'] == "1") { 
-				echo "<a href=\"email_everyone_BCC.php\">BCC All</a> | <a href=\"email_everyone_PERSONAL.php\">Personal All</a> | "; 
-			}
-		?>
-			<a href="home_private.php">Home</a> | <a href="logout.php">Logout</a>
-		</p>
-	</div>
-	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>
-<div class="manage-simple">	
-	<h1>My Meetings</h1>
-</div>
-
-<?php
-	if ($_SESSION['admin'] == "1") { // ***** For my eyes only - Full Access *****
-		require '_includes/special-admin-editing.php';
-	} else { ?>
-
 <ul class="manage-weekdays">
 <?php 
 	$any_meetings_for_user = find_meetings_by_id($user_id);
@@ -238,7 +185,3 @@ $user_id = $_SESSION['id'];
 	}  mysqli_free_result($any_meetings_for_user); ?>
 
 </ul><!-- .manage-weekdays -->
-<?php } ?>
-</div><!-- #manage-wrap -->
-
-<?php require '_includes/footer.php'; ?>

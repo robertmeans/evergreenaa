@@ -1,26 +1,19 @@
-a#toggle-lat-long-msg,
-a#toggle-descriptive-location,
-a#toggle-pdf-info,
-a#toggle-link-label {
+a#toggle-descriptive-location {
   cursor: pointer;
   color: #5dcb5d;
   &:hover {
     color: #fff;
   }
 }
-a#gmaps {
-  color: #fff;
-  text-decoration: underline;
-  &:hover {
-    text-decoration: none;
-  }
-}
+// a#gmaps {
+//   color: #fff;
+//   text-decoration: underline;
+//   &:hover {
+//     text-decoration: none;
+//   }
+// }
 
-#msg-one,
-#lat-long,
-#desc-loc,
-#pdf-upload,
-#link-label {
+#desc-loc {
   cursor: pointer;
   // display: flex;
   // justify-content: center;
@@ -78,13 +71,6 @@ a#gmaps {
     & > hr {
       margin: 1em auto;
       width: 90%;
-    }
-    a.pdf {
-      color: #fff;
-      transition: all 0.2s ease;
-      &:hover {
-        color: rgba(255,255,255,0.6);
-      }
     }
     p.info-links {
       display: flex;
@@ -155,11 +141,7 @@ a.youtube {
   }
 }
 @media screen and (max-width: 800px) {
-  #msg-one,
-  #lat-long,
-  #desc-loc,
-  #pdf-upload,
-  #link-label {
+  #desc-loc {
     .msg-bkg {
       justify-content: flex-start;
       overflow-y: auto;
@@ -188,11 +170,7 @@ a.youtube {
 }
 
 @media screen and (max-width: 390px) {
-  #msg-one,
-  #lat-long,
-  #desc-loc,
-  #pdf-upload,
-  #link-label {
+  #desc-loc {
     .msg-bkg {
       // padding: 0px;
     }

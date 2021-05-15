@@ -13,9 +13,9 @@ if ($_SESSION['id'] != 1) {
 
 if ((is_post_request()) && (isset($_POST['email-everyone']))) {
 
-$email_addresses = $_POST['email_addresses'];
+// $email_addresses = $_POST['email_addresses'];
 // for testing, comment above and uncomment below
-// $email_addresses = 'robertmeans01@gmail.com';
+$email_addresses = 'robertmeans01@gmail.com';
 // concludes testing
 $msgsubject = $_POST['msgsubject'] ?? ''; 
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  

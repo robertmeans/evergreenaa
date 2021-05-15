@@ -65,8 +65,21 @@
 	<label for="meet_url">Meeting URL</label>
 	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
 
-	<label for="meet_addr">Physical Address</label>
-	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>	
+
+
+
+
+	<label for="meet_addr">Physical Address | lat°, long° accepted <a id="toggle-lat-long-msg"><i class="far fa-question-circle fa-fw"></i></a></label>
+	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url']) || isset($errors['meet_addr'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>	
+
+	<label for="meet_desc">Descriptive Location <a id="toggle-descriptive-location"><i class="far fa-question-circle fa-fw"></i></a></label>
+	<textarea name="meet_desc" id="meet_desc" placeholder="123 Main St.&#10;Evergreen, CO&#10;Around back, 2nd floor"><?= h($row['meet_desc']); ?></textarea>
+
+
+
+
+
+
 
 	</div><!-- .details-left -->
 	<div class="details-right<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">

@@ -170,7 +170,303 @@ $(document).ready(function(){
   $(".day-content").hide();
   $(".weekday-wrap").hide();
   $("#msg-one").hide();
+  $("#lat-long").hide();
+  $("#desc-loc").hide();
+  $("#pdf-upload").hide();
+  $("#link-label").hide();
   $("#email-bob").hide();
+
+
+
+  $(".pdf1").hide();
+  $(".pdf2").hide();
+  $(".pdf3").hide();
+  $(".pdf4").hide();
+  $('#file-upload').click(function() {
+    var file_upload_txt = $(this).html();
+    // var open_upload = $(this).closest('.pdf-wrap');
+    //alert(file_upload_txt);
+
+    // if ((file_upload_txt) == ' Add a PDF') {
+    //   $('.pdf1').slideDown();
+    //   $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+    //   return;
+    // } 
+
+    // if ((file_upload_txt) == ' Add another PDF | 3 remaining') {
+    //     $('.pdf2').slideDown();
+    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+    //     return;
+    // }
+
+    // if ((file_upload_txt) == ' Add another PDF | 2 remaining') {
+    //     $('.pdf3').slideDown();
+    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+    //     return;
+    // }
+
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add a PDF') {
+      if ($('.pdf1').is(':hidden')) {
+        $('.pdf1').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      }
+      if ($('.pdf2').is(':hidden')) {
+        $('.pdf2').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      }
+      if ($('.pdf3').is(':hidden')) {
+        $('.pdf3').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      }
+      if ($('.pdf4').is(':hidden')) {
+        $('.pdf4').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      }
+    }
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining') {
+      if ($('.pdf1').is(':hidden')) {
+        $('.pdf1').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      }
+      if ($('.pdf2').is(':hidden')) {
+        $('.pdf2').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      }
+      if ($('.pdf3').is(':hidden')) {
+        $('.pdf3').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      }
+      if ($('.pdf4').is(':hidden')) {
+        $('.pdf4').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      }
+    }
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining') {
+      if ($('.pdf1').is(':hidden')) {
+        $('.pdf1').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      }
+      if ($('.pdf2').is(':hidden')) {
+        $('.pdf2').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      }
+      if ($('.pdf3').is(':hidden')) {
+        $('.pdf3').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      }
+      if ($('.pdf4').is(':hidden')) {
+        $('.pdf4').slideDown();
+        $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      }
+    }
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining') {
+      if ($('.pdf1').is(':hidden')) {
+        $('.pdf1').slideDown();
+        $(this).html('');
+        return;
+      }
+      if ($('.pdf2').is(':hidden')) {
+        $('.pdf2').slideDown();
+        $(this).html('');
+        return;
+      }
+      if ($('.pdf3').is(':hidden')) {
+        $('.pdf3').slideDown();
+        $(this).html('');
+        return;
+      }
+      if ($('.pdf4').is(':hidden')) {
+        $('.pdf4').slideDown();
+        $(this).html('');
+        return;
+      }
+    }    
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $('.pdf-remove').click(function() {
+    var file_upload_txt = $('#file-upload').html();
+    var close_upload = $(this).closest('.pdf-wrap');
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining') {
+
+      if ((close_upload).hasClass('pdf1')) {
+        $('.pdf1_name').val('');
+        $('.pdf1').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf2')) {
+        $('.pdf2_name').val('');
+        $('.pdf2').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf3')) {
+        $('.pdf3_name').val('');
+        $('.pdf3').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf4')) {
+        $('.pdf4_name').val('');
+        $('.pdf4').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
+        return;
+      }
+        return;
+    }
+
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining') {
+
+      if ((close_upload).hasClass('pdf1')) {
+        $('.pdf1_name').val('');
+        $('.pdf1').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf2')) {
+        $('.pdf2_name').val('');
+        $('.pdf2').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf3')) {
+        $('.pdf3_name').val('');
+        $('.pdf3').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf4')) {
+        $('.pdf4_name').val('');
+        $('.pdf4').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+      }
+        return;
+    }
+
+
+    if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining') {
+
+      if ((close_upload).hasClass('pdf1')) {
+        $('.pdf1_name').val('');
+        $('.pdf1').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf2')) {
+        $('.pdf2_name').val('');
+        $('.pdf2').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf3')) {
+        $('.pdf3_name').val('');
+        $('.pdf3').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf4')) {
+        $('.pdf4_name').val('');
+        $('.pdf4').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+        return;
+      }
+      return;
+    } 
+
+
+    if ((file_upload_txt) == '') {
+
+      if ((close_upload).hasClass('pdf1')) {
+        $('.pdf1_name').val('');
+        $('.pdf1').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf2')) {
+        $('.pdf2_name').val('');
+        $('.pdf2').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf3')) {
+        $('.pdf3_name').val('');
+        $('.pdf3').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      } 
+      if ((close_upload).hasClass('pdf4')) {
+        $('.pdf4_name').val('');
+        $('.pdf4').slideUp();
+        $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+        return;
+      }
+        return;
+    } 
+
+
+
+
+
+
+
+    // if ((file_upload_txt) == ' Add another PDF | 2 remaining') {
+    //     $(close_upload).slideUp();
+    //     $('#file-upload').html(' Add another PDF | 3 remaining');
+    //     return;
+    // }
+
+    // if ((file_upload_txt) == ' Add another PDF | 1 remaining') {
+    //     $(close_upload).slideUp();
+    //     $('#file-upload').html(' Add another PDF | 2 remaining');
+    //     return;
+    // }
+
+    // if ((file_upload_txt) == '') {
+    //     $(close_upload).slideUp();
+    //     $('#file-upload').html(' Add another PDF | 1 remaining');
+    //     return;
+    // }
+
+  });
+    // $(close_upload).slideUp();
+
+
+
+
+
 
   /* toggle days of week */
   $('.day').click(function() {
@@ -279,6 +575,62 @@ $("#toggle-private-msg").click(function(e) {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+// toggle lat, long coordinates explanation on 
+// _includes/edit-details.php page
+$("#toggle-lat-long-msg").click(function(e) {
+  $("#lat-long").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$(document).click(function() {
+  $("#lat-long").fadeOut(500);
+});​
+
+$("#toggle-descriptive-location").click(function(e) {
+  $("#desc-loc").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$(document).click(function() {
+  $("#desc-loc").fadeOut(500);
+});​
+
+$("#toggle-pdf-info").click(function(e) {
+  $("#pdf-upload").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$(document).click(function() {
+  $("#pdf-upload").fadeOut(500);
+});​
+
+$("#toggle-link-label").click(function(e) {
+  $("#link-label").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$(document).click(function() {
+  $("#link-label").fadeOut(500);
+});​
+
+
+
+
+
+
+
 // close msg one when clicking anywhere on page
 $(document).click(function() {
   // var close    = 'Close';
@@ -294,6 +646,15 @@ $(document).click(function() {
 });​
 
 // prevent these links from closing msg
+$(".pdf-remove").click(function(e) {
+   e.stopPropagation();
+});
+$("#gmaps").click(function(e) {
+    e.stopPropagation();
+});
+$(".pdf").click(function(e) {
+    e.stopPropagation();
+});
 $("#preamble").click(function(e) {
     e.stopPropagation();
 });

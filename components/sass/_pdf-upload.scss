@@ -1,26 +1,19 @@
-a#toggle-lat-long-msg,
-a#toggle-descriptive-location,
-a#toggle-pdf-info,
-a#toggle-link-label {
+a#toggle-pdf-info {
   cursor: pointer;
   color: #5dcb5d;
   &:hover {
     color: #fff;
   }
 }
-a#gmaps {
-  color: #fff;
-  text-decoration: underline;
-  &:hover {
-    text-decoration: none;
-  }
-}
+// a#gmaps {
+//   color: #fff;
+//   text-decoration: underline;
+//   &:hover {
+//     text-decoration: none;
+//   }
+// }
 
-#msg-one,
-#lat-long,
-#desc-loc,
-#pdf-upload,
-#link-label {
+#pdf-upload {
   cursor: pointer;
   // display: flex;
   // justify-content: center;
@@ -155,11 +148,7 @@ a.youtube {
   }
 }
 @media screen and (max-width: 800px) {
-  #msg-one,
-  #lat-long,
-  #desc-loc,
-  #pdf-upload,
-  #link-label {
+  #pdf-upload {
     .msg-bkg {
       justify-content: flex-start;
       overflow-y: auto;
@@ -188,11 +177,7 @@ a.youtube {
 }
 
 @media screen and (max-width: 390px) {
-  #msg-one,
-  #lat-long,
-  #desc-loc,
-  #pdf-upload,
-  #link-label {
+  #pdf-upload {
     .msg-bkg {
       // padding: 0px;
     }

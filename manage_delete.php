@@ -48,7 +48,7 @@ $row = edit_meeting($id);
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>
 
-	<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
 
 		<?php require '_includes/delete-glance.php'; ?>
 		<div class="weekday-edit-wrap">

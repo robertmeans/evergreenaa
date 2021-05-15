@@ -37,7 +37,9 @@ $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 $row['meet_id'] 		= $_POST['meet_id'] 									?? ''; 
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? ''; 
-$row['meet_url'] 		= $_POST['meet_url'] 									?? '';  
+$row['meet_url'] 		= $_POST['meet_url'] 									?? '';
+$row['meet_addr'] 		= $_POST['meet_addr'] 									?? '';
+$row['meet_desc'] 		= $_POST['meet_desc'] 									?? '';  
 $row['dedicated_om'] 	= $_POST['dedicated_om'] 								?? ''; 
 $row['code_b'] 			= $_POST['code_b'] 										?? ''; 
 $row['code_d'] 			= $_POST['code_d'] 										?? ''; 
@@ -74,6 +76,10 @@ $row = edit_meeting($id);
 <?php require '_includes/head.php'; ?>
 <body>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/lat-long-instructions.php'; ?>
+<?php require '_includes/descriptive-location-msg.php'; ?>
+<?php require '_includes/pdf-upload-txt.php'; ?>
+<?php require '_includes/link-label-txt.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
@@ -86,7 +92,7 @@ $row = edit_meeting($id);
 	<h1 class="edit-h1">Update this Meeting</h1>
 	<?php echo display_errors($errors); ?>
 
-	<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/edit-details.php'; ?>

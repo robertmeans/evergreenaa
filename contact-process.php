@@ -31,7 +31,7 @@ if (is_post_request()) {
 
         //Recipients
         $mail->setFrom($email, $name);
-        $mail->addAddress('myevergreenaa@gmail.com', 'EvergreenAA Website Contact Form');     // Add a recipient
+        $mail->addAddress(EMAIL, 'EvergreenAA Website Contact Form');     // Add a recipient
         $mail->addReplyTo($email, $name);
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('robertmeans01@gmail.com');

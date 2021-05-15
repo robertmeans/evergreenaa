@@ -1,7 +1,7 @@
 
 <div class="meeting-details">
 
-	<form id="manage-mtg" action="manage_update.php?id=<?= h(u($row['id_mtg'])); ?>" method="post">
+	<form id="manage-mtg" action="manage_update.php?id=<?= h(u($row['id_mtg'])); ?>" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
@@ -64,8 +64,22 @@
 	<label for="meet_url">Meeting URL</label>
 	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
 
-	<label for="meet_addr">Physical Address</label>
+
+
+
+
+
+
+
+
+	<label for="meet_addr">Physical Address | lat°, long° accepted <a id="toggle-lat-long-msg"><i class="far fa-question-circle fa-fw"></i></a></label>
 	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>
+
+	<label for="meet_desc">Descriptive Location <a id="toggle-descriptive-location"><i class="far fa-question-circle fa-fw"></i></a></label>
+	<textarea name="meet_desc" id="meet_desc" placeholder="123 Main St.&#10;Evergreen, CO&#10;Around back, 2nd floor"><?= h($row['meet_desc']); ?></textarea>
+
+
+
 
 	</div><!-- .details-left -->
 	<div class="details-right<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">
@@ -112,6 +126,71 @@
 			
 	</div><!-- .details-right -->
 	<div class="btm-notes">
+
+
+
+
+
+
+
+
+
+
+<div class="file-uploads">
+	<p>Upload PDF Files <a id="toggle-pdf-info"><i class="far fa-question-circle fa-fw"></i></a></p>
+
+	<div class="pdf-wrap pdf1">
+		<div class="pdf-row">
+			<input type="file" class="pdf1_name" name="pdf1"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="pdf1_name"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-1">Remove</a>
+		</div>
+	</div>
+
+	<div class="pdf-wrap pdf2">
+		<div class="pdf-row">
+			<input type="file" class="pdf2_name" name="pdf2"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="pdf2_name"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-2">Remove</a>
+		</div>
+	</div>		
+
+	<div class="pdf-wrap pdf3">
+		<div class="pdf-row">
+			<input type="file" class="pdf3_name" name="pdf3"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="pdf3_name"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-3">Remove</a>
+		</div>
+	</div>		
+
+	<div class="pdf-wrap pdf4">
+		<div class="pdf-row">
+			<input type="file" class="pdf4_name" name="pdf4"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="pdf4_name"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-4">Remove</a>
+		</div>
+	</div>
+
+	<a id="file-upload"><i class="far fa-plus-square fa-fw"></i> Add a PDF</a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<label for="add_note">Additional notes</label>
 		<textarea name="add_note" class="meetNotes" placeholder="Text only. 255 characters or less. All formatting will be stripped."><?= h($row['add_note']); ?></textarea>
 

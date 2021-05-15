@@ -17,6 +17,7 @@
 	margin-bottom: 0.3em;
 	font-family: 'Special Elite', cursive;
 	color: rgba(223,147,39,1);
+	line-height: 1em;
 	&.warning {
 		color: rgba(222,44,13,1);
 	}
@@ -536,22 +537,6 @@ a.manage-delete {
 	form {
 		display: flex;
 		justify-content: flex-end;
-		// a.cancel {
-		//     background-color: rgba(0,0,0,0.9);
-		//     font-family: Tahoma, Calbri, sans-serif;
-		//     color: #fff;
-		//     text-decoration: none;
-		//     font-size: 1em;
-		//     cursor: pointer;
-		//     border: 1px solid #fff;
-		//     padding: 1em 2em;
-		//     margin-top: 1.5em;
-		//     transition: all 0.2s ease;
-	 //    &:hover {
-		// 	background-color: rgba(255,255,255,0.6);
-		//     color: rgba(0,0,0,0.9);    	
-		// 	}
-	 //    }
 	}
 }
 p.add-info {
@@ -594,6 +579,17 @@ a.map-dir {
 	vertical-align: middle;
 	margin: 0 0.5em 0 0;
 }
+form#manage-mtg .details-left {
+	label {
+		cursor: default;
+	}
+	input:focus,
+	textarea:focus {
+		outline: none;
+	}
+}
+
+
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -710,6 +706,9 @@ form#manage-mtg {
 		width: 6em;
 		margin-bottom: 1em;
 		text-align: center;
+		&:focus {
+			outline: none;
+		}
 	}
 	span.fixerror,
 	div.fixerror {
@@ -728,6 +727,9 @@ form#manage-mtg {
 	input.mtg-update.group-name {
 		width: 96%;
 		max-width: 28em;
+		&:focus {
+			outline: none;
+		}
 	}
 	input.mtg-update-url {
 		width: 16em;
@@ -735,7 +737,7 @@ form#manage-mtg {
 	textarea#meet_url {
 		width: 98%;
 		max-width: 18em;
-		height: 2em;
+		height: 1.6em;
 		resize: none;
 		border: 0;
 		padding: 0.2em;
@@ -743,6 +745,10 @@ form#manage-mtg {
 		margin-bottom: 1em;
 	}
 	textarea#meet_addr {
+		margin-bottom: 0.5em;
+	}
+	textarea#meet_addr,
+	textarea#meet_desc {
 		width: 98%;
 		max-width: 18em;
 		height: 4em;
@@ -777,25 +783,100 @@ form#manage-mtg {
 		line-height: 1.6em;
 		color: gray;
 	}
-	label.vis {
+	label.vis,
+	label.pdf-label {
 		color: #fff;
 	}
 }
 .btm-notes {
 	width: 100%;
+	.file-uploads {
+		width: 100%;
+		padding: 1em;
+		border-top: 1px dotted rgba(255,255,255,0.6);
+		border-bottom: 1px dotted rgba(255,255,255,0.6);
+		margin: 1em 0;
+		a#file-upload {
+			color: #5dcb5d;
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			&:hover {
+				color: #fff;
+			}
+		}
+		.pdf-wrap {
+			display: flex;
+			justify-content: space-between;
+			padding: 0.5em;
+			border: 1px solid rgba(255,255,255,0.5);
+			background-color: rgba(255,255,255,0.2);
+			margin-bottom: 0.5em;
+		}
+		.pdf-remove {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			a {
+				color: #fff;
+				background-color: #000;
+				padding: 1em;
+				text-decoration: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				&:hover {
+					background-color: rgba(255,255,255,0.2);
+				}
+			}
+		}
+		.pdf-row {
+			display: flex;
+			flex-direction: column;
+			
+			input[type="file"] {
+
+			}
+			input[type="text"] {
+				font-size: 1.1em;
+		    border: 0;
+		    padding: 0.2em;
+		    width: 96%;
+		    max-width: 10em;
+			}
+			input {
+				margin: 0.5em 0;
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+		p {
+			color: rgba(255,255,255,0.6)
+		}
+		a.pdf-convert {
+			color: #fff;
+			&:hover {
+				color: rgba(255,255,255,0.6);
+			}
+		}
+	}
 	textarea.meetNotes {
 		width: 100%;
 		font-size: 1.1em;
-	    padding: 30px;
-	    background: rgba(255,255,255,1);
-	    color: #313131;
-	    border-top-right-radius: 10px;
-	    border-bottom-right-radius: 0px;
-	    border-bottom-left-radius: 10px;
-	    border-top-left-radius: 0px;
-	    margin-top: 0.5em;
-	    resize: none;
-	    margin-bottom: 1em;
+		height: 5em;
+    padding: 0.5em 0.75em;
+    background: rgba(255,255,255,1);
+    color: #313131;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 0px;
+    margin-top: 0.5em;
+    resize: none;
+    margin-bottom: 1em;
+    &:focus {
+    	outline: none;
+    }
 	}
 	.update-rt {
 		display: flex;
@@ -836,6 +917,7 @@ form#manage-mtg {
     input[name="review-mtg"]  {
     	background-color: rgba(255,151,5,1);
     	margin-left: 0.5em;
+    	-webkit-appearance: none;
     	&:hover {
     		background-color: rgba(255,205,5,1);
     		color: #fff;
@@ -844,6 +926,7 @@ form#manage-mtg {
     input[name="update-mtg"]  {
     	background-color: rgba(32,168,32,1);
     	margin-left: 0.5em;
+    	-webkit-appearance: none;
     	&:hover {
     		background-color: rgba(93,203,93,1);
     		color: #fff;
@@ -852,6 +935,7 @@ form#manage-mtg {
     input[name="delete-mtg"]  {
     	background-color: rgba(222,44,13,1);
     	margin-left: 0.5em;
+    	-webkit-appearance: none;
     	&:hover {
     		background-color: rgba(255,0,0,1);
     		color: #fff;
@@ -900,6 +984,9 @@ form#manage-mtg {
 
 
 @media screen and (max-width: 800px) {
+	.manage-simple {
+		text-align: left;
+	}
 	form#manage-mtg {
 		flex-direction: column;
 	}
@@ -939,8 +1026,17 @@ form#manage-mtg {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		width: 98%;
-
+		width: 100%;
+		.pdf-wrap {
+			flex-direction: column;
+		}
+		.file-uploads {
+			padding: 0;
+			margin-bottom: 1em;
+		}
+		.visible {
+			padding: 0;
+		}
 	}
 	.btm-notes .update-rt {
 		flex-wrap: wrap;
