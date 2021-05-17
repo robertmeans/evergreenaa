@@ -178,8 +178,6 @@ function update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn
   }
 
 
-
-
   $sql = "UPDATE meetings SET ";
   $sql .= "visible='"       . $row['visible']           . "', ";
   $sql .= "sun='"           . $row['sun']           . "', ";
@@ -347,6 +345,16 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 
   $errors = [];
 
+  // see 0517211108 for explanation of this one...
+  // *any* file error needs to render this one message
+  // if you add any more file error messages you need to add it to this list for 1, 2, 3 & 4
+  // it's also (identical) in tne validate_update() function
+  // if ((((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) || (((isset($fn1) && $fn1 != '') && ($nf1 == '')))) || ((!isset($fn1) || ($fn1 == '') && $row['hid_f1'] == '') && (trim($row['link1']) != '')) || (((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) || (((isset($fn2) && $fn2 != '') && ($nf2 == '')))) || ((!isset($fn2) || ($fn2 == '') && $row['hid_f2'] == '') && (trim($row['link2']) != '')) || (((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) || (((isset($fn3) && $fn3 != '') && ($nf3 == '')))) || ((!isset($fn3) || ($fn3 == '') && $row['hid_f3'] == '') && (trim($row['link3']) != '')) || (((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) || (((isset($fn4) && $fn4 != '') && ($nf4 == '')))) || ((!isset($fn4) || ($fn4 == '') && $row['hid_f4'] == '') && (trim($row['link4']) != ''))) {
+  //   $errors['file_upload'] = "NOTE: File selections do not persist between page refresh. If you have selected files and your page has any errors, ALL files need to be reselected.";
+  // } 
+
+
+
   if (is_blank($row['group_name'])) {
     $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
   } else if (!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
@@ -428,6 +436,7 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   }
 
 
+  // begin file errors for new meeting page
 
   if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
     $errors['name_link1'] = "You did not name your link in position 1. Please restore all file selections.";
@@ -438,7 +447,6 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   if (((isset($fn1) && $fn1 != '') && ($nf1 == ''))) {
     $errors['name_link1'] = "File upload in Position 1 needs attention. Please restore all file selections.";
   }
-
 
 
   if ((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) {
@@ -452,7 +460,6 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   }
 
 
-
   if ((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) {
     $errors['name_link3'] = "You did not name your link in position 3. Please restore all file selections.";
   }
@@ -462,7 +469,6 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   if (((isset($fn3) && $fn3 != '') && ($nf3 == ''))) {
     $errors['name_link3'] = "File upload in Position 3 needs attention. Please restore all file selections.";
   }
-
 
 
   if ((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) {
@@ -475,6 +481,8 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['name_link4'] = "File upload in Position 4 needs attention. Please restore all file selections.";
   }
 
+  // end file errors for new meeting page
+
 
   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
     $errors['add_note'] = "You've got more than 1,000 characters in your note.";
@@ -486,6 +494,16 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 // need a separate validation function because of file uploads
   $errors = [];
+
+  // see 0517211108 for explanation of this one...
+  // *any* file error needs to render this one message
+  // if you add any more file error messages you need to add it to this list for 1, 2, 3 & 4
+  // it's also (identical) in tne validate_new() function
+  // if ((((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) || (((isset($fn1) && $fn1 != '') && ($nf1 == '')))) || ((!isset($fn1) || ($fn1 == '') && $row['hid_f1'] == '') && (trim($row['link1']) != '')) || (((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) || (((isset($fn2) && $fn2 != '') && ($nf2 == '')))) || ((!isset($fn2) || ($fn2 == '') && $row['hid_f2'] == '') && (trim($row['link2']) != '')) || (((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) || (((isset($fn3) && $fn3 != '') && ($nf3 == '')))) || ((!isset($fn3) || ($fn3 == '') && $row['hid_f3'] == '') && (trim($row['link3']) != '')) || (((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) || (((isset($fn4) && $fn4 != '') && ($nf4 == '')))) || ((!isset($fn4) || ($fn4 == '') && $row['hid_f4'] == '') && (trim($row['link4']) != ''))) {
+  //   $errors['file_upload'] = "NOTE: File selections do not persist between page refresh. If you have selected files and your page has any errors, ALL files need to be reselected.";
+  // }
+
+
 
   if (is_blank($row['group_name'])) {
     $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
@@ -539,10 +557,6 @@ function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['meet_addr'] = "You need location information for your map.";
   }
 
-  //if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
-      //$errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
-  //}
-
   if (( $row['dedicated_om']    == "0"   && 
         $row['code_o']          == "0"   && 
         $row['code_w']          == "0"   && 
@@ -568,54 +582,55 @@ function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   }
 
 
+  // 0517211108 - begin file errors for update/edit page
+  // first one is overall error saying any files need to be restored.
+  // this was created by just copying every error possible and separating it with a ||
+  // it's set at the top of all errors so it will be the first - w/special formatting
 
   if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
     $errors['name_link1'] = "You did not name your link in position 1. Please restore all file selections.";
   }
-  // if ((!isset($fn1) || ($fn1 == '')) && (trim($row['link1']) != '')) {
-  //   $errors['name_link1'] = "There's a name but no file to upload in position 1. Please restore all file selections.";
-  // }
   if (((isset($fn1) && $fn1 != '') && ($nf1 == ''))) {
     $errors['name_link1'] = "File upload in Position 1 needs attention. Please restore all file selections.";
   }
-
+  if ((!isset($fn1) || ($fn1 == '') && $row['hid_f1'] == '') && (trim($row['link1']) != '')) {
+    $errors['name_link1'] = "You set a name but no file in position 1. Please restore all file selections.";
+  }
 
 
   if ((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) {
     $errors['name_link2'] = "You did not name your link in position 2. Please restore all file selections.";
   }
-  // if ((!isset($fn2) || ($fn2 == '')) && (trim($row['link2']) != '')) {
-  //   $errors['name_link2'] = "There's a name but no file to upload in position 2. Please restore all file selections.";
-  // }
   if (((isset($fn2) && $fn2 != '') && ($nf2 == ''))) {
     $errors['name_link2'] = "File upload in Position 2 needs attention. Please restore all file selections.";
   }
-
+  if ((!isset($fn2) || ($fn2 == '') && $row['hid_f2'] == '') && (trim($row['link2']) != '')) {
+    $errors['name_link2'] = "You set a name but no file in position 2. Please restore all file selections.";
+  }
 
 
   if ((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) {
     $errors['name_link3'] = "You did not name your link in position 3. Please restore all file selections.";
   }
-  // if ((!isset($fn3) || ($fn3 == '')) && (trim($row['link3']) != '')) {
-  //   $errors['name_link3'] = "There's a name but no file to upload in position 3. Please restore all file selections.";
-  // }
   if (((isset($fn3) && $fn3 != '') && ($nf3 == ''))) {
     $errors['name_link3'] = "File upload in Position 3 needs attention. Please restore all file selections.";
   }
-
+  if ((!isset($fn3) || ($fn3 == '') && $row['hid_f3'] == '') && (trim($row['link3']) != '')) {
+    $errors['name_link3'] = "You set a name but no file in position 3. Please restore all file selections.";
+  }
 
 
   if ((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) {
     $errors['name_link4'] = "You did not name your link in position 4. Please restore all file selections.";
   }
-  // if ((!isset($fn4) || ($fn4 == '')) && (trim($row['link4']) != '')) {
-  //   $errors['name_link4'] = "There's a name but no file to upload in position 4. Please restore all file selections.";
-  // }
   if (((isset($fn4) && $fn4 != '') && ($nf4 == ''))) {
     $errors['name_link4'] = "File upload in Position 4 needs attention. Please restore all file selections.";
   }
+  if ((!isset($fn4) || ($fn4 == '') && $row['hid_f4'] == '') && (trim($row['link4']) != '')) {
+    $errors['name_link4'] = "You set a name but no file in position 4. Please restore all file selections.";
+  }
 
-
+  // end file errors for update/edit page
 
 
   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {

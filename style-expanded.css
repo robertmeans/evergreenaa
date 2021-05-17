@@ -2587,6 +2587,18 @@ form#manage-mtg .pdf-wrap.fixerror {
 form#manage-mtg .pdf-wrap.fixerror label.pdf-label {
   color: #313131;
 }
+form#manage-mtg .pdf-wrap.fixerror a:not(#toggle-link-label) {
+  color: #fff;
+  background-color: #4d4d4d;
+  padding: 1em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+form#manage-mtg .pdf-wrap.fixerror a:not(#toggle-link-label):hover {
+  color: #fff;
+  background-color: #000;
+}
 form#manage-mtg p.days-held {
   text-decoration: underline;
   font-weight: bold;

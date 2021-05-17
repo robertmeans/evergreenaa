@@ -305,7 +305,7 @@ $(document).ready(function(){
 
 
 
-  $('#review-mtg').click(function(e) {
+  $('#review-mtg, #update-mtg').click(function(e) {
     var file1 = document.getElementById('file1').files[0];
     var file2 = document.getElementById('file2').files[0];
     var file3 = document.getElementById('file3').files[0];
@@ -315,7 +315,7 @@ $(document).ready(function(){
       if(file1 && file1.size <= 2097152) {
         // submit form
       } else {
-        alert('Your file "' + file1.name + '" is too large. The file size limit is 2MB. Please remove or replace in order to proceed.');
+        alert('Your file "' + file1.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
         // document.getElementById('pdf1').addClass('fixerror');
         e.preventDefault();
       }
@@ -325,7 +325,7 @@ $(document).ready(function(){
       if(file2 && file2.size <= 2097152) {
         // submit form
       } else {
-        alert('Your file "' + file2.name + '" is too large. The file size limit is 2MB. Please remove or replace in order to proceed.');
+        alert('Your file "' + file2.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
         e.preventDefault();
       }
     }
@@ -334,7 +334,7 @@ $(document).ready(function(){
       if(file3 && file3.size <= 2097152) {
         // submit form
       } else {
-        alert('Your file "' + file3.name + '" is too large. The file size limit is 2MB. Please remove or replace in order to proceed.');
+        alert('Your file "' + file3.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
         e.preventDefault();
       }
     }
@@ -343,7 +343,7 @@ $(document).ready(function(){
       if(file4 && file4.size <= 2097152) {
         // submit form
       } else {
-        alert('Your file "' + file4.name + '" is too large. The file size limit is 2MB. Please remove or replace in order to proceed.');
+        alert('Your file "' + file4.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
         e.preventDefault();
       }
     }

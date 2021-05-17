@@ -718,6 +718,18 @@ form#manage-mtg {
 		label.pdf-label {
 			color: #313131;
 		}
+		a:not(#toggle-link-label) {
+			color: #fff;
+			background-color: #4d4d4d;
+			padding: 1em;
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			&:hover {
+				color: #fff;
+				background-color: #000;
+			}
+		}
 	}
 	p.days-held {
 		text-decoration: underline;

@@ -14,6 +14,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $id = $_GET['id'];
 
+// If validation fails -> this page is rendered
 if (is_post_request()) {
 
 $rando_num = rand(100,999);
@@ -21,7 +22,7 @@ $row = [];
 
 
 
-	if (($_POST['hid_f1'] != '') && !empty($_FILES['file1']['name'])) {
+	if (!empty($_FILES['file1']['name'])) {
 		$uploaded_file1 = $_FILES['file1']['name'];
 		$uploaded_size1 = $_FILES['file1']['size'];
 		$ext1 = strtolower(pathinfo($uploaded_file1, PATHINFO_EXTENSION));
@@ -29,13 +30,17 @@ $row = [];
 
 		$nf1 = $rename1 . '.' . $ext1;
 		$fn1 = $_FILES['file1']['tmp_name'];
-	} else {
-		$nf1 = $_POST['hid_f1']; // new_file
-		$fn1 = ''; // file_name
+	} 
+	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] != '') && $_POST['link1'] != ''))  {
+		$nf1 = $_POST['hid_f1']; 
+		$fn1 = ''; 
+	} 
+	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] == '') && $_POST['link1'] == '')) {
+		$nf1 = ''; 
+		$fn1 = ''; 	
 	}
 
-
-	if (($_POST['hid_f2'] != '') && !empty($_FILES['file2']['name'])) {
+	if (!empty($_FILES['file2']['name'])) {
 		$uploaded_file2 = $_FILES['file2']['name'];
 		$uploaded_size2 = $_FILES['file2']['size'];
 		$ext2 = strtolower(pathinfo($uploaded_file2, PATHINFO_EXTENSION));
@@ -43,12 +48,17 @@ $row = [];
 
 		$nf2 = $rename2 . '.' . $ext2;
 		$fn2 = $_FILES['file2']['tmp_name'];
-	} else {
-		$nf2 = $_POST['hid_f2']; // new_file
-		$fn2 = ''; // file_name
+	} 
+	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] != '') && $_POST['link2'] != ''))  {
+		$nf2 = $_POST['hid_f2']; 
+		$fn2 = ''; 
+	} 
+	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] == '') && $_POST['link2'] == '')) {
+		$nf2 = ''; 
+		$fn2 = ''; 	
 	}
 
-	if (($_POST['hid_f3'] != '') && !empty($_FILES['file3']['name'])) {
+	if (!empty($_FILES['file3']['name'])) {
 		$uploaded_file3 = $_FILES['file3']['name'];
 		$uploaded_size3 = $_FILES['file3']['size'];
 		$ext3 = strtolower(pathinfo($uploaded_file3, PATHINFO_EXTENSION));
@@ -56,12 +66,17 @@ $row = [];
 
 		$nf3 = $rename3 . '.' . $ext3;
 		$fn3 = $_FILES['file3']['tmp_name'];
-	} else {
-		$nf3 = $_POST['hid_f3']; // new_file
-		$fn3 = ''; // file_name
-	}	
+	} 
+	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] != '') && $_POST['link3'] != ''))  {
+		$nf3 = $_POST['hid_f3']; 
+		$fn3 = ''; 
+	} 
+	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] == '') && $_POST['link3'] == '')) {
+		$nf3 = ''; 
+		$fn3 = ''; 	
+	}
 
-	if (($_POST['hid_f4'] != '') && !empty($_FILES['file4']['name'])) {
+	if (!empty($_FILES['file4']['name'])) {
 		$uploaded_file4 = $_FILES['file4']['name'];
 		$uploaded_size4 = $_FILES['file4']['size'];
 		$ext4 = strtolower(pathinfo($uploaded_file4, PATHINFO_EXTENSION));
@@ -69,10 +84,15 @@ $row = [];
 
 		$nf4 = $rename4 . '.' . $ext4;
 		$fn4 = $_FILES['file4']['tmp_name'];
-	} else {
-		$nf4 = $_POST['hid_f4']; // new_file
-		$fn4 = ''; // file_name
-	}	
+	} 
+	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] != '') && $_POST['link4'] != ''))  {
+		$nf4 = $_POST['hid_f4']; 
+		$fn4 = ''; 
+	} 
+	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] == '') && $_POST['link4'] == '')) {
+		$nf4 = ''; 
+		$fn4 = ''; 	
+	}
 
 
 
@@ -105,9 +125,14 @@ $row['code_m'] 			= $_POST['code_m'] 										?? '';
 $row['code_ss'] 		= $_POST['code_ss'] 									?? '';
 $row['month_speaker'] 	= $_POST['month_speaker'] 								?? '';
 $row['potluck'] 		= $_POST['potluck']										?? '';
+
+$row['hid_f1'] 		= $_POST['hid_f1']										?? '';
 $row['link1'] 		= trim($_POST['link1'])										?? '';
+$row['hid_f2'] 		= $_POST['hid_f2']										?? '';
 $row['link2'] 		= trim($_POST['link2'])										?? '';
+$row['hid_f3'] 		= $_POST['hid_f3']										?? '';
 $row['link3'] 		= trim($_POST['link3'])										?? '';
+$row['hid_f4'] 		= $_POST['hid_f4']										?? '';
 $row['link4'] 		= trim($_POST['link4'])										?? '';
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
@@ -129,6 +154,8 @@ $row = edit_meeting($id);
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>
 <?php require '_includes/descriptive-location-msg.php'; ?>
+<?php require '_includes/pdf-upload-txt.php'; ?>
+<?php require '_includes/link-label-txt.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	

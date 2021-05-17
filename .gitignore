@@ -15,3 +15,4 @@ php-error.log
 sftp-config.json
 package-lock.json
 uploads
+_errors.txt

@@ -227,7 +227,7 @@
 		</div><!-- .visible -->
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="update-mtg" class="submit" value="UPDATE">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="update-mtg" name="update-mtg" class="submit" value="UPDATE">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 
