@@ -18,7 +18,7 @@ if (!isset($_SESSION['verified'])) {
 	exit;
 }
 
-if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!$_SESSION['message']))) {
+if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset($_SESSION['message'])))) {
 	require 'home_private.php';
 	exit();
 }

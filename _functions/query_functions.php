@@ -35,16 +35,51 @@ function get_all_public_and_private_meetings_for_today($today) {
     return $result;
 }
 
-function create_new_meeting($row) {
+function create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   global $db;
 
-    $errors = validate_update($row);
+    $errors = validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
     if (!empty($errors)) {
       return $errors;
     }
 
+
+  if (isset($fn1) && ($fn1 != '')) {
+    if (move_uploaded_file($fn1, 'uploads/' . $nf1)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 1. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn2) && ($fn2 != '')) {
+    if (move_uploaded_file($fn2, 'uploads/' . $nf2)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 2. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn3) && ($fn3 != '')) {
+    if (move_uploaded_file($fn3, 'uploads/' . $nf3)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 3. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn4) && ($fn4 != '')) {
+    if (move_uploaded_file($fn4, 'uploads/' . $nf4)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 4. Please try again.";
+      return $errors;
+    }
+  }
+
+
   $sql = "INSERT INTO meetings ";
-  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, meet_addr, meet_desc, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, add_note) ";
+  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, meet_id, meet_pswd, meet_url, meet_addr, meet_desc, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, file1, link1, file2, link2, file3, link3, file4, link4, add_note) ";
   $sql .= "VALUES ("; 
   $sql .= "'" . db_escape($db, $row['id_user'])        . "', ";
   $sql .= "'" . $row['sun']            . "', ";
@@ -75,6 +110,16 @@ function create_new_meeting($row) {
   $sql .= "'" . $row['code_ss']        . "', ";
   $sql .= "'" . $row['month_speaker']  . "', ";
   $sql .= "'" . $row['potluck']        . "', ";
+
+  $sql .= "'" . db_escape($db, $nf1)       . "', ";
+  $sql .= "'" . db_escape($db, $row['link1'])       . "', ";
+  $sql .= "'" . db_escape($db, $nf2)       . "', ";
+  $sql .= "'" . db_escape($db, $row['link2'])       . "', ";
+  $sql .= "'" . db_escape($db, $nf3)       . "', ";
+  $sql .= "'" . db_escape($db, $row['link3'])       . "', ";
+  $sql .= "'" . db_escape($db, $nf4)       . "', ";
+  $sql .= "'" . db_escape($db, $row['link4'])       . "', ";
+
   $sql .= "'" . db_escape($db, $row['add_note'])       . "'";
   $sql .= ")";
   $result = mysqli_query($db, $sql);
@@ -89,16 +134,51 @@ function create_new_meeting($row) {
   }
 }
 
-function update_meeting($id, $row) {
+function update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   global $db;
 
-  $errors = validate_update($row);
+  $errors = validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
   if (!empty($errors)) {
     return $errors;
   }
 
-  // if am_pm is set to pm do something to make the hour correct
-  // here and see if that'll work
+
+
+  if (isset($fn1) && ($fn1 != '')) {
+    if (move_uploaded_file($fn1, 'uploads/' . $nf1)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 1. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn2) && ($fn2 != '')) {
+    if (move_uploaded_file($fn2, 'uploads/' . $nf2)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 2. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn3) && ($fn3 != '')) {
+    if (move_uploaded_file($fn3, 'uploads/' . $nf3)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 3. Please try again.";
+      return $errors;
+    }
+  }
+  if (isset($fn4) && ($fn4 != '')) {
+    if (move_uploaded_file($fn4, 'uploads/' . $nf4)) {
+      // upload successful. continue processing.
+    } else {
+      $errors['upload_error'] = "There was a problem uploading file in position 4. Please try again.";
+      return $errors;
+    }
+  }
+
+
+
 
   $sql = "UPDATE meetings SET ";
   $sql .= "visible='"       . $row['visible']           . "', ";
@@ -130,6 +210,18 @@ function update_meeting($id, $row) {
   $sql .= "code_sp='"       . $row['code_sp']       . "', ";
   $sql .= "month_speaker='" . $row['month_speaker'] . "', ";
   $sql .= "potluck='"       . $row['potluck']       . "', ";
+
+  $sql .= "file1='"  . db_escape($db, $nf1)  . "', ";
+  $sql .= "link1='"  . db_escape($db, $row['link1'])  . "', ";
+  $sql .= "file2='"  . db_escape($db, $nf2)  . "', ";
+  $sql .= "link2='"  . db_escape($db, $row['link2'])  . "', ";
+  $sql .= "file3='"  . db_escape($db, $nf3)  . "', ";
+  $sql .= "link3='"  . db_escape($db, $row['link3'])  . "', ";
+  $sql .= "file4='"  . db_escape($db, $nf4)  . "', ";
+  $sql .= "link4='"  . db_escape($db, $row['link4'])  . "', ";
+
+
+
   $sql .= "add_note='"      . db_escape($db, $row['add_note'])      . "' ";
 
   $sql .= "WHERE id_mtg='"  . db_escape($db, $id) . "' ";
@@ -251,7 +343,7 @@ function find_meetings_by_id_today($id, $today) {
 	return $result; // returns an assoc. array	
 }
 
-function validate_update($row) {
+function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 
   $errors = [];
 
@@ -327,7 +419,206 @@ function validate_update($row) {
     $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
-   if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+  if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
+    $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
+  }
+
+  if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
+    $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
+  }
+
+
+
+  if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
+    $errors['name_link1'] = "You did not name your link in position 1. Please restore all file selections.";
+  }
+  if ((!isset($fn1) || ($fn1 == '')) && (trim($row['link1']) != '')) {
+    $errors['name_link1'] = "There's a name but no file to upload in position 1. Please restore all file selections.";
+  }
+  if (((isset($fn1) && $fn1 != '') && ($nf1 == ''))) {
+    $errors['name_link1'] = "File upload in Position 1 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) {
+    $errors['name_link2'] = "You did not name your link in position 2. Please restore all file selections.";
+  }
+  if ((!isset($fn2) || ($fn2 == '')) && (trim($row['link2']) != '')) {
+    $errors['name_link2'] = "There's a name but no file to upload in position 2. Please restore all file selections.";
+  }
+  if (((isset($fn2) && $fn2 != '') && ($nf2 == ''))) {
+    $errors['name_link2'] = "File upload in Position 2 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) {
+    $errors['name_link3'] = "You did not name your link in position 3. Please restore all file selections.";
+  }
+  if ((!isset($fn3) || ($fn3 == '')) && (trim($row['link3']) != '')) {
+    $errors['name_link3'] = "There's a name but no file to upload in position 3. Please restore all file selections.";
+  }
+  if (((isset($fn3) && $fn3 != '') && ($nf3 == ''))) {
+    $errors['name_link3'] = "File upload in Position 3 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) {
+    $errors['name_link4'] = "You did not name your link in position 4. Please restore all file selections.";
+  }
+  if ((!isset($fn4) || ($fn4 == '')) && (trim($row['link4']) != '')) {
+    $errors['name_link4'] = "There's a name but no file to upload in position 4. Please restore all file selections.";
+  }
+  if (((isset($fn4) && $fn4 != '') && ($nf4 == ''))) {
+    $errors['name_link4'] = "File upload in Position 4 needs attention. Please restore all file selections.";
+  }
+
+
+  if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+    $errors['add_note'] = "You've got more than 1,000 characters in your note.";
+  } 
+
+  return $errors; 
+}
+
+function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
+// need a separate validation function because of file uploads
+  $errors = [];
+
+  if (is_blank($row['group_name'])) {
+    $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
+  } else if (!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
+    $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
+  }
+
+  if (( $row['sun'] == "0" && 
+        $row['mon'] == "0" && 
+        $row['tue'] == "0" && 
+        $row['wed'] == "0" && 
+        $row['thu'] == "0" && 
+        $row['fri'] == "0" && 
+        $row['sat'] == "0"  )) {
+    $errors['pick_a_day'] = "Pick a day or days for your meeting.";
+  }
+
+   if (is_blank($row['meet_time'])) {
+    $errors['meet_time'] = "Please set a time.";
+  }
+
+  if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
+    $errors['meet_phone'] = "Only 10-digit phone numbers.";
+  }
+
+  if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
+    $errors['meet_phone'] = "You've got too many numbers in your phone number.";
+  }
+
+  if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
+    $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
+  } 
+
+  if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
+    $errors['meet_pswd'] = "That password is way too long.";
+  } 
+
+  if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
+    $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
+  }
+
+  if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
+    $errors['meet_addr'] = "255 Character limit on physical address";
+  }
+
+  if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
+    $errors['meet_addr'] = "255 Character limit on descriptive location";
+  }
+
+  if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
+    $errors['meet_addr'] = "You need location information for your map.";
+  }
+
+  //if (!is_blank($row['meet_url']) &&  !validate_url($row['meet_url'])) {
+      //$errors['meet_url'] = "That's not a valid URL. Be sure to include the entire address starting with \"http\".";
+  //}
+
+  if (( $row['dedicated_om']    == "0"   && 
+        $row['code_o']          == "0"   && 
+        $row['code_w']          == "0"   && 
+        $row['code_m']          == "0"   && 
+        $row['code_c']          == "0"   && 
+        $row['code_beg']        == "0"   && 
+        $row['code_h']          == "0"   && 
+        $row['code_d']          == "0"   && 
+        $row['code_b']          == "0"   && 
+        $row['code_ss']         == "0"   && 
+        $row['code_sp']         == "0"   && 
+        $row['month_speaker']   == "0"   && 
+        $row['potluck']         == "0"   )) {
+    $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
+  }
+
+  if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
+    $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
+  }
+
+  if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
+    $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
+  }
+
+
+
+  if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
+    $errors['name_link1'] = "You did not name your link in position 1. Please restore all file selections.";
+  }
+  // if ((!isset($fn1) || ($fn1 == '')) && (trim($row['link1']) != '')) {
+  //   $errors['name_link1'] = "There's a name but no file to upload in position 1. Please restore all file selections.";
+  // }
+  if (((isset($fn1) && $fn1 != '') && ($nf1 == ''))) {
+    $errors['name_link1'] = "File upload in Position 1 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) {
+    $errors['name_link2'] = "You did not name your link in position 2. Please restore all file selections.";
+  }
+  // if ((!isset($fn2) || ($fn2 == '')) && (trim($row['link2']) != '')) {
+  //   $errors['name_link2'] = "There's a name but no file to upload in position 2. Please restore all file selections.";
+  // }
+  if (((isset($fn2) && $fn2 != '') && ($nf2 == ''))) {
+    $errors['name_link2'] = "File upload in Position 2 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) {
+    $errors['name_link3'] = "You did not name your link in position 3. Please restore all file selections.";
+  }
+  // if ((!isset($fn3) || ($fn3 == '')) && (trim($row['link3']) != '')) {
+  //   $errors['name_link3'] = "There's a name but no file to upload in position 3. Please restore all file selections.";
+  // }
+  if (((isset($fn3) && $fn3 != '') && ($nf3 == ''))) {
+    $errors['name_link3'] = "File upload in Position 3 needs attention. Please restore all file selections.";
+  }
+
+
+
+  if ((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) {
+    $errors['name_link4'] = "You did not name your link in position 4. Please restore all file selections.";
+  }
+  // if ((!isset($fn4) || ($fn4 == '')) && (trim($row['link4']) != '')) {
+  //   $errors['name_link4'] = "There's a name but no file to upload in position 4. Please restore all file selections.";
+  // }
+  if (((isset($fn4) && $fn4 != '') && ($nf4 == ''))) {
+    $errors['name_link4'] = "File upload in Position 4 needs attention. Please restore all file selections.";
+  }
+
+
+
+
+  if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
     $errors['add_note'] = "You've got more than 1,000 characters in your note.";
   } 
 

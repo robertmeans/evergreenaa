@@ -254,6 +254,35 @@ li.ctr-day {
 				text-align: left;
 			}
 		}
+		#upload-links {
+			width: 100%;
+			margin: 1em 0em;
+			padding: 1em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			p.mtg-files {
+				width: 100%;
+				font-weight: bold;
+				margin-bottom: 0.5em;
+				text-decoration: underline;
+				margin-bottom: 0.5em;
+			}
+			a.mtg-links {
+				padding: 1em;
+				width: 48%;
+				margin: 0.5em 0;
+				background-color: rgba(255,255,255,0.2);
+				color: #fff;
+				border-radius: 3px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				&:hover {
+					background-color: rgba(255,255,255,0.1);
+				}
+			}
+		}		
 	}
 	p.no-meet {
 		text-align: center;

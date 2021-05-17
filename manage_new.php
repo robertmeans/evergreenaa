@@ -14,7 +14,64 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 if (is_post_request()) {
 
+$rando_num = rand(100,999);
 $row = [];
+
+	if (!empty($_FILES['file1']['name'])) {
+		$uploaded_file1 = $_FILES['file1']['name'];
+		$uploaded_size1 = $_FILES['file1']['size'];
+		$ext1 = strtolower(pathinfo($uploaded_file1, PATHINFO_EXTENSION));
+		$rename1 = $_SESSION['id'] . '_' . date('mdYHi') . '_01_' . $rando_num;
+
+		$nf1 = $rename1 . '.' . $ext1;
+		$fn1 = $_FILES['file1']['tmp_name'];
+	} else {
+		$nf1 = ''; // new_file
+		$fn1 = ''; // file_name
+	}
+
+	if (!empty($_FILES['file2']['name'])) {
+		$uploaded_file2 = $_FILES['file2']['name'];
+		$uploaded_size2 = $_FILES['file2']['size'];
+		$ext2 = strtolower(pathinfo($uploaded_file2, PATHINFO_EXTENSION));
+		$rename2 = $_SESSION['id'] . '_' . date('mdYHi') . '_02_' . $rando_num;
+
+		$nf2 = $rename2 . '.' . $ext2;
+		$fn2 = $_FILES['file2']['tmp_name'];
+	} else {
+		$nf2 = ''; // new_file
+		$fn2 = ''; // file_name
+	}
+
+	if (!empty($_FILES['file3']['name'])) {
+		$uploaded_file3 = $_FILES['file3']['name'];
+		$uploaded_size3 = $_FILES['file3']['size'];
+		$ext3 = strtolower(pathinfo($uploaded_file3, PATHINFO_EXTENSION));
+		$rename3 = $_SESSION['id'] . '_' . date('mdYHi') . '_03_' . $rando_num;
+
+		$nf3 = $rename3 . '.' . $ext3;
+		$fn3 = $_FILES['file3']['tmp_name'];
+	} else {
+		$nf3 = ''; // new_file
+		$fn3 = ''; // file_name
+	}	
+
+	if (!empty($_FILES['file4']['name'])) {
+		$uploaded_file4 = $_FILES['file4']['name'];
+		$uploaded_size4 = $_FILES['file4']['size'];
+		$ext4 = strtolower(pathinfo($uploaded_file4, PATHINFO_EXTENSION));
+		$rename4 = $_SESSION['id'] . '_' . date('mdYHi') . '_04_' . $rando_num;
+
+		$nf4 = $rename4 . '.' . $ext4;
+		$fn4 = $_FILES['file4']['tmp_name'];
+	} else {
+		$nf4 = ''; // new_file
+		$fn4 = ''; // file_name
+	}		
+
+
+
+
 $row['id_user'] 		= $_SESSION['id']				 							 ;
 $row['sun'] 			= $_POST['sun'] 										?? '';
 $row['mon'] 			= $_POST['mon'] 										?? '';
@@ -30,6 +87,7 @@ $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
 $row['meet_url'] 		= $_POST['meet_url'] 									?? '';
 $row['meet_addr'] 		= $_POST['meet_addr'] 									?? '';
+$row['meet_desc'] 		= $_POST['meet_desc'] 									?? '';
 $row['dedicated_om'] 	= $_POST['dedicated_om'] 								?? '';
 $row['code_b'] 			= $_POST['code_b'] 										?? '';
 $row['code_d'] 			= $_POST['code_d'] 										?? '';
@@ -43,9 +101,13 @@ $row['code_m'] 			= $_POST['code_m'] 										?? '';
 $row['code_ss'] 		= $_POST['code_ss'] 									?? '';
 $row['month_speaker'] 	= $_POST['month_speaker'] 								?? '';
 $row['potluck'] 		= $_POST['potluck']										?? '';
+$row['link1'] 		= trim($_POST['link1'])										?? '';
+$row['link2'] 		= trim($_POST['link2'])										?? '';
+$row['link3'] 		= trim($_POST['link3'])										?? '';
+$row['link4'] 		= trim($_POST['link4'])										?? '';
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
-	$result = create_new_meeting($row);
+	$result = create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
 	if ($result === true) {
 		$new_id = mysqli_insert_id($db);
@@ -53,13 +115,17 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	} else {
 		$errors = $result;
 	}
-}
+} // end > if (is_post_request()) {
 
 ?>
 
 <?php require '_includes/head.php'; ?>
 <body>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/lat-long-instructions.php'; ?>
+<?php require '_includes/descriptive-location-msg.php'; ?>
+<?php require '_includes/pdf-upload-txt.php'; ?>
+<?php require '_includes/link-label-txt.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	

@@ -528,6 +528,35 @@ a.manage-delete {
 				text-align: left;
 			}
 		}
+		#upload-links {
+			width: 100%;
+			margin: 1em 0em;
+			padding: 1em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			p.mtg-files {
+				width: 100%;
+				font-weight: bold;
+				margin-bottom: 0.5em;
+				text-decoration: underline;
+				margin-bottom: 0.5em;
+			}
+			a.mtg-links {
+				padding: 1em;
+				width: 48%;
+				margin: 0.5em 0;
+				background-color: rgba(255,255,255,0.2);
+				color: #fff;
+				border-radius: 3px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				&:hover {
+					background-color: rgba(255,255,255,0.1);
+				}
+			}
+		}
 	}
 	p.no-meet {
 		text-align: center;
@@ -681,6 +710,14 @@ form#manage-mtg {
 	.align-days.fixerror {
 		background-color: rgba(255,189,192,1);
 		padding: 0.2em;
+	}
+	.pdf-wrap.fixerror {
+		border-radius: 0px;
+		padding: 0.5em;
+		color: #313131;
+		label.pdf-label {
+			color: #313131;
+		}
 	}
 	p.days-held {
 		text-decoration: underline;

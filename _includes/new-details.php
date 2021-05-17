@@ -1,11 +1,11 @@
 
 <div class="meeting-details">
 
-	<form id="manage-mtg" action="" method="post">
+	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
-			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?= h($row['group_name']); ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($row['group_name'])) { echo h($row['group_name']); } ?>" placeholder="Group name">
 
 			<p class="days-held">Day(s) meeting is held</p>
 	<div class="align-days<?php if (isset($errors['pick_a_day'])) {
@@ -64,12 +64,15 @@
 	<label for="meet_url">Online URL</label>
 	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
 
-	<label for="meet_addr">Physical Address</label>
-	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?= h($row['meet_addr']); ?></textarea>
+	<label for="meet_addr">Physical Address | lat°, long° accepted <a id="toggle-lat-long-msg"><i class="far fa-question-circle fa-fw"></i></a></label>
+	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url']) || isset($errors['url_and_phy'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?php if (isset($row['meet_addr'])) { echo h($row['meet_addr']); } ?></textarea>
+
+	<label for="meet_desc">Descriptive Location <a id="toggle-descriptive-location"><i class="far fa-question-circle fa-fw"></i></a></label>
+	<textarea name="meet_desc" id="meet_desc" placeholder="123 Main St.&#10;Evergreen, CO&#10;Around back, 2nd floor"><?php if (isset($row['meet_desc'])) { h($row['meet_desc']); } ?></textarea>
 
 	</div><!-- .details-left -->
-	<div class="details-right<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">
-		<p class="add-info<?php if (isset($errors['meeting_type'])) { echo " fixerror"; } ?>">Select all that apply</p>
+	<div class="details-right<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy'])) { echo " fixerror"; } ?>">
+		<p class="add-info<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy']) || isset($errors['url_and_phy'])) { echo " fixerror"; } ?>">Select all that apply</p>
 
 	<input type="hidden" name="dedicated_om" value="0">			
 	<label><input type="checkbox" name="dedicated_om" <?php if ($row['dedicated_om'] == "1") { echo "checked"; } ?> value="1" /> <span>Dedicated Online Meeting</span></label>
@@ -112,11 +115,64 @@
 			
 	</div><!-- .details-right -->
 	<div class="btm-notes">
+
+
+
+<div class="file-uploads">
+	<p>Upload PDF Files <a id="toggle-pdf-info"><i class="far fa-question-circle fa-fw"></i></a></p>
+
+	<div id="pdf1" class="pdf-wrap pdf1<?php if (isset($errors['name_link1'])) { echo " fixerror"; } ?>">
+		<div class="pdf-row">
+			<input type="file" class="pdf1_name" id="file1" name="file1" accept=".pdf"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="link1" value="<?php if (isset($row['link1'])) { echo trim(h($row['link1'])); } ?>" maxlength="25"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-1">Remove</a>
+		</div>
+	</div>
+
+	<div id="pdf2" class="pdf-wrap pdf2<?php if (isset($errors['name_link2'])) { echo " fixerror"; } ?>">
+		<div class="pdf-row">
+			<input type="file" class="pdf2_name" id="file2" name="file2" accept=".pdf"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="link2" value="<?php if (isset($row['link2'])) { echo trim(h($row['link2'])); } ?>" maxlength="25"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-2">Remove</a>
+		</div>
+	</div>		
+
+	<div id="pdf3" class="pdf-wrap pdf3<?php if (isset($errors['name_link3'])) { echo " fixerror"; } ?>">
+		<div class="pdf-row">
+			<input type="file" class="pdf3_name" id="file3" name="file3" accept=".pdf"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="link3" value="<?php if (isset($row['link3'])) { echo trim(h($row['link3'])); } ?>" maxlength="25"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-3">Remove</a>
+		</div>
+	</div>		
+
+	<div id="pdf4" class="pdf-wrap pdf4<?php if (isset($errors['name_link4'])) { echo " fixerror"; } ?>">
+		<div class="pdf-row">
+			<input type="file" class="pdf4_name" id="file4" name="file4" accept=".pdf"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="link4" value="<?php if (isset($row['link4'])) { echo trim(h($row['link4'])); } ?>" maxlength="25"></label>
+		</div>
+		<div class="pdf-remove">
+			<a class="pdf-remove pdf-remove-4">Remove</a>
+		</div>
+	</div>
+
+	<a id="file-upload"><i class="far fa-plus-square fa-fw"></i> Add a PDF | 4 Total</a>
+
+</div>
+
+
+
+
+
+
+
+		
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= h($row['add_note']); ?></textarea>
+		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= nl2br(h($row['add_note'])); ?></textarea>
 
 		<div class="update-rt">
-			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="review-mtg" class="submit" value="REVIEW">
+			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="review-mtg" name="review-mtg" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->
 	</div><!-- .btm-notes -->
 

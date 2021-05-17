@@ -24,7 +24,67 @@ $id = $_GET['id'] ?? '1';
 // if user clicks UPDATE MEETING
 if (is_post_request()) {
 
-$row = []; 
+$rando_num = rand(100,999);
+$row = [];
+
+
+
+// if (($_POST['hid_f1'] != '') && !empty($_FILES['file1']['name'])) {
+	if (!empty($_FILES['file1']['name'])) {
+		$uploaded_file1 = $_FILES['file1']['name'];
+		$uploaded_size1 = $_FILES['file1']['size'];
+		$ext1 = strtolower(pathinfo($uploaded_file1, PATHINFO_EXTENSION));
+		$rename1 = $_SESSION['id'] . '_' . date('mdYHi') . '_01_' . $rando_num;
+
+		$nf1 = $rename1 . '.' . $ext1;
+		$fn1 = $_FILES['file1']['tmp_name'];
+	} else {
+		$nf1 = $_POST['hid_f1']; // new_file
+		$fn1 = ''; // file_name
+	}
+
+
+	if (!empty($_FILES['file1']['name'])) {
+		$uploaded_file2 = $_FILES['file2']['name'];
+		$uploaded_size2 = $_FILES['file2']['size'];
+		$ext2 = strtolower(pathinfo($uploaded_file2, PATHINFO_EXTENSION));
+		$rename2 = $_SESSION['id'] . '_' . date('mdYHi') . '_02_' . $rando_num;
+
+		$nf2 = $rename2 . '.' . $ext2;
+		$fn2 = $_FILES['file2']['tmp_name'];
+	} else {
+		$nf2 = $_POST['hid_f2']; // new_file
+		$fn2 = ''; // file_name
+	}
+
+	if (!empty($_FILES['file3']['name'])) {
+		$uploaded_file3 = $_FILES['file3']['name'];
+		$uploaded_size3 = $_FILES['file3']['size'];
+		$ext3 = strtolower(pathinfo($uploaded_file3, PATHINFO_EXTENSION));
+		$rename3 = $_SESSION['id'] . '_' . date('mdYHi') . '_03_' . $rando_num;
+
+		$nf3 = $rename3 . '.' . $ext3;
+		$fn3 = $_FILES['file3']['tmp_name'];
+	} else {
+		$nf3 = $_POST['hid_f3']; // new_file
+		$fn3 = ''; // file_name
+	}	
+
+	if (!empty($_FILES['file4']['name'])) {
+		$uploaded_file4 = $_FILES['file4']['name'];
+		$uploaded_size4 = $_FILES['file4']['size'];
+		$ext4 = strtolower(pathinfo($uploaded_file4, PATHINFO_EXTENSION));
+		$rename4 = $_SESSION['id'] . '_' . date('mdYHi') . '_04_' . $rando_num;
+
+		$nf4 = $rename4 . '.' . $ext4;
+		$fn4 = $_FILES['file4']['tmp_name'];
+	} else {
+		$nf4 = $_POST['hid_f4']; // new_file
+		$fn4 = ''; // file_name
+	}	
+
+
+
 $row['mon'] 			= $_POST['mon'] 										?? ''; 
 $row['tue'] 			= $_POST['tue'] 										?? ''; 
 $row['wed'] 			= $_POST['wed'] 										?? ''; 
@@ -52,10 +112,14 @@ $row['code_c'] 			= $_POST['code_c'] 										?? '';
 $row['code_m'] 			= $_POST['code_m'] 										?? ''; 
 $row['code_ss'] 		= $_POST['code_ss'] 									?? ''; 
 $row['month_speaker'] 	= $_POST['month_speaker'] 								?? ''; 
-$row['potluck'] 		= $_POST['potluck'] 									?? ''; 
+$row['potluck'] 		= $_POST['potluck'] 									?? '';
+$row['link1'] 		= trim($_POST['link1'])										?? '';
+$row['link2'] 		= trim($_POST['link2'])										?? '';
+$row['link3'] 		= trim($_POST['link3'])										?? '';
+$row['link4'] 		= trim($_POST['link4'])										?? '';
 $row['add_note'] 		= $_POST['add_note'] 									?? ''; 
 
-	$result = update_meeting($id, $row);
+	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
 	if ($result === true) {
 		header('location: manage_edit_review.php?id=' . $id);

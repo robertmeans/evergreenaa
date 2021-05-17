@@ -587,6 +587,38 @@ li.ctr-day .day-content {
 .weekday-wrap .meeting-details #add-note > p {
   text-align: left;
 }
+.weekday-wrap .meeting-details #upload-links {
+  width: 100%;
+  margin: 1em 0em;
+  padding: 1em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.weekday-wrap .meeting-details #upload-links p.mtg-files {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-decoration: underline;
+  margin-bottom: 0.5em;
+}
+.weekday-wrap .meeting-details #upload-links a.mtg-links {
+  padding: 1em;
+  width: 48%;
+  margin: 0.5em 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.weekday-wrap .meeting-details #upload-links a.mtg-links:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 .weekday-wrap p.no-meet {
   text-align: center;
   padding: 50px;
@@ -2352,6 +2384,38 @@ a.manage-delete:hover {
 .weekday-edit-wrap .meeting-details #add-note > p {
   text-align: left;
 }
+.weekday-edit-wrap .meeting-details #upload-links {
+  width: 100%;
+  margin: 1em 0em;
+  padding: 1em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.weekday-edit-wrap .meeting-details #upload-links p.mtg-files {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-decoration: underline;
+  margin-bottom: 0.5em;
+}
+.weekday-edit-wrap .meeting-details #upload-links a.mtg-links {
+  padding: 1em;
+  width: 48%;
+  margin: 0.5em 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.weekday-edit-wrap .meeting-details #upload-links a.mtg-links:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 .weekday-edit-wrap p.no-meet {
   text-align: center;
   padding: 50px;
@@ -2514,6 +2578,14 @@ form#manage-mtg .align-days {
 form#manage-mtg .align-days.fixerror {
   background-color: #ffbdc0;
   padding: 0.2em;
+}
+form#manage-mtg .pdf-wrap.fixerror {
+  border-radius: 0px;
+  padding: 0.5em;
+  color: #313131;
+}
+form#manage-mtg .pdf-wrap.fixerror label.pdf-label {
+  color: #313131;
 }
 form#manage-mtg p.days-held {
   text-decoration: underline;
