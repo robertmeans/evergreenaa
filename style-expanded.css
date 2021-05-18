@@ -2898,6 +2898,20 @@ form#manage-mtg label.pdf-label {
     text-align: left;
   }
 
+  .manage-glance-wrap-review .manage-glance-review {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+
+  .manage-glance-review .glance-group-title {
+    margin: 0.5em 0;
+  }
+
+  .manage-glance-review .glance-mtg-type {
+    text-align: right;
+    padding: 0px;
+  }
+
   form#manage-mtg {
     -ms-flex-direction: column;
         flex-direction: column;

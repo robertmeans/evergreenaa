@@ -14,6 +14,16 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 if (is_post_request()) {
 
+// to hold value and prevent undefined variable notice	
+$nf1 = '';
+$fn1 = '';
+$nf2 = '';
+$fn2 = '';
+$nf3 = '';
+$fn3 = '';
+$nf4 = '';
+$fn4 = '';
+
 $rando_num = rand(100,999);
 $row = [];
 

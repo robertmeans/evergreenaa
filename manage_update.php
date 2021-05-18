@@ -17,6 +17,16 @@ $id = $_GET['id'];
 // If validation fails -> this page is rendered
 if (is_post_request()) {
 
+// to hold value and prevent undefined variable notice	
+$nf1 = '';
+$fn1 = '';
+$nf2 = '';
+$fn2 = '';
+$nf3 = '';
+$fn3 = '';
+$nf4 = '';
+$fn4 = '';
+
 $rando_num = rand(100,999);
 $row = [];
 
@@ -151,6 +161,9 @@ $row = edit_meeting($id);
 
 <?php require '_includes/head.php'; ?>
 <body>
+	<div class="preload">
+		<p>One day at a time.</p>
+	</div>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>
 <?php require '_includes/descriptive-location-msg.php'; ?>

@@ -24,7 +24,7 @@ function display_errors($errors=array()) {
     $output .= "<ul>";
 
     if (isset($errors['name_link1']) || isset($errors['name_link2']) || isset($errors['name_link3']) || isset($errors['name_link4'])) {
-      $output .= "<li>NOTE: File selections do not persist between page refresh. ALL files indicated in red below need to be reselected.</li>";
+      $output .= "<li>NOTE: File selections do not persist between page refresh. Anytime there is an error you need to reselect any files you just tried to upload.</li>";
     }
 
     foreach($errors as $error) {

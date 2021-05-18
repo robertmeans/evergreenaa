@@ -1036,6 +1036,16 @@ form#manage-mtg {
 	.manage-simple {
 		text-align: left;
 	}
+	.manage-glance-wrap-review .manage-glance-review {
+		flex-direction: column;
+	}
+	.manage-glance-review .glance-group-title {
+		margin: 0.5em 0;
+	}
+	.manage-glance-review .glance-mtg-type {
+		text-align: right;
+		padding: 0px;
+	}
 	form#manage-mtg {
 		flex-direction: column;
 	}

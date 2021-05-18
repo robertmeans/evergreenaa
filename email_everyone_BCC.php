@@ -15,7 +15,8 @@ if ((is_post_request()) && (isset($_POST['email-everyone']))) {
 
 // $email_addresses = $_POST['email_addresses'];
 // for testing, comment above and uncomment below
-$email_addresses = 'robertmeans01@gmail.com';
+// $email_addresses = 'robertmeans01@gmail.com';
+$email_addresses = 'robertmeans01@gmail.com; browsergadget@gmail.com';
 // concludes testing
 $msgsubject = $_POST['msgsubject'] ?? ''; 
 $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';  
@@ -37,10 +38,12 @@ $result = find_all_users();
 	$emails = array();
 	// get email addresses ready for sending and put them in a hidden field
 	while($subject = mysqli_fetch_assoc($result)) {
-		$emails[] = "'" . $subject["email"] . "', ";
+		$emails[] = $subject['email'] . "; ";
+		// $emails[] = "'" . $subject['email'] . "', ";
 	}
 	// get rid of the last comma
 	$email_addresses = substr(implode($emails), 0 , -2);
+	// $email_addresses = "this some bullshiz";
 	// echo "<br><br><br><div style=\"width:80%;margin:0 auto;padding:1.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
 
 ?>
@@ -79,7 +82,27 @@ $result = find_all_users();
 <?php require '_includes/footer.php'; ?>
 
 
-<?php mysqli_free_result($result); } else { // if this is your first visit to the page, here's an empty form ?>
+<?php mysqli_free_result($result); } else { // if this is your first visit to the page, here's an empty form 
+
+
+// $msgsubject = $_POST['msgsubject'] ?? ''; 
+// $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
+
+$result = find_all_users();
+
+	$emails = array();
+	// get email addresses ready for sending and put them in a hidden field
+	while($subject = mysqli_fetch_assoc($result)) {
+		$emails[] = $subject['email'] . "; ";
+		// $emails[] = "'" . $subject['email'] . "', ";
+	}
+	// get rid of the last comma
+	$email_addresses = substr(implode($emails), 0 , -2);
+	// $email_addresses = "this some bullshiz";
+	// echo "<br><br><br><div style=\"width:80%;margin:0 auto;padding:1.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
+?>
+
+
 
 <?php require '_includes/head.php'; ?>
 <body>	
@@ -93,10 +116,16 @@ $result = find_all_users();
 		<a href="manage.php">Back</a> | <a href="logout.php">Logout</a>
 	</p>
 </div>
+
 <div class="manage-simple-email">
+<?php
+echo "<div style=\"width:100%;height:8em;margin:0 auto 1em;overflow-y:scroll;padding:.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
+?>
+
+
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
-		<!-- <input type="text" name="email_addresses" value="<?= $email_addresses ?>"> -->
+		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
 		
 		<label>Subject</label>
 		<input type="text" name="msgsubject">
