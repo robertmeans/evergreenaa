@@ -293,25 +293,25 @@ function edit_meeting($id) {
 }
 
 function find_all_users() {
-	global $db;
+  global $db;
 
-	$sql 	= "SELECT * FROM users ";
-	$sql 	.= "ORDER BY id_user ASC";
-	// echo $sql;
-	$result = mysqli_query($db, $sql);
-	confirm_result_set($result);
-	return $result;
+  $sql  = "SELECT * FROM users ";
+  $sql  .= "ORDER BY id_user ASC";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
 }
 
 function find_all_meetings() {
-	global $db;
+  global $db;
 
-	$sql = 	"SELECT * FROM meetings ";
-	$sql .= "ORDER BY id ASC";
-	// echo $sql;
-	$result = mysqli_query($db, $sql);
-	confirm_result_set($result);
-	return $result;
+  $sql =  "SELECT * FROM meetings ";
+  $sql .= "ORDER BY id ASC";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
 }
 
 function find_meetings_by_id($id) {
@@ -328,17 +328,17 @@ function find_meetings_by_id($id) {
 }
 
 function find_meetings_by_id_today($id, $today) {
-	global $db;
+  global $db;
 
-	$sql = "SELECT * FROM meetings WHERE ";
-	// for some reason (?!) you cannot pass in $today into single quotes.
+  $sql = "SELECT * FROM meetings WHERE ";
+  // for some reason (?!) you cannot pass in $today into single quotes.
   // this cost me countless amount of time.
   $sql .= "id_user='" . db_escape($db, $id) . "' AND " . $today . " !=0 ";
   $sql .= "ORDER BY meet_time;";
   // echo $sql;
-	$result = mysqli_query($db, $sql);
-	confirm_result_set($result);	
-	return $result; // returns an assoc. array	
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array  
 }
 
 // different validation function for updates because you have to account for $row['value']
@@ -1198,12 +1198,12 @@ function validate_url($url) {
 }
 
 function is_blank($value) {
-	
+  
   return !isset($value) || trim($value) === '';
 }
 
 function has_presence($value) {
-	
+  
   return !is_blank($value);
 }
 
@@ -1244,12 +1244,12 @@ function has_length($value, $options) {
 function validate_row($row) {
   $errors = [];
 
-	if(is_blank($row['group_name'])) {
-		$errors[] = "You need a name for your group.";
-	}
-	if(!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
-		$errors[] = "Group name can be up to 50 characters.";
-	}
-	return $errors;
+  if(is_blank($row['group_name'])) {
+    $errors[] = "You need a name for your group.";
+  }
+  if(!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
+    $errors[] = "Group name can be up to 50 characters.";
+  }
+  return $errors;
 }
 
