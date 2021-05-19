@@ -5,7 +5,7 @@
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
-			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($row['group_name'])) { echo h($row['group_name']); } ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } else { echo $row['group_name']; } ?>" placeholder="Group name">
 
 			<p class="days-held">Day(s) meeting is held</p>
 	<div class="align-days<?php if (isset($errors['pick_a_day'])) {
@@ -160,11 +160,6 @@
 	<a id="file-upload"><i class="far fa-plus-square fa-fw"></i> Add a PDF | 4 Total</a>
 
 </div>
-
-
-
-
-
 
 
 		

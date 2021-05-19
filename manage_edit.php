@@ -27,8 +27,8 @@ $row = edit_meeting($id);
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload">
-		<p>One day at a time.</p>
+	<div class="preload-manage">
+		<p>One meeting at a time.</p>
 	</div>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>

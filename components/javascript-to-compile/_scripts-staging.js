@@ -199,10 +199,6 @@ $(document).ready(function(){
   }
 
 
-  // $(".pdf2").hide();
-  // $(".pdf3").hide();
-  // $(".pdf4").hide();
-
 
   $('#file-upload').click(function() {
     var file_upload_txt = $(this).html();
@@ -228,81 +224,9 @@ $(document).ready(function(){
         // $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
         return;
       }
-    // }
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining') {
-    //   if ($('.pdf1').is(':hidden')) {
-    //     $('.pdf1').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf2').is(':hidden')) {
-    //     $('.pdf2').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf3').is(':hidden')) {
-    //     $('.pdf3').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf4').is(':hidden')) {
-    //     $('.pdf4').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   }
-    // }
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining') {
-    //   if ($('.pdf1').is(':hidden')) {
-    //     $('.pdf1').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf2').is(':hidden')) {
-    //     $('.pdf2').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf3').is(':hidden')) {
-    //     $('.pdf3').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   }
-    //   if ($('.pdf4').is(':hidden')) {
-    //     $('.pdf4').slideDown();
-    //     $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   }
-    // }
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining') {
-    //   if ($('.pdf1').is(':hidden')) {
-    //     $('.pdf1').slideDown();
-    //     $(this).html('');
-    //     return;
-    //   }
-    //   if ($('.pdf2').is(':hidden')) {
-    //     $('.pdf2').slideDown();
-    //     $(this).html('');
-    //     return;
-    //   }
-    //   if ($('.pdf3').is(':hidden')) {
-    //     $('.pdf3').slideDown();
-    //     $(this).html('');
-    //     return;
-    //   }
-    //   if ($('.pdf4').is(':hidden')) {
-    //     $('.pdf4').slideDown();
-    //     $(this).html('');
-    //     return;
-    //   }
-    // }    
-
 
 
   });
-
 
 
   $('#review-mtg, #update-mtg').click(function(e) {
@@ -351,12 +275,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
   $('.pdf-remove').click(function() {
     var file_upload_txt = $('#file-upload').html();
     var close_upload = $(this).closest('.pdf-wrap');
@@ -382,160 +300,8 @@ $(document).ready(function(){
       $('.pdf4').slideUp();
     }
 
-
-
-
-
-
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining') {
-
-    //   if ((close_upload).hasClass('pdf1')) {
-    //     $('.pdf1_name').val('');
-    //     $('.pdf1').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf2')) {
-    //     $('.pdf2_name').val('');
-    //     $('.pdf2').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf3')) {
-    //     $('.pdf3_name').val('');
-    //     $('.pdf3').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf4')) {
-    //     $('.pdf4_name').val('');
-    //     $('.pdf4').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF');
-    //     return;
-    //   }
-    //     return;
-    // }
-
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining') {
-
-    //   if ((close_upload).hasClass('pdf1')) {
-    //     $('.pdf1_name').val('');
-    //     $('.pdf1').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf2')) {
-    //     $('.pdf2_name').val('');
-    //     $('.pdf2').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf3')) {
-    //     $('.pdf3_name').val('');
-    //     $('.pdf3').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf4')) {
-    //     $('.pdf4_name').val('');
-    //     $('.pdf4').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
-    //   }
-    //     return;
-    // }
-
-
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining') {
-
-    //   if ((close_upload).hasClass('pdf1')) {
-    //     $('.pdf1_name').val('');
-    //     $('.pdf1').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf2')) {
-    //     $('.pdf2_name').val('');
-    //     $('.pdf2').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf3')) {
-    //     $('.pdf3_name').val('');
-    //     $('.pdf3').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf4')) {
-    //     $('.pdf4_name').val('');
-    //     $('.pdf4').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
-    //     return;
-    //   }
-    //   return;
-    // } 
-
-
-    // if ((file_upload_txt) == '') {
-
-    //   if ((close_upload).hasClass('pdf1')) {
-    //     $('.pdf1_name').val('');
-    //     $('.pdf1').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf2')) {
-    //     $('.pdf2_name').val('');
-    //     $('.pdf2').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf3')) {
-    //     $('.pdf3_name').val('');
-    //     $('.pdf3').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   } 
-    //   if ((close_upload).hasClass('pdf4')) {
-    //     $('.pdf4_name').val('');
-    //     $('.pdf4').slideUp();
-    //     $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
-    //     return;
-    //   }
-    //     return;
-    // } 
-
-
-
-
-
-
-
-    // if ((file_upload_txt) == ' Add another PDF | 2 remaining') {
-    //     $(close_upload).slideUp();
-    //     $('#file-upload').html(' Add another PDF | 3 remaining');
-    //     return;
-    // }
-
-    // if ((file_upload_txt) == ' Add another PDF | 1 remaining') {
-    //     $(close_upload).slideUp();
-    //     $('#file-upload').html(' Add another PDF | 2 remaining');
-    //     return;
-    // }
-
-    // if ((file_upload_txt) == '') {
-    //     $(close_upload).slideUp();
-    //     $('#file-upload').html(' Add another PDF | 1 remaining');
-    //     return;
-    // }
-
   });
     // $(close_upload).slideUp();
-
-
-
-
 
 
   /* toggle days of week */
@@ -644,16 +410,6 @@ $("#toggle-private-msg").click(function(e) {
   }
 
 });
-
-
-
-
-
-
-
-
-
-
 
 
 

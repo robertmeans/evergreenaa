@@ -9,6 +9,6 @@ $(window).on('load', function() {
     });
 
 $(window).on('load', function() {
-    $(".preload-manage").delay(200).fadeOut(500);
+    $(".preload-manage").delay(200).fadeOut(200);
     });
 

@@ -1,0 +1,7 @@
+[18-May-2021 11:44:28 America/Denver] PHP Parse error:  syntax error, unexpected '}' in C:\wamp64\www\evergreenaa\_functions\query_functions.php on line 613
+[18-May-2021 12:20:45 America/Denver] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'group_name' at row 1 in C:\wamp64\www\evergreenaa\_functions\query_functions.php:125
+Stack trace:
+#0 C:\wamp64\www\evergreenaa\_functions\query_functions.php(125): mysqli_query(Object(mysqli), 'INSERT INTO mee...')
+#1 C:\wamp64\www\evergreenaa\manage_new.php(120): create_new_meeting(Array, '', '', '', '', '', '', '', '')
+#2 {main}
+  thrown in C:\wamp64\www\evergreenaa\_functions\query_functions.php on line 125

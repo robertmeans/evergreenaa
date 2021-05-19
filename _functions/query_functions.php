@@ -341,17 +341,85 @@ function find_meetings_by_id_today($id, $today) {
 	return $result; // returns an assoc. array	
 }
 
+// different validation function for updates because you have to account for $row['value']
+// that might be in field and also to compare $_POST['value'] in case there's a difference.
+// it's a cluster but trust yourself - this is right... unless it's not.
 function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 
   $errors = [];
 
-  if (is_blank($row['group_name'])) {
+  if (is_blank($row['group_name']) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
     $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+    
+  } else if (is_blank($row['group_name'])) {
+    $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+
   } else if (!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
     $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+
   }
 
+
   if (( $row['sun'] == "0" && 
+        $row['mon'] == "0" && 
+        $row['tue'] == "0" && 
+        $row['wed'] == "0" && 
+        $row['thu'] == "0" && 
+        $row['fri'] == "0" && 
+        $row['sat'] == "0"  ) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['pick_a_day'] = "Pick a day or days for your meeting.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (( $row['sun'] == "0" && 
         $row['mon'] == "0" && 
         $row['tue'] == "0" && 
         $row['wed'] == "0" && 
@@ -361,43 +429,214 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['pick_a_day'] = "Pick a day or days for your meeting.";
   }
 
-   if (is_blank($row['meet_time'])) {
+   if (is_blank($row['meet_time']) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_time'] = "Please set a time.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_time'])) {
     $errors['meet_time'] = "Please set a time.";
   }
 
-  if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
+
+  if ((!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_phone'] = "Only 10-digit phone numbers.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "Only 10-digit phone numbers.";
   }
 
-  if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
+
+  if ((!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_phone'] = "You've got too many numbers in your phone number.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "You've got too many numbers in your phone number.";
   }
 
-  if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
+
+  if ((!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
     $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
   } 
 
-  if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
+
+  if ((!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 30)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_pswd'] = "That password is way too long.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 30)) {
     $errors['meet_pswd'] = "That password is way too long.";
   } 
 
-  if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
+
+  if ((is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
     $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
   }
 
-  if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
+
+  if ((!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "255 Character limit on physical address";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
     $errors['meet_addr'] = "255 Character limit on physical address";
   }
 
-  if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
+
+  if ((!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "255 Character limit on descriptive location";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
     $errors['meet_addr'] = "255 Character limit on descriptive location";
   }
 
-  if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
+
+  if ((is_blank($row['meet_addr']) && (!is_blank($row['meet_desc']))) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "You need location information for your map.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
     $errors['meet_addr'] = "You need location information for your map.";
   }
 
-  if (( $row['dedicated_om']    == "0"   && 
+
+  if ((( $row['dedicated_om']    == "0"   && 
+          $row['code_o']          == "0"   && 
+          $row['code_w']          == "0"   && 
+          $row['code_m']          == "0"   && 
+          $row['code_c']          == "0"   && 
+          $row['code_beg']        == "0"   && 
+          $row['code_h']          == "0"   && 
+          $row['code_d']          == "0"   && 
+          $row['code_b']          == "0"   && 
+          $row['code_ss']         == "0"   && 
+          $row['code_sp']         == "0"   && 
+          $row['month_speaker']   == "0"   && 
+          $row['potluck']         == "0"   )) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (( $row['dedicated_om']    == "0"   && 
         $row['code_o']          == "0"   && 
         $row['code_w']          == "0"   && 
         $row['code_m']          == "0"   && 
@@ -413,13 +652,47 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
-  if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
+
+  if (($row['dedicated_om'] == "1" && $row['meet_url'] == '') && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
     $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
   }
 
-  if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
+
+  if (($row['dedicated_om'] == "1" && $row['meet_addr'] != '') && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
     $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
   }
+
+
 
 
   // begin file errors for new meeting page
@@ -470,24 +743,108 @@ function validate_new($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   // end file errors for new meeting page
 
 
-  if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+  if ((!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }  
     $errors['add_note'] = "You've got more than 1,000 characters in your note.";
-  } 
+    
+  } else if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+    $errors['add_note'] = "You've got more than 1,000 characters in your note.";
+  }  
 
   return $errors; 
 }
 
+
+// different validation function for new meetings because here you have to account for $row['value']
+// that might be in field and also to compare $_POST['value'] in case there's a difference.
+// it's a cluster but trust yourself - this is right... unless it's not.
 function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
 // need a separate validation function because of file uploads
   $errors = [];
 
-  if (is_blank($row['group_name'])) {
+  if (is_blank($row['group_name']) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
     $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+    
+  } else if (is_blank($row['group_name'])) {
+    $errors['group_name'] = "Name your Meeting! Under 50 characters, please.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+
   } else if (!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
     $errors['group_name'] = "Meeting Name needs to be less than 50 characters.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+
   }
 
+
   if (( $row['sun'] == "0" && 
+        $row['mon'] == "0" && 
+        $row['tue'] == "0" && 
+        $row['wed'] == "0" && 
+        $row['thu'] == "0" && 
+        $row['fri'] == "0" && 
+        $row['sat'] == "0"  ) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['pick_a_day'] = "Pick a day or days for your meeting.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (( $row['sun'] == "0" && 
         $row['mon'] == "0" && 
         $row['tue'] == "0" && 
         $row['wed'] == "0" && 
@@ -497,43 +854,214 @@ function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['pick_a_day'] = "Pick a day or days for your meeting.";
   }
 
-   if (is_blank($row['meet_time'])) {
+   if (is_blank($row['meet_time']) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_time'] = "Please set a time.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_time'])) {
     $errors['meet_time'] = "Please set a time.";
   }
 
-  if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
+
+  if ((!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_phone'] = "Only 10-digit phone numbers.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "Only 10-digit phone numbers.";
   }
 
-  if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
+
+  if ((!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_phone'] = "You've got too many numbers in your phone number.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_phone']) && has_length_greater_than($row['meet_phone'], 10)) {
     $errors['meet_phone'] = "You've got too many numbers in your phone number.";
   }
 
-  if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
+
+  if ((!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
     $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
   } 
 
-  if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 25)) {
+
+  if ((!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 30)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_pswd'] = "That password is way too long.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_pswd']) && has_length_greater_than($row['meet_pswd'], 30)) {
     $errors['meet_pswd'] = "That password is way too long.";
   } 
 
-  if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
+
+  if ((is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_url']) && is_blank($row['meet_addr']) && is_blank($row['meet_desc'])) {
     $errors['meet_url'] = "You need either an Online URL or Physical Address to host a meeting.";
   }
 
-  if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
+
+  if ((!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "255 Character limit on physical address";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_addr']) && has_length_greater_than($row['meet_addr'], 255)) {
     $errors['meet_addr'] = "255 Character limit on physical address";
   }
 
-  if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
+
+  if ((!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "255 Character limit on descriptive location";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (!is_blank($row['meet_desc']) && has_length_greater_than($row['meet_desc'], 255)) {
     $errors['meet_addr'] = "255 Character limit on descriptive location";
   }
 
-  if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
+
+  if ((is_blank($row['meet_addr']) && (!is_blank($row['meet_desc']))) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meet_addr'] = "You need location information for your map.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (is_blank($row['meet_addr']) && (!is_blank($row['meet_desc'])) ) {
     $errors['meet_addr'] = "You need location information for your map.";
   }
 
-  if (( $row['dedicated_om']    == "0"   && 
+
+  if ((( $row['dedicated_om']    == "0"   && 
+          $row['code_o']          == "0"   && 
+          $row['code_w']          == "0"   && 
+          $row['code_m']          == "0"   && 
+          $row['code_c']          == "0"   && 
+          $row['code_beg']        == "0"   && 
+          $row['code_h']          == "0"   && 
+          $row['code_d']          == "0"   && 
+          $row['code_b']          == "0"   && 
+          $row['code_ss']         == "0"   && 
+          $row['code_sp']         == "0"   && 
+          $row['month_speaker']   == "0"   && 
+          $row['potluck']         == "0"   )) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if (( $row['dedicated_om']    == "0"   && 
         $row['code_o']          == "0"   && 
         $row['code_w']          == "0"   && 
         $row['code_m']          == "0"   && 
@@ -549,14 +1077,49 @@ function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['meeting_type'] = "Select at least ONE value for the type of meeting. Your meeting is either Open or Closed at least.";
   }
 
-  if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
+
+  if (($row['dedicated_om'] == "1" && $row['meet_url'] == '') && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if ($row['dedicated_om'] == "1" && $row['meet_url'] == '') {
     $errors['url_or_phy'] = "If it's a Dedicated Online meeting you need a URL.";
   }
 
-  if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
+
+  if (($row['dedicated_om'] == "1" && $row['meet_addr'] != '') && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }
+
+  } else if ($row['dedicated_om'] == "1" && $row['meet_addr'] != '') {
     $errors['url_and_phy'] = "If it's a Dedicated Online meeting you don't need a physical address.";
   }
 
+
+
+  // begin file errors for update/edit pages
 
   if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
     $errors['name_link1'] = "You did not name your link in position 1. Please restore file selection.";
@@ -601,10 +1164,25 @@ function validate_update($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
     $errors['name_link4'] = "You set a name but no file in position 4. Please restore file selection.";
   }
 
-  // end file errors for update/edit page
+  // end file errors for update/edit pages
 
 
-  if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
+  if ((!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
+    if (isset($fn1) && $fn1 != '') {
+      $errors['name_link1'] = "Restore file selection in position 1.";
+    }
+    if (isset($fn2) && $fn2 != '') {
+      $errors['name_link2'] = "Restore file selection in position 2";
+    }
+    if (isset($fn3) && $fn3 != '') {
+      $errors['name_link3'] = "Restore file selection in position 3";
+    }
+    if (isset($fn4) && $fn4 != '') {
+      $errors['name_link4'] = "Restore file selection in position 4";
+    }  
+    $errors['add_note'] = "You've got more than 1,000 characters in your note.";
+    
+  } else if (!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) {
     $errors['add_note'] = "You've got more than 1,000 characters in your note.";
   } 
 
