@@ -436,7 +436,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   if ((!isset($fn1) || ($fn1 == '') && $row['hid_f1'] == '') && (trim($row['link1']) != '')) {
     $errors['name_link1'] = "You set a name but no file in position 1. Please restore file selection.";
   }
-  /* finally, to catch the possibility that there were no errors with the file/label area but there was another error on the page when you have hoped to upload a file, you now need to address the broken file selection. this also needs to be repeated under the notes error message(s) */
+  /* finally, to catch the possibility that there were no errors with the file/label area but there was another error on the page when you have hoped to upload a file, you now need to address the broken file selection. the notes (at the very bottom of the error checking stack, gets its own special if() function to manage this.) */
   if (
       ( isset($errors['group_name']) || isset($errors['pick_a_day']) || isset($errors['meet_time']) || isset($errors['meet_phone']) || isset($errors['meet_id']) || isset($errors['meet_pswd']) || isset($errors['meet_url']) || isset($errors['meet_addr']) || isset($errors['meeting_type']) || isset($errors['url_or_phy'])  
       ) && (isset($fn1) && $fn1 != '')

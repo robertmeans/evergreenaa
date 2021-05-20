@@ -30,9 +30,9 @@ $row = edit_meeting($id);
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
-<div class="confirm">TEST & CONFIRM!</div>	
+<div class="confirm">TEST & SELECT AUDIENCE</div>	
 <div class="manage-simple intro">
-	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Or save it for later.</p>
+	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Otherwise, scroll down, select your audience and click DONE.</p>
 	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple review">
