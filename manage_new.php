@@ -14,16 +14,6 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 if (is_post_request()) {
 
-// to hold value and prevent undefined variable notice	
-$nf1 = '';
-$fn1 = '';
-$nf2 = '';
-$fn2 = '';
-$nf3 = '';
-$fn3 = '';
-$nf4 = '';
-$fn4 = '';
-
 $rando_num = rand(100,999);
 $row = [];
 
@@ -115,6 +105,12 @@ $row['link1'] 		= trim($_POST['link1'])										?? '';
 $row['link2'] 		= trim($_POST['link2'])										?? '';
 $row['link3'] 		= trim($_POST['link3'])										?? '';
 $row['link4'] 		= trim($_POST['link4'])										?? '';
+
+$row['hid_f1'] = '';
+$row['hid_f2'] = '';
+$row['hid_f3'] = '';
+$row['hid_f4'] = '';
+
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 	$result = create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);

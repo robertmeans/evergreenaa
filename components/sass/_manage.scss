@@ -91,6 +91,7 @@
 			cursor: pointer;
 			padding: 1em;
 			font-size: 1em;
+			-webkit-appearance: none;
 			&:hover {
 				background-color: rgba(64,178,8,0.4);
 			}

@@ -24,7 +24,7 @@ function display_errors($errors=array()) {
     $output .= "<ul>";
 
     if (isset($errors['name_link1']) || isset($errors['name_link2']) || isset($errors['name_link3']) || isset($errors['name_link4'])) {
-      $output .= "<li class=\"foobgar\">NOTE: File selections do not persist if there are any errors. Anytime there is an error you need to reselect any files you just tried to upload.</li>";
+      $output .= "<li class=\"foobgar\">NOTE: I can't retain your file selections if there are errors. Every time there is any error you need to reselect the files you want to upload.</li>";
     }
 
     foreach($errors as $error) {

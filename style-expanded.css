@@ -1503,6 +1503,7 @@ a.youtube:hover {
   border: 1px solid #fff;
   transition: all 0.2s ease;
   margin-top: 0.5em;
+  -webkit-appearance: none;
 }
 #landing > form > input.submit:hover {
   background-color: rgba(0, 0, 0, 0.2);
@@ -1919,6 +1920,7 @@ span.yo-email {
   cursor: pointer;
   padding: 1em;
   font-size: 1em;
+  -webkit-appearance: none;
 }
 .manage-simple.review input.done:hover {
   background-color: rgba(64, 178, 8, 0.4);

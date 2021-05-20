@@ -1,4 +1,4 @@
-<?php $layout_context = "manage-edit"; 
+<?php $layout_context = "manage-edit";
 
 require_once 'config/initialize.php';
 
@@ -12,15 +12,138 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
-// grab meeting id in order to edit this meeting
-// if it's not there -> go back to index.php
-if (!isset($_GET['id'])) {
-	header('location: index.php');
+$id = $_GET['id'];
+
+// If validation fails -> this page is rendered
+if (is_post_request()) {
+
+$rando_num = rand(100,999);
+$row = [];
+
+ 	// if everything's good: file selected + label present
+	if (!empty($_FILES['file1']['name'])) {
+		$uploaded_file1 = $_FILES['file1']['name'];
+		$uploaded_size1 = $_FILES['file1']['size'];
+		$ext1 = strtolower(pathinfo($uploaded_file1, PATHINFO_EXTENSION));
+		$rename1 = $_SESSION['id'] . '_' . date('mdYHi') . '_01_' . $rando_num;
+
+		$nf1 = $rename1 . '.' . $ext1;
+		$fn1 = $_FILES['file1']['tmp_name'];
+	} 
+	// whoops, they added a label but no file to upload or in hidden field (they're not renaming)
+	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] != '') && $_POST['link1'] != ''))  {
+		$nf1 = $_POST['hid_f1']; 
+		$fn1 = ''; 
+	} 
+	// to catch no file/label OR if they deleted the the label then delete the file reference too
+	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] == '') && $_POST['link1'] == '')) {
+		$nf1 = ''; 
+		$fn1 = ''; 	
+	}
+
+	if (!empty($_FILES['file2']['name'])) {
+		$uploaded_file2 = $_FILES['file2']['name'];
+		$uploaded_size2 = $_FILES['file2']['size'];
+		$ext2 = strtolower(pathinfo($uploaded_file2, PATHINFO_EXTENSION));
+		$rename2 = $_SESSION['id'] . '_' . date('mdYHi') . '_02_' . $rando_num;
+
+		$nf2 = $rename2 . '.' . $ext2;
+		$fn2 = $_FILES['file2']['tmp_name'];
+	} 
+	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] != '') && $_POST['link2'] != ''))  {
+		$nf2 = $_POST['hid_f2']; 
+		$fn2 = ''; 
+	} 
+	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] == '') && $_POST['link2'] == '')) {
+		$nf2 = ''; 
+		$fn2 = ''; 	
+	}
+
+	if (!empty($_FILES['file3']['name'])) {
+		$uploaded_file3 = $_FILES['file3']['name'];
+		$uploaded_size3 = $_FILES['file3']['size'];
+		$ext3 = strtolower(pathinfo($uploaded_file3, PATHINFO_EXTENSION));
+		$rename3 = $_SESSION['id'] . '_' . date('mdYHi') . '_03_' . $rando_num;
+
+		$nf3 = $rename3 . '.' . $ext3;
+		$fn3 = $_FILES['file3']['tmp_name'];
+	} 
+	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] != '') && $_POST['link3'] != ''))  {
+		$nf3 = $_POST['hid_f3']; 
+		$fn3 = ''; 
+	} 
+	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] == '') && $_POST['link3'] == '')) {
+		$nf3 = ''; 
+		$fn3 = ''; 	
+	}
+
+	if (!empty($_FILES['file4']['name'])) {
+		$uploaded_file4 = $_FILES['file4']['name'];
+		$uploaded_size4 = $_FILES['file4']['size'];
+		$ext4 = strtolower(pathinfo($uploaded_file4, PATHINFO_EXTENSION));
+		$rename4 = $_SESSION['id'] . '_' . date('mdYHi') . '_04_' . $rando_num;
+
+		$nf4 = $rename4 . '.' . $ext4;
+		$fn4 = $_FILES['file4']['tmp_name'];
+	} 
+	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] != '') && $_POST['link4'] != ''))  {
+		$nf4 = $_POST['hid_f4']; 
+		$fn4 = ''; 
+	} 
+	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] == '') && $_POST['link4'] == '')) {
+		$nf4 = ''; 
+		$fn4 = ''; 	
+	}
+
+$row['visible'] 		= $_POST['visible'] 									?? '';
+$row['sun'] 			= $_POST['sun'] 										?? '';
+$row['mon'] 			= $_POST['mon'] 										?? '';
+$row['tue'] 			= $_POST['tue'] 										?? '';
+$row['wed'] 			= $_POST['wed'] 										?? '';
+$row['thu'] 			= $_POST['thu'] 										?? '';
+$row['fri'] 			= $_POST['fri'] 										?? '';
+$row['sat']				= $_POST['sat'] 										?? '';
+$row['meet_time']		= $_POST['meet_time']									?? '';
+$row['group_name'] 		= $_POST['group_name'] 									?? '';
+$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
+$row['meet_id']			= $_POST['meet_id'] 									?? '';
+$row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
+$row['meet_url'] 		= $_POST['meet_url'] 									?? '';
+$row['meet_addr'] 		= $_POST['meet_addr'] 									?? '';
+$row['meet_desc'] 		= $_POST['meet_desc'] 									?? '';
+$row['dedicated_om'] 	= $_POST['dedicated_om'] 								?? '';
+$row['code_b'] 			= $_POST['code_b'] 										?? '';
+$row['code_d'] 			= $_POST['code_d'] 										?? '';
+$row['code_o'] 			= $_POST['code_o'] 										?? '';
+$row['code_w'] 			= $_POST['code_w'] 										?? '';
+$row['code_beg'] 		= $_POST['code_beg'] 									?? '';
+$row['code_h'] 			= $_POST['code_h'] 										?? '';
+$row['code_sp'] 		= $_POST['code_sp'] 									?? '';
+$row['code_c'] 			= $_POST['code_c'] 										?? '';
+$row['code_m'] 			= $_POST['code_m'] 										?? '';
+$row['code_ss'] 		= $_POST['code_ss'] 									?? '';
+$row['month_speaker'] 	= $_POST['month_speaker'] 								?? '';
+$row['potluck'] 		= $_POST['potluck']										?? '';
+
+$row['hid_f1'] 		= $_POST['hid_f1']										?? '';
+$row['link1'] 		= trim($_POST['link1'])										?? '';
+$row['hid_f2'] 		= $_POST['hid_f2']										?? '';
+$row['link2'] 		= trim($_POST['link2'])										?? '';
+$row['hid_f3'] 		= $_POST['hid_f3']										?? '';
+$row['link3'] 		= trim($_POST['link3'])										?? '';
+$row['hid_f4'] 		= $_POST['hid_f4']										?? '';
+$row['link4'] 		= trim($_POST['link4'])										?? '';
+$row['add_note'] 		= $_POST['add_note'] 									?? '';
+
+	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+
+	if ($result === true) {
+	    header('location: manage_edit_review.php?id=' . $id);
+	} else {
+		$errors = $result;
+	}
 }
 
-// $id = $_GET['id'];
-$id = $_GET['id'] ?? '1';
-	
 $row = edit_meeting($id);
 
 ?>
@@ -40,12 +163,21 @@ $row = edit_meeting($id);
 	
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
-	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+	<?php if (!empty(display_errors($errors))) { ?>
+		<p>Looks like you've got some corrections to make.</p>
+	<?php } else { ?>
+		<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
+		<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+	<?php } ?>
 </div>
 <div class="manage-simple empty">
-	<h1 class="edit-h1">Update this Meeting</h1>
-	<?php echo display_errors($errors); ?>
+	<?php if (!empty(display_errors($errors))) { ?>
+		<h1 class="edit-h1">Update this Meeting</h1>
+		<?php echo display_errors($errors); ?>
+	<?php } else { ?>
+		<h1 class="edit-h1">Edit this meeting</h1>
+	<?php } ?>
+
 
 	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
 
@@ -53,9 +185,8 @@ $row = edit_meeting($id);
 			<?php require '_includes/edit-details.php'; ?>
 		</div><!-- .weekday-wrap -->
 
-	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>
+	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>		
 
 </div>
-
 </div><!-- #manage-wrap -->
 <?php require '_includes/footer.php'; ?>

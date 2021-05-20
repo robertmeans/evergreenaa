@@ -164,7 +164,7 @@
 
 		
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= nl2br(h($row['add_note'])); ?></textarea>
+		<textarea name="add_note" class="meetNotes<?php if (isset($errors['add_note'])) { echo " fixerror"; } ?>" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= nl2br(h($row['add_note'])); ?></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="review-mtg" name="review-mtg" class="submit" value="REVIEW">
