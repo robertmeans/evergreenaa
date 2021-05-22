@@ -152,6 +152,10 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .no-js #loader {
   display: none;
 }
@@ -2549,6 +2553,9 @@ form#manage-mtg .details-left textarea:focus {
   list-style: none;
   margin: 0.5em 0;
 }
+.errors ul li.foobgar em {
+  font-style: italic;
+}
 
 a.new-mtg-btn {
   margin: 1em 0;
@@ -2592,6 +2599,7 @@ form#manage-mtg .pdf-wrap.fixerror {
   border-radius: 0px;
   padding: 0.5em;
   color: #313131;
+  border-color: red;
 }
 form#manage-mtg .pdf-wrap.fixerror label.pdf-label {
   color: #313131;
@@ -2740,6 +2748,7 @@ form#manage-mtg label.pdf-label {
   padding: 0.5em;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0.2);
+  scroll-margin-top: 3em;
   margin-bottom: 0.5em;
 }
 .btm-notes .file-uploads .pdf-remove {
@@ -2936,6 +2945,22 @@ form#manage-mtg label.pdf-label {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1em 0em;
     width: 100%;
+  }
+
+  .weekday-edit-wrap .meeting-details .details-right p.add-info,
+  .weekday-wrap .meeting-details .details-right p.add-info {
+    margin-top: 2em;
+  }
+  .weekday-edit-wrap .meeting-details #upload-links,
+  .weekday-wrap .meeting-details #upload-links {
+    margin: 2em 0;
+    padding: 0;
+  }
+  .weekday-edit-wrap .meeting-details #upload-links a.mtg-links,
+  .weekday-wrap .meeting-details #upload-links a.mtg-links {
+    width: 100%;
+    margin: 0.25em 0;
+    padding: 1.25em 0.5em;
   }
 
   form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {

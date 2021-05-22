@@ -129,40 +129,40 @@
 <div class="file-uploads">
 	<p>Upload PDF Files <a id="toggle-pdf-info"><i class="far fa-question-circle fa-fw"></i></a></p>
 
-	<div id="pdf1" class="pdf-wrap pdf1<?php if (isset($errors['name_link1'])) { echo " fixerror"; } ?>">
+	<div id="pdf1" date-role="open-files" class="pdf-wrap pdf1<?php if (isset($errors['name_link1'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="hidden" name="hid_f1" value="<?= $row['file1']; ?>">
-			<input type="file" class="pdf1_name" id="file1" name="file1" accept=".pdf"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="link1" value="<?php if (isset($_POST['link1'])) { echo trim(h($_POST['link1'])); } else { echo trim(h($row['link1'])); } ?>" maxlength="25"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
+			<input type="hidden" id="hid-f1" name="hid_f1" value="<?php if(isset($_POST['hid_f1'])) { echo $_POST['hid_f1']; } else { echo $row['file1']; } ?>">
+			<input type="file" class="pdf1_name pdf-count" id="file1" name="file1" accept=".pdf"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="link1" value="<?php if (isset($_POST['link1'])) { echo trim(h($_POST['link1'])); } else { echo trim(h($row['link1'])); } ?>" maxlength="25"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-1">Remove</a>
 		</div>
 	</div>
 
-	<div id="pdf2" class="pdf-wrap pdf2<?php if (isset($errors['name_link2'])) { echo " fixerror"; } ?>">
+	<div id="pdf2" date-role="open-files" class="pdf-wrap pdf2<?php if (isset($errors['name_link2'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="hidden" name="hid_f2" value="<?= $row['file2']; ?>">
-			<input type="file" class="pdf2_name" id="file2" name="file2" accept=".pdf"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="link2" value="<?php if (isset($_POST['link2'])) { echo trim(h($_POST['link2'])); } else { echo trim(h($row['link2'])); } ?>" maxlength="25"></label>
+			<input type="hidden" id="hid-f2" name="hid_f2" value="<?php if(isset($_POST['hid_f2'])) { echo $_POST['hid_f2']; } else { echo $row['file2']; } ?>">
+			<input type="file" class="pdf2_name pdf-count" id="file2" name="file2" accept=".pdf"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="link2" value="<?php if (isset($_POST['link2'])) { echo trim(h($_POST['link2'])); } else { echo trim(h($row['link2'])); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-2">Remove</a>
 		</div>
 	</div>		
 
-	<div id="pdf3" class="pdf-wrap pdf3<?php if (isset($errors['name_link3'])) { echo " fixerror"; } ?>">
+	<div id="pdf3" date-role="open-files" class="pdf-wrap pdf3<?php if (isset($errors['name_link3'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="hidden" name="hid_f3" value="<?= $row['file3']; ?>">
-			<input type="file" class="pdf3_name" id="file3" name="file3" accept=".pdf"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="link3" value="<?php if (isset($_POST['link3'])) { echo trim(h($_POST['link3'])); } else { echo trim(h($row['link3'])); } ?>" maxlength="25"></label>
+			<input type="hidden" id="hid-f3" name="hid_f3" value="<?php if(isset($_POST['hid_f3'])) { echo $_POST['hid_f3']; } else { echo $row['file3']; } ?>">
+			<input type="file" class="pdf3_name pdf-count" id="file3" name="file3" accept=".pdf"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="link3" value="<?php if (isset($_POST['link3'])) { echo trim(h($_POST['link3'])); } else { echo trim(h($row['link3'])); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-3">Remove</a>
 		</div>
 	</div>		
 
-	<div id="pdf4" class="pdf-wrap pdf4<?php if (isset($errors['name_link4'])) { echo " fixerror"; } ?>">
+	<div id="pdf4" date-role="open-files" class="pdf-wrap pdf4<?php if (isset($errors['name_link4'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="hidden" name="hid_f4" value="<?= $row['file4']; ?>">
-			<input type="file" class="pdf4_name" id="file4" name="file4" accept=".pdf"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="link4" value="<?php if (isset($_POST['link4'])) { echo trim(h($_POST['link4'])); } else { echo trim(h($row['link4'])); } ?>" maxlength="25"></label>
+			<input type="hidden" id="hid-f4" name="hid_f4" value="<?php if(isset($_POST['hid_f4'])) { echo $_POST['hid_f4']; } else { echo $row['file4']; } ?>">
+			<input type="file" class="pdf4_name pdf-count" id="file4" name="file4" accept=".pdf"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="link4" value="<?php if (isset($_POST['link4'])) { echo trim(h($_POST['link4'])); } else { echo trim(h($row['link4'])); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-4">Remove</a>

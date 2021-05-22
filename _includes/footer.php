@@ -57,7 +57,9 @@ switch ($layout_context) {
 ?>
 <script src="js/jquery.timepicker.min.js?<?php echo time(); ?>"></script>
 <script src="js/scripts.js?<?php echo time(); ?>"></script>
-<script src="http://localhost:35729/livereload.js"></script>	
+<?php if (WWW_ROOT == 'http://localhost/evergreenaa') { ?>
+<script src="http://localhost:35729/livereload.js"></script>
+<?php } else { } ?>	
 
 </body>
 </html>

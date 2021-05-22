@@ -1,1 +1,0 @@
-[20-May-2021 11:19:19 America/Denver] PHP Parse error:  syntax error, unexpected '&&' (T_BOOLEAN_AND) in C:\wamp64\www\evergreenaa\_functions\query_functions.php on line 452

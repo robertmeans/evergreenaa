@@ -176,132 +176,176 @@ $(document).ready(function(){
   $("#link-label").hide();
   $("#email-bob").hide();
 
+/* start file upload */
+  /* set positions open or closed based on whether they have a fixerror class or content in the hidden file field */
+  var position1 = document.getElementById('hid-f1');
+  var position2 = document.getElementById('hid-f2');
+  var position3 = document.getElementById('hid-f3');
+  var position4 = document.getElementById('hid-f4');
 
-  if ($('.pdf1').hasClass('fixerror')) {
+  if (($('.pdf1').hasClass('fixerror')) || (position1 && position1.value)) {
     $(".pdf1").show();
   } else {
     $(".pdf1").hide();
   }
-  if ($('.pdf2').hasClass('fixerror')) {
+  if (($('.pdf2').hasClass('fixerror')) || (position2 && position2.value)) {
     $(".pdf2").show();
   } else {
     $(".pdf2").hide();
   }
-  if ($('.pdf3').hasClass('fixerror')) {
+  if (($('.pdf3').hasClass('fixerror')) || (position3 && position3.value)) {
     $(".pdf3").show();
   } else {
     $(".pdf3").hide();
   }
-  if ($('.pdf4').hasClass('fixerror')) {
+  if (($('.pdf4').hasClass('fixerror')) || (position4 && position4.value)) {
     $(".pdf4").show();
   } else {
     $(".pdf4").hide();
   }
 
-
-
+  /* open the first available position when visitor wants to open another and reset message with appropriate positions available */
   $('#file-upload').click(function() {
+    var open_files = $('.pdf-wrap:visible').length +1;
     var file_upload_txt = $(this).html();
 
-    // if ((file_upload_txt) == '<i class="far fa-plus-square fa-fw"></i> Add a PDF') {
       if ($('.pdf1').is(':hidden')) {
         $('.pdf1').slideDown();
-        // $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        open_file_positions(open_files);
         return;
       }
       if ($('.pdf2').is(':hidden')) {
         $('.pdf2').slideDown();
-        // $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        open_file_positions(open_files);
         return;
       }
       if ($('.pdf3').is(':hidden')) {
         $('.pdf3').slideDown();
-        // $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        open_file_positions(open_files);
         return;
       }
       if ($('.pdf4').is(':hidden')) {
         $('.pdf4').slideDown();
-        // $(this).html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+        open_file_positions(open_files);
         return;
       }
-
-
   });
 
+  /* unset values for hidden file name and label, remove position and reset message */
+  $('.pdf-remove').click(function() {
+    var open_files = $('.pdf-wrap:visible').length -1;
+    var close_upload = $(this).closest('.pdf-wrap');
 
+    if ((close_upload).hasClass('pdf1')) {
+      $('#hid-f1').val('');
+      $('.pdf1_name').val('');
+      $('#pdf1').removeClass('fixerror');
+      $('.pdf1').slideUp();
+      open_file_positions(open_files);
+    }
+    if ((close_upload).hasClass('pdf2')) {
+      $('#hid-f2').val('');
+      $('.pdf2_name').val('');
+      $('#pdf2').removeClass('fixerror');
+      $('.pdf2').slideUp();
+      open_file_positions(open_files);
+    }
+    if ((close_upload).hasClass('pdf3')) {
+      $('#hid-f3').val('');
+      $('.pdf3_name').val('');
+      $('#pdf3').removeClass('fixerror');
+      $('.pdf3').slideUp();
+      open_file_positions(open_files);
+    }
+    if ((close_upload).hasClass('pdf4')) {
+      $('#hid-f4').val('');
+      $('.pdf4_name').val('');
+      $('#pdf4').removeClass('fixerror');
+      $('.pdf4').slideUp();
+      open_file_positions(open_files);
+    }
+  });
+
+  /* submit query, check for files > 2 MB. throw alert() error if failed and addClass fixerror. */
   $('#review-mtg, #update-mtg').click(function(e) {
     var file1 = document.getElementById('file1').files[0];
+    var p1    = "1";
     var file2 = document.getElementById('file2').files[0];
+    var p2    = "2";
     var file3 = document.getElementById('file3').files[0];
+    var p3    = "3";
     var file4 = document.getElementById('file4').files[0];
+    var p4    = "4";
 
-    if (typeof file1 !== 'undefined') {
-      if(file1 && file1.size <= 2097152) {
-        // submit form
-      } else {
-        alert('Your file "' + file1.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
-        // document.getElementById('pdf1').addClass('fixerror');
-        e.preventDefault();
-      }
-    }
-
-    if (typeof file2 !== 'undefined') {
-      if(file2 && file2.size <= 2097152) {
-        // submit form
-      } else {
-        alert('Your file "' + file2.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
-        e.preventDefault();
-      }
-    }
-
-    if (typeof file3 !== 'undefined') {
-      if(file3 && file3.size <= 2097152) {
-        // submit form
-      } else {
-        alert('Your file "' + file3.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
-        e.preventDefault();
-      }
-    }
+    var pdf_err1 = document.getElementById('pdf1');
+    var pdf_err2 = document.getElementById('pdf2');
+    var pdf_err3 = document.getElementById('pdf3');
+    var pdf_err4 = document.getElementById('pdf4');
 
     if (typeof file4 !== 'undefined') {
       if(file4 && file4.size <= 2097152) {
         // submit form
       } else {
-        alert('Your file "' + file4.name + '" is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
+        alert('Your file "' + file4.name + '" in position ' + p4 + ' is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
+        pdf_err4.classList.add('fixerror');
+        e.preventDefault();
+      }
+    }
+    if (typeof file3 !== 'undefined') {
+      if(file3 && file3.size <= 2097152) {
+        // submit form
+      } else {
+        alert('Your file "' + file3.name + '" in position ' + p3 + ' is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
+        pdf_err3.classList.add('fixerror');
+        e.preventDefault();
+      }
+    }
+    if (typeof file2 !== 'undefined') {
+      if(file2 && file2.size <= 2097152) {
+        // submit form
+      } else {
+        alert('Your file "' + file2.name + '" in position ' + p2 + ' is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
+        pdf_err2.classList.add('fixerror');
+        e.preventDefault();
+      }
+    }
+    if (typeof file1 !== 'undefined') {
+      if(file1 && file1.size <= 2097152) {
+        // submit form
+      } else {
+        alert('Your file "' + file1.name + '" in position ' + p1 + ' is too large. The file size limit is 2 MB (2,048 KB). Please remove or replace in order to proceed.');
+        pdf_err1.classList.add('fixerror');
         e.preventDefault();
       }
     }
   });
 
 
+  /* defined below all other interaction with #file-upload or .pdf-remove in order to provide appropriate first page load content. everything else is dependent on a re-rendering after a click event. variable has to be defined here for the first run of the function so that it reads everything as is set when the page loads the first time. */
+  var open_files = $('.pdf-wrap:visible').length;
+  function open_file_positions(open_files) { 
+    if (open_files == '0') {
+      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 4 total');
+    }
+    if (open_files == '1') {
+      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');
+    }
+    if (open_files == '2') {
+      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 2 remaining');
+    }
+    if (open_files == '3') {
+      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 1 remaining');
+    }
+    if (open_files == '4') {
+      $('#file-upload').html('That\'s all');
+    }
+  }
+  /* first pass to set message for appropriate number of positions available */ 
+  open_file_positions(open_files);
 
-  $('.pdf-remove').click(function() {
-    var file_upload_txt = $('#file-upload').html();
-    var close_upload = $(this).closest('.pdf-wrap');
+    /* end file upload */
 
-    if ((close_upload).hasClass('pdf1')) {
-      $('.pdf1_name').val('');
-      $('#pdf1').removeClass('fixerror');
-      $('.pdf1').slideUp();
-    }
-    if ((close_upload).hasClass('pdf2')) {
-      $('.pdf2_name').val('');
-      $('#pdf2').removeClass('fixerror');
-      $('.pdf2').slideUp();
-    }
-    if ((close_upload).hasClass('pdf3')) {
-      $('.pdf3_name').val('');
-      $('#pdf3').removeClass('fixerror');
-      $('.pdf3').slideUp();
-    }
-    if ((close_upload).hasClass('pdf4')) {
-      $('.pdf4_name').val('');
-      $('#pdf4').removeClass('fixerror');
-      $('.pdf4').slideUp();
-    }
 
-  });
-    // $(close_upload).slideUp();
 
 
   /* toggle days of week */

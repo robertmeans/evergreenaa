@@ -683,6 +683,9 @@ form#manage-mtg .details-left {
 		padding: 1em;
 		list-style: none;
 		margin: 0.5em 0;
+		em {
+			font-style: italic;
+		}
 	}
 }
 
@@ -723,6 +726,7 @@ form#manage-mtg {
 		border-radius: 0px;
 		padding: 0.5em;
 		color: #313131;
+		border-color: red;
 		label.pdf-label {
 			color: #313131;
 		}
@@ -868,6 +872,7 @@ form#manage-mtg {
 			padding: 0.5em;
 			border: 1px solid rgba(255,255,255,0.5);
 			background-color: rgba(255,255,255,0.2);
+			scroll-margin-top: 3em;
 			margin-bottom: 0.5em;
 		}
 		.pdf-remove {
@@ -1066,6 +1071,23 @@ form#manage-mtg {
 		border-bottom: 1px solid rgba(255,255,255,0.2);
 		padding: 1em 0em;
 		width: 100%;
+	}
+	.weekday-edit-wrap,
+	.weekday-wrap {
+		.meeting-details {
+			.details-right p.add-info {
+				margin-top: 2em;
+			}
+			#upload-links {
+				margin: 2em 0;
+				padding: 0;
+				a.mtg-links {
+					width: 100%;
+					margin: 0.25em 0;
+					padding: 1.25em 0.5em;
+				}
+			}
+		}
 	}
 	form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {
 		width: 100%;
