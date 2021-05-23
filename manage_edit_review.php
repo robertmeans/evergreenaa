@@ -33,7 +33,7 @@ $row = edit_meeting($id);
 <div class="confirm">TEST & CONFIRM!</div>	
 <div class="manage-simple intro">
 	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Or save it for later.</p>
-	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+	<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple review">
 	<h1>Quick view</h1>

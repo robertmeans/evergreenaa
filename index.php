@@ -57,7 +57,7 @@ if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset
 		<?php endif; ?>
 
 		<?php if($_SESSION['verified']): ?>
-		 	<a class="verified" href="home_private.php">Let me in already!</a>
+		 	<a class="verified" href="<?= WWW_ROOT ?>">Let me in already!</a>
 		 <?php endif; ?>
 
 	</div><!-- #landing-content -->

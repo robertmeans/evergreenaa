@@ -7,9 +7,11 @@ require_once 'config/initialize.php';
 
 <?php require '_includes/head.php'; ?>
 <body>
-<!-- 	<div class="preload">
-		<p>One day at a time.</p>
-	</div> -->
+<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+<div class="preload">
+	<p>One day at a time.</p>
+</div>
+<?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

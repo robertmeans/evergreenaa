@@ -325,7 +325,7 @@ $(document).ready(function(){
   var open_files = $('.pdf-wrap:visible').length;
   function open_file_positions(open_files) { 
     if (open_files == '0') {
-      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 4 total');
+      $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add a PDF | 4 total');
     }
     if (open_files == '1') {
       $('#file-upload').html('<i class="far fa-plus-square fa-fw"></i> Add another PDF | 3 remaining');

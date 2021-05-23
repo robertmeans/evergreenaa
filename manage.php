@@ -21,9 +21,12 @@ $user_id = $_SESSION['id'];
 
 <?php require '_includes/head.php'; ?>
 <body>
+<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">
 	<p>Loading...</p>
-</div>	
+</div>
+<?php } ?>	
+	
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
@@ -38,7 +41,7 @@ $user_id = $_SESSION['id'];
 				echo "<a href=\"email_everyone_BCC.php\">BCC All</a> | <a href=\"email_everyone_PERSONAL.php\">Personal All</a> | "; 
 			}
 		?>
-			<a href="home_private.php">Home</a> | <a href="logout.php">Logout</a>
+			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>
 		</p>
 	</div>
 	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>

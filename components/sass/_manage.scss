@@ -1127,12 +1127,24 @@ form#manage-mtg {
 			padding: 0;
 		}
 	}
-	.btm-notes .update-rt {
-		flex-wrap: wrap;
+	.weekday-edit-wrap form {
+		flex-direction: column;
+		width: 100%;
+		.btm-notes {
+			input[name="delete-mtg"] {
+				padding: 1em 2em;
+				margin: 0 0 0.5em;
+			}			
+		}
+		.btm-notes .update-rt {
+			justify-content: center;
+
+			a {
+				width: 100%;
+			}
+		}
 	}
-	.btm-notes input[name="delete-mtg"] {
-		padding: 0.5em;
-	}
+
 	.manage-glance .glance-group-title {
 		padding: 0em;
 		align-self: flex-start;

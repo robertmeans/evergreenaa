@@ -2999,13 +2999,21 @@ form#manage-mtg label.pdf-label {
     padding: 0;
   }
 
-  .btm-notes .update-rt {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+  .weekday-edit-wrap form {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    width: 100%;
   }
-
-  .btm-notes input[name="delete-mtg"] {
-    padding: 0.5em;
+  .weekday-edit-wrap form .btm-notes input[name="delete-mtg"] {
+    padding: 1em 2em;
+    margin: 0 0 0.5em;
+  }
+  .weekday-edit-wrap form .btm-notes .update-rt {
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+  .weekday-edit-wrap form .btm-notes .update-rt a {
+    width: 100%;
   }
 
   .manage-glance .glance-group-title {

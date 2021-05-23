@@ -127,9 +127,11 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload-manage">
-		<p>One meeting at a time.</p>
-	</div>
+<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+<div class="preload-manage">
+	<p>One meeting at a time.</p>
+</div>
+<?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>
 <?php require '_includes/descriptive-location-msg.php'; ?>
@@ -141,7 +143,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 <div class="manage-simple intro">
 	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
 	<p>Meetings save lives. <i class="fas fa-om"></i></p>
-	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+	<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Add a New Meeting</h1>

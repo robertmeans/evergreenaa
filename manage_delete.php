@@ -43,7 +43,7 @@ $row = edit_meeting($id);
 <div class="manage-simple intro">
 	
 	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
-	<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+	<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>

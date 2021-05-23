@@ -150,9 +150,11 @@ $row = edit_meeting($id);
 
 <?php require '_includes/head.php'; ?>
 <body>
-	<div class="preload-manage">
-		<p>One meeting at a time.</p>
-	</div>
+<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+<div class="preload-manage">
+	<p>One meeting at a time.</p>
+</div>
+<?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>
 <?php require '_includes/descriptive-location-msg.php'; ?>
@@ -167,7 +169,7 @@ $row = edit_meeting($id);
 		<p>Looks like you've got some corrections to make.</p>
 	<?php } else { ?>
 		<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
-		<p class="logout"><a href="home_private.php">Home</a> | <a href="manage.php">Dashboard</a></p>
+		<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
 	<?php } ?>
 </div>
 <div class="manage-simple empty">
