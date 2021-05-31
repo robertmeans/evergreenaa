@@ -437,7 +437,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['name_link1'] = "You set a name but no file in position 1. Please restore file selection.";
   }
   /* finally, to catch the possibility that there were no errors with the file/label area but there was another error on the page when you have hoped to upload a file, you now need to address the broken file selection. the notes (at the very bottom of the error checking stack, gets its own special if() function to manage this.) */
-  if (isset($errors) && (isset($fn1) && $fn1 != '')) {
+  if (!empty($errors) && (isset($fn1) && $fn1 != '')) {
     $errors['name_link1'] = "Restore file selection in position 1.";
   }
   // END POSITION 1
@@ -457,7 +457,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   if ((!isset($fn2) || ($fn2 == '') && $row['hid_f2'] == '') && (trim($row['link2']) != '')) {
     $errors['name_link2'] = "You set a name but no file in position 2. Please restore file selection.";
   }
-  if (isset($errors) && (isset($fn2) && $fn2 != '')) {
+  if (!empty($errors) && (isset($fn2) && $fn2 != '')) {
     $errors['name_link2'] = "Restore file selection in position 2.";
   }  
 
@@ -476,7 +476,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   if ((!isset($fn3) || ($fn3 == '') && $row['hid_f3'] == '') && (trim($row['link3']) != '')) {
     $errors['name_link3'] = "You set a name but no file in position 3. Please restore file selection.";
   }
-  if (isset($errors) && (isset($fn3) && $fn3 != '')) {
+  if (!empty($errors) && (isset($fn3) && $fn3 != '')) {
     $errors['name_link3'] = "Restore file selection in position 3.";
   }  
 
@@ -495,7 +495,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   if ((!isset($fn4) || ($fn4 == '') && $row['hid_f4'] == '') && (trim($row['link4']) != '')) {
     $errors['name_link4'] = "You set a name but no file in position 4. Please restore file selection.";
   }
-  if (isset($errors) && (isset($fn4) && $fn4 != '')) {
+  if (!empty($errors) && (isset($fn4) && $fn4 != '')) {
     $errors['name_link4'] = "Restore file selection in position 4.";
   }  
 
