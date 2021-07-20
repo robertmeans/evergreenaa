@@ -651,6 +651,27 @@ li.ctr-day .day-content {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.email-host {
+  width: 100%;
+  display: block;
+  padding: 1em;
+}
+.email-host a {
+  margin-left: 0;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.email-host a:hover {
+  color: #96ff00;
+}
+.email-host i.far.fa-envelope {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin-right: 0.5em;
+}
+
 @media screen and (max-width: 800px) {
   .backstretch {
     display: none;
@@ -3055,6 +3076,160 @@ span.contact-update-message {
         flex-direction: column;
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
+  }
+}
+/* The Modal (background) */
+#theModal {
+  display: none;
+  /* turn this modal on or off for dev at btm of script */
+  position: fixed;
+  z-index: 1234562;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Modal Content/Box */
+  /* The Close Button */
+  /* Modal Header */
+  /* Modal Body */
+}
+#theModal .modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto 0;
+  padding: 0px;
+  border: 1px solid #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+#theModal .closefp {
+  color: #313131;
+  float: right;
+  margin-top: -0.2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 50%;
+}
+#theModal .closefp:hover, #theModal .closefp:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#theModal .close:hover,
+#theModal .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#theModal .modal-header,
+#theModal .modal-footer {
+  padding: 1em;
+  background-color: #0a2240;
+  color: white;
+}
+#theModal .modal-header {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+#theModal .modal-header h4 {
+  line-height: 1.5em;
+}
+#theModal .modal-wrap {
+  width: 90%;
+  margin: 1em auto;
+}
+#theModal .modal-body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #313131;
+  padding: 1em;
+  background-color: #313131;
+  color: #fff;
+}
+#theModal .modal-body form.edit-link-form {
+  width: 100%;
+}
+#theModal .modal-body form.edit-link-form input.edit-input {
+  margin-top: 0.2em;
+  padding: 0.3em;
+  font-size: 1.2em;
+  color: #757575;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+  border: none;
+}
+#theModal .modal-body form.edit-link-form input.edit-input:hover, #theModal .modal-body form.edit-link-form input.edit-input:focus {
+  outline: none;
+}
+#theModal .modal-body form.edit-link-form input.link-name {
+  margin-bottom: 1em;
+}
+#theModal .modal-body form.edit-link-form .submit-links {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: space-aroung;
+      justify-content: space-aroung;
+  margin: 1em auto;
+}
+#theModal .modal-body form.edit-link-form .submit-links input.update,
+#theModal .modal-body form.edit-link-form .submit-links input.delete {
+  margin-top: 1em;
+  width: 48%;
+  border: 1px solid green;
+  padding: 1em;
+  color: #fff;
+  font-size: 1em;
+  background-color: #5cb85c;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+#theModal .modal-body form.edit-link-form .submit-links input.update:hover,
+#theModal .modal-body form.edit-link-form .submit-links input.delete:hover {
+  background-color: rgba(92, 184, 92, 0.8);
+}
+#theModal .modal-body form.edit-link-form .submit-links input.delete {
+  background-color: #f73a3a;
+}
+#theModal .modal-body form.edit-link-form .submit-links input.delete:hover {
+  background-color: rgba(247, 58, 58, 0.8);
+}
+#theModal .modal-body form.edit-link-form i.fa-paste {
+  font-size: 1.3em;
+  color: #757575;
+  margin-left: 0.2em;
+  transition: all 0.2s ease;
+}
+#theModal .modal-body form.edit-link-form i.fa-paste:hover {
+  color: #000;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
   }
 }
 .foot {

@@ -128,9 +128,9 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 <?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<div class="preload-manage">
+<!-- <div class="preload-manage">
 	<p>One meeting at a time.</p>
-</div>
+</div> -->
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>

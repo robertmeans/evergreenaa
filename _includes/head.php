@@ -30,7 +30,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Courier+Prime|Special+Elite|Caveat&display=swap' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" type="text/css">
 
-	<script src="js/jquery_3.4.1.js"></script>
+	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/jquery_1-12-1_ui_min.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcS8gagJkuoY6gB3utE1iyZnWk4JG5Suw&callback=initMap"></script>

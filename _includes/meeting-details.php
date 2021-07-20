@@ -1,5 +1,35 @@
-
+				<?php $emh = rand(10000, 99999);  ?>
 				<div class="meeting-details">
+
+
+
+
+
+
+<?php if (isset($_SESSION['admin']) == "1") { ?>
+
+	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
+		
+		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
+		<span data-target="mtgday" style="display:none;"><?= substr($today, 0,3); ?></span>
+		<span data-target="mtgname" style="display:none;">
+		<?php if (strlen($row['group_name']) < 22) { 
+				echo substr($row['group_name'], 0,22); 
+			} else {
+				echo substr($row['group_name'], 0,22) . '...';
+			} 
+		?>
+		</span>
+		<a href="#" data-role="update" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Send a message to this meeting's Host</a>
+
+	</div>
+
+<?php } ?>
+
+
+
+
+
 
 <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
 					<div class="details-left">
@@ -43,17 +73,11 @@
 							</iframe>
 						</div>
 
-
-
-
 <?php 			if (($row['meet_addr'] != null) && ($row['meet_desc'] != null)) { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_desc']); ?></p>
 					<?php } else { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_addr']); ?></p>
 					<?php } ?>
-
-
-
 
 						<a class="map-dir" href="https://maps.apple.com/?q=<?= preg_replace( "/\r|\n/", " ", h($row['meet_addr'])); ?>" target="_blank">Directions</a>
 
@@ -103,7 +127,6 @@
 							<?php if ($row['link4'] != '') { ?><a href="<?= WWW_ROOT ?>/uploads/<?= h(($row['file4'])) ?>" class="mtg-links" target="_blank"><?= h(($row['link4'])) ?></a><?php } ?>
 						</div>
 					<?php } ?>
-
 
 					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
 				</div><!-- .meeting-details -->

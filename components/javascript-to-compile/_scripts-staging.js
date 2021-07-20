@@ -597,3 +597,30 @@ $(document).ready(function() {
     })
   });
 });
+
+// email host
+$(document).ready(function() {
+  $(document).on('click','a[data-role=update]', function() {
+
+    var id         = $(this).data('id');
+    var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
+    var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
+    var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
+    var theModal   = document.getElementById("theModal");
+
+    // alert(id);
+    // alert(mtgtime);
+
+    $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+    console.log(mtgname);
+
+    
+    theModal.style.display = "block";
+  });
+
+  var closefp = document.getElementsByClassName("closefp")[0];
+  closefp.onclick = function() {
+    theModal.style.display = "none";
+  }
+
+});

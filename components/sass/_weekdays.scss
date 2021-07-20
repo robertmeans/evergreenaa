@@ -177,7 +177,7 @@ li.ctr-day {
 		align-items: center;
 		flex-wrap: wrap;
 		margin-top: 1em;
-		position: relative;
+		position: relative;		
 		i.far.fa-edit {
 			position: absolute;
 			top: 5px;
@@ -327,7 +327,27 @@ li.ctr-day {
 		background-color: rgba(0,0,0,0.3);
 	}
 }
-
+		.email-host {
+			width: 100%;
+			display: block;
+			padding: 1em;
+			a {
+				margin-left: 0;
+				color: #fff;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				&:hover {
+					color: #96ff00;
+				}
+			}
+			i.far.fa-envelope {
+			// for email host icon
+				position: relative;
+				top: 0;
+				right: 0;
+				margin-right: 0.5em;
+			}
+		}
 
 @media screen and (max-width: 800px) {
 	.backstretch {
