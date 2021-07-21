@@ -176,6 +176,7 @@ footer {
         color: #313131;
         background-color: #ffdddd;
         border: 1px solid #ff5a5a;
+        text-align: left;
       }
       .alert-success {
         margin-bottom: 0.5em;
@@ -185,17 +186,16 @@ footer {
         color: #fff;
         background-color: #82c33a;
         border: 1px solid #45661f;
+        text-align: left;
       }
     }
     span {
+      display: block;
+      margin: 0.5em auto;
       background: rgba(150,255,0,0.1);
       padding: 1em;
       border: 1px solid #96ff00;
     }
-
-
-
-
 
   }
 

@@ -660,6 +660,7 @@ li.ctr-day .day-content {
   margin-left: 0;
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 .email-host a:hover {
@@ -960,6 +961,7 @@ footer form#contactForm #msg .alert-warning {
   color: #313131;
   background-color: #ffdddd;
   border: 1px solid #ff5a5a;
+  text-align: left;
 }
 footer form#contactForm #msg .alert-success {
   margin-bottom: 0.5em;
@@ -969,8 +971,11 @@ footer form#contactForm #msg .alert-success {
   color: #fff;
   background-color: #82c33a;
   border: 1px solid #45661f;
+  text-align: left;
 }
 footer form#contactForm span {
+  display: block;
+  margin: 0.5em auto;
   background: rgba(150, 255, 0, 0.1);
   padding: 1em;
   border: 1px solid #96ff00;
@@ -3078,6 +3083,10 @@ span.contact-update-message {
         flex-wrap: nowrap;
   }
 }
+body.noscrollz {
+  overflow: hidden;
+}
+
 /* The Modal (background) */
 #theModal {
   display: none;
@@ -3099,7 +3108,7 @@ span.contact-update-message {
 #theModal .modal-content {
   position: relative;
   background-color: #fefefe;
-  margin: 15% auto 0;
+  margin: 60px auto 0;
   padding: 0px;
   border: 1px solid #fff;
   width: 90%;
@@ -3142,6 +3151,10 @@ span.contact-update-message {
 #theModal .modal-header h4 {
   line-height: 1.5em;
 }
+#theModal .modal-footer {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
 #theModal .modal-wrap {
   width: 90%;
   margin: 1em auto;
@@ -3160,10 +3173,11 @@ span.contact-update-message {
   background-color: #313131;
   color: #fff;
 }
-#theModal .modal-body form.edit-link-form {
+#theModal .modal-body form.emh-form {
   width: 100%;
 }
-#theModal .modal-body form.edit-link-form input.edit-input {
+#theModal .modal-body form.emh-form input.edit-input,
+#theModal .modal-body form.emh-form textarea.edit-input {
   margin-top: 0.2em;
   padding: 0.3em;
   font-size: 1.2em;
@@ -3173,25 +3187,31 @@ span.contact-update-message {
   color: #fff;
   outline: none;
   border: none;
+  resize: none;
 }
-#theModal .modal-body form.edit-link-form input.edit-input:hover, #theModal .modal-body form.edit-link-form input.edit-input:focus {
+#theModal .modal-body form.emh-form input.edit-input:hover, #theModal .modal-body form.emh-form input.edit-input:focus,
+#theModal .modal-body form.emh-form textarea.edit-input:hover,
+#theModal .modal-body form.emh-form textarea.edit-input:focus {
   outline: none;
 }
-#theModal .modal-body form.edit-link-form input.link-name {
+#theModal .modal-body form.emh-form input.link-name,
+#theModal .modal-body form.emh-form input.link-email {
   margin-bottom: 1em;
 }
-#theModal .modal-body form.edit-link-form .submit-links {
+#theModal .modal-body form.emh-form textarea.link-msg {
+  width: 100%;
+  height: 8em;
+}
+#theModal .modal-body form.emh-form .submit-links {
   width: 100%;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: space-aroung;
-      justify-content: space-aroung;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin: 1em auto;
 }
-#theModal .modal-body form.edit-link-form .submit-links input.update,
-#theModal .modal-body form.edit-link-form .submit-links input.delete {
-  margin-top: 1em;
-  width: 48%;
+#theModal .modal-body form.emh-form .submit-links input.send {
+  width: 100%;
   border: 1px solid green;
   padding: 1em;
   color: #fff;
@@ -3201,24 +3221,43 @@ span.contact-update-message {
   transition: all 0.2s ease;
   text-align: center;
 }
-#theModal .modal-body form.edit-link-form .submit-links input.update:hover,
-#theModal .modal-body form.edit-link-form .submit-links input.delete:hover {
+#theModal .modal-body form.emh-form .submit-links input.send:hover {
   background-color: rgba(92, 184, 92, 0.8);
 }
-#theModal .modal-body form.edit-link-form .submit-links input.delete {
+#theModal .modal-body form.emh-form .submit-links input.delete {
   background-color: #f73a3a;
 }
-#theModal .modal-body form.edit-link-form .submit-links input.delete:hover {
+#theModal .modal-body form.emh-form .submit-links input.delete:hover {
   background-color: rgba(247, 58, 58, 0.8);
 }
-#theModal .modal-body form.edit-link-form i.fa-paste {
+#theModal .modal-body form.emh-form i.fa-paste {
   font-size: 1.3em;
   color: #757575;
   margin-left: 0.2em;
   transition: all 0.2s ease;
 }
-#theModal .modal-body form.edit-link-form i.fa-paste:hover {
+#theModal .modal-body form.emh-form i.fa-paste:hover {
   color: #000;
+}
+#theModal .modal-body form.emh-form span.success-emh {
+  background-color: #52910f;
+  text-align: center;
+}
+
+span.sending-msg {
+  background-color: #92fc8a;
+  color: #086c00;
+  padding: 20px;
+  border: 1px solid #736552;
+  margin-top: 0.5em;
+  display: block;
+  width: 100%;
+}
+
+.alert.alert-warning {
+  background-color: #ffc6c6;
+  color: #c72222;
+  line-height: 1.5em;
 }
 
 /* Add Animation */

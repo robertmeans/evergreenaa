@@ -63,27 +63,30 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <a href="#" class="static closefp"><i class="fas fa-times-circle"></i></a>
+        <a class="static closefp"><i class="fas fa-times-circle"></i></a>
         <h4 class="modal-title">Message the Host of:</h4>
         <h4 id="mtgname" class="modal-title"></h4>
       </div>
       <div class="modal-body">
 
-      <form class="edit-link-form">
-        <input type="hidden" name="rowid" id="rowid">
-        <input type="hidden" name="cp" id="cp" value="<?= $current_project; ?>">
-        <input type="hidden" name="idcount" id="idcount">
+      <form id="emh-contact" class="emh-form">
+        <input type="hidden" name="mtgid" id="mtgid">
+        <input type="hidden" name="mtgname" id="mtgnamez">
 
         <label>Your name
-        <input name="name" id="namez" class="edit-input link-name" type="text" maxlength="30"></label>
+        <input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30"></label>
 
         <label>Your email
-        <input name="urlz" id="urlz" class="edit-input link-url" type="text" maxlength="250"></label>
+        <input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250"></label>
+
+        <label>Message
+        <textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea>
+        </label>
+
+        <div id="emh-contact-msg"></div>
+
         <div class="submit-links">
-          <!-- <input type="submit" name="owner-update-link" style="display:none"> -->
-          <input type="button" name="delete" id="delete" class="delete" value="Delete">
-          <input type="button" name="update" id="update" class="update" value="Update">
-         <!--  <a href="#" id="update">Update</a> -->
+          <input type="button" id="emh-btn" class="send" value="Send">
         </div><!-- #submit-links -->
       </form>
       </div>

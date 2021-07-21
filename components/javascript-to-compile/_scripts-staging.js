@@ -574,7 +574,7 @@ $(document).ready(function() {
       type: "POST",
       data: $('#contactForm').serialize(),
       beforeSend: function(xhr) {
-        $('#msg').html('<span>Sending - one moment...</span>');
+        $('#msg').html('<span class="email-me">Sending - one moment...</span>');
       },
       success: function(response) {
         // console.log(response);
@@ -598,11 +598,12 @@ $(document).ready(function() {
   });
 });
 
-// email host
+// email host modal
 $(document).ready(function() {
-  $(document).on('click','a[data-role=update]', function() {
+  $(document).on('click','a[data-role=emh]', function() {
 
     var id         = $(this).data('id');
+    var mtgid      = $('#'+id).children('span[data-target=mtgid]').text();
     var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
     var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
     var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
@@ -611,16 +612,55 @@ $(document).ready(function() {
     // alert(id);
     // alert(mtgtime);
 
+    $('#mtgid').val(mtgid);
     $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-    console.log(mtgname);
+    $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+    // console.log(mtgname);
 
-    
+    $('body').addClass('noscrollz');
     theModal.style.display = "block";
   });
 
   var closefp = document.getElementsByClassName("closefp")[0];
   closefp.onclick = function() {
+    // $('#emh-contact').find('form').trigger('reset');
+    $('body').removeClass('noscrollz');
     theModal.style.display = "none";
   }
 
+});
+// email host submit
+$(document).ready(function() {
+  // $('#cloze').click(function() {
+  //   event.preventDefault();
+  // });
+  $('#emh-btn').click(function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "contact-host-process.php",
+      type: "POST",
+      data: $('#emh-contact').serialize(),
+      beforeSend: function(xhr) {
+        $('#emh-contact-msg').html('<span class="sending-msg">Sending - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#emh-contact').html('<span class="success-emh">Your message was sent successfully.</span>');
+          } else {
+            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
 });

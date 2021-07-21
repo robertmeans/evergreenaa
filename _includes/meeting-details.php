@@ -6,21 +6,22 @@
 
 
 
-<?php if (isset($_SESSION['admin']) == "1") { ?>
+<?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { ?>
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
 		
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr($today, 0,3); ?></span>
+		<span data-target="mtgid" style="display:none;"><?= $row['id_mtg']; ?></span>
 		<span data-target="mtgname" style="display:none;">
 		<?php if (strlen($row['group_name']) < 22) { 
-				echo substr($row['group_name'], 0,22); 
+				echo trim($row['group_name']); 
 			} else {
-				echo substr($row['group_name'], 0,22) . '...';
+				echo trim(substr($row['group_name'], 0,22)) . '...';
 			} 
 		?>
 		</span>
-		<a href="#" data-role="update" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Send a message to this meeting's Host</a>
+		<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Send a message to this meeting's Host</a>
 
 	</div>
 
