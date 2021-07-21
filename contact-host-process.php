@@ -18,7 +18,8 @@ $db = db_connect();
 	$name = trim($_POST['name']);
 	$email = trim($_POST['email']);
 	$message = trim($_POST['emhmsg']);
-	$mtgname = trim($_POST['mtgname']);
+	$mtgname = $_POST['mtgname'];
+	$subject = $mtgname;
 
 if (is_post_request()) {
 
@@ -49,7 +50,7 @@ if (is_post_request()) {
 				// email routing set to Remote
 
         //Recipients
-        $mail->setFrom($email, $name);
+        $mail->setFrom(EMAIL, 'EvergreenAA Website');
         $mail->addAddress($emhemail, $emhuser);     // Add a recipient
         $mail->addReplyTo($email, $name);
         // $mail->addCC('cc@example.com');
@@ -57,8 +58,8 @@ if (is_post_request()) {
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = 'RE: EvergreenAA.com Meeting: ' . $mtgname;
-        $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br>Note: The following email is being sent from evergreenaa.com from the meeting that you host [' . $mtgname . '] from a visitor to the site.<hr><br>' . nl2br($message);
+        $mail->Subject = $subject;
+        $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br>Note: The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". A visitor has sent you the following question/comment. When you reply to this message you will be communicating directly with them.<hr><br>' . nl2br($message);
 
         $mail->send();
 		    // echo 'Message has been sent';

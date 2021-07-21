@@ -3,10 +3,7 @@
 
 
 
-
-
-
-<?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { ?>
+<?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
 		
@@ -25,11 +22,7 @@
 
 	</div>
 
-<?php } ?>
-
-
-
-
+<?php /* } */ ?>
 
 
 <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>

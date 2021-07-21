@@ -121,7 +121,6 @@ body.noscrollz {
       justify-content: space-around;
       margin: 1em auto;
       input.send {
-        // margin-top: 1em;
         width: 100%;
         border: 1px solid green;
         padding: 1em;
@@ -131,14 +130,11 @@ body.noscrollz {
         cursor: pointer;
         transition: all 0.2s ease;
         text-align: center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
         &:hover {
           background-color: rgba(92,184,92,0.8);
-        }
-      }
-      input.delete {
-        background-color: rgba(247,58,58,1);
-        &:hover {
-          background-color: rgba(247,58,58,0.8);
         }
       }
     }
@@ -155,6 +151,10 @@ body.noscrollz {
     span.success-emh {
       background-color: #52910f;
       text-align: center;
+      width: 100%;
+      display: block;
+      padding: 1em;
+      border-radius: 5px;
     }
   }
 }

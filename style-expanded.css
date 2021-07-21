@@ -3220,15 +3220,12 @@ body.noscrollz {
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
 }
 #theModal .modal-body form.emh-form .submit-links input.send:hover {
   background-color: rgba(92, 184, 92, 0.8);
-}
-#theModal .modal-body form.emh-form .submit-links input.delete {
-  background-color: #f73a3a;
-}
-#theModal .modal-body form.emh-form .submit-links input.delete:hover {
-  background-color: rgba(247, 58, 58, 0.8);
 }
 #theModal .modal-body form.emh-form i.fa-paste {
   font-size: 1.3em;
@@ -3242,6 +3239,10 @@ body.noscrollz {
 #theModal .modal-body form.emh-form span.success-emh {
   background-color: #52910f;
   text-align: center;
+  width: 100%;
+  display: block;
+  padding: 1em;
+  border-radius: 5px;
 }
 
 span.sending-msg {

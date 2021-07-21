@@ -600,6 +600,7 @@ $(document).ready(function() {
 
 // email host modal
 $(document).ready(function() {
+  // var divClone = $('#emh-contact').clone();
   $(document).on('click','a[data-role=emh]', function() {
 
     var id         = $(this).data('id');
@@ -623,7 +624,9 @@ $(document).ready(function() {
 
   var closefp = document.getElementsByClassName("closefp")[0];
   closefp.onclick = function() {
-    // $('#emh-contact').find('form').trigger('reset');
+
+    $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><label>Your name<input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30"></label><label>Your email<input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250"></label><label>Message<textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="emh-btn" class="send" value="Send"></div>');
+
     $('body').removeClass('noscrollz');
     theModal.style.display = "none";
   }
@@ -631,10 +634,8 @@ $(document).ready(function() {
 });
 // email host submit
 $(document).ready(function() {
-  // $('#cloze').click(function() {
-  //   event.preventDefault();
-  // });
-  $('#emh-btn').click(function() {
+  //$('#emh-btn').click(function() {
+  $(document).on('click','#emh-btn', function() {
     // event.preventDefault();
     $.ajax({
       dataType: "JSON",

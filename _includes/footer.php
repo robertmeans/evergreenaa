@@ -56,7 +56,7 @@
 
 
 
-<?php if (($layout_context) == 'home-private') { ?>
+<?php /* if (($layout_context) == 'home-private') { */ ?>
 <!-- Modal -->
 <div id="theModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -96,16 +96,7 @@
     </div>
   </div>
 </div>    
-<?php } ?>
-
-
-
-
-
-
-
-
-
+<?php /* } */ ?>
 
 
 
