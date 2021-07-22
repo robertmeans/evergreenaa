@@ -2930,6 +2930,10 @@ form#manage-mtg label.pdf-label {
   border: 1px solid transparent;
   cursor: pointer;
   margin: 2px 0;
+  transition: all 0.2s ease;
+}
+.radio:hover {
+  background-color: rgba(32, 93, 168, 0.5);
 }
 
 .radio.selected {

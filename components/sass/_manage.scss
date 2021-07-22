@@ -1022,16 +1022,16 @@ form#manage-mtg {
 
 .radio{
     display:block;
-    // width:15px;
-    // height: 15px;
-    // border-radius: 100%;
     width: 100%;
     padding: 1em;
-    // text-align: center;
     background-color: transparent;
     border: 1px solid transparent;
     cursor:pointer;
     margin: 2px 0; 
+    transition: all 0.2s ease;
+    &:hover {
+    	background-color: rgba(32,93,168,0.5); 
+    }
 }
 
 .radio.selected {
