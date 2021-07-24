@@ -539,6 +539,8 @@ li.ctr-day .day-content {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   width: 50%;
   padding: 1em;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -660,6 +662,7 @@ li.ctr-day .day-content {
   margin-left: 0;
   color: #fff;
   text-decoration: none;
+  line-height: 1.2em;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -668,9 +671,10 @@ li.ctr-day .day-content {
 }
 .email-host i.far.fa-envelope {
   position: relative;
-  top: 0;
-  right: 0;
   margin-right: 0.5em;
+  float: left;
+  margin-bottom: 1em;
+  line-height: 1.2em;
 }
 
 @media screen and (max-width: 800px) {

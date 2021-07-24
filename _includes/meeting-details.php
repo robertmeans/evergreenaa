@@ -37,7 +37,7 @@
 <?php } ?>
 
 
-<?php 					if ($row['meet_id'] != '') { ?>		
+<?php 					if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>		
 						<p class="id-num">ID: <input type="text" value="<?= h($row['meet_id']); ?>" class="day-values input-copy" onclick="select();"></p>
 						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy</button>
 <?php } ?>

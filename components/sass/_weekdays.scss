@@ -204,6 +204,7 @@ li.ctr-day {
 		.details-left {
 			display: flex;
 			flex-direction: column;
+			align-self: flex-start;
 			width: 50%;
 			padding: 1em;
 			border-right: 1px solid rgba(255,255,255,0.2);
@@ -335,6 +336,7 @@ li.ctr-day {
 				margin-left: 0;
 				color: #fff;
 				text-decoration: none;
+				line-height: 1.2em;
 				cursor: pointer;
 				transition: all 0.2s ease;
 				&:hover {
@@ -344,9 +346,12 @@ li.ctr-day {
 			i.far.fa-envelope {
 			// for email host icon
 				position: relative;
-				top: 0;
-				right: 0;
+				// top: 0;
+				// right: 0;
 				margin-right: 0.5em;
+				float: left;
+				margin-bottom: 1em;
+				line-height: 1.2em;
 			}
 		}
 
