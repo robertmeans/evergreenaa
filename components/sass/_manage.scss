@@ -26,7 +26,7 @@
 .manage-simple {
 	width: 100%;
 	max-width: 900px;
-	text-align: justify;
+	// text-align: justify;
 	margin-bottom: 1em;
 	border-bottom: 1px solid #fff;
 	padding-bottom: 0.5em;
@@ -327,12 +327,21 @@ ul.manage-weekdays {
 	}
 	.glance-mtg-time, {
 		flex: 2 1 0;
+		padding: 0 1em 0 0;
+		width: 20%;
+		min-width: 150px;
 	}
 	.glance-group-title {
-		align-self: flex-end;
+		// align-self: flex-end;
+		align-self: flex-start;
+		width: 70%;
+		line-height: 1.5em;
 	}
 	.glance-mtg-type {
-		padding: 0 2em;
+		padding: 0 1em;
+		p {
+			display: flex;
+		}
 	}
 	&.draft {// blue draft
 		background-color: rgba(32,93,168,0.3);
@@ -376,12 +385,21 @@ ul.manage-weekdays {
 	}
 	.glance-mtg-time, {
 		flex: 2 1 0;
+		padding: 0 1em 0 0;
+		width: 20%;
+		min-width: 150px;
 	}
 	.glance-group-title {
-		align-self: flex-end;
+		// align-self: flex-end;
+		align-self: flex-start;
+		width: 70%;
+		line-height: 1.5em;
 	}
 	.glance-mtg-type {
 		padding: 0em 1.5em 0em 0.5em;
+		p {
+			display: flex;
+		}
 	}
 	&.draft {
 		background: rgba(32,93,168,0.3);
@@ -1059,6 +1077,12 @@ form#manage-mtg {
 		text-align: right;
 		padding: 0px;
 	}
+	.manage-glance .glance-mtg-time {
+		width: 100%;
+	}
+	.manage-glance .glance-group-title {
+		width: 100%;
+	}
 	form#manage-mtg {
 		flex-direction: column;
 	}
@@ -1124,7 +1148,7 @@ form#manage-mtg {
 			margin-bottom: 1em;
 		}
 		.visible {
-			padding: 0;
+			padding: 1em 0em;
 		}
 	}
 	.weekday-edit-wrap form {
@@ -1154,6 +1178,7 @@ form#manage-mtg {
 		padding: 0px;
 		justify-content: center;
 		text-align: right;
+		align-self: flex-end;
 	}
 	ul.manage-weekdays div.manage-day-toggle {
 		padding: 0.5em;

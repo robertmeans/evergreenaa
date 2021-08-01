@@ -2,7 +2,6 @@
 				<div class="meeting-details">
 
 
-
 <?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
