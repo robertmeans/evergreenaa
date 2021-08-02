@@ -12,12 +12,13 @@
 	
 }
 .confirm {
-	align-text: center;
+	text-align: center;
 	font-size: 3.2em;
 	margin-bottom: 0.3em;
 	font-family: 'Special Elite', cursive;
 	color: rgba(223,147,39,1);
 	line-height: 1em;
+	transition: all 0.2s ease;
 	&.warning {
 		color: rgba(222,44,13,1);
 	}
@@ -313,6 +314,9 @@ ul.manage-weekdays {
 }
 .manage-glance {
 	display: flex;
+	// 08.01.21
+	flex-direction: column;
+	// end 08.01.21
 	justify-content: space-between;
 	cursor: pointer;
 	padding: 0.5em 1em;
@@ -320,27 +324,30 @@ ul.manage-weekdays {
 	color: inherit;
 	border-top: 1px solid transparent;
 	border-right: 1px solid transparent;
-	border-bottom: 1px solid transparent;
+	border-bottom: 1px solid rgba(255,255,255,0.15);
 	border-right: 1px solid transparent;
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
 	.glance-mtg-time, {
-		flex: 2 1 0;
+		// flex: 2 1 0;
 		padding: 0 1em 0 0;
-		width: 20%;
+		width: 100%;
 		min-width: 150px;
 	}
 	.glance-group-title {
 		// align-self: flex-end;
-		align-self: flex-start;
-		width: 70%;
+		// align-self: flex-start;
+		width: 100%;
 		line-height: 1.5em;
 	}
 	.glance-mtg-type {
 		padding: 0 1em;
+		text-align: right;
 		p {
-			display: flex;
+			// display: flex;
+			width: 100%;
+			text-align: right;
 		}
 	}
 	&.draft {// blue draft
@@ -1060,22 +1067,38 @@ form#manage-mtg {
 
 
 
-
-
+@media screen and (max-width: 975px) {
+	div.tooltip.right {
+		// margin-left: -100px;
+		.tooltiptext {
+			margin-left: -135px;
+		}
+		.tooltiptext::after {
+			left: 90%;
+		}
+		
+	}
+}
 
 @media screen and (max-width: 800px) {
+	.confirm {
+		font-size: 2.5em;
+	}
 	.manage-simple {
 		text-align: left;
 	}
 	.manage-glance-wrap-review .manage-glance-review {
 		flex-direction: column;
+
 	}
 	.manage-glance-review .glance-group-title {
 		margin: 0.5em 0;
+		width: 100%;
 	}
 	.manage-glance-review .glance-mtg-type {
 		text-align: right;
 		padding: 0px;
+		align-self: flex-end;
 	}
 	.manage-glance .glance-mtg-time {
 		width: 100%;
@@ -1174,14 +1197,28 @@ form#manage-mtg {
 		align-self: flex-start;
 		margin: 0.5em 0;
 	}
+
+
+
+
 	.manage-glance .glance-mtg-type {
-		padding: 0px;
-		justify-content: center;
+		// padding: 0em;
+		// justify-content: center;
 		text-align: right;
 		align-self: flex-end;
+		// overflow-x: hidden;
 	}
+
+
+
+
+
+
 	ul.manage-weekdays div.manage-day-toggle {
 		padding: 0.5em;
+	}
+	a.manage-edit {
+		margin-left: 1.6em;
 	}
 	a.manage-delete {
 		margin-left: 1.6em;

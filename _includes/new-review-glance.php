@@ -58,9 +58,9 @@
 			<div class="glance-mtg glance-group-title">
 				<p><?php if ($row['meet_url'] != null) { echo '<div class="tooltip"><span class="tooltiptext">Zoom Meeting</span><i class="fas fa-video fa-fw"></i></div>'; } if ($row['meet_addr'] != null) { echo '<div class="tooltip"><span class="tooltiptext">In-Person Meeting</span><i class="fas fa-map-marker-alt fa-fw"></i></div>'; }  ?>
 				<?php 
-				if ($row['visible'] == 0) { echo ' [DRAFT] '; }
-				if ($row['visible'] == 1) { echo ' [PRIVATE] '; }  
-				if ($row['visible'] == 2) { echo ' [PUBLIC] '; }
+				// if ($row['visible'] == 0) { echo ' [DRAFT] '; }
+				// if ($row['visible'] == 1) { echo ' [PRIVATE] '; }  
+				// if ($row['visible'] == 2) { echo ' [PUBLIC] '; }
 				?><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">

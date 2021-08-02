@@ -338,14 +338,6 @@ function get_host_address($mtgid) {
   return $result;
 }
 
-
-
-
-
-
-
-
-
 function find_all_meetings() {
   global $db;
 
@@ -369,6 +361,27 @@ function find_meetings_by_id($id) {
   confirm_result_set($result);  
   return $result; // returns an assoc. array  
 }
+
+
+
+
+
+
+function find_meetings_for_manage_page($id) {
+  global $db;
+
+  $sql = "SELECT * FROM meetings WHERE ";
+  // for some reason (?!) you cannot pass in $today into single quotes.
+  // this cost me countless amount of time.
+  $sql .= "id_user='" . db_escape($db, $id) . "' ";
+  $sql .= "GROUP BY group_name ";
+  $sql .= "ORDER BY meet_time;";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array  
+}
+
 
 function find_meetings_by_id_today($id, $today) {
   global $db;
