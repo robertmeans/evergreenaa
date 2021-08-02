@@ -13,6 +13,7 @@
 			case 'home-private' 		:	?><li><a id="toggle-private-msg" class="cc-x">Extras</a></li><?php  				break;
 			case 'home-public' 			:	?><li><a id="toggle-public-msg" class="cc-x why-join">Readme</a></li><?php 	break;
 			case 'email-everyone' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
+			case 'co-host' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
 			case 'manage-edit' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
 			case 'manage-edit-rev' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
 			case 'manage-delete' 		:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
@@ -35,6 +36,7 @@
 			case 'manage' 					:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
 			case 'manage-new' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
 			case 'email-everyone' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
+			case 'co-host' 			:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
 			case 'manage-edit' 			:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
 			case 'manage-edit-rev' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
 			case 'manage-delete' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;

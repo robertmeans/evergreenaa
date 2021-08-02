@@ -801,9 +801,13 @@ footer {
   -ms-flex: 1;
       flex: 1;
 }
+footer #email-bob {
+  width: 94%;
+  max-width: 420px;
+  margin: 0 auto;
+}
 footer p.form-note {
   width: 100%;
-  max-width: 400px;
   margin: 1em auto;
   text-align: left;
   line-height: 1.5em;
@@ -833,8 +837,6 @@ footer button#toggle-contact-form:focus {
 }
 footer button#toggle-contact-form.active {
   border-bottom: 1px dotted #808080;
-  width: 96%;
-  max-width: 400px;
   text-align: center;
 }
 footer button#toggle-contact-form .close-left {
@@ -847,7 +849,6 @@ footer button#toggle-contact-form .close-right {
 }
 footer form#contactForm {
   width: 100%;
-  max-width: 400px;
   margin: 1.5em auto 5em auto;
 }
 footer form#contactForm ul {
@@ -856,6 +857,10 @@ footer form#contactForm ul {
 }
 footer form#contactForm ul li {
   list-style: none;
+}
+footer form#contactForm ul li.embtn {
+  list-style: none;
+  text-align: right;
 }
 footer form#contactForm label {
   display: block;
@@ -877,7 +882,6 @@ footer form#contactForm input#email {
 footer form#contactForm textarea#comments {
   height: 6em;
   width: 100%;
-  max-width: 400px;
   margin-top: .2em;
   margin-bottom: .2em;
   font-size: 1.2em;
@@ -935,9 +939,10 @@ footer form#contactForm input#send:visited {
   background: #ccc;
 }
 footer form#contactForm input#emailBob {
-  float: left;
-  width: 150px;
-  padding: 10px;
+  width: 100%;
+  padding: 1em 1.5em;
+  font-size: 16px;
+  margin-right: 1px;
   text-align: center;
   border: 1px solid #233851;
   background-color: #565656;
@@ -945,6 +950,7 @@ footer form#contactForm input#emailBob {
   cursor: pointer;
   outline: none;
   transition: all 0.2s ease;
+  -webkit-appearance: none;
 }
 footer form#contactForm input#emailBob:hover {
   background-color: #82c33a;
@@ -1087,10 +1093,6 @@ div#success-wrap span.success-msg {
 }
 
 @media screen and (max-width: 430px) {
-  footer form#contactForm {
-    width: 94%;
-    max-width: 420px;
-  }
   footer form#contactForm input#name,
   footer form#contactForm input#email {
     height: 30px;
@@ -1099,8 +1101,12 @@ div#success-wrap span.success-msg {
     display: block;
     padding: 8px 0px;
     margin: 0 auto;
-    width: 98%;
-    max-width: 400px;
+  }
+  footer button#toggle-contact-form .close-left {
+    padding-left: 0px;
+  }
+  footer button#toggle-contact-form .close-right {
+    padding-right: 0px;
   }
   footer button#toggle-contact-form:hover {
     background-color: inherit;

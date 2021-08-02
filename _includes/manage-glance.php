@@ -71,11 +71,9 @@
 
 <?php if ((WWW_ROOT == 'http://localhost/evergreenaa' || $_SESSION['admin'] == "1")) { ?>
 
-				<a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Co-host Meeting</span><i class="fas fa-user-plus"></i></div></a>
+				<a class="manage-edit" href="co-host.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Co-host Meeting</span><i class="fas fa-user-plus"></i></div></a>
 
 <?php } ?>
-
-
 
 				<a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 

@@ -37,7 +37,7 @@
           <li>
             <div id="msg"></div>
           </li>
-          <li>
+          <li class="embtn">
             <input id="emailBob" value="Send">
           </li>
         </ul> 
