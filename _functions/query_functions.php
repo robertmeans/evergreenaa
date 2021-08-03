@@ -302,27 +302,35 @@ function find_all_users() {
 
 
 
+// transfer host
+function find_new_host($email) {
+  global $db;
+
+  $sql  = "SELECT * FROM users ";
+  $sql .= "WHERE email='" . db_escape($db, $email) . "' ";
+  $sql .= "LIMIT 1";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
+function update_host($mtgid, $new_host) {
+  global $db;
+
+  $sql = "UPDATE meetings SET id_user = '" . $new_host . "' ";
+  $sql .= "WHERE id_mtg = '" . $mtgid . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  return $result;
+
+}
 
 
 
 
 
 
-
-// function get_host_address($mtgid) {
-//   global $db;
-
-//   $sql  = "SELECT u.username, u.email ";
-//   $sql .= "FROM users as u ";
-//   $sql .= "LEFT JOIN meetings as m ON m.id_user=u.id_user ";
-//   $sql .= "WHERE m.id_mtg='" . db_escape($db, $mtgid) . "' ";
-//   $sql .= "LIMIT 1";
-//   // echo $sql;
-  
-//   $result = mysqli_query($db, $sql); 
-//   confirm_result_set($result);
-//   return $result;
-// }
 
 function get_host_address($mtgid) {
   global $db;

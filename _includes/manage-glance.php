@@ -69,13 +69,14 @@
 				<?php if (($row['id_user'] == $_SESSION['id']) || $_SESSION['admin'] == "1") { ?>
 
 
-<?php if ((WWW_ROOT == 'http://localhost/evergreenaa' || $_SESSION['admin'] == "1")) { ?>
-
-				<a class="manage-edit" href="co-host.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Co-host Meeting</span><i class="fas fa-user-plus"></i></div></a>
-
-<?php } ?>
-
 				<a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
+
+
+<?php // if ((WWW_ROOT == 'http://localhost/evergreenaa' || $_SESSION['admin'] == "1")) { ?>
+
+				<a class="manage-edit" href="host-management.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="fas fa-user-friends"></i></div></a>
+
+<?php // } ?>
 
 				<a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="fas fa-minus-circle"></i></div></a>
 

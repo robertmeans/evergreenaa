@@ -665,3 +665,38 @@ $(document).ready(function() {
     })
   });
 });
+
+// Transfer Meeting
+$(document).ready(function() {
+  //$('#emh-btn').click(function() {
+  $(document).on('click','#transfer-this', function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "host-transfer.php",
+      type: "POST",
+      data: $('#transfer-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#th-btn').html('');
+          } else {
+            $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#trans-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+});
