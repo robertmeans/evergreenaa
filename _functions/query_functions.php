@@ -299,21 +299,17 @@ function find_all_users() {
   return $result;
 }
 
-
-
-
 // transfer host
 function find_new_host($email) {
   global $db;
 
   $sql  = "SELECT * FROM users ";
-  $sql .= "WHERE email='" . db_escape($db, $email) . "' ";
+  $sql .= "WHERE LOWER(email) LIKE LOWER('" . db_escape($db, $email) . "') ";
   $sql .= "LIMIT 1";
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;
 }
-
 function update_host($mtgid, $new_host) {
   global $db;
 
@@ -323,14 +319,7 @@ function update_host($mtgid, $new_host) {
 
   $result = mysqli_query($db, $sql);
   return $result;
-
 }
-
-
-
-
-
-
 
 function get_host_address($mtgid) {
   global $db;
@@ -370,11 +359,6 @@ function find_meetings_by_id($id) {
   return $result; // returns an assoc. array  
 }
 
-
-
-
-
-
 function find_meetings_for_manage_page($id) {
   global $db;
 
@@ -389,7 +373,6 @@ function find_meetings_for_manage_page($id) {
   confirm_result_set($result);  
   return $result; // returns an assoc. array  
 }
-
 
 function find_meetings_by_id_today($id, $today) {
   global $db;

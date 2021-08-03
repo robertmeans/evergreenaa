@@ -5,22 +5,12 @@ require_once 'config/initialize.php';
 	$mtg_id = $_POST['current-mtg'];
 	$email = strtolower(trim($_POST['email']));
 	$current_email = $_POST['current-host-email'];
-	// $current_emailz = $_SESSION['email'];
-
 
 if (is_post_request()) {
 
 	if($email) {
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-
-
-		// $nh = get_new_host_id($email);
-		// $rowq = mysqli_fetch_assoc($nh);
-
-		// $newhost = $rowq['email'];
-		// $emhuser = $rowq['username'];
 
 		$nhe = find_new_host($email);
 		$exists = mysqli_num_rows($nhe);
@@ -30,7 +20,6 @@ if (is_post_request()) {
 			if ($exists > 0) {
 
 				if ($current_email != $email) {
-
 
 					$change_host = update_host($mtg_id, $new_host);
 

@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
 // if user clicks on login
 if (isset($_POST['login'])) {
 	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$password = strtolower($_POST['password']);
 
 	// validation
 	if (empty($username)) {
@@ -146,7 +146,8 @@ if (isset($_POST['login'])) {
 		$errors['password'] = "Password required";
 	}
 
-	$userQuery = "SELECT * FROM users WHERE username=? LIMIT 2";
+	// $userQuery = "SELECT * FROM users WHERE username=? LIMIT 2";
+	$userQuery = "SELECT * FROM users WHERE LOWER(username) LIKE LOWER(?) LIMIT 2";
 	$stmt = $conn->prepare($userQuery);
 	$stmt->bind_param('s', $username);
 	$stmt->execute();
@@ -164,7 +165,8 @@ if (isset($_POST['login'])) {
 
 		// having to accept email or username because of how Apple/ios binds these two
 		// in their login management
-		$sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
+		// $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
+		$sql = "SELECT * FROM users WHERE LOWER(email) LIKE LOWER(?) OR LOWER(username) LIKE LOWER(?) LIMIT 1";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('ss', $username, $username);
 		$stmt->execute();
@@ -172,7 +174,7 @@ if (isset($_POST['login'])) {
 		$userCount = $result->num_rows;
 		$user = $result->fetch_assoc();
 
-		if (password_verify($password, $user['password'])) {
+		if (password_verify($password, $user[strtolower('password')])) {
 			// login success
 			$_SESSION['id'] 			= $user['id_user'];
 			$_SESSION['username'] = $user['username'];
@@ -205,7 +207,7 @@ if (isset($_POST['login'])) {
 			$errors['login_fail'] = "That user does not exist";
 		} else {
 			// the combination of stuff you typed doesn't match anything in the db
-			$errors['login_fail'] = "Wrong Username/Password combination. Note: Username is case sensitive.";
+			$errors['login_fail'] = "Wrong Username/Password combination.";
 		}
 	}
 }

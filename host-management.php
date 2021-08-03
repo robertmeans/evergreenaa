@@ -78,7 +78,7 @@ $row = edit_meeting($id);
 		<form id="transfer-form">
 			<input type="hidden" name="current-host" value="<?= $user_id ?>">
 			<input type="hidden" name="current-mtg" value="<?= $id ?>">
-			<input type="hidden" name="current-host-email" value="<?= $user_email ?>">
+			<input type="hidden" name="current-host-email" value="<?php echo strtolower($user_email) ?>">
 			<p>Email of new Host</p>
 			<input type="email" name="email" placeholder="Enter member's email address">
 		</form>
