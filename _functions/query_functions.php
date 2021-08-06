@@ -13,11 +13,12 @@ function get_meetings_for_today($today) {
 function get_all_public_meetings_for_today($today) {
     global $db;
 
-    $sql = "SELECT * FROM meetings WHERE ";
-    $sql .= "" . $today . " != 0 ";
-    $sql .= "AND visible != 0 ";
-    $sql .= "AND visible != 1 ";
-    $sql .= "ORDER BY meet_time;";
+    $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE m." . $today . " != 0 ";
+    $sql .= "AND m.visible != 0 ";
+    $sql .= "AND m.visible != 1 ";
+    $sql .= "ORDER BY m.meet_time;";
     // echo $sql; 
     $result = mysqli_query($db, $sql); 
     return $result;
@@ -26,14 +27,96 @@ function get_all_public_meetings_for_today($today) {
 function get_all_public_and_private_meetings_for_today($today) {
     global $db;
 
-    $sql = "SELECT * FROM meetings WHERE ";
-    $sql .= "" . $today . " != 0 ";
-    $sql .= "AND visible != 0 ";
-    $sql .= "ORDER BY meet_time;";
+    $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE m." . $today . " != 0 ";
+    $sql .= "AND m.visible != 0 ";
+    $sql .= "ORDER BY m.meet_time;";
     // echo $sql; 
     $result = mysqli_query($db, $sql); 
     return $result;
 }
+
+
+
+
+function get_all_public_and_private_meetings_for_thor($today) {
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE m." . $today . " != 0 ";
+    $sql .= "AND m.visible != 0 ";
+    $sql .= "ORDER BY m.meet_time;";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
+function suspend_user_info($id) {
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.sus_notes FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE m.id_mtg='" . db_escape($db, $id) . "' ";
+    $sql .= "LIMIT 1";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    confirm_result_set($result);
+    $row = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $row; 
+}
+
+function suspended_msg($user_id) {
+  global $db;
+
+  $sql = "SELECT * FROM users WHERE ";
+  $sql .= "id_user='" . db_escape($db, $user_id) . "' ";
+ 
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;   
+}
+
+function suspend_user_query($user_id, $reason) {
+  global $db;
+
+  // $one = "UPDATE users SET ";
+  // $one .= "admin=6, ";
+  // $one .= "sus_notes='"  . db_escape($db, $reason) . "' ";
+  // $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "' ";
+  // $one .= "LIMIT 1";
+
+  // $one = "UPDATE meetings SET ";
+  // $one .= "visible=0 ";
+  // $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
+
+
+  $one = "UPDATE users u ";
+  $one .= "JOIN meetings m ON u.id_user=m.id_user ";
+  $one .= "SET u.admin=6, ";
+  $one .= "u.sus_notes='"  . db_escape($db, $reason) . "', ";
+  $one .= "m.visible=0 ";
+  $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
+
+
+
+  $result = mysqli_query($db, $one);
+
+
+  return $result; 
+
+}
+
+
+
+
+
+
+
+
+
 
 function create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   global $db;
@@ -350,8 +433,6 @@ function find_meetings_by_id($id) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
-  // for some reason (?!) you cannot pass in $today into single quotes.
-  // this cost me countless amount of time.
   $sql .= "id_user='" . db_escape($db, $id) . "' ";
   // echo $sql;
   $result = mysqli_query($db, $sql);
@@ -363,8 +444,6 @@ function find_meetings_for_manage_page($id) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
-  // for some reason (?!) you cannot pass in $today into single quotes.
-  // this cost me countless amount of time.
   $sql .= "id_user='" . db_escape($db, $id) . "' ";
   $sql .= "GROUP BY group_name ";
   $sql .= "ORDER BY meet_time;";
@@ -378,8 +457,6 @@ function find_meetings_by_id_today($id, $today) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
-  // for some reason (?!) you cannot pass in $today into single quotes.
-  // this cost me countless amount of time.
   $sql .= "id_user='" . db_escape($db, $id) . "' AND " . $today . " !=0 ";
   $sql .= "ORDER BY meet_time;";
   // echo $sql;

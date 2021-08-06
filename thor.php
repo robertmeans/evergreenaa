@@ -1,6 +1,14 @@
-<?php $layout_context = "home-public";
- 
-require_once 'config/initialize.php'; 
+<?php $layout_context = "thor-active"; 
+
+require_once 'config/initialize.php';
+
+// For my eyes only!
+if ($_SESSION['id'] != 1) {
+	header('location: https://www.merriam-webster.com/dictionary/go%20away');
+	exit();
+}
+
+$user_id = $_SESSION['id'];
 
 ?>
 
@@ -10,9 +18,10 @@ require_once 'config/initialize.php';
 <div class="preload">
 	<p>One day at a time.</p>
 </div>
-<?php } ?>
+<?php } ?>	
+
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/public-msg-one.php'; ?>
+<?php require '_includes/private-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
 	
@@ -24,23 +33,22 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$subject_set = get_all_public_meetings_for_today($sunday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($sunday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
 				}
 				mysqli_free_result($subject_set);
 			?>
-			
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -50,16 +58,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($monday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($monday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) {
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -75,16 +83,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($tuesday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($tuesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) {  
+					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -100,16 +108,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($wednesday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($wednesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -125,16 +133,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($thursday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($thursday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -150,16 +158,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($friday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($friday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -175,16 +183,16 @@ require_once 'config/initialize.php';
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_meetings_for_today($saturday);
+				$subject_set = get_all_public_and_private_meetings_for_thor($saturday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) {  
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/thor_daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/thor_meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -196,16 +204,5 @@ require_once 'config/initialize.php';
 
 </ul><!-- #weekdays -->
 </div><!-- #wrap -->
-
-<div class="foot">
-<h3><i class="fas fa-star dmf"></i>Did you know... ?<i class="fas fa-star dml"></i></h3>
-
-<div class="popup-body">
-<p>This site is specifically designed to eliminate "Zoom Bombers". The point of this website is to provide a convenient location to organize all of your <em>PRIVATE</em> meeting information. <a class="youtube" href="https://youtu.be/OQpmtysX8Bo" target="_blank">Please watch this short video</a> for a detailed explanation of how this works.</p>
-<p class="close">Click here to close.</p>
-</div>
-
-</div>
-
 
 <?php require '_includes/footer.php'; ?>

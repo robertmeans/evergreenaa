@@ -700,3 +700,40 @@ $(document).ready(function() {
     })
   });
 });
+
+
+// Suspend user
+$(document).ready(function() {
+  //$('#emh-btn').click(function() {
+  $(document).on('click','#suspend-user', function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "suspend_user_process.php",
+      type: "POST",
+      data: $('#suspend-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#sus-msg').html('<span class="sending-msg">Working on it - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">You done smoked that cat right up outta here!</span>');
+            $('#th-btn').html('');
+          } else {
+            $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#sus-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+});

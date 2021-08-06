@@ -1,4 +1,12 @@
-<?php $layout_context = "home-private"; 
+<?php if ($_SESSION['id'] === 1) {
+	$layout_context = "thor-go";
+} else {
+	$layout_context = "home-private"; 
+}
+
+if ($_SESSION['admin'] === 6) {
+	$layout_context = "suspended";
+}
 
 require_once 'config/initialize.php';
 
@@ -14,6 +22,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 }
 
 $user_id = $_SESSION['id'];
+$user_role = $_SESSION['admin']; // 1 = Administrator, full privliges | 6 = suspended
 
 ?>
 
@@ -29,6 +38,8 @@ $user_id = $_SESSION['id'];
 <?php require '_includes/private-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
+
+<?php if ($user_role != 6) { ?>
 	
 <ul id="weekdays">
 
@@ -208,6 +219,21 @@ $user_id = $_SESSION['id'];
 	</li>
 
 </ul><!-- #weekdays -->
+
+<?php } else { // $user_role = 6 which means they're suspended?>
+
+<?php 
+	$sus_stuff = suspended_msg($user_id);
+	$row = mysqli_fetch_assoc($sus_stuff);
+?>
+	<div id="sus-wrap">
+		<p>This account is currently suspended. Please see explanation below. Any meetings associated with this account were automatically changed to Draft. If you would like to get this turned back on please contact me at the bottom of this page and let me know if you think this is in error.</p>
+		<p class="sus-header">Notes on suspension</p>
+		<p class="sus-notes"><?= nl2br($row['sus_notes']) ?></p>
+	</div>
+
+<?php } ?>
+
 </div><!-- #wrap -->
 
 <?php require '_includes/footer.php'; ?>

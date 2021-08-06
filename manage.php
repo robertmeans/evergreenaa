@@ -1,9 +1,10 @@
 <?php $layout_context = "manage";
 
 require_once 'config/initialize.php';
-// require_once '_includes/session.php';
 
-// off for local testing
+if ($_SESSION['admin'] === 6) {
+	header('location: ' . WWW_ROOT);
+}
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -36,12 +37,17 @@ $user_id = $_SESSION['id'];
 		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.</p>
 		<p>For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
 		<p class="logout">
+			
 		<?php
-			if ($_SESSION['admin'] == "1") { 
-				echo "<a href=\"email_everyone_BCC.php\">BCC All</a> | <a href=\"email_everyone_PERSONAL.php\">Personal All</a> | "; 
-			}
-		?>
+			if ($_SESSION['admin'] === 1) { // my eyes only ?>
+			<a href="email_everyone_BCC.php">BCC All</a> 
+			<!-- | <a href="email_everyone_PERSONAL.php">Personal All</a> --> | 
+			<a href="<?= WWW_ROOT . '/thor.php' ?>">Thor</a> | 
+			<a href="logout.php">Logout</a> 
+		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>
+		<?php } ?>
+
 		</p>
 	</div>
 	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>
