@@ -1667,7 +1667,7 @@ a.logout {
   text-decoration: none;
 }
 
-a.logout.thor {
+a.logout.odin {
   background-color: #931919;
 }
 
@@ -2237,17 +2237,31 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(32, 93, 168, 0.3);
 }
 .manage-glance.personal {
-  border-left: 1px solid yellow;
+  border-left: 1px solid #96ff00;
 }
 
-.daily-glance.personal {
-  border-left: 1px solid yellow;
+.daily-glance.personal,
+.daily-glance.personal-odin {
+  border-left: 1px solid #96ff00;
+}
+
+.daily-glance.personal-other {
+  border-left: 1px solid red;
 }
 
 .daily-glance-wrap.active > .daily-glance.personal {
   border-left: 1px solid transparent;
 }
 
+.daily-glance .glance-mtg-type {
+  padding: 0em 1em 0em 0em;
+}
+
+@media screen and (max-width: 800px) {
+  .daily-glance .glance-mtg-type {
+    padding: 0em 1em 0em 0em;
+  }
+}
 .manage-glance-wrap-review {
   width: 100%;
   max-width: 900px;
@@ -2567,7 +2581,7 @@ form#manage-mtg .details-left textarea:focus {
   padding: 0.5em;
   line-height: 1.2em;
   width: 150px;
-  margin-left: -80px;
+  margin-left: -75px;
   /* Use half of the width (120/2 = 60), to center the tooltip */
   /* Position the tooltip text - see examples below! */
   margin-bottom: 8px;
@@ -2956,7 +2970,8 @@ form#manage-mtg label.pdf-label {
   margin-bottom: 0.5em;
 }
 
-.radio {
+.radio,
+.radioz {
   display: block;
   width: 100%;
   padding: 1em;
@@ -2966,13 +2981,19 @@ form#manage-mtg label.pdf-label {
   margin: 2px 0;
   transition: all 0.2s ease;
 }
-.radio:hover {
+.radio:hover,
+.radioz:hover {
   background-color: rgba(32, 93, 168, 0.5);
 }
 
-.radio.selected {
+.radio.selected,
+.radioz.selected {
   border-color: #fff;
   background-color: #205da8;
+}
+
+.radioz.selected.user-suspended {
+  background-color: #841616;
 }
 
 @media screen and (max-width: 975px) {
@@ -3147,6 +3168,33 @@ span.contact-update-message {
         flex-wrap: nowrap;
   }
 }
+.daily-glance .glance-mtg-time {
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.daily-glance .glance-group-title {
+  -ms-flex: 4;
+      flex: 4;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.daily-glance .glance-mtg-type {
+  -ms-flex: 2;
+      flex: 2;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+
+.tooltip .tooltiptext.type {
+  margin-left: -80px;
+}
+
 body.noscrollz {
   overflow: hidden;
 }
@@ -3417,8 +3465,10 @@ span.sending-msg {
   text-align: center;
 }
 #transfer-host a#transfer-this,
+#transfer-host a#select-role-first,
 #transfer-host a#suspend-user,
-#transfer-host a#not-yourself {
+#transfer-host a#not-yourself,
+#transfer-host a#change-user-role {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -3434,9 +3484,15 @@ span.sending-msg {
   transition: all 0.2s ease;
 }
 #transfer-host a#transfer-this:hover,
+#transfer-host a#select-role-first:hover,
 #transfer-host a#suspend-user:hover,
-#transfer-host a#not-yourself:hover {
+#transfer-host a#not-yourself:hover,
+#transfer-host a#change-user-role:hover {
   background-color: rgba(64, 178, 8, 0.4);
+}
+#transfer-host a#select-role-first,
+#transfer-host a#not-yourself {
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 440px) {
@@ -3477,6 +3533,111 @@ span.sending-msg {
   margin: 0 0 1em;
   padding: 1em;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+#sus-reason {
+  margin: 0;
+}
+
+#transfer-host a#suspend-user.user-suspended,
+#transfer-host a#not-yourself.not-odin {
+  background-color: #841616;
+  transition: all 0.2s ease;
+}
+
+#transfer-host a#suspend-user.user-suspended:hover,
+#transfer-host a#not-yourself.not-odin {
+  background-color: #4d0d0d;
+}
+
+a.manage-edit.spec {
+  color: #96ff00;
+  margin: 0 0.5em;
+}
+a.manage-edit.spec:hover {
+  color: #00d8ff;
+}
+
+.weekday-wrap.user-mng {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.manage-glance.user-glance {
+  cursor: default;
+}
+.manage-glance.user-glance:hover {
+  background-color: transparent;
+}
+
+.weekday-wrap.user-mng.user-empty {
+  padding: 1em;
+}
+
+.manage-glance-user {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: inherit;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid transparent;
+}
+.manage-glance-user:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.manage-glance-user .glance-mtg-time {
+  padding: 0 1em 0 0;
+  width: 100%;
+  min-width: 150px;
+}
+.manage-glance-user .glance-group-title {
+  width: 100%;
+  line-height: 1.5em;
+}
+.manage-glance-user .glance-mtg-type {
+  padding: 0 1em;
+  text-align: right;
+}
+.manage-glance-user .glance-mtg-type p {
+  width: 100%;
+  text-align: right;
+}
+.manage-glance-user.draft {
+  background-color: rgba(32, 93, 168, 0.3);
+}
+.manage-glance-user.personal {
+  border-left: 1px solid #96ff00;
+}
+
+.notes-glance {
+  width: 100%;
+  margin-top: 0.5em;
+  padding: 0px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.notes-glance p.reason-note {
+  width: 100%;
+  background-color: #000;
+  padding: 0.5em;
+}
+.notes-glance p.note-reason {
+  padding: 1em;
+}
+
+.manage-simple.c-a {
+  border-top: 1px solid #fff;
+  padding-top: 1em;
+  margin-top: 2em;
+}
+
+.manage-glance-wrap.u-m {
+  margin-top: 0;
 }
 
 .foot {

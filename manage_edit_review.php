@@ -1,8 +1,21 @@
-<?php $layout_context = "manage-edit-rev";
-
+<?php 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
-// off for local testing
+if ($_SESSION['admin'] == 1) {
+	$layout_context = "manage-edit-rev-odin";
+} else if ($_SESSION['admin'] == 2) {
+	$layout_context = "manage-edit-rev-thor";
+} else if ($_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+} else {
+	$layout_context = "manage-edit-rev";
+}
+
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
 	exit();
@@ -12,15 +25,13 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
-// grab meeting id in order to edit this meeting
-// if it's not there -> go back to index.php
 if (!isset($_GET['id'])) {
 	header('location: index.php');
 }
 
 $id = $_GET['id'];
+$role = $_SESSION['admin'];
 
-// $subject_set = edit_meeting($id);
 $row = edit_meeting($id);
 ?>
 
@@ -32,13 +43,34 @@ $row = edit_meeting($id);
 	
 <div class="confirm">TEST & CONFIRM!</div>	
 <div class="manage-simple intro">
+
+	<?php if ($role != 1 && $role != 2) { ?>
 	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Or save it for later.</p>
-	<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
+<?php } else if ($role == 1) { ?>
+	<p>Hey Me,</p>
+	<p>Quit talking to yourself.</p>
+<?php } else { ?>
+	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
+	<p>Make sure everything's just right.</p>
+<?php } ?>
+	<p class="logout">
+		
+	<?php
+		if ($role == 1) { // my eyes only ?>
+		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
+	<?php } else if ($role == 2) { ?>
+		<a href="<?= WWW_ROOT . '/thor.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
+	<?php } else { ?>
+		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
+	<?php } ?>
+
+	</p>
+
 </div>
 <div class="manage-simple review">
 	<h1>Quick view</h1>
 		
-		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
+		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
 
 			<?php require '_includes/review-glance.php'; ?>
 			<div class="weekday-edit-wrap">

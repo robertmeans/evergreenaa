@@ -174,6 +174,7 @@ $(document).ready(function(){
   $("#desc-loc").hide();
   $("#pdf-upload").hide();
   $("#link-label").hide();
+  $("#sus-reason").hide();
   $("#email-bob").hide();
 
 /* start file upload */
@@ -692,7 +693,7 @@ $(document).ready(function() {
         } 
       },
       error: function() {
-        $('#trans-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+        $('#trans-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
       }, 
       complete: function() {
 
@@ -702,6 +703,55 @@ $(document).ready(function() {
 });
 
 
+/* visible divs as radio buttons for User Management */
+
+$('.radio-groupz .radioz').click(function(){
+    $(this).parent().find('.radioz').removeClass('selected');
+    $(this).addClass('selected');
+    var val = $(this).attr('value');
+    //alert(val);
+    $(this).parent().find('input').val(val);
+
+    if ($(this).parent().find('input').val() == 2 || $(this).parent().find('input').val() == 0) {
+
+        if ($('#sus-reason').is(':hidden')) {
+          $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
+        } else {
+            $(this).removeClass('user-suspended');
+            $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+          }
+
+        } 
+      else if ($(this).parent().find('input').val() == 85) {
+        if ($('#sus-reason').is(':hidden')) {
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+          $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
+          $(this).addClass('user-suspended');
+        } else {
+          $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
+          $(this).addClass('user-suspended');
+        }
+
+      } 
+      else if ($(this).parent().find('input').val() == 86) {
+        if ($('#sus-reason').is(':hidden')) {
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+          $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
+          $(this).addClass('user-suspended');
+        } else {
+          $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
+          $(this).addClass('user-suspended');
+        }
+
+      } else {
+        $('#gdtrfb').html('<a id="select-role-first">You gotta pick a somethin</a>');
+        $('#sus-reason').slideUp().html('');
+      }
+});
+
+
+
 // Suspend user
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
@@ -709,7 +759,7 @@ $(document).ready(function() {
     // event.preventDefault();
     $.ajax({
       dataType: "JSON",
-      url: "suspend_user_process.php",
+      url: "process_suspend_user.php",
       type: "POST",
       data: $('#suspend-form').serialize(),
       beforeSend: function(xhr) {
@@ -723,13 +773,57 @@ $(document).ready(function() {
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">You done smoked that cat right up outta here!</span>');
             $('#th-btn').html('');
+          } else if(response['signal'] == 'okeedokee') {
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">User is suspended but their meetings remain.</span>');
+            $('#th-btn').html('');
           } else {
             $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           }
         } 
       },
       error: function() {
-        $('#sus-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked.</div>');
+        $('#sus-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+});
+
+// change user role
+$(document).ready(function() {
+  //$('#emh-btn').click(function() {
+  $(document).on('click','#change-user-role', function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "process_change_role.php",
+      type: "POST",
+      data: $('#suspend-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#sus-msg').html('<span class="sending-msg">Working on it - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN successfully</span>');
+            $('#th-btn').html('');
+          } else if(response['signal'] == 'okeedokee') {
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">User priviliges set to USER successfully</span>');
+            $('#th-btn').html('');
+          } else {
+            $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#sus-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
       }, 
       complete: function() {
 

@@ -353,17 +353,28 @@ ul.manage-weekdays {
 	&.draft {// blue draft
 		background-color: rgba(32,93,168,0.3);
 	}
-	&.personal {// black personal
-		// background-color: rgba(0,0,0,0.2);
-		border-left: 1px solid yellow;
+	&.personal {
+		border-left: 1px solid #96ff00;
 	}
 }
-.daily-glance.personal {
-	// background-color: rgba(0,0,0,0.2);
-	border-left: 1px solid yellow;
+.daily-glance.personal,
+.daily-glance.personal-odin {
+	border-left: 1px solid #96ff00;
+}
+.daily-glance.personal-other {
+	border-left: 1px solid red;
 }
 .daily-glance-wrap.active > .daily-glance.personal {
 	border-left: 1px solid transparent;
+}
+
+.daily-glance .glance-mtg-type {
+	padding: 0em 1em 0em 0em;
+}
+@media screen and (max-width: 800px) {
+	.daily-glance .glance-mtg-type {
+		padding: 0em 1em 0em 0em;
+	}	
 }
 
 .manage-glance-wrap-review {
@@ -666,7 +677,7 @@ form#manage-mtg .details-left {
   padding: 0.5em;
   line-height: 1.2em;
   width: 150px;
-  margin-left: -80px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  margin-left: -75px; /* Use half of the width (120/2 = 60), to center the tooltip */
   /* Position the tooltip text - see examples below! */
   // border: 1px solid #fff;
   margin-bottom: 8px;
@@ -1045,7 +1056,8 @@ form#manage-mtg {
     }
 }
 
-.radio{
+.radio,
+.radioz {
     display:block;
     width: 100%;
     padding: 1em;
@@ -1059,9 +1071,14 @@ form#manage-mtg {
     }
 }
 
-.radio.selected {
+.radio.selected,
+.radioz.selected {
     border-color: #fff;
     background-color: rgba(32,93,168,1);
+}
+
+.radioz.selected.user-suspended {
+	background-color: rgba(132,22,22,1)
 }
 
 
@@ -1238,8 +1255,28 @@ span.contact-update-message {
 }
 
 @media screen and (max-width: 360px) {
-		form#manage-mtg .align-days {
-			flex-direction: column;
-			flex-wrap: nowrap;
-		}
+	form#manage-mtg .align-days {
+		flex-direction: column;
+		flex-wrap: nowrap;
 	}
+}
+
+.daily-glance .glance-mtg-time {
+	flex: 1;
+	align-items: center;
+}
+.daily-glance .glance-group-title {
+	flex: 4;
+	align-items: center;
+}
+.daily-glance .glance-mtg-type {
+	flex: 2;
+	align-items: center;
+	justify-content: flex-end;
+}
+// .daily-glance .ctr-type {
+// 	justify-self: flex-end;
+// }
+.tooltip .tooltiptext.type {
+	margin-left: -80px;
+}

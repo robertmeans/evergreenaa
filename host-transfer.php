@@ -1,10 +1,16 @@
 <?php
 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
+	$current_user = $_SESSION['admin'];
 	$mtg_id = $_POST['current-mtg'];
-	$email = strtolower(trim($_POST['email']));
 	$current_email = $_POST['current-host-email'];
+	$email = strtolower(trim($_POST['email']));
 
 if (is_post_request()) {
 
@@ -19,7 +25,7 @@ if (is_post_request()) {
 		
 			if ($exists > 0) {
 
-				if ($current_email != $email) {
+				if (($current_user == 1 || $current_user == 2) || $current_email != $email) {
 
 					$change_host = update_host($mtg_id, $new_host);
 

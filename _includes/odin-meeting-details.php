@@ -1,9 +1,6 @@
 				<?php $emh = rand(10000, 99999);  ?>
 				<div class="meeting-details">
 
-
-<?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
-
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
 		
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
@@ -17,7 +14,7 @@
 			} 
 		?>
 		</span>
-		<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Message: <?= $row['username'] . ' at ' . $row['email'] . ' id: ' . $row['id_user'] ?></a>
+		<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Message: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a>
 
 	</div>
 

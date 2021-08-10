@@ -25,8 +25,8 @@
 	<meta property="og:image:alt" content="AA Logo" />
 	<meta property="og:description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)" />
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
-  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
 	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Courier+Prime|Special+Elite|Caveat&display=swap' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" type="text/css">
 

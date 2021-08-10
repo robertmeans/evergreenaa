@@ -12,17 +12,29 @@
 				<p><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if ($row['meet_url'] != null) { echo '<div class="tooltip"><span class="tooltiptext">Zoom Meeting</span><i class="fas fa-video fa-fw"></i></div>'; } if ($row['meet_addr'] != null) { echo '<div class="tooltip"><span class="tooltiptext">In-Person Meeting</span><i class="fas fa-map-marker-alt fa-fw"></i></div>'; }  ?><?php if ($row['code_o'] != 0) { echo 'Open meeting'; } else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php 
+				<?php 
+				if ($row['meet_url'] != null) { 
+					echo '<div class="tooltip"><span class="tooltiptext type">Zoom Meeting</span><i class="fas far fa-video fa-fw"></i></div>'; } 
+					if ($row['meet_addr'] != null) { 
+						echo '<div class="tooltip"><span class="tooltiptext type">In-Person Meeting</span><i class="fas far fa-map-marker-alt fa-fw"></i></div>'; }  ?><?php 
+
+					if ($row['code_o'] != 0) { 
+						echo '<div class="ctr-type">Open meeting</div>'; } 
+						else if ($row['code_w'] != 0) { 
+							echo '<div class="ctr-type">Women\'s meeting</div>'; 
+						} else if ($row['code_m'] != 0) { 
+							echo '<div class="ctr-type">Men\'s meeting</div>'; 
+						} else { 
+							echo '<div class="ctr-type">Join us</div>'; } ?> <?php 
 
 				if (isset($_SESSION['id'])) {
 					if (($row['id_user'] == $_SESSION['id']) || $_SESSION['id'] == "1") { 
 
-						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
+						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
 					<?php }
 					} ?>
 					
-				</p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->
 	</div>
@@ -39,17 +51,28 @@
 				<p><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if ($row['meet_url'] != null) { echo '<div class="tooltip"><span class="tooltiptext">Zoom Meeting</span><i class="fas fa-video fa-fw"></i></div>'; } if ($row['meet_addr'] != null) { echo '<div class="tooltip"><span class="tooltiptext">In-Person Meeting</span><i class="fas fa-map-marker-alt fa-fw"></i></div>'; }  ?><?php if ($row['code_o'] != 0) { echo 'Open meeting'; } else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php 
+				<?php 
+				if ($row['meet_url'] != null) { 
+					echo '<div class="tooltip"><span class="tooltiptext type">Zoom Meeting</span><i class="fas far fa-video fa-fw"></i></div>'; } 
+				if ($row['meet_addr'] != null) { 
+					echo '<div class="tooltip"><span class="tooltiptext type">In-Person Meeting</span><i class="fas far fa-map-marker-alt fa-fw"></i></div>'; }  ?><?php 
+					if ($row['code_o'] != 0) { 
+						echo '<div class="ctr-type">Open meeting</div>'; } 
+						else if ($row['code_w'] != 0) { 
+							echo '<div class="ctr-type">Women\'s meeting</div>'; 
+						} else if ($row['code_m'] != 0) { 
+							echo '<div class="ctr-type">Men\'s meeting</div>'; 
+						} else { 
+							echo '<div class="ctr-type">Join us</div>'; } ?> <?php 
 
 				if (isset($_SESSION['id'])) {
 					if (($row['id_user'] == $_SESSION['id']) || $_SESSION['id'] == "1") { 
 
-						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
+						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
 					<?php }
 					} ?>
 					
-				</p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->
 	</div>
@@ -67,17 +90,31 @@
 				<p><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if ($row['meet_url'] != null) { echo '<div class="tooltip"><span class="tooltiptext">Zoom Meeting</span><i class="fas fa-video fa-fw"></i></div>'; } if ($row['meet_addr'] != null) { echo '<div class="tooltip"><span class="tooltiptext">In-Person Meeting</span><i class="fas fa-map-marker-alt fa-fw"></i></div>'; }  ?><?php if ($row['code_o'] != 0) { echo 'Open meeting'; } else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } else { echo 'Join us'; } ?> <?php 
+				<?php 
+				if ($row['meet_url'] != null) { 
+					echo '<div class="tooltip"><span class="tooltiptext type">Zoom Meeting</span><i class="fas far fa-video fa-fw"></i></div>'; 
+				} 
+				if ($row['meet_addr'] != null) { 
+					echo '<div class="tooltip"><span class="tooltiptext type">In-Person Meeting</span><i class="fas far fa-map-marker-alt fa-fw"></i></div>'; 
+				}  ?><?php 
+				
+					if ($row['code_o'] != 0) { 
+						echo '<div class="ctr-type">Open meeting</div>'; } 
+						else if ($row['code_w'] != 0) { 
+							echo '<div class="ctr-type">Women\'s meeting</div>'; 
+						} else if ($row['code_m'] != 0) { 
+							echo '<div class="ctr-type">Men\'s meeting</div>'; 
+						} else { 
+							echo '<div class="ctr-type">Join us</div>'; } ?> <?php 
 
 				if (isset($_SESSION['id'])) {
 					if (($row['id_user'] == $_SESSION['id']) || $_SESSION['id'] == "1") { 
 
-						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
+						?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
 					<?php }
 					} ?>
 					
-				</p>
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->
 	</div>

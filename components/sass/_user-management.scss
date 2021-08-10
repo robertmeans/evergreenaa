@@ -1,0 +1,83 @@
+.weekday-wrap.user-mng {
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+.manage-glance.user-glance {
+	cursor: default;
+	&:hover {
+		background-color: transparent;
+	}
+}
+.weekday-wrap.user-mng.user-empty {
+	padding: 1em;
+}
+
+.manage-glance-user {
+	display: flex;
+	// 08.01.21
+	// flex-direction: column;
+	// end 08.01.21
+	justify-content: space-between;
+	cursor: pointer;
+	padding: 0.5em 1em;
+	background-color: transparent;
+	color: inherit;
+	border-top: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-bottom: 1px solid rgba(255,255,255,0.15);
+	border-right: 1px solid transparent;
+	&:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+	.glance-mtg-time, {
+		// flex: 2 1 0;
+		padding: 0 1em 0 0;
+		width: 100%;
+		min-width: 150px;
+	}
+	.glance-group-title {
+		// align-self: flex-end;
+		// align-self: flex-start;
+		width: 100%;
+		line-height: 1.5em;
+	}
+	.glance-mtg-type {
+		padding: 0 1em;
+		text-align: right;
+		p {
+			// display: flex;
+			width: 100%;
+			text-align: right;
+		}
+	}
+	&.draft {// blue draft
+		background-color: rgba(32,93,168,0.3);
+	}
+	&.personal {
+		border-left: 1px solid #96ff00;
+	}
+}
+
+.notes-glance {
+	width: 100%;
+	margin-top: 0.5em;
+	padding: 0px;
+	background-color: rgba(255,255,255,0.2);
+	p.reason-note {
+		width: 100%;
+		background-color: #000;
+		padding: 0.5em;
+		// margin-bottom: 1em;
+	}
+	p.note-reason {
+		padding: 1em;
+	}
+}
+.manage-simple.c-a {
+	border-top: 1px solid #fff;
+	padding-top: 1em;
+	margin-top: 2em;
+}
+.manage-glance-wrap.u-m {
+	margin-top: 0;
+}

@@ -1,9 +1,21 @@
-<?php $layout_context = "host-management";
+<?php 
 
 require_once 'config/initialize.php';
-// require_once '_includes/session.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
-// off for local testing
+if ($_SESSION['admin'] == 1) {
+	$layout_context = "host-management-odin";
+} else if ($_SESSION['admin'] == 2) {
+	$layout_context = "host-management-thor";
+} else if ($_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+} else {
+	$layout_context = "host-management";
+}
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -34,7 +46,7 @@ $row = edit_meeting($id);
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="host-manage-wrap">
 
-	<?php if ((($row['id_user'] == $_SESSION['id']) && ($row['id_mtg'] == $id)) || $_SESSION['admin'] == '1') { ?>
+	<?php if ((($row['id_user'] == $_SESSION['id']) && ($row['id_mtg'] == $id)) || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
 
 	<div id="transfer-host">
 		<h2>Transfer Meeting</h2>
@@ -76,7 +88,7 @@ $row = edit_meeting($id);
 				<?= ' - ' . $row['group_name'] ?></p>
 
 		<form id="transfer-form">
-			<input type="hidden" name="current-host" value="<?= $user_id ?>">
+			<input type="hidden" name="current-user" value="<?= $user_id ?>">
 			<input type="hidden" name="current-mtg" value="<?= $id ?>">
 			<input type="hidden" name="current-host-email" value="<?php echo strtolower($user_email) ?>">
 			<p>Email of new Host</p>
@@ -92,16 +104,6 @@ $row = edit_meeting($id);
 	</div>
 
 	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>
-
-
-
-
-
-
-
-
-
-
 
 </div><!-- #manage-wrap -->
 

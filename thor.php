@@ -1,10 +1,12 @@
-<?php $layout_context = "thor-active"; 
-
+<?php  
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
 
-// For my eyes only!
-if ($_SESSION['id'] != 1) {
-	header('location: https://www.merriam-webster.com/dictionary/go%20away');
+$layout_context = "thor-active";
+
+// For Odin or Thor(s) only
+if ($_SESSION['admin'] != 2 && $_SESSION['admin'] != 1) {
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 
@@ -33,16 +35,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($sunday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($sunday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -58,16 +60,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($monday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($monday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -83,16 +85,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($tuesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($tuesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -108,16 +110,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($wednesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($wednesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -133,16 +135,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($thursday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($thursday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -158,16 +160,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($friday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($friday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -183,16 +185,16 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_thor($saturday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($saturday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
-					require '_includes/thor_daily-glance.php'; ?>
+					require '_includes/thor-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor_meeting-details.php'; ?>
+						<?php require '_includes/thor-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}

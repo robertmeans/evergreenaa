@@ -58,6 +58,7 @@
 
 	#trans-msg,
 	#sus-msg {
+		// padding: 0.5em 0em;
 		margin: 0.5em 0;
 		p.host-disclaimer {
 			// margin: 0.5em 0;
@@ -71,8 +72,10 @@
 		}
 	}
 	a#transfer-this,
+	a#select-role-first,
 	a#suspend-user,
-	a#not-yourself {
+	a#not-yourself,
+	a#change-user-role {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -87,6 +90,10 @@
 			background-color: rgba(64,178,8,0.4);
 		}
 	}	
+	a#select-role-first,
+	a#not-yourself {
+		cursor: not-allowed;
+	}
 }
 
 @media screen and (max-width: 440px) {
@@ -127,5 +134,25 @@
 		margin: 0 0 1em;
 		padding: 1em;
 		background-color: rgba(0,0,0,0.6);
+	}
+}
+#sus-reason {
+	margin: 0;
+}
+#transfer-host a#suspend-user.user-suspended,
+#transfer-host a#not-yourself.not-odin {
+	background-color: #841616; 
+	transition: all 0.2s ease;
+}
+#transfer-host a#suspend-user.user-suspended:hover,
+#transfer-host a#not-yourself.not-odin {
+	background-color: #4d0d0d; 
+}
+
+a.manage-edit.spec {
+	color: #96ff00;
+	margin: 0 0.5em;
+	&:hover {
+		color: #00d8ff;
 	}
 }

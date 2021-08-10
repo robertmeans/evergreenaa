@@ -1,28 +1,14 @@
-<?php 
+<?php  
 require_once 'config/initialize.php';
-require_once 'config/verify_admin.php';
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "odin-go";
-} else if ($_SESSION['admin'] == 2) {
-	$layout_context = "thor-go";
-} else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
-	$layout_context = "suspended";
-} else {
-	$layout_context = "home-private";
-}
+$layout_context = "odin-active";
 
-if (!isset($_SESSION['id'])) {
-	header('location: home.php');
-	exit();
-}
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
+if ($_SESSION['id'] != 1) {
+	header('location: https://www.merriam-webster.com/dictionary/go%20away');
 	exit();
 }
 
 $user_id = $_SESSION['id'];
-$user_role = $_SESSION['admin'];
 
 ?>
 
@@ -38,8 +24,6 @@ $user_role = $_SESSION['admin'];
 <?php require '_includes/private-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
-
-<?php if ($user_role != 86 && $user_role != 85) { ?>
 	
 <ul id="weekdays">
 
@@ -49,16 +33,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($sunday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($sunday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -74,16 +58,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($monday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($monday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -99,16 +83,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($tuesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($tuesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -124,16 +108,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($wednesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($wednesday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -149,16 +133,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($thursday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($thursday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -174,16 +158,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($friday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($friday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -199,16 +183,16 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($saturday);
+				$subject_set = get_all_public_and_private_meetings_for_odin($saturday);
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/odin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -219,21 +203,6 @@ $user_role = $_SESSION['admin'];
 	</li>
 
 </ul><!-- #weekdays -->
-
-<?php } else { // $user_role = 85 || 86 which means they're suspended ?>
-
-<?php 
-	$sus_stuff = suspended_msg($user_id);
-	$row = mysqli_fetch_assoc($sus_stuff);
-?>
-	<div id="sus-wrap">
-		<p>This account has been put on hold.</p>
-		<p class="sus-header">Details</p>
-		<p class="sus-notes"><?= nl2br($row['sus_notes']) ?></p>
-	</div>
-
-<?php } ?>
-
 </div><!-- #wrap -->
 
 <?php require '_includes/footer.php'; ?>

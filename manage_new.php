@@ -1,8 +1,21 @@
-<?php $layout_context = "manage-new";
-
+<?php 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
-// off for local testing
+if ($_SESSION['admin'] == 1) {
+	$layout_context = "manage-new-odin";
+} else if ($_SESSION['admin'] == 2) {
+	$layout_context = "manage-new-thor";
+} else if ($_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+} else {
+	$layout_context = "manage-new";
+}
+
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
 	exit();
@@ -11,6 +24,8 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	header('location: home.php');
 	exit();
 }
+
+$role = $_SESSION['admin'];
 
 if (is_post_request()) {
 
@@ -68,9 +83,6 @@ $row = [];
 		$nf4 = ''; // new_file
 		$fn4 = ''; // file_name
 	}		
-
-
-
 
 $row['id_user'] 		= $_SESSION['id']				 							 ;
 $row['sun'] 			= $_POST['sun'] 										?? '';
@@ -141,9 +153,29 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 <div id="manage-wrap">
 	
 <div class="manage-simple intro">
-	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
+
+	<?php if ($role != 1 && $role != 2) { ?>
 	<p>Meetings save lives. <i class="fas fa-om"></i></p>
-	<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
+<?php } else if ($role == 1) { ?>
+	<p>Hey Me,</p>
+	<p>Quit talking to yourself.</p>
+<?php } else { ?>
+	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
+	<p>Meetings save lives. <i class="fas fa-om"></i></p>
+<?php } ?>
+	<p class="logout">
+		
+	<?php
+		if ($role == 1) { // my eyes only ?>
+		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
+	<?php } else if ($role == 2) { ?>
+		<a href="<?= WWW_ROOT . '/thor.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
+	<?php } else { ?>
+		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
+	<?php } ?>
+
+	</p>
+
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Add a New Meeting</h1>

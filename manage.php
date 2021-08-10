@@ -1,9 +1,19 @@
-<?php $layout_context = "manage";
-
+<?php 
 require_once 'config/initialize.php';
-
-if ($_SESSION['admin'] === 6) {
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
+	exit();
+}
+
+if ($_SESSION['admin'] == 1) {
+	$layout_context = "odin-manage";
+} else if ($_SESSION['admin'] == 2) {
+	$layout_context = "thor-manage";
+} else if ($_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+} else {
+	$layout_context = "manage";
 }
 
 if (!isset($_SESSION['id'])) {
@@ -16,6 +26,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 }
 
 $user_id = $_SESSION['id'];
+$role = $_SESSION['admin'];
 
 // echo delete_success_message();
 ?>
@@ -33,17 +44,29 @@ $user_id = $_SESSION['id'];
 <div id="manage-wrap">
 	
 	<div class="manage-simple intro">
-		<?php echo "<p>Hello " . $_SESSION['username'] . ",</p>"; ?>
+		<?php if ($role != 1 && $role != 2) { ?>
+		<p>Hello<?= ' ' . $_SESSION['username'] . ',' ?></p>
 		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.</p>
 		<p>For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
+	<?php } else if ($role == 1) { ?>
+		<p>Hey Me,</p>
+		<p>Quit talking to yourself.</p>
+	<?php } else { ?>
+		<p>Hello<?= ' ' . $_SESSION['username'] . ',' ?></p>
+		<p>Thanks for being an Administrator.</p>
+	<?php } ?>
 		<p class="logout">
 			
 		<?php
-			if ($_SESSION['admin'] === 1) { // my eyes only ?>
-			<a href="email_everyone_BCC.php">BCC All</a> 
-			<!-- | <a href="email_everyone_PERSONAL.php">Personal All</a> --> | 
-			<a href="<?= WWW_ROOT . '/thor.php' ?>">Thor</a> | 
+			if ($role == 1) { // my eyes only ?>
+			<a href="email_everyone_BCC.php">BCC All</a> |  
+			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
+			<a href="<?= WWW_ROOT . '/odin.php' ?>">Odin</a> | 
 			<a href="logout.php">Logout</a> 
+		<?php } else if ($role == 2) { ?>
+			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
+			<a href="<?= WWW_ROOT . '/thor.php' ?>">Thor</a> | 
+			<a href="logout.php">Logout</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>
 		<?php } ?>

@@ -1,7 +1,7 @@
 <?php 
-$layout_context = "index";
-
 require_once 'config/initialize.php';
+
+$layout_context = "index";
 
 if (isset($_GET['token'])) {
 	$token = $_GET['token'];

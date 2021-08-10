@@ -1,6 +1,11 @@
 <?php $layout_context = "manage-delete";
 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
 // off for local testing
 if (!isset($_SESSION['id'])) {

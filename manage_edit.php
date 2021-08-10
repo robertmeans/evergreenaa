@@ -1,6 +1,20 @@
-<?php $layout_context = "manage-edit";
-
+<?php 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
+
+if ($_SESSION['admin'] == 1) {
+	$layout_context = "manage-edit-odin";
+} else if ($_SESSION['admin'] == 2) {
+	$layout_context = "manage-edit-thor";
+} else if ($_SESSION['admin'] == 86) {
+	header('location: ' . WWW_ROOT);
+} else {
+	$layout_context = "manage-edit";
+}
 
 // off for local testing
 if (!isset($_SESSION['id'])) {
@@ -145,7 +159,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 }
 
 $row = edit_meeting($id);
-
+$role = $_SESSION['admin'];
 ?>
 
 <?php require '_includes/head.php'; ?>
@@ -164,13 +178,28 @@ $row = edit_meeting($id);
 <div id="manage-wrap">
 	
 <div class="manage-simple intro">
-	<?php echo "<p>Hey " . $_SESSION['username'] . ",</p>"; ?>
-	<?php if (!empty(display_errors($errors))) { ?>
-		<p>Looks like you've got some corrections to make.</p>
+	<?php if ($role != 1 && $role != 2) { ?>
+	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
+	<p>Looks like you've got some corrections to make.</p>
+<?php } else if ($role == 1) { ?>
+	<p>Hey Me,</p>
+	<p>Quit talking to yourself.</p>
+<?php } else { ?>
+	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
+	<p>Clean it up!</p>
+<?php } ?>
+	<p class="logout">
+		
+	<?php
+		if ($role == 1) { // my eyes only ?>
+		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
+	<?php } else if ($role == 2) { ?>
+		<a href="<?= WWW_ROOT . '/thor.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
 	<?php } else { ?>
-		<p>&quot;The faster you go, the shorter you are.&quot; - Albert Einstein</p>
-		<p class="logout"><a href="<?= WWW_ROOT ?>">Home</a> | <a href="manage.php">Dashboard</a></p>
+		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
 	<?php } ?>
+
+	</p>
 </div>
 <div class="manage-simple empty">
 	<?php if (!empty(display_errors($errors))) { ?>
@@ -181,7 +210,7 @@ $row = edit_meeting($id);
 	<?php } ?>
 
 
-	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == '1') { ?>
+	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/edit-details.php'; ?>
