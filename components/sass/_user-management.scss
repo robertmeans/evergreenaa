@@ -66,18 +66,39 @@
 	p.reason-note {
 		width: 100%;
 		background-color: #000;
+		background-color: #8a1d1d;
 		padding: 0.5em;
 		// margin-bottom: 1em;
 	}
 	p.note-reason {
 		padding: 1em;
+		background-color: rgba(255,132,132,0.2);
 	}
 }
+.manage-simple.s-a,
 .manage-simple.c-a {
-	border-top: 1px solid #fff;
-	padding-top: 1em;
+	background-color: rgba(255,255,255,0.1);
+	padding: 1em 0.5em 0.5em;
+}
+.manage-simple.s-a {
+	background-color: rgba(77,13,13,0.4);
+}
+.manage-simple.c-a {
 	margin-top: 2em;
+	background-color: rgba(64,178,8,0.4);
 }
 .manage-glance-wrap.u-m {
 	margin-top: 0;
+	cursor: default;
+}
+
+@media screen and (max-width: 600px) {
+	.manage-glance-user {
+		flex-direction: column;
+		word-wrap: break-word;
+		.manage-user-right {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
 }

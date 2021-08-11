@@ -1,6 +1,8 @@
 <?php if (isset($_SESSION['id'])) { ?>
 
-<?php // user is logged in, show them their Private (1's) and Members (2's) and Public (3's) meetings
+<?php /* 
+			user is logged in, show them their Private, their Members and their Public meetings (1's, 2's and 3's)
+*/ ?><?php
 	if ((($row['id_user']) == $_SESSION['id']) && (($row['visible'] == 1) || ($row['visible'] == 2) || ($row['visible'] == 3))) { ?>
 
 	<div class="daily-glance-wrap">
@@ -39,7 +41,9 @@
 		</div><!-- .daily-glance -->
 	</div>
 
-<?php // user is logged in. show them other people's Members (2's) and Public (3's) meetings ?>
+<?php /* 
+			user is logged in. show them other people's Members (2's) and Public (3's) meetings 
+*/ ?>
 <?php } else if ((($row['id_user']) != $_SESSION['id']) && ((($row['visible'] == 2) || ($row['visible'] == 3)))) { ?>
 
 	<div class="daily-glance-wrap">
@@ -78,8 +82,10 @@
 	</div>
 <?php } ?>
 
-<?php /* no session id set - general public - only show public (3's) meetings */ ?>
-<?php } else if  (($row['visible'] != 0) && ($row['visible'] != 1) && ($row['visible'] != 2)) { ?>	
+<?php /* 
+			no session id set - general public - only show public (3's) meetings
+*/ ?>
+<?php } else if  ($row['visible'] != 0 && $row['visible'] != 1 && $row['visible'] != 2) { ?>	
 
 	<div class="daily-glance-wrap">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">

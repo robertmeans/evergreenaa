@@ -2,9 +2,9 @@
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-$layout_context = "thor-active";
+$layout_context = "admin-active";
 
-// For Odin or Thor(s) only
+// For Odin or admin(s) only
 if ($_SESSION['admin'] != 2 && $_SESSION['admin'] != 1) {
 	header('location: ' . WWW_ROOT);
 	exit();
@@ -42,9 +42,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -67,9 +67,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -92,9 +92,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -117,9 +117,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -142,9 +142,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -167,9 +167,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}
@@ -192,9 +192,9 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
-					require '_includes/thor-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/thor-meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					}

@@ -45,15 +45,12 @@ $role = $_SESSION['admin'];
 	
 	<div class="manage-simple intro">
 		<?php if ($role != 1 && $role != 2) { ?>
-		<p>Hello<?= ' ' . $_SESSION['username'] . ',' ?></p>
-		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.</p>
-		<p>For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
+		<p>My Dashboard</p>
+		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives. For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
 	<?php } else if ($role == 1) { ?>
-		<p>Hey Me,</p>
-		<p>Quit talking to yourself.</p>
+		<p>The Bob's Dashboard</p>
 	<?php } else { ?>
-		<p>Hello<?= ' ' . $_SESSION['username'] . ',' ?></p>
-		<p>Thanks for being an Administrator.</p>
+		<p>My Dashboard</p>
 	<?php } ?>
 		<p class="logout">
 			
@@ -61,11 +58,9 @@ $role = $_SESSION['admin'];
 			if ($role == 1) { // my eyes only ?>
 			<a href="email_everyone_BCC.php">BCC All</a> |  
 			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
-			<a href="<?= WWW_ROOT . '/odin.php' ?>">Odin</a> | 
 			<a href="logout.php">Logout</a> 
 		<?php } else if ($role == 2) { ?>
 			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
-			<a href="<?= WWW_ROOT . '/thor.php' ?>">Thor</a> | 
 			<a href="logout.php">Logout</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>

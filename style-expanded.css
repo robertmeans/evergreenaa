@@ -224,11 +224,11 @@ nav > ul li > a {
   background-color: black;
   color: #fff;
   border-top: none;
-  border-right: 1px solid #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom-right-radius: 3px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom-left-radius: 3px;
-  border-left: 1px solid #fff;
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
   transition: all 0.1s ease;
 }
 nav > ul li > a:hover {
@@ -498,8 +498,6 @@ li.ctr-day .day-content {
   position: relative;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 .weekday-wrap .meeting-details {
   display: -ms-flexbox;
@@ -522,6 +520,9 @@ li.ctr-day .day-content {
 }
 .weekday-wrap .meeting-details p {
   line-height: 1.5em;
+}
+.weekday-wrap .meeting-details p.dd-meet {
+  margin-bottom: 1em;
 }
 .weekday-wrap .meeting-details p.zoom-info {
   text-decoration: underline;
@@ -769,13 +770,13 @@ input.day-values {
 .zoom-id,
 a.zoom {
   width: 165px;
+  width: 90%;
   text-align: center;
   font-family: inherit;
   font-size: inherit;
   background-color: #fff;
   color: #313131;
   border: 1px solid #757575;
-  border-radius: 3px;
   padding: 8px 0px;
   transition: all 0.2s ease;
 }
@@ -786,11 +787,25 @@ a.zoom:hover {
   cursor: pointer;
 }
 
+.zoom-id {
+  background-color: #626262;
+  color: #fff;
+  text-align: left;
+  padding-left: 1em;
+}
+.zoom-id:hover {
+  background-color: #eaeaea;
+  color: #313131;
+}
+
 a.zoom {
   display: inline-block;
   text-decoration: none;
-  width: auto;
   padding: 0.5em 1em;
+  background-color: #5cd359;
+}
+a.zoom:hover {
+  background-color: #25d422;
 }
 
 footer {
@@ -2520,16 +2535,17 @@ p.add-info {
 a.map-dir {
   color: #313131;
   background-color: #fff;
+  background-color: #5cd359;
   padding: 1em;
   width: 90%;
   margin: 0.5em auto;
   text-decoration: none;
   text-align: center;
-  border-radius: 3px;
   transition: all 0.2s ease;
 }
 a.map-dir:hover {
   background-color: #757575;
+  background-color: #25d422;
   color: #fff;
   cursor: pointer;
 }
@@ -2986,6 +3002,16 @@ form#manage-mtg label.pdf-label {
   background-color: rgba(32, 93, 168, 0.5);
 }
 
+.radio-bob {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: default;
+  margin: 2px 0;
+}
+
 .radio.selected,
 .radioz.selected {
   border-color: #fff;
@@ -3028,6 +3054,10 @@ form#manage-mtg label.pdf-label {
     padding: 0px;
     -ms-flex-item-align: end;
         align-self: flex-end;
+  }
+
+  .manage-glance .glance-mtg-type {
+    padding: 0 0.25em;
   }
 
   .manage-glance .glance-mtg-time {
@@ -3408,6 +3438,24 @@ span.sending-msg {
   padding: 1em;
   background-color: rgba(0, 0, 0, 0.5);
 }
+#transfer-host p.t-nav {
+  width: 100%;
+  text-align: right;
+  padding-right: 0.5em;
+  margin: 0;
+}
+#transfer-host p.t-nav a {
+  font-size: 0.8em;
+  padding: 0.25em 1em;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+#transfer-host p.t-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
 #transfer-host h2 {
   padding-bottom: 0.25em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -3415,6 +3463,20 @@ span.sending-msg {
 }
 #transfer-host p {
   margin: 0.25em 0 1.5em;
+}
+#transfer-host p.bob-1 {
+  margin: 0.25 0 0.75em 0;
+  padding: 0.25em 0em 0.5em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#transfer-host p.th-un {
+  margin: 0.25em 0 0;
+  padding-top: 0.25em;
+}
+#transfer-host p.th-em {
+  margin: 0 0 0.75em 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 #transfer-host form {
   display: -ms-flexbox;
@@ -3624,22 +3686,47 @@ a.manage-edit.spec:hover {
 .notes-glance p.reason-note {
   width: 100%;
   background-color: #000;
+  background-color: #8a1d1d;
   padding: 0.5em;
 }
 .notes-glance p.note-reason {
   padding: 1em;
+  background-color: rgba(255, 132, 132, 0.2);
+}
+
+.manage-simple.s-a,
+.manage-simple.c-a {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1em 0.5em 0.5em;
+}
+
+.manage-simple.s-a {
+  background-color: rgba(77, 13, 13, 0.4);
 }
 
 .manage-simple.c-a {
-  border-top: 1px solid #fff;
-  padding-top: 1em;
   margin-top: 2em;
+  background-color: rgba(64, 178, 8, 0.4);
 }
 
 .manage-glance-wrap.u-m {
   margin-top: 0;
+  cursor: default;
 }
 
+@media screen and (max-width: 600px) {
+  .manage-glance-user {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    word-wrap: break-word;
+  }
+  .manage-glance-user .manage-user-right {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+  }
+}
 .foot {
   border-top: 1px solid #999999;
   position: fixed;

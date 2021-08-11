@@ -4,7 +4,7 @@ require_once 'config/verify_admin.php';
 
 if ($_SESSION['admin'] == 1) {
 	$layout_context = "odin-go";
-} else if ($_SESSION['admin'] == 2) {
+} else if ($_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) {
 	$layout_context = "thor-go";
 } else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	$layout_context = "suspended";

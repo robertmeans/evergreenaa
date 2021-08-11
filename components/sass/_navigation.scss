@@ -23,11 +23,11 @@ text-align: center;
 background-color: rgba(0,0,0,1);
 color: #fff;
 border-top: none;
-border-right: 1px solid #fff;
+border-right: 1px solid rgba(255,255,255,0.6);
 border-bottom-right-radius: 3px;
-border-bottom: 1px solid #fff;
+border-bottom: 1px solid rgba(255,255,255,0.6);
 border-bottom-left-radius: 3px;
-border-left: 1px solid #fff;
+border-left: 1px solid rgba(255,255,255,0.6);
 transition: all 0.1s ease;
 &:hover {
 	background-color: rgba(0,0,0,0.5);

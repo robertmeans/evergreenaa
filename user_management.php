@@ -2,12 +2,15 @@
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
+if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 2) {
+	header('location: https://www.merriam-webster.com/dictionary/go%20away');
+	exit();
+}
+
 if ($_SESSION['admin'] == 1) {
 	$layout_context = "odin-manage";
 } else if ($_SESSION['admin'] == 2) {
 	$layout_context = "thor-manage";
-} else if ($_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
 } else {
 	$layout_context = "manage";
 }
@@ -50,12 +53,10 @@ $role = $_SESSION['admin'];
 		<?php
 			if ($role == 1) { // my eyes only ?>
 			<a href="email_everyone_BCC.php">BCC All</a> |  
-			<a href="<?= WWW_ROOT . '/manage.php' ?>">Manage</a> |
-			<a href="<?= WWW_ROOT . '/odin.php' ?>">Odin</a> | 
+			<a href="<?= WWW_ROOT . '/manage.php' ?>">My Dashboard</a> | 
 			<a href="logout.php">Logout</a> 
 		<?php } else if ($role == 2) { ?>
-			<a href="<?= WWW_ROOT . '/manage.php' ?>">Manage</a> |
-			<a href="<?= WWW_ROOT . '/thor.php' ?>">Thor</a> | 
+			<a href="<?= WWW_ROOT . '/manage.php' ?>">My Dashboard</a> | 
 			<a href="logout.php">Logout</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>
@@ -64,7 +65,8 @@ $role = $_SESSION['admin'];
 		</p>
 	</div>
 
-<div class="manage-simple">	
+<?php /* -------------------- SUSPENDED USERS -------------------- */ ?>
+<div class="manage-simple s-a">	
 	<?php 
 	$any_meetings_for_user = find_meetings_for_user_manage_page_glance();
 	$result 	= mysqli_num_rows($any_meetings_for_user);
@@ -101,13 +103,19 @@ $role = $_SESSION['admin'];
 			</div><!-- .weekday-wrap -->
 
 		<?php } else { ?>
+
+
+					
 			<div class="weekday-wrap user-mng user-empty">
-				<p>This user has no meetings for public view.</p>
+				<div class="notes-glance">
+					<p class="reason-note">Reason for suspension</p>
+					<p class="note-reason"><?= $row['sus_notes'] ?></p>
+				</div>				
+				<p style="margin-top:1em;padding:0.5em 1em;">This user has no meetings for public view.</p>
 			</div><!-- .weekday-wrap -->
 		<?php } ?>
 
 			<?php mysqli_free_result($suspended_users_meetings); ?>
-
 
 		<?php }  ?>
 
@@ -119,16 +127,12 @@ $role = $_SESSION['admin'];
 </ul><!-- .manage-weekdays -->
 
 
-
-
-
-
-
+<?php /* -------------------- CURRENT ADMINISTRATORS -------------------- */ ?>
 <div class="manage-simple c-a">	
 	<?php 
 	$any_meetings_for_admin = find_users_for_admin_glance();
 	$result 	= mysqli_num_rows($any_meetings_for_admin);
-	$admin_txt = '';
+	$ca = ''; // set just to use in this block
 	?>
 	<h1>Current Administrators</h1>
 </div>
@@ -170,29 +174,10 @@ $role = $_SESSION['admin'];
 
 	<?php  
 	} else { // user has no meetings to manage
-		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">There are currently no other Administrators other than you.</p>";
+		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">There are no Administrators other than you.</p>";
 	}  mysqli_free_result($any_meetings_for_admin); ?>
 
 </ul><!-- .manage-weekdays -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div><!-- #manage-wrap -->
 

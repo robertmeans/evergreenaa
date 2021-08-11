@@ -59,7 +59,7 @@ $row = edit_meeting($id);
 		if ($role == 1) { // my eyes only ?>
 		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
 	<?php } else if ($role == 2) { ?>
-		<a href="<?= WWW_ROOT . '/thor.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
+		<a href="<?= WWW_ROOT . '/admin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
 	<?php } else { ?>
 		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
 	<?php } ?>

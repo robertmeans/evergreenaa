@@ -44,10 +44,10 @@ $users_role = $row['admin'];
 	<div id="transfer-host">
 		<h2>Manage User</h2>
 		<?php if ($suspend_user == 1) { ?>
-			<p style="margin: 0.25 0 0.75em 0;padding:0.25em 0em 0.5em;border-bottom: 1px solid rgba(255,255,255,0.1);">Bob</p>
+			<p class="bob-1">Bob</p>
 		<?php } else { ?>
-			<p style="margin: 0.25em 0 0;padding-top: 0.25em;">Username: <?= $row['username'] ?></p>
-			<p style="margin: 0 0 0.75em 0;padding-bottom: 0.5em;border-bottom: 1px solid rgba(255,255,255,0.1);">Email: <?= $row['email'] ?></p>
+			<p class="th-un">Username: <?= $row['username'] ?></p>
+			<p class="th-em">Email: <?= $row['email'] ?></p>
 		<?php } ?>
 		<p><?= date('g:i A', strtotime($row['meet_time'])) . ' - '; ?>
 				<?php 
@@ -91,8 +91,6 @@ $users_role = $row['admin'];
 
 			<div class="radio-groupz">
 
-
-
 				<?php if ($role == 1 && $users_role != 2) { ?>
 					<div class='radioz' value="2">
 						Make <?= $row['username'] . ' an Administrator ' ?>
@@ -103,9 +101,6 @@ $users_role = $row['admin'];
 						Demote <?= $row['username'] . ' from Admin to User' ?>
 					</div>
 				<?php } ?>
-
-
-
 
 				<div class='radioz' value="85">
 					Suspend <?= $row['username'] ?> + KEEP meetings
@@ -128,7 +123,6 @@ $users_role = $row['admin'];
 			
 		</div>
 <?php } ?>
-
 
 
 		<div id="th-btn">

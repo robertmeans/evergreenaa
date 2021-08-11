@@ -616,15 +616,17 @@ p.add-info {
 a.map-dir {
 	color: #313131;
 	background-color: #fff;
+	background-color: #5cd359;
 	padding: 1em;
 	width: 90%;
 	margin: 0.5em auto;
 	text-decoration: none;
 	text-align: center;
-	border-radius: 3px;
+	// border-radius: 3px;
 	transition: all 0.2s ease;
 	&:hover {
 		background-color: #757575;
+		background-color: #25d422;
 		color: #fff;
 		cursor: pointer;
 	}
@@ -1070,7 +1072,15 @@ form#manage-mtg {
     	background-color: rgba(32,93,168,0.5); 
     }
 }
-
+.radio-bob {
+    display:block;
+    width: 100%;
+    padding: 1em;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: default;
+    margin: 2px 0;	
+}
 .radio.selected,
 .radioz.selected {
     border-color: #fff;
@@ -1116,6 +1126,9 @@ form#manage-mtg {
 		text-align: right;
 		padding: 0px;
 		align-self: flex-end;
+	}
+	.manage-glance .glance-mtg-type {
+		padding: 0 0.25em;
 	}
 	.manage-glance .glance-mtg-time {
 		width: 100%;
