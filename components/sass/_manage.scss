@@ -358,7 +358,8 @@ ul.manage-weekdays {
 	}
 }
 .daily-glance.personal,
-.daily-glance.personal-odin {
+.daily-glance.personal-odin,
+.daily-glance.personal-admin {
 	border-left: 1px solid #96ff00;
 }
 .daily-glance.personal-other {
@@ -460,6 +461,20 @@ a.manage-edit {
 	&:hover {
 		color: rgba(150,255,0,1);
 	}
+}
+a.manage-edit.off-limits {
+	color: #757575;
+	transition: all 0.2s ease;
+	margin-left: 1em;
+	text-decoration: none;
+	cursor: default;
+}
+a.manage-edit.my-stuff {
+	color: #757575;
+	transition: all 0.2s ease;
+	margin-left: 1em;
+	text-decoration: none;
+	cursor: default;
 }
 a.manage-edit.inline {
 	margin-left: 0;

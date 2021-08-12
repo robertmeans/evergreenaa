@@ -16,13 +16,12 @@ if ($_SESSION['admin'] == 1) {
 	$layout_context = "manage-edit";
 }
 
-// off for local testing
 if (!isset($_SESSION['id'])) {
-	header('location: home.php');
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 
@@ -178,7 +177,7 @@ $role = $_SESSION['admin'];
 <div id="manage-wrap">
 	
 <div class="manage-simple intro">
-	<?php if ($role != 1 && $role != 2) { ?>
+	<?php if (($row['id_user'] == $_SESSION['id']) || ($role != 1 && $role != 2 && $role != 3)) { ?>
 	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
 	<p>Looks like you've got some corrections to make.</p>
 <?php } else if ($role == 1) { ?>
@@ -210,7 +209,7 @@ $role = $_SESSION['admin'];
 	<?php } ?>
 
 
-	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
+	<?php if (($row['id_user'] == $_SESSION['id']) || ($role == 1 || $role == 2 || $role == 3)) { ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/edit-details.php'; ?>

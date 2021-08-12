@@ -18,7 +18,7 @@ if (is_post_request()) {
 			$suspend_this_user = suspend_user_partial($role, $reason, $user_id);
 
 		  if ($suspend_this_user === true) {
-				$signal = 'okeedokee';
+				$signal = '85';
 			  $msg =  'success';
 		  } else {
 		  	$signal = 'bad';
@@ -30,7 +30,7 @@ if (is_post_request()) {
 			$suspend_this_user = suspend_user_total($role, $reason, $user_id);
 
 		  if ($suspend_this_user === true) {
-				$signal = 'ok';
+				$signal = '86';
 			  $msg =  'Transfer successful!';
 		  } else {
 		  	$signal = 'bad';

@@ -1,19 +1,15 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+// you can only manage users if you're Admin 1 or 3
+if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
 	header('location: ' . WWW_ROOT);
-	exit();
-}
-
-if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 2) {
-	header('location: https://www.merriam-webster.com/dictionary/go%20away');
 	exit();
 }
 
 if ($_SESSION['admin'] == 1) {
 	$layout_context = "user-role-odin";
-} else if ($_SESSION['admin'] == 2) {
+} else if ($_SESSION['admin'] == 3) {
 	$layout_context = "user-role-thor";
 } else {
 	$layout_context = "user-role";
@@ -23,7 +19,6 @@ $id = $_GET['user'];
 $role = $_SESSION['admin'];
 
 $row = get_user_by_id($id);
-
 ?>
 
 <?php require '_includes/head.php'; ?>
@@ -41,18 +36,32 @@ $row = get_user_by_id($id);
 		<p class="logout"><a href="manage.php">My Dashboard</a> | <a href="user_management.php">User Management</a></p>
 	</div>
 
-	<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
+	<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) { ?>
 
-	<div id="transfer-host">
 		<?php if ($id == 1) { ?>
-			<h2>Nope</h2>
+			<h2 id="role-h2" class="demote">Nope</h2>
 		<?php } else if ($row['admin'] == 85 || $row['admin'] == 86) { ?>
-			<h2>Reinstate User</h2>
-		<?php } else if ($row['admin'] == 0) { ?>
-			<h2>Manage User</h2>
+			<h2 id="role-h2" class="change-role">Reinstate User</h2>
+		<?php } else if ($row['admin'] == 0 || $row['admin'] == 2) { ?>
+			<h2 id="role-h2" class="change-role">Manage User</h2>
 		<?php } else { ?>
-			<h2>Demote Admin</h2>
+			<h2 id="role-h2" class="demote">Demote Admin</h2>
 		<?php } ?>
+	<div id="transfer-host">
+		<p id="current-role" class="current-role"><?php if ($row['admin'] == 0) { ?>
+				Member
+			<?php } else if ($row['admin'] == 1) { ?>
+				Bob's stuff
+			<?php } else if ($row['admin'] == 2) { ?>
+				Level II Administrator
+			<?php } else if ($row['admin'] == 85) { ?>
+				Suspended: Meetings remain active
+			<?php } else if ($row['admin'] == 86) { ?>
+				Suspended: Meetings set to Draft
+			<?php } else { ?>
+				Top Tier Administrator
+			<?php } ?>
+		</p>
 
 		<?php if ($id == 1) { ?>
 			<p class="bob-1">Bob</p>
@@ -74,31 +83,47 @@ $row = get_user_by_id($id);
 					</div>
 				<?php } else { ?>
 
-
-					<?php if ($row['admin'] != 0) { ?>
+					<?php if ($row['admin'] == 3) { ?>
+						<div class='radioz' value="2">
+							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings]' ?>
+						</div>
+					<?php } else if ($row['admin'] == 2) { ?>
+						<div class='radioz' value="3">
+							Upgrade <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
+						</div>
 						<div class='radioz' value="0">
-							Allow <?= $row['username'] . ' USER priviliges' ?>
+							Downgrade <?= $row['username'] . ' to Member' ?>
 						</div>
 					<?php } ?>					
 
 					<?php if ($row['admin'] != 1 && $row['admin'] != 2 && $row['admin'] != 3) { ?>
-						<?php if ($row['admin'] == 0) { ?>
-							<div class='radioz' value="2">
-								Grant <?= $row['username'] . ' ADMIN priviliges' ?>
+						<?php if ($row['admin'] == 0) { // user is Member ?>
+							<div class='radioz' value="3">
+								Grant <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
 							</div>
-						<?php } else { ?>
 							<div class='radioz' value="2">
-								Reinstate <?= $row['username'] . ' with ADMIN priviliges' ?>
+								Grant <?= $row['username'] . ' ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
+							</div>
+
+						<?php } else { ?>
+							<div class='radioz' value="3">
+								Reinstate <?= $row['username'] . ' with ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
+							</div>
+							<div class='radioz' value="2">
+								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
+							</div>
+							<div class='radioz' value="0">
+								Reinstate <?= $row['username'] . ' as Member' ?>
 							</div>
 						<?php } ?>
 					<?php } ?>
 
 					<?php if ($row['admin'] != 85 && $row['admin'] != 86) { ?> 
 						<div class='radioz' value="85">
-							Suspend <?= $row['username'] ?> + KEEP meetings
+							Suspend <?= $row['username'] ?> but KEEP meetings
 						</div>
 						<div class='radioz' value="86">
-							Suspend <?= $row['username'] ?> + REMOVE meetings [Draft]
+							Suspend <?= $row['username'] ?> and REMOVE meetings [Draft]
 						</div>
 					<?php } ?>
 
@@ -135,7 +160,6 @@ $row = get_user_by_id($id);
 	</div>
 
 	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">How'd you get this far?</p>"; } ?>
-
 
 </div><!-- #manage-wrap -->
 

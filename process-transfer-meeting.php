@@ -9,7 +9,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 
 	$current_user = $_SESSION['admin'];
 	$mtg_id = $_POST['current-mtg'];
-	$current_email = $_POST['current-host-email'];
+	$host_email = $_POST['host-email'];
 	$email = strtolower(trim($_POST['email']));
 
 if (is_post_request()) {
@@ -25,7 +25,7 @@ if (is_post_request()) {
 		
 			if ($exists > 0) {
 
-				if (($current_user == 1 || $current_user == 2) || $current_email != $email) {
+				if (($current_user == 1 || $current_user == 2 || $current_user == 3) && $host_email != $email) {
 
 					$change_host = update_host($mtg_id, $new_host);
 
@@ -38,7 +38,7 @@ if (is_post_request()) {
 				  }
 				} else {
 					$signal = 'bad';
-					$msg = 'You can\'t transfer the meeting to yourself!';
+					$msg = 'This is already one of your meetings.';
 				}
 
 			} else {

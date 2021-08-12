@@ -12,19 +12,18 @@
 			<div class="glance-mtg glance-mtg-type">
 				<?php 
 
-				if (isset($_SESSION['id'])) {
+
 					if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
 						
 						<a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
 
 						<a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
-						<a class="manage-edit" href="host-management.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
+						<a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 
 						<a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="far fas fa-minus-circle"></i></div></a>
 
-					<?php }
-					} ?>
+					<?php } ?>
 					
 			</div><!-- .glance-mtg-type -->
 		</div><!-- .daily-glance -->

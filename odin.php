@@ -40,7 +40,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Sunday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -65,7 +65,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Monday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -90,7 +90,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$today = 'Tuesday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -115,7 +115,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Wednesday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -140,7 +140,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Thursday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -165,7 +165,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Friday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
@@ -190,7 +190,7 @@ $user_id = $_SESSION['id'];
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$today = 'Saturday';
 
-					require '_includes/odin-daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
 						<?php require '_includes/odin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->

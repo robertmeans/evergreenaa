@@ -13,11 +13,25 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 
 if (is_post_request()) {
 
+
+	if ($role == '3') {
+		$change_user_role = change_user_role($user_id, $role);
+
+	  if ($change_user_role === true) {
+			$signal = '3';
+		  $msg =  'Transfer successful!';
+	  } else {
+	  	$signal = 'bad';
+	  	$msg = 'uh oh... The Internet might have hiccupped while this was in process and it may or may not have transferred successfully. This is a very unique occrurance. Please confirm with the other user that they have the meeting. If it did not transfer successfully email me at the bottom of any page and I will fix it. Again, this is a really hard messge to see. Congratulations. :)';
+	  }
+	}
+
+
 	if ($role == '2') {
 		$change_user_role = change_user_role($user_id, $role);
 
 	  if ($change_user_role === true) {
-			$signal = 'ok';
+			$signal = '2';
 		  $msg =  'Transfer successful!';
 	  } else {
 	  	$signal = 'bad';
@@ -29,7 +43,7 @@ if (is_post_request()) {
 		$change_user_role = change_user_role($user_id, $role);
 
 	  if ($change_user_role === true) {
-			$signal = 'okeedokee';
+			$signal = '0';
 		  $msg =  'Transfer successful!';
 	  } else {
 	  	$signal = 'bad';

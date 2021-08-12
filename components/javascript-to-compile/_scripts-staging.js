@@ -763,10 +763,14 @@ $(document).ready(function() {
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#transfer-this', function() {
-    // event.preventDefault();
+
+    var new_host = $('#new-email').val();
+
+
+
     $.ajax({
       dataType: "JSON",
-      url: "host-transfer.php",
+      url: "process-transfer-meeting.php",
       type: "POST",
       data: $('#transfer-form').serialize(),
       beforeSend: function(xhr) {
@@ -777,6 +781,7 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
+            $('#current-host').html('New Host: ' + new_host)
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
             $('#th-btn').html('');
           } else {
@@ -804,12 +809,14 @@ $('.radio-groupz .radioz').click(function(){
     //alert(val);
     $(this).parent().find('input').val(val);
 
-    if ($(this).parent().find('input').val() == 2 || $(this).parent().find('input').val() == 0) {
+    if ($(this).parent().find('input').val() == 0 || $(this).parent().find('input').val() == 2 || $(this).parent().find('input').val() == 3) {
 
         if ($('#sus-reason').is(':hidden')) {
           $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
         } else {
             $(this).removeClass('user-suspended');
+            $('#role-h2').removeClass('downgrade');
+          $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
             $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
           }
@@ -819,6 +826,8 @@ $('.radio-groupz .radioz').click(function(){
         if ($('#sus-reason').is(':hidden')) {
           $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
+          $('#role-h2').removeClass('upgrade');
+          $('#role-h2').addClass('downgrade');
           $(this).addClass('user-suspended');
         } else {
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
@@ -830,6 +839,8 @@ $('.radio-groupz .radioz').click(function(){
         if ($('#sus-reason').is(':hidden')) {
           $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
+          $('#role-h2').removeClass('upgrade');
+          $('#role-h2').addClass('downgrade');
           $(this).addClass('user-suspended');
         } else {
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
@@ -861,11 +872,13 @@ $(document).ready(function() {
         // console.log(response);
         if(response) {
           console.log(response);
-          if(response['signal'] == 'ok') {
+          if(response['signal'] == '86') {
+            $('#current-role').html('Suspended - All meetings set to Draft');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">You done smoked that cat right up outta here!</span>');
             $('#th-btn').html('');
-          } else if(response['signal'] == 'okeedokee') {
+          } else if(response['signal'] == '85') {
+            $('#current-role').html('Suspended - Any meetings remain active');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User is suspended but their meetings remain.</span>');
             $('#th-btn').html('');
@@ -901,13 +914,20 @@ $(document).ready(function() {
         // console.log(response);
         if(response) {
           console.log(response);
-          if(response['signal'] == 'ok') {
+          if(response['signal'] == '2') {
+            $('#current-role').html('Level II Administrator');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN successfully</span>');
+            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN Level II</span>');
             $('#th-btn').html('');
-          } else if(response['signal'] == 'okeedokee') {
+          } else if(response['signal'] == '3') {
+            $('#current-role').html('Top Tier Administrator');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User priviliges set to USER successfully</span>');
+            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN TOP TIER</span>');
+            $('#th-btn').html('');
+          } else if(response['signal'] == '0') {
+            $('#current-role').html('Member');
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">User priviliges set to Member successfully</span>');
             $('#th-btn').html('');
           } else {
             $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');

@@ -5,7 +5,7 @@ require_once 'config/verify_admin.php';
 $layout_context = "admin-active";
 
 // For Odin or admin(s) only
-if ($_SESSION['admin'] != 2 && $_SESSION['admin'] != 1) {
+if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 2 && $_SESSION['admin'] != 3) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }

@@ -13,7 +13,7 @@
 #transfer-host {
 	width: 100%;
 	max-width: 600px;
-	padding: 1em;
+	padding: 0.25em 1em 1em;
 	background-color: rgba(0,0,0,0.5); 
 	p.t-nav {
 		width: 100%;
@@ -41,14 +41,17 @@
 	p {
 		margin: 0.25em 0 1.5em;
 	}
+	p.current-role {
+		margin: 0.25em 0 0;
+	}
 	p.bob-1 {
 		margin: 0.25 0 0.75em 0;
 		padding:0.25em 0em 0.5em;
 		border-bottom: 1px solid rgba(255,255,255,0.1);
 	}
 	p.th-un {
-		margin: 0.25em 0 0;
-		padding-top: 0.25em;
+		margin: 0;
+		padding-top: 0em;
 	}
 	p.th-em {
 		margin: 0 0 0.75em 0;
@@ -63,8 +66,8 @@
 		}
 		input {
 			width: 100%;
-			height: 1.5em;
-			padding: 0.25em;
+			// height: 1.5em;
+			padding: 0.5em;
 			border: none;
 			outline: none;
 			border-radius: none;
@@ -125,6 +128,29 @@
 	a#not-yourself {
 		cursor: not-allowed;
 	}
+}
+
+h2.demote,
+h2.change-role,
+h2.trans-h2 {
+	width: 100%;
+	max-width: 600px;
+	font-size: 1.75em;
+	background-color: #841616;
+	padding: 0.5em;
+	border-bottom: none;
+}
+h2.trans-h2 {
+	background-color: rgba(0,0,0,0.8); 
+}
+h2.change-role {
+	background-color: #376420;
+}
+h2.change-role.downgrade {
+	background-color: #841616;
+}
+h2.change-role.upgrade {
+	background-color: #376420;
 }
 
 @media screen and (max-width: 440px) {

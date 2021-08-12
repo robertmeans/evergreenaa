@@ -21,10 +21,8 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
-// grab meeting id in order to edit this meeting
-// if it's not there -> go back to index.php
 if (!isset($_GET['id'])) {
-	header('location: index.php');
+	header('location: ' . WWW_ROOT);
 }
 
 // if user clicks UPDATE MEETING
@@ -50,7 +48,7 @@ $role = $_SESSION['admin'];
 <div class="confirm warning">WARNING!</div>
 <div class="manage-simple intro">
 
-	<?php if ($role != 1 && $role != 2) { ?>
+	<?php if (($row['id_user'] == $_SESSION['id']) || $role == 1 || $role == 3) { ?>
 	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
 <?php } else if ($role == 1) { ?>
 	<p>Hey Me,</p>
@@ -75,14 +73,14 @@ $role = $_SESSION['admin'];
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>
 
-	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1) { ?>
+	<?php if (($row['id_user'] == $_SESSION['id']) || $role == 1 || $role == 3) { ?>
 
 		<?php require '_includes/delete-glance.php'; ?>
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/delete-details.php'; ?>
 		</div><!-- .weekday-edit-wrap -->
 
-	<?php } else if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 2) { ?>
+	<?php } else if (($row['id_user'] != $_SESSION['id']) || $_SESSION['admin'] == 2) { ?>
 			<p style="margin:1.5em 0 0 1em;">As an Admin you can do a lot of things but deleting other people's meetings is not one. You can &quot;downgrade&quot; this meeting to Draft or Private by using <a class="manage-edit spec" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i> Edit Meeting</a> instead.</p>
 	<?php } else { ?>
 		<p style="margin:1.5em 0 0 1em;">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>
