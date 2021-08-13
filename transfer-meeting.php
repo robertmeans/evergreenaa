@@ -2,22 +2,12 @@
 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 0 || $_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "host-management-odin";
-} else if ($_SESSION['admin'] == 2) {
-	$layout_context = "host-management-thor";
-} else if ($_SESSION['admin'] == 3) {
-	$layout_context = "host-management-thor";
-} else if ($_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-} else {
-	$layout_context = "host-management";
-}
+$layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -45,8 +35,12 @@ $row = transfer_meeting($id);
 	
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
-<div id="host-manage-wrap">
 
+
+<div id="host-manage-wrap">
+	<div class="manage-simple intro">
+	<?php require '_includes/inner_nav.php'; ?>
+	</div>
 	<?php if ((($row['id_user'] == $_SESSION['id']) && ($row['id_mtg'] == $id)) || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 
 	<h2 class="trans-h2">Transfer Meeting</h2>

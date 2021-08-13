@@ -18,6 +18,11 @@ if (!isset($_SESSION['verified'])) {
 	exit;
 }
 
+if ($_SESSION['mode'] == 1) {
+	require 'admin.php';
+	exit;
+}
+
 if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset($_SESSION['message'])))) {
 	require 'home_private.php';
 	exit();

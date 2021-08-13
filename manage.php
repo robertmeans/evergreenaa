@@ -6,15 +6,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	exit();
 }
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "odin-manage";
-} else if ($_SESSION['admin'] == 2) {
-	$layout_context = "thor-manage";
-} else if ($_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-} else {
-	$layout_context = "manage";
-}
+$layout_context = "dashboard";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -52,21 +44,8 @@ $role = $_SESSION['admin'];
 	<?php } else { ?>
 		<p>My Dashboard</p>
 	<?php } ?>
-		<p class="logout">
-			
-		<?php
-			if ($role == 1) { // my eyes only ?>
-			<a href="email_everyone_BCC.php">BCC All</a> |  
-			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
-			<a href="logout.php">Logout</a> 
-		<?php } else if ($role == 2) { ?>
-			<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a> |
-			<a href="logout.php">Logout</a>
-		<?php } else { ?>
-			<a href="<?= WWW_ROOT ?>">Home</a> | <a href="logout.php">Logout</a>
-		<?php } ?>
 
-		</p>
+	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>
 <div class="manage-simple">	

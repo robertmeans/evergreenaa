@@ -31,6 +31,7 @@ function remember_me()
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] = $user['admin'];
+			$_SESSION['mode'] = $user['mode'];
 		}
 	} 
 }
@@ -181,6 +182,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['email'] 		= $user['email'];
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] 		= $user['admin'];
+			$_SESSION['mode'] 		= $user['mode'];
 			$_SESSION['token'] 		= $user['token'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for

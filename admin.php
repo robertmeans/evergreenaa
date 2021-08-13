@@ -2,7 +2,7 @@
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-$layout_context = "admin-active";
+$layout_context = "home-private";
 
 // For Odin or admin(s) only
 if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 2 && $_SESSION['admin'] != 3) {

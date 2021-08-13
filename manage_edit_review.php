@@ -6,15 +6,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	exit();
 }
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "manage-edit-rev-odin";
-} else if ($_SESSION['admin'] == 2) {
-	$layout_context = "manage-edit-rev-thor";
-} else if ($_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-} else {
-	$layout_context = "manage-edit-rev";
-}
+$layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -53,24 +45,13 @@ $row = edit_meeting($id);
 	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
 	<p>Make sure everything's just right.</p>
 <?php } ?>
-	<p class="logout">
-		
-	<?php
-		if ($role == 1) { // my eyes only ?>
-		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
-	<?php } else if ($role == 2) { ?>
-		<a href="<?= WWW_ROOT . '/admin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
-	<?php } else { ?>
-		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
-	<?php } ?>
-
-	</p>
+<?php require '_includes/inner_nav.php'; ?>
 
 </div>
 <div class="manage-simple review">
 	<h1>Quick view</h1>
 		
-		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2) { ?>
+		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 
 			<?php require '_includes/review-glance.php'; ?>
 			<div class="weekday-edit-wrap">

@@ -11,6 +11,55 @@ $(document).ready(function() {
   });
 });
 
+// Navigation
+/* Set the width of the side navigation to 250px */
+$(document).ready(function() {
+  var url = window.location.href;
+  $('#url').val(url);
+}); 
+function openNav() {
+  var e = document.getElementById("side-nav");
+  if (e.style.width == '300px') {
+        e.style.width = '0px';
+  } else {
+      e.style.width = '300px';
+  }
+}
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("side-nav").style.width = "0";
+}
+
+
+// toggle msg one private
+$("#toggle-private-msg").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+  if ($('#msg-one').is(':hidden')) {
+      $("#msg-one").fadeIn(500); 
+  } else {
+      $("#msg-one").fadeOut(500);
+  }
+
+});
+$(document).click(function() {
+  var e = document.getElementById("side-nav");
+  if($('#msg-one').is(':visible')) {
+    $("#msg-one").fadeOut(500);
+
+  } else {
+
+
+  if (e.style.width == '300px') {
+        e.style.width = '0px';
+      }
+  }
+});
+
+$(".top-nav").click(function(e) {
+   e.stopPropagation();
+});
 
 // all things backstretch are in jquery.backstretch.min.js
 
@@ -413,7 +462,6 @@ $(document).ready(function(){
     }
   });
 
-
   /* defined below all other interaction with #file-upload or .pdf-remove in order to provide appropriate first page load content. everything else is dependent on a re-rendering after a click event. variable has to be defined here for the first run of the function so that it reads everything as is set when the page loads the first time. */
   var open_files = $('.pdf-wrap:visible').length;
   function open_file_positions(open_files) { 
@@ -530,25 +578,23 @@ $("#toggle-public-msg").click(function(e) {
 
 });
 
-// toggle msg one private
-$("#toggle-private-msg").click(function(e) {
-    e.preventDefault();
-    e.stopPropagation();
+// // toggle msg one private
+// $("#toggle-private-msg").click(function(e) {
+//     e.preventDefault();
+//     e.stopPropagation();
 
-    var open  = 'Close';
-    var closed = 'Extras';
+//     var open  = 'Close';
+//     var closed = 'Extras';
 
-  if ($('#msg-one').is(':hidden')) {
-      $("#msg-one").fadeIn(500);
-      $("#toggle-private-msg").html(open); 
-  } else {
-      $("#msg-one").fadeOut(500);
-      $("#toggle-private-msg").html(closed); 
-  }
+//   if ($('#msg-one').is(':hidden')) {
+//       $("#msg-one").fadeIn(500);
+//       // $("#toggle-private-msg").html(open); 
+//   } else {
+//       $("#msg-one").fadeOut(500);
+//       // $("#toggle-private-msg").html(closed); 
+//   }
 
-});
-
-
+// });
 
 // toggle lat, long coordinates explanation on 
 // _includes/edit-details.php page
@@ -587,12 +633,6 @@ $("#toggle-link-label").click(function(e) {
 $(document).click(function() {
   $("#link-label").fadeOut(500);
 });​
-
-
-
-
-
-
 
 // close msg one when clicking anywhere on page
 $(document).click(function() {

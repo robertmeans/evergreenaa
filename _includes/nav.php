@@ -1,86 +1,63 @@
-<nav>
-	<ul>
-		<!-- 1st link -->
-		<?php
-		switch ($layout_context) {
-			case 'signup' 					:	break;
-			case 'reset-password' 	:	break;
-			case 'password-message' :	break;
-			case 'login-page' 			:	break;
-			case 'index' 						:	break;
-			case 'forgot-password' 	:	break;
-			case 'edit-meeting' 		:	break;
-			case 'suspended' 				:	?><li><a class="logout" href="<?= 'logout.php' ?>">Home</a></li><?php 	break;
-			case 'home-private' 		:	?><li><a id="toggle-private-msg" class="cc-x">Extras</a></li><?php  	break;
-			case 'home-public' 			:	?><li><a id="toggle-public-msg" class="cc-x why-join">Readme</a></li><?php 	break;
-			case 'odin-manage' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'thor-manage' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'odin-go' 					:	?><li><a class="logout" href="<?= WWW_ROOT . '/odin.php' ?>">Odin</a></li><?php 	break;
-			case 'thor-go' 					:	?><li><a class="logout" href="<?= WWW_ROOT . '/admin.php' ?>">Admin</a></li><?php 	break;
-			case 'odin-active' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'admin-active' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'suspend-user-odin' 		:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 		break;
-			case 'suspend-user-thor' 		:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 		break;
-			case 'email-everyone' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
-			case 'host-management-odin' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'host-management-thor' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'host-management' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
-			case 'manage-edit-odin' 			:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-edit-thor' 			:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-edit' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 					break;
-			case 'manage-edit-rev-odin' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-edit-rev-thor' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-edit-rev' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'manage-delete-odin' 		:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-delete-thor' 		:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-delete' 		:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			default 								:	break;
-		}
-		?>
-		
-		
-		<!-- 2nd link... -->
-		<?php
-		switch ($layout_context) {
-			case 'suspended' 				:	break;
-			case 'signup' 					:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'reset-password' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'password-message' :	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'login-page' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'index' 						:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'home-private' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'home-public' 			:	?><li><a class="logout" href="login.php">Login</a></li><?php 				break;
-			case 'forgot-password' 	:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'odin-manage' 			:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'thor-manage' 			:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'manage' 					:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'manage-new-odin' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/odin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-new-thor' 	:	?><li><a class="logout odin" href="<?= WWW_ROOT . '/admin.php' ?>">Home</a></li><?php 	break;
-			case 'manage-new' 			:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-			case 'odin-go' 					:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'thor-go' 					:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'odin-active' 			:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'admin-active' 			:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'suspend-user-odin'	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'suspend-user-thor'	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'email-everyone' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'user-role-odin' 	:	?><li><a class="logout odin" href="odin.php">Home</a></li><?php 	break;
-			case 'user-role-thor' 	:	?><li><a class="logout odin" href="admin.php">Home</a></li><?php 	break;
-			case 'host-management-odin' 	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'host-management-thor' 	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'host-management' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'manage-edit-odin' 		:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'manage-edit-thor' 		:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'manage-edit' 			:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'manage-edit-rev-odin' :	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'manage-edit-rev-thor' :	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 	break;
-			case 'manage-edit-rev' 	:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			case 'manage-delete-odin' 	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 			break;
-			case 'manage-delete-thor' 	:	?><li><a class="logout odin" href="manage.php">Manage</a></li><?php 			break;
-			case 'manage-delete' 		:	?><li><a class="logout" href="manage.php">Manage</a></li><?php 			break;
-			default 						:	?><li><a class="logout" href="<?= WWW_ROOT ?>">Home</a></li><?php 	break;
-		}
-		?>
-		
-	</ul>
+<nav id="navigation">
+	<span class="top-nav <?php if ($_SESSION['mode'] == 1) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i> Menu</span>
 </nav>
+
+<div id="side-nav" class="sidenav">
+	<div id="sidenav-wrapper">
+		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i></a>
+
+
+		<?php if (($layout_context != 'home-private') && ($layout_context != 'home-public')) { ?>
+			<a href="<?= WWW_ROOT ?>" onclick="closeNav();">Homepage</a>
+		<?php } ?>
+
+		<?php if (isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
+			<a href="manage.php" onclick="closeNav();">My Dashboard</a>
+		<?php } ?>
+
+		<?php if ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) { ?>
+			<a href="user_management.php" onclick="closeNav();">Manage Users</a>
+		<?php } ?>
+
+		<?php // my eyes only ?>
+		<?php if ($_SESSION['mode'] == 1 && $_SESSION['admin'] == 1) { ?>
+			<a href="email_everyone_BCC.php" onclick="closeNav();">Email Everyone</a>
+		<?php } ?>
+
+
+
+
+		<?php if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 0) { ?>
+			<form action="process-admin-mode.php" method="post">
+				<input type="hidden" name="mode" value="1">
+				<input type="hidden" id="url" name="url">
+				<a href="#" class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
+			</form>
+		<?php } ?>
+		<?php if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 1) { ?>
+			<form action="process-admin-mode.php" method="post">
+				<input type="hidden" name="mode" value="0">
+				<input type="hidden" id="url" name="url">
+				<a href="#" class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>
+			</form>
+		<?php } ?>
+
+
+
+			
+
+		<?php if (!isset($_SESSION['id'])) { ?>
+			<a href="login.php" class="login" onclick="closeNav();"><i class="fas far fa-power-off"></i> Login</a>
+		<?php } else { ?>
+			<a href="logout.php" class="logout" onclick="closeNav();"><i class="fas far fa-power-off"></i> Logout</a>
+		<?php } ?>
+
+
+
+
+
+
+
+		<a id="toggle-private-msg" class="cc-x">Extras</a>
+	</div><!-- #sidenav-wrapper -->
+</div><!-- #side-nav -->

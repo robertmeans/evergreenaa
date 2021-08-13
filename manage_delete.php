@@ -2,15 +2,7 @@
 
 require_once 'config/initialize.php';
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "manage-delete-odin";
-} else if ($_SESSION['admin'] == 2) {
-	$layout_context = "manage-delete-thor";
-} else if ($_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-} else {
-	$layout_context = "manage-delete";
-}
+$layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -56,18 +48,7 @@ $role = $_SESSION['admin'];
 <?php } else { ?>
 	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
 <?php } ?>
-	<p class="logout">
-		
-	<?php
-		if ($role == 1) { // my eyes only ?>
-		<a href="<?= WWW_ROOT . '/odin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a> 
-	<?php } else if ($role == 2) { ?>
-		<a href="<?= WWW_ROOT . '/admin.php' ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
-	<?php } else { ?>
-		<a href="<?= WWW_ROOT ?>">Home</a> | <a href="<?= 'manage.php' ?>">Dashboard</a> | <a href="logout.php">Logout</a>
-	<?php } ?>
-
-	</p>
+<?php require '_includes/inner_nav.php'; ?>
 
 </div>
 <div class="manage-simple empty">

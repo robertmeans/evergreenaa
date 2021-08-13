@@ -40,7 +40,7 @@ function get_all_public_and_private_meetings_for_today($today) {
 function verify_this_user($id) {
   global $db;
 
-  $sql = "SELECT admin FROM users WHERE ";
+  $sql = "SELECT admin, mode FROM users WHERE ";
   $sql .= "id_user='" . db_escape($db, $id) . "' ";
  
   $result = mysqli_query($db, $sql);
@@ -121,6 +121,17 @@ function change_user_role($user_id, $role) {
   $one .= "JOIN meetings m ON u.id_user=m.id_user ";
   $one .= "SET u.admin='"  . db_escape($db, $role) . "' ";
   $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
+
+  $result = mysqli_query($db, $one);
+  return $result; 
+}
+
+function update_admin_mode($id, $mode) {
+  global $db;
+
+  $one = "UPDATE users ";
+  $one .= "SET mode='"  . db_escape($db, $mode) . "' ";
+  $one .= "WHERE id_user='"  . db_escape($db, $id) . "'";
 
   $result = mysqli_query($db, $one);
   return $result; 
@@ -496,7 +507,7 @@ function find_meetings_for_manage_page($id) {
   return $result; // returns an assoc. array  
 }
 
-function find_meetings_for_user_manage_page_glance() {
+function user_manage_page_glance() {
   global $db;
 
   $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.sus_notes FROM meetings as m ";
@@ -515,7 +526,7 @@ function find_users_for_admin_glance() {
 
   $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.sus_notes FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
-  $sql .= "WHERE u.admin=2 ";
+  $sql .= "WHERE u.admin=2 OR u.admin=3 ";
   $sql .= "GROUP BY u.username ";
   $sql .= "ORDER BY u.username;";
   // echo $sql;
@@ -524,7 +535,7 @@ function find_users_for_admin_glance() {
   return $result; // returns an assoc. array  
 }
 
-function find_meetings_for_user_manage_page_details($userz_id) {
+function user_manage_page_details($userz_id) {
   global $db;
 
   $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin FROM meetings as m ";

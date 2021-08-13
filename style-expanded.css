@@ -194,112 +194,169 @@ html {
     font-size: 2em;
   }
 }
-nav {
-  position: fixed;
+#navigation {
   top: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  margin-top: -1em;
-  z-index: 1234580;
-}
-nav > ul {
+  text-align: right;
   width: 96%;
-  max-width: 1050px;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 78;
 }
-nav > ul li {
-  display: inline-block;
-  width: 98px;
-}
-nav > ul li > a {
-  position: absolute;
-  padding: 8px 0px 8px 0px;
-  width: 100px;
+#navigation span.top-nav {
+  position: fixed;
   cursor: pointer;
-  text-align: center;
   background-color: black;
   color: #fff;
+  padding: 0.5em 1em 0.5em 1em;
   border-top: none;
   border-right: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom-right-radius: 3px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom-left-radius: 3px;
   border-left: 1px solid rgba(255, 255, 255, 0.6);
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
 }
-nav > ul li > a:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 12px 0px 8px 0px;
+#navigation span.top-nav:hover {
+  padding-top: 0.75em;
+  background-color: #313131;
+  color: #fff;
 }
-nav > ul li > a.why-join {
-  background-color: #2ab533;
-}
-nav > ul li > a.why-join:hover {
-  background-color: rgba(42, 181, 51, 0.5);
-}
-nav > ul li > a.login {
-  background-color: #d4e8da;
-}
-nav > ul li > a.login:hover {
-  background-color: rgba(212, 232, 218, 0.3);
+#navigation span.top-nav.admin-logged {
+  background-color: gold;
+  color: #000;
+  border-right: 1px solid #fff600;
+  border-bottom: 1px solid #fff600;
+  border-left: 1px solid #fff600;
 }
 
-@media screen and (max-width: 800px) {
-  nav {
-    position: fixed;
-    top: inherit;
-    bottom: 0;
-    left: inherit;
-    right: inherit;
-    margin-top: 0;
-    height: 1px;
+.sidenav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  height: 100%;
+  width: 0;
+  /* 0 width - change with JS */
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* slide in the sidenav */
+  white-space: nowrap;
+}
+.sidenav #sidenav-wrapper {
+  padding-top: 2em;
+  width: 300px;
+}
+.sidenav #sidenav-wrapper i {
+  margin-right: 0.5em;
+}
+.sidenav a {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 1em 1em 1em 1.5em;
+  background-color: transparent;
+  text-decoration: none;
+  color: #818181;
+  transition: all 0.2s ease;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.sidenav a.closebtn {
+  width: 100%;
+  padding-left: 0.75em;
+  margin-bottom: 0.75em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  cursor: pointer;
+  text-align: left;
+}
+.sidenav a.closebtn i {
+  font-size: 1.5em;
+  -ms-transform: rotate(270deg);
+      transform: rotate(270deg);
+  animation: in .25s 2 linear;
+}
+.sidenav a.closebtn i:hover {
+  animation: out .5s 1 linear;
+}
+.sidenav a.admin-login {
+  color: gold;
+}
+.sidenav a.admin-logout {
+  color: #c30808;
+}
+.sidenav a.login {
+  color: #96ff00;
+}
+.sidenav a.login:hover {
+  background-color: #2b8719;
+  color: #fff;
+}
+.sidenav a.logout {
+  color: #c30808;
+  margin-top: 2em;
+}
+.sidenav a.logout:hover {
+  background-color: #890404;
+  color: #fff;
+}
+.sidenav a.cc-x {
+  cursor: pointer;
+  font-size: 0.75em;
+  margin-top: 2em;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+@keyframes in {
+  0% {
+    transform: rotate(360deg);
   }
-  nav > ul {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-  }
-  nav > ul li {
-    display: inline-block;
-    width: 5em;
-    margin: 0 5px;
-  }
-  nav > ul li > a {
-    position: absolute;
-    padding: 0.65em;
-    margin-top: -2.5em;
-    width: 5em;
-    cursor: pointer;
-    text-align: center;
-    background-color: black;
-    color: #fff;
-    border-top: 1px solid #fff;
-    border-top-right-radius: 3px;
-    border-right: 1px solid #fff;
-    border-bottom-right-radius: 3px;
-    border-bottom: 1px solid #fff;
-    border-bottom-left-radius: 3px;
-    border-left: 1px solid #fff;
-    border-top-left-radius: 3px;
-    transition: all 0.2s ease;
-    outline: none;
-  }
-  nav > ul li > a:hover {
-    background-color: black;
-    padding: 0.65em;
-  }
-  nav > ul li > a.why-join {
-    background-color: #2ab533;
-  }
-  nav > ul li > a.why-join:hover {
-    background-color: #2ab533;
+  100% {
+    transform: rotate(0deg);
   }
 }
+@keyframes out {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+p.logout {
+  color: #fff;
+}
+p.logout a {
+  color: #fff;
+  text-decoration: none;
+}
+p.logout a:hover {
+  text-decoration: underline;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1083,7 +1140,7 @@ div#success-wrap {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 8888;
+  z-index: 82;
   width: 100%;
   height: 100%;
   height: 100vh;
@@ -1169,7 +1226,7 @@ a#gmaps:hover {
   height: 100%;
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.6);
-  z-index: 1234567;
+  z-index: 82;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -3251,7 +3308,7 @@ body.noscrollz {
   display: none;
   /* turn this modal on or off for dev at btm of script */
   position: fixed;
-  z-index: 1234562;
+  z-index: 84;
   left: 0;
   top: 0;
   width: 100%;
@@ -3579,6 +3636,7 @@ span.sending-msg {
 h2.demote,
 h2.change-role,
 h2.trans-h2 {
+  line-height: 1em;
   width: 100%;
   max-width: 600px;
   font-size: 1.75em;
@@ -3777,7 +3835,7 @@ a.manage-edit.spec:hover {
   border-top: 1px solid #999999;
   position: fixed;
   width: 80%;
-  z-index: 1234562;
+  z-index: 76;
   text-align: center;
   padding-top: 0.5em;
   cursor: pointer;
@@ -3868,11 +3926,6 @@ i.dml {
 @media screen and (max-width: 800px) {
   .foot {
     height: 500px;
-    bottom: -415px;
-  }
-
-  .slide-down {
-    bottom: -415px !important;
   }
 
   .foot h3 {

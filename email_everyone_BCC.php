@@ -1,8 +1,8 @@
-<?php $layout_context = "email-everyone";
-
+<?php 
 require_once 'config/initialize.php';
 
-// For my eyes only!
+$layout_context = "alt-manage";
+
 if ($_SESSION['id'] != 1) {
 	header('location: https://www.merriam-webster.com/dictionary/go%20away');
 	exit();
@@ -56,9 +56,7 @@ $result = find_all_users();
 
 <div class="manage-simple-admin">	
 	<h1>Email All Members</h1>
-	<p class="admin-email">
-		<a href="manage.php">Back</a> | <a href="logout.php">Logout</a>
-	</p>
+<?php require '_includes/inner_nav.php'; ?>
 </div>
 <div class="manage-simple-email">
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
@@ -103,18 +101,15 @@ $result = find_all_users();
 ?>
 
 
-
 <?php require '_includes/head.php'; ?>
 <body>	
 <?php require '_includes/nav.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 
-<div class="manage-simple-admin">	
-	<h1>Email All Members</h1>
-	<p class="admin-email">
-		<a href="manage.php">Back</a> | <a href="logout.php">Logout</a>
-	</p>
+<div class="manage-simple intro">	
+<p>Email All Members</p>
+<?php require '_includes/inner_nav.php'; ?>
 </div>
 
 <div class="manage-simple-email">

@@ -2,21 +2,20 @@
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 // you can only manage users if you're Admin 1 or 3
-if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
+if ($_SESSION['mode'] != 1 || ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3)) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 
-if ($_SESSION['admin'] == 1) {
-	$layout_context = "user-role-odin";
-} else if ($_SESSION['admin'] == 3) {
-	$layout_context = "user-role-thor";
-} else {
-	$layout_context = "user-role";
-}
+$layout_context = "alt-manage";
 
 $id = $_GET['user'];
 $role = $_SESSION['admin'];
+
+if ($id == '' || $id == $_SESSION['id']) {
+	header('location: ' . WWW_ROOT);
+	exit();
+}
 
 $row = get_user_by_id($id);
 ?>
@@ -33,7 +32,7 @@ $row = get_user_by_id($id);
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="host-manage-wrap">
 	<div class="manage-simple intro">
-		<p class="logout"><a href="manage.php">My Dashboard</a> | <a href="user_management.php">User Management</a></p>
+	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 
 	<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) { ?>
@@ -44,6 +43,8 @@ $row = get_user_by_id($id);
 			<h2 id="role-h2" class="change-role">Reinstate User</h2>
 		<?php } else if ($row['admin'] == 0 || $row['admin'] == 2) { ?>
 			<h2 id="role-h2" class="change-role">Manage User</h2>
+		<?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { ?>
+			<h2 id="role-h2" class="demote">Top Tier Admin are off limits</h2>
 		<?php } else { ?>
 			<h2 id="role-h2" class="demote">Demote Admin</h2>
 		<?php } ?>
@@ -70,6 +71,7 @@ $row = get_user_by_id($id);
 			<p class="th-em">Email: <?= $row['email'] ?></p>
 		<?php } ?>
 
+<?php if ($_SESSION['admin'] == 1 || ($row['admin'] != 1 && $row['admin'] != 3)) { ?>
 		<form id="suspend-form">
 
 			<div class="radio-groupz">
@@ -83,11 +85,14 @@ $row = get_user_by_id($id);
 					</div>
 				<?php } else { ?>
 
-					<?php if ($row['admin'] == 3) { ?>
+					<?php if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { ?>
 						<div class='radioz' value="2">
 							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings]' ?>
 						</div>
-					<?php } else if ($row['admin'] == 2) { ?>
+						<div class='radioz' value="0">
+							Downgrade <?= $row['username'] . ' to Member' ?>
+						</div>
+					<?php } else if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) && $row['admin'] == 2) { ?>
 						<div class='radioz' value="3">
 							Upgrade <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
 						</div>
@@ -138,7 +143,8 @@ $row = get_user_by_id($id);
 				<p>Reason</p><textarea name="reason"></textarea>
 			</div>
 		</form>
-		
+<?php } ?>		
+
 		<div id="sus-msg">
 			
 		</div>
@@ -146,7 +152,8 @@ $row = get_user_by_id($id);
 		<div id="th-btn">
 			<?php if ($id == 1) { ?>
 				<a id="not-yourself" class="not-odin">Bob's stuff is off limits</a>
-
+			<?php } else if ($_SESSION['id'] != 1 && $row['admin'] == 3) { ?>
+				<a id="not-yourself" class="not-odin">Off limits</a>
 			<?php } else if ($id == $_SESSION['id']) { ?>
 				<a id="not-yourself">Don't play with yourself</a>
 			<?php } else { ?>

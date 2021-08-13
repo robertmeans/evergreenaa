@@ -2,7 +2,7 @@
     border-top: 1px solid #999999;
     position:fixed;
     width: 80%;
-    z-index: 1234562;
+    z-index: 76;
     text-align:center;
     padding-top: 0.5em;
     cursor: pointer;
@@ -97,10 +97,10 @@ i.dml {
 @media screen and (max-width: 800px) {
   .foot {
     height: 500px;
-    bottom: -415px;
+    // bottom: -415px;
   }
   .slide-down {
-    bottom: -415px !important;
+    // bottom: -415px !important;
   }
   .foot h3 {
     font-size: 1em;
