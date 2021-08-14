@@ -1,7 +1,7 @@
 
 				<div class="meeting-details">
 <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
-					<div class="details-left">
+					<div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 <?php /* if ($row['dedicated_om'] != 0) { ?><p class="dd-meet">Dedicated Online Meeting</p> } */ ?>
 <?php 					if ($row['meet_phone'] != null) { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
@@ -26,7 +26,7 @@
 <?php } ?>
 					</div><!-- .details-left -->
 <?php } ?>
-					<div class="details-right" <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) { echo "style=\"width:100%;\""; } ?>>
+					<div class="details-right <?php if ($row['meet_url'] != null) { echo "rt-stacked"; } ?>" <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) { echo "style=\"width:100%;\""; } ?>>
 
 <?php 				if ($row['meet_addr'] != null) { ?>
 

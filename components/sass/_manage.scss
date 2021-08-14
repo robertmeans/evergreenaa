@@ -382,11 +382,14 @@ ul.manage-weekdays {
 .daily-glance .glance-mtg-type {
 	padding: 0em 1em 0em 0em;
 }
-@media screen and (max-width: 800px) {
-	.daily-glance .glance-mtg-type {
-		padding: 0em 1em 0em 0em;
-	}	
-}
+// @media screen and (max-width: 800px) {
+// 	.daily-glance .glance-mtg-time {
+// 		padding-bottom: 0.5em;
+// 	}
+// 	.daily-glance .glance-mtg-type {
+// 		padding: 0.5em 1em 0em 0em;
+// 	}	
+// }
 
 .manage-glance-wrap-review {
 	width: 100%;
@@ -1165,14 +1168,24 @@ form#manage-mtg {
 		flex-direction: column;
 	}
 	.weekday-edit-wrap .meeting-details .details-right {
-		padding: 1em 0em;
+		// padding: 1em 0em;
+		padding: 0em;
 		width: 100%;
 	}
 	.weekday-edit-wrap .meeting-details .details-left {
 		border-right: 0px;
 		border-bottom: 1px solid rgba(255,255,255,0.2);
-		padding: 1em 0em;
+		// padding: 1em 0em;
+		padding: 0em;
 		width: 100%;
+	}
+	.weekday-wrap .meeting-details .details-right.rt-stacked,
+	.weekday-edit-wrap .meeting-details .details-right.rt-stacked {
+		padding-top: 1.5em;
+	}
+	.weekday-wrap .meeting-details .details-left.l-stacked,
+	.weekday-edit-wrap .meeting-details .details-left.l-stacked {
+		border-bottom: none;
 	}
 	.weekday-edit-wrap,
 	.weekday-wrap {
@@ -1194,20 +1207,9 @@ form#manage-mtg {
 	form#manage-mtg input.mtg-update, form#manage-mtg input.mtg-update-url {
 		width: 100%;
 	}
-	// .btm-notes input[name="update-mtg"] {
-	// 	width: 98%;
-	// 	padding: 1em 0em;
-	// 	text-align: center;
-	// 	font-size: 0.8em;
-	// }
+
 	form#manage-mtg .update-rt {
 		justify-content: center;
-		// a.cancel {
-		// width: 98%;
-		// padding: 1em 0em;
-		// text-align: center;
-		// font-size: 0.8em;
-		// }
 	}
 	.weekday-edit-wrap .delete-record {
 		justify-content: center;
@@ -1253,9 +1255,6 @@ form#manage-mtg {
 		margin: 0.5em 0;
 	}
 
-
-
-
 	.manage-glance .glance-mtg-type {
 		// padding: 0em;
 		// justify-content: center;
@@ -1264,10 +1263,12 @@ form#manage-mtg {
 		// overflow-x: hidden;
 	}
 
-
-
-
-
+	.daily-glance .glance-mtg-time {
+		padding-bottom: 0.5em;
+	}
+	.daily-glance .glance-mtg-type {
+		padding: 0.5em 1em 0em 0em;
+	}	
 
 	ul.manage-weekdays div.manage-day-toggle {
 		padding: 0.5em;
@@ -1278,8 +1279,20 @@ form#manage-mtg {
 	a.manage-delete {
 		margin-left: 1.6em;
 	}
-
-
+	a.map-dir {
+		padding: 1.5em;
+	}
+	a.zoom {
+		padding: 1.5em 1em;
+		width: 90%;
+		display: block;
+		margin: 0 auto;
+	}
+	.zoom-id {
+		width: 50%;
+		min-width: 250px;
+		padding: 0.75em 0.5em 0.75em 1em;
+	}
 }
 span.contact-update-message {
   width: 100%;

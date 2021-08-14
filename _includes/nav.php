@@ -1,5 +1,8 @@
-<nav id="navigation">
+<nav id="navigation" class="sm-g">
 	<span class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i> Menu</span>
+</nav>
+<nav id="navigation" class="lg-g">
+	<span class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></span>
 </nav>
 
 <div id="side-nav" class="sidenav">
@@ -38,8 +41,9 @@
 			<form action="process-admin-mode.php" method="post">
 				<input type="hidden" name="mode" value="0">
 				<input type="hidden" id="url" name="url">
-				<a href="#" class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>
+				<a href="#" class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>	
 			</form>
+
 		<?php } ?>
 
 		<?php if (!isset($_SESSION['id'])) { ?>
@@ -54,5 +58,19 @@
 		<?php } else { ?>
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
+
 	</div><!-- #sidenav-wrapper -->
+
+		<?php if ($row['admin'] == 1 || $row['admin'] == 2 || $row['admin'] == 3) { ?>
+			<div class="admin-role">
+				Your role: <?php if ($row['admin'] == 1) { ?>
+					One and only Bob
+				<?php } else if ($row['admin'] == 2) { ?>
+					Tier II Admin
+				<?php } else if ($row['admin'] == 3) { ?>
+					Top Tier Admin
+				<?php } ?>
+			</div>
+		<?php } ?>
+
 </div><!-- #side-nav -->

@@ -17,12 +17,13 @@ $(document).ready(function() {
   var url = window.location.href;
   $('#url').val(url);
 }); 
+
 function openNav() {
-  var e = document.getElementById("side-nav");
-  if (e.style.width == '300px') {
-        e.style.width = '0px';
+  var eotw = document.getElementById("side-nav");
+  if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
   } else {
-      e.style.width = '300px';
+      eotw.style.width = '300px';
   }
 }
 /* Set the width of the side navigation to 0 */
@@ -44,9 +45,9 @@ $(document).ready(function(){
   });
 });
 
-
 $(document).click(function() {
-  var e = document.getElementById("side-nav");
+  var eotw = document.getElementById("side-nav");
+
   if($('#msg-one').is(':visible')) {
     $("#msg-one").fadeOut(500);
   } else if ($('#lat-long').is(':visible')) {
@@ -57,10 +58,8 @@ $(document).click(function() {
     $("#pdf-upload").fadeOut(500);
   } else if ($('#link-label').is(':visible')) {
     $("#link-label").fadeOut(500);
-  } else {
-  if (e.style.width == '300px') {
-    e.style.width = '0px';
-    }
+  } else if (eotw.style.width == '300px') {
+    closeNav();
   }
 });
 
@@ -494,12 +493,18 @@ $(document).ready(function(){
     /* end file upload */
 
 
-
-
   /* toggle days of week */
   $('.day').click(function() {
     var active = $(this);
     var toggle = $(this).next('.day-content');
+
+    // if nav is open close it and stop
+    var eotw = document.getElementById("side-nav");
+    if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
+        stopPropagation();
+      }
+    // otherwise continue as you were...
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -517,6 +522,14 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
 
+    // if nav is open close it and stop
+    var eotw = document.getElementById("side-nav");
+    if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
+        stopPropagation();
+      }
+    // otherwise continue as you were...
+
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');
     $(toggle).slideToggle();
@@ -533,6 +546,14 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
 
+    // if nav is open close it and stop
+    var eotw = document.getElementById("side-nav");
+    if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
+        stopPropagation();
+      }
+    // otherwise continue as you were...
+
     $('.weekday-wrap').not(toggle).slideUp();
     $('.manage-glance-wrap').not(active).removeClass('active');
     $(toggle).slideToggle();
@@ -547,11 +568,29 @@ $(document).ready(function(){
   /* collapse day button */
   $('.collapse-day').click(function() {
     var me = $(this);
+
+    // if nav is open close it and stop
+    var eotw = document.getElementById("side-nav");
+    if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
+        stopPropagation();
+      }
+    // otherwise continue as you were...
+
     $('.day-content').not(me).slideUp();
     $('.day').removeClass('active');
   });
 
   $("#toggle-contact-form").click(function(){
+
+    // if nav is open close it and stop
+    var eotw = document.getElementById("side-nav");
+    if (eotw.style.width == '300px') {
+        eotw.style.width = '0px';
+        stopPropagation();
+      }
+    // otherwise continue as you were...
+
       $(this).toggleClass("active").next().slideToggle(600);
 
       if ($.trim($(this).text()) === 'close') {
@@ -563,9 +602,9 @@ $(document).ready(function(){
   })
 }); /* document.ready end */
 
-setTimeout(function() {
-  $("#success-wrap").fadeOut(1500);
-}, 2000);
+// setTimeout(function() {
+//   $("#success-wrap").fadeOut(1500);
+// }, 2000);
 
 
 // toggle lat, long coordinates explanation on 
@@ -575,43 +614,43 @@ $("#toggle-lat-long-msg").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 });
-$(document).click(function() {
-  $("#lat-long").fadeOut(500);
-});​
+// $(document).click(function() {
+//   $("#lat-long").fadeOut(500);
+// });​
 
 $("#toggle-descriptive-location").click(function(e) {
   $("#desc-loc").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-$(document).click(function() {
-  $("#desc-loc").fadeOut(500);
-});​
+// $(document).click(function() {
+//   $("#desc-loc").fadeOut(500);
+// });​
 
 $("#toggle-pdf-info").click(function(e) {
   $("#pdf-upload").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-$(document).click(function() {
-  $("#pdf-upload").fadeOut(500);
-});​
+// $(document).click(function() {
+//   $("#pdf-upload").fadeOut(500);
+// });​
 
 $("#toggle-link-label").click(function(e) {
   $("#link-label").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-$(document).click(function() {
-  $("#link-label").fadeOut(500);
-});​
+// $(document).click(function() {
+//   $("#link-label").fadeOut(500);
+// });​
 
 // close msg one when clicking anywhere on page
-$(document).click(function() {
+// $(document).click(function() {
 
-  $('#msg-extras').fadeOut(500);
+//   $('#msg-extras').fadeOut(500);
  
-});​
+// });​
 
 // prevent these links from closing msg
 $(".pdf-remove").click(function(e) {

@@ -251,13 +251,23 @@ html {
   transition: 0.5s;
   /* slide in the sidenav */
   white-space: nowrap;
+  overflow-y: hidden;
 }
 .sidenav #sidenav-wrapper {
   padding-top: 2em;
   width: 300px;
+  -ms-flex: 1;
+      flex: 1;
 }
 .sidenav #sidenav-wrapper i {
   margin-right: 0.5em;
+}
+.sidenav .admin-role {
+  padding: 1em 0em 1em 1.5em;
+  font-size: 0.8em;
+  color: #818181;
+  background-color: rgba(255, 215, 0, 0.6);
+  color: #fff;
 }
 .sidenav a {
   width: 100%;
@@ -355,6 +365,36 @@ html {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media screen and (min-width: 601px) {
+  #navigation.lg-g {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  #navigation {
+    width: 90%;
+  }
+  #navigation span.top-nav {
+    padding: 0.55em 1.25em;
+  }
+
+  #navigation.sm-g {
+    display: none;
+  }
+
+  .sidenav {
+    background-color: #000;
+  }
+  .sidenav #sidenav-wrapper {
+    padding-top: 1em;
+  }
+  .sidenav a {
+    padding: 1.6em 1.5em;
+  }
+  .sidenav a.closebtn {
+    padding: 0.5em 1.5em;
   }
 }
 @media screen and (max-height: 450px) {
@@ -787,7 +827,8 @@ li.ctr-day .day-content {
   }
   .weekday-wrap .meeting-details .details-left,
   .weekday-wrap .meeting-details .details-right {
-    width: 96%;
+    width: 100%;
+    padding: 0em;
   }
   .weekday-wrap .meeting-details .details-left {
     border-right: none;
@@ -2374,11 +2415,6 @@ ul.manage-weekdays .day:hover {
   padding: 0em 1em 0em 0em;
 }
 
-@media screen and (max-width: 800px) {
-  .daily-glance .glance-mtg-type {
-    padding: 0em 1em 0em 0em;
-  }
-}
 .manage-glance-wrap-review {
   width: 100%;
   max-width: 900px;
@@ -3192,15 +3228,25 @@ form#manage-mtg label.pdf-label {
   }
 
   .weekday-edit-wrap .meeting-details .details-right {
-    padding: 1em 0em;
+    padding: 0em;
     width: 100%;
   }
 
   .weekday-edit-wrap .meeting-details .details-left {
     border-right: 0px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1em 0em;
+    padding: 0em;
     width: 100%;
+  }
+
+  .weekday-wrap .meeting-details .details-right.rt-stacked,
+  .weekday-edit-wrap .meeting-details .details-right.rt-stacked {
+    padding-top: 1.5em;
+  }
+
+  .weekday-wrap .meeting-details .details-left.l-stacked,
+  .weekday-edit-wrap .meeting-details .details-left.l-stacked {
+    border-bottom: none;
   }
 
   .weekday-edit-wrap .meeting-details .details-right p.add-info,
@@ -3285,6 +3331,14 @@ form#manage-mtg label.pdf-label {
         align-self: flex-end;
   }
 
+  .daily-glance .glance-mtg-time {
+    padding-bottom: 0.5em;
+  }
+
+  .daily-glance .glance-mtg-type {
+    padding: 0.5em 1em 0em 0em;
+  }
+
   ul.manage-weekdays div.manage-day-toggle {
     padding: 0.5em;
   }
@@ -3295,6 +3349,23 @@ form#manage-mtg label.pdf-label {
 
   a.manage-delete {
     margin-left: 1.6em;
+  }
+
+  a.map-dir {
+    padding: 1.5em;
+  }
+
+  a.zoom {
+    padding: 1.5em 1em;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .zoom-id {
+    width: 50%;
+    min-width: 250px;
+    padding: 0.75em 0.5em 0.75em 1em;
   }
 }
 span.contact-update-message {

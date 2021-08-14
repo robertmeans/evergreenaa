@@ -49,7 +49,7 @@
 </div>
 
 </div><!-- .top-info -->
-<div class="details-left">
+<div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 	<label for="meet_phone">Phone number</label>
 	<input type="text" class="mtg-update<?php if (isset($errors['meet_phone'])) { echo " fixerror"; } ?>" name="meet_phone" <?php
 	if (isset($_POST['meet_phone'])) { $postphone = preg_replace('/[^0-9]/', '', $_POST['meet_phone']); }
@@ -81,7 +81,7 @@
 
 
 	</div><!-- .details-left -->
-	<div class="details-right<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy'])) { echo " fixerror"; } ?>">
+	<div class="details-right<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy'])) { echo " fixerror"; } ?><?php if ($row['meet_url'] != null) { echo " rt-stacked"; } ?>">
 		<p class="add-info<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy'])) { echo " fixerror"; } ?>">Select all that apply</p>
 
 	<input type="hidden" name="dedicated_om" value="0">			

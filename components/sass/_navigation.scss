@@ -36,6 +36,7 @@
 		border-left: 1px solid rgba(255,246,0,1);		
 	}
 }	
+
 .sidenav {
 	display: flex;
 	flex-direction: column;
@@ -58,15 +59,22 @@
   // padding-top: 2em; 
   transition: 0.5s; /* slide in the sidenav */
   white-space: nowrap;
+  overflow-y: hidden;
 	#sidenav-wrapper {
-		// position: absolute;
-		// top: 2em;
-		// right: 0px;
 		padding-top: 2em;
 		width: 300px; // match JS width
+		flex: 1; // to stretch 100% height
+		// overflow-y: hidden; // set on .sidenav
 		i {
 			margin-right: 0.5em;
 		}
+	}
+	.admin-role {
+		padding: 1em 0em 1em 1.5em;
+		font-size: 0.8em;
+		color: #818181;
+		background-color: rgba(255,215,0,0.6);
+		color: #fff;
 	}
 	a { 
 		width: 100%;
@@ -177,6 +185,34 @@
     from   { -ms-transform: rotate(0deg); }
     to { -ms-transform: rotate(360deg);}
 } 
+@media screen and (min-width: 601px) {
+	#navigation.lg-g {
+		display: none;
+	}
+}
+@media screen and (max-width: 600px) {
+	#navigation {
+		width: 90%;
+		span.top-nav {
+			padding: 0.55em 1.25em;
+		}
+	}
+	#navigation.sm-g {
+		display: none;
+	}
+	.sidenav {
+		#sidenav-wrapper {
+			padding-top: 1em;
+		}
+		background-color: #000;
+		a {
+			padding: 1.6em 1.5em;
+		}
+		a.closebtn {
+			padding: 0.5em 1.5em;
+		}
+	}
+}
 
 @media screen and (max-height: 450px) {
   .sidenav {
