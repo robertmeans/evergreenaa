@@ -38,6 +38,7 @@ $result = find_all_users();
 <?php require '_includes/head.php'; ?>
 <body>	
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 

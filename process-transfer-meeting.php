@@ -25,7 +25,7 @@ if (is_post_request()) {
 		
 			if ($exists > 0) {
 
-				if (($current_user == 1 || $current_user == 2 || $current_user == 3) && $host_email != $email) {
+				if (($current_user == 0 || $current_user == 1 || $current_user == 2 || $current_user == 3) && $host_email != $email) {
 
 					$change_host = update_host($mtg_id, $new_host);
 

@@ -32,13 +32,14 @@ $role = $_SESSION['admin'];
 <?php } ?>	
 	
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 	
 	<div class="manage-simple intro">
 		<?php if ($role != 1 && $role != 2) { ?>
 		<p>My Dashboard</p>
-		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives. For a tour of what's here check out this quick <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">YouTube video</a>.</p>
+		<p>The goal here is simple - make AA meetings available 24-7-365. Let's connect people and save lives.
 	<?php } else if ($role == 1) { ?>
 		<p>The Bob's Dashboard</p>
 	<?php } else { ?>
@@ -53,9 +54,9 @@ $role = $_SESSION['admin'];
 	$any_meetings_for_user = find_meetings_for_manage_page($user_id);
 	$result 	= mysqli_num_rows($any_meetings_for_user);
 	// find out if user has any meetings they manage ?>
-	<h1>My Meetings<?php if ($result > 1) { ?>
-		<span style="font-size: 0.65em; margin-left: 0.25em;">(sorted by time of day)</span>
-	<?php } ?></h1>
+	<h1 class="my-meet">My Meetings</h1><?php if ($result > 1) { ?>
+	<p class="my-sort">(sorted by time of day)</p>
+	<?php } ?>
 </div>
 
 <ul class="manage-weekdays">

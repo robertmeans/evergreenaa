@@ -29,7 +29,6 @@ $row = get_user_by_id($id);
 <?php } ?>	
 	
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="host-manage-wrap">
 	<div class="manage-simple intro">
@@ -86,48 +85,35 @@ $row = get_user_by_id($id);
 					</div>
 				<?php } else { ?>
 
-
-					<?php if ($_SESSION['admin'] == 1 && ($row['admin'] == 0 || $row['admin'] == 2 || $row['admin'] == 85 || $row['admin'] == 86)) { // just me ?>
-						<div class='radioz' value="3">
-							Upgrade <?= $row['username'] . ' to ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
-						</div>					
-					<?php } ?>
-					<?php if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { // just me ?> 
+					<?php if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { ?>
 						<div class='radioz' value="2">
 							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings]' ?>
 						</div>
 						<div class='radioz' value="0">
 							Downgrade <?= $row['username'] . ' to Member' ?>
 						</div>
-					<?php } ?>
-					<?php /* if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { // just me ?>
+					<?php } else if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) && $row['admin'] == 2) { ?>
 						<div class='radioz' value="3">
 							Upgrade <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
 						</div>
-					<?php } */ ?>
-
-
-					<?php if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) && $row['admin'] == 2) { ?>
-					<?php /* me + Top Tier can downgrade Level II Admin to Member */ ?>
 						<div class='radioz' value="0">
 							Downgrade <?= $row['username'] . ' to Member' ?>
 						</div>
-					<?php } ?>	
-
+					<?php } ?>					
 
 					<?php if ($row['admin'] != 1 && $row['admin'] != 2 && $row['admin'] != 3) { ?>
-					<?php /* user is currently Member or suspended */ ?>
 						<?php if ($row['admin'] == 0) { // user is Member ?>
+							<div class='radioz' value="3">
+								Grant <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
+							</div>
 							<div class='radioz' value="2">
 								Grant <?= $row['username'] . ' ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
 							</div>
 
-						<?php } else { // user is suspended ?>
-						<?php /* 
+						<?php } else { ?>
 							<div class='radioz' value="3">
 								Reinstate <?= $row['username'] . ' with ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
 							</div>
-						*/ ?>
 							<div class='radioz' value="2">
 								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
 							</div>
@@ -136,7 +122,6 @@ $row = get_user_by_id($id);
 							</div>
 						<?php } ?>
 					<?php } ?>
-
 
 					<?php if ($row['admin'] != 85 && $row['admin'] != 86) { ?> 
 						<div class='radioz' value="85">
@@ -166,11 +151,11 @@ $row = get_user_by_id($id);
 		</div>
 
 		<div id="th-btn">
-			<?php if ($id == 1) { // me ?>
+			<?php if ($id == 1) { ?>
 				<a id="not-yourself" class="not-odin">Bob's stuff is off limits</a>
-			<?php } else if ($_SESSION['id'] != 1 && $row['admin'] == 3) { // someone trying to work on Top Tier other than me ?>
+			<?php } else if ($_SESSION['id'] != 1 && $row['admin'] == 3) { ?>
 				<a id="not-yourself" class="not-odin">Off limits</a>
-			<?php } else if ($id == $_SESSION['id']) { // they changed the $_GET in url to their # ?>
+			<?php } else if ($id == $_SESSION['id']) { ?>
 				<a id="not-yourself">Don't play with yourself</a>
 			<?php } else { ?>
 

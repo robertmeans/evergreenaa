@@ -5,45 +5,45 @@
 		<div class="top-info">
 			<p class="days-held">Group name</p>
 
-			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } else { echo $row['group_name']; } ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } ?>" placeholder="Group name">
 
 			<p class="days-held">Day(s) meeting is held</p>
 	<div class="align-days<?php if (isset($errors['pick_a_day'])) {
 				echo " fixerror"; } ?>">
 	<div>	
 		<input type="hidden" name="sun" value="0">	
-		<label><input type="checkbox" name="sun" value="1" <?php if ($row['sun'] != 0) { echo "checked"; } ?> /> <span>Sunday</span></label> | 
+		<label><input type="checkbox" name="sun" value="1" <?php if ((isset($row['sun']) && ($row['sun'])) != 0) { echo "checked"; } ?> /> <span>Sunday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="mon" value="0">
-		<label><input type="checkbox" name="mon" value="1" <?php if ($row['mon'] != 0) { echo "checked"; } ?> /> <span>Monday</span></label> | 
+		<label><input type="checkbox" name="mon" value="1" <?php if ((isset($row['mon']) && ($row['mon'])) != 0) { echo "checked"; } ?> /> <span>Monday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="tue" value="0">
-		<label><input type="checkbox" name="tue" value="1" <?php if ($row['tue'] != 0) { echo "checked"; } ?> /> <span>Tuesday</span></label> | 
+		<label><input type="checkbox" name="tue" value="1" <?php if ((isset($row['tue']) && ($row['tue'])) != 0) { echo "checked"; } ?> /> <span>Tuesday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="wed" value="0">
-		<label><input type="checkbox" name="wed" value="1" <?php if ($row['wed'] != 0) { echo "checked"; } ?> /> <span>Wednesday</span></label> | 
+		<label><input type="checkbox" name="wed" value="1" <?php if ((isset($row['wed']) && ($row['wed'])) != 0) { echo "checked"; } ?> /> <span>Wednesday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="thu" value="0">
-		<label><input type="checkbox" name="thu" value="1" <?php if ($row['thu'] != 0) { echo "checked"; } ?> /> <span>Thursday</span></label> | 
+		<label><input type="checkbox" name="thu" value="1" <?php if ((isset($row['thu']) && ($row['thu'])) != 0) { echo "checked"; } ?> /> <span>Thursday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="fri" value="0">
-		<label><input type="checkbox" name="fri" value="1" <?php if ($row['fri'] != 0) { echo "checked"; } ?> /> <span>Friday</span></label> | 
+		<label><input type="checkbox" name="fri" value="1" <?php if ((isset($row['fri']) && ($row['fri'])) != 0) { echo "checked"; } ?> /> <span>Friday</span></label> | 
 	</div>
 	<div>
 		<input type="hidden" name="sat" value="0">
-		<label><input type="checkbox" name="sat" value="1" <?php if ($row['sat'] != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
+		<label><input type="checkbox" name="sat" value="1" <?php if ((isset($row['sat']) && ($row['sat'])) != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
 	</div>
 </div><!-- .align-days -->
 <p class="time-held">Time</p>
 <div class="mtg-time">	
 
 	<?php /* https://timepicker.co/options/ */ ?>
-	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?= $row['meet_time'] ?>">
+	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time'])) { echo $row['meet_time']; } ?>">
 
 </div>
 
@@ -56,13 +56,13 @@
 		echo  "(" .substr(h($row['meet_phone']), 0, 3).") ".substr(h($row['meet_phone']), 3, 3)."-".substr(h($row['meet_phone']),6); } ?>" placeholder="10-digit phone #">
 
 	<label for="meet_id">ID number</label>
-	<input type="text" class="mtg-update<?php if (isset($errors['meet_id'])) { echo " fixerror"; } ?>" name="meet_id" value="<?= $row['meet_id']; ?>" value="<?= h($row['meet_id']); ?>" placeholder="ID Number">
+	<input type="text" class="mtg-update<?php if (isset($errors['meet_id'])) { echo " fixerror"; } ?>" name="meet_id" value="<?php if (isset($row['meet_id'])) { echo h($row['meet_id']); } ?>" placeholder="ID Number">
 
 	<label for="meet_pswd">Password</label>
-	<input type="text" class="mtg-update<?php if (isset($errors['meet_pswd'])) { echo " fixerror"; } ?>" name="meet_pswd" value="<?= h($row['meet_pswd']); ?>" placeholder="Password">
+	<input type="text" class="mtg-update<?php if (isset($errors['meet_pswd'])) { echo " fixerror"; } ?>" name="meet_pswd" value="<?php if (isset($row['meet_pswd'])) { echo h($row['meet_pswd']); } ?>" placeholder="Password">
 
 	<label for="meet_url">Online URL</label>
-	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?= h($row['meet_url']); ?></textarea>
+	<textarea name="meet_url" id="meet_url" class="<?php if (isset($errors['meet_url'])) { echo " fixerror"; } ?>" placeholder="https://zoom-address-here/"><?php if (isset($row['meet_url'])) { echo h($row['meet_url']); } ?></textarea>
 
 	<label for="meet_addr">Physical Address | lat°, long° accepted <a id="toggle-lat-long-msg"><i class="far fa-question-circle fa-fw"></i></a></label>
 	<textarea name="meet_addr" id="meet_addr" class="<?php if (isset($errors['meet_url']) || isset($errors['url_and_phy'])) { echo " fixerror"; } ?>" placeholder="123 Main St, Evergreen, CO"><?php if (isset($row['meet_addr'])) { echo h($row['meet_addr']); } ?></textarea>
@@ -75,43 +75,43 @@
 		<p class="add-info<?php if (isset($errors['meeting_type']) || isset($errors['url_or_phy']) || isset($errors['url_and_phy'])) { echo " fixerror"; } ?>">Select all that apply</p>
 
 	<input type="hidden" name="dedicated_om" value="0">			
-	<label><input type="checkbox" name="dedicated_om" <?php if ($row['dedicated_om'] == "1") { echo "checked"; } ?> value="1" /> <span>Dedicated Online Meeting</span></label>
+	<label><input type="checkbox" name="dedicated_om" <?php if (isset($row['dedicated_om']) && $row['dedicated_om'] == "1") { echo "checked"; } ?> value="1" /> <span>Dedicated Online Meeting</span></label>
 		
 	<input type="hidden" name="code_o" value="0">			
-	<label><input type="checkbox" name="code_o" class="omw oc" <?php if ($row['code_o'] == "1") { echo "checked"; } ?> value="1" /> <span>Open: Anyone may attend</span></label>
+	<label><input type="checkbox" name="code_o" class="omw oc" <?php if (isset($row['code_o']) && $row['code_o'] == "1") { echo "checked"; } ?> value="1" /> <span>Open: Anyone may attend</span></label>
 
 	<input type="hidden" name="code_w" value="0">
-	<label><input type="checkbox" name="code_w" class="omw" <?php if ($row['code_w'] == "1") { echo "checked"; } ?> value="1" /> <span>Women's Meeting</span></label>
+	<label><input type="checkbox" name="code_w" class="omw" <?php if (isset($row['code_w']) && $row['code_w'] == "1") { echo "checked"; } ?> value="1" /> <span>Women's Meeting</span></label>
 
 	<input type="hidden" name="code_m" value="0">
-	<label><input type="checkbox" name="code_m" class="omw" <?php if ($row['code_m'] == "1") { echo "checked"; } ?> value="1" /> <span>Men's Meeting</span></label>
+	<label><input type="checkbox" name="code_m" class="omw" <?php if (isset($row['code_m']) && $row['code_m'] == "1") { echo "checked"; } ?> value="1" /> <span>Men's Meeting</span></label>
 
 	<input type="hidden" name="code_c" value="0">
-	<label><input type="checkbox" name="code_c" class="oc" <?php if ($row['code_c'] == "1") { echo "checked"; } ?> value="1" /> <span>Closed Meeting</span></label>
+	<label><input type="checkbox" name="code_c" class="oc" <?php if (isset($row['code_c']) && $row['code_c'] == "1") { echo "checked"; } ?> value="1" /> <span>Closed Meeting</span></label>
 
 	<input type="hidden" name="code_beg" value="0">
-	<label><input type="checkbox" name="code_beg" <?php if ($row['code_beg'] == "1") { echo "checked"; } ?> value="1" /> <span>Beginner's Meeting</span></label>
+	<label><input type="checkbox" name="code_beg" <?php if (isset($row['code_beg']) && $row['code_beg'] == "1") { echo "checked"; } ?> value="1" /> <span>Beginner's Meeting</span></label>
 
 	<input type="hidden" name="code_h" value="0">
-	<label><input type="checkbox" name="code_h" <?php if ($row['code_h'] == "1") { echo "checked"; } ?> value="1" /> <span>Handicap</span></label>	
+	<label><input type="checkbox" name="code_h" <?php if (isset($row['code_h']) && $row['code_h'] == "1") { echo "checked"; } ?> value="1" /> <span>Handicap</span></label>	
 
 	<input type="hidden" name="code_d" value="0">
-	<label><input type="checkbox" name="code_d" <?php if ($row['code_d'] == "1") { echo "checked"; } ?> value="1" /> <span>Discussion Meeting</span></label>
+	<label><input type="checkbox" name="code_d" <?php if (isset($row['code_d']) && $row['code_d'] == "1") { echo "checked"; } ?> value="1" /> <span>Discussion Meeting</span></label>
 
 	<input type="hidden" name="code_b" value="0">
-	<label><input type="checkbox" name="code_b" <?php if ($row['code_b'] == "1") { echo "checked"; } ?> value="1" /> <span>Book Study</span></label>
+	<label><input type="checkbox" name="code_b" <?php if (isset($row['code_b']) && $row['code_b'] == "1") { echo "checked"; } ?> value="1" /> <span>Book Study</span></label>
 
 	<input type="hidden" name="code_ss" value="0">
-	<label><input type="checkbox" name="code_ss" <?php if ($row['code_ss'] == "1") { echo "checked"; } ?> value="1" /> <span>Step Study</span></label>
+	<label><input type="checkbox" name="code_ss" <?php if (isset($row['code_ss']) && $row['code_ss'] == "1") { echo "checked"; } ?> value="1" /> <span>Step Study</span></label>
 
 	<input type="hidden" name="code_sp" value="0">
-	<label><input type="checkbox" name="code_sp" <?php if ($row['code_sp'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting</span></label>
+	<label><input type="checkbox" name="code_sp" <?php if (isset($row['code_sp']) && $row['code_sp'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting</span></label>
 
 	<input type="hidden" name="month_speaker" value="0">
-	<label><input type="checkbox" name="month_speaker" <?php if ($row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting on last Sunday of month</span></label>
+	<label><input type="checkbox" name="month_speaker" <?php if (isset($row['month_speaker']) && $row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting on last Sunday of month</span></label>
 
 	<input type="hidden" name="potluck" value="0">
-	<label><input type="checkbox" name="potluck" <?php if ($row['potluck'] == "1") { echo "checked"; } ?> value="1" /> <span>Potluck</span></label>
+	<label><input type="checkbox" name="potluck" <?php if (isset($row['potluck']) && $row['potluck'] == "1") { echo "checked"; } ?> value="1" /> <span>Potluck</span></label>
 			
 	</div><!-- .details-right -->
 	<div class="btm-notes">
@@ -164,7 +164,7 @@
 
 		
 		<label for="add_note">Additional notes</label>
-		<textarea name="add_note" class="meetNotes<?php if (isset($errors['add_note'])) { echo " fixerror"; } ?>" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?= nl2br(h($row['add_note'])); ?></textarea>
+		<textarea name="add_note" class="meetNotes<?php if (isset($errors['add_note'])) { echo " fixerror"; } ?>" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?php if (isset($row['add_note']) && $row['add_note'] != '') { echo nl2br(h($row['add_note'])); } ?></textarea>
 
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="review-mtg" name="review-mtg" class="submit" value="REVIEW">

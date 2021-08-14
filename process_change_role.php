@@ -2,20 +2,27 @@
 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
 
 	$user_id = $_POST['user'];
 	$role = $_POST['admin'];
 	$reason = $_POST['reason'];
+	$mode = $_POST['mode'];
+
+/* $mode is whether user is logged in as admin or not. 1=logged in Admin Mode, 0=not logged in Admin Mode. if they are downgraded out of Admin status then their mode needs to be changed to 0 in order to kick them out of Admin Mode if they are currently logged in and prevent them from doing anything as an Admin could or would. */
+	if ($role == 0 || $role == 85 || $role == 86) {
+		$mode = 0;
+	} 
+
+// in case someone tries to hardcode a 3 in role
+// if (($_SESSION['id'] != 1) && $role == 3) {
+// 	$signal = 'bad';
+// 	$msg = 'really?';
+// }
 
 if (is_post_request()) {
 
-
 	if ($role == '3') {
-		$change_user_role = change_user_role($user_id, $role);
+		$change_user_role = change_user_role($user_id, $role, $mode);
 
 	  if ($change_user_role === true) {
 			$signal = '3';
@@ -28,7 +35,7 @@ if (is_post_request()) {
 
 
 	if ($role == '2') {
-		$change_user_role = change_user_role($user_id, $role);
+		$change_user_role = change_user_role($user_id, $role, $mode);
 
 	  if ($change_user_role === true) {
 			$signal = '2';
@@ -40,7 +47,7 @@ if (is_post_request()) {
 	}
 
 	if ($role == '0') {
-		$change_user_role = change_user_role($user_id, $role);
+		$change_user_role = change_user_role($user_id, $role, $mode);
 
 	  if ($change_user_role === true) {
 			$signal = '0';

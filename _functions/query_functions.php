@@ -94,6 +94,7 @@ function suspend_user_total($role, $reason, $user_id) {
   $one .= "JOIN meetings m ON u.id_user=m.id_user ";
   $one .= "SET u.admin='"  . db_escape($db, $role) . "', ";
   $one .= "u.sus_notes='"  . db_escape($db, $reason) . "', ";
+  $one .= "u.mode=0, ";
   $one .= "m.visible=0 ";
   $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
 
@@ -107,6 +108,7 @@ function suspend_user_partial($role, $reason, $user_id) {
   $one = "UPDATE users u ";
   $one .= "JOIN meetings m ON u.id_user=m.id_user ";
   $one .= "SET u.admin='"  . db_escape($db, $role) . "', ";
+  $one .= "u.mode=0, ";
   $one .= "u.sus_notes='"  . db_escape($db, $reason) . "' ";
   $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
 
@@ -114,12 +116,13 @@ function suspend_user_partial($role, $reason, $user_id) {
   return $result; 
 }
 
-function change_user_role($user_id, $role) {
+function change_user_role($user_id, $role, $mode) {
   global $db;
 
   $one = "UPDATE users u ";
   $one .= "JOIN meetings m ON u.id_user=m.id_user ";
-  $one .= "SET u.admin='"  . db_escape($db, $role) . "' ";
+  $one .= "SET u.admin='"  . db_escape($db, $role) . "', ";
+  $one .= "u.mode='"  . db_escape($db, $mode) . "' ";
   $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
 
   $result = mysqli_query($db, $one);
@@ -426,7 +429,8 @@ function find_all_users() {
   global $db;
 
   $sql  = "SELECT * FROM users ";
-  $sql  .= "ORDER BY id_user ASC";
+  $sql .= "WHERE id_user!=13 ";
+  $sql .= "ORDER BY id_user ASC";
   // echo $sql;
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);

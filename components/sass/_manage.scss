@@ -32,6 +32,16 @@
 	border-bottom: 1px solid #fff;
 	padding-bottom: 0.5em;
 	position: relative;
+	h1.my-meet {
+		font-size: 1.4em;
+		display: inline-block;
+	}
+	p.my-sort {
+		display: inline-block;
+		font-size: 0.8em;
+		margin-left: 0.5em;
+		margin-bottom: 0;
+	}
 	& > h1 {
 		font-size: 1.4em;
 		display: inline-block;

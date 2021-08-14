@@ -1,3 +1,24 @@
+
+
+<?php /* to set this into working order you'll need the following in _scripts-staging.js turned on and _popup.scss enabled in sass/style.scss
+
+
+$(document).ready(function() {
+  $('.foot').click(function() {
+      if($('.foot').hasClass('slide-up')) {
+        $('.foot').addClass('slide-down', 250, 'linear');
+        $('.foot').removeClass('slide-up'); 
+      } else {
+        $('.foot').removeClass('slide-down');
+        $('.foot').addClass('slide-up', 250, 'linear'); 
+      }
+  });
+});
+
+*/ ?>
+
+
+
 <?php $layout_context = "home-public";
  
 require_once 'config/initialize.php'; 
@@ -12,7 +33,7 @@ require_once 'config/initialize.php';
 </div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-why-join.php'; ?>
+<?php require '_includes/public-msg-one.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
 	
@@ -196,5 +217,16 @@ require_once 'config/initialize.php';
 
 </ul><!-- #weekdays -->
 </div><!-- #wrap -->
+
+<div class="foot">
+<h3><i class="fas fa-star dmf"></i>Did you know... ?<i class="fas fa-star dml"></i></h3>
+
+	<div class="popup-body">
+		<p>This site is specifically designed to eliminate "Zoom Bombers". The point of this website is to provide a convenient location to organize all of your <em>PRIVATE</em> meeting information. <a class="youtube" href="https://youtu.be/OQpmtysX8Bo" target="_blank">Please watch this short video</a> for a detailed explanation of how this works.</p>
+		<p class="close">Click here to close.</p>
+	</div>
+
+</div>
+
 
 <?php require '_includes/footer.php'; ?>

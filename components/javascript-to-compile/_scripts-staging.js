@@ -1,15 +1,15 @@
 // fundraiser GoFundMe $115 02.05.21
-$(document).ready(function() {
-  $('.foot').click(function() {
-      if($('.foot').hasClass('slide-up')) {
-        $('.foot').addClass('slide-down', 250, 'linear');
-        $('.foot').removeClass('slide-up'); 
-      } else {
-        $('.foot').removeClass('slide-down');
-        $('.foot').addClass('slide-up', 250, 'linear'); 
-      }
-  });
-});
+// $(document).ready(function() {
+//   $('.foot').click(function() {
+//       if($('.foot').hasClass('slide-up')) {
+//         $('.foot').addClass('slide-down', 250, 'linear');
+//         $('.foot').removeClass('slide-up'); 
+//       } else {
+//         $('.foot').removeClass('slide-down');
+//         $('.foot').addClass('slide-up', 250, 'linear'); 
+//       }
+//   });
+// });
 
 // Navigation
 /* Set the width of the side navigation to 250px */
@@ -31,29 +31,36 @@ function closeNav() {
 }
 
 
-// toggle msg one private
-$("#toggle-private-msg").click(function(e) {
-    e.preventDefault();
-    e.stopPropagation();
+$(document).ready(function(){
+  $("#toggle-msg-one").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-  if ($('#msg-one').is(':hidden')) {
-      $("#msg-one").fadeIn(500); 
-  } else {
-      $("#msg-one").fadeOut(500);
-  }
-
+    if ($('#msg-one').is(':hidden')) {
+        $("#msg-one").fadeIn(500);
+    } else {
+        $("#msg-one").fadeOut(500); 
+    }
+  });
 });
+
+
 $(document).click(function() {
   var e = document.getElementById("side-nav");
   if($('#msg-one').is(':visible')) {
     $("#msg-one").fadeOut(500);
-
+  } else if ($('#lat-long').is(':visible')) {
+    $("#lat-long").fadeOut(500);
+  } else if ($('#desc-loc').is(':visible')) {
+    $("#desc-loc").fadeOut(500);
+  } else if ($('#pdf-upload').is(':visible')) {
+    $("#pdf-upload").fadeOut(500);
+  } else if ($('#link-label').is(':visible')) {
+    $("#link-label").fadeOut(500);
   } else {
-
-
   if (e.style.width == '300px') {
-        e.style.width = '0px';
-      }
+    e.style.width = '0px';
+    }
   }
 });
 
@@ -560,41 +567,6 @@ setTimeout(function() {
   $("#success-wrap").fadeOut(1500);
 }, 2000);
 
-// toggle msg one public
-$("#toggle-public-msg").click(function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    var open  = 'Close';
-    var closed = 'Readme';
-
-  if ($('#msg-one').is(':hidden')) {
-      $("#msg-one").fadeIn(500);
-      $("#toggle-public-msg").html(open); 
-  } else {
-      $("#msg-one").fadeOut(500);
-      $("#toggle-public-msg").html(closed); 
-  }
-
-});
-
-// // toggle msg one private
-// $("#toggle-private-msg").click(function(e) {
-//     e.preventDefault();
-//     e.stopPropagation();
-
-//     var open  = 'Close';
-//     var closed = 'Extras';
-
-//   if ($('#msg-one').is(':hidden')) {
-//       $("#msg-one").fadeIn(500);
-//       // $("#toggle-private-msg").html(open); 
-//   } else {
-//       $("#msg-one").fadeOut(500);
-//       // $("#toggle-private-msg").html(closed); 
-//   }
-
-// });
 
 // toggle lat, long coordinates explanation on 
 // _includes/edit-details.php page
@@ -636,16 +608,9 @@ $(document).click(function() {
 
 // close msg one when clicking anywhere on page
 $(document).click(function() {
-  // var close    = 'Close';
-  var closed_public     = 'Readme';
-  var closed_private    = 'Extras';
 
-  $('#msg-one').fadeOut(500);
-  $("#toggle-public-msg").html(closed_public);
-
- // $('#msg-one').fadeOut(500);
-  $("#toggle-private-msg").html(closed_private); 
-
+  $('#msg-extras').fadeOut(500);
+ 
 });​
 
 // prevent these links from closing msg
@@ -847,7 +812,7 @@ $('.radio-groupz .radioz').click(function(){
     $(this).addClass('selected');
     var val = $(this).attr('value');
     //alert(val);
-    $(this).parent().find('input').val(val);
+    $(this).parent().find('input[name=admin]').val(val);
 
     if ($(this).parent().find('input').val() == 0 || $(this).parent().find('input').val() == 2 || $(this).parent().find('input').val() == 3) {
 
@@ -858,13 +823,13 @@ $('.radio-groupz .radioz').click(function(){
             $('#role-h2').removeClass('downgrade');
           $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
-            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
           }
 
         } 
       else if ($(this).parent().find('input').val() == 85) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -877,7 +842,7 @@ $('.radio-groupz .radioz').click(function(){
       } 
       else if ($(this).parent().find('input').val() == 86) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -915,12 +880,12 @@ $(document).ready(function() {
           if(response['signal'] == '86') {
             $('#current-role').html('Suspended - All meetings set to Draft');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">You done smoked that cat right up outta here!</span>');
+            $('#sus-msg').html('<span class="sending-msg downgraded">You done smoked that cat right up outta here!</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '85') {
             $('#current-role').html('Suspended - Any meetings remain active');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User is suspended but their meetings remain.</span>');
+            $('#sus-msg').html('<span class="sending-msg downgraded">User is suspended but their meetings remain.</span>');
             $('#th-btn').html('');
           } else {
             $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');

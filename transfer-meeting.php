@@ -10,11 +10,11 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 $layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
-	header('location: home.php');
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 
@@ -34,6 +34,7 @@ $row = transfer_meeting($id);
 <?php } ?>	
 	
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 
 

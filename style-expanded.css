@@ -200,6 +200,10 @@ html {
   width: 96%;
   max-width: 900px;
   margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   z-index: 78;
 }
 #navigation span.top-nav {
@@ -301,18 +305,30 @@ html {
   color: #c30808;
 }
 .sidenav a.login {
+  color: #818181;
+}
+.sidenav a.login i {
   color: #96ff00;
 }
 .sidenav a.login:hover {
   background-color: #2b8719;
   color: #fff;
 }
+.sidenav a.login:hover i {
+  color: #fff;
+}
 .sidenav a.logout {
-  color: #c30808;
+  color: #818181;
   margin-top: 2em;
+}
+.sidenav a.logout i {
+  color: #c30808;
 }
 .sidenav a.logout:hover {
   background-color: #890404;
+  color: #fff;
+}
+.sidenav a.logout:hover i {
   color: #fff;
 }
 .sidenav a.cc-x {
@@ -320,6 +336,9 @@ html {
   font-size: 0.75em;
   margin-top: 2em;
   border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+.sidenav a.cc-x.eotw {
+  margin-top: 0;
 }
 
 @keyframes in {
@@ -695,7 +714,7 @@ li.ctr-day .day-content {
   position: sticky;
   top: 5px;
   margin: 0 auto;
-  z-index: 1234561;
+  z-index: 78;
 }
 
 .collapse-btn {
@@ -1277,6 +1296,21 @@ a#gmaps:hover {
   right: 20px;
   color: #fff;
   font-size: 1.3em;
+}
+#msg-one .inside-msg-one i.fa-peace,
+#lat-long .inside-msg-one i.fa-peace,
+#desc-loc .inside-msg-one i.fa-peace,
+#pdf-upload .inside-msg-one i.fa-peace,
+#link-label .inside-msg-one i.fa-peace {
+  font-size: 2em;
+}
+#msg-one .inside-msg-one p.peace-sign,
+#lat-long .inside-msg-one p.peace-sign,
+#desc-loc .inside-msg-one p.peace-sign,
+#pdf-upload .inside-msg-one p.peace-sign,
+#link-label .inside-msg-one p.peace-sign {
+  width: 100%;
+  text-align: center;
 }
 #msg-one .inside-msg-one > h1,
 #lat-long .inside-msg-one > h1,
@@ -1973,6 +2007,16 @@ span.yo-email {
   border-bottom: 1px solid #fff;
   padding-bottom: 0.5em;
   position: relative;
+}
+.manage-simple h1.my-meet {
+  font-size: 1.4em;
+  display: inline-block;
+}
+.manage-simple p.my-sort {
+  display: inline-block;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  margin-bottom: 0;
 }
 .manage-simple > h1 {
   font-size: 1.4em;
@@ -3471,6 +3515,11 @@ span.sending-msg {
   width: 100%;
 }
 
+span.sending-msg.downgraded {
+  background-color: #841616;
+  color: #fff;
+}
+
 .alert.alert-warning {
   background-color: #ffc6c6;
   color: #c72222;
@@ -3829,123 +3878,5 @@ a.manage-edit.spec:hover {
     display: flex;
     -ms-flex-pack: end;
         justify-content: flex-end;
-  }
-}
-.foot {
-  border-top: 1px solid #999999;
-  position: fixed;
-  width: 80%;
-  z-index: 76;
-  text-align: center;
-  padding-top: 0.5em;
-  cursor: pointer;
-  height: 500px;
-  font-size: 1em;
-  color: #000;
-  background-color: #ef4141;
-  background-color: firebrick;
-  -ms-flex-pack: center;
-      justify-content: center;
-  /* align horizontal */
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  right: 0;
-  left: 0;
-  margin-right: auto;
-  margin-left: auto;
-  bottom: -455px;
-}
-.foot:hover {
-  background-color: #000;
-}
-
-.slide-up {
-  bottom: 0px !important;
-}
-
-.slide-down {
-  bottom: -455px !important;
-}
-
-.foot h3 {
-  font-size: 1.5em;
-  color: #fff;
-  display: block;
-  margin-bottom: 1em;
-}
-
-.popup-body {
-  width: 90%;
-  max-width: 900px;
-  text-align: left;
-  display: block;
-  margin: 1em auto;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 1.5em;
-}
-.popup-body p {
-  line-height: 1.5em;
-  margin-bottom: 1em;
-}
-.popup-body p.close {
-  text-align: right;
-}
-.popup-body a.gfm {
-  padding: 1em;
-  display: block;
-  width: 60%;
-  margin: 1em auto;
-  background-color: blue;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-.popup-body a.gfm:hover {
-  background-color: green;
-}
-.popup-body em {
-  font-weight: bold;
-}
-
-i.dmf {
-  margin-right: 1em;
-  -ms-transform: rotate(-20deg);
-      transform: rotate(-20deg);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-i.dml {
-  margin-left: 1em;
-  -ms-transform: rotate(20deg);
-      transform: rotate(20deg);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-@media screen and (max-width: 800px) {
-  .foot {
-    height: 500px;
-  }
-
-  .foot h3 {
-    font-size: 1em;
-  }
-
-  .popup-body {
-    margin-top: 65px;
-    font-size: 0.8em;
-  }
-  .popup-body a.gfm {
-    width: 98%;
-  }
-}
-@media screen and (max-width: 500px) {
-  .foot {
-    width: 96%;
-  }
-
-  .popup-body {
-    max-width: 98%;
   }
 }

@@ -2,14 +2,16 @@
 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
 
+	$user_id = $_POST['user'];
 	$role = $_POST['admin'];
 	$reason = $_POST['reason'];
-	$user_id = $_POST['user'];
+
+// in case someone tries to hardcode a 3 in role
+// if (($_SESSION['id'] != 1) && $role == 3) {
+// 	$signal = 'bad';
+// 	$msg = 'really?';
+// }
 
 if (is_post_request()) {
  
