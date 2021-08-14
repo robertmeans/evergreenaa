@@ -156,7 +156,7 @@ $row = get_user_by_id($id);
 
 			<input type="hidden" name="user" value="<?= $row['id_user'] ?>">
 			<div id="sus-reason">
-				<p>Reason</p><textarea name="reason" maxlength="5"></textarea>
+				<p>Reason</p><textarea name="reason" maxlength="500"></textarea>
 			</div>
 		</form>
 <?php } ?>		

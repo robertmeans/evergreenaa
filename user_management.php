@@ -64,7 +64,6 @@ $role = $_SESSION['admin'];
 
 			<?php require '_includes/user-management-user-glance.php'; ?>
 
-
 			<?php
 			$suspended_users_meetings = user_manage_page_details($suspended_id);
 			$suspended_users = mysqli_num_rows($suspended_users_meetings);
@@ -75,7 +74,7 @@ $role = $_SESSION['admin'];
 			<div class="weekday-wrap user-mng">
 				<div class="notes-glance">
 					<p class="reason-note">Reason for suspension</p>
-					<p class="note-reason"><?= $row['sus_notes'] ?></p>
+					<p class="note-reason"><?= nl2br($row['sus_notes']) ?></p>
 				</div>
 
 				<?php while ($rowz = mysqli_fetch_assoc($suspended_users_meetings)) { ?>
@@ -85,13 +84,11 @@ $role = $_SESSION['admin'];
 			</div><!-- .weekday-wrap -->
 
 		<?php } else { ?>
-
-
-					
+	
 			<div class="weekday-wrap user-mng user-empty">
 				<div class="notes-glance">
 					<p class="reason-note">Reason for suspension</p>
-					<p class="note-reason"><?= $row['sus_notes'] ?></p>
+					<p class="note-reason"><?= nl2br($row['sus_notes']) ?></p>
 				</div>				
 				<p style="margin-top:1em;padding:0.5em 1em;">This user has no meetings for public view.</p>
 			</div><!-- .weekday-wrap -->
@@ -107,7 +104,6 @@ $role = $_SESSION['admin'];
 	}  mysqli_free_result($any_meetings_for_user); ?>
 
 </ul><!-- .manage-weekdays -->
-
 
 <?php /* -------------------- CURRENT ADMINISTRATORS -------------------- */ ?>
 <div class="manage-simple c-a">	
@@ -149,7 +145,6 @@ $role = $_SESSION['admin'];
 		<?php } ?>
 
 			<?php mysqli_free_result($admin_meetings); ?>
-
 
 		<?php }  ?>
 

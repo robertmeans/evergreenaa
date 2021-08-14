@@ -862,13 +862,13 @@ $('.radio-groupz .radioz').click(function(){
             $('#role-h2').removeClass('downgrade');
           $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
-            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
           }
 
         } 
       else if ($(this).parent().find('input').val() == 85) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -881,7 +881,7 @@ $('.radio-groupz .radioz').click(function(){
       } 
       else if ($(this).parent().find('input').val() == 86) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="5"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
