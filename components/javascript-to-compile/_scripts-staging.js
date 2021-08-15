@@ -810,8 +810,6 @@ $(document).ready(function() {
 
     var new_host = $('#new-email').val();
 
-
-
     $.ajax({
       dataType: "JSON",
       url: "process-transfer-meeting.php",
@@ -842,7 +840,6 @@ $(document).ready(function() {
     })
   });
 });
-
 
 /* visible divs as radio buttons for User Management */
 

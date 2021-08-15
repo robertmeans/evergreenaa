@@ -164,7 +164,7 @@ li.ctr-day {
 	padding: 0px 20px 20px;
 	display: flex;
 	flex-direction: column;
-	position: relative;
+	// position: relative;
 	margin: 0 auto;
 	background-color: rgba(0,0,0,0.3);
 	// border-bottom-right-radius: 10px;
@@ -178,7 +178,7 @@ li.ctr-day {
 		align-items: center;
 		flex-wrap: wrap;
 		margin-top: 1em;
-		position: relative;		
+		// position: relative;		
 		i.far.fa-edit {
 			position: absolute;
 			top: 5px;
@@ -329,7 +329,7 @@ li.ctr-day {
 			display: block;
 			padding: 1em;
 			a {
-				display: flex;
+				// display: flex;
 				margin-left: 0;
 				color: #fff;
 				text-decoration: none;

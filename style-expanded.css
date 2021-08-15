@@ -205,6 +205,7 @@ html {
   -ms-flex-pack: end;
       justify-content: flex-end;
   z-index: 78;
+  position: relative;
 }
 #navigation span.top-nav {
   position: fixed;
@@ -612,7 +613,6 @@ li.ctr-day .day-content {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  position: relative;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -626,7 +626,6 @@ li.ctr-day .day-content {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 1em;
-  position: relative;
 }
 .weekday-wrap .meeting-details i.far.fa-edit {
   position: absolute;
@@ -778,8 +777,6 @@ li.ctr-day .day-content {
   padding: 1em;
 }
 .email-host a {
-  display: -ms-flexbox;
-  display: flex;
   margin-left: 0;
   color: #fff;
   text-decoration: none;

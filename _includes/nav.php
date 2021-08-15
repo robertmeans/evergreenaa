@@ -61,13 +61,13 @@
 
 	</div><!-- #sidenav-wrapper -->
 
-		<?php if ($row['admin'] == 1 || $row['admin'] == 2 || $row['admin'] == 3) { ?>
+		<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
-				Your role: <?php if ($row['admin'] == 1) { ?>
+				Your role: <?php if ($_SESSION['admin'] == 1) { ?>
 					One and only Bob
-				<?php } else if ($row['admin'] == 2) { ?>
+				<?php } else if ($_SESSION['admin'] == 2) { ?>
 					Tier II Admin
-				<?php } else if ($row['admin'] == 3) { ?>
+				<?php } else if ($_SESSION['admin'] == 3) { ?>
 					Top Tier Admin
 				<?php } ?>
 			</div>
