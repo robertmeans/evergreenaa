@@ -2017,6 +2017,16 @@ span.yo-email {
     padding: 30px 20px;
   }
 }
+@media screen and (max-width: 800px) {
+  #landing form input {
+    height: auto;
+  }
+
+  #landing form input.submit {
+    padding: 1em;
+    height: auto;
+  }
+}
 #manage-wrap {
   width: 100%;
   height: auto;

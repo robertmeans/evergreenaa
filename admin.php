@@ -41,9 +41,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -65,25 +65,15 @@ $user_id = $_SESSION['id'];
 
 				if ($result > 0) {
 					$i = 1;	
-
-
-				// if ( ($result > 0 || $_SESSION['admin'] == 1) ||
-				// 	($result > 0 || ($_SESSION['admin'] == 2 && $row['visible'] == 2 || $row['visible'] == 3)) || 
-				// 	($result > 0 || ($_SESSION['admin'] == 3 && $row['visible'] == 2 || $row['visible'] == 3)) || 
-				// 	($result > 0 || ($_SESSION['admin'] == 0 && $row['visible'] == 1 || $row['visible'] == 2 || $row['visible'] == 3))) {
-
-				// 	$i = 1;	
-
-
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 
 					$ic = 'i1_'.$i;
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
-						require '_includes/daily-glance.php'; ?>
+						require '_includes/admin-daily-glance.php'; ?>
 						<div class="weekday-wrap">
-							<?php require '_includes/meeting-details.php'; ?>
+							<?php require '_includes/admin-meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -110,9 +100,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -139,9 +129,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -168,9 +158,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -197,9 +187,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
@@ -226,9 +216,9 @@ $user_id = $_SESSION['id'];
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
-					require '_includes/daily-glance.php'; ?>
+					require '_includes/admin-daily-glance.php'; ?>
 					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
+						<?php require '_includes/admin-meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
 					$i++; } 
