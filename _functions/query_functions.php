@@ -18,6 +18,7 @@ function get_all_public_meetings_for_today($today) {
     $sql .= "WHERE m." . $today . " != 0 ";
     $sql .= "AND m.visible != 0 ";
     $sql .= "AND m.visible != 1 ";
+    $sql .= "AND m.visible != 2 ";
     $sql .= "ORDER BY m.meet_time;";
     // echo $sql; 
     $result = mysqli_query($db, $sql); 
