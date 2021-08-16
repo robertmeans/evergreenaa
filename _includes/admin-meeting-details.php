@@ -1,6 +1,9 @@
 				<?php $emh = rand(10000, 99999);  ?>
 				<div class="meeting-details">
 
+
+<?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
+
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
 		
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
@@ -14,12 +17,16 @@
 			} 
 		?>
 		</span>
-		<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Message: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a>
+
+		<?php if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)) { ?>
+			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Message: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a>
+		<?php } else { ?>
+			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Send a message to this meeting's Host</a>
+		<?php } ?>
 
 	</div>
 
 <?php /* } */ ?>
-
 
 <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
 					<div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
@@ -28,20 +35,27 @@
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 
 
-<?php 					if ($row['meet_url'] != null) { ?>
+<?php 		if ($row['meet_url'] != null) { ?>
 						<p class="zoom-info">Zoom Information</p>
 <?php } ?>
 
 
-<?php 					if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>		
-						<p class="id-num">ID: <input type="text" value="<?= h($row['meet_id']); ?>" class="day-values input-copy" onclick="select();"></p>
-						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</button>
+<?php 		if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>
+						<p class="id-num">ID: <input id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" type="text" value="<?php echo $row['meet_id']; ?>" class="day-values input-copy"></p>
+
+						<a data-role="ic" data-id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</a>
+
+<?php } ?>
+<?php 		if ($row['meet_pswd'] != null) { ?>
+						<p class="id-num">Password: <input id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" type="text" value="<?php echo $row['meet_pswd']; ?>" class="day-values input-copyz"></p>
+
+						<a data-role="pc" data-id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</a>
+
 <?php } ?>
 
-<?php 					if ($row['meet_pswd'] != null) { ?>
-						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copyz" onclick="select();"></p>
-						<button type="submit" class="zoom-id btnz"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</button>
-<?php } ?>
+
+
+
 <?php 					if ($row['meet_url'] != null) { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM MEETING</a></p>
 <?php } ?>

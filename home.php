@@ -28,7 +28,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i0_'.$i;
+					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -36,11 +39,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
-			
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Sunday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -54,7 +57,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) {
+					$ic = 'i1_'.$i;
+					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -62,10 +68,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Monday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -79,7 +86,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) {  
+					$i = 1;
+					while ($row = mysqli_fetch_assoc($subject_set)) {
+					$ic = 'i2_'.$i;
+					$pc = 'p2_'.$i;  
 					$today = 'Tuesday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -87,10 +97,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Tuesday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -104,7 +115,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$i = 1;
+					while ($row = mysqli_fetch_assoc($subject_set)) {
+					$ic = 'i3_'.$i;
+					$pc = 'p3_'.$i; 
 					$today = 'Wednesday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -112,10 +126,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Wednesday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -129,7 +144,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i4_'.$i;
+					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -137,10 +155,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Thursday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -154,7 +173,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i5_'.$i;
+					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -162,10 +184,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Friday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -179,7 +202,10 @@ require_once 'config/initialize.php';
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) {  
+					$i = 1;
+					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i6_'.$i;
+					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -187,10 +213,11 @@ require_once 'config/initialize.php';
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; }
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Saturday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #saturday-content .day-content -->
 	</li>
 

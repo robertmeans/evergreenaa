@@ -1,20 +1,10 @@
-<?php 
+<?php  
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
 $layout_context = "home-private";
 
-if (!isset($_SESSION['id'])) {
-	header('location: home.php');
-	exit();
-}
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
-	exit();
-}
-
 $user_id = $_SESSION['id'];
-$user_role = $_SESSION['admin'];
 
 ?>
 
@@ -30,8 +20,6 @@ $user_role = $_SESSION['admin'];
 <?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
-
-<?php if ($user_role != 86 && $user_role != 85) { ?>
 	
 <ul id="weekdays">
 
@@ -45,7 +33,12 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					// $str_length = 4;
+					// $i = substr("000{$i}", -$str_length);
+					$ic = 'i0_'.$i;
+					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -53,10 +46,11 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Sunday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -70,18 +64,23 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$i = 1;	
+					while ($row = mysqli_fetch_assoc($subject_set)) {
+
+					$ic = 'i1_'.$i;
+					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Monday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -95,7 +94,10 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) {
+					$ic = 'i2_'.$i;
+					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -103,10 +105,11 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Tuesday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -120,7 +123,10 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i3_'.$i;
+					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -128,10 +134,11 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Wednesday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -145,7 +152,10 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i4_'.$i;
+					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -153,10 +163,11 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Thursday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -170,7 +181,10 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i5_'.$i;
+					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -178,10 +192,11 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Friday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -195,7 +210,10 @@ $user_role = $_SESSION['admin'];
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
+					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					$ic = 'i6_'.$i;
+					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
 					require '_includes/daily-glance.php'; ?>
@@ -203,29 +221,15 @@ $user_role = $_SESSION['admin'];
 						<?php require '_includes/meeting-details.php'; ?>
 					</div><!-- .weekday-wrap -->
 					<?php
-					}
-				}
-				mysqli_free_result($subject_set);
-			?>
+					$i++; } 
+				} else { ?>
+					<p class="no-mtgs">No meetings posted for Saturday.</p>
+					
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #saturday-content .day-content -->
 	</li>
 
 </ul><!-- #weekdays -->
-
-<?php } else { // $user_role = 85 || 86 which means they're suspended ?>
-
-<?php 
-	$sus_stuff = suspended_msg($user_id);
-	$row = mysqli_fetch_assoc($sus_stuff);
-?>
-	<div id="sus-wrap">
-		<p>This account has been put on hold.</p>
-		<p class="sus-header">Details</p>
-		<p class="sus-notes"><?= nl2br($row['sus_notes']) ?></p>
-	</div>
-
-<?php } ?>
-
 </div><!-- #wrap -->
 
 <?php require '_includes/footer.php'; ?>

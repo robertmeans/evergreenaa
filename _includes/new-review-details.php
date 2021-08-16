@@ -11,16 +11,19 @@
 						<p class="zoom-info">Zoom Information</p>
 <?php } ?>
 
+<?php 		if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>
+						<p class="id-num">ID: <input id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" type="text" value="<?php echo $row['meet_id']; ?>" class="day-values input-copy"></p>
 
-<?php 					if ($row['meet_id'] != '') { ?>		
-						<p class="id-num">ID: <input type="text" value="<?= h($row['meet_id']); ?>" class="day-values input-copy" onclick="select();"></p>
-						<button type="submit" class="zoom-id btn"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</button>
+						<a data-role="ic" data-id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</a>
+
+<?php } ?>
+<?php 		if ($row['meet_pswd'] != null) { ?>
+						<p class="id-num">Password: <input id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" type="text" value="<?php echo $row['meet_pswd']; ?>" class="day-values input-copyz"></p>
+
+						<a data-role="pc" data-id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</a>
+
 <?php } ?>
 
-<?php 					if ($row['meet_pswd'] != null) { ?>
-						<p class="id-num">Password: <input type="text" value="<?= h($row['meet_pswd']); ?>" class="day-values input-copyz" onclick="select();"></p>
-						<button type="submit" class="zoom-id btnz"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</button>
-<?php } ?>
 <?php     			if ($row['meet_url'] != null) { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM MEETING</a></p>
 <?php } ?>

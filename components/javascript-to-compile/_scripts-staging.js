@@ -1,3 +1,5 @@
+// all things backstretch are in jquery.backstretch.min.js
+
 // fundraiser GoFundMe $115 02.05.21
 // $(document).ready(function() {
 //   $('.foot').click(function() {
@@ -67,189 +69,64 @@ $(".top-nav").click(function(e) {
    e.stopPropagation();
 });
 
-// all things backstretch are in jquery.backstretch.min.js
+// copy to clipboard ID: data-role=ci
+$(document).ready(function() {
 
-// Copy to clipboard start ---->
-// holy cow this is overly complicated but rewriting it would
-// be an epic endeavor I'm not ready for right now - instead, copy to clipboard
-// comprises about the following 170 lines...
-// variables and for loop for ID
-var but = document.getElementsByClassName('btn');
-var txt = document.getElementsByClassName('input-copy');
-for (var x = 0; x < but.length; x++) {
-  (function(x) {
-    but[x].addEventListener("click", function() {
-      copyToClipboardMsg(txt[x], but[x]);
-    }, false);
-  })(x);
-}
-// variables and for loop for Password
-var butz = document.getElementsByClassName('btnz');
-var txtz = document.getElementsByClassName('input-copyz');
-for (var x = 0; x < butz.length; x++) {
-  (function(x) {
-    butz[x].addEventListener("click", function() {
-      copyToClipboardMsg_pswd(txtz[x], butz[x]);
-    }, false);
-  })(x);
-}
+  // copy to clipboard password: data-role=cp
+  $(document).on('click','a[data-role=ic]',function() {
+    var id   = $(this).data('id');
+    var text = document.getElementById(id).value;
 
-// function for ID
-function copyToClipboardMsg(elem, msgElem) {
-    var succeed = copyToClipboard(elem);
-    var msg;
-    if (!succeed) {
-        msg = "Press Ctrl+c to copy"
-    } else {
-        msg = "<i class=\"far fas fa-check\"></i> ID copied!"
-    }
-    if (typeof msgElem === "string") {
-        msgElem = document.getElementById(msgElem);
-    }
-    msgElem.innerHTML = msg;
-    msgElem.style.background = "#86e483";
-    msgElem.style.color = "#106f0e";
-    msgElem.style.border = "1px solid #fff";
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = text;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+
+    var originalIcon = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy ID</a>";
+    var changeBack  = $(this);
+
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> ID Copied!");
+    $(this).addClass('copied');
 
     setTimeout(function() {
-        msgElem.innerHTML = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy ID";
-        msgElem.style.background = "#626262";
-        msgElem.style.color = "#fff";
-        msgElem.style.border = "1px solid #757575";
-
+      changeBack.removeClass('copied');
+      changeBack.html(originalIcon);
     }, 1000);
-}
+ 
+  });
 
-// for password
-function copyToClipboardMsg_pswd(elem, msgElem) {
-    var succeed = copyToClipboard_pswd(elem);
-    var msg;
-    if (!succeed) {
-        msg = "Press Ctrl+c to copy"
-    } else {
-        msg = "<i class=\"far fas fa-check\"></i> Password copied!"
-    }
-    if (typeof msgElem === "string") {
-        msgElem = document.getElementById(msgElem);
-    }
-    msgElem.innerHTML = msg;
-    msgElem.style.background = "#86e483";
-    msgElem.style.color = "#106f0e";
-    msgElem.style.border = "1px solid #fff";
+  // copy to clipboard password: data-role=cp
+  $(document).on('click','a[data-role=pc]',function() {
+    var id   = $(this).data('id');
+    var text = document.getElementById(id).value;
+
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = text;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+
+    var originalIcon = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy Password</a>";
+    var changeBack  = $(this);
+
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> Password Copied!");
+    $(this).addClass('copied');
 
     setTimeout(function() {
-        msgElem.innerHTML = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy Password";
-        msgElem.style.background = "#626262";
-        msgElem.style.color = "#fff";
-        msgElem.style.border = "1px solid #757575";
-
+      changeBack.removeClass('copied');
+      changeBack.html(originalIcon);
     }, 1000);
-}
+ 
+  });
 
-
-function copyToClipboard(elem) {
-    // create hidden text element, if it doesn't already exist
-    var targetId = "_hiddenCopyText_";
-    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-    var origSelectionStart, origSelectionEnd;
-    if (isInput) {
-        // can just use the original source element for the selection and copy
-        target = elem;
-        origSelectionStart = elem.selectionStart;
-        origSelectionEnd = elem.selectionEnd;
-    } else {
-        // must use a temporary form element for the selection and copy
-        target = document.getElementById(targetId);
-        if (!target) {
-            var target = document.createElement("textarea");
-            target.style.position = "absolute";
-            target.style.left = "-9999px";
-            target.style.top = "0";
-            target.id = targetId;
-            document.body.appendChild(target);
-        }
-        target.textContent = elem.textContent;
-    }
-    // select the content
-    var currentFocus = document.activeElement;
-    target.focus();
-    target.setSelectionRange(0, target.value.length);
-
-    // copy the selection
-    var succeed;
-    try {
-        succeed = document.execCommand("copy");
-    } catch(e) {
-        succeed = false;
-    }
-    // restore original focus
-    if (currentFocus && typeof currentFocus.focus === "function") {
-        currentFocus.focus();
-    }
-
-    if (isInput) {
-        // restore prior selection
-        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-    } else {
-        // clear temporary content
-        target.textContent = "";
-    }
-    return succeed;
-}
-
-function copyToClipboard_pswd(elem) {
-    // create hidden text element, if it doesn't already exist
-    var targetId = "_hiddenCopyText_";
-    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-    var origSelectionStart, origSelectionEnd;
-    if (isInput) {
-        // can just use the original source element for the selection and copy
-        target = elem;
-        origSelectionStart = elem.selectionStart;
-        origSelectionEnd = elem.selectionEnd;
-    } else {
-        // must use a temporary form element for the selection and copy
-        target = document.getElementById(targetId);
-        if (!target) {
-            var target = document.createElement("textarea");
-            target.style.position = "absolute";
-            target.style.left = "-9999px";
-            target.style.top = "0";
-            target.id = targetId;
-            document.body.appendChild(target);
-        }
-        target.textContent = elem.textContent;
-    }
-    // select the content
-    var currentFocus = document.activeElement;
-    target.focus();
-    target.setSelectionRange(0, target.value.length);
-
-    // copy the selection
-    var succeed;
-    try {
-        succeed = document.execCommand("copy");
-    } catch(e) {
-        succeed = false;
-    }
-    // restore original focus
-    if (currentFocus && typeof currentFocus.focus === "function") {
-        currentFocus.focus();
-    }
-
-    if (isInput) {
-        // restore prior selection
-        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-    } else {
-        // clear temporary content
-        target.textContent = "";
-    }
-    return succeed;
-}
+});
 
 /* initialize timepicker */
 /* https://timepicker.co/options/ */
-$(document).ready(function(){
+$(document).ready(function() {
     $('input.timepicker').timepicker({
     timeFormat: 'h:mm p',
     dynamic: false,
