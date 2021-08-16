@@ -17,7 +17,7 @@
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } ?>
 
-		<?php if ((isset($_SESSION['id']) && $layout_context != 'dashboard') && $_SESSION['admin'] != 85 && $_SESSION['admin'] != 86) { ?>
+		<?php if ((isset($_SESSION['id']) && $layout_context != 'dashboard') && (isset($_SESSION['admin']) && ($_SESSION['admin'] != 85 && $_SESSION['admin'] != 86))) { ?>
 			<a href="manage.php" onclick="closeNav();">My Dashboard</a>
 		<?php } ?>
 
@@ -61,7 +61,9 @@
 
 	</div><!-- #sidenav-wrapper -->
 
-		<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
+		<?php
+		if (isset($_SESSION['admin'])) { 
+		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
 				Your role: <?php if ($_SESSION['admin'] == 1) { ?>
 					One and only Bob
@@ -71,6 +73,7 @@
 					Top Tier Admin
 				<?php } ?>
 			</div>
-		<?php } ?>
+		<?php } 
+			} ?>
 
 </div><!-- #side-nav -->

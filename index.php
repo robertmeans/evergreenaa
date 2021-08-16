@@ -18,7 +18,7 @@ if (!isset($_SESSION['verified'])) {
 	exit;
 }
 
-if ($_SESSION['mode'] == 1) {
+if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
 	require 'admin.php';
 	exit;
 }
