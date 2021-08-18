@@ -240,7 +240,7 @@ $user_role = $_SESSION['admin'];
 	<div id="sus-wrap">
 		<p>This account has been put on hold.</p>
 		<p class="sus-header">Notes on suspension</p>
-		<p class="sus-notes"><?= $row['sus_notes']; ?></p>
+		<p class="sus-notes"><?= nl2br($row['sus_notes']); ?></p>
 	</div>
 <?php } ?>
 

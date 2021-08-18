@@ -5,7 +5,7 @@ require_once 'config/verify_admin.php';
 
 	$user_id = $_POST['user'];
 	$role = $_POST['admin'];
-	$reason = nl2br($_POST['reason']);
+	$reason = h($_POST['reason']);
 
 if (is_post_request()) {
  

@@ -271,6 +271,23 @@ html {
   color: #fff;
   cursor: default;
 }
+.sidenav .visitor-role,
+.sidenav .member-role {
+  padding: 1em 0em 1em 1.5em;
+  font-size: 0.8em;
+  color: #818181;
+  background-color: #101b2c;
+  color: #8d8d8d;
+  cursor: default;
+}
+.sidenav .sus-user {
+  padding: 1em 0em 1em 1.5em;
+  font-size: 0.8em;
+  color: #818181;
+  background-color: #841616;
+  color: #8d8d8d;
+  cursor: default;
+}
 .sidenav a {
   width: 100%;
   display: -ms-flexbox;

@@ -62,7 +62,7 @@
 	</div><!-- #sidenav-wrapper -->
 
 		<?php
-		if (isset($_SESSION['admin'])) { 
+		if (isset($_SESSION['admin'])) {
 		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
 				Your role: <?php if ($_SESSION['admin'] == 1) { ?>
@@ -73,7 +73,18 @@
 					Top Tier Admin
 				<?php } ?>
 			</div>
-		<?php } 
-			} ?>
-
+		<?php } else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) { ?>
+			<div class="sus-user">
+				Suspended Member
+			</div>
+		<?php } else { ?>
+			<div class="member-role">
+				User role: Member
+			</div>		
+			<?php } 
+			} else { ?>
+			<div class="visitor-role">
+				Welcome Visitor
+			</div>
+		<?php } ?>
 </div><!-- #side-nav -->
