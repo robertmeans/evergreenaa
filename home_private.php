@@ -5,7 +5,7 @@ require_once 'config/verify_admin.php';
 $layout_context = "home-private";
 
 $user_id = $_SESSION['id'];
-
+$user_role = $_SESSION['admin'];
 ?>
 
 <?php require '_includes/head.php'; ?>
@@ -20,7 +20,8 @@ $user_id = $_SESSION['id'];
 <?php require '_includes/msg-extras.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
-	
+
+<?php if ($user_role != 86 && $user_role != 85) { ?>
 <ul id="weekdays">
 
 	<li class="ctr-day">
@@ -230,6 +231,19 @@ $user_id = $_SESSION['id'];
 	</li>
 
 </ul><!-- #weekdays -->
+
+<?php } else { // $user_role = 85 || 86 which means they're suspended ?>
+<?php 
+	$sus_stuff = suspended_msg($user_id);
+	$row = mysqli_fetch_assoc($sus_stuff);
+?>
+	<div id="sus-wrap">
+		<p>This account has been put on hold.</p>
+		<p class="sus-header">Notes on suspension</p>
+		<p class="sus-notes"><?= $row['sus_notes']; ?></p>
+	</div>
+<?php } ?>
+
 </div><!-- #wrap -->
 
 <?php require '_includes/footer.php'; ?>
