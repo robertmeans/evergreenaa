@@ -718,9 +718,53 @@ $(document).ready(function() {
   });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* visible divs as radio buttons */
+// $('.radio-groupz .radioz').click(function(){
+//     $(this).parent().find('.radioz').removeClass('selected');
+//     $(this).addClass('selected');
+//     var val = $(this).attr('value');
+
+//     $(this).parent().find('input[name=admin]').val(val);
+// });
+
+
+
+
+
+
+
+
 /* visible divs as radio buttons for User Management */
 
-$('.radio-groupz .radioz').click(function(){
+breakme: $('.radio-groupz .radioz').click(function(){
+  if ($(this).hasClass('selected')) {
+    
+  }
+
+
     $(this).parent().find('.radioz').removeClass('selected');
     $(this).addClass('selected');
     var val = $(this).attr('value');
@@ -770,6 +814,7 @@ $('.radio-groupz .radioz').click(function(){
         $('#sus-reason').slideUp().html('');
       }
 });
+
 
 
 

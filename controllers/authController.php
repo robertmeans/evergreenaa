@@ -81,8 +81,8 @@ if (isset($_POST['submit'])) {
 		$errors['password'] = "Slow down - Type same password in both fields";
 	}	
 
-	if ( ((!empty($password)) && (empty(!$passwordConf)))  &&   ($password !== $passwordConf)) {
-		$errors['password'] = "Passwords don't match";
+	if ( ((!empty($password)) && (empty(!$passwordConf))) && ($password !== $passwordConf)) {
+		$errors['password'] = "Passwords don't match. Note: passwords are case sensitive.";
 	}
 
 	$emailQuery = "SELECT * FROM users WHERE email=? LIMIT 1";
@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
 // if user clicks on login
 if (isset($_POST['login'])) {
 	$username = $_POST['username'];
-	$password = strtolower($_POST['password']);
+	$password = $_POST['password'];
 
 	// validation
 	if (empty($username)) {
@@ -175,7 +175,7 @@ if (isset($_POST['login'])) {
 		$userCount = $result->num_rows;
 		$user = $result->fetch_assoc();
 
-		if (password_verify($password, $user[strtolower('password')])) {
+		if (password_verify($password, $user['password'])) {
 			// login success
 			$_SESSION['id'] 			= $user['id_user'];
 			$_SESSION['username'] = $user['username'];
@@ -209,7 +209,7 @@ if (isset($_POST['login'])) {
 			$errors['login_fail'] = "That user does not exist";
 		} else {
 			// the combination of stuff you typed doesn't match anything in the db
-			$errors['login_fail'] = "Wrong Username/Password combination.";
+			$errors['login_fail'] = "Wrong Username/Password combination. Note: passwords are case sensitive.";
 		}
 	}
 }
@@ -277,7 +277,7 @@ if (isset($_POST['reset-password-btn'])) {
 	}
 
 	if ($password !== $passwordConf) {
-		$errors['password'] = "Passwords don't match";
+		$errors['password'] = "Passwords don't match. Note: passwords are case sensitive.";
 	}
 
 	$password = password_hash($password, PASSWORD_DEFAULT);

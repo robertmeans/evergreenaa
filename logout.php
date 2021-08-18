@@ -16,6 +16,8 @@ $_SESSION['id'] = "";
 $_SESSION['username'] = "";
 $_SESSION['email'] = "";
 $_SESSION['verified'] = "";
+$_SESSION['admin'] = "";
+$_SESSION['mode'] = "";
 session_destroy();
 
 // clear cookies
