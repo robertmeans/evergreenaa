@@ -718,52 +718,23 @@ $(document).ready(function() {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* visible divs as radio buttons */
-// $('.radio-groupz .radioz').click(function(){
-//     $(this).parent().find('.radioz').removeClass('selected');
-//     $(this).addClass('selected');
-//     var val = $(this).attr('value');
-
-//     $(this).parent().find('input[name=admin]').val(val);
-// });
-
-
-
-
-
-
-
-
 /* visible divs as radio buttons for User Management */
+$('.radio-groupz .radioz').click(function(){
 
-breakme: $('.radio-groupz .radioz').click(function(){
-  if ($(this).hasClass('selected')) {
-    
+  // The Stanton Mandate:
+  // See that links toggle on and off 
+  if ($(this).hasClass('user-suspended') && $(this).hasClass('selected')) {
+    ($(this).toggleClass('user-suspended') && $(this).toggleClass('selected'));
+    $('#role-h2').toggleClass('downgrade');
+    $('#sus-reason').slideToggle();
+    $('#gdtrfb').html('<a id="select-role-first">Select a User Role</a>');
+    return;
   }
-
+  if ($(this).hasClass('selected')) {
+    $(this).toggleClass('selected');
+    $('#gdtrfb').html('<a id="select-role-first">Select a User Role</a>');
+    return;
+  }
 
     $(this).parent().find('.radioz').removeClass('selected');
     $(this).addClass('selected');
@@ -778,7 +749,7 @@ breakme: $('.radio-groupz .radioz').click(function(){
         } else {
             $(this).removeClass('user-suspended');
             $('#role-h2').removeClass('downgrade');
-          $('#role-h2').addClass('upgrade');
+            $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
             $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
           }
@@ -816,13 +787,12 @@ breakme: $('.radio-groupz .radioz').click(function(){
 });
 
 
-
-
 // Suspend user
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#suspend-user', function() {
     // event.preventDefault();
+
     $.ajax({
       dataType: "JSON",
       url: "process_suspend_user.php",
@@ -856,15 +826,16 @@ $(document).ready(function() {
       complete: function() {
 
       }
-    })
-  });
-});
+    }) // end ajax call process_suspend_user.php
+  }); // end click function
+}); // end document.ready
 
 // change user role
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#change-user-role', function() {
     // event.preventDefault();
+
     $.ajax({
       dataType: "JSON",
       url: "process_change_role.php",
@@ -903,6 +874,6 @@ $(document).ready(function() {
       complete: function() {
 
       }
-    })
-  });
-});
+    }) // end ajax call process_change_role.php
+  }); // end click function
+}); // end document.ready

@@ -13,51 +13,54 @@ require_once 'config/verify_admin.php';
 		$mode = 0;
 	} 
 
-// in case someone tries to hardcode a 3 in role
-// if (($_SESSION['id'] != 1) && $role == 3) {
-// 	$signal = 'bad';
-// 	$msg = 'really?';
-// }
+if (is_post_request()) {	
 
-if (is_post_request()) {
+	if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
+		$signal = 'bad';
+		$msg = 'It appears you lack the necessary clearance to do this.';
+	} if ($_SESSION['admin'] != 1 && ($role == 1 || $role == 3)) {
+		$signal = 'bad';
+		$msg = 'Are you trying to find a chink in my armor? That is no bueno and your name has been reported to the authorities. Gather your belongings and hide.';	
+	} else {
 
-	if ($role == '3') {
-		$change_user_role = change_user_role($user_id, $role, $mode);
+		if ($role == '3') {
+			$change_user_role = change_user_role($user_id, $role, $mode);
 
-	  if ($change_user_role === true) {
-			$signal = '3';
-		  $msg =  'Transfer successful!';
-	  } else {
-	  	$signal = 'bad';
-	  	$msg = 'uh oh... The Internet might have hiccupped while this was in process and it may or may not have transferred successfully. This is a very unique occrurance. Please confirm with the other user that they have the meeting. If it did not transfer successfully email me at the bottom of any page and I will fix it. Again, this is a really hard messge to see. Congratulations. :)';
-	  }
+		  if ($change_user_role === true) {
+				$signal = '3';
+			  $msg =  'Transfer successful!';
+		  } else {
+		  	$signal = 'bad';
+		  	$msg = 'I don\'t think that worked.';
+		  }
+		}
+
+
+		if ($role == '2') {
+			$change_user_role = change_user_role($user_id, $role, $mode);
+
+		  if ($change_user_role === true) {
+				$signal = '2';
+			  $msg =  'Transfer successful!';
+		  } else {
+		  	$signal = 'bad';
+		  	$msg = 'I don\'t think that worked.';
+		  }
+		}
+
+		if ($role == '0') {
+			$change_user_role = change_user_role($user_id, $role, $mode);
+
+		  if ($change_user_role === true) {
+				$signal = '0';
+			  $msg =  'Transfer successful!';
+		  } else {
+		  	$signal = 'bad';
+		  	$msg = 'I don\'t think that worked.';
+		  }
+		}	
+
 	}
-
-
-	if ($role == '2') {
-		$change_user_role = change_user_role($user_id, $role, $mode);
-
-	  if ($change_user_role === true) {
-			$signal = '2';
-		  $msg =  'Transfer successful!';
-	  } else {
-	  	$signal = 'bad';
-	  	$msg = 'uh oh... The Internet might have hiccupped while this was in process and it may or may not have transferred successfully. This is a very unique occrurance. Please confirm with the other user that they have the meeting. If it did not transfer successfully email me at the bottom of any page and I will fix it. Again, this is a really hard messge to see. Congratulations. :)';
-	  }
-	}
-
-	if ($role == '0') {
-		$change_user_role = change_user_role($user_id, $role, $mode);
-
-	  if ($change_user_role === true) {
-			$signal = '0';
-		  $msg =  'Transfer successful!';
-	  } else {
-	  	$signal = 'bad';
-	  	$msg = 'uh oh... The Internet might have hiccupped while this was in process and it may or may not have transferred successfully. This is a very unique occrurance. Please confirm with the other user that they have the meeting. If it did not transfer successfully email me at the bottom of any page and I will fix it. Again, this is a really hard messge to see. Congratulations. :)';
-	  }
-	}	
-
 }
 
 	$data = array(

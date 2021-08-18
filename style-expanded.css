@@ -3169,7 +3169,7 @@ form#manage-mtg label.pdf-label {
 }
 .radio:hover,
 .radioz:hover {
-  background-color: rgba(32, 93, 168, 0.5);
+  background-color: rgba(32, 93, 168, 0.3);
 }
 
 .radio-bob {
