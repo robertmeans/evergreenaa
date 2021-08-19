@@ -14,16 +14,19 @@
 // });
 
 // Navigation
-/* Set the width of the side navigation to 250px */
 $(document).ready(function() {
   var url = window.location.href;
   $('#url').val(url);
+
+  $('.top-nav').on('click', function() {
+    this.classList.toggle('acty');
+  });
 }); 
 
 function openNav() {
   var eotw = document.getElementById("side-nav");
-  if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
+  if (eotw.style.width == '300px') { 
+    eotw.style.width = '0px';
   } else {
       eotw.style.width = '300px';
   }
@@ -31,6 +34,7 @@ function openNav() {
 /* Set the width of the side navigation to 0 */
 function closeNav() {
     document.getElementById("side-nav").style.width = "0";
+    $('.top-nav').removeClass('acty');
 }
 
 
@@ -378,9 +382,10 @@ $(document).ready(function(){
     // if nav is open close it and stop
     var eotw = document.getElementById("side-nav");
     if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
-        stopPropagation();
-      }
+      $('.top-nav').removeClass('acty');
+      eotw.style.width = '0px';
+      stopPropagation();
+    }
     // otherwise continue as you were...
 
     $('.day-content').not(toggle).slideUp();
@@ -401,9 +406,10 @@ $(document).ready(function(){
 
     // if nav is open close it and stop
     var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
-        stopPropagation();
+    if (eotw.style.width == '300px') { 
+      $('.top-nav').removeClass('acty');
+      eotw.style.width = '0px';
+      stopPropagation();
       }
     // otherwise continue as you were...
 
@@ -425,9 +431,10 @@ $(document).ready(function(){
 
     // if nav is open close it and stop
     var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
-        stopPropagation();
+    if (eotw.style.width == '300px') { 
+      $('.top-nav').removeClass('acty');
+      eotw.style.width = '0px';
+      stopPropagation();
       }
     // otherwise continue as you were...
 
@@ -448,9 +455,10 @@ $(document).ready(function(){
 
     // if nav is open close it and stop
     var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
-        stopPropagation();
+    if (eotw.style.width == '300px') { 
+      $('.top-nav').removeClass('acty');
+      eotw.style.width = '0px';
+      stopPropagation();
       }
     // otherwise continue as you were...
 
@@ -462,9 +470,10 @@ $(document).ready(function(){
 
     // if nav is open close it and stop
     var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') {
-        eotw.style.width = '0px';
-        stopPropagation();
+    if (eotw.style.width == '300px') { 
+      $('.top-nav').removeClass('acty');
+      eotw.style.width = '0px';
+      stopPropagation();
       }
     // otherwise continue as you were...
 

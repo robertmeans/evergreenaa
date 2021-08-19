@@ -207,7 +207,7 @@ html {
   z-index: 78;
   position: relative;
 }
-#navigation span.top-nav {
+#navigation .top-nav {
   position: fixed;
   cursor: pointer;
   background-color: black;
@@ -221,17 +221,79 @@ html {
   border-left: 1px solid rgba(255, 255, 255, 0.6);
   transition: all 0.2s ease;
 }
-#navigation span.top-nav:hover {
+#navigation .top-nav:hover {
   padding-top: 0.75em;
   background-color: #313131;
   color: #fff;
 }
-#navigation span.top-nav.admin-logged {
+#navigation .top-nav.admin-logged {
   background-color: gold;
   color: #000;
   border-right: 1px solid #fff600;
   border-bottom: 1px solid #fff600;
   border-left: 1px solid #fff600;
+}
+
+#navigation.sm-g .top-nav {
+  width: 6em;
+}
+
+.menu-basket {
+  position: relative;
+}
+
+.bar-box {
+  position: relative;
+}
+
+.top-nav .bars {
+  top: 0.42em;
+}
+
+.top-nav .bars,
+.top-nav .bars:before,
+.top-nav .bars:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 3px;
+  width: 17px;
+  background: #fff;
+  position: absolute;
+  display: block;
+  content: "";
+  transition: all 300ms ease-in-out;
+}
+
+.top-nav.admin-logged .bars,
+.top-nav.admin-logged .bars:before,
+.top-nav.admin-logged .bars:after {
+  background: #000;
+}
+
+.top-nav .bars:before {
+  top: -6px;
+}
+
+.top-nav .bars:after {
+  bottom: -6px;
+}
+
+.top-nav.acty .bars {
+  background-color: transparent;
+}
+
+.top-nav.acty .bars:before, .top-nav.acty .bars:after {
+  top: 0;
+}
+
+.top-nav.acty .bars:before {
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+}
+
+.top-nav.acty .bars:after {
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 
 .sidenav {
@@ -406,7 +468,7 @@ html {
   #navigation {
     width: 90%;
   }
-  #navigation span.top-nav {
+  #navigation .top-nav {
     padding: 0.55em 1.25em;
   }
 
