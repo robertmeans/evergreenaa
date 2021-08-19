@@ -128,6 +128,12 @@
 	a#not-yourself {
 		cursor: not-allowed;
 	}
+	a#select-role-first {
+		background-color: #313131;
+		&:hover {
+			background-color: #757575;
+		}
+	}
 }
 
 h2.demote,

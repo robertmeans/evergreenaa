@@ -318,6 +318,17 @@ html {
   cursor: pointer;
   text-align: left;
 }
+.sidenav a.closebtn .ctxt {
+  color: transparent;
+  transition: color 0.2s ease-out;
+}
+.sidenav a.closebtn:hover .ctxt {
+  color: rgba(0, 0, 0, 0.9);
+  transition: color 0.2s ease-in;
+}
+.sidenav a.closebtn:hover .ctd {
+  transition-delay: 1s;
+}
 .sidenav a.closebtn i {
   font-size: 1.5em;
   -ms-transform: rotate(270deg);
@@ -3784,6 +3795,12 @@ span.sending-msg.downgraded {
 #transfer-host a#select-role-first,
 #transfer-host a#not-yourself {
   cursor: not-allowed;
+}
+#transfer-host a#select-role-first {
+  background-color: #313131;
+}
+#transfer-host a#select-role-first:hover {
+  background-color: #757575;
 }
 
 h2.demote,

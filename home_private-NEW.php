@@ -21,7 +21,10 @@ $user_role = $_SESSION['admin'];
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
 
-<?php if ($user_role != 86 && $user_role != 85) { ?>
+<?php if ($user_role != 86 && $user_role != 85) { // if they're not suspended 
+	$subject_set = get_all_public_and_private_meetings($user_id);
+	$row = mysqli_fetch_assoc($subject_set);
+?>
 <ul id="weekdays">
 
 	<li class="ctr-day">
@@ -30,14 +33,9 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($sunday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
-
-				if ($result > 0) {
+				if ($row['sun'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					// $str_length = 4;
-					// $i = substr("000{$i}", -$str_length);
+					foreach ($row['sun'] as ($row['sun'] = 1)) { 
 					$ic = 'i0_'.$i;
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
@@ -51,7 +49,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Sunday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -61,13 +59,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($monday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['mon'] == 1)) {
 					$i = 1;	
-					while ($row = mysqli_fetch_assoc($subject_set)) {
-
+					foreach ($row['mon'] as ($row['mon'] = 1)) {
 					$ic = 'i1_'.$i;
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
@@ -81,7 +76,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Monday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -91,12 +86,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($tuesday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['tue'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) {
+					foreach ($row['tue'] as ($row['tue'] = 1)) {
 					$ic = 'i2_'.$i;
 					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
@@ -110,7 +103,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Tuesday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -120,12 +113,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($wednesday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['wed'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					foreach ($row['wed'] as ($row['wed'] = 1)) { 
 					$ic = 'i3_'.$i;
 					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
@@ -139,7 +130,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Wednesday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -149,12 +140,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($thursday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['thu'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					foreach ($row['thu'] as ($row['thu'] = 1)) { 
 					$ic = 'i4_'.$i;
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
@@ -168,7 +157,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Thursday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -178,12 +167,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($friday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['fri'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					foreach ($row['fri'] as ($row['fri'] = 1)) { 
 					$ic = 'i5_'.$i;
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
@@ -197,7 +184,7 @@ $user_role = $_SESSION['admin'];
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Friday.</p>
 					
-				<?php } mysqli_free_result($subject_set); ?>
+				<?php } ?>
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -207,12 +194,10 @@ $user_role = $_SESSION['admin'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				$subject_set = get_all_public_and_private_meetings_for_today($saturday, $user_id);
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
+				if ($row['sat'] == 1) {
 					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
+					foreach ($row['sat'] as ($row['sat'] = 1)) { 
 					$ic = 'i6_'.$i;
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';
@@ -239,10 +224,10 @@ $user_role = $_SESSION['admin'];
 ?>
 	<div id="sus-wrap">
 		<p>This account has been put on hold.</p>
-		<p class="sus-header">Additional details</p>
+		<p class="sus-header">Notes on suspension</p>
 		<p class="sus-notes"><?= nl2br($row['sus_notes']); ?></p>
 	</div>
-<?php } ?>
+<?php } mysqli_free_result($sus_stuff); ?>
 
 </div><!-- #wrap -->
 

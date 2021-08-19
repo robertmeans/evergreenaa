@@ -7,7 +7,7 @@
 
 <div id="side-nav" class="sidenav">
 	<div id="sidenav-wrapper">
-		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i></a>
+		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <span class="ctxt ctd">Close</span></a>
 
 		<?php if (($layout_context != 'home-private') && ($layout_context != 'home-public')) { ?>
 			<a href="<?= WWW_ROOT ?>" onclick="closeNav();">Homepage</a>
