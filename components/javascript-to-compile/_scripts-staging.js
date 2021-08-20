@@ -73,6 +73,16 @@ $(".top-nav").click(function(e) {
    e.stopPropagation();
 });
 
+$(document).ready(function(){
+  $('#usr-role-go').click(function() {
+    var thisval = $('#mng-usr').val();
+    if (thisval != 'empty') {
+      window.location = thisval;
+    }
+  })
+});
+
+
 // copy to clipboard ID: data-role=ci
 $(document).ready(function() {
 

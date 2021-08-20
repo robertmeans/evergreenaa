@@ -451,13 +451,28 @@ function find_all_users() {
   global $db;
 
   $sql  = "SELECT * FROM users ";
-  $sql .= "WHERE id_user!=13 ";
-  $sql .= "ORDER BY id_user ASC";
+  $sql .= "WHERE id_user != 13 ";
+  $sql .= "ORDER BY username ASC";
   // echo $sql;
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;
 }
+
+function find_all_users_to_manage($user_id) {
+  global $db;
+
+  $sql  = "SELECT * FROM users ";
+  $sql .= "WHERE id_user != 1 ";
+  $sql .= "AND id_user != 13 ";
+  $sql .= "AND id_user != '" . $user_id . "' ";
+  $sql .= "ORDER BY username ASC";
+  // echo $sql;
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
 
 // transfer host
 function find_new_host($email) {

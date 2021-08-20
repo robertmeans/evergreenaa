@@ -4050,6 +4050,37 @@ a.manage-edit.spec:hover {
   cursor: default;
 }
 
+#user-list .mng-usr {
+  font-size: 1em;
+  padding: 0.5em;
+  outline: none;
+  cursor: pointer;
+  background-color: #313131;
+  color: #fff;
+}
+#user-list .mng-usr option {
+  cursor: pointer;
+  color: #fff;
+  background-color: #313131;
+}
+#user-list .mng-usr option:hover {
+  cursor: pointer;
+}
+#user-list #usr-role-go {
+  cursor: pointer;
+  padding: 0.5em 1em;
+  margin-left: 1em;
+  background-color: #376420;
+  border: 1px solid transparent;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+#user-list #usr-role-go:hover {
+  background-color: #80eb4b;
+  border: 1px solid #fff;
+  color: #1c3310;
+}
+
 @media screen and (max-width: 600px) {
   .manage-glance-user {
     -ms-flex-direction: column;

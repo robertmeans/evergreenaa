@@ -12,7 +12,7 @@ $layout_context = "alt-manage";
 $id = $_GET['user'];
 $role = $_SESSION['admin'];
 
-if ($id == '' || $id == $_SESSION['id']) {
+if ($id != 1 && ($id == '' || $id == $_SESSION['id'])) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }

@@ -43,6 +43,30 @@ $role = $_SESSION['admin'];
 	<?php } else { ?>
 		<p><?= ' ' . $_SESSION['username'] . '\'s User Management' ?></p>
 	<?php } ?>
+
+		<?php if ($role == 1 || $role == 3) { ?>
+
+		<?php 
+		$user_management_list = find_all_users_to_manage($user_id);
+		$users 	= mysqli_num_rows($user_management_list);
+		
+		if ($users > 0) { ?>
+
+			<form id="user-list">
+				<select id="mng-usr" class="mng-usr" name="mng-usr">
+					<option value="empty">Select a User</option>
+				<?php  
+				while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
+
+					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $li['id_user']; ?>"><?= $li['username']; ?> | <?= strtolower($li['email']); ?></option>
+							
+				<?php } ?>
+				</select> <a id="usr-role-go">GO</a>
+			</form>
+
+		<?php } mysqli_free_result($user_management_list); ?>
+
+		<?php } ?>
 	
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
