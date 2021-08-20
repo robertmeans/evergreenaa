@@ -112,7 +112,9 @@
   overflow-x: hidden; 
   // padding-top: 2em; 
   transition: 0.5s; /* slide in the sidenav */
-  white-space: nowrap;
+
+  // silenced white-space so I could use username in footer of nav
+  // white-space: nowrap;
   overflow-y: hidden;
 	#sidenav-wrapper {
 		padding-top: 2em;
@@ -139,6 +141,10 @@
 		background-color: #101b2c;
 		color: #8d8d8d;
 		cursor: default;
+	}
+	.member-role {
+		word-wrap: break-word;
+		// line-height: 1.2em;
 	}
 	.sus-user {
 		padding: 1em 0em 1em 1.5em;

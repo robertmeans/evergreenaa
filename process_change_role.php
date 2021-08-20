@@ -18,7 +18,9 @@ if (is_post_request()) {
 	if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
 		$signal = 'bad';
 		$msg = 'It appears you lack the necessary clearance to do this.';
-	} if ($_SESSION['admin'] != 1 && ($role == 1 || $role == 3)) {
+	} 
+
+	if ($_SESSION['admin'] != 1 && ($role == 1 || $role == 3)) {
 		$signal = 'bad';
 		$msg = 'Are you trying to find a chink in my armor? That is no bueno and your name has been reported to the authorities. Gather your belongings and hide.';	
 	} else {
@@ -34,7 +36,6 @@ if (is_post_request()) {
 		  	$msg = 'I don\'t think that worked.';
 		  }
 		}
-
 
 		if ($role == '2') {
 			$change_user_role = change_user_role($user_id, $role, $mode);

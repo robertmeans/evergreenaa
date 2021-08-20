@@ -1,4 +1,4 @@
-<?php $layout_context = "reset-password"; ?>
+<?php $layout_context = "login-page"; ?>
 <?php require_once 'config/initialize.php'; ?>
 
 <?php include '_includes/head.php'; ?>
@@ -19,9 +19,11 @@
             </div>
         <?php endif; ?>
                 
-        <input type="password" class="text" name="password" placeholder="Password">
-        <input type="password" class="text" name="passwordConf" placeholder="Confirm password">
-
+        <input id="showPassword" type="password" class="text" name="password" placeholder="Password">
+        <input id="showConf" type="password" class="text" name="passwordConf" placeholder="Confirm password">
+        <div class="showpassword-wrap"> 
+            <div id="showSignupPass"><i class="far fa-eye"></i> Show Password</div>
+        </div>
         <input type="submit" name="reset-password-btn" class="submit" value="Reset Password">
         
 	</form>

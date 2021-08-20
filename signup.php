@@ -1,4 +1,4 @@
-<?php $layout_context = "signup"; ?>
+<?php $layout_context = "login-page"; ?>
 
 <?php require_once 'config/initialize.php'; ?>
 <?php include '_includes/head.php'; ?>
@@ -25,11 +25,11 @@
     <input type="password" id="showConf" class="text" name="passwordConf" placeholder="Confirm password">
     
     <div class="showpassword-wrap"> 
-        <button id="showSignupPass"><i class="far fa-eye"></i> Show Passwords</button>
+        <div id="showSignupPass"><i class="far fa-eye"></i> Show Passwords</div>
     </div>
 
 		<input type="submit" name="submit" class="submit" value="Sign up">
-        <p class="btm-p">Already a member? <a class="log" href="login.php">Sign in</a></p>
+      <p class="btm-p">Already a member? <a class="log" href="login.php">Sign in</a></p>
 	</form>
     
 </div><!-- #landing -->

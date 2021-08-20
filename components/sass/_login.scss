@@ -88,8 +88,8 @@
 
 
 
-			button#showLoginPass,
-			button#showSignupPass {
+			#showLoginPass,
+			#showSignupPass {
 				background-color: transparent;
 				color: #fff;
 				border: none;
@@ -101,8 +101,8 @@
 				
 
 			}
-			button#showLoginPass.showPassOn,
-			button#showSignupPass.showPassOn {
+			#showLoginPass.showPassOn,
+			#showSignupPass.showPassOn {
 					color: #f5a8a8;
 				}
 
@@ -293,6 +293,13 @@ a.verified {
 	}
 }
 .alert.alert-warning {
+	background-color: #fff1cf;
+	color: #7e652e;
+	padding: 20px;
+	border: 1px solid #736552;
+	margin-top: 0.5em;
+}
+.alert.new-member {
 	background-color: #fff1cf;
 	color: #7e652e;
 	padding: 20px;

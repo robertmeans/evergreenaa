@@ -7,7 +7,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	exit();
 }
 
-	$current_user = $_SESSION['admin'];
+	// $current_user = $_SESSION['admin'];
 	$mtg_id = $_POST['current-mtg'];
 	$host_email = $_POST['host-email'];
 	$email = strtolower(trim($_POST['email']));
@@ -25,7 +25,7 @@ if (is_post_request()) {
 		
 			if ($exists > 0) {
 
-				if (($current_user == 0 || $current_user == 1 || $current_user == 2 || $current_user == 3) && $host_email != $email) {
+				if ($host_email != $email) {
 
 					$change_host = update_host($mtg_id, $new_host);
 

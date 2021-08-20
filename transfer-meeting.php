@@ -20,6 +20,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $id = $_GET['id'];
 $user_id = $_SESSION['id'];
+$role = $_SESSION['admin'];
 
 $row = transfer_meeting($id);
 
@@ -84,10 +85,48 @@ $row = transfer_meeting($id);
 				?>
 				<?= ' - ' . $row['group_name'] ?></p>
 
+		<?php if ($role == 1 || $role == 3) { ?>
+
+		<?php 
+		$user_management_list = find_all_users_to_manage($user_id);
+		$users 	= mysqli_num_rows($user_management_list);
+		
+		if ($users > 0) { ?>
+
+			<div class="user-box">
+				<form id="transfer-form-top">
+					<select id="transfer-usr" class="transfer-usr" name="transfer-usr">
+						<option value="empty">Select a User</option>
+					<?php  
+					while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
+
+						<option value="<?= $li['email']; ?>"><?= $li['username']; ?> | <?= strtolower($li['email']); ?></option>
+								
+					<?php } ?>
+
+					<input type="hidden" name="current-user" value="<?= $user_id ?>">
+					<input type="hidden" name="current-mtg" value="<?= $id ?>">
+					<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
+					<input type="hidden" id="new-email-top" name="email">
+
+					</select> <a id="transfer-this-top">GO</a>
+				</form>
+			</div>
+			<div id="hide-on-success">
+				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
+				<hr>
+			</div>
+
+
+		<?php } mysqli_free_result($user_management_list); ?>
+
+		<?php } ?>
+
 		<form id="transfer-form">
 			<input type="hidden" name="current-user" value="<?= $user_id ?>">
 			<input type="hidden" name="current-mtg" value="<?= $id ?>">
 			<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
+
 			<p>Email of new Host</p>
 			<input type="email" id="new-email" name="email" placeholder="Enter member's email address">
 		</form>

@@ -71,8 +71,6 @@ $role = $_SESSION['admin'];
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 
-
-
 <?php /* -------------------- SUSPENDED USERS -------------------- */ ?>
 <div class="manage-simple s-a">	
 	<?php 

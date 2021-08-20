@@ -170,7 +170,7 @@ $('input[name="remember_me"]').change(function(){
 });
 
 /* show passwords */
-$("button#showLoginPass").click(function(){
+$("#showLoginPass").click(function(){
   var x = document.getElementById("password");
     $(this).toggleClass("showPassOn");
 
@@ -184,7 +184,7 @@ $("button#showLoginPass").click(function(){
     return false;
   });
 
-$("button#showSignupPass").click(function(){
+$("#showSignupPass").click(function(){
   var x = document.getElementById("showPassword");
   var y = document.getElementById("showConf");
     $(this).toggleClass("showPassOn");
@@ -700,6 +700,58 @@ $(document).ready(function() {
 });
 
 // Transfer Meeting
+$(document).ready(function(){
+  $(document).on('click','#transfer-usr', function() {
+    var update = $('#transfer-usr').val();
+    if (update != 'empty') {
+      $('#new-email-top').val(update);
+    }
+  })
+});
+
+
+
+
+// transfer top form for admin use only
+$(document).ready(function() {
+  //$('#emh-btn').click(function() {
+  $(document).on('click','#transfer-this-top', function() {
+
+    var new_host = $('#new-email-top').val();
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-transfer-meeting.php",
+      type: "POST",
+      data: $('#transfer-form-top').serialize(),
+      beforeSend: function(xhr) {
+        $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#current-host').html('New Host: ' + new_host);
+            $('#transfer-form').html('');
+            $('#hide-on-success').html('');
+            $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#th-btn').html('');
+          } else {
+            $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#trans-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+});
+
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#transfer-this', function() {
@@ -719,7 +771,9 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-            $('#current-host').html('New Host: ' + new_host)
+            $('#current-host').html('New Host: ' + new_host);
+            $('#transfer-form-top').html('');
+            $('#hide-on-success').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
             $('#th-btn').html('');
           } else {
@@ -770,13 +824,13 @@ $('.radio-groupz .radioz').click(function(){
             $('#role-h2').removeClass('downgrade');
             $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
-            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
           }
 
         } 
       else if ($(this).parent().find('input').val() == 85) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -789,7 +843,7 @@ $('.radio-groupz .radioz').click(function(){
       } 
       else if ($(this).parent().find('input').val() == 86) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="500"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');

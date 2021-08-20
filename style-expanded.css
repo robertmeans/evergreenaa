@@ -313,7 +313,6 @@ html {
   overflow-x: hidden;
   transition: 0.5s;
   /* slide in the sidenav */
-  white-space: nowrap;
   overflow-y: hidden;
 }
 .sidenav #sidenav-wrapper {
@@ -341,6 +340,9 @@ html {
   background-color: #101b2c;
   color: #8d8d8d;
   cursor: default;
+}
+.sidenav .member-role {
+  word-wrap: break-word;
 }
 .sidenav .sus-user {
   padding: 1em 0em 1em 1.5em;
@@ -1750,20 +1752,20 @@ a.youtube:hover {
   text-align: right;
   font-size: 0.8em;
 }
-#landing > form .showpassword-wrap button#showLoginPass,
-#landing > form .showpassword-wrap button#showSignupPass {
+#landing > form .showpassword-wrap #showLoginPass,
+#landing > form .showpassword-wrap #showSignupPass {
   background-color: transparent;
   color: #fff;
   border: none;
   cursor: pointer;
   outline: 0;
 }
-#landing > form .showpassword-wrap button#showLoginPass i.far,
-#landing > form .showpassword-wrap button#showSignupPass i.far {
+#landing > form .showpassword-wrap #showLoginPass i.far,
+#landing > form .showpassword-wrap #showSignupPass i.far {
   margin-right: 0.5em;
 }
-#landing > form .showpassword-wrap button#showLoginPass.showPassOn,
-#landing > form .showpassword-wrap button#showSignupPass.showPassOn {
+#landing > form .showpassword-wrap #showLoginPass.showPassOn,
+#landing > form .showpassword-wrap #showSignupPass.showPassOn {
   color: #f5a8a8;
 }
 #landing > form .showpassword-wrap input#unhidepass {
@@ -1953,6 +1955,14 @@ a.verified:hover {
 }
 
 .alert.alert-warning {
+  background-color: #fff1cf;
+  color: #7e652e;
+  padding: 20px;
+  border: 1px solid #736552;
+  margin-top: 0.5em;
+}
+
+.alert.new-member {
   background-color: #fff1cf;
   color: #7e652e;
   padding: 20px;
@@ -4050,7 +4060,16 @@ a.manage-edit.spec:hover {
   cursor: default;
 }
 
-#user-list .mng-usr {
+.user-box #transfer-form-top {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  margin-bottom: 1em;
+}
+
+#transfer-form-top .mng-usr,
+#transfer-form-top .transfer-usr {
   font-size: 1em;
   padding: 0.5em;
   outline: none;
@@ -4058,15 +4077,18 @@ a.manage-edit.spec:hover {
   background-color: #313131;
   color: #fff;
 }
-#user-list .mng-usr option {
+#transfer-form-top .mng-usr option,
+#transfer-form-top .transfer-usr option {
   cursor: pointer;
   color: #fff;
   background-color: #313131;
 }
-#user-list .mng-usr option:hover {
+#transfer-form-top .mng-usr option:hover,
+#transfer-form-top .transfer-usr option:hover {
   cursor: pointer;
 }
-#user-list #usr-role-go {
+#transfer-form-top #usr-role-go,
+#transfer-form-top #transfer-this-top {
   cursor: pointer;
   padding: 0.5em 1em;
   margin-left: 1em;
@@ -4075,7 +4097,8 @@ a.manage-edit.spec:hover {
   color: #fff;
   transition: all 0.2s ease;
 }
-#user-list #usr-role-go:hover {
+#transfer-form-top #usr-role-go:hover,
+#transfer-form-top #transfer-this-top:hover {
   background-color: #80eb4b;
   border: 1px solid #fff;
   color: #1c3310;

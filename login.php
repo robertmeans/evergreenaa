@@ -37,7 +37,7 @@ include '_includes/head.php';
         <input type="password" id="password" class="text login-pswd" name="password" placeholder="Password">
         
         <div class="showpassword-wrap"> 
-            <button id="showLoginPass"><i class="far fa-eye"></i> Show Password</button>
+            <div id="showLoginPass"><i class="far fa-eye"></i> Show Password</div>
         </div>
 
         <input type="checkbox" name="remember_me" id="remember_me">
@@ -53,10 +53,10 @@ include '_includes/head.php';
         <input type="submit" name="login" class="submit" value="Login">
 
         <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
-        <!-- <p class="btm-p">Not a member? <a class="log" href="signup.php">Sign up</a></p> -->
+
         <div style="font-size:0.8em; text-align:center; color:#fff;"><a style="color:#fff;" href="forgot_password.php">Forgot your Password?</a></div>
     </form>
-    
+ 
 </div><!-- #landing -->
 
 </body>

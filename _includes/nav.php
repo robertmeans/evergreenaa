@@ -18,7 +18,11 @@
 	<div id="sidenav-wrapper">
 		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a><?php 
 
-		if (($layout_context != 'home-private') && ($layout_context != 'home-public')) { ?>
+		if ($layout_context == 'login-page') { ?>
+			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
+		<?php }
+
+		if (($layout_context != 'home-private') && ($layout_context != 'home-public') && ($layout_context != 'login-page')) { ?>
 			<a href="<?= WWW_ROOT ?>" onclick="closeNav();">Homepage</a>
 		<?php } 
 
@@ -26,7 +30,7 @@
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } 
 
-		if ((isset($_SESSION['id']) && $layout_context != 'dashboard') && (isset($_SESSION['admin']) && ($_SESSION['admin'] != 85 && $_SESSION['admin'] != 86))) { ?>
+		if ($layout_context != 'login-page' && (isset($_SESSION['id']) && $layout_context != 'dashboard') && (isset($_SESSION['admin']) && ($_SESSION['admin'] != 85 && $_SESSION['admin'] != 86))) { ?>
 			<a href="manage.php" onclick="closeNav();">My Dashboard</a>
 		<?php } 
 
@@ -55,14 +59,16 @@
 
 		<?php } 
 
-		if (!isset($_SESSION['id'])) { ?>
+		if (!isset($_SESSION['id']) && $layout_context != "login-page") { ?>
 			<a href="login.php" class="login" onclick="closeNav();"><i class="fas far fa-power-off"></i> Login</span></a>
-		<?php } else { ?>
+		<?php } else if ($layout_context != "login-page") { ?>
 			<a href="logout.php" class="logout" onclick="closeNav();"><i class="fas far fa-power-off"></i> Logout</a>
 		<?php } 
 
-		if (!isset($_SESSION['id'])) { ?>
+		if (!isset($_SESSION['id']) && ($layout_context != "login-page")) { ?>
 			<a href="<?= WWW_ROOT . '/signup.php' ?>" class="cc-x">Create an Account</a>
+			<a id="toggle-msg-one" class="cc-x eotw">Why Join?</a>
+		<?php } else if ($layout_context == "login-page") { ?>
 			<a id="toggle-msg-one" class="cc-x eotw">Why Join?</a>
 		<?php } else { ?>
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
@@ -71,7 +77,7 @@
 	</div><!-- #sidenav-wrapper -->
 
 		<?php
-		if (isset($_SESSION['admin'])) {
+		if (isset($_SESSION['admin']) && $layout_context != 'login-page') {
 		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
 				Your role: <?php if ($_SESSION['admin'] == 1) { ?>
@@ -88,7 +94,7 @@
 			</div>
 		<?php } else { ?>
 			<div class="member-role">
-				User role: Member
+				Logged in: <?= $_SESSION['username']; ?>
 			</div>		
 			<?php } 
 			} else { ?>

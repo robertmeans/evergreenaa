@@ -15,34 +15,50 @@ if (is_post_request()) {
 	} else {
 
 	 if (trim($reason)) {
-			if ($role == '85') {
-				$suspend_this_user = suspend_user_partial($role, $reason, $user_id);
+			if ($role == '85') { // start
 
-			  if ($suspend_this_user === true) {
-					$signal = '85';
-				  $msg =  'success';
-			  } else {
-			  	$signal = 'bad';
-			  	$msg = 'I don\'t think that worked.';
-			  }
-			}
+				if (strlen($reason) < 250) {
+
+					$suspend_this_user = suspend_user_partial($role, $reason, $user_id);
+
+				  if ($suspend_this_user === true) {
+						$signal = '85';
+					  $msg =  'success';
+				  } else {
+				  	$signal = 'bad';
+				  	$msg = 'I don\'t think that worked.';
+				  }
+
+				} else {
+					$signal = 'bad';
+					$msg = 'Let\'s keep this to 250 characters or less. Right now you\'ve got ' . strlen($reason) . ' characters.';
+				}
+
+			} // end
 
 			if ($role == '86') {
-				$suspend_this_user = suspend_user_total($role, $reason, $user_id);
 
-			  if ($suspend_this_user === true) {
-					$signal = '86';
-				  $msg =  'Transfer successful!';
-			  } else {
-			  	$signal = 'bad';
-			  	$msg = 'I don\'t think that worked.';
-			  }
+				if (strlen($reason) < 250) {
+					$suspend_this_user = suspend_user_total($role, $reason, $user_id);
+
+				  if ($suspend_this_user === true) {
+						$signal = '86';
+					  $msg =  'Transfer successful!';
+				  } else {
+				  	$signal = 'bad';
+				  	$msg = 'I don\'t think that worked.';
+				  }
+
+				} else {
+					$signal = 'bad';
+					$msg = 'Let\'s keep this to 250 characters or less. Right now you\'ve got ' . strlen($reason) . ' characters.';
+				}
+
 			}
 		} else {
 			$signal = 'bad';
 			$msg = 'Please give them some kind of reason for getting suspended.';
 		}
-
 
 	}
 }

@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 
-$layout_context = "index";
+$layout_context = "login-page";
 
 if (isset($_GET['token'])) {
 	$token = $_GET['token'];
@@ -34,7 +34,7 @@ if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset
 
 <body>
 <?php require '_includes/nav.php'; ?>
-	
+<?php require '_includes/msg-why-join.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
 	<div id="landing-content">
@@ -52,7 +52,7 @@ if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset
 		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
 
 		<?php if(!$_SESSION['verified']): ?>
-			<div class="alert alert-warning">
+			<div class="alert new-member">
 				<p>Check your email and click on the link verification that was sent to: <span class="yo-email"><?= $_SESSION['email']; ?></span></p>
 				<p>It could take up to 2 minutes. Check Spam, Junk, etc. if you don't see it.</p>
 				<p>&nbsp;</p>
