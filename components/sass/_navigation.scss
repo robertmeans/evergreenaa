@@ -125,6 +125,13 @@
 			margin-right: 0.5em;
 		}
 	}
+	.admin-role,
+	.visitor-role,
+	.member-role,
+	.sus-user {
+		width: 300px;
+		// has to be set to prevent from collapsing when menu slides shut.
+	}
 	.admin-role {
 		padding: 1em 0em 1em 1.5em;
 		font-size: 0.8em;

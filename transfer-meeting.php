@@ -85,7 +85,7 @@ $row = transfer_meeting($id);
 				?>
 				<?= ' - ' . $row['group_name'] ?></p>
 
-		<?php if ($role == 1 || $role == 3) { ?>
+		<?php if ($role == 1 || $role ==2 || $role == 3) { ?>
 
 		<?php 
 		$user_management_list = find_all_users_to_manage($user_id);
