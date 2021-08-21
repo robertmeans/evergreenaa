@@ -44,32 +44,83 @@ $role = $_SESSION['admin'];
 		<p><?= ' ' . $_SESSION['username'] . '\'s User Management' ?></p>
 	<?php } ?>
 
+
+<?php require '_includes/inner_nav.php'; ?>
+</div>
 		<?php if ($role == 1 || $role == 3) { ?>
 
-		<?php 
+		<?php // dropdown list of users for admin
 		$user_management_list = find_all_users_to_manage($user_id);
 		$users 	= mysqli_num_rows($user_management_list);
 		
 		if ($users > 0) { ?>
 
+
+
+
+
+
+
+
+
+
+<div class="tabs ump">
+  <ul class="tab-links">
+    <li class="focus"><a href="#tab1">Username</a></li>
+    <li><a href="#tab2">Email</a></li>
+  </ul>
+
+<div class="tab-content">
+  <div id="tab1">
+		<div class="user-box">
+			<p>Select a user by their Username</p>
 			<form id="user-list">
-				<select id="mng-usr" class="mng-usr" name="mng-usr">
-					<option value="empty">Select a User</option>
+				<select id="mng-usr" class="transfer-usr" name="transfer-usr">
+					<option value="empty">Select by Username</option>
 				<?php  
 				while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
 
-					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $li['id_user']; ?>"><?= $li['username']; ?> | <?= strtolower($li['email']); ?></option>
+					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $li['id_user']; ?>"><?= $li['username']; ?></option>
 							
-				<?php } ?>
+				<?php } mysqli_data_seek($user_management_list,0); ?>
+
 				</select> <a id="usr-role-go">GO</a>
 			</form>
+		</div>
+
+  </div>
+  <div id="tab2">
+
+		<div class="user-box">
+			<p>Select a user by their email address</p>
+			<form id="user-listz">
+				<select id="mng-usrz" class="transfer-usr" name="transfer-usr">
+					<option value="empty">Select by Email</option>
+				<?php  
+				while ($lii = mysqli_fetch_assoc($user_management_list)) { ?>
+
+					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $lii['id_user']; ?>"><?= strtolower($lii['email']); ?></option>
+							
+				<?php } ?>
+
+				</select> <a id="usr-role-goz">GO</a>
+			</form>
+		</div>
+
+  </div>
+</div><?php /* .tab-content */ ?>
+</div>
+
+
+
+
 
 		<?php } mysqli_free_result($user_management_list); ?>
 
 		<?php } ?>
 	
-	<?php require '_includes/inner_nav.php'; ?>
-	</div>
+	
+	
 
 <?php /* -------------------- SUSPENDED USERS -------------------- */ ?>
 <div class="manage-simple s-a">	

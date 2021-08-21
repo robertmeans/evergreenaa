@@ -87,26 +87,36 @@ $row = transfer_meeting($id);
 
 		<?php if ($role == 1 || $role ==2 || $role == 3) { ?>
 
-		<?php 
+		<?php // dropdown for admin
 		$user_management_list = find_all_users_to_manage($user_id);
 		$users 	= mysqli_num_rows($user_management_list);
 		
 		if ($users > 0) { ?>
 
+<div id="tabs" class="tabs">
+  <ul class="tab-links">
+    <li class="focus"><a href="#tab1">Username</a></li>
+    <li><a href="#tab2">Email</a></li>
+  </ul>
+
+<div class="tab-content">
+  <div id="tab1">
 			<div class="user-box">
+				<p>Select a user to transfer this meeting to:</p>
 				<form id="transfer-form-top">
 					<select id="transfer-usr" class="transfer-usr" name="transfer-usr">
-						<option value="empty">Select a User</option>
+						<option value="empty">Select by Username</option>
 					<?php  
 					while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
 
-						<option value="<?= $li['email']; ?>"><?= $li['username']; ?> | <?= strtolower($li['email']); ?></option>
+						<option value="<?= $li['username'] . ',' . $li['email']; ?>"><?= $li['username']; ?></option>
 								
-					<?php } ?>
+					<?php } mysqli_data_seek($user_management_list,0); ?>
 
 					<input type="hidden" name="current-user" value="<?= $user_id ?>">
 					<input type="hidden" name="current-mtg" value="<?= $id ?>">
 					<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
+					<input type="hidden" id="new-usrnm-top">
 					<input type="hidden" id="new-email-top" name="email">
 
 					</select> <a id="transfer-this-top">GO</a>
@@ -114,9 +124,40 @@ $row = transfer_meeting($id);
 			</div>
 			<div id="hide-on-success">
 				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
-				<hr>
 			</div>
 
+  </div>
+  <div id="tab2">
+
+			<div class="user-box">
+				<p>Select a user to transfer this meeting to:</p>
+				<form id="transfer-form-topz">
+					<select id="transfer-usrz" class="transfer-usr" name="transfer-usr">
+						<option value="empty">Select by Email</option>
+					<?php  
+					while ($lii = mysqli_fetch_assoc($user_management_list)) { ?>
+
+						<option value="<?= $lii['username'] . ',' . $lii['email']; ?>"><?= strtolower($lii['email']); ?></option>
+								
+					<?php } ?>
+
+					<input type="hidden" name="current-user" value="<?= $user_id ?>">
+					<input type="hidden" name="current-mtg" value="<?= $id ?>">
+					<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
+					<input type="hidden" id="new-usrnm-topz">
+					<input type="hidden" id="new-email-topz" name="email">
+
+					</select> <a id="transfer-this-topz">GO</a>
+				</form>
+			</div>
+			<div id="hide-on-successz">
+				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
+			</div>
+
+  </div>
+</div><?php /* .tab-content */ ?>
+</div>
+<hr>
 
 		<?php } mysqli_free_result($user_management_list); ?>
 

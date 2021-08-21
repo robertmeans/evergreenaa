@@ -98,11 +98,11 @@
 						<?php }
 							if ($row['code_c'] != 0) 		{ ?> <li>Closed Meeting</li> 						
 						<?php }
-							if ($row['code_beg'] != 0) 			{ ?> <li>Beginner's Meeting</li> 					
+							if ($row['code_beg'] != 0) 	{ ?> <li>Beginner's Meeting</li> 					
 						<?php }
-							if ($row['code_h'] != 0) 	{ ?> <li>Handicap Accessible</li> 
+							if ($row['code_h'] != 0) 		{ ?> <li>Handicap Accessible</li> 
 						<?php }
-							if ($row['code_d'] != 0) 	{ ?> <li>Discussion</li> 							
+							if ($row['code_d'] != 0) 		{ ?> <li>Discussion</li> 							
 						<?php }
 							if ($row['code_b'] != 0) 		{ ?> <li>Book Study</li> 								
 						<?php }

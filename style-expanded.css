@@ -4089,35 +4089,166 @@ a.manage-edit.spec:hover {
   cursor: default;
 }
 
-.user-box #transfer-form-top {
+.tabs .tab-content {
+  padding: 1em 0.5em 0.5em;
+  background-color: #464646;
+  border: 1px solid #b5b5b5;
+}
+.tabs .tab-content #tab2 {
+  display: none;
+}
+
+.tabs.ump {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1.5em;
+}
+.tabs.ump .user-box {
+  padding: 1em;
+}
+.tabs.ump .user-box p {
+  margin-bottom: 1em;
+}
+.tabs.ump .user-box form select {
+  min-width: 50%;
+}
+
+ul.tab-links {
+  margin-bottom: -1px;
+  list-style: none;
+  display: inline-block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  width: 80%;
+  -ms-flex: 1;
+      flex: 1;
+}
+ul.tab-links li {
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid #b5b5b5;
+}
+ul.tab-links li:first-of-type {
+  margin-right: 0.5em;
+}
+ul.tab-links li.focus {
+  border-bottom: none;
+}
+ul.tab-links a {
+  color: #fff;
+  background-color: #000;
+  transition: all linear 0.15s;
+  text-decoration: none;
+  width: 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top: 1px solid #b5b5b5;
+  border-right: 1px solid #b5b5b5;
+  border-left: 1px solid #b5b5b5;
+  padding: 0.5em 1em;
+  transition: all 0.2s ease;
+}
+ul.tab-links a:hover {
+  background-color: #262626;
+  color: #fff;
+}
+
+li.focus a,
+li.focus a:hover {
+  background-color: #464646;
+  border-top: 1px solid #b5b5b5;
+  border-right: 1px solid #b5b5b5;
+  border-left: 1px solid #b5b5b5;
+  color: #fff;
+  cursor: default;
+}
+
+@media screen and (max-width: 380px) {
+  .tabs.ump .user-box {
+    padding: 1em 0.5em;
+  }
+}
+.user-box #transfer-form-top,
+.user-box #transfer-form-topz {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
   margin-bottom: 1em;
 }
+.user-box #transfer-form-top select,
+.user-box #transfer-form-topz select {
+  min-width: 50%;
+  overflow-x: hidden;
+}
 
+#transfer-form-top,
+#transfer-form-topz,
+#user-list,
+#user-listz {
+  display: -ms-flexbox;
+  display: flex;
+}
 #transfer-form-top .mng-usr,
-#transfer-form-top .transfer-usr {
+#transfer-form-top .transfer-usr,
+#transfer-form-topz .mng-usr,
+#transfer-form-topz .transfer-usr,
+#user-list .mng-usr,
+#user-list .transfer-usr,
+#user-listz .mng-usr,
+#user-listz .transfer-usr {
   font-size: 1em;
   padding: 0.5em;
   outline: none;
   cursor: pointer;
   background-color: #313131;
   color: #fff;
+  -webkit-appearance: none;
 }
 #transfer-form-top .mng-usr option,
-#transfer-form-top .transfer-usr option {
+#transfer-form-top .transfer-usr option,
+#transfer-form-topz .mng-usr option,
+#transfer-form-topz .transfer-usr option,
+#user-list .mng-usr option,
+#user-list .transfer-usr option,
+#user-listz .mng-usr option,
+#user-listz .transfer-usr option {
   cursor: pointer;
   color: #fff;
   background-color: #313131;
 }
 #transfer-form-top .mng-usr option:hover,
-#transfer-form-top .transfer-usr option:hover {
+#transfer-form-top .transfer-usr option:hover,
+#transfer-form-topz .mng-usr option:hover,
+#transfer-form-topz .transfer-usr option:hover,
+#user-list .mng-usr option:hover,
+#user-list .transfer-usr option:hover,
+#user-listz .mng-usr option:hover,
+#user-listz .transfer-usr option:hover {
   cursor: pointer;
 }
 #transfer-form-top #usr-role-go,
-#transfer-form-top #transfer-this-top {
+#transfer-form-top #usr-role-goz,
+#transfer-form-top #transfer-this-top,
+#transfer-form-top #transfer-this-topz,
+#transfer-form-topz #usr-role-go,
+#transfer-form-topz #usr-role-goz,
+#transfer-form-topz #transfer-this-top,
+#transfer-form-topz #transfer-this-topz,
+#user-list #usr-role-go,
+#user-list #usr-role-goz,
+#user-list #transfer-this-top,
+#user-list #transfer-this-topz,
+#user-listz #usr-role-go,
+#user-listz #usr-role-goz,
+#user-listz #transfer-this-top,
+#user-listz #transfer-this-topz {
   cursor: pointer;
   padding: 0.5em 1em;
   margin-left: 1em;
@@ -4127,7 +4258,21 @@ a.manage-edit.spec:hover {
   transition: all 0.2s ease;
 }
 #transfer-form-top #usr-role-go:hover,
-#transfer-form-top #transfer-this-top:hover {
+#transfer-form-top #usr-role-goz:hover,
+#transfer-form-top #transfer-this-top:hover,
+#transfer-form-top #transfer-this-topz:hover,
+#transfer-form-topz #usr-role-go:hover,
+#transfer-form-topz #usr-role-goz:hover,
+#transfer-form-topz #transfer-this-top:hover,
+#transfer-form-topz #transfer-this-topz:hover,
+#user-list #usr-role-go:hover,
+#user-list #usr-role-goz:hover,
+#user-list #transfer-this-top:hover,
+#user-list #transfer-this-topz:hover,
+#user-listz #usr-role-go:hover,
+#user-listz #usr-role-goz:hover,
+#user-listz #transfer-this-top:hover,
+#user-listz #transfer-this-topz:hover {
   background-color: #80eb4b;
   border: 1px solid #fff;
   color: #1c3310;

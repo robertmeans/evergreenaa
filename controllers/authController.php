@@ -53,6 +53,10 @@ if (isset($_POST['submit'])) {
 		$errors['username'] = "Keep Username 16 characters or less";
 	}
 
+	if ((!empty($username)) && (strpos($username,','))) {
+		$errors['username'] = "Sorry, you can't have a comma in your Username.";
+	}
+
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$errors['email'] = "Email is invalid";
 	}

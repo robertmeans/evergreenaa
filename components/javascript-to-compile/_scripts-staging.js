@@ -80,6 +80,12 @@ $(document).ready(function(){
       window.location = thisval;
     }
   })
+  $('#usr-role-goz').click(function() {
+    var thisval = $('#mng-usrz').val();
+    if (thisval != 'empty') {
+      window.location = thisval;
+    }
+  }) 
 });
 
 
@@ -725,24 +731,57 @@ $(document).ready(function() {
   });
 });
 
-// Transfer Meeting
-$(document).ready(function(){
-  $(document).on('click','#transfer-usr', function() {
-    var update = $('#transfer-usr').val();
-    if (update != 'empty') {
-      $('#new-email-top').val(update);
-    }
-  })
+// Transfer Meeting and User Management tabs to separate
+// username from email dropdown lists in order to keep
+// beautiful and work in mobile
+// $( function() {
+//   $( "#tabs" ).tabs();
+// } );
+$(document).ready(function() {
+$('.tab').hide();
+$('.tab.focus').show();
+// just stare at it for a while...
+  $('.tabs .tab-links a').on('click', function(e)  {
+      var currentAttrValue = $(this).attr('href');
+
+      // Show/Hide Tabs
+      $('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
+
+      // Change/remove current tab to focus
+      $(this).parent('li').addClass('focus').siblings().removeClass('focus');
+
+      e.preventDefault();
+  });
 });
 
+// Transfer Meeting
+$(document).ready(function() {
+  $(document).on('click','#transfer-usr', function() {
+    var update = $('#transfer-usr').val().substr($('#transfer-usr').val().indexOf(',') + 1);
+    var updateun = $('#transfer-usr').val().substr(0, $('#transfer-usr').val().indexOf(','));
+    if (update != 'empty') {
+      $('#new-email-top').val(update);
+      $('#new-usrnm-top').val(updateun);
+    }
+  })
 
+  $(document).on('click','#transfer-usrz', function() {
+    var update = $('#transfer-usrz').val().substr($('#transfer-usrz').val().indexOf(',') + 1);
+    var updateun = $('#transfer-usrz').val().substr(0, $('#transfer-usrz').val().indexOf(','));
+    if (update != 'empty') {
+      $('#new-email-topz').val(update);
+      $('#new-usrnm-topz').val(updateun);
+    }
+  })  
+});
 
 
 // transfer top form for admin use only
 $(document).ready(function() {
-  //$('#emh-btn').click(function() {
+  // selected by username
   $(document).on('click','#transfer-this-top', function() {
 
+    var new_username = $('#new-usrnm-top').val();
     var new_host = $('#new-email-top').val();
 
     $.ajax({
@@ -759,7 +798,8 @@ $(document).ready(function() {
           console.log(response);
           if(response['signal'] == 'ok') {
             $('#trans-h2').html('Meeting Transferred');
-            $('#current-host').html('New Host: ' + new_host);
+            $('#current-host').html('New Host: ' + new_username + ' &bullet; ' + new_host);
+            $('#tabs').html('');
             $('#transfer-form').html('');
             $('#hide-on-success').html('');
             $('#transfer-form-top').html('');
@@ -778,6 +818,55 @@ $(document).ready(function() {
       }
     })
   });
+
+
+
+
+
+  // selected by email
+  $(document).on('click','#transfer-this-topz', function() {
+
+    var new_username = $('#new-usrnm-topz').val();
+    var new_host = $('#new-email-topz').val();
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-transfer-meeting.php",
+      type: "POST",
+      data: $('#transfer-form-topz').serialize(),
+      beforeSend: function(xhr) {
+        $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#trans-h2').html('Meeting Transferred');
+            $('#current-host').html('New Host: ' + new_username + ' &bullet; ' + new_host);
+            $('#tabs').html('');
+            $('#transfer-form').html('');
+            $('#hide-on-success').html('');
+            $('#transfer-form-top').html('');
+            $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#th-btn').html('');
+          } else {
+            $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#trans-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+
+
+
+
 });
 
 $(document).ready(function() {
@@ -801,6 +890,7 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
             $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_host);
+            $('#tabs').html('');
             $('#transfer-form').html('');
             $('#transfer-form-top').html('');
             $('#hide-on-success').html('');
@@ -909,11 +999,13 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == '86') {
+            $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - All meetings set to Draft');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg downgraded">You done smoked that cat right up outta here!</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '85') {
+            $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - Any meetings remain active');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg downgraded">User is suspended but their meetings remain.</span>');
@@ -952,16 +1044,19 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == '2') {
+            $('#role-h2').html('User Managed');
             $('#current-role').html('Level II Administrator');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN Level II</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '3') {
+            $('#role-h2').html('User Managed');
             $('#current-role').html('Top Tier Administrator');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN TOP TIER</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '0') {
+            $('#role-h2').html('User Managed');
             $('#current-role').html('Member');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to Member successfully</span>');

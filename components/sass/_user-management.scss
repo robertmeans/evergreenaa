@@ -91,32 +91,146 @@
 	margin-top: 0;
 	cursor: default;
 }
-.user-box #transfer-form-top {
+
+
+
+
+.tabs { 
+	.tab-content {
+		padding: 1em 0.5em 0.5em;
+		background-color: #464646;
+		border: 1px solid #b5b5b5;
+		#tab2 {
+			display: none;
+		}
+	}
+}
+// tabs user_management.php
+.tabs.ump {
+	width: 100%;
+	max-width: 900px;
+	margin-bottom: 1.5em;
+	.user-box {
+		padding: 1em;
+		p {
+			margin-bottom: 1em;
+		}
+		form select {
+			min-width: 50%;
+		}
+	}
+	// .user-box p {
+	// 	margin: 1em 0 1em 1em;
+	// }
+}
+ul.tab-links {
+	margin-bottom: -1px;
+	list-style: none;
+	display: inline-block;
+	display: flex;
+	justify-content: flex-start;
+	width: 80%;
+	flex: 1;
+	li {
+		list-style: none;
+		display: flex;
+		width: 100%;
+		margin: 0;
+		// margin-bottom: -1px;
+		border-bottom: 1px solid transparent;
+		border-bottom: 1px solid #b5b5b5;
+		&:first-of-type {
+			margin-right: 0.5em;
+		}
+	}
+	li.focus {
+		border-bottom: none;
+	}
+	a {
+	  color: #fff;
+	  background-color: #000;
+	  transition: all linear 0.15s;
+	  text-decoration: none;
+	  width: 100%;
+	  border-top-right-radius: 5px;
+	  border-top-left-radius: 5px;
+	  border-top: 1px solid #b5b5b5;
+	  border-right: 1px solid #b5b5b5;
+	  border-left: 1px solid #b5b5b5;
+	  padding: 0.5em 1em;
+	  transition: all 0.2s ease;
+	  &:hover {
+	  	background-color: #262626;
+	  	color: #fff;
+	  }
+	}
+} 
+li.focus a, 
+li.focus a:hover {
+    background-color: #464646;
+    border-top: 1px solid #b5b5b5;
+	  border-right: 1px solid #b5b5b5;
+	  border-left: 1px solid #b5b5b5;
+    color: #fff;
+    cursor: default;
+}
+
+@media screen and (max-width: 380px) {
+	.tabs.ump .user-box {
+		padding: 1em 0.5em;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.user-box #transfer-form-top,
+.user-box #transfer-form-topz {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 1em;
+	select {
+		min-width: 50%;
+		overflow-x: hidden;
+	}
 }
-#transfer-form-top {
+#transfer-form-top,
+#transfer-form-topz,
+#user-list,
+#user-listz {
+	display: flex;
 	.mng-usr,
-	.transfer-usr
-	 {
+	.transfer-usr {
 		font-size: 1em;
 		padding: 0.5em;
 		outline: none;
 		cursor: pointer;
 		background-color: #313131;
 		color: #fff;
+		-webkit-appearance: none;
 		option {
 			cursor: pointer;
 			color: #fff;
 			background-color: #313131;
+			// -webkit-appearance: none;
 			&:hover {
 				cursor: pointer;
 			}
 		}
 	}
 	#usr-role-go,
-	#transfer-this-top {
+	#usr-role-goz,
+	#transfer-this-top,
+	#transfer-this-topz {
 		cursor: pointer;
 		padding: 0.5em 1em;
 		margin-left: 1em;
