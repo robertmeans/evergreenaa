@@ -4194,6 +4194,8 @@ li.focus a:hover {
 #user-listz {
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-align: center;
+      align-items: center;
 }
 #transfer-form-top .mng-usr,
 #transfer-form-top .transfer-usr,
