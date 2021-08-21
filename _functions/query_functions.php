@@ -451,7 +451,7 @@ function find_all_users() {
   global $db;
 
   $sql  = "SELECT * FROM users ";
-  $sql .= "WHERE id_user != 1";  
+  $sql .= "WHERE id_user != 1 ";  
   $sql .= "AND id_user != 13 ";
   $sql .= "ORDER BY LOWER(username) ASC";
   // echo $sql;

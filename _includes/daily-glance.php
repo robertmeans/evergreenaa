@@ -45,7 +45,7 @@
 							</div>
 		<?php } 
 
-			if (($row['id_user'] == $_SESSION['id']) || $_SESSION['id'] == "1") { 
+			if ($row['id_user'] == $_SESSION['id']) { 
 
 				?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
@@ -100,7 +100,7 @@
 							</div>
 		<?php } 
 
-			if (($row['id_user'] == $_SESSION['id']) || $_SESSION['id'] == "1") { 
+			if ($row['id_user'] == $_SESSION['id']) { 
 
 				?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 

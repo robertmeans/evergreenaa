@@ -62,7 +62,7 @@ $result = find_all_users();
 <div class="manage-simple-email">
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
-		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
+		<input type="hidden" name="email_addresses" value="<?= $email_addresses; ?>">
 		
 		<label>Subject</label>
 		<input type="text" name="msgsubject" value="<?= $msgsubject; ?>">
@@ -115,12 +115,17 @@ $result = find_all_users();
 </div>
 
 <div class="manage-simple-email">
-<?php
-echo "<div style=\"width:100%;height:8em;margin:0 auto 1em;overflow-y:scroll;padding:.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . $email_addresses . "</div>";
-?>
+<?php /*
+echo "<div style=\"width:100%;height:8em;margin:0 auto 1em;overflow-y:scroll;padding:.5em;border:1px solid #fff;background-color:#fefefe;color:#313131;\">" . strtolower($email_addresses) . "</div>";
+*/ ?>
 
 
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
+
+		<div class="bccem">
+			<input id="pickitup" type="hidden" value="<?= $email_addresses; ?>" class="day-values input-copy">
+			<a data-role="em" data-id="pickitup"><i class="far fa-copy"></i> Copy Addresses</a>
+		</div>
 
 		<input type="hidden" name="email_addresses" value="<?= $email_addresses ?>">
 		

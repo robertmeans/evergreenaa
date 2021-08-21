@@ -168,6 +168,27 @@ form.admin-email-form {
 	max-width: 560px;
 	font-size: 1em;
 	line-height: 1.5em;
+	.bccem {
+		width: 100%;
+		text-align: right;
+		display: flex;
+		justify-content: flex-end;
+		a {
+			cursor: pointer;
+			text-align: center;
+			padding: 0.5em 1em;
+			width: 100%;
+			max-width: 250px;
+			border-radius: 3px;
+			background-color: rgba(255,255,255,0.2);
+			color: #fff;
+			border: 1px solid #fff;
+			transition: all 0.2s ease;
+			&:hover {
+				background-color: rgba(0,0,0,0.8);
+			}
+		}
+	}
 	.greeting-string {
 		display: inline-block;
 		margin-right: 1em;

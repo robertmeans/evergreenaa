@@ -45,7 +45,7 @@ $row = transfer_meeting($id);
 	</div>
 	<?php if ((($row['id_user'] == $_SESSION['id']) && ($row['id_mtg'] == $id)) || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 
-	<h2 class="trans-h2">Transfer Meeting</h2>
+	<h2 id="trans-h2" class="trans-h2">Transfer Meeting</h2>
 	<div id="transfer-host">
 		<p id="current-host" class="current-role">Host: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></p>
 		<p><?= date('g:i A', strtotime($row['meet_time'])) . ' - '; ?>

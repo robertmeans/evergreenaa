@@ -38,7 +38,7 @@ if (is_post_request()) {
 				  }
 				} else {
 					$signal = 'bad';
-					$msg = 'This is already one of your meetings.';
+					$msg = 'You\'re trying to transfer this to the current owner.';
 				}
 
 			} else {

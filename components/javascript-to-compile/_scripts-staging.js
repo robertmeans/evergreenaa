@@ -86,7 +86,7 @@ $(document).ready(function(){
 // copy to clipboard ID: data-role=ci
 $(document).ready(function() {
 
-  // copy to clipboard password: data-role=cp
+  // clipboard for ID & BCC email addresses
   $(document).on('click','a[data-role=ic]',function() {
     var id   = $(this).data('id');
     var text = document.getElementById(id).value;
@@ -111,7 +111,7 @@ $(document).ready(function() {
  
   });
 
-  // copy to clipboard password: data-role=cp
+  // clipboard for password
   $(document).on('click','a[data-role=pc]',function() {
     var id   = $(this).data('id');
     var text = document.getElementById(id).value;
@@ -135,6 +135,32 @@ $(document).ready(function() {
     }, 1000);
  
   });
+
+  // clipboard for BCC email addresses
+  $(document).on('click','a[data-role=em]',function() {
+    var id   = $(this).data('id');
+    var text = document.getElementById(id).value;
+
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = text;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+
+    var originalIcon = "<i class=\"far fa-copy\"></i> Copy Addresses</a>";
+    var changeBack  = $(this);
+
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> Addresses Copied!");
+    $(this).addClass('copied');
+
+    setTimeout(function() {
+      changeBack.removeClass('copied');
+      changeBack.html(originalIcon);
+    }, 1000);
+ 
+  });
+
 
 });
 
@@ -732,9 +758,11 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
+            $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_host);
             $('#transfer-form').html('');
             $('#hide-on-success').html('');
+            $('#transfer-form-top').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
             $('#th-btn').html('');
           } else {
@@ -771,7 +799,9 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
+            $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_host);
+            $('#transfer-form').html('');
             $('#transfer-form-top').html('');
             $('#hide-on-success').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');

@@ -2314,6 +2314,29 @@ form.admin-email-form {
   font-size: 1em;
   line-height: 1.5em;
 }
+form.admin-email-form .bccem {
+  width: 100%;
+  text-align: right;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+form.admin-email-form .bccem a {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5em 1em;
+  width: 100%;
+  max-width: 250px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid #fff;
+  transition: all 0.2s ease;
+}
+form.admin-email-form .bccem a:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 form.admin-email-form .greeting-string {
   display: inline-block;
   margin-right: 1em;
