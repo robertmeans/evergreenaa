@@ -1251,6 +1251,7 @@ footer button#confirm:active, footer button#confirm:focus {
 }
 footer button.enable-submit {
   display: none;
+  -webkit-appearance: none;
 }
 footer .g-recaptcha {
   margin-top: 10px;
@@ -1264,6 +1265,7 @@ footer button#send {
   background: #2cb20c;
   color: #fff;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 footer button#send:hover {
   background: #278111;
@@ -2388,6 +2390,7 @@ form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-r
   -ms-flex: 1;
       flex: 1;
   text-align: center;
+  -webkit-appearance: none;
   transition: all 0.2s ease;
 }
 form.admin-email-form > .update-rt > a.cancel:hover, form.admin-email-form > .update-rt > input[type="submit"]:hover, form.admin-email-form > .update-rt > input[type="submit"].revise-email:hover {
@@ -2398,6 +2401,7 @@ form.admin-email-form > .update-rt > a.cancel {
 }
 form.admin-email-form > .update-rt > input[type="submit"].submit-email {
   background-color: #3cba04;
+  -webkit-appearance: none;
 }
 form.admin-email-form > .update-rt > input[type="submit"].submit-email:hover {
   background-color: rgba(60, 186, 4, 0.2);
@@ -3235,6 +3239,7 @@ form#manage-mtg label.pdf-label {
       flex: 1;
   text-align: center;
   margin-top: 1.5em;
+  -webkit-appearance: none;
   transition: all 0.2s ease;
 }
 .btm-notes a.cancel {
@@ -3685,6 +3690,7 @@ body.noscrollz {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin: 1em auto;
+  -webkit-appearance: none;
 }
 #theModal .modal-body form.emh-form .submit-links input.send {
   width: 100%;
@@ -4278,6 +4284,20 @@ li.focus a:hover {
   background-color: #80eb4b;
   border: 1px solid #fff;
   color: #1c3310;
+}
+
+#flash-email-top,
+#flash-username-top,
+#um-email-top,
+#um-un-btm {
+  color: #ffc2c2;
+  letter-spacing: 1px;
+}
+
+#um-email-top,
+#um-un-btm {
+  padding-left: 1em;
+  padding-bottom: 1em;
 }
 
 @media screen and (max-width: 600px) {

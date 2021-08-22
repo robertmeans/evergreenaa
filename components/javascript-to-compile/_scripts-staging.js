@@ -75,7 +75,7 @@ $(".top-nav").click(function(e) {
 
 $(document).ready(function(){
   $('#usr-role-go').click(function() {
-    var thisval = $('#mng-usr').val();
+    var thisval = $('#mng-usr').val().substr(0, $('#mng-usr').val().indexOf(','));
     if (thisval != 'empty') {
       window.location = thisval;
     }
@@ -754,25 +754,46 @@ $('.tab.focus').show();
   });
 });
 
-// Transfer Meeting
+// Transfer Meeting & User Management stuff
 $(document).ready(function() {
-  $(document).on('click','#transfer-usr', function() {
+  $(document).on('change','#transfer-usr', function() {
     var update = $('#transfer-usr').val().substr($('#transfer-usr').val().indexOf(',') + 1);
     var updateun = $('#transfer-usr').val().substr(0, $('#transfer-usr').val().indexOf(','));
+    var updateft = '<p>Email: ' +  $('#transfer-usr').val().substr($('#transfer-usr').val().indexOf(',') + 1) + '</p>';
     if (update != 'empty') {
+      $('#flash-email-top').html(updateft);
       $('#new-email-top').val(update);
       $('#new-usrnm-top').val(updateun);
     }
   })
 
-  $(document).on('click','#transfer-usrz', function() {
+  $(document).on('change','#transfer-usrz', function() {
     var update = $('#transfer-usrz').val().substr($('#transfer-usrz').val().indexOf(',') + 1);
     var updateun = $('#transfer-usrz').val().substr(0, $('#transfer-usrz').val().indexOf(','));
+    var updateut = '<p>Username: ' +  $('#transfer-usrz').val().substr(0, $('#transfer-usrz').val().indexOf(',')) + '</p>';
     if (update != 'empty') {
+      $('#flash-username-top').html(updateut);
       $('#new-email-topz').val(update);
       $('#new-usrnm-topz').val(updateun);
     }
   })  
+
+  $(document).on('change','#mng-usr', function() {
+    var update = $('#mng-usr').val().substr($('#mng-usr').val().indexOf(',') + 1);
+    var updateem = '<p>Email: ' +  $('#mng-usr').val().substr($('#mng-usr').val().indexOf(',') + 1) + '</p>';
+    if (update != 'empty') {
+      $('#um-email-top').html(updateem);
+    }
+  })
+
+  $(document).on('change','#mng-usrz', function() {
+    var update = $('#mng-usrz').val().substr($('#mng-usrz').val().indexOf(',') + 1);
+    var updateun = '<p>Username: ' +  $('#mng-usrz').val().substr($('#mng-usrz').val().indexOf(',') + 1) + '</p>';
+    if (update != 'empty') {
+      $('#um-un-btm').html(updateun);
+    }
+  })  
+
 });
 
 

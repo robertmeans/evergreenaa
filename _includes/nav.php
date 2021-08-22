@@ -80,17 +80,17 @@
 		if (isset($_SESSION['admin']) && $layout_context != 'login-page') {
 		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
-				Your role: <?php if ($_SESSION['admin'] == 1) { ?>
-					One and only Bob
+				<?php if ($_SESSION['admin'] == 1) { ?>
+					The Bob
 				<?php } else if ($_SESSION['admin'] == 2) { ?>
-					Tier II Admin
+					<?= $_SESSION['username'] . ': '; ?>Tier II Admin
 				<?php } else if ($_SESSION['admin'] == 3) { ?>
-					Top Tier Admin
+					<?= $_SESSION['username'] . ': '; ?>Top Tier Admin
 				<?php } ?>
 			</div>
 		<?php } else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) { ?>
 			<div class="sus-user">
-				Suspended Member
+				<?= $_SESSION['username'] . ': '; ?>Suspended Account
 			</div>
 		<?php } else { ?>
 			<div class="member-role">

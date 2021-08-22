@@ -246,6 +246,18 @@ li.focus a:hover {
 		}
 	}
 }
+#flash-email-top,
+#flash-username-top,
+#um-email-top,
+#um-un-btm {
+	color: #ffc2c2;
+	letter-spacing: 1px;
+}
+#um-email-top,
+#um-un-btm {
+	padding-left: 1em;
+	padding-bottom: 1em;
+}
 
 @media screen and (max-width: 600px) {
 	.manage-glance-user {

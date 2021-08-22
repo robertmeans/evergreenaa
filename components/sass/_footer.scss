@@ -234,6 +234,7 @@ footer {
 
   button.enable-submit {
     display: none;
+    -webkit-appearance: none;
   }
   .g-recaptcha {
     margin-top: 10px;
@@ -250,6 +251,7 @@ footer {
     background: #2cb20c;
     color: #fff;
     cursor: pointer;
+    -webkit-appearance: none;
     &:hover {
       background: #278111;
       color: #fff;

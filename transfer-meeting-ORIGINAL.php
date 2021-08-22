@@ -89,8 +89,7 @@ $row = transfer_meeting($id);
 
 		<?php // dropdown for admin
 		$user_management_list = find_all_users_to_manage($user_id);
-		$users = mysqli_num_rows($user_management_list);
-		$results = mysqli_fetch_all($user_management_list, MYSQLI_ASSOC);
+		$users 	= mysqli_num_rows($user_management_list);
 		
 		if ($users > 0) { ?>
 
@@ -99,6 +98,7 @@ $row = transfer_meeting($id);
     <li class="focus"><a href="#tab1">Username</a></li>
     <li><a href="#tab2">Email</a></li>
   </ul>
+
 <div class="tab-content">
   <div id="tab1">
 			<div class="user-box">
@@ -107,13 +107,12 @@ $row = transfer_meeting($id);
 					<select id="transfer-usr" class="transfer-usr" name="transfer-usr">
 						<option value="empty">Select by Username</option>
 					<?php  
-					foreach ($results as $li) {
-						$user = ($li['id_user']);
-						$username = ($li['username']);
-						$email = ($li['email']);
-						?>
-						<option value="<?= $username . ',' . $email; ?>"><?= $username ?></option>		
-					<?php }   ?>
+					while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
+
+						<option value="<?= $li['username'] . ',' . $li['email']; ?>"><?= $li['username']; ?></option>
+								
+					<?php } mysqli_data_seek($user_management_list,0); ?>
+
 					<input type="hidden" name="current-user" value="<?= $user_id ?>">
 					<input type="hidden" name="current-mtg" value="<?= $id ?>">
 					<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
@@ -127,60 +126,68 @@ $row = transfer_meeting($id);
 				<div id="flash-email-top"></div>
 				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
 			</div>
+
   </div>
+  <div id="tab2">
 
-<div id="tab2">
-	<div class="user-box">
-		<p>Select a user to transfer this meeting to:</p>
-		<form id="transfer-form-topz">
-			<select id="transfer-usrz" class="transfer-usr" name="transfer-usr">
-				<option value="empty">Select by Email</option>
+			<div class="user-box">
+				<p>Select a user to transfer this meeting to:</p>
+				<form id="transfer-form-topz">
+					<select id="transfer-usrz" class="transfer-usr" name="transfer-usr">
+						<option value="empty">Select by Email</option>
+					<?php 
 
-				<?php  
-				function cmp($results, $key) {
-					foreach($results as $k=>$v) {
-						$b[] = strtolower($v[$key]);
-					}
-					asort($b);
-					foreach ($b as $k=>$v) {
-						$c[] = $results[$k];
-					}
-					return $c;
-				}
-				$sorted = cmp($results, 'email');
-				?>
-				<?php /* <pre><?php print_r($sorted); ?></pre> */ ?>
-				<?php 
 
-				foreach ($sorted as $li) {
-					$user = ($li['id_user']);
-					$username = ($li['username']);
-					$email = ($li['email']); 
-					?>
-					<option value="<?= $username . ',' . $email; ?>"><?= strtolower($email) ?></option>		
-				<?php } ?>
 
-			<input type="hidden" name="current-user" value="<?= $user_id ?>">
-			<input type="hidden" name="current-mtg" value="<?= $id ?>">
-			<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
-			<input type="hidden" id="new-usrnm-topz">
-			<input type="hidden" id="new-email-topz" name="email">
 
-			</select> <a id="transfer-this-topz">GO</a>
-		</form>
-	</div>
-	<div id="hide-on-successz">
-		<div id="flash-username-top"></div>
-		<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
-	</div>
 
-</div>
 
+
+
+					// need to do something fancy here to get emails sorted asc
+					// on 2nd pass of fetch_assoc()
+					// $liz = mysqli_fetch_assoc($user_management_list);
+					// $lii = asort($liz, 1);
+
+					while ($lii = mysqli_fetch_assoc($user_management_list)) { 
+
+
+						?>
+
+						<option value="<?= $lii['username'] . ',' . $lii['email']; ?>"><?= strtolower($lii['email']); ?></option>
+								
+					<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+					<input type="hidden" name="current-user" value="<?= $user_id ?>">
+					<input type="hidden" name="current-mtg" value="<?= $id ?>">
+					<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
+					<input type="hidden" id="new-usrnm-topz">
+					<input type="hidden" id="new-email-topz" name="email">
+
+					</select> <a id="transfer-this-topz">GO</a>
+				</form>
+			</div>
+			<div id="hide-on-successz">
+				<div id="flash-username-top"></div>
+				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
+			</div>
+
+  </div>
 </div><?php /* .tab-content */ ?>
 </div>
 <hr>
 
-		<?php  }  ?>
+		<?php } mysqli_free_result($user_management_list); ?>
 
 		<?php } ?>
 

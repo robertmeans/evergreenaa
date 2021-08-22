@@ -465,7 +465,7 @@ function find_all_users() {
 function find_all_users_to_manage($user_id) {
   global $db;
 
-  $sql  = "SELECT * FROM users ";
+  $sql  = "SELECT id_user, username, email  FROM users ";
   $sql .= "WHERE id_user != 1 ";
   $sql .= "AND id_user != 13 ";
   $sql .= "AND id_user != '" . $user_id . "' ";

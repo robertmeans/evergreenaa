@@ -120,6 +120,7 @@ body.noscrollz {
       display: flex;
       justify-content: space-around;
       margin: 1em auto;
+      -webkit-appearance: none;
       input.send {
         width: 100%;
         border: 1px solid green;

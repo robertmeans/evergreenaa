@@ -51,18 +51,10 @@ $role = $_SESSION['admin'];
 
 		<?php // dropdown list of users for admin
 		$user_management_list = find_all_users_to_manage($user_id);
-		$users 	= mysqli_num_rows($user_management_list);
+		$users = mysqli_num_rows($user_management_list);
+		$results = mysqli_fetch_all($user_management_list, MYSQLI_ASSOC);
 		
 		if ($users > 0) { ?>
-
-
-
-
-
-
-
-
-
 
 <div class="tabs ump">
   <ul class="tab-links">
@@ -77,17 +69,19 @@ $role = $_SESSION['admin'];
 			<form id="user-list">
 				<select id="mng-usr" class="transfer-usr" name="transfer-usr">
 					<option value="empty">Select by Username</option>
-				<?php  
-				while ($li = mysqli_fetch_assoc($user_management_list)) { ?>
-
-					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $li['id_user']; ?>"><?= $li['username']; ?></option>
-							
-				<?php } mysqli_data_seek($user_management_list,0); ?>
-
+					<?php  
+					foreach ($results as $li) {
+						$user = ($li['id_user']);
+						$username = ($li['username']);
+						$email = ($li['email']);
+						?>
+						<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $user . ',' . $email; ?>"><?= $username; ?></option>		
+					<?php }   ?>
+					<input type="hidden" id="uem">
 				</select> <a id="usr-role-go">GO</a>
 			</form>
 		</div>
-
+		<div id="um-email-top"></div>
   </div>
   <div id="tab2">
 
@@ -96,17 +90,33 @@ $role = $_SESSION['admin'];
 			<form id="user-listz">
 				<select id="mng-usrz" class="transfer-usr" name="transfer-usr">
 					<option value="empty">Select by Email</option>
-				<?php  
-				while ($lii = mysqli_fetch_assoc($user_management_list)) { ?>
+					<?php  
+					function cmp($results, $key) {
+						foreach($results as $k=>$v) {
+							$b[] = strtolower($v[$key]);
+						}
+						asort($b);
+						foreach ($b as $k=>$v) {
+							$c[] = $results[$k];
+						}
+						return $c;
+					}
+					$sorted = cmp($results, 'email');
+					?>
+					<?php /* <pre><?php print_r($sorted); ?></pre> */ ?>
+					<?php 
 
-					<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $lii['id_user']; ?>"><?= strtolower($lii['email']); ?></option>
-							
-				<?php } ?>
-
+					foreach ($sorted as $li) {
+						$user = ($li['id_user']);
+						$username = ($li['username']);
+						$email = ($li['email']); 
+						?>
+						<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $user . ',' . $username; ?>"><?= strtolower($email); ?></option>		
+					<?php } ?>
 				</select> <a id="usr-role-goz">GO</a>
 			</form>
 		</div>
-
+		<div id="um-un-btm"></div>
   </div>
 </div><?php /* .tab-content */ ?>
 </div>
