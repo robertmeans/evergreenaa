@@ -21,7 +21,7 @@ footer {
     line-height: 1.5em;
     text-align: justify;
   } 
-  button#toggle-contact-form {
+  #toggle-contact-form {
     background: none;
     border: none;
     font-size: 1em;
@@ -32,6 +32,8 @@ footer {
     border-radius: 5px;
     background-color: inherit;
     border: 1px solid transparent;
+    width: 96%;
+    max-width: 600px;
     transition: all 0.3s ease;
     margin: 0 auto;
       &:hover {

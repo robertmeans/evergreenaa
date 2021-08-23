@@ -123,7 +123,7 @@ echo "<div style=\"width:100%;height:8em;margin:0 auto 1em;overflow-y:scroll;pad
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
 		<div class="bccem">
-			<input id="pickitup" type="hidden" value="<?= $email_addresses; ?>" class="day-values input-copy">
+			<input id="pickitup" type="hidden" value="<?= strtolower($email_addresses); ?>" class="day-values input-copy">
 			<a data-role="em" data-id="pickitup"><i class="far fa-copy"></i> Copy Addresses</a>
 		</div>
 

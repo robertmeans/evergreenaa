@@ -1052,7 +1052,7 @@ footer p.form-note {
   line-height: 1.5em;
   text-align: justify;
 }
-footer button#toggle-contact-form {
+footer #toggle-contact-form {
   background: none;
   border: none;
   font-size: 1em;
@@ -1062,27 +1062,29 @@ footer button#toggle-contact-form {
   border-radius: 5px;
   background-color: inherit;
   border: 1px solid transparent;
+  width: 96%;
+  max-width: 600px;
   transition: all 0.3s ease;
   margin: 0 auto;
 }
-footer button#toggle-contact-form:hover {
+footer #toggle-contact-form:hover {
   text-decoration: none;
   cursor: pointer;
   background-color: #313131;
   border: 1px solid #000;
 }
-footer button#toggle-contact-form:focus {
+footer #toggle-contact-form:focus {
   outline: 0;
 }
-footer button#toggle-contact-form.active {
+footer #toggle-contact-form.active {
   border-bottom: 1px dotted #808080;
   text-align: center;
 }
-footer button#toggle-contact-form .close-left {
+footer #toggle-contact-form .close-left {
   padding-left: 70px;
   padding-right: 30px;
 }
-footer button#toggle-contact-form .close-right {
+footer #toggle-contact-form .close-right {
   padding-left: 30px;
   padding-right: 70px;
 }
@@ -3296,7 +3298,7 @@ form#manage-mtg label.pdf-label {
   width: 100%;
   padding: 1em;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   margin: 2px 0;
   transition: all 0.2s ease;
@@ -3735,6 +3737,17 @@ span.sending-msg {
   margin-top: 0.5em;
   display: block;
   width: 100%;
+}
+
+span.sending-msg.whoops {
+  cursor: pointer;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+span.sending-msg.whoops:hover {
+  background-color: #313131;
 }
 
 span.sending-msg.downgraded {

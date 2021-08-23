@@ -29,7 +29,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($sunday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($sunday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -60,7 +64,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($monday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($monday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -90,7 +98,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($tuesday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($tuesday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -119,7 +131,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($wednesday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($wednesday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -148,7 +164,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($thursday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($thursday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -177,7 +197,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($friday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($friday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {
@@ -206,7 +230,11 @@ $user_id = $_SESSION['id'];
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			if ($user_id == 1) {
 				$subject_set = get_all_public_and_private_meetings_for_odin($saturday);
+			} else {
+				$subject_set = get_all_public_and_private_meetings_for_today($saturday, $user_id); 
+			}
 				$result 	= mysqli_num_rows($subject_set);
 
 				if ($result > 0) {

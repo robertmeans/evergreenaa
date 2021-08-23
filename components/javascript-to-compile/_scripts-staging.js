@@ -522,9 +522,11 @@ $(document).ready(function(){
       $(this).toggleClass("active").next().slideToggle(600);
 
       if ($.trim($(this).text()) === 'close') {
-          $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+         // $(this).html('<i class="fa fa-star" aria-hidden="true"></i><span class="tiny-mobile">&nbsp;&nbsp;</span> comments | questions | suggestions <span class="tiny-mobile">&nbsp;&nbsp;</span><i class="fa fa-star" aria-hidden="true"></i>');
+         $(this).html('comments | questions | suggestions');
       } else {
-          $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+          // $(this).html('<i class="fa fa-times-circle close-left" aria-hidden="true"></i> close <i class="fa fa-times-circle close-right" aria-hidden="true"></i>');
+          $(this).html('close');
       }
     return false;
   })
@@ -794,6 +796,9 @@ $(document).ready(function() {
     }
   })  
 
+  $('#whoops').click(function() {
+      location.reload();
+  })
 });
 
 
@@ -825,6 +830,7 @@ $(document).ready(function() {
             $('#hide-on-success').html('');
             $('#transfer-form-top').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {
             $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -870,6 +876,7 @@ $(document).ready(function() {
             $('#hide-on-success').html('');
             $('#transfer-form-top').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {
             $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -916,6 +923,7 @@ $(document).ready(function() {
             $('#transfer-form-top').html('');
             $('#hide-on-success').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {
             $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -1024,12 +1032,14 @@ $(document).ready(function() {
             $('#current-role').html('Suspended - All meetings set to Draft');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg downgraded">You done smoked that cat right up outta here!</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '85') {
             $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - Any meetings remain active');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg downgraded">User is suspended but their meetings remain.</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {
             $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -1069,18 +1079,21 @@ $(document).ready(function() {
             $('#current-role').html('Level II Administrator');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN Level II</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '3') {
             $('#role-h2').html('User Managed');
             $('#current-role').html('Top Tier Administrator');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN TOP TIER</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else if(response['signal'] == '0') {
             $('#role-h2').html('User Managed');
             $('#current-role').html('Member');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg">User priviliges set to Member successfully</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {
             $('#sus-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');

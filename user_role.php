@@ -161,9 +161,8 @@ $row = get_user_by_id($id);
 		</form>
 <?php } ?>		
 
-		<div id="sus-msg">
-			
-		</div>
+		<div id="sus-msg"></div>
+		<div id="whoops"></div>
 
 		<div id="th-btn">
 			<?php if ($id == 1) { // me ?>

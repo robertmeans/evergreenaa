@@ -196,6 +196,7 @@ $row = transfer_meeting($id);
 		<div id="trans-msg">
 			<p class="host-disclaimer">Note: You are transfering this meeting to someone else. It will no longer be in your account but will jump up and git on over into their account right here directly. There's no going back. It's adios amigos. Make sure you've said your goodbyes and are secure in the decisions you're making here today.</p>
 		</div>
+		<div id="whoops"></div>
 		<div id="th-btn">
 			<a id="transfer-this">TRANSFER</a>
 		</div>

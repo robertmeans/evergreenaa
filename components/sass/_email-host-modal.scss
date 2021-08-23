@@ -170,6 +170,16 @@ span.sending-msg {
   display: block;
   width: 100%;  
 }
+span.sending-msg.whoops {
+  cursor: pointer;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: #313131;
+  }
+}
 span.sending-msg.downgraded {
   background-color: #841616;
   color: #fff;
