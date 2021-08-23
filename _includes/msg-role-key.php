@@ -19,7 +19,7 @@
 
 			<p>You can do anything you want here while in Admin Mode including:</p>
 			<ul>
-				<li>Assign or revoke Top Tier Admin priviliges</li>
+				<li>Assign or revoke Top Tier Admin privileges</li>
 				<li>Suspend or unsuspend anyone</li>
 				<li>See other's private meetings + edit, transfer or delete them</li>
 				<li>Edit, Transfer or Delete any meeting anywhere</li>
@@ -35,13 +35,13 @@
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Admin Top Tier Priviliges</h1>
+			<h1>Admin Top Tier privileges</h1>
 			<p>While in Admin Mode you can:</p>
 			<ul>
 				<li>Edit any meeting (including Tier II Admin)</li>
 				<li>Transfer any meeting (including Tier II Admin)</li>
 				<li>Delete any meeting (including Tier II Admin)</li>
-				<li>Assign or revoke Admin II priviliges</li>
+				<li>Assign or revoke Admin II privileges</li>
 				<li>Suspend or unsuspend users</li>
 				<li>See username + email address of meeting host when viewing a meeting on the homepage</li>
 			</ul>
@@ -54,7 +54,7 @@
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Admin Tier II Priviliges</h1>
+			<h1>Admin Tier II privileges</h1>
 			<p>While in Admin Mode you can:</p>
 			<ul>
 				<li>Edit any meeting (except other Admins) - You can change other meetings to Draft or Private thereby effectively removing them from view but you cannot delete any meetings other than your own.</li>
@@ -70,7 +70,7 @@
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Member Priviliges</h1>
+			<h1>Member privileges</h1>
 			<ul>
 				<li>Add meetings</li>
 				<li>Edit your meetings</li>
