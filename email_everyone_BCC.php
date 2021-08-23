@@ -52,6 +52,7 @@ $result = find_all_users();
 <body>	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
+<?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 
@@ -106,6 +107,7 @@ $result = find_all_users();
 <body>	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
+<?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
 

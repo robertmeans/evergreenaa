@@ -162,6 +162,7 @@ $role = $_SESSION['admin'];
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
+<?php require '_includes/msg-role-key.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>
 <?php require '_includes/descriptive-location-msg.php'; ?>
 <?php require '_includes/pdf-upload-txt.php'; ?>

@@ -235,14 +235,14 @@ li.focus a:hover {
 		cursor: pointer;
 		padding: 0.5em 1em;
 		margin-left: 1em;
-		background-color: #376420;
-		border: 1px solid transparent;
+		background-color: #40b208;
+		// border: 1px solid transparent;
 		color: #fff;
 		transition: all 0.2s ease;
 		&:hover {
-			background-color: #80eb4b;
-			border: 1px solid #fff;
-			color: #1c3310;
+			background-color: rgba(64,178,8,0.4);
+			// border: 1px solid #fff;
+			color: #fff;
 		}
 	}
 }

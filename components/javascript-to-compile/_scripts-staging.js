@@ -49,6 +49,17 @@ $(document).ready(function(){
         $("#msg-one").fadeOut(500); 
     }
   });
+  $("#toggle-role-key").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+    if ($('#role-key').is(':hidden')) {
+        $("#role-key").fadeIn(500);
+    } else {
+        $("#role-key").fadeOut(500); 
+    }
+  });
+
 });
 
 $(document).click(function() {
@@ -56,6 +67,11 @@ $(document).click(function() {
 
   if($('#msg-one').is(':visible')) {
     $("#msg-one").fadeOut(500);
+
+  } else if ($('#role-key').is(':visible')) {
+    $("#role-key").fadeOut(500);
+
+
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
@@ -240,6 +256,7 @@ $(document).ready(function(){
   $(".day-content").hide();
   $(".weekday-wrap").hide();
   $("#msg-one").hide();
+  $("#role-key").hide();
   $("#lat-long").hide();
   $("#desc-loc").hide();
   $("#pdf-upload").hide();
@@ -544,43 +561,24 @@ $("#toggle-lat-long-msg").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 });
-// $(document).click(function() {
-//   $("#lat-long").fadeOut(500);
-// });​
 
 $("#toggle-descriptive-location").click(function(e) {
   $("#desc-loc").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-// $(document).click(function() {
-//   $("#desc-loc").fadeOut(500);
-// });​
 
 $("#toggle-pdf-info").click(function(e) {
   $("#pdf-upload").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-// $(document).click(function() {
-//   $("#pdf-upload").fadeOut(500);
-// });​
 
 $("#toggle-link-label").click(function(e) {
   $("#link-label").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
-// $(document).click(function() {
-//   $("#link-label").fadeOut(500);
-// });​
-
-// close msg one when clicking anywhere on page
-// $(document).click(function() {
-
-//   $('#msg-extras').fadeOut(500);
- 
-// });​
 
 // prevent these links from closing msg
 $(".pdf-remove").click(function(e) {
@@ -803,6 +801,7 @@ $(document).ready(function() {
 
 
 // transfer top form for admin use only
+// all 3 versions of transfer-meeting contained in this doc.ready
 $(document).ready(function() {
   // selected by username
   $(document).on('click','#transfer-this-top', function() {
@@ -846,10 +845,6 @@ $(document).ready(function() {
     })
   });
 
-
-
-
-
   // selected by email
   $(document).on('click','#transfer-this-topz', function() {
 
@@ -892,14 +887,12 @@ $(document).ready(function() {
     })
   });
 
-
-
-
-});
-
-$(document).ready(function() {
-  //$('#emh-btn').click(function() {
+  // this is the only one that a Member will see
+  // the others are for admin
   $(document).on('click','#transfer-this', function() {
+
+
+
 
     var new_host = $('#new-email').val();
 
@@ -923,7 +916,13 @@ $(document).ready(function() {
             $('#transfer-form-top').html('');
             $('#hide-on-success').html('');
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
-            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
+
+            // 0823211116
+            if ($('#imnadmin').length) { // only shows on page if $_SESSION['admin'] != 0
+            // don't show reload link if they're not admin.
+              $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
+            } 
+
             $('#th-btn').html('');
           } else {
             $('#trans-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');

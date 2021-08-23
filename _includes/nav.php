@@ -47,14 +47,14 @@
 			<form action="process-admin-mode.php" method="post">
 				<input type="hidden" name="mode" value="1">
 				<input type="hidden" id="url" name="url">
-				<a href="#" class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
+				<a class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
 			</form>
 		<?php } 
 		if (isset($_SESSION['admin']) && (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 1)) { ?>
 			<form action="process-admin-mode.php" method="post">
 				<input type="hidden" name="mode" value="0">
 				<input type="hidden" id="url" name="url">
-				<a href="#" class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>	
+				<a class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>	
 			</form>
 
 		<?php } 
@@ -81,11 +81,11 @@
 		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
 			<div class="admin-role">
 				<?php if ($_SESSION['admin'] == 1) { ?>
-					The Bob
+					The Bob <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 				<?php } else if ($_SESSION['admin'] == 2) { ?>
-					<?= $_SESSION['username'] . ': '; ?>Tier II Admin
+					<?= $_SESSION['username'] . ': '; ?>Tier II Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 				<?php } else if ($_SESSION['admin'] == 3) { ?>
-					<?= $_SESSION['username'] . ': '; ?>Top Tier Admin
+					<?= $_SESSION['username'] . ': '; ?>Top Tier Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 				<?php } ?>
 			</div>
 		<?php } else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) { ?>
@@ -94,12 +94,12 @@
 			</div>
 		<?php } else { ?>
 			<div class="member-role">
-				Logged in: <?= $_SESSION['username']; ?>
+				Member: <?= $_SESSION['username'] . ' '; ?> <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 			</div>		
 			<?php } 
 			} else { ?>
 			<div class="visitor-role">
-				Welcome Visitor
+				Welcome Visitor <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 			</div>
 		<?php } ?>
 </div><!-- #side-nav -->

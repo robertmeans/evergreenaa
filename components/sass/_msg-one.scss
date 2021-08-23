@@ -1,10 +1,25 @@
 a#toggle-lat-long-msg,
 a#toggle-descriptive-location,
 a#toggle-pdf-info,
-a#toggle-link-label {
+a#toggle-link-label,
+a#toggle-role-key {
   cursor: pointer;
   color: #5dcb5d;
   &:hover {
+    color: #fff;
+  }
+}
+a#toggle-role-key {
+  color: #bccdd1;
+  color: rgba(255,255,255,0.4);
+  padding: 0px;
+  margin-left: 0.5em;
+  font-size: 1.2em;
+  background-color: transparent;
+  width: auto;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: transparent;
     color: #fff;
   }
 }
@@ -20,7 +35,8 @@ a#gmaps {
 #lat-long,
 #desc-loc,
 #pdf-upload,
-#link-label {
+#link-label,
+#role-key {
   cursor: pointer;
   // display: flex;
   // justify-content: center;
@@ -58,6 +74,19 @@ a#gmaps {
     width: 80%;
     max-width: 900px;
     margin-bottom: 20px;
+    ul {
+      list-style: disc;
+      margin: 0.5em 0 0 1.5em;
+      li {
+        line-height: 1.5em;
+        em {
+          // font-weight: bold;
+          color: #ffc8c8;
+          letter-spacing: 1px;
+          font-size: 1.2em;
+        }
+      }
+    }
     & > i {
       position: absolute;
       top: 20px;
@@ -166,7 +195,8 @@ a.youtube {
   #lat-long,
   #desc-loc,
   #pdf-upload,
-  #link-label {
+  #link-label,
+  #role-key {
     .msg-bkg {
       justify-content: flex-start;
       overflow-y: auto;
@@ -199,7 +229,8 @@ a.youtube {
   #lat-long,
   #desc-loc,
   #pdf-upload,
-  #link-label {
+  #link-label,
+  #role-key {
     .msg-bkg {
       // padding: 0px;
     }

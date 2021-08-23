@@ -36,6 +36,7 @@ $row = transfer_meeting($id);
 	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
+<?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 
 
@@ -125,7 +126,7 @@ $row = transfer_meeting($id);
 			</div>
 			<div id="hide-on-success">
 				<div id="flash-email-top"></div>
-				<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
+				<p>Click &quot;GO&quot; after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
 			</div>
   </div>
 
@@ -171,7 +172,7 @@ $row = transfer_meeting($id);
 	</div>
 	<div id="hide-on-successz">
 		<div id="flash-username-top"></div>
-		<p>Click the green &quot;GO&quot; button above after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
+		<p>Click &quot;GO&quot; after selecting a new member OR manually enter an email address below like some kind of prehistoric cave baboon.</p>
 	</div>
 
 </div>
@@ -190,15 +191,22 @@ $row = transfer_meeting($id);
 			<input type="hidden" name="host-email" value="<?= $row['email'] ?>">
 
 			<p>Email of new Host</p>
+
 			<input type="email" id="new-email" name="email" placeholder="Enter member's email address">
 		</form>
-		
-		<div id="trans-msg">
-			<p class="host-disclaimer">Note: You are transfering this meeting to someone else. It will no longer be in your account but will jump up and git on over into their account right here directly. There's no going back. It's adios amigos. Make sure you've said your goodbyes and are secure in the decisions you're making here today.</p>
-		</div>
+
+		<?php if ($_SESSION['admin'] == 0) { /* only show to non-admin folks because admin can hit the "whoops" link to reload the page and transfer to someone else */ ?>
+			<div id="trans-msg">
+				<p class="host-disclaimer">Note: You are transfering this meeting to someone else. It will no longer be in your account but will jump up and git on over into their account right here directly. There's no going back. It's adios amigos. Make sure you've said your goodbyes and are secure in the decisions you're making here today. Some things in life are profound. (This isn't one, however.)</p>
+			</div>
+		<?php } else { ?>
+			<div id="trans-msg"></div>
+		<?php } ?>
+
+		<?php if ($_SESSION['admin'] != 0) { echo '<div id="imnadmin"></div>'; } /* this is so we have something to identify whether or not we're dealing with admin. if we are, show them the "Whoops" link after submit so they can do-over if necessary. otherwise, a regular member couldn't transfer the meeting if it's not in their account so don't bother showing them this link. (sorce in _scripts.staging.js - search: 0823211116 ) */ ?>
 		<div id="whoops"></div>
 		<div id="th-btn">
-			<a id="transfer-this">TRANSFER</a>
+			<a id="transfer-this" class="<?php if ($_SESSION['admin'] != 0) { echo 'ap'; } ?>">TRANSFER</a>
 		</div>
 	</div>
 

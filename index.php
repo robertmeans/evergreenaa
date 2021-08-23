@@ -19,7 +19,7 @@ if (!isset($_SESSION['verified'])) {
 }
 
 if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
-	require 'admin.php';
+	require 'home_admin.php';
 	exit;
 }
 

@@ -18,10 +18,10 @@ if (is_post_request()) {
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-		$nhe = find_new_host($email);
-		$exists = mysqli_num_rows($nhe);
-		$newhost_id = mysqli_fetch_assoc($nhe);
-		$new_host = $newhost_id['id_user'];
+		$nhe = find_new_host($email); // take entered email address
+		$exists = mysqli_num_rows($nhe); // run a query on it
+		$newhost_id = mysqli_fetch_assoc($nhe); // put results in var $newhost_id
+		$new_host = $newhost_id['id_user']; // now you've got the id of new user from entered email
 		
 			if ($exists > 0) {
 

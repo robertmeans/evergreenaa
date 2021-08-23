@@ -131,6 +131,8 @@
 	.sus-user {
 		width: 300px;
 		// has to be set to prevent from collapsing when menu slides shut.
+		display: flex;
+		align-items: center;
 	}
 	.admin-role {
 		padding: 1em 0em 1em 1.5em;
@@ -214,6 +216,10 @@
 	  // 	}
 	  // }
 	}	
+	a.admin-login,
+	a.admin-logout {
+		cursor: pointer;
+	}
 	a.admin-login {
 		color: gold;
 	}
