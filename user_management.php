@@ -61,6 +61,7 @@ $role = $_SESSION['admin'];
   <ul class="tab-links">
     <li class="focus"><a href="#tab1">Username</a></li>
     <li><a href="#tab2">Email</a></li>
+    <li><a href="#tab3">Joined</a></li>
   </ul>
 
 <div class="tab-content">
@@ -84,8 +85,8 @@ $role = $_SESSION['admin'];
 		</div>
 		<div id="um-email-top"></div>
   </div>
-  <div id="tab2">
 
+  <div id="tab2">
 		<div class="user-box">
 			<p>Select a user by their email address</p>
 			<form id="user-listz">
@@ -119,6 +120,44 @@ $role = $_SESSION['admin'];
 		</div>
 		<div id="um-un-btm"></div>
   </div>
+
+  <div id="tab3">
+		<div class="user-box">
+			<p>Select a user by date joined</p>
+			<form id="user-listzz">
+				<select id="mng-usrzz" class="transfer-usr" name="transfer-usr">
+					<option value="empty">Select by Date Joined</option>
+					<?php  
+					function cmpz($results, $key) {
+						foreach($results as $k=>$v) {
+							$b[] = strtolower($v[$key]);
+						}
+						foreach ($b as $k=>$v) {
+							$c[] = $results[$k];
+						}
+						rsort($c);
+						return $c;
+					}
+					$sorted2 = cmpz($results, 'id_user');
+					?>
+					<?php /* <pre><?php print_r($sorted); ?></pre> */ ?>
+					<?php 
+
+					foreach ($sorted2 as $li) {
+						$joined = ($li['joined']);
+						$user = ($li['id_user']);
+						$username = ($li['username']);
+						$email = ($li['email']); 
+						?>
+						<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $user . ',' . $username; ?>"><?= date('m.d.y H:i', strtotime($joined)) . ' | ' . strtolower($username); ?></option>		
+					<?php } ?>
+				</select> <a id="usr-role-gozz">GO</a>
+			</form>
+		</div>
+		<div id="um-un-btmz"></div>
+		<p class="btm">Listed in order of most recently joined. I figured it would be useful if you ever need to find someone who just joined and is doing stupid stuff on the site but you don't have time to look for something they've posted in order to get to them that way.</p>
+  </div>
+
 </div><?php /* .tab-content */ ?>
 </div>
 
@@ -145,6 +184,7 @@ $role = $_SESSION['admin'];
 <ul class="manage-weekdays">
 <?php 
  	if ($suspended_users > 0) { 
+ 		$i = 1;
 		while ($row = mysqli_fetch_assoc($any_meetings_for_user)) { 
 			$suspended_id = $row['id_user']; ?>
 
@@ -158,36 +198,57 @@ $role = $_SESSION['admin'];
 			?>
 
 			<div class="weekday-wrap user-mng">
+
 				<div class="notes-glance">
-					<p class="reason-note">Reason for suspension</p>
-					<p class="note-reason"><?= nl2br($row['sus_notes']) ?></p>
+					<span class="reason-header">
+						<p class="reason-note">Reason for suspension</p>
+
+						<span id="a_<?= $i ?>" class="ricons">
+							<a data-id="<?= $i ?>" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right">
+						<span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>
+						</span>
+
+					</span>
+					<div id="<?= $i ?>" class="note-reason"><?= nl2br($row['sus_notes']) ?></div>
+					<div id="on_<?= $i ?>" style="display:none;"><?= nl2br($row['sus_notes']) ?></div>
+					<div id="uid_<?= $i ?>" style="display:none;"><?= $row['id_user'] ?></div>
+					<div id="round2_<?= $i ?>" style="display:none;"></div>
 				</div>
 
 				<?php while ($rowz = mysqli_fetch_assoc($suspended_users_meetings)) { ?>
 					<?php require '_includes/user-management-user-meetings.php'; ?>
 				<?php } ?>
-
 			</div><!-- .weekday-wrap -->
-
 		<?php } else { ?>
-	
 			<div class="weekday-wrap user-mng user-empty">
+
 				<div class="notes-glance">
-					<p class="reason-note">Reason for suspension</p>
-					<p class="note-reason"><?= nl2br($row['sus_notes']) ?></p>
-				</div>				
+					<span class="reason-header">
+						<p class="reason-note">Reason for suspension</p>
+
+						<span id="a_<?= $i ?>" class="ricons">
+							<a data-id="<?= $i ?>" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right">
+						<span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>
+						</span>
+
+					</span>
+					<div id="<?= $i ?>" class="note-reason"><?= nl2br($row['sus_notes']) ?></div>
+					<div id="on_<?= $i ?>" style="display:none;"><?= nl2br($row['sus_notes']) ?></div>
+					<div id="uid_<?= $i ?>" style="display:none;"><?= $row['id_user'] ?></div>
+					<div id="round2_<?= $i ?>" style="display:none;"></div>
+				</div>	
 				<p style="margin-top:1em;padding:0.5em 1em;">This user has no meetings for public view.</p>
 			</div><!-- .weekday-wrap -->
 		<?php } ?>
 
-			<?php mysqli_free_result($suspended_users_meetings); ?>
-
-		<?php }  ?>
+	<?php $i++; } // end while loop  ?>
 
 	<?php  
 	} else { // user has no meetings to manage
 		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">There are no members currently suspended.</p>";
-	}  mysqli_free_result($any_meetings_for_user); ?>
+	}  
+		mysqli_free_result($suspended_users_meetings);
+		mysqli_free_result($any_meetings_for_user); ?>
 
 </ul><!-- .manage-weekdays -->
 

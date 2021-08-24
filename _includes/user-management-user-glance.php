@@ -7,13 +7,13 @@
 					You, of course &bullet; Top Tier Admin
 			<?php } else if ($row['admin'] == 1) { ?>
 					<?php // SQL = WHERE u.admin=2 OR u.admin=3 -> that's why this won't show... ?>
-					<?= $row['username'] . ' &bullet; ' . $row['email'] . ' ' ?>&bullet; Website Guy
+					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Website Guy
 			<?php } else if ($row['admin'] == 2) { ?>
-					<?= $row['username'] . ' &bullet; ' . $row['email'] . ' ' ?>&bullet; Tier II Admin
+					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Tier II Admin
 			<?php } else if ($row['admin'] == 3) { ?>
-					<?= $row['username'] . ' &bullet; ' . $row['email'] . ' ' ?>&bullet; Top Tier Admin
+					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Top Tier Admin
 			<?php } else { ?>
-					<?= $row['username'] . ' &bullet; ' . $row['email'] . ' ' ?>
+					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>
 			<?php }
 				?>
 			</div>

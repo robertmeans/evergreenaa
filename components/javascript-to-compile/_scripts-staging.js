@@ -36,7 +36,15 @@ function closeNav() {
     document.getElementById("side-nav").style.width = "0";
     $('.top-nav').removeClass('acty');
 }
-
+/* function to close nav to use everywhere */
+function close_navigation_first() {
+  var eotw = document.getElementById("side-nav");
+  if (eotw.style.width == '300px') { 
+    $('.top-nav').removeClass('acty');
+    eotw.style.width = '0px';
+    stopPropagation();
+    }  
+}
 
 $(document).ready(function(){
   $("#toggle-msg-one").click(function(e) {
@@ -91,19 +99,116 @@ $(".top-nav").click(function(e) {
 
 $(document).ready(function(){
   $('#usr-role-go').click(function() {
-    var thisval = $('#mng-usr').val().substr(0, $('#mng-usr').val().indexOf(','));
+    close_navigation_first();
+    // var thisval = $('#mng-usr').val().substr(0, $('#mng-usr').val().indexOf(','));
+    var thisval = $('#mng-usr').val();
+
+    if (thisval != 'empty') {
+      window.location = thisval;
+    } 
+  })
+  $('#usr-role-goz').click(function() {
+    close_navigation_first();
+    var thisval = $('#mng-usrz').val();
+    
     if (thisval != 'empty') {
       window.location = thisval;
     }
   })
-  $('#usr-role-goz').click(function() {
-    var thisval = $('#mng-usrz').val();
+    $('#usr-role-gozz').click(function() {
+    close_navigation_first();
+    var thisval = $('#mng-usrzz').val();
+    
     if (thisval != 'empty') {
       window.location = thisval;
     }
   }) 
 });
 
+$(document).ready(function() {
+  $(document).on('click','a[data-role=rnote]',function() { // clicked on edit note
+    close_navigation_first();
+    var id = $(this).data('id');
+    var user_id = $('#uid_'+id).html();
+
+    if ($('#round2_'+id).html().length) {
+      var note1 = $('#'+id).html();
+      var note2 = note1.replaceAll('<br>', '\n');
+      var r_note = note2.replaceAll('<br><br>', '\n\n');
+    } else {
+      var note1 = $('#'+id).html();
+      var note2 = note1.replaceAll('<br>\n', '\n');
+      var r_note = note2.replaceAll('<br>\n<br>', '\n');
+    }
+
+    $('#'+id).addClass('formhere');
+    $('#'+id).html('<form id="revise-sus-note"><textarea id="sus-note" name="reason" maxlength="250">'+r_note+'</textarea><input type="hidden" name="user-id" value="'+user_id+'"></form>');
+
+    $('#a_'+id).html('<a data-id="'+id+'" data-role="unote" class="reason-note rt sicon"><div class="tooltip"><span class="tooltiptext type">Save Edit</span><i class="far fa-save"></i></div></a> <a data-role="cnote" data-id="'+id+'" class="reason-note rt cicon"><div class="tooltip right"><span class="tooltiptext type">Cancel Edit</span><i class="fas fa-ban"></i></div></a>'); // edit icon replaced with cancel & save (update note)
+  })
+
+  $(document).on('click','a[data-role=cnote]',function() { // cancel update
+    close_navigation_first();
+    var id = $(this).data('id');
+
+    if ($('#round2_'+id).html().length) {
+      var original_note = $('#round2_'+id).html();
+    } else {
+      var original_note = $('#on_'+id).html();
+    }
+
+    $('#'+id).html(original_note);
+    $('#a_'+id).html('<a data-id="'+id+'" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right"><span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>');
+    $('#'+id).removeClass('formhere');
+
+  })
+
+  $(document).on('click','a[data-role=unote]',function() { // save (or update note)
+    close_navigation_first();
+    var id = $(this).data('id');
+
+    var note = $('#sus-note').val();
+
+    var new_note = note.replaceAll('\n', '<br>');
+    
+    $.ajax({
+      dataType: "JSON",
+      url: "process-edit-sus_note.php",
+      type: "POST",
+      data: $('#revise-sus-note').serialize(),
+      beforeSend: function(xhr) {
+        $('#'+id).removeClass('formhere');
+        $('#'+id).html('<span class="sending-msg">Working on it - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['signal'] == 'ok') {
+          $('#a_'+id).html('<a data-id="'+id+'" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right"><span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>');
+          $('#'+id).removeClass('formhere');
+
+          $('#'+id).html(new_note);
+
+
+          $('#round2_'+id).html(new_note);
+
+          } else {
+            $('#'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#'+id).html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
+      }, 
+      complete: function() {
+
+      }
+    }) // end ajax
+
+  }) // end click unote
+
+});
 
 // copy to clipboard ID: data-role=ci
 $(document).ready(function() {
@@ -199,6 +304,8 @@ $(document).ready(function() {
 
 /* visible divs as radio buttons */
 $('.radio-group .radio').click(function(){
+    close_navigation_first();
+
     $(this).parent().find('.radio').removeClass('selected');
     $(this).addClass('selected');
     var val = $(this).attr('value');
@@ -219,7 +326,9 @@ $('input[name="remember_me"]').change(function(){
 
 /* show passwords */
 $("#showLoginPass").click(function(){
+  close_navigation_first();
   var x = document.getElementById("password");
+
     $(this).toggleClass("showPassOn");
 
     if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide password') {
@@ -435,17 +544,9 @@ $(document).ready(function(){
 
   /* toggle days of week */
   $('.day').click(function() {
+    close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.day-content');
-
-    // if nav is open close it and stop
-    var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') {
-      $('.top-nav').removeClass('acty');
-      eotw.style.width = '0px';
-      stopPropagation();
-    }
-    // otherwise continue as you were...
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -459,18 +560,9 @@ $(document).ready(function(){
   });
 
   $('.daily-glance-wrap').click(function() {
-
+    close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
-
-    // if nav is open close it and stop
-    var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') { 
-      $('.top-nav').removeClass('acty');
-      eotw.style.width = '0px';
-      stopPropagation();
-      }
-    // otherwise continue as you were...
 
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');
@@ -484,18 +576,9 @@ $(document).ready(function(){
   });
 
   $('.manage-glance-wrap').click(function() {
-
+    close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
-
-    // if nav is open close it and stop
-    var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') { 
-      $('.top-nav').removeClass('acty');
-      eotw.style.width = '0px';
-      stopPropagation();
-      }
-    // otherwise continue as you were...
 
     $('.weekday-wrap').not(toggle).slideUp();
     $('.manage-glance-wrap').not(active).removeClass('active');
@@ -510,31 +593,15 @@ $(document).ready(function(){
 
   /* collapse day button */
   $('.collapse-day').click(function() {
+    close_navigation_first();
     var me = $(this);
-
-    // if nav is open close it and stop
-    var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') { 
-      $('.top-nav').removeClass('acty');
-      eotw.style.width = '0px';
-      stopPropagation();
-      }
-    // otherwise continue as you were...
 
     $('.day-content').not(me).slideUp();
     $('.day').removeClass('active');
   });
 
   $("#toggle-contact-form").click(function(){
-
-    // if nav is open close it and stop
-    var eotw = document.getElementById("side-nav");
-    if (eotw.style.width == '300px') { 
-      $('.top-nav').removeClass('acty');
-      eotw.style.width = '0px';
-      stopPropagation();
-      }
-    // otherwise continue as you were...
+    close_navigation_first();
 
       $(this).toggleClass("active").next().slideToggle(600);
 
@@ -738,16 +805,14 @@ $(document).ready(function() {
 //   $( "#tabs" ).tabs();
 // } );
 $(document).ready(function() {
-$('.tab').hide();
-$('.tab.focus').show();
-// just stare at it for a while...
+  $('.tab').hide();
+  $('.tab.focus').show();
+
   $('.tabs .tab-links a').on('click', function(e)  {
-      var currentAttrValue = $(this).attr('href');
+    close_navigation_first();
+    var currentAttrValue = $(this).attr('href');
 
-      // Show/Hide Tabs
       $('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
-
-      // Change/remove current tab to focus
       $(this).parent('li').addClass('focus').siblings().removeClass('focus');
 
       e.preventDefault();
@@ -764,6 +829,9 @@ $(document).ready(function() {
       $('#flash-email-top').html(updateft);
       $('#new-email-top').val(update);
       $('#new-usrnm-top').val(updateun);
+    } else {
+      $('#new-email-top').val('empty');
+      $('#flash-email-top').html('');
     }
   })
 
@@ -775,6 +843,9 @@ $(document).ready(function() {
       $('#flash-username-top').html(updateut);
       $('#new-email-topz').val(update);
       $('#new-usrnm-topz').val(updateun);
+    } else {
+      $('#new-email-topz').val('empty');
+      $('#flash-username-top').html('');
     }
   })  
 
@@ -783,6 +854,8 @@ $(document).ready(function() {
     var updateem = '<p>Email: ' +  $('#mng-usr').val().substr($('#mng-usr').val().indexOf(',') + 1) + '</p>';
     if (update != 'empty') {
       $('#um-email-top').html(updateem);
+    } else {
+      $('#um-email-top').html('');
     }
   })
 
@@ -791,11 +864,24 @@ $(document).ready(function() {
     var updateun = '<p>Username: ' +  $('#mng-usrz').val().substr($('#mng-usrz').val().indexOf(',') + 1) + '</p>';
     if (update != 'empty') {
       $('#um-un-btm').html(updateun);
+    } else {
+      $('#um-un-btm').html('');
+    }
+  })
+
+    $(document).on('change','#mng-usrzz', function() {
+    var update = $('#mng-usrzz').val().substr($('#mng-usrzz').val().indexOf(',') + 1);
+    var updateun = '<p>Username: ' +  $('#mng-usrzz').val().substr($('#mng-usrzz').val().indexOf(',') + 1) + '</p>';
+    if (update != 'empty') {
+      $('#um-un-btmz').html(updateun);
+    } else {
+      $('#um-un-btmz').html('');
     }
   })  
 
   $('#whoops').click(function() {
-      location.reload();
+    close_navigation_first();    
+    location.reload();
   })
 });
 
@@ -805,7 +891,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   // selected by username
   $(document).on('click','#transfer-this-top', function() {
-
+    close_navigation_first();
     var new_username = $('#new-usrnm-top').val();
     var new_host = $('#new-email-top').val();
 
@@ -847,7 +933,7 @@ $(document).ready(function() {
 
   // selected by email
   $(document).on('click','#transfer-this-topz', function() {
-
+    close_navigation_first();
     var new_username = $('#new-usrnm-topz').val();
     var new_host = $('#new-email-topz').val();
 
@@ -890,10 +976,7 @@ $(document).ready(function() {
   // this is the only one that a Member will see
   // the others are for admin
   $(document).on('click','#transfer-this', function() {
-
-
-
-
+    close_navigation_first();
     var new_host = $('#new-email').val();
 
     $.ajax({
@@ -941,7 +1024,8 @@ $(document).ready(function() {
 
 /* visible divs as radio buttons for User Management */
 $('.radio-groupz .radioz').click(function(){
-
+    close_navigation_first();
+    var sus_note = $('#sus-note').val();
   // The Stanton Mandate:
   // See that links toggle on and off 
   if ($(this).hasClass('user-suspended') && $(this).hasClass('selected')) {
@@ -972,13 +1056,13 @@ $('.radio-groupz .radioz').click(function(){
             $('#role-h2').removeClass('downgrade');
             $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
-            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
           }
 
         } 
       else if ($(this).parent().find('input').val() == 85) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -991,7 +1075,7 @@ $('.radio-groupz .radioz').click(function(){
       } 
       else if ($(this).parent().find('input').val() == 86) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250"></textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
@@ -1012,7 +1096,7 @@ $('.radio-groupz .radioz').click(function(){
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#suspend-user', function() {
-    // event.preventDefault();
+    close_navigation_first();
 
     $.ajax({
       dataType: "JSON",
@@ -1059,7 +1143,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   //$('#emh-btn').click(function() {
   $(document).on('click','#change-user-role', function() {
-    // event.preventDefault();
+    close_navigation_first();
 
     $.ajax({
       dataType: "JSON",

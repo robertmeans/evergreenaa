@@ -63,18 +63,110 @@
 	margin-top: 0.5em;
 	padding: 0px;
 	background-color: rgba(255,255,255,0.2);
-	p.reason-note {
-		width: 100%;
-		background-color: #000;
-		background-color: #8a1d1d;
-		padding: 0.5em;
-		// margin-bottom: 1em;
+	display: flex;
+	flex-direction: column;
+	.reason-header {
+		display: flex;
+		justify-content: space-between;
+		background-color: #811d1d;
 	}
-	p.note-reason {
-		padding: 1em;
+	p.reason-note {
+		padding: 0.5em;
+		display: flex;
+		flex: 1;
+	}
+	a.reason-note.rt {
+		cursor: pointer;
+		background-color: #8a1d1d;
+		color: #fff;
+		padding: 0.5em;
+		display: flex;
+		justify-content: flex-end;
+		text-decoration: none;
+		transition: all 0.2s ease;
+		&:hover {
+			color: #000;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	.reason-header .ricons {
+		display: flex;
+		align-items: center;
+		margin-right: 0.5em;
+		a {
+			padding: 0em 1em;
+			background-color: transparent;
+		}
+		a.eicon,
+		a.sicon,
+		a.cicon {
+			color: #fff;
+			transition: all 0.2s ease;
+			&:hover {
+				color: #96ff00;
+			}
+		}
+		a.cicon:hover {
+			color: #ffd3d3;
+		}
+	}
+	#revise-sus-note {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		font-family: courier;
+	}
+	.note-reason,
+	#sus-note { 
+		display: flex;
+		// padding: 1em;
+		width: 100%;
+		color: #fff;
+		outline: none;
+		font-size: 1em;
 		background-color: rgba(255,132,132,0.2);
 	}
+	.note-reason {
+		padding: 1em;
+	}
+	.note-reason.formhere {
+		padding: 0px;
+	}
+	#sus-note {
+		width: 100%;
+		display: flex;
+		background-color: black;
+		padding: 1em;
+		height: 8em;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .manage-simple.s-a,
 .manage-simple.c-a {
 	background-color: rgba(255,255,255,0.1);
@@ -100,8 +192,16 @@
 		padding: 1em 0.5em 0.5em;
 		background-color: #464646;
 		border: 1px solid #b5b5b5;
-		#tab2 {
+		#tab2,
+		#tab3 {
 			display: none;
+		}
+	}
+	#tab1,
+	#tab2,
+	#tab3 {
+		p.btm {
+			margin: 0 1em 1em;
 		}
 	}
 }
@@ -139,8 +239,9 @@ ul.tab-links {
 		// margin-bottom: -1px;
 		border-bottom: 1px solid transparent;
 		border-bottom: 1px solid #b5b5b5;
-		&:first-of-type {
-			margin-right: 0.5em;
+		margin-right: 0.5em;
+		&:last-of-type {
+			margin-right: 0;
 		}
 	}
 	li.focus {
@@ -206,7 +307,8 @@ li.focus a:hover {
 #transfer-form-top,
 #transfer-form-topz,
 #user-list,
-#user-listz {
+#user-listz,
+#user-listzz {
 	display: flex;
 	align-items: center;
 	.mng-usr,
@@ -230,6 +332,7 @@ li.focus a:hover {
 	}
 	#usr-role-go,
 	#usr-role-goz,
+	#usr-role-gozz,
 	#transfer-this-top,
 	#transfer-this-topz {
 		cursor: pointer;
@@ -249,12 +352,14 @@ li.focus a:hover {
 #flash-email-top,
 #flash-username-top,
 #um-email-top,
-#um-un-btm {
+#um-un-btm,
+#um-un-btmz {
 	color: #ffc2c2;
 	letter-spacing: 1px;
 }
 #um-email-top,
-#um-un-btm {
+#um-un-btm,
+#um-un-btmz {
 	padding-left: 1em;
 	padding-bottom: 1em;
 }

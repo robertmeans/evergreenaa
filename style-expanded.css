@@ -4156,16 +4156,96 @@ a.manage-edit.spec:hover {
   margin-top: 0.5em;
   padding: 0px;
   background-color: rgba(255, 255, 255, 0.2);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.notes-glance .reason-header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  background-color: #811d1d;
 }
 .notes-glance p.reason-note {
-  width: 100%;
-  background-color: #000;
-  background-color: #8a1d1d;
   padding: 0.5em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
 }
-.notes-glance p.note-reason {
-  padding: 1em;
+.notes-glance a.reason-note.rt {
+  cursor: pointer;
+  background-color: #8a1d1d;
+  color: #fff;
+  padding: 0.5em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.notes-glance a.reason-note.rt:hover {
+  color: #000;
+}
+.notes-glance .reason-header .ricons {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-right: 0.5em;
+}
+.notes-glance .reason-header .ricons a {
+  padding: 0em 1em;
+  background-color: transparent;
+}
+.notes-glance .reason-header .ricons a.eicon,
+.notes-glance .reason-header .ricons a.sicon,
+.notes-glance .reason-header .ricons a.cicon {
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.notes-glance .reason-header .ricons a.eicon:hover,
+.notes-glance .reason-header .ricons a.sicon:hover,
+.notes-glance .reason-header .ricons a.cicon:hover {
+  color: #96ff00;
+}
+.notes-glance .reason-header .ricons a.cicon:hover {
+  color: #ffd3d3;
+}
+.notes-glance #revise-sus-note {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  font-family: courier;
+}
+.notes-glance .note-reason,
+.notes-glance #sus-note {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  color: #fff;
+  outline: none;
+  font-size: 1em;
   background-color: rgba(255, 132, 132, 0.2);
+}
+.notes-glance .note-reason {
+  padding: 1em;
+}
+.notes-glance .note-reason.formhere {
+  padding: 0px;
+}
+.notes-glance #sus-note {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: black;
+  padding: 1em;
+  height: 8em;
 }
 
 .manage-simple.s-a,
@@ -4193,8 +4273,14 @@ a.manage-edit.spec:hover {
   background-color: #464646;
   border: 1px solid #b5b5b5;
 }
-.tabs .tab-content #tab2 {
+.tabs .tab-content #tab2,
+.tabs .tab-content #tab3 {
   display: none;
+}
+.tabs #tab1 p.btm,
+.tabs #tab2 p.btm,
+.tabs #tab3 p.btm {
+  margin: 0 1em 1em;
 }
 
 .tabs.ump {
@@ -4232,9 +4318,10 @@ ul.tab-links li {
   margin: 0;
   border-bottom: 1px solid transparent;
   border-bottom: 1px solid #b5b5b5;
-}
-ul.tab-links li:first-of-type {
   margin-right: 0.5em;
+}
+ul.tab-links li:last-of-type {
+  margin-right: 0;
 }
 ul.tab-links li.focus {
   border-bottom: none;
@@ -4290,7 +4377,8 @@ li.focus a:hover {
 #transfer-form-top,
 #transfer-form-topz,
 #user-list,
-#user-listz {
+#user-listz,
+#user-listzz {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -4303,7 +4391,9 @@ li.focus a:hover {
 #user-list .mng-usr,
 #user-list .transfer-usr,
 #user-listz .mng-usr,
-#user-listz .transfer-usr {
+#user-listz .transfer-usr,
+#user-listzz .mng-usr,
+#user-listzz .transfer-usr {
   font-size: 1em;
   padding: 0.5em;
   outline: none;
@@ -4319,7 +4409,9 @@ li.focus a:hover {
 #user-list .mng-usr option,
 #user-list .transfer-usr option,
 #user-listz .mng-usr option,
-#user-listz .transfer-usr option {
+#user-listz .transfer-usr option,
+#user-listzz .mng-usr option,
+#user-listzz .transfer-usr option {
   cursor: pointer;
   color: #fff;
   background-color: #313131;
@@ -4331,25 +4423,36 @@ li.focus a:hover {
 #user-list .mng-usr option:hover,
 #user-list .transfer-usr option:hover,
 #user-listz .mng-usr option:hover,
-#user-listz .transfer-usr option:hover {
+#user-listz .transfer-usr option:hover,
+#user-listzz .mng-usr option:hover,
+#user-listzz .transfer-usr option:hover {
   cursor: pointer;
 }
 #transfer-form-top #usr-role-go,
 #transfer-form-top #usr-role-goz,
+#transfer-form-top #usr-role-gozz,
 #transfer-form-top #transfer-this-top,
 #transfer-form-top #transfer-this-topz,
 #transfer-form-topz #usr-role-go,
 #transfer-form-topz #usr-role-goz,
+#transfer-form-topz #usr-role-gozz,
 #transfer-form-topz #transfer-this-top,
 #transfer-form-topz #transfer-this-topz,
 #user-list #usr-role-go,
 #user-list #usr-role-goz,
+#user-list #usr-role-gozz,
 #user-list #transfer-this-top,
 #user-list #transfer-this-topz,
 #user-listz #usr-role-go,
 #user-listz #usr-role-goz,
+#user-listz #usr-role-gozz,
 #user-listz #transfer-this-top,
-#user-listz #transfer-this-topz {
+#user-listz #transfer-this-topz,
+#user-listzz #usr-role-go,
+#user-listzz #usr-role-goz,
+#user-listzz #usr-role-gozz,
+#user-listzz #transfer-this-top,
+#user-listzz #transfer-this-topz {
   cursor: pointer;
   padding: 0.5em 1em;
   margin-left: 1em;
@@ -4359,20 +4462,29 @@ li.focus a:hover {
 }
 #transfer-form-top #usr-role-go:hover,
 #transfer-form-top #usr-role-goz:hover,
+#transfer-form-top #usr-role-gozz:hover,
 #transfer-form-top #transfer-this-top:hover,
 #transfer-form-top #transfer-this-topz:hover,
 #transfer-form-topz #usr-role-go:hover,
 #transfer-form-topz #usr-role-goz:hover,
+#transfer-form-topz #usr-role-gozz:hover,
 #transfer-form-topz #transfer-this-top:hover,
 #transfer-form-topz #transfer-this-topz:hover,
 #user-list #usr-role-go:hover,
 #user-list #usr-role-goz:hover,
+#user-list #usr-role-gozz:hover,
 #user-list #transfer-this-top:hover,
 #user-list #transfer-this-topz:hover,
 #user-listz #usr-role-go:hover,
 #user-listz #usr-role-goz:hover,
+#user-listz #usr-role-gozz:hover,
 #user-listz #transfer-this-top:hover,
-#user-listz #transfer-this-topz:hover {
+#user-listz #transfer-this-topz:hover,
+#user-listzz #usr-role-go:hover,
+#user-listzz #usr-role-goz:hover,
+#user-listzz #usr-role-gozz:hover,
+#user-listzz #transfer-this-top:hover,
+#user-listzz #transfer-this-topz:hover {
   background-color: rgba(64, 178, 8, 0.4);
   color: #fff;
 }
@@ -4380,13 +4492,15 @@ li.focus a:hover {
 #flash-email-top,
 #flash-username-top,
 #um-email-top,
-#um-un-btm {
+#um-un-btm,
+#um-un-btmz {
   color: #ffc2c2;
   letter-spacing: 1px;
 }
 
 #um-email-top,
-#um-un-btm {
+#um-un-btm,
+#um-un-btmz {
   padding-left: 1em;
   padding-bottom: 1em;
 }

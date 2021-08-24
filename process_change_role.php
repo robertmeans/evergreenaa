@@ -10,7 +10,7 @@ require_once 'config/verify_admin.php';
 
 /* $mode is whether user is logged in as admin or not. 1=logged in Admin Mode, 0=not logged in Admin Mode. if they are downgraded out of Admin status then their mode needs to be changed to 0 in order to kick them out of Admin Mode if they are currently logged in and prevent them from doing anything as an Admin could or would. */
 	if ($role == 0 || $role == 85 || $role == 86) {
-		$mode = 0;
+		$mode = '0';
 	} 
 
 if (is_post_request()) {	

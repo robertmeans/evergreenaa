@@ -2,14 +2,11 @@
 <html lang="en">
 <!--
 
-	Built with love by EvergreenBob.com
+	Hand coded with love by EvergreenBob.com
 
 -->
 <head>
 	<meta charset="UTF-8">	
-<!-- 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="expires" content="0"> -->
 	
 	<title>Evergreen AA | Online AA Meetings</title>
 	<link rel="icon" type="image/ico" href="_images/favicon.ico">
@@ -45,7 +42,6 @@
 	  gtag('config', 'UA-140046709-8');
 	</script>	
 
-<!-- 	<script src='https://www.google.com/recaptcha/api.js'></script> -->
 	<script src="js/preload.js?<?php echo time(); ?>"></script>
 	
 </head>

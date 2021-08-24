@@ -157,7 +157,7 @@ $row = get_user_by_id($id);
 
 			<input type="hidden" name="user" value="<?= $row['id_user'] ?>">
 			<div id="sus-reason">
-				<p>Reason</p><textarea name="reason" maxlength="250"></textarea>
+				<p>Reason</p><textarea id="sus-note" name="reason" maxlength="250"><?php if ($row['sus_notes'] != '') { echo $row['sus_notes']; } ?></textarea>
 			</div>
 		</form>
 <?php } ?>		

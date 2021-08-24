@@ -164,6 +164,17 @@ function update_admin_mode($id, $mode) {
   return $result; 
 }
 
+function update_sus_note($reason, $user) {
+  global $db;
+
+  $sql = "UPDATE users ";
+  $sql .= "SET sus_notes='"  . db_escape($db, $reason) . "' ";
+  $sql .= "WHERE id_user='"  . db_escape($db, $user) . "'";
+
+  $result = mysqli_query($db, $sql);
+  return $result; 
+}
+
 function get_user_by_id($id) {
     global $db;
 
@@ -467,7 +478,7 @@ function find_all_users() {
 function find_all_users_to_manage($user_id) {
   global $db;
 
-  $sql  = "SELECT id_user, username, email  FROM users ";
+  $sql  = "SELECT joined, id_user, username, email  FROM users ";
   $sql .= "WHERE id_user != 1 ";
   $sql .= "AND id_user != 13 ";
   $sql .= "AND id_user != '" . $user_id . "' ";
