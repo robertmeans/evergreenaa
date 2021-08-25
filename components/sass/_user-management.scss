@@ -89,68 +89,94 @@
 		}
 	}
 
+// where below stuff was before
+
+}
 
 
-
-
-
-
-
-
-
-
-
-	.reason-header .ricons {
-		display: flex;
-		align-items: center;
-		margin-right: 0.5em;
-		a {
-			padding: 0em 1em;
-			background-color: transparent;
-		}
-		a.eicon,
-		a.sicon,
-		a.cicon {
-			color: #fff;
-			transition: all 0.2s ease;
-			&:hover {
-				color: #96ff00;
-			}
-		}
-		a.cicon:hover {
-			color: #ffd3d3;
-		}
+.reason-header .ricons {
+	display: flex;
+	align-items: center;
+	margin-right: 0.5em;
+	a {
+		padding: 0em 1em;
+		background-color: transparent;
 	}
-	#revise-sus-note {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		font-family: courier;
-	}
-	.note-reason,
-	#sus-note { 
-		display: flex;
-		// padding: 1em;
-		width: 100%;
+	a.eicon,
+	a.sicon,
+	a.cicon {
 		color: #fff;
-		outline: none;
-		font-size: 1em;
-		background-color: rgba(255,132,132,0.2);
+		padding: 0 1em;
+		transition: all 0.2s ease;
+		&:hover {
+			color: #96ff00;
+		}
 	}
-	.note-reason {
-		padding: 1em;
-	}
-	.note-reason.formhere {
-		padding: 0px;
-	}
-	#sus-note {
-		width: 100%;
-		display: flex;
-		background-color: black;
-		padding: 1em;
-		height: 8em;
+	a.cicon:hover {
+		color: #ffd3d3;
 	}
 }
+#revise-sus-note {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: courier;
+}
+.sus-notes, 
+// ^ what suspended user sees
+.note-reason, 
+// ^ what user_management shows
+#sus-note {
+// ^ textarea in user_management 
+	display: flex;
+	width: 100%;
+	color: #fff;
+	outline: none;
+	font-size: 1em;
+	background-color: rgba(255,132,132,0.2);
+	white-space: pre-wrap;
+}
+.sus-notes {
+	margin: 0 0 1em;
+	padding: 1em;
+	background-color: rgba(0,0,0,0.6);
+}
+.notes-glance a.reason-note.rt {
+	background-color: transparent;
+}
+.note-reason {
+	padding: 1em;
+	.alert-warning {
+		width: 100%;
+	}
+}
+.alert.alert-warning.ump {
+	margin-top: 0;
+}
+.note-reason.emsg {
+	padding: 0px;
+	margin-top: 0;
+}
+.note-reason.formhere {
+	padding: 0px;
+}
+#sus-note {
+	width: 100%;
+	display: flex;
+	background-color: black;
+	padding: 1em;
+	height: 8em;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4065,11 +4065,6 @@ h2.change-role.upgrade {
   color: #fff;
   padding: 0.5em 0.5em 0.5em 1em;
 }
-#sus-wrap p.sus-notes {
-  margin: 0 0 1em;
-  padding: 1em;
-  background-color: rgba(0, 0, 0, 0.6);
-}
 
 #sus-reason {
   margin: 0;
@@ -4190,32 +4185,35 @@ a.manage-edit.spec:hover {
 .notes-glance a.reason-note.rt:hover {
   color: #000;
 }
-.notes-glance .reason-header .ricons {
+
+.reason-header .ricons {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
       align-items: center;
   margin-right: 0.5em;
 }
-.notes-glance .reason-header .ricons a {
+.reason-header .ricons a {
   padding: 0em 1em;
   background-color: transparent;
 }
-.notes-glance .reason-header .ricons a.eicon,
-.notes-glance .reason-header .ricons a.sicon,
-.notes-glance .reason-header .ricons a.cicon {
+.reason-header .ricons a.eicon,
+.reason-header .ricons a.sicon,
+.reason-header .ricons a.cicon {
   color: #fff;
+  padding: 0 1em;
   transition: all 0.2s ease;
 }
-.notes-glance .reason-header .ricons a.eicon:hover,
-.notes-glance .reason-header .ricons a.sicon:hover,
-.notes-glance .reason-header .ricons a.cicon:hover {
+.reason-header .ricons a.eicon:hover,
+.reason-header .ricons a.sicon:hover,
+.reason-header .ricons a.cicon:hover {
   color: #96ff00;
 }
-.notes-glance .reason-header .ricons a.cicon:hover {
+.reason-header .ricons a.cicon:hover {
   color: #ffd3d3;
 }
-.notes-glance #revise-sus-note {
+
+#revise-sus-note {
   width: 100%;
   display: -ms-flexbox;
   display: flex;
@@ -4223,8 +4221,10 @@ a.manage-edit.spec:hover {
       flex-direction: column;
   font-family: courier;
 }
-.notes-glance .note-reason,
-.notes-glance #sus-note {
+
+.sus-notes,
+.note-reason,
+#sus-note {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -4232,14 +4232,40 @@ a.manage-edit.spec:hover {
   outline: none;
   font-size: 1em;
   background-color: rgba(255, 132, 132, 0.2);
+  white-space: pre-wrap;
 }
-.notes-glance .note-reason {
+
+.sus-notes {
+  margin: 0 0 1em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.notes-glance a.reason-note.rt {
+  background-color: transparent;
+}
+
+.note-reason {
   padding: 1em;
 }
-.notes-glance .note-reason.formhere {
+.note-reason .alert-warning {
+  width: 100%;
+}
+
+.alert.alert-warning.ump {
+  margin-top: 0;
+}
+
+.note-reason.emsg {
+  padding: 0px;
+  margin-top: 0;
+}
+
+.note-reason.formhere {
   padding: 0px;
 }
-.notes-glance #sus-note {
+
+#sus-note {
   width: 100%;
   display: -ms-flexbox;
   display: flex;

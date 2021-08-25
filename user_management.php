@@ -161,16 +161,8 @@ $role = $_SESSION['admin'];
 </div><?php /* .tab-content */ ?>
 </div>
 
-
-
-
-
 		<?php } mysqli_free_result($user_management_list); ?>
-
-		<?php } ?>
-	
-	
-	
+	<?php } ?>
 
 <?php /* -------------------- SUSPENDED USERS -------------------- */ ?>
 <div class="manage-simple s-a">	
@@ -202,15 +194,15 @@ $role = $_SESSION['admin'];
 				<div class="notes-glance">
 					<span class="reason-header">
 						<p class="reason-note">Reason for suspension</p>
-
 						<span id="a_<?= $i ?>" class="ricons">
 							<a data-id="<?= $i ?>" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right">
 						<span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>
 						</span>
-
 					</span>
-					<div id="<?= $i ?>" class="note-reason"><?= nl2br($row['sus_notes']) ?></div>
-					<div id="on_<?= $i ?>" style="display:none;"><?= nl2br($row['sus_notes']) ?></div>
+
+					<div id="error_<?= $i ?>"></div>
+					<div id="<?= $i ?>" class="note-reason"><?= $row['sus_notes'] ?></div>
+					<div id="on_<?= $i ?>" style="display:none;"><?= $row['sus_notes'] ?></div>
 					<div id="uid_<?= $i ?>" style="display:none;"><?= $row['id_user'] ?></div>
 					<div id="round2_<?= $i ?>" style="display:none;"></div>
 				</div>
@@ -225,15 +217,15 @@ $role = $_SESSION['admin'];
 				<div class="notes-glance">
 					<span class="reason-header">
 						<p class="reason-note">Reason for suspension</p>
-
 						<span id="a_<?= $i ?>" class="ricons">
 							<a data-id="<?= $i ?>" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right">
 						<span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>
 						</span>
-
 					</span>
-					<div id="<?= $i ?>" class="note-reason"><?= nl2br($row['sus_notes']) ?></div>
-					<div id="on_<?= $i ?>" style="display:none;"><?= nl2br($row['sus_notes']) ?></div>
+
+					<div id="error_<?= $i ?>"></div>
+					<div id="<?= $i ?>" class="note-reason"><?= $row['sus_notes'] ?></div>
+					<div id="on_<?= $i ?>" style="display:none;"><?= $row['sus_notes'] ?></div>
 					<div id="uid_<?= $i ?>" style="display:none;"><?= $row['id_user'] ?></div>
 					<div id="round2_<?= $i ?>" style="display:none;"></div>
 				</div>	

@@ -125,6 +125,8 @@ $(document).ready(function(){
   }) 
 });
 
+// edit or update sus_notes suspension reason on user_management.php
+// pretty nice if I say so myself. :)
 $(document).ready(function() {
   $(document).on('click','a[data-role=rnote]',function() { // clicked on edit note
     close_navigation_first();
@@ -132,13 +134,11 @@ $(document).ready(function() {
     var user_id = $('#uid_'+id).html();
 
     if ($('#round2_'+id).html().length) {
-      var note1 = $('#'+id).html();
-      var note2 = note1.replaceAll('<br>', '\n');
-      var r_note = note2.replaceAll('<br><br>', '\n\n');
+      /* if this one has already been edited on this screen, the edited version will have been captured and stored in #round2_$id (which treats the breaks differently since js uses \n for a return whereas php uses <br>) so let's use that version. (note: the trim() is redundant here since it's applied before submitting to db in the processing script but wth...) - display on the front end is handled via css -> .sus-notes, .note-reason, #sus-note {white-space: pre-wrap;} in order to preserve spaces *after* the 1st line. */
+      var r_note = $('#'+id).html().replaceAll('<br>', '\n').replaceAll('<br><br>', '\n\n').trim();
     } else {
-      var note1 = $('#'+id).html();
-      var note2 = note1.replaceAll('<br>\n', '\n');
-      var r_note = note2.replaceAll('<br>\n<br>', '\n');
+      /* otherwise, this is their first pass at editing this so we're dealing with just the php version of line breaks. */
+      var r_note = $('#'+id).html().replaceAll('<br>\n', '\n').replaceAll('<br>\n<br>', '\n').trim();
     }
 
     $('#'+id).addClass('formhere');
@@ -157,6 +157,7 @@ $(document).ready(function() {
       var original_note = $('#on_'+id).html();
     }
 
+    $('#error_'+id).html('');
     $('#'+id).html(original_note);
     $('#a_'+id).html('<a data-id="'+id+'" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right"><span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>');
     $('#'+id).removeClass('formhere');
@@ -166,10 +167,7 @@ $(document).ready(function() {
   $(document).on('click','a[data-role=unote]',function() { // save (or update note)
     close_navigation_first();
     var id = $(this).data('id');
-
-    var note = $('#sus-note').val();
-
-    var new_note = note.replaceAll('\n', '<br>');
+    var new_note = $('#sus-note').val().replaceAll('\n', '<br>').trim();
     
     $.ajax({
       dataType: "JSON",
@@ -177,8 +175,7 @@ $(document).ready(function() {
       type: "POST",
       data: $('#revise-sus-note').serialize(),
       beforeSend: function(xhr) {
-        $('#'+id).removeClass('formhere');
-        $('#'+id).html('<span class="sending-msg">Working on it - one moment...</span>');
+        // unnecessarily clutters up the (very quick) update process by putting stuff here
       },
       success: function(response) {
         // console.log(response);
@@ -187,14 +184,12 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
           $('#a_'+id).html('<a data-id="'+id+'" data-role="rnote" class="reason-note rt eicon"><div class="tooltip right"><span class="tooltiptext type">Edit Note</span><i class="far fa-edit"></i></div></a>');
           $('#'+id).removeClass('formhere');
-
+          $('#'+id).removeClass('emsg');
+          $('#error_'+id).html('');
           $('#'+id).html(new_note);
-
-
           $('#round2_'+id).html(new_note);
-
           } else {
-            $('#'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+            $('#error_'+id).html('<div class="alert alert-warning ump">' + response['msg'] + '</div>');
           }
         } 
       },
@@ -202,10 +197,8 @@ $(document).ready(function() {
         $('#'+id).html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
       }, 
       complete: function() {
-
       }
     }) // end ajax
-
   }) // end click unote
 
 });

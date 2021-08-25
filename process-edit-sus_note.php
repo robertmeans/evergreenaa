@@ -3,9 +3,11 @@ require_once 'config/initialize.php';
 
 if (is_post_request()) {
 
-	if(isset($_POST['reason'])) {
-		$reason   	= h($_POST['reason']);
-		$user 			= $_POST['user-id'];
+	$reason   	= trim(h($_POST['reason']));
+	$user 			= $_POST['user-id'];
+
+	if($reason) {
+
 
 		$update_sus_notes = update_sus_note($reason, $user);
 
@@ -16,6 +18,9 @@ if (is_post_request()) {
 	  	$signal = 'bad';
 	  	$msg = 'Hmm, that didn\'t seem to take. You can try refreshing the page and doing it again or maybe your Internet is down? You\'d still see this message even if your Internet connection had dropped since you started this.';
 		}
+	} else {
+		$signal = 'bad';
+		$msg = 'Please give them some kind of reason for getting suspended.';
 	}
 }
 

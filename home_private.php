@@ -241,7 +241,7 @@ $user_role = $_SESSION['admin'];
 	<div id="sus-wrap">
 		<p>This account has been put on hold.</p>
 		<p class="sus-header">Additional details</p>
-		<p class="sus-notes"><?= nl2br($row['sus_notes']); ?></p>
+		<div class="sus-notes"><?= $row['sus_notes']; ?></div>
 	</div>
 <?php } ?>
 

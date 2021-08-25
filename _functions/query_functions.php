@@ -146,7 +146,8 @@ function change_user_role($user_id, $role, $mode) {
   $one = "UPDATE users ";
   // $one .= "JOIN meetings m ON u.id_user=m.id_user ";
   $one .= "SET admin='"  . db_escape($db, $role) . "', ";
-  $one .= "mode='"  . db_escape($db, $mode) . "' ";
+  $one .= "mode='"  . db_escape($db, $mode) . "', ";
+  $one .= "sus_notes='' ";
   $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
 
   $result = mysqli_query($db, $one);
