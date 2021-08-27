@@ -114,7 +114,7 @@ if (is_post_request()) { // this is SINGLE TOPIC + REPLY PAGE
 
 					<?php 
 						$firstLine = preg_split('~<br */?>|\R~i', $row['mb_body'], -1, PREG_SPLIT_NO_EMPTY)[0]; 
-						if (strlen($firstLine) > 80) { ?>
+						if (strlen($firstLine) > 80 || substr_count($row['mb_body'], "\n") > 0) { ?>
 						<p class="mb-body"><?= nl2br(substr($firstLine, 0, 80)) . '...' ?></p>
 					<?php } else { ?>
 						<p class="mb-body"><?= nl2br($firstLine) ?></p>
@@ -123,7 +123,7 @@ if (is_post_request()) { // this is SINGLE TOPIC + REPLY PAGE
 
 					<form id="<?= $i ?>" class="mbform" action="" method="post">
 						<input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
-						<a data-id="<?= $i ?>" data-role="go-to-post" class="gtp">View | Respond</a>
+						<a data-id="<?= $i ?>" data-role="go-to-post" class="gtp">VIEW + RESPOND</a>
 					</form>
 				</li>
 			<?php $i++; } // end while loop ?>

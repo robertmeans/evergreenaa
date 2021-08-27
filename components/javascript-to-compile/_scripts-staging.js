@@ -843,6 +843,25 @@ $(document).ready(function() {
   // submit post
   $(document).on('click','#mb-new', function() {
     // event.preventDefault();
+    var title = $('#mb-title').val().trim().length;
+    var body = $('#emh-msg').val().trim().length;
+    var post = $('#emh-msg').val();
+    var numberOfLineBreaks = (post.match(/\n/g)||[]).length;
+    if (numberOfLineBreaks > 6) {
+      $('#emh-contact-msg').html('<div class="alert alert-warning">Tighten that up please. Too many line breaks (6 tops). Trying to avoid those long posts where people exploit the carriage return.</div>');
+      return;
+    }
+    if (title == 0) {
+      $('#emh-contact-msg').html('<div class="alert alert-warning">You need a Title for your post.</div>');
+      $('#mb-title').addClass('alert');
+      return;
+    }
+    if (body == 0) {
+      $('#emh-contact-msg').html('<div class="alert alert-warning">You need some content for your post.</div>');
+      $('#emh-msg').addClass('alert');
+      return;
+    }
+
     $.ajax({
       dataType: "JSON",
       url: "process-mb.php",

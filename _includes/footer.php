@@ -110,7 +110,7 @@
         <input type="hidden" name="mtgname" id="mtgnamez">
 
         <label>Title | Topic | Headline
-        <input name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label>
+        <input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label>
 
         <label>Body
         <textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea>

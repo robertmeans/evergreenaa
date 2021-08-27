@@ -4740,10 +4740,16 @@ p.mb-date {
   color: rgba(255, 255, 255, 0.6);
 }
 
+#theModal .modal-body #mb-title.alert,
+#theModal .modal-body #emh-msg.alert {
+  background-color: #af7a7a;
+}
+
 .gtp {
   cursor: pointer;
   text-decoration: none;
   margin-top: 1em;
+  font-size: 0.8em;
   padding: 0.5em 1em;
   background-color: rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
@@ -4764,6 +4770,7 @@ p.mb-date {
   text-align: center;
   margin-top: 0;
   padding: 1em;
+  font-size: 1em;
 }
 
 .gtp.res.active {
