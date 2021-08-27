@@ -190,10 +190,6 @@ function get_user_by_id($id) {
     return $row; 
 }
 
-
-
-
-
 function create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   global $db;
 
@@ -526,6 +522,97 @@ function get_host_address($mtgid) {
   confirm_result_set($result);
   return $result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function get_mb_posts() {
+  global $db;
+
+  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username FROM mb_topics as mb ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
+  $sql .= "ORDER by opened DESC";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+function add_new_post($row) {
+  global $db;
+
+  $sql = "INSERT INTO mb_topics ";
+  $sql .= "(id_user, mb_header, mb_body) VALUES ";
+  $sql .= "('" . $row['id_user'] . "', ";
+  $sql .= "'" . db_escape($db, $row['mb_header']) . "', ";
+  $sql .= "'" . db_escape($db, $row['mb_body']) . "')";
+
+  $result = mysqli_query($db, $sql);
+  if ($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+function add_mb_reply($row) {
+  global $db;
+
+  $sql = "INSERT INTO mb_replies ";
+  $sql .= "(id_topic, id_user, reply) VALUES ";
+  $sql .= "('" . $row['mb_topic'] . "', ";
+  $sql .= "'" . $row['id_user'] . "', ";
+  $sql .= "'" . db_escape($db, $row['mb_reply']) . "')";
+
+  $result = mysqli_query($db, $sql);
+  if ($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+function get_this_post($post) {
+  global $db;
+
+  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username FROM mb_topics as mb ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
+  $sql .= "WHERE id_topic='" . $post . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+function get_mb_replies($post) {
+  global $db;
+
+  $sql = "SELECT mbr.replied, mbr.id_topic, mbr.id_user, mbr.reply, u.username FROM mb_replies as mbr ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mbr.id_user ";
+  $sql .= "WHERE id_topic='" . $post . "' ";
+  $sql .= "ORDER BY mbr.replied ASC";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
+
+
+
+
+
+
+
 
 function find_all_meetings() {
   global $db;

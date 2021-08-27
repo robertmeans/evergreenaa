@@ -50,7 +50,7 @@
 </footer>
 
 
-<?php /* if (($layout_context) == 'home-private') { */ ?>
+<?php if (($layout_context) == 'home-private' || ($layout_context) == 'home-public') {  ?>
 <!-- Modal -->
 <div id="theModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -90,13 +90,55 @@
     </div>
   </div>
 </div>    
-<?php /* } */ ?>
+<?php } ?>
+
+<?php if (($layout_context) == 'message-board') {  ?>
+<!-- Modal -->
+<div id="theModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="static closefp"><i class="fas fa-times-circle"></i></a>
+        <h4 class="modal-title">Start a new topic</h4>
+        <h4 id="mtgname" class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+
+      <form id="mb" class="emh-form">
+        <input type="hidden" name="mtgid" id="mtgid">
+        <input type="hidden" name="mtgname" id="mtgnamez">
+
+        <label>Title | Topic | Headline
+        <input name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label>
+
+        <label>Body
+        <textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea>
+        </label>
+
+        <div id="emh-contact-msg"></div>
+
+        <div class="submit-links">
+          <input type="button" id="mb-new" class="send" value="Post it">
+        </div><!-- #submit-links -->
+      </form>
+      </div>
+      <div class="modal-footer">
+        <h3>&nbsp;</h3>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<?php require '_includes/msg-message-board-join.php' ?>   
+<?php } ?>
 
 
 <?php
 switch ($layout_context) {
     case 'home-private'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
     case 'home-public'      :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
+    case 'message-board'    :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board.js?"   . time() . "\"></script>";  break;
     default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
 }
 ?>

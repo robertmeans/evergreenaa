@@ -30,6 +30,15 @@
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } 
 
+
+
+		if ($layout_context != 'message-board') { ?>
+			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" onclick="closeNav();">Message Board</a>
+		<?php }
+
+
+
+
 		if ($layout_context != 'login-page' && (isset($_SESSION['id']) && $layout_context != 'dashboard') && (isset($_SESSION['admin']) && ($_SESSION['admin'] != 85 && $_SESSION['admin'] != 86))) { ?>
 			<a href="manage.php" onclick="closeNav();">My Dashboard</a>
 		<?php } 

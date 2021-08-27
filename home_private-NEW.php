@@ -22,8 +22,18 @@ $user_role = $_SESSION['admin'];
 <div id="wrap">
 
 <?php if ($user_role != 86 && $user_role != 85) { // if they're not suspended 
-	$subject_set = get_all_public_and_private_meetings($user_id);
-	$row = mysqli_fetch_assoc($subject_set);
+	// $subject_set = get_all_public_and_private_meetings($user_id);
+	// $row = mysqli_fetch_assoc($subject_set);
+
+
+		$subject_set = get_all_public_and_private_meetings($user_id);
+		$users = mysqli_num_rows($subject_set);
+		$row = mysqli_fetch_all($subject_set, MYSQLI_ASSOC);
+
+
+
+
+
 ?>
 <ul id="weekdays">
 
@@ -35,7 +45,7 @@ $user_role = $_SESSION['admin'];
 			<?php
 				if ($row['sun'] == 1) {
 					$i = 1;
-					foreach ($row['sun'] as ($row['sun'] = 1)) { 
+					foreach $row['sun'] :: ($row['sun'] = 1) { 
 					$ic = 'i0_'.$i;
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
@@ -62,7 +72,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['mon'] == 1)) {
 					$i = 1;	
-					foreach ($row['mon'] as ($row['mon'] = 1)) {
+					foreach ($row['mon'] :: ($row['mon'] = 1)) {
 					$ic = 'i1_'.$i;
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
@@ -89,7 +99,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['tue'] == 1) {
 					$i = 1;
-					foreach ($row['tue'] as ($row['tue'] = 1)) {
+					foreach ($row['tue'] :: ($row['tue'] = 1)) {
 					$ic = 'i2_'.$i;
 					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
@@ -116,7 +126,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['wed'] == 1) {
 					$i = 1;
-					foreach ($row['wed'] as ($row['wed'] = 1)) { 
+					foreach ($row['wed'] :: ($row['wed'] = 1)) { 
 					$ic = 'i3_'.$i;
 					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
@@ -143,7 +153,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['thu'] == 1) {
 					$i = 1;
-					foreach ($row['thu'] as ($row['thu'] = 1)) { 
+					foreach ($row['thu'] :: ($row['thu'] = 1)) { 
 					$ic = 'i4_'.$i;
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
@@ -170,7 +180,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['fri'] == 1) {
 					$i = 1;
-					foreach ($row['fri'] as ($row['fri'] = 1)) { 
+					foreach ($row['fri'] :: ($row['fri'] = 1)) { 
 					$ic = 'i5_'.$i;
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
@@ -197,7 +207,7 @@ $user_role = $_SESSION['admin'];
 
 				if ($row['sat'] == 1) {
 					$i = 1;
-					foreach ($row['sat'] as ($row['sat'] = 1)) { 
+					foreach ($row['sat'] :: ($row['sat'] = 1)) { 
 					$ic = 'i6_'.$i;
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';

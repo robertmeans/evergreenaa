@@ -2,7 +2,8 @@ a#toggle-lat-long-msg,
 a#toggle-descriptive-location,
 a#toggle-pdf-info,
 a#toggle-link-label,
-a#toggle-role-key {
+a#toggle-role-key,
+a#gottajoin {
   cursor: pointer;
   color: #5dcb5d;
   &:hover {
@@ -32,6 +33,7 @@ a#gmaps {
 }
 
 #msg-one,
+#gottajoin,
 #lat-long,
 #desc-loc,
 #pdf-upload,

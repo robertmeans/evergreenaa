@@ -67,6 +67,17 @@ $(document).ready(function(){
         $("#role-key").fadeOut(500); 
     }
   });
+  $("#toggle-gottajoin").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+    if ($('#gottajoin').is(':hidden')) {
+        $("#gottajoin").fadeIn(500);
+    } else {
+        $("#gottajoin").fadeOut(500); 
+    }
+  });
+
 
 });
 
@@ -79,7 +90,8 @@ $(document).click(function() {
   } else if ($('#role-key').is(':visible')) {
     $("#role-key").fadeOut(500);
 
-
+  } else if ($('#gottajoin').is(':visible')) {
+    $("#gottajoin").fadeOut(500);
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
@@ -358,6 +370,8 @@ $(document).ready(function(){
   $(".day-content").hide();
   $(".weekday-wrap").hide();
   $("#msg-one").hide();
+  $("#gottajoin").hide();
+  $("#reply-spot").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
   $("#desc-loc").hide();
@@ -790,6 +804,161 @@ $(document).ready(function() {
     })
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// message board modal
+// email host modal
+$(document).ready(function() {
+  // open modal
+  $(document).on('click','a[data-role=mb]', function() {
+    var id         = $(this).data('id');
+    $('body').addClass('noscrollz');
+    theModal.style.display = "block";
+  });
+
+  // close modal
+  var closefp = document.getElementsByClassName("closefp")[0];
+  closefp.onclick = function() {
+    $('body').removeClass('noscrollz');
+    theModal.style.display = "none";
+  }
+
+  // submit post
+  $(document).on('click','#mb-new', function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "process-mb.php",
+      type: "POST",
+      data: $('#mb').serialize(),
+      beforeSend: function(xhr) {
+        $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#mb').html('<span class="success-emh">Your post is posted.</span>');
+            $('#post-topics').prepend('<li>woo hoo!</li>');
+          } else {
+            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });  
+
+  // submit form to go to post
+  $(document).on('click', 'a[data-role=go-to-post]', function() {
+    var id = $(this).data('id');
+    $('#'+id).submit();
+  });
+
+  // submit form for replies
+  $(document).on('click', '#mb-reply', function() {
+    close_navigation_first();
+    var active = $(this);
+    var toggle = $('#reply-spot');
+
+    $(toggle).slideToggle();
+    if ($(active).hasClass('active')) {
+      $(active).removeClass('active');
+    } else {
+      $(active).addClass('active');
+    }
+  });
+
+
+
+
+
+
+
+
+  // $(document).on('click', '#reply', function() {
+  //   $('#post-reply').submit();
+  // }); 
+
+  // submit reply
+  $(document).on('click','#reply', function() {
+    // event.preventDefault();
+    $.ajax({
+      dataType: "JSON",
+      url: "process-mb.php",
+      type: "POST",
+      data: $('#post-reply').serialize(),
+      beforeSend: function(xhr) {
+        // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
+            $('#mb-reply').removeClass('active');
+            $('#reply-spot').slideToggle();
+            // $('#post-topics').prepend('<li>woo hoo!</li>');
+          } else {
+            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Transfer Meeting and User Management tabs to separate
 // username from email dropdown lists in order to keep
