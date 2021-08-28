@@ -919,10 +919,24 @@ $('body').removeClass('noscrollz');
   // submit form to go to post
   $(document).on('click', 'a[data-role=go-to-post]', function() {
     var id = $(this).data('id');
+    // var pid = $('#pid_'+id).val();
+    // alert(pid);
     $('#'+id).submit();
   });
 
-
+// these 2 now in appropriate pages instead of general js
+// $(document).ready(function() {
+  // $('#post-topics').load('load-message-board.php');
+  // setInterval(function() {
+  //   $('#post-topics').load('load-message-board.php');
+  // }, 5555000);
+// });
+// $(document).ready(function() {
+    // $('#replies').load('load-posts.php');
+    // setInterval(function() {
+    //   $('#replies').load('load-posts.php');
+    //   }, 1555000);
+// });
 
 
 
@@ -964,44 +978,42 @@ $('body').removeClass('noscrollz');
   });
 
 
-// delete reply
-  $(document).on('click', 'a[data-role=delete-reply]', function() {
+// delete reply -> now in post.php
+  // $(document).on('click', 'a[data-role=delete-reply]', function() {
 
-    var id = $(this).data('id');
-    var li_id = id.substring(id.indexOf('_') + 1);
+  //   var id = $(this).data('id');
+  //   var li_id = id.substring(id.indexOf('_') + 1);
 
-    $.ajax({
-      dataType: "JSON",
-      url: "process-delete-mb-reply.php",
-      type: "POST",
-      data: $('#'+id).serialize(),
-      beforeSend: function(xhr) {
-        // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
-      },
-      success: function(response) {
-        // console.log(response);
-        if(response) {
-          console.log(response);
-          if(response['signal'] == 'ok') {
+  //   $.ajax({
+  //     dataType: "JSON",
+  //     url: "process-delete-mb-reply.php",
+  //     type: "POST",
+  //     data: $('#'+id).serialize(),
+  //     beforeSend: function(xhr) {
+  //       // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+  //     },
+  //     success: function(response) {
+  //       // console.log(response);
+  //       if(response) {
+  //         console.log(response);
+  //         if(response['signal'] == 'ok') {
 
-            $('#li_'+li_id).remove();
+  //           $('#li_'+li_id).remove();
 
-          } else {
-            //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+  //         } else {
+  //           //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
 
-          }
-        } 
-      },
-      error: function() {
-        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
-      }, 
-      complete: function() {
+  //         }
+  //       } 
+  //     },
+  //     error: function() {
+  //       $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+  //     }, 
+  //     complete: function() {
 
-      }
-    })
-  });  
-
-
+  //     }
+  //   })
+  // });  
 
 
 
@@ -1017,58 +1029,60 @@ $('body').removeClass('noscrollz');
 
 
 
-  // submit form for replies
-  $(document).on('click', '#mb-reply', function() {
-    close_navigation_first();
-    var active = $(this);
-    var toggle = $('#reply-spot');
 
-    $(toggle).slideToggle();
-    if ($(active).hasClass('active')) {
-      $(active).removeClass('active');
-    } else {
-      $(active).addClass('active');
-    }
-  });
 
-  // submit reply
-  $(document).on('click','#reply', function() {
-    var username = $('#user-posting').val();
-    var reply = $('#mb-replyz').val();
+  // submit form for replies -> put in post.php
+  // $(document).on('click', '#mb-reply', function() {
+  //   close_navigation_first();
+  //   var active = $(this);
+  //   var toggle = $('#reply-spot');
 
-    // event.preventDefault();
-    $.ajax({
-      dataType: "JSON",
-      url: "process-mb.php",
-      type: "POST",
-      data: $('#post-reply').serialize(),
-      beforeSend: function(xhr) {
-        // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
-      },
-      success: function(response) {
-        // console.log(response);
-        if(response) {
-          console.log(response);
-          if(response['signal'] == 'ok') {
-            // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
-            $('#mb-reply').removeClass('active');
-            $('#reply-spot').slideToggle();
+  //   $(toggle).slideToggle();
+  //   if ($(active).hasClass('active')) {
+  //     $(active).removeClass('active');
+  //   } else {
+  //     $(active).addClass('active');
+  //   }
+  // });
 
-            $('#replies').append('<li><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
+  // submit reply -> put in post.php
+  // $(document).on('click','#reply', function() {
+  //   var username = $('#user-posting').val();
+  //   var reply = $('#mb-replyz').val();
 
-          } else {
-            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
-          }
-        } 
-      },
-      error: function() {
-        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
-      }, 
-      complete: function() {
+  //   // event.preventDefault();
+  //   $.ajax({
+  //     dataType: "JSON",
+  //     url: "process-mb.php",
+  //     type: "POST",
+  //     data: $('#post-reply').serialize(),
+  //     beforeSend: function(xhr) {
+  //       // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+  //     },
+  //     success: function(response) {
+  //       // console.log(response);
+  //       if(response) {
+  //         console.log(response);
+  //         if(response['signal'] == 'ok') {
+  //           // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
+  //           $('#mb-reply').removeClass('active');
+  //           $('#reply-spot').slideToggle();
 
-      }
-    })
-  });
+  //           $('#replies').append('<li><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
+
+  //         } else {
+  //           $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+  //         }
+  //       } 
+  //     },
+  //     error: function() {
+  //       $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+  //     }, 
+  //     complete: function() {
+
+  //     }
+  //   })
+  // });
 
 });
 
@@ -1078,12 +1092,7 @@ $('body').removeClass('noscrollz');
 
 
 
-// $(document).ready(function() {
-//   $('#replies').load('load-mb-replies.php');
-//   setInterval(function() {
-//     $('#replies').load('load-mb-replies.php');
-//   }, 5000);
-// });
+
 
 
 

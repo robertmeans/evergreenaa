@@ -575,7 +575,7 @@ function add_new_post($row) {
 
 
 
-function delete_post($row) {
+function delete_post($row) { // This is the TOPIC
   global $db;
 
   $sql = "DELETE FROM mb_topics ";
@@ -594,7 +594,7 @@ function delete_post($row) {
   }
 }
 
-function delete_reply($row) {
+function delete_reply($row) { // this is a REPLY POST
   global $db;
 
   $sql = "DELETE FROM mb_replies ";
@@ -612,6 +612,17 @@ function delete_reply($row) {
     exit;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

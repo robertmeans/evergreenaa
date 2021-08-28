@@ -4623,6 +4623,7 @@ li.focus a:hover {
 }
 
 ul#post-topics,
+ul#post-topicsz,
 ul#post-topics-empty {
   display: -ms-flexbox;
   display: flex;
@@ -4630,6 +4631,7 @@ ul#post-topics-empty {
       flex-direction: column;
 }
 ul#post-topics li,
+ul#post-topicsz li,
 ul#post-topics-empty li {
   display: -ms-flexbox;
   display: flex;
@@ -4644,16 +4646,32 @@ ul#post-topics-empty li {
 }
 ul#post-topics li p.title,
 ul#post-topics li p.body,
+ul#post-topicsz li p.title,
+ul#post-topicsz li p.body,
 ul#post-topics-empty li p.title,
 ul#post-topics-empty li p.body {
   display: -ms-flexbox;
   display: flex;
 }
 ul#post-topics li p.title,
+ul#post-topicsz li p.title,
 ul#post-topics-empty li p.title {
   font-size: 1.2em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+ul#post-topics li p.title span.num-replies,
+ul#post-topicsz li p.title span.num-replies,
+ul#post-topics-empty li p.title span.num-replies {
+  font-size: 0.7em;
+  margin-left: 1em;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.6);
 }
 ul#post-topics li .mbform,
+ul#post-topicsz li .mbform,
 ul#post-topics-empty li .mbform {
   display: -ms-flexbox;
   display: flex;
@@ -4807,6 +4825,19 @@ p.mb-date {
   margin-left: 1.5em;
 }
 
+@media screen and (max-width: 700px) {
+  ul#replies {
+    margin-left: 0;
+  }
+
+  .mb-reply {
+    margin-left: 0;
+  }
+
+  #post-reply #reply {
+    width: 100%;
+  }
+}
 .gtp.res {
   width: 100%;
   text-align: center;

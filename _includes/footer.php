@@ -140,6 +140,7 @@ switch ($layout_context) {
     case 'home-private'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
     case 'home-public'      :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
     case 'message-board'    :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board.js?"   . time() . "\"></script>";  break;
+    case 'post-page'        :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board.js?"   . time() . "\"></script>";  break;
     default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
 }
 ?>

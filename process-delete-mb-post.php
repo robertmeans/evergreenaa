@@ -6,7 +6,14 @@ if (is_post_request()) {
 
 	 if (isset($_POST['post-id'])) {
 		$row = [];
-		$row['id_user'] = $_SESSION['id'];
+
+		if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) {
+			// let admin delete this
+			$row['id_user'] = $_POST['uid'];
+		} else {
+			$row['id_user'] = $_SESSION['id'];
+		}
+
 		$row['id_topic'] 	 = $_POST['post-id'];
 
 		$result = delete_post($row);
