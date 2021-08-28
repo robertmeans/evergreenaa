@@ -414,7 +414,7 @@ function delete_meeting($id) {
 
   $sql = "DELETE FROM meetings ";
   $sql .= "WHERE id='" . db_escape($db, $id) . "' ";
-  $sql .= "LIMIT 1'";
+  $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
 
@@ -563,6 +563,62 @@ function add_new_post($row) {
     exit;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function delete_post($row) {
+  global $db;
+
+  $sql = "DELETE FROM mb_topics ";
+  $sql .= "WHERE id_topic='" . db_escape($db, $row['id_topic']) . "' ";
+  $sql .= "AND id_user='" . db_escape($db, $row['id_user']) . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+
+  if($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+
+function delete_reply($row) {
+  global $db;
+
+  $sql = "DELETE FROM mb_replies ";
+  $sql .= "WHERE id_reply='" . db_escape($db, $row['id_reply']) . "' ";
+  $sql .= "AND id_user='" . db_escape($db, $row['id_user']) . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+
+  if($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+
+
+
+
+
+
+
 function add_mb_reply($row) {
   global $db;
 
@@ -596,7 +652,7 @@ function get_this_post($post) {
 function get_mb_replies($post) {
   global $db;
 
-  $sql = "SELECT mbr.replied, mbr.id_topic, mbr.id_user, mbr.reply, u.username FROM mb_replies as mbr ";
+  $sql = "SELECT mbr.replied, mbr.id_reply, mbr.id_topic, mbr.id_user, mbr.reply, u.username FROM mb_replies as mbr ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mbr.id_user ";
   $sql .= "WHERE id_topic='" . $post . "' ";
   $sql .= "ORDER BY mbr.replied ASC";

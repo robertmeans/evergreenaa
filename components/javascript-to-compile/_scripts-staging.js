@@ -843,20 +843,30 @@ $(document).ready(function() {
   // submit post
   $(document).on('click','#mb-new', function() {
     // event.preventDefault();
-    var title = $('#mb-title').val().trim().length;
-    var body = $('#emh-msg').val().trim().length;
-    var post = $('#emh-msg').val();
+    var username = $('#user-posting').val();
+    var title = $('#mb-title').val();
+    var post = $('#emh-msg').val(); 
     var numberOfLineBreaks = (post.match(/\n/g)||[]).length;
+
+    if ((numberOfLineBreaks > 0) || (post.trim().length > 80)) {
+      var body = post.split('\n', 1)[0].substring(0,80) + '...';  
+    } else if (post.trim().length > 80) {
+      var body = post.substring(0,80) + '...';
+    } else {
+      var body = post;
+    }
+
     if (numberOfLineBreaks > 6) {
       $('#emh-contact-msg').html('<div class="alert alert-warning">Tighten that up please. Too many line breaks (6 tops). Trying to avoid those long posts where people exploit the carriage return.</div>');
       return;
     }
-    if (title == 0) {
+    if (title.trim().length == 0) {
       $('#emh-contact-msg').html('<div class="alert alert-warning">You need a Title for your post.</div>');
       $('#mb-title').addClass('alert');
       return;
     }
-    if (body == 0) {
+
+    if (post.trim().length == 0) {
       $('#emh-contact-msg').html('<div class="alert alert-warning">You need some content for your post.</div>');
       $('#emh-msg').addClass('alert');
       return;
@@ -875,8 +885,23 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-            $('#mb').html('<span class="success-emh">Your post is posted.</span>');
-            $('#post-topics').prepend('<li>woo hoo!</li>');
+
+
+
+            // $('#mb').html('<span class="success-emh">Your post is posted.</span>');
+$('#mb').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" id="user-posting" value="'+username+'"><label>Title | Topic | Headline<input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label><label>Body<textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="mb-new" class="send" value="Post it"></div>');
+$('#theModal').hide();
+$('body').removeClass('noscrollz');
+
+
+
+
+
+
+
+            $('#empty-posts').html('');
+            // $('#post-topics').addClass('pt-empty');
+            $('#post-topics').prepend('<li style="border-bottom:1px dashed rgba(255,255,255,0.4);"><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="title">'+title+'</p><p class="mb-body">'+body+'</p></li>');
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           }
@@ -897,6 +922,101 @@ $(document).ready(function() {
     $('#'+id).submit();
   });
 
+
+
+
+
+// delete post
+  $(document).on('click', 'a[data-role=delete-post]', function() {
+
+    var id = $(this).data('id');
+    var li_id = id.substring(id.indexOf('_') + 1);
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-delete-mb-post.php",
+      type: "POST",
+      data: $('#'+id).serialize(),
+      beforeSend: function(xhr) {
+        // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+
+            $('#li_'+li_id).remove();
+
+          } else {
+            //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+
+
+// delete reply
+  $(document).on('click', 'a[data-role=delete-reply]', function() {
+
+    var id = $(this).data('id');
+    var li_id = id.substring(id.indexOf('_') + 1);
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-delete-mb-reply.php",
+      type: "POST",
+      data: $('#'+id).serialize(),
+      beforeSend: function(xhr) {
+        // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+
+            $('#li_'+li_id).remove();
+
+          } else {
+            //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // submit form for replies
   $(document).on('click', '#mb-reply', function() {
     close_navigation_first();
@@ -911,19 +1031,11 @@ $(document).ready(function() {
     }
   });
 
-
-
-
-
-
-
-
-  // $(document).on('click', '#reply', function() {
-  //   $('#post-reply').submit();
-  // }); 
-
   // submit reply
   $(document).on('click','#reply', function() {
+    var username = $('#user-posting').val();
+    var reply = $('#mb-replyz').val();
+
     // event.preventDefault();
     $.ajax({
       dataType: "JSON",
@@ -941,7 +1053,9 @@ $(document).ready(function() {
             // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
             $('#mb-reply').removeClass('active');
             $('#reply-spot').slideToggle();
-            // $('#post-topics').prepend('<li>woo hoo!</li>');
+
+            $('#replies').append('<li><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
+
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           }
@@ -956,7 +1070,6 @@ $(document).ready(function() {
     })
   });
 
-
 });
 
 
@@ -965,7 +1078,12 @@ $(document).ready(function() {
 
 
 
-
+// $(document).ready(function() {
+//   $('#replies').load('load-mb-replies.php');
+//   setInterval(function() {
+//     $('#replies').load('load-mb-replies.php');
+//   }, 5000);
+// });
 
 
 

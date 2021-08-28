@@ -21,15 +21,6 @@ if (is_post_request()) {
 		}
 	} // end new post
 
-
-
-
-
-
-
-
-
-
 	if (isset($_POST['mb-reply'])) { // this is a reply
 		$row = [];
 		$row['id_user'] = $_SESSION['id'];
@@ -47,11 +38,6 @@ if (is_post_request()) {
 		}
 
 	} // end reply
-
-
-
-
-
 
 }
 
