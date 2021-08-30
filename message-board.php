@@ -33,7 +33,7 @@ require '_includes/head.php'; ?>
 		<?php } ?>
 	</div>
 
-<ul id="post-topics"></ul>
+<ul id="post-topics"><?php /* magic */ ?></ul>
 
 </div><!-- #mb-wrap -->
 </div><!-- #wrap -->
@@ -43,7 +43,7 @@ $(document).ready(function() {
   $('#post-topics').load('load-message-board.php');
   	setInterval(function() {
     	$('#post-topics').load('load-message-board.php');
-  	}, 5000);  	
+  	}, 5553000);  	
 });
 </script>
 

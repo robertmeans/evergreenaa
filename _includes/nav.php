@@ -18,38 +18,58 @@
 	<div id="sidenav-wrapper">
 		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a><?php 
 
+		// make sure session is cleared if going from login to homepage via nav
 		if ($layout_context == 'login-page') { ?>
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
-		<?php }
-
-		if (($layout_context != 'home-private') && ($layout_context != 'home-public') && ($layout_context != 'login-page')) { ?>
-			<a href="<?= WWW_ROOT ?>" onclick="closeNav();">Homepage</a>
+		<?php } else { ?>
+			<a href="<?= WWW_ROOT ?>" class="<?php if ($layout_context == 'home-public' || $layout_context == 'home-private') { echo 'nav-active'; } ?>">Homepage</a>
 		<?php } 
 
 		if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) { ?>
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
+		<?php } ?>
+
+<?php // for DEVELOPMENT
+			// it turns the Message Board link on only for me (bob id=1 (r@ewd.com) AND bobby id=2 (louifoot)) so I can see it from 2 accounts
+
+		 if ((isset($_SESSION['id']) && ($_SESSION['id'] == 1 || $_SESSION['id'] == 2)) && $layout_context == 'message-board') { // on MB page => has class: nav-active + no onclick ?>
+			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
+
+		<?php } else if (isset($_SESSION['id']) && ($_SESSION['id'] == 1 || $_SESSION['id'] == 2)) { ?>
+			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();"><span class="new-item">New</span><span class="mb-new">Message Board</span></a>
+		<?php }
+
+?>
+<?php // for PRODUCTION
+			/*
+		 if ($layout_context == 'message-board') { // on MB page => has class: nav-active + no onclick ?>
+			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
+		<?php } else { // not on MB page => no nav-active class and has onclick ?>
+			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();"><span class="new-item">New</span><span class="mb-new">Message Board</span></a>
+		<?php }
+		 */
+?>
+
+		<?php
+		if (isset($_SESSION['id']) && $layout_context == 'dashboard') { ?>
+			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>">My Dashboard</a>
 		<?php } 
-
-
-
-		if ($layout_context != 'message-board') { ?>
-			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" onclick="closeNav();">Message Board</a>
+		if (isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
+			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>" onclick="closeNav();">My Dashboard</a>
 		<?php }
 
 
-
-
-		if ($layout_context != 'login-page' && (isset($_SESSION['id']) && $layout_context != 'dashboard') && (isset($_SESSION['admin']) && ($_SESSION['admin'] != 85 && $_SESSION['admin'] != 86))) { ?>
-			<a href="manage.php" onclick="closeNav();">My Dashboard</a>
+		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context == 'um') { ?>
+			<a href="user_management.php" class="<?php if ($layout_context == 'um') { echo 'nav-active'; } ?>">Manage Users</a>
 		<?php } 
-
-		if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { ?>
+		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context != 'um') { ?>
 			<a href="user_management.php" onclick="closeNav();">Manage Users</a>
 		<?php } 
 
+
 		// my eyes only 
 		if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && $_SESSION['admin'] == 1)) { ?>
-			<a href="email_everyone_BCC.php" onclick="closeNav();">Email Everyone</a>
+			<a href="email_everyone_BCC.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
 		<?php } 
 
 		if (isset($_SESSION['admin']) && (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 0)) { ?>

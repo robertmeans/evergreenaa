@@ -14,7 +14,7 @@ require_once 'config/initialize.php';
 		// foreach ($results as $row) {
 		while ($row = mysqli_fetch_assoc($get_replies)) { ?>
 			<li id="li_<?= $i ?>">
-				<p class="date"><p class="mb-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
+				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
 				<p class="mb-body"><?= nl2br($row['reply']) ?></p>
 
 
@@ -31,6 +31,6 @@ require_once 'config/initialize.php';
 		<?php $i++; } mysqli_free_result($get_replies); // end while loop ?>
 	<?php } else { ?>
 			<li>
-				<p class="mb-body">No replies yet.</p>
+				<p class="nry">No replies yet.</p>
 			</li>
 	<?php } ?>

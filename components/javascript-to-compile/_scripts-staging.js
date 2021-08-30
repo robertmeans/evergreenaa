@@ -106,7 +106,11 @@ $(document).click(function() {
 });
 
 $(".top-nav").click(function(e) {
-   e.stopPropagation();
+  e.stopPropagation();
+});
+$(".nav-active").click(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
 });
 
 $(document).ready(function(){
@@ -761,6 +765,8 @@ $(document).ready(function() {
     theModal.style.display = "block";
   });
 
+
+if ($(".closefp")[0]) {
   var closefp = document.getElementsByClassName("closefp")[0];
   closefp.onclick = function() {
 
@@ -769,6 +775,10 @@ $(document).ready(function() {
     $('body').removeClass('noscrollz');
     theModal.style.display = "none";
   }
+}
+
+
+
 
 });
 // email host submit
@@ -806,26 +816,9 @@ $(document).ready(function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // message board modal
 // email host modal
-$(document).ready(function() {
+$(document).ready(function() { // 0829210847
   // open modal
   $(document).on('click','a[data-role=mb]', function() {
     var id         = $(this).data('id');
@@ -833,12 +826,12 @@ $(document).ready(function() {
     theModal.style.display = "block";
   });
 
-  // close modal
-  var closefp = document.getElementsByClassName("closefp")[0];
-  closefp.onclick = function() {
-    $('body').removeClass('noscrollz');
-    theModal.style.display = "none";
-  }
+  // close modal defined above (why was this here twice?)
+  // var closefp = document.getElementsByClassName("closefp")[0];
+  // closefp.onclick = function() {
+  //   $('body').removeClass('noscrollz');
+  //   theModal.style.display = "none";
+  // }
 
   // submit post
   $(document).on('click','#mb-new', function() {
@@ -886,21 +879,11 @@ $(document).ready(function() {
           console.log(response);
           if(response['signal'] == 'ok') {
 
-
-
-            // $('#mb').html('<span class="success-emh">Your post is posted.</span>');
-$('#mb').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" id="user-posting" value="'+username+'"><label>Title | Topic | Headline<input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label><label>Body<textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="mb-new" class="send" value="Post it"></div>');
-$('#theModal').hide();
-$('body').removeClass('noscrollz');
-
-
-
-
-
-
+            $('#mb').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" id="user-posting" value="'+username+'"><label>Title | Topic | Headline<input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label><label>Body<textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="mb-new" class="send" value="Post it"></div>');
+            $('#theModal').hide();
+            $('body').removeClass('noscrollz');
 
             $('#empty-posts').html('');
-            // $('#post-topics').addClass('pt-empty');
             $('#post-topics').prepend('<li style="border-bottom:1px dashed rgba(255,255,255,0.4);"><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="title">'+title+'</p><p class="mb-body">'+body+'</p></li>');
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -911,7 +894,6 @@ $('body').removeClass('noscrollz');
         $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
       }, 
       complete: function() {
-
       }
     })
   });  
@@ -923,22 +905,6 @@ $('body').removeClass('noscrollz');
     // alert(pid);
     $('#'+id).submit();
   });
-
-// these 2 now in appropriate pages instead of general js
-// $(document).ready(function() {
-  // $('#post-topics').load('load-message-board.php');
-  // setInterval(function() {
-  //   $('#post-topics').load('load-message-board.php');
-  // }, 5555000);
-// });
-// $(document).ready(function() {
-    // $('#replies').load('load-posts.php');
-    // setInterval(function() {
-    //   $('#replies').load('load-posts.php');
-    //   }, 1555000);
-// });
-
-
 
 // delete post
   $(document).on('click', 'a[data-role=delete-post]', function() {
@@ -977,134 +943,15 @@ $('body').removeClass('noscrollz');
     })
   });
 
+// located in the pages preceding them
+// message-board.php: $('#post-topics').load('load-message-board.php');
+// post.php:          $('#replies').load('load-posts.php');
+// ^^ those 2 are for background loding
+// post.php:          $(document).on('click', 'a[data-role=delete-reply]', function()...
+// post.php:          $(document).on('click', '#toggle-post-reply', function() ...
+// post.php:          $(document).on('click','#reply', function() ...
 
-// delete reply -> now in post.php
-  // $(document).on('click', 'a[data-role=delete-reply]', function() {
-
-  //   var id = $(this).data('id');
-  //   var li_id = id.substring(id.indexOf('_') + 1);
-
-  //   $.ajax({
-  //     dataType: "JSON",
-  //     url: "process-delete-mb-reply.php",
-  //     type: "POST",
-  //     data: $('#'+id).serialize(),
-  //     beforeSend: function(xhr) {
-  //       // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
-  //     },
-  //     success: function(response) {
-  //       // console.log(response);
-  //       if(response) {
-  //         console.log(response);
-  //         if(response['signal'] == 'ok') {
-
-  //           $('#li_'+li_id).remove();
-
-  //         } else {
-  //           //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');
-
-  //         }
-  //       } 
-  //     },
-  //     error: function() {
-  //       $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
-  //     }, 
-  //     complete: function() {
-
-  //     }
-  //   })
-  // });  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // submit form for replies -> put in post.php
-  // $(document).on('click', '#mb-reply', function() {
-  //   close_navigation_first();
-  //   var active = $(this);
-  //   var toggle = $('#reply-spot');
-
-  //   $(toggle).slideToggle();
-  //   if ($(active).hasClass('active')) {
-  //     $(active).removeClass('active');
-  //   } else {
-  //     $(active).addClass('active');
-  //   }
-  // });
-
-  // submit reply -> put in post.php
-  // $(document).on('click','#reply', function() {
-  //   var username = $('#user-posting').val();
-  //   var reply = $('#mb-replyz').val();
-
-  //   // event.preventDefault();
-  //   $.ajax({
-  //     dataType: "JSON",
-  //     url: "process-mb.php",
-  //     type: "POST",
-  //     data: $('#post-reply').serialize(),
-  //     beforeSend: function(xhr) {
-  //       // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
-  //     },
-  //     success: function(response) {
-  //       // console.log(response);
-  //       if(response) {
-  //         console.log(response);
-  //         if(response['signal'] == 'ok') {
-  //           // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
-  //           $('#mb-reply').removeClass('active');
-  //           $('#reply-spot').slideToggle();
-
-  //           $('#replies').append('<li><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
-
-  //         } else {
-  //           $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
-  //         }
-  //       } 
-  //     },
-  //     error: function() {
-  //       $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
-  //     }, 
-  //     complete: function() {
-
-  //     }
-  //   })
-  // });
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}); // 0829210847
 
 // Transfer Meeting and User Management tabs to separate
 // username from email dropdown lists in order to keep

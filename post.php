@@ -7,6 +7,11 @@ $layout_context = 'post-page';
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
 	$user_role = $_SESSION['admin'];
+  $user_posting = $_SESSION['username'];
+} else {
+  $user_id = '';
+  $user_role = '';
+  $user_posting = '';  
 }
 
 require '_includes/head.php'; ?>
@@ -36,27 +41,37 @@ require '_includes/head.php'; ?>
 		<a href="message-board.php" class="bkpg"><i class="fas fa-backward"></i> Back</a>
 	</div>
 	<div class="post-content">
-		<p class="mb-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
+		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
 		<p class="mb-body"><?= nl2br($row['mb_body']) ?></p>
 		<?php mysqli_free_result($get_post); ?>
 
 	</div>
 
 	<div class="replies">
-		<ul id="replies"></ul>
+		<ul id="replies"><?php /* magic */ ?></ul>
 	</div>
 
 		<div class="mb-reply">
-			<a id="mb-reply" class="gtp res">Post a reply</a>
+			<a id="toggle-post-reply" class="post-a-reply">Reply</a>
 		</div>
-
-		<div id="reply-spot">
-			<form id="post-reply" action="" method="post">
-				<textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea>
-				<input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
-				<a id="reply">Post reply</a>
-			</form>
-		</div>
+    <?php if (isset($_SESSION['id'])) { ?>
+  		<div id="reply-spot">
+        <div id="post-error"></div>
+  			<form id="post-reply" action="" method="post">
+  				<textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea>
+  				<input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
+          <input type="hidden" id="user-posting" value="<?= $user_posting ?>">
+  				<a id="reply">Post your reply</a>
+  			</form>
+  		</div>
+    <?php } else { ?>
+      <div id="reply-spot" class="post-visitor">
+        <p>You need to be logged in to participate.</p>
+        <div class="login-links">
+          <a href="login.php">Login</a> <a href="signup.php">Signup</a>
+        </div>
+      </div>
+    <?php } ?>
 
 </div><!-- #mb-wrap -->
 
@@ -70,9 +85,9 @@ $(document).ready(function() {
   $('#replies').load('load-posts.php'+q);
   setInterval(function() {
     $('#replies').load('load-posts.php'+q);
-    }, 5000);
+    }, 5553000);
 
-  $(document).on('click', '#mb-reply', function() {
+  $(document).on('click', '#toggle-post-reply', function() {
     close_navigation_first();
     var active = $(this);
     var toggle = $('#reply-spot');
@@ -80,14 +95,23 @@ $(document).ready(function() {
     $(toggle).slideToggle();
     if ($(active).hasClass('active')) {
       $(active).removeClass('active');
+      setTimeout(function() { // give textarea time to close before clearing
+        $('#post-error').html('');
+      }, 500);
     } else {
       $(active).addClass('active');
     }
   });
 
-  $(document).on('click','#reply', function() {
-    var username = $('#user-posting').val();
-    var reply = $('#mb-replyz').val();
+  // user has clicked "Post reply"
+  $(document).on('click','#reply', function() { 
+    var username = $('#user-posting').val().charAt(0);
+    var reply = $('#mb-replyz').val().trim();
+
+    if (reply == '') {
+      $('#post-error').html('<p class="post-error">You can\'t submit an empty reply.</p>');
+      return;
+    }
 
     // event.preventDefault();
     $.ajax({
@@ -103,11 +127,14 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-            // $('#reply-spot').html('     <form id="post-reply" action="" method="post"><textarea name="mb-reply" class="mb-reply"></textarea><input type="hidden" name="id-topic" value="<?= $row['id_topic'] ?>"><a id="reply">Post reply</a></form>');
-            $('#mb-reply').removeClass('active');
+            $('#toggle-post-reply').removeClass('active');
             $('#reply-spot').slideToggle();
+            $('#replies').append('<li><p class="mb-date">Just now | '+username+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
+            $('#post-error').html('');
 
-            $('#replies').append('<li><p class="mb-date">Just now | '+username.charAt(0)+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
+          setTimeout(function() { // give textarea time to close before clearing
+            $('#reply-spot').html('<form id="post-reply" action="" method="post"><textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea><input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>"><input type="hidden" id="user-posting" value="<?= $user_posting ?>"><a id="reply">Post reply</a></form>');
+          }, 500);
 
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -118,7 +145,6 @@ $(document).ready(function() {
         $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
       }, 
       complete: function() {
-
       }
     })
   });

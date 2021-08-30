@@ -381,6 +381,11 @@ html {
   background-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
+.sidenav a.nav-active {
+  cursor: default;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
 .sidenav a.closebtn {
   width: 100%;
   padding-left: 0.75em;
@@ -522,6 +527,21 @@ p.logout a {
 }
 p.logout a:hover {
   text-decoration: underline;
+}
+
+a.apr {
+  position: relative;
+}
+
+.new-item {
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+  font-size: 0.8em;
+  color: #a6e22b;
+  z-index: 100;
+  position: absolute;
+  top: 1em;
+  left: 0.5em;
 }
 
 * {
@@ -4642,7 +4662,8 @@ ul#post-topics-empty li {
   width: 100%;
   line-height: 1.5em;
   padding: 1em;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid #22677a;
+  box-shadow: 0px 1px #ac8e33;
 }
 ul#post-topics li p.title,
 ul#post-topics li p.body,
@@ -4675,8 +4696,6 @@ ul#post-topicsz li .mbform,
 ul#post-topics-empty li .mbform {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   -ms-flex-align: center;
       align-items: center;
 }
@@ -4685,30 +4704,47 @@ ul#post-topics.pt-empty li {
   border-bottom: none;
 }
 
+a.mb-entire {
+  text-decoration: none;
+  padding: 0.5em;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+a.mb-entire:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.mb-individual {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+
 .group-mb {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   -ms-flex-align: center;
       align-items: center;
+  -ms-flex: 0;
+      flex: 0;
 }
 
 a.manage-delete-mb {
   cursor: pointer;
   color: white;
-  margin-left: 1em;
+  padding: 0em 0.5em;
   transition: all 0.2s ease;
 }
 a.manage-delete-mb:hover {
   color: #ff2600;
 }
 
-@media screen and (max-width: 800px) {
-  a.manage-delete-mb {
-    margin-left: 1.6em;
-  }
-}
 ul#replies {
   display: -ms-flexbox;
   display: flex;
@@ -4763,14 +4799,15 @@ ul#replies li {
   font-size: 1em;
   line-height: 1.25em;
   padding: 0.5em;
+  border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 #post-reply textarea:-ms-input-placeholder {
-  color: #404040;
+  color: #707070;
 }
 #post-reply textarea::placeholder {
-  color: #404040;
+  color: #707070;
 }
 #post-reply #reply {
   cursor: pointer;
@@ -4790,17 +4827,103 @@ ul#replies li {
   background-color: #12961c;
 }
 
+.post-visitor {
+  margin-left: 1.5em;
+  padding: 1em;
+  background-color: rgba(210, 210, 210, 0.8);
+  color: #181818;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.login-links {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.login-links a {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  text-decoration: none;
+  width: 40%;
+  padding: 0.5em 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #313131;
+  text-align: center;
+  box-shadow: 0px 18px 6px -6px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+.login-links a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
 p.mb-body {
   margin-top: 0.8em;
   margin-left: 1em;
 }
 
-p.mb-date {
-  width: 100%;
-  font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.6);
+p.npy,
+p.nry {
+  margin: 0;
 }
 
+a.mb-date {
+  max-width: 80%;
+  font-size: 0.8em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  -ms-flex: 2;
+      flex: 2;
+  padding: 0.25em 0.5em;
+  transition: all 0.2s ease;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+}
+
+p.mp-date {
+  width: 100%;
+  max-width: 90%;
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.25em 0.5em;
+  margin-bottom: 0.25em;
+}
+
+@media screen and (max-width: 600px) {
+  .mb-individual {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    background-color: transparent;
+  }
+  .mb-individual .mb-date {
+    width: 100%;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.5em;
+  }
+  .mb-individual .group-mb {
+    width: 100%;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+  }
+  .mb-individual .gtp,
+  .mb-individual a.manage-delete-mb {
+    padding: 0em 1.25em;
+  }
+}
 #theModal .modal-body #mb-title.alert,
 #theModal .modal-body #emh-msg.alert {
   background-color: #af7a7a;
@@ -4809,14 +4932,57 @@ p.mb-date {
 .gtp {
   cursor: pointer;
   text-decoration: none;
-  font-size: 0.8em;
-  padding: 0.5em 1em;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0em 0.5em;
   transition: all 0.2s ease;
 }
 .gtp:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  color: #313131;
+  color: #96ff00;
+}
+
+.post-a-reply {
+  cursor: pointer;
+  width: 60%;
+  text-decoration: none;
+  margin-top: 1em;
+  margin-left: 0;
+  padding: 1em;
+  text-align: center;
+  color: #fff;
+  background-color: #61c068;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  transition: all 0.2s ease;
+}
+.post-a-reply:hover {
+  background-color: #12961c;
+  color: #fff;
+}
+.post-a-reply.active {
+  background: none;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  margin-left: 0;
+  border-top: none;
+  border-bottom: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+.post-a-reply.active:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.post-error {
+  padding: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 1.5em;
+  background-color: #ffc6c6;
+  color: #c72222;
+  line-height: 1.5em;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .mb-reply {
@@ -4830,7 +4996,25 @@ p.mb-date {
     margin-left: 0;
   }
 
-  .mb-reply {
+  .post-a-reply {
+    width: 100%;
+  }
+
+  #post-reply textarea {
+    border-top-right-radius: 0px;
+  }
+
+  .post-error {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .post-error {
+    margin-left: 0;
+  }
+
+  .mb-reply,
+  .post-visitor {
     margin-left: 0;
   }
 

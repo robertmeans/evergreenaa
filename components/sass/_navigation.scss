@@ -179,6 +179,11 @@
 	   	color: #fff;
 	  }
 	}
+	a.nav-active {
+		cursor: default;
+		background-color: rgba(255,255,255,0.3);
+	  color: #fff; 
+	}
   a.closebtn {
   	width: 100%;
   	padding-left: 0.75em;
@@ -342,4 +347,17 @@ p.logout {
 			text-decoration: underline;
 		}
 	}
+}
+
+a.apr {
+	position: relative;
+}
+.new-item {
+	transform: rotate(-45deg);
+	font-size: 0.8em;
+	color: #a6e22b;
+	z-index: 100;
+	position: absolute;
+	top: 1em;
+	left: 0.5em;
 }
