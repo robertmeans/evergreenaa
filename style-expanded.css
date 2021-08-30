@@ -4622,6 +4622,7 @@ li.focus a:hover {
   position: -webkit-sticky;
   position: sticky;
   top: 5px;
+  z-index: 50;
 }
 #mb-wrap .new-topic a {
   cursor: pointer;
@@ -4698,6 +4699,10 @@ ul#post-topics-empty li .mbform {
   display: flex;
   -ms-flex-align: center;
       align-items: center;
+}
+
+.mp-title {
+  font-size: 1.5em;
 }
 
 ul#post-topics.pt-empty li {
@@ -5033,4 +5038,18 @@ p.mp-date {
 .gtp.res.active {
   color: #fff;
   border-top: 1px solid #fff;
+}
+
+a.admin-mb-info,
+a.admin-mp-info,
+p.admin-mp-info,
+p.admin-mb-info {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0em 0.5em;
+}
+
+a.admin-mp-info {
+  margin-top: -0.5em;
+  margin-bottom: 1em;
 }

@@ -24,7 +24,7 @@ require '_includes/head.php'; ?>
 <div id="wrap">
 
 <div id="mb-wrap">
-	<h1>Message Board Posts</h1>
+	<h1>Message Board</h1>
 	<div class="new-topic">
 		<?php if (isset($_SESSION['id'])) { ?>
 			<a data-role="mb">Start a new topic</a>

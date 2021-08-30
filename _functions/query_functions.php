@@ -537,7 +537,7 @@ function get_host_address($mtgid) {
 function get_mb_posts() {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username FROM mb_topics as mb ";
+  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
   $sql .= "ORDER by opened DESC";
 
@@ -651,7 +651,7 @@ function add_mb_reply($row) {
 function get_this_post($post) {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username FROM mb_topics as mb ";
+  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
   $sql .= "WHERE id_topic='" . $post . "' ";
   $sql .= "LIMIT 1";
@@ -663,7 +663,7 @@ function get_this_post($post) {
 function get_mb_replies($post) {
   global $db;
 
-  $sql = "SELECT mbr.replied, mbr.id_reply, mbr.id_topic, mbr.id_user, mbr.reply, u.username FROM mb_replies as mbr ";
+  $sql = "SELECT mbr.replied, mbr.id_reply, mbr.id_topic, mbr.id_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mbr.id_user ";
   $sql .= "WHERE id_topic='" . $post . "' ";
   $sql .= "ORDER BY mbr.replied ASC";

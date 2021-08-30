@@ -77,7 +77,7 @@
 			<?php if ($row['admin'] != 1 && ($_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)) { ?>
 				<a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer this User's meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 			<?php } else { ?>
-				<a class="manage-edit off-limits"><div class="tooltip"><span class="tooltiptext">Insufficient permissions</span><i class="far fas fa-people-arrows"></i></div></a>
+				<a class="manage-edit off-limits"><div class="tooltip right"><span class="tooltiptext">Insufficient permissions</span><i class="far fas fa-people-arrows"></i></div></a>
 			<?php } ?>
 
 			<?php if ($row['admin'] != 1 && $_SESSION['admin'] == 3) { ?>

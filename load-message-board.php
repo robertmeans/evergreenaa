@@ -1,5 +1,6 @@
 <?php 
 require_once 'config/initialize.php';
+require_once 'config/verify_admin.php';
 
 $mb_posts = get_mb_posts(); 
 $results = mysqli_num_rows($mb_posts);
@@ -16,7 +17,7 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 
 		<div class="mb-individual">
 			<a class="mb-date" href="post.php?post-id=<?= $row['id_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</a>
-
+ 
 			<div class="group-mb"><?php /* favicon links */ ?>
 		    <form id="<?= $i ?>" class="mbform" action="post.php?post-id=<?= $row['id_topic'] ?>" method="get">
 		      <input id="pid_<?= $i ?>" type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
@@ -42,14 +43,39 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 		        <input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
 		        <input type="hidden" name="uid" value="<?= $row['id_user'] ?>">
 
+
+
+
+
+
 		    <?php if ($_SESSION['id'] == $row['id_user']) { ?>
 		        <a data-id="df_<?= $i ?>" data-role="delete-post" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete your Post</span><i class="far fas fa-minus-circle"></i></div></a>
-		    <?php } else { ?>
+
+
+ 				<?php } else { ?>
 		    		<a data-id="df_<?= $i ?>" data-role="delete-post" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete their Post</span><i class="far fas fa-minus-circle"></i></div></a>
+
+
 		    <?php } ?>
 		      </form>
 		    <?php } ?>
 			</div>
+
+
+
+
+
+				<?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
+					<a class="admin-mb-info gtp" href="user_role.php?user=<?= h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
+				<?php } ?>
+
+
+
+
+
+
+
+
 		</div>
 
 

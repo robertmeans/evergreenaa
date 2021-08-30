@@ -36,12 +36,18 @@ require '_includes/head.php'; ?>
 
 ?>
 <div id="mb-wrap">
-	<h1 class="topic-h"><?= $row['mb_header'] ?></h1>
+	<h1 class="topic-h">Message Board</h1>
 	<div class="new-topic">
 		<a href="message-board.php" class="bkpg"><i class="fas fa-backward"></i> Back</a>
 	</div>
 	<div class="post-content">
 		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
+
+        <?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
+          <a class="admin-mp-info gtp" href="user_role.php?user=<?= h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
+        <?php } ?>
+
+    <p class="mp-title"><?= $row['mb_header'] ?></p>
 		<p class="mb-body"><?= nl2br($row['mb_body']) ?></p>
 		<?php mysqli_free_result($get_post); ?>
 
