@@ -2,7 +2,7 @@
 <html lang="en">
 <!--
 
-	Hand coded with love by EvergreenBob.com
+	♥ Hand coded with love by EvergreenBob.com
 
 -->
 <head>

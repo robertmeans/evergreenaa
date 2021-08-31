@@ -23,6 +23,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
@@ -32,20 +33,75 @@ require '_includes/head.php'; ?>
 
 	$post = $_GET['post-id'];
 	$get_post = get_this_post($post);
+  $results = mysqli_num_rows($get_post);
 	$row = mysqli_fetch_assoc($get_post);
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php if ($results > 0) { ?>
+
+
+
 <div id="mb-wrap">
 	<h1 class="topic-h">Message Board</h1>
 	<div class="new-topic">
 		<a href="message-board.php" class="bkpg"><i class="fas fa-backward"></i> Back</a>
 	</div>
 	<div class="post-content">
+    <div class="pt-wrap">
 		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
 
-        <?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
-          <a class="admin-mp-info gtp" href="user_role.php?user=<?= h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
-        <?php } ?>
+  <?php /* begin delete icon */ ?>
+    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['id_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+
+      <form id="delete-post">
+        <input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
+        <input type="hidden" name="uid" value="<?= $row['id_user'] ?>">
+        <input type="hidden" id="ybcwpb">
+
+      <?php if ($_SESSION['id'] == $row['id_user']) { ?>
+        <a data-id="delete-post" data-role="delete-post" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete your Post</span><i class="far fas fa-minus-circle"></i></div></a>
+
+      <?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { ?>
+        <a class="gtp my-stuff"><div class="tooltip right"><span class="tooltiptext">Admin Off Limits</span><i class="far fas fa-minus-circle"></i></div></a>
+
+      <?php } else { ?>
+        <a data-id="delete-post" data-role="delete-post" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete their Post</span><i class="far fas fa-minus-circle"></i></div></a>
+
+      <?php } ?>
+
+      </form>
+    <?php } ?>
+  <?php /* end delete icon */ ?>
+
+  </div><!-- .pt-wrap -->
+
+
+    <?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
+    <?php if ($_SESSION['id'] == $row['id_user']) { ?>
+      <p class="admin-mp-info">This is your post</p>
+    <?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { 
+      // remember, there's only 1 ($row['admin'] = 1) ?>
+      <p class="admin-mp-info">Admin (off limits)</p>
+
+    <?php } else { ?>
+      <a class="admin-mp-info gtp" href="user_role.php?user=<?= h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
+    <?php } ?>
+
+  <?php } ?>
 
     <p class="mp-title"><?= $row['mb_header'] ?></p>
 		<p class="mb-body"><?= nl2br($row['mb_body']) ?></p>
@@ -80,6 +136,35 @@ require '_includes/head.php'; ?>
     <?php } ?>
 
 </div><!-- #mb-wrap -->
+
+
+<?php } else { ?>
+  <div class="post-deleted">
+    <div class="pd-msg">
+      <h2>Nothin' here to see here</h2>
+      <p>Whatever used to be here isn't any longer or if there wasn't anything here it still isn't.</p>
+      <div class="login-links">
+        <a href="message-board.php">Back to<br>Message Board</a>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div><!-- #wrap -->
 

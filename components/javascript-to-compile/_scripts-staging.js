@@ -26,20 +26,24 @@ $(document).ready(function() {
 function openNav() {
   var eotw = document.getElementById("side-nav");
   if (eotw.style.width == '300px') { 
+    $('#side-nav-bkg').fadeOut(501);
     eotw.style.width = '0px';
   } else {
-      eotw.style.width = '300px';
+    $('#side-nav-bkg').fadeIn(0);
+    eotw.style.width = '300px';
   }
 }
 /* Set the width of the side navigation to 0 */
 function closeNav() {
     document.getElementById("side-nav").style.width = "0";
+    $('#side-nav-bkg').fadeOut(501);
     $('.top-nav').removeClass('acty');
 }
 /* function to close nav to use everywhere */
 function close_navigation_first() {
   var eotw = document.getElementById("side-nav");
   if (eotw.style.width == '300px') { 
+    $('#side-nav-bkg').fadeOut(501);
     $('.top-nav').removeClass('acty');
     eotw.style.width = '0px';
     stopPropagation();
@@ -57,6 +61,17 @@ $(document).ready(function(){
         $("#msg-one").fadeOut(500); 
     }
   });
+  $("#toggle-why-join").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+    if ($('#why-join').is(':hidden')) {
+        $("#why-join").fadeIn(500);
+    } else {
+        $("#why-join").fadeOut(500); 
+    }
+  });
+
   $("#toggle-role-key").click(function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -78,7 +93,6 @@ $(document).ready(function(){
     }
   });
 
-
 });
 
 $(document).click(function() {
@@ -90,6 +104,8 @@ $(document).click(function() {
   } else if ($('#role-key').is(':visible')) {
     $("#role-key").fadeOut(500);
 
+  } else if ($('#why-join').is(':visible')) {
+    $("#why-join").fadeOut(500);
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
   } else if ($('#lat-long').is(':visible')) {
@@ -371,9 +387,11 @@ $("#showSignupPass").click(function(){
 
 $(document).ready(function(){
 
+  $("#side-nav-bkg").hide();
   $(".day-content").hide();
   $(".weekday-wrap").hide();
   $("#msg-one").hide();
+  $("#why-join").hide();
   $("#gottajoin").hide();
   $("#reply-spot").hide();
   $("#role-key").hide();
@@ -911,6 +929,7 @@ $(document).ready(function() { // 0829210847
 
     var id = $(this).data('id');
     var li_id = id.substring(id.indexOf('_') + 1);
+    var post_pg = $('#ybcwpb');
 
     $.ajax({
       dataType: "JSON",
@@ -925,8 +944,15 @@ $(document).ready(function() { // 0829210847
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-
-            $('#li_'+li_id).remove();
+            if (post_pg) {
+              // deleted post from single post page ->
+              // send them back to message-board.php 
+              window.location.href = 'message-board.php'; 
+            } else {
+              // deleted post from message-board.php page
+              // remove from list of other posts
+              $('#li_'+li_id).remove();                          
+            }
 
           } else {
             //$('#li_'+id).html('<div class="alert alert-warning">' + response['msg'] + '</div>');

@@ -37,10 +37,7 @@ require_once 'config/initialize.php';
 
 				<?php } ?>
 
-
-
 				<p class="mb-body"><?= nl2br($row['reply']) ?></p>
-
 
     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['id_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
 

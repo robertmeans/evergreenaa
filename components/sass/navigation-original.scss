@@ -91,54 +91,36 @@
   transform: rotate(-45deg);
 }
 
-
-
-
-
-#side-nav-bkg {
-	z-index: 81;
-	// background-color: green;
-	display: flex;
-	justify-content: flex-end;
-	transition: 0.6s;
-	width: 100%;
-	height: 100%;
-	min-height: 100vh;
-	position: fixed;
-	top: 0;
-	display: flex;
-	// flex-direction: column;
-}
-
 .sidenav {
 	display: flex;
 	flex-direction: column;
-	// justify-content: flex-end;
   height: 100%;
-  min-height: 100vh;
   width: 0; /* 0 width - change with JS */
 
   // for testing
   // width: 300px;
 
-  position: relative; 
+  position: fixed; 
   z-index: 80;
   top: 0;
   right: 0;
   background-color: #111;
   background-color: rgba(0,0,0,0.9);
+
+  // this puts a 1px border down the side of the entire page.
+  // border-right: 1px solid #fff;
   overflow-x: hidden; 
+  // padding-top: 2em; 
   transition: 0.5s; /* slide in the sidenav */
-  // overflow-y: hidden;
+
+  // silenced white-space so I could use username in footer of nav
+  // white-space: nowrap;
+  overflow-y: hidden;
 	#sidenav-wrapper {
-		display: flex;
-		flex-direction: column;
-		position: relative;
 		padding-top: 2em;
 		width: 300px; // match JS width
 		flex: 1; // to stretch 100% height
 		// overflow-y: hidden; // set on .sidenav
-
 		i {
 			margin-right: 0.5em;
 		}
@@ -231,6 +213,13 @@
 	  		animation: out .5s 1 linear;
 	  	}
 	  }
+	  // .ctxt {
+	  // 	color: transparent;
+	  // 	transform: color 1s ease;
+	  // 	&:hover {
+	  // 		color: #fff;
+	  // 	}
+	  // }
 	}	
 	a.admin-login,
 	a.admin-logout {
@@ -277,7 +266,6 @@
 	}
 	a.cc-x.eotw {
 		margin-top: 0;
-		margin-bottom: 2em;
 	}
 }
 
@@ -313,48 +301,6 @@
     from   { -ms-transform: rotate(0deg); }
     to { -ms-transform: rotate(360deg);}
 } 
-
-
-// remove all hover on mobile
-@media screen and (max-width: 767px) {
-	.sidenav a:hover {
-		background-color: inherit;
-		color: #818181;
-	}
-	.sidenav a.nav-active {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-			color: #fff;
-		}
-	}
-	.sidenav a.admin-logout {
-		&:hover {
-			color: #c30808;
-		}
-	}
-	.sidenav a.logout {
-		&:hover {
-			background-color: inherit;
-			color: #818181;
-		}
-	}
-	.sidenav a.logout:hover i {
-		color: #c30808;
-	}
-	.admin-role {
-		margin-bottom: 25vh;
-	}
-	a#toggle-role-key { 
-		&:hover {
-			// see: _msg-one.scss
-		}
-	}
-}
-
-
-
-
-
 @media screen and (min-width: 601px) {
 	#navigation.lg-g {
 		display: none;

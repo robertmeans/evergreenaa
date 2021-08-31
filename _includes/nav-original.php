@@ -1,7 +1,3 @@
-
-
-
-
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();">
 
@@ -14,15 +10,9 @@
 
 	</div>
 </nav>
-
-
-
-
 <nav id="navigation" class="lg-g"><?php // mobile nav ?>
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
 </nav>
-
-<div id="side-nav-bkg">
 
 <div id="side-nav" class="sidenav">
 	<div id="sidenav-wrapper">
@@ -41,23 +31,23 @@
 
 <?php // for DEVELOPMENT
 			// it turns the Message Board link on only for me (bob id=1 (r@ewd.com) AND bobby id=2 (louifoot)) so I can see it from 2 accounts
-/*
-		 if ((isset($_SESSION['id']) && ($_SESSION['id'] == 1 || $_SESSION['id'] == 2 || $_SESSION['id'] == 19) && $layout_context == 'message-board')) { ?>
+
+		 if ((isset($_SESSION['id']) && $_SESSION['id'] == 1 || $_SESSION['id'] == 2 || $_SESSION['id'] == 19) && $layout_context == 'message-board') { ?>
 			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
 
 		<?php } else if (isset($_SESSION['id']) && ($_SESSION['id'] == 1 || $_SESSION['id'] == 2 || $_SESSION['id'] == 19)) { ?>
 			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();"><span class="new-item">New</span><span class="mb-new">Message Board</span></a>
 		<?php }
-*/
+
 ?>
 <?php // for PRODUCTION
-			
+			/*
 		 if ($layout_context == 'message-board') { ?>
 			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();"><span class="new-item">New</span><span class="mb-new">Message Board</span></a>
 		<?php }
-		 
+		 */
 ?>
 
 		<?php
@@ -106,9 +96,9 @@
 
 		if (!isset($_SESSION['id']) && ($layout_context != "login-page")) { ?>
 			<a href="<?= WWW_ROOT . '/signup.php' ?>" class="cc-x">Create an Account</a>
-			<a id="toggle-why-join" class="cc-x eotw">Why Join?</a>
+			<a id="toggle-msg-one" class="cc-x eotw">Why Join?</a>
 		<?php } else if ($layout_context == "login-page") { ?>
-			<a id="toggle-why-join" class="cc-x eotw">Why Join?</a>
+			<a id="toggle-msg-one" class="cc-x eotw">Why Join?</a>
 		<?php } else { ?>
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
@@ -142,5 +132,3 @@
 			</div>
 		<?php } ?>
 </div><!-- #side-nav -->
-
-</div><!-- #side-nav-bkg -->

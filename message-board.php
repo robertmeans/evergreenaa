@@ -18,6 +18,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
