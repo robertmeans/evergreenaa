@@ -534,11 +534,26 @@ function get_host_address($mtgid) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function get_mb_posts() {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
-  $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
+  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mb.idt_user ";
   $sql .= "ORDER by opened DESC";
 
   $result = mysqli_query($db, $sql);
@@ -549,7 +564,7 @@ function add_new_post($row) {
   global $db;
 
   $sql = "INSERT INTO mb_topics ";
-  $sql .= "(id_user, mb_header, mb_body) VALUES ";
+  $sql .= "(idt_user, mb_header, mb_body) VALUES ";
   $sql .= "('" . $row['id_user'] . "', ";
   $sql .= "'" . db_escape($db, $row['mb_header']) . "', ";
   $sql .= "'" . db_escape($db, $row['mb_body']) . "')";
@@ -564,23 +579,12 @@ function add_new_post($row) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function delete_post($row) { // This is the TOPIC
   global $db;
 
   $sql = "DELETE FROM mb_topics ";
-  $sql .= "WHERE id_topic='" . db_escape($db, $row['id_topic']) . "' ";
-  $sql .= "AND id_user='" . db_escape($db, $row['id_user']) . "' ";
+  $sql .= "WHERE idt_topic='" . db_escape($db, $row['id_topic']) . "' ";
+  $sql .= "AND idt_user='" . db_escape($db, $row['id_user']) . "' ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
@@ -599,7 +603,7 @@ function delete_reply($row) { // this is a REPLY POST
 
   $sql = "DELETE FROM mb_replies ";
   $sql .= "WHERE id_reply='" . db_escape($db, $row['id_reply']) . "' ";
-  $sql .= "AND id_user='" . db_escape($db, $row['id_user']) . "' ";
+  $sql .= "AND idr_user='" . db_escape($db, $row['id_user']) . "' ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
@@ -613,28 +617,11 @@ function delete_reply($row) { // this is a REPLY POST
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function add_mb_reply($row) {
   global $db;
 
   $sql = "INSERT INTO mb_replies ";
-  $sql .= "(id_topic, id_user, reply) VALUES ";
+  $sql .= "(idr_topic, idr_user, reply) VALUES ";
   $sql .= "('" . $row['mb_topic'] . "', ";
   $sql .= "'" . $row['id_user'] . "', ";
   $sql .= "'" . db_escape($db, $row['mb_reply']) . "')";
@@ -651,9 +638,9 @@ function add_mb_reply($row) {
 function get_this_post($post) {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.id_topic, mb.id_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
-  $sql .= "LEFT JOIN users as u ON u.id_user=mb.id_user ";
-  $sql .= "WHERE id_topic='" . $post . "' ";
+  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mb.idt_user ";
+  $sql .= "WHERE idt_topic='" . $post . "' ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
@@ -663,15 +650,33 @@ function get_this_post($post) {
 function get_mb_replies($post) {
   global $db;
 
-  $sql = "SELECT mbr.replied, mbr.id_reply, mbr.id_topic, mbr.id_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
-  $sql .= "LEFT JOIN users as u ON u.id_user=mbr.id_user ";
-  $sql .= "WHERE id_topic='" . $post . "' ";
+  $sql = "SELECT mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mbr.idr_user ";
+  $sql .= "WHERE idr_topic='" . $post . "' ";
   $sql .= "ORDER BY mbr.replied ASC";
 
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

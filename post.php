@@ -51,14 +51,14 @@ require '_includes/head.php'; ?>
 		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
 
   <?php /* begin delete icon */ ?>
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['id_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idt_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
 
       <form id="delete-post">
-        <input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
-        <input type="hidden" name="uid" value="<?= $row['id_user'] ?>">
+        <input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>">
+        <input type="hidden" name="uid" value="<?= $row['idt_user'] ?>">
         <input type="hidden" id="ybcwpb">
 
-      <?php if ($_SESSION['id'] == $row['id_user']) { ?>
+      <?php if ($_SESSION['id'] == $row['idt_user']) { ?>
         <a data-id="delete-post" data-role="delete-post" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete your Post</span><i class="far fas fa-minus-circle"></i></div></a>
 
       <?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { ?>
@@ -76,14 +76,14 @@ require '_includes/head.php'; ?>
   </div><!-- .pt-wrap -->
 
     <?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
-    <?php if ($_SESSION['id'] == $row['id_user']) { ?>
+    <?php if ($_SESSION['id'] == $row['idt_user']) { ?>
       <p class="admin-mp-info">This is your post</p>
     <?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { 
       // remember, there's only 1 ($row['admin'] = 1) ?>
       <p class="admin-mp-info">Admin (off limits)</p>
 
     <?php } else { ?>
-      <a class="admin-mp-info gtp" href="user_role.php?user=<?= h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
+      <a class="admin-mp-info gtp" href="user_role.php?user=<?= h(u($row['idt_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><?= $row['username'] . ' &bullet; ' . $row['email'] ?></div></a>
     <?php } ?>
 
   <?php } ?>
@@ -106,7 +106,7 @@ require '_includes/head.php'; ?>
         <div id="post-error"></div>
   			<form id="post-reply" action="" method="post">
   				<textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea>
-  				<input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>">
+  				<input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>">
           <input type="hidden" id="user-posting" value="<?= $user_posting ?>">
   				<a id="reply">Post your reply</a>
   			</form>
@@ -192,7 +192,7 @@ $(document).ready(function() {
             $('#post-error').html('');
 
           setTimeout(function() { // give textarea time to close before clearing
-            $('#reply-spot').html('<form id="post-reply" action="" method="post"><textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea><input type="hidden" name="post-id" value="<?= $row['id_topic'] ?>"><input type="hidden" id="user-posting" value="<?= $user_posting ?>"><a id="reply">Post reply</a></form>');
+            $('#reply-spot').html('<form id="post-reply" action="" method="post"><textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea><input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>"><input type="hidden" id="user-posting" value="<?= $user_posting ?>"><a id="reply">Post reply</a></form>');
           }, 500);
 
           } else {
