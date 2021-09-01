@@ -101,12 +101,13 @@ ul#post-topics-empty {
 			font-size: 1.5em;
 			display: flex;
 			align-items: center;
-			font-family: Times New Roman, serif;
+			font-family: 'Cinzel', Times New Roman, serif;
 			span.num-replies {
-				font-size: 0.7em;
+				font-size: 0.5em;
 				margin-left: 1em;
 				font-weight: normal;
 				color: rgba(255,255,255,0.6);
+				font-family: Tahoma, Calbri, sans-serif;
 			}
 		}
 		.mbform {
@@ -122,7 +123,7 @@ ul#post-topics-empty {
 .mp-title {
 	font-size: 1.5em;
 	margin-top: 0.25em;
-	font-family: Times New Roman, serif;
+	font-family: 'Cinzel', Times New Roman, serif;
 }
 ul#post-topics.pt-empty {
 	li {

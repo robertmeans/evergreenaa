@@ -2,7 +2,6 @@
 require_once 'config/initialize.php';
 
 	$post = $_GET['post-id'];
-	// $post = '84';
 	$get_replies = get_mb_replies($post);
 	$results = mysqli_num_rows($get_replies);
 	// $results = mysqli_fetch_all($get_replies, MYSQLI_ASSOC);

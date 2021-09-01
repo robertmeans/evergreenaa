@@ -38,28 +38,14 @@ require '_includes/head.php'; ?>
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php if ($results > 0) { ?>
 
-
-
 <div id="mb-wrap">
-	<h1 class="topic-h">Message Board</h1>
+	<h1>Single Post</h1>
 	<div class="new-topic">
 		<a href="message-board.php" class="bkpg"><i class="fas fa-backward"></i> Back</a>
 	</div>
+
 	<div class="post-content">
     <div class="pt-wrap">
 		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
@@ -88,7 +74,6 @@ require '_includes/head.php'; ?>
   <?php /* end delete icon */ ?>
 
   </div><!-- .pt-wrap -->
-
 
     <?php if (isset($_SESSION['id']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { // admin view of username + email ?>
     <?php if ($_SESSION['id'] == $row['id_user']) { ?>
@@ -137,11 +122,10 @@ require '_includes/head.php'; ?>
 
 </div><!-- #mb-wrap -->
 
-
 <?php } else { ?>
   <div class="post-deleted">
     <div class="pd-msg">
-      <h2>Nothin' here to see here</h2>
+      <h2>Nothin' to see here</h2>
       <p>Whatever used to be here isn't any longer or if there wasn't anything here it still isn't.</p>
       <div class="login-links">
         <a href="message-board.php">Back to<br>Message Board</a>
@@ -149,22 +133,6 @@ require '_includes/head.php'; ?>
     </div>
   </div>
 <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div><!-- #wrap -->
 
