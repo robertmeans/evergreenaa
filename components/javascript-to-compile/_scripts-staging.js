@@ -393,7 +393,7 @@ $(document).ready(function(){
   $("#msg-one").hide();
   $("#why-join").hide();
   $("#gottajoin").hide();
-  $("#reply-spot").hide();
+  // $("#reply-spot").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
   $("#desc-loc").hide();

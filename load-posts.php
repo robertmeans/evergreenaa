@@ -4,13 +4,12 @@ require_once 'config/initialize.php';
 	$post = $_GET['post-id'];
 	$get_replies = get_mb_replies($post);
 	$results = mysqli_num_rows($get_replies);
+  
 	// $results = mysqli_fetch_all($get_replies, MYSQLI_ASSOC);
 
 	if ($results > 0) { 
-		// echo 'I\'m here!';
-		// echo '<pre>' . print_r($results) . '</pre>';
+  
 		$i = 1;
-		// foreach ($results as $row) {
 		while ($row = mysqli_fetch_assoc($get_replies)) { ?>
 			<li id="li_<?= $i ?>">
 				<?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idr_user']) { ?>
@@ -52,9 +51,12 @@ require_once 'config/initialize.php';
 
     <?php } ?>
 			</li>
-		<?php $i++; } mysqli_free_result($get_replies); // end while loop ?>
+		<?php $i++; } // mysqli_free_result($get_replies); // end while loop ?>
 	<?php } else { ?>
-			<li>
+
+
+
+			<li id="<?php if (!isset($row['idt_user'])) { echo 'ngtg'; } ?>">
 				<p class="nry">No replies yet.</p>
 			</li>
 	<?php } ?>

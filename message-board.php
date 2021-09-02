@@ -44,7 +44,7 @@ $(document).ready(function() {
   $('#post-topics').load('load-message-board.php');
   	setInterval(function() {
     	$('#post-topics').load('load-message-board.php');
-  	}, 5553000);  	
+  	}, 3000);  	
 });
 </script>
 

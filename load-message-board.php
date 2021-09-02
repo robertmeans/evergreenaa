@@ -9,7 +9,7 @@ if ($results > 0) {
 $i = 1;
 while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 <?php  
-	$get_replies = get_mb_replies($row['idt_topic']);
+	$get_replies = get_mb_pg_replies($row['idt_topic']);
 	$results = mysqli_num_rows($get_replies);
 ?>
 

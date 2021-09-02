@@ -47,6 +47,7 @@ require '_includes/head.php'; ?>
 	</div>
 
 	<div class="post-content">
+    <input type="hidden" id="gtg" value="gtg">
     <div class="pt-wrap">
 		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
 
@@ -98,9 +99,9 @@ require '_includes/head.php'; ?>
 		<ul id="replies"><?php /* magic */ ?></ul>
 	</div>
 
-		<div class="mb-reply">
+<!-- 		<div class="mb-reply">
 			<a id="toggle-post-reply" class="post-a-reply">Reply</a>
-		</div>
+		</div> -->
     <?php if (isset($_SESSION['id'])) { ?>
   		<div id="reply-spot">
         <div id="post-error"></div>
@@ -137,35 +138,31 @@ require '_includes/head.php'; ?>
 </div><!-- #wrap -->
 
 <script>
-// const queryString = window.location.search;
-// console.log(queryString);
+// $("#reply-spot").hide();
+
 $(document).ready(function() {
 	var q = window.location.search;
   $('#replies').load('load-posts.php'+q);
   setInterval(function() {
     $('#replies').load('load-posts.php'+q);
-    }, 5553000);
+    }, 8000);
 
-  $(document).on('click', '#toggle-post-reply', function() {
-    close_navigation_first();
-    var active = $(this);
-    var toggle = $('#reply-spot');
 
-    $(toggle).slideToggle();
-    if ($(active).hasClass('active')) {
-      $(active).removeClass('active');
-      setTimeout(function() { // give textarea time to close before clearing
-        $('#post-error').html('');
-      }, 500);
-    } else {
-      $(active).addClass('active');
-    }
-  });
 
   // user has clicked "Post reply"
   $(document).on('click','#reply', function() { 
+
+
+
+
+
+
+
+    if ($('#ngtg').length == 0) {
+
     var username = $('#user-posting').val().charAt(0);
     var reply = $('#mb-replyz').val().trim();
+    var empty = '';
 
     if (reply == '') {
       $('#post-error').html('<p class="post-error">You can\'t submit an empty reply.</p>');
@@ -186,14 +183,12 @@ $(document).ready(function() {
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-            $('#toggle-post-reply').removeClass('active');
-            $('#reply-spot').slideToggle();
+            // $('#toggle-post-reply').removeClass('active');
+            // $('#reply-spot').slideToggle();
+            $('#mb-replyz').val(empty);
             $('#replies').append('<li><p class="mb-date">Just now | '+username+'... Posted:</p><p class="mb-body">'+reply+'</p></li>');
             $('#post-error').html('');
 
-          setTimeout(function() { // give textarea time to close before clearing
-            $('#reply-spot').html('<form id="post-reply" action="" method="post"><textarea id="mb-replyz" name="mb-reply" class="mb-reply" placeholder="Enter your reply here."></textarea><input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>"><input type="hidden" id="user-posting" value="<?= $user_posting ?>"><a id="reply">Post reply</a></form>');
-          }, 500);
 
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
@@ -206,6 +201,18 @@ $(document).ready(function() {
       complete: function() {
       }
     })
+
+  } else {
+    location.reload();
+  }
+
+
+
+
+
+
+
+
   });
 
   $(document).on('click', 'a[data-role=delete-reply]', function() {
