@@ -225,7 +225,7 @@ ul#replies {
 		font-size: 1em;
 		line-height: 1.25em;
 		padding: 0.5em;
-		border-top-right-radius: 8px;
+		// border-top-right-radius: 8px;
 		border-bottom-right-radius: 8px;
 		border-bottom-left-radius: 8px;
 		&::placeholder {
@@ -411,8 +411,8 @@ p.mp-date {
 	background-color: #ffc6c6;
 	color: #c72222;
 	line-height: 1.5em;
-	border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+	// border-top-right-radius: 8px;
+  // border-bottom-right-radius: 8px;
 }
 .mb-reply {
 	display: flex;

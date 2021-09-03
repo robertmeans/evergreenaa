@@ -145,18 +145,12 @@ $(document).ready(function() {
   $('#replies').load('load-posts.php'+q);
   setInterval(function() {
     $('#replies').load('load-posts.php'+q);
-    }, 8000);
+    }, 3000);
 
 
 
   // user has clicked "Post reply"
   $(document).on('click','#reply', function() { 
-
-
-
-
-
-
 
     if ($('#ngtg').length == 0) {
 

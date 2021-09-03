@@ -3,12 +3,11 @@ require_once 'config/initialize.php';
 
 	$post = $_GET['post-id'];
 	$get_replies = get_mb_replies($post);
-	$results = mysqli_num_rows($get_replies);
-  
-	// $results = mysqli_fetch_all($get_replies, MYSQLI_ASSOC);
+  $replies = mysqli_fetch_assoc($get_replies);
 
-	if ($results > 0) { 
-  
+	if (isset($replies['idt_topic']) && isset($replies['idr_topic'])) { 
+			/* both topic and reply were returned from this query */
+  		mysqli_data_seek($get_replies, 0);
 		$i = 1;
 		while ($row = mysqli_fetch_assoc($get_replies)) { ?>
 			<li id="li_<?= $i ?>">
@@ -38,8 +37,6 @@ require_once 'config/initialize.php';
 				<p class="mb-body"><?= nl2br($row['reply']) ?></p>
 
     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idr_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
-
-
     	<?php if ($_SESSION['admin'] == 1 || ($_SESSION['id'] == $row['idr_user']) || ($_SESSION['admin'] == 3 && $row['admin'] != 1)) { // remember, there's only 1 admin=1 ?>
 	      <form id="dr_<?= $i ?>" class="delete-reply">
 	        <input type="hidden" name="id-reply" value="<?= $row['id_reply'] ?>">
@@ -47,16 +44,23 @@ require_once 'config/initialize.php';
 	        <a data-id="dr_<?= $i ?>" data-role="delete-reply" class="manage-delete-mb"><div class="tooltip right"><span class="tooltiptext">Delete</span><i class="far fas fa-minus-circle"></i></div></a>
 	      </form>
     	<?php } ?>
-	      
-
     <?php } ?>
 			</li>
-		<?php $i++; } // mysqli_free_result($get_replies); // end while loop ?>
-	<?php } else { ?>
 
+		<?php $i++; } // end while  ?>
 
-
-			<li id="<?php if (!isset($row['idt_user'])) { echo 'ngtg'; } ?>">
+		<?php } else if (isset($replies['idt_topic']) && !isset($replies['idr_topic'])) { ?>
+			<?php /* there's a topic but no replies */ ?>
+			<?php mysqli_data_seek($get_replies, 0); ?>
+			<li>
 				<p class="nry">No replies yet.</p>
 			</li>
+
+
+		<?php } else { ?>
+			<?php /* no topic - thread has been closed */ ?>
+			<li id="<?php if (!isset($row['idt_topic'])) { echo 'ngtg'; } ?>">
+				<p class="nry">This topic has been closed.</p>
+			</li>
+
 	<?php } ?>
