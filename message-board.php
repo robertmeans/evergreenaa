@@ -13,9 +13,10 @@ require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload">
-	<p>One day at a time.</p>
+	<p>One question at a time.</p>
+	<i class="far fa-smile"></i>
 </div>
-<?php } ?>	
+<?php } ?>
 
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>

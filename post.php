@@ -49,10 +49,10 @@ require '_includes/head.php'; ?>
 	<div class="post-content">
     <input type="hidden" id="gtg" value="gtg">
     <div class="pt-wrap">
-		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
+		<p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])+3600) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</p>
 
   <?php /* begin delete icon */ ?>
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idt_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+    <?php if (isset($_SESSION['id']) && ($_SESSION['id'] == $row['idt_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)))) { ?>
 
       <form id="delete-post">
         <input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>">

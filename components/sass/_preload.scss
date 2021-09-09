@@ -13,6 +13,7 @@
   // left: 0px;
   // top: -33px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(29,29,29,1);
@@ -25,6 +26,11 @@
     font-family: 'Caveat', cursive;
     font-size: 3em;
     color: #fff;
+  }
+  & > i {
+    font-size: 2em; 
+    margin-top: 0.5em;
+
   }
 }
 @media screen and (max-width: 600px) {

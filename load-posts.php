@@ -12,9 +12,9 @@ require_once 'config/initialize.php';
 		while ($row = mysqli_fetch_assoc($get_replies)) { ?>
 			<li id="li_<?= $i ?>">
 				<?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idr_user']) { ?>
-				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])); ?> | You replied:</p>
+				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])+3600); ?> | You replied:</p>
 				<?php } else { ?>
-				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
+				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])+3600) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
 				<?php } ?>
 
 

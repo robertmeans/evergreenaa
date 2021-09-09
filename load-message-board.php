@@ -17,9 +17,9 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 
 		<div class="mb-individual">
 			<?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idt_user']) { ?>
-			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | You posted:</a>
+			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])+3600) ?> | You posted:</a>
 			<?php } else { ?>
-			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</a>
+			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])+3600) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</a>
 			<?php } ?>
 
 		<div class="group-mb"><?php /* favicon links */ ?>
@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
     <?php /* end "Read and Reply" (comments) icon */ ?>
 
 	  <?php /* begin manage_user icon */ ?>
-    <?php if ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) { ?>
+    <?php if (isset($_SESSION['mode']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) { ?>
 
       <?php if ($_SESSION['id'] == $row['idt_user']) { ?>
         <a class="gtp my-stuff"><div class="tooltip"><span class="tooltiptext">My Stuff</span><i class="far fas fa-user-cog"></i></div></a>
@@ -58,7 +58,7 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
     <?php /* end manage_user icon */ ?>
 
 		<?php /* begin delete icon */ ?>
-	    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idt_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+	    <?php if (isset($_SESSION['id']) && ($_SESSION['id'] == $row['idt_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)))) { ?>
 
 	      <form id="df_<?= $i ?>">
 	        <input type="hidden" name="post-id" value="<?= $row['idt_topic'] ?>">

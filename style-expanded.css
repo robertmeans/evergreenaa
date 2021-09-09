@@ -171,6 +171,8 @@ html {
   position: fixed;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
@@ -186,6 +188,11 @@ html {
   font-family: 'Caveat', cursive;
   font-size: 3em;
   color: #fff;
+}
+.preload > i,
+.preload-manage > i {
+  font-size: 2em;
+  margin-top: 0.5em;
 }
 
 @media screen and (max-width: 600px) {
