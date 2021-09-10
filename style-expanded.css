@@ -1499,7 +1499,8 @@ a#gmaps:hover {
 #pdf-upload,
 #link-label,
 #role-key,
-#why-join {
+#why-join,
+#mb-notes {
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -1524,7 +1525,8 @@ a#gmaps:hover {
 #pdf-upload .msg-bkg,
 #link-label .msg-bkg,
 #role-key .msg-bkg,
-#why-join .msg-bkg {
+#why-join .msg-bkg,
+#mb-notes .msg-bkg {
   position: relative;
   height: 100%;
   min-height: 100vh;
@@ -1545,7 +1547,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one,
 #link-label .inside-msg-one,
 #role-key .inside-msg-one,
-#why-join .inside-msg-one {
+#why-join .inside-msg-one,
+#mb-notes .inside-msg-one {
   position: relative;
   padding: 50px;
   background-color: rgba(44, 73, 106, 0.99);
@@ -1560,7 +1563,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one ul,
 #link-label .inside-msg-one ul,
 #role-key .inside-msg-one ul,
-#why-join .inside-msg-one ul {
+#why-join .inside-msg-one ul,
+#mb-notes .inside-msg-one ul {
   list-style: disc;
   margin: 0.5em 0 0 1.5em;
 }
@@ -1571,7 +1575,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one ul li,
 #link-label .inside-msg-one ul li,
 #role-key .inside-msg-one ul li,
-#why-join .inside-msg-one ul li {
+#why-join .inside-msg-one ul li,
+#mb-notes .inside-msg-one ul li {
   line-height: 1.5em;
 }
 #msg-one .inside-msg-one ul li em,
@@ -1581,7 +1586,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one ul li em,
 #link-label .inside-msg-one ul li em,
 #role-key .inside-msg-one ul li em,
-#why-join .inside-msg-one ul li em {
+#why-join .inside-msg-one ul li em,
+#mb-notes .inside-msg-one ul li em {
   color: #ffc8c8;
   letter-spacing: 1px;
   font-size: 1.2em;
@@ -1593,7 +1599,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one > i,
 #link-label .inside-msg-one > i,
 #role-key .inside-msg-one > i,
-#why-join .inside-msg-one > i {
+#why-join .inside-msg-one > i,
+#mb-notes .inside-msg-one > i {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1607,7 +1614,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one i.fa-peace,
 #link-label .inside-msg-one i.fa-peace,
 #role-key .inside-msg-one i.fa-peace,
-#why-join .inside-msg-one i.fa-peace {
+#why-join .inside-msg-one i.fa-peace,
+#mb-notes .inside-msg-one i.fa-peace {
   font-size: 2em;
 }
 #msg-one .inside-msg-one p.peace-sign,
@@ -1617,7 +1625,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.peace-sign,
 #link-label .inside-msg-one p.peace-sign,
 #role-key .inside-msg-one p.peace-sign,
-#why-join .inside-msg-one p.peace-sign {
+#why-join .inside-msg-one p.peace-sign,
+#mb-notes .inside-msg-one p.peace-sign {
   width: 100%;
   text-align: center;
 }
@@ -1628,7 +1637,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one > h1,
 #link-label .inside-msg-one > h1,
 #role-key .inside-msg-one > h1,
-#why-join .inside-msg-one > h1 {
+#why-join .inside-msg-one > h1,
+#mb-notes .inside-msg-one > h1 {
   font-size: 1.3em;
   margin-bottom: 0.5em;
   line-height: 1.3em;
@@ -1640,7 +1650,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p,
 #link-label .inside-msg-one p,
 #role-key .inside-msg-one p,
-#why-join .inside-msg-one p {
+#why-join .inside-msg-one p,
+#mb-notes .inside-msg-one p {
   color: #fff;
   line-height: 1.5em;
   margin-top: 1em;
@@ -1652,7 +1663,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one > hr,
 #link-label .inside-msg-one > hr,
 #role-key .inside-msg-one > hr,
-#why-join .inside-msg-one > hr {
+#why-join .inside-msg-one > hr,
+#mb-notes .inside-msg-one > hr {
   margin: 1em auto;
   width: 90%;
 }
@@ -1663,7 +1675,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.pdf,
 #link-label .inside-msg-one a.pdf,
 #role-key .inside-msg-one a.pdf,
-#why-join .inside-msg-one a.pdf {
+#why-join .inside-msg-one a.pdf,
+#mb-notes .inside-msg-one a.pdf {
   color: #fff;
   transition: all 0.2s ease;
 }
@@ -1674,7 +1687,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.pdf:hover,
 #link-label .inside-msg-one a.pdf:hover,
 #role-key .inside-msg-one a.pdf:hover,
-#why-join .inside-msg-one a.pdf:hover {
+#why-join .inside-msg-one a.pdf:hover,
+#mb-notes .inside-msg-one a.pdf:hover {
   color: rgba(255, 255, 255, 0.6);
 }
 #msg-one .inside-msg-one p.info-links,
@@ -1684,7 +1698,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.info-links,
 #link-label .inside-msg-one p.info-links,
 #role-key .inside-msg-one p.info-links,
-#why-join .inside-msg-one p.info-links {
+#why-join .inside-msg-one p.info-links,
+#mb-notes .inside-msg-one p.info-links {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -1704,7 +1719,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.info-links > a,
 #link-label .inside-msg-one p.info-links > a,
 #role-key .inside-msg-one p.info-links > a,
-#why-join .inside-msg-one p.info-links > a {
+#why-join .inside-msg-one p.info-links > a,
+#mb-notes .inside-msg-one p.info-links > a {
   color: #fff;
   background-color: #2c7778;
   border: 1px solid #fff;
@@ -1732,7 +1748,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.info-links > a:hover,
 #link-label .inside-msg-one p.info-links > a:hover,
 #role-key .inside-msg-one p.info-links > a:hover,
-#why-join .inside-msg-one p.info-links > a:hover {
+#why-join .inside-msg-one p.info-links > a:hover,
+#mb-notes .inside-msg-one p.info-links > a:hover {
   background-color: rgba(44, 119, 120, 0.5);
 }
 #msg-one .inside-msg-one p.aa-link,
@@ -1742,7 +1759,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.aa-link,
 #link-label .inside-msg-one p.aa-link,
 #role-key .inside-msg-one p.aa-link,
-#why-join .inside-msg-one p.aa-link {
+#why-join .inside-msg-one p.aa-link,
+#mb-notes .inside-msg-one p.aa-link {
   margin-top: 1.5em;
 }
 #msg-one .inside-msg-one a.bingo,
@@ -1752,7 +1770,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.bingo,
 #link-label .inside-msg-one a.bingo,
 #role-key .inside-msg-one a.bingo,
-#why-join .inside-msg-one a.bingo {
+#why-join .inside-msg-one a.bingo,
+#mb-notes .inside-msg-one a.bingo {
   color: #fff;
   text-decoration: underline;
   padding: 0px;
@@ -1764,7 +1783,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.bingo:hover,
 #link-label .inside-msg-one a.bingo:hover,
 #role-key .inside-msg-one a.bingo:hover,
-#why-join .inside-msg-one a.bingo:hover {
+#why-join .inside-msg-one a.bingo:hover,
+#mb-notes .inside-msg-one a.bingo:hover {
   text-decoration: none;
 }
 #msg-one .inside-msg-one p.daccaa-ctr,
@@ -1774,7 +1794,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one p.daccaa-ctr,
 #link-label .inside-msg-one p.daccaa-ctr,
 #role-key .inside-msg-one p.daccaa-ctr,
-#why-join .inside-msg-one p.daccaa-ctr {
+#why-join .inside-msg-one p.daccaa-ctr,
+#mb-notes .inside-msg-one p.daccaa-ctr {
   width: 100%;
   text-align: center;
   display: block;
@@ -1786,7 +1807,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.daccaa,
 #link-label .inside-msg-one a.daccaa,
 #role-key .inside-msg-one a.daccaa,
-#why-join .inside-msg-one a.daccaa {
+#why-join .inside-msg-one a.daccaa,
+#mb-notes .inside-msg-one a.daccaa {
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
@@ -1803,7 +1825,8 @@ a#gmaps:hover {
 #pdf-upload .inside-msg-one a.daccaa:hover,
 #link-label .inside-msg-one a.daccaa:hover,
 #role-key .inside-msg-one a.daccaa:hover,
-#why-join .inside-msg-one a.daccaa:hover {
+#why-join .inside-msg-one a.daccaa:hover,
+#mb-notes .inside-msg-one a.daccaa:hover {
   background-color: #a3abb4;
   color: #fff;
 }
@@ -4711,14 +4734,24 @@ li.focus a:hover {
 #mb-wrap .new-topic a {
   cursor: pointer;
   padding: 0.5em 1em;
-  background-color: #40b208;
+  margin-right: 0.5em;
+  background-color: #328c06;
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 #mb-wrap .new-topic a:hover {
-  background-color: rgba(64, 178, 8, 0.4);
+  background-color: #5cff0a;
+  color: #1d5203;
+}
+#mb-wrap .new-topic a.pnd {
+  background-color: #757575;
+  color: #fff;
+}
+#mb-wrap .new-topic a.pnd:hover {
+  background-color: #eaeaea;
+  color: #313131;
 }
 #mb-wrap .new-topic a.bkpg {
   background-color: rgba(0, 0, 0, 0.8);

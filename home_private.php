@@ -4,8 +4,10 @@ require_once 'config/verify_admin.php';
 
 $layout_context = "home-private";
 
-$user_id = $_SESSION['id'];
-$user_role = $_SESSION['admin'];
+if (isset($_SESSION['id'])) {
+	$user_id = $_SESSION['id'];
+	$user_role = $_SESSION['admin'];
+}
 ?>
 
 <?php require '_includes/head.php'; ?>

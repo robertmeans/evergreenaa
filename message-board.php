@@ -20,6 +20,7 @@ require '_includes/head.php'; ?>
 
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
+<?php require '_includes/msg-mb-notes.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
@@ -28,11 +29,13 @@ require '_includes/head.php'; ?>
 <div id="mb-wrap">
 	<h1>All Posts</h1>
 	<div class="new-topic">
+
 		<?php if (isset($_SESSION['id'])) { ?>
-			<a data-role="mb">Start a new topic</a>
+			<a data-role="mb">Start a new topic</a> <a id="toggle-mb-notes" class="pnd">Privacy &amp; Decorum</a>
 		<?php } else { ?>
-			<a id="toggle-gottajoin">Start a new topic</a>
+			<a id="toggle-gottajoin">Start a new topic</a> <a id="toggle-mb-notes" class="pnd">Privacy &amp; Decorum</a>
 		<?php } ?>
+
 	</div>
 
 <ul id="post-topics"><?php /* magic */ ?></ul>

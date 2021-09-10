@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
@@ -16,9 +16,11 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	header('location: home.php');
 	exit();
 }
+if (isset($_SESSION['id'])) {
+	$user_id = $_SESSION['id'];
+	$role = $_SESSION['admin'];
+}
 
-$user_id = $_SESSION['id'];
-$role = $_SESSION['admin'];
 
 // echo delete_success_message();
 ?>

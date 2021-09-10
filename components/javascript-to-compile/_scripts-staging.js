@@ -92,6 +92,16 @@ $(document).ready(function(){
         $("#gottajoin").fadeOut(500); 
     }
   });
+  $("#toggle-mb-notes").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+    if ($('#mb-notes').is(':hidden')) {
+        $("#mb-notes").fadeIn(500);
+    } else {
+        $("#mb-notes").fadeOut(500); 
+    }
+  });  
 
 });
 
@@ -108,6 +118,10 @@ $(document).click(function() {
     $("#why-join").fadeOut(500);
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
+
+  } else if ($('#mb-notes').is(':visible')) {
+    $("#mb-notes").fadeOut(500); 
+
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
@@ -393,6 +407,7 @@ $(document).ready(function(){
   $("#msg-one").hide();
   $("#why-join").hide();
   $("#gottajoin").hide();
+  $("#mb-notes").hide();
   // $("#reply-spot").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
