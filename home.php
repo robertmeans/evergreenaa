@@ -2,6 +2,7 @@
  
 require_once 'config/initialize.php'; 
 
+$user_id = 'ns'; // not set (for footer modal: submitting issues)
 ?>
 
 <?php require '_includes/head.php'; ?>

@@ -776,7 +776,6 @@ $(document).ready(function() {
 
 // email host modal
 $(document).ready(function() {
-  // var divClone = $('#emh-contact').clone();
   $(document).on('click','a[data-role=emh]', function() {
 
     var id         = $(this).data('id');
@@ -784,41 +783,36 @@ $(document).ready(function() {
     var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
     var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
     var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
-    var theModal   = document.getElementById("theModal");
 
-    // alert(id);
-    // alert(mtgtime);
+    var theModal   = document.getElementById("theModal");
 
     $('#mtgid').val(mtgid);
     $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
     $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-    // console.log(mtgname);
+    $('#your-name').html('Your name<input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30">');
+    $('#your-email').html('Your email<input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250">');
+    $('#msg-title').html('Message the host of:');
+    $('#msg-label').html('Message');
+    $('#submit-links').html('<input type="button" id="emh-btn" class="send" value="Send">');
 
     $('body').addClass('noscrollz');
     theModal.style.display = "block";
   });
 
+  if ($(".closefp")[0]) {
+    var closefp = document.getElementsByClassName("closefp")[0];
+    closefp.onclick = function() {
 
-if ($(".closefp")[0]) {
-  var closefp = document.getElementsByClassName("closefp")[0];
-  closefp.onclick = function() {
+      $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" class="submit-links"></div>');
 
-    $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><label>Your name<input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30"></label><label>Your email<input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250"></label><label>Message<textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="emh-btn" class="send" value="Send"></div>');
-
-    $('body').removeClass('noscrollz');
-    theModal.style.display = "none";
+      $('body').removeClass('noscrollz');
+      theModal.style.display = "none";
+    }
   }
-}
 
-
-
-
-});
 // email host submit
-$(document).ready(function() {
-  //$('#emh-btn').click(function() {
   $(document).on('click','#emh-btn', function() {
-    // event.preventDefault();
+
     $.ajax({
       dataType: "JSON",
       url: "contact-host-process.php",
@@ -849,6 +843,103 @@ $(document).ready(function() {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// log issue modal
+$(document).ready(function() {
+  $(document).on('click','a[data-role=logissue]', function() {
+
+    var id         = $(this).data('id');
+    var mtgid      = $('#'+id).children('span[data-target=mtgid]').text();
+    var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
+    var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
+    var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
+    var user_id    = $('#'+id).children('span[data-target=tuid]').text();
+    var num_issues    = $('#'+id).children('span[data-target=ri]').text();
+    var theModal   = document.getElementById("theModal");
+
+
+
+
+    if (user_id != 'ns') {
+      $('#tuid').val(user_id);
+      $('#mtgid').val(mtgid);
+      $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+      $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+      $('#ri').val(num_issues);
+      $('#msg-title').html('Abandoned meeting? Broken links?<div class="issue-header">Submitting this form will post an alert on this meeting to notify all visitors of an issue and will email the Host to give them the opportunity to fix it. 3 issues without a response from the Host will remove the meeting from the site.</div>');
+      $('#your-name').html('');
+      $('#your-email').html('');
+      $('#msg-label').html('Describe issue');
+      $('#submit-links').html('<input type="button" id="issue-btn" class="send" value="Submit">');
+    } else {
+      $('#emh-contact').html('<div class="log-issue-public">Logging issues is an integral part of keeping the information on this site reliable. As it carries a fair amount of responsibility on the part of the one reporting an issue, and to prevent it from being abused, this feature is available only while you are logged in. <div class="login-links"><a class="extras" href="login.php">Login</a><a class="extras" href="signup.php">Join</a></div></div>');
+    }
+
+
+
+    $('body').addClass('noscrollz');
+    theModal.style.display = "block";
+  });
+
+  if ($(".closefp")[0]) {
+    var closefp = document.getElementsByClassName("closefp")[0];
+    closefp.onclick = function() {
+
+      $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" name="ri" id="ri"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" class="submit-links"></div>');
+
+      $('body').removeClass('noscrollz');
+      theModal.style.display = "none";
+    }
+  }
+
+// log issue submit
+  $(document).on('click','#issue-btn', function() {
+
+    $.ajax({
+      dataType: "JSON",
+      url: "log-issue-process.php",
+      type: "POST",
+      data: $('#emh-contact').serialize(),
+      beforeSend: function(xhr) {
+        $('#emh-contact-msg').html('<span class="sending-msg">Sending - one moment...</span>');
+      },
+      success: function(response) {
+        console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#emh-contact').html('<span class="success-emh">The issue was noted successfully.</span>');
+          } else {
+            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+
+});
+
+
 // message board modal
 // email host modal
 $(document).ready(function() { // 0829210847
@@ -858,13 +949,6 @@ $(document).ready(function() { // 0829210847
     $('body').addClass('noscrollz');
     theModal.style.display = "block";
   });
-
-  // close modal defined above (why was this here twice?)
-  // var closefp = document.getElementsByClassName("closefp")[0];
-  // closefp.onclick = function() {
-  //   $('body').removeClass('noscrollz');
-  //   theModal.style.display = "none";
-  // }
 
   // submit post
   $(document).on('click','#mb-new', function() {

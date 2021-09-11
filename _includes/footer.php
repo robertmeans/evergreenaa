@@ -58,30 +58,30 @@
     <div class="modal-content">
       <div class="modal-header">
         <a class="static closefp"><i class="fas fa-times-circle"></i></a>
-        <h4 class="modal-title">Message the Host of:</h4>
+        <h4 id="msg-title" class="modal-title"></h4>
         <h4 id="mtgname" class="modal-title"></h4>
       </div>
       <div class="modal-body">
 
       <form id="emh-contact" class="emh-form">
+        <input type="hidden" name="tuid" id="tuid">
         <input type="hidden" name="mtgid" id="mtgid">
         <input type="hidden" name="mtgname" id="mtgnamez">
+        <input type="hidden" name="ri" id="ri">
 
-        <label>Your name
+        <label id="your-name">Your name
         <input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30"></label>
 
-        <label>Your email
+        <label id="your-email">Your email
         <input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250"></label>
 
-        <label>Message
+        <label><span id="msg-label"></span>
         <textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea>
         </label>
 
         <div id="emh-contact-msg"></div>
 
-        <div class="submit-links">
-          <input type="button" id="emh-btn" class="send" value="Send">
-        </div><!-- #submit-links -->
+        <div id="submit-links" class="submit-links"></div><!-- #submit-links -->
       </form>
       </div>
       <div class="modal-footer">

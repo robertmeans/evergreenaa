@@ -210,6 +210,7 @@ p.no-mtgs {
 			align-self: flex-start;
 			width: 50%;
 			padding: 1em;
+			margin-top: 1em;
 			border-right: 1px solid rgba(255,255,255,0.2);
 			& > p.phone-num01 {
 				color: #fff;
@@ -323,33 +324,110 @@ p.no-mtgs {
 		background-color: rgba(0,0,0,0.3);
 	}
 }
-		.email-host {
-			width: 100%;
-			display: block;
-			padding: 1em;
-			a {
-				// display: flex;
-				margin-left: 0;
-				color: #fff;
-				text-decoration: none;
-				line-height: 1.2em;
-				cursor: pointer;
-				transition: all 0.2s ease;
-				&:hover {
-					color: #96ff00;
-				}
-			}
-			i.far.fa-envelope {
-			// for email host icon
-				position: relative;
-				// top: 0;
-				// right: 0;
-				margin-right: 0.5em;
-				float: left;
-				margin-bottom: 1em;
-				line-height: 1.2em;
-			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .email-host {
+// 	width: 100%;
+// 	display: block;
+// 	padding: 1em;
+// 	a {
+// 		margin-left: 0;
+// 		color: #fff;
+// 		text-decoration: none;
+// 		line-height: 1.2em;
+// 		cursor: pointer;
+// 		transition: all 0.2s ease;
+// 		&:hover {
+// 			color: #96ff00;
+// 		}
+// 	}
+// 	i.far.fa-envelope {
+// 		position: relative;
+// 		margin-right: 0.5em;
+// 		float: left;
+// 		margin-bottom: 1em;
+// 		line-height: 1.2em;
+// 	}
+// }
+
+.email-host {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	font-size: 0.8em;
+	a {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50%;
+		max-width: 200px;
+		padding: 0.5em 1em;
+		background-color: #757575;
+		color: #fff;
+		border: 1px solid #ccc;
+		transition: all 0.2s ease;
+		&:first-of-type {
+			margin-right: 0.5em;
 		}
+		&:hover {
+			background-color: #313131;
+		}
+		i {
+			margin-right: 0.5em;
+		}
+	}
+}
+.issue-header {
+	border: 1px solid #ff9f9f;
+	background-color: #dddddd;
+	color: #313131;
+	font-size: 0.8em;
+	padding: 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
+	text-align: justify;
+}
+.log-issue-public {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	line-height: 1.5em;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 800px) {
 	.backstretch {
@@ -378,6 +456,7 @@ p.no-mtgs {
 		.details-right {
 			width: 100%;
 			padding: 0em;
+			margin-top: 1em;
 		}
 		.details-left {
 			border-right: none;

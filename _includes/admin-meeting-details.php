@@ -9,6 +9,8 @@
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr($today, 0,3); ?></span>
 		<span data-target="mtgid" style="display:none;"><?= $row['id_mtg']; ?></span>
+		<span data-target="tuid" style="display: none;"><?= $user_id ?></span>
+		<span data-target="ri" style="display:none;"><?= $row['issues']; ?></span>
 		<span data-target="mtgname" style="display:none;">
 		<?php if (strlen($row['group_name']) < 22) { 
 				echo trim($row['group_name']); 
@@ -19,9 +21,9 @@
 		</span>
 
 		<?php if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)) { ?>
-			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Message: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a>
+			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a> <a data-role="logissue" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log issue</a>
 		<?php } else { ?>
-			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Send a message to this meeting's Host</a>
+			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Email Host</a> <a data-role="logissue" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log issue</a>
 		<?php } ?>
 
 	</div>
