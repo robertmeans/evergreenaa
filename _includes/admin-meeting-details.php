@@ -27,7 +27,6 @@
 		<?php } ?>
 	</div>
 
-
 		<?php 
 		if ($row['issues'] == 0) { ?>
 			<div id="<?= $emh . '_' . $row['id_mtg'] . '_er'; ?>"></div>
@@ -39,15 +38,6 @@
 		if ($row['issues'] > 1) { ?>
 			<div id="<?= $emh . '_' . $row['id_mtg'] . '_er'; ?>" class="errors-reported">Attention: There have been <?= $row['issues'] ?> issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, &quot;Log issue&quot; to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.</div>
 		<?php } ?>
-
-
-<?php if ((isset($row['idi_user'])) && ($row['idi_user'] == $_SESSION['id'])) { echo 'this works.'; } ?>
-
-
-
-
-
-
 
 <?php /* } */ ?>
 

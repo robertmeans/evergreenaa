@@ -936,7 +936,15 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
             $('#emh-contact').html('<span class="success-emh">The issue was noted successfully.</span>');
             $('#'+id).addClass('errors-reported');
-            $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or if any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
+
+            if ($('#'+id).html().indexOf("There has been an issue reported") >= 0) {
+              $('#'+id).html('Attention: There have been 2 issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
+            } else if ($('#'+id).html().indexOf("There have been 2 issues reported") >= 0) {
+              $('#'+id).html('The issue you logged has tipped the scale. If you refresh your browser this meeting is no longer available for public view and will remain hidden until the Host addresses the issue(s).'); 
+            }  else {
+              $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.'); 
+            }
+
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           }
