@@ -976,7 +976,7 @@ p.no-mtgs {
       align-items: center;
   width: 50%;
   max-width: 200px;
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   background-color: #757575;
   color: #fff;
   border: 1px solid #ccc;
@@ -990,6 +990,12 @@ p.no-mtgs {
 }
 .email-host a i {
   margin-right: 0.5em;
+}
+
+.email-host.admin-links a {
+  max-width: 50%;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .issue-header {
@@ -1011,6 +1017,20 @@ p.no-mtgs {
       flex-direction: column;
   width: 100%;
   line-height: 1.5em;
+}
+
+.errors-reported {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #f23a3a;
+  background-color: #ffc0c0;
+  color: #5e0000;
+  font-size: 0.8em;
+  line-height: 1.5em;
+  padding: 1em;
 }
 
 @media screen and (max-width: 800px) {
@@ -2808,6 +2828,9 @@ ul.manage-weekdays .day:hover {
 }
 .manage-glance.personal {
   border-left: 1px solid #96ff00;
+}
+.manage-glance.got-issues {
+  background-color: rgba(216, 18, 18, 0.8);
 }
 
 .daily-glance.personal,

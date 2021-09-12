@@ -36,11 +36,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Sunday.</p>
@@ -65,11 +66,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Monday.</p>
@@ -94,11 +96,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p2_'.$i;  
 					$today = 'Tuesday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Tuesday.</p>
@@ -123,11 +126,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p3_'.$i; 
 					$today = 'Wednesday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Wednesday.</p>
@@ -152,11 +156,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Thursday.</p>
@@ -181,11 +186,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Friday.</p>
@@ -210,11 +216,12 @@ $user_id = 'ns'; // not set (for footer modal: submitting issues)
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; }
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Saturday.</p>

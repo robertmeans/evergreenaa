@@ -45,11 +45,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Sunday.</p>
@@ -75,11 +76,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
+					if ($row['issues'] < 3) {
 						require '_includes/daily-glance.php'; ?>
 						<div class="weekday-wrap">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
-					<?php
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Monday.</p>
@@ -104,11 +106,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Tuesday.</p>
@@ -133,11 +136,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Wednesday.</p>
@@ -162,11 +166,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Thursday.</p>
@@ -191,11 +196,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Friday.</p>
@@ -220,11 +226,12 @@ if (isset($_SESSION['id'])) {
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
-					require '_includes/daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Saturday.</p>

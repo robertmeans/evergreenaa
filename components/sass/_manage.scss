@@ -389,6 +389,9 @@ ul.manage-weekdays {
 	&.personal {
 		border-left: 1px solid #96ff00;
 	}
+	&.got-issues {
+		background-color: rgba(216,18,18,0.8)
+	}
 }
 .daily-glance.personal,
 .daily-glance.personal-odin,

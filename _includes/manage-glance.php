@@ -1,6 +1,6 @@
 
 	<div class="manage-glance-wrap">
-		<div class="manage-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
+		<div class="manage-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; } if ($row['issues'] > 0) { echo ' got-issues'; } ?>">
 			<div class="glance-mtg glance-mtg-time">
 				<p><?= date('g:i A', strtotime($row['meet_time'])); ?>
 

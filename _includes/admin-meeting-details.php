@@ -4,7 +4,7 @@
 
 <?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
 
-	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host">
+	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host admin-links">
 		
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr($today, 0,3); ?></span>
@@ -25,8 +25,25 @@
 		<?php } else { ?>
 			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Email Host</a> <a data-role="logissue" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log issue</a>
 		<?php } ?>
-
 	</div>
+
+
+		<?php 
+		if ($row['issues'] == 0) { ?>
+			<div id="<?= $emh . '_' . $row['id_mtg'] . '_er'; ?>"></div>
+		<?php }
+		if ($row['issues'] == 1) { ?>
+			<div id="<?= $emh . '_' . $row['id_mtg'] . '_er'; ?>" class="errors-reported">Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, &quot;Log issue&quot; to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.</div>
+		<?php } ?>
+		<?php
+		if ($row['issues'] > 1) { ?>
+			<div id="<?= $emh . '_' . $row['id_mtg'] . '_er'; ?>" class="errors-reported">Attention: There have been <?= $row['issues'] ?> issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, &quot;Log issue&quot; to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.</div>
+		<?php } ?>
+
+
+
+
+
 
 <?php /* } */ ?>
 

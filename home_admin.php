@@ -4,7 +4,7 @@ require_once 'config/verify_admin.php';
 
 $layout_context = "home-private";
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['admin'];
 
 ?>
 
@@ -46,11 +46,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p0_'.$i;
 					$today = 'Sunday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Sunday.</p>
@@ -80,11 +82,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p1_'.$i;
 					$today = 'Monday';
 
+					if ($row['issues'] < 3) {
 						require '_includes/admin-daily-glance.php'; ?>
 						<div class="weekday-wrap">
 							<?php require '_includes/admin-meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
-					<?php
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Monday.</p>
@@ -113,11 +117,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p2_'.$i;
 					$today = 'Tuesday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Tuesday.</p>
@@ -146,11 +152,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p3_'.$i;
 					$today = 'Wednesday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Wednesday.</p>
@@ -179,11 +187,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p4_'.$i;
 					$today = 'Thursday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Thursday.</p>
@@ -212,11 +222,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p5_'.$i;
 					$today = 'Friday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Friday.</p>
@@ -245,11 +257,13 @@ $user_id = $_SESSION['id'];
 					$pc = 'p6_'.$i;
 					$today = 'Saturday';
 
-					require '_includes/admin-daily-glance.php'; ?>
-					<div class="weekday-wrap">
-						<?php require '_includes/admin-meeting-details.php'; ?>
-					</div><!-- .weekday-wrap -->
-					<?php
+					if ($row['issues'] < 3) {
+						require '_includes/admin-daily-glance.php'; ?>
+						<div class="weekday-wrap">
+							<?php require '_includes/admin-meeting-details.php'; ?>
+						</div><!-- .weekday-wrap -->
+
+					<?php }
 					$i++; } 
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Saturday.</p>
