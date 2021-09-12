@@ -143,7 +143,12 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
 	if ($result === true) {
-	    header('location: manage_edit_review.php?id=' . $id);
+		$issue_removed = remove_issue($id); // delete any instances from issues table
+		if ($result === true) {
+	  	header('location: manage_edit_review.php?id=' . $id);
+		  } else {
+			$errors = $result;
+		}
 	} else {
 		$errors = $result;
 	}

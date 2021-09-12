@@ -873,7 +873,7 @@ $(document).ready(function() {
     var id_for_submit = id+'_er';
     var theModal   = document.getElementById("theModal");
 
-    if (user_id != 'ns') {
+    if (user_id != 'ns') { // ns = not set
       $('#tuid').val(user_id);
       $('#mtgid').val(mtgid);
       $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
@@ -884,7 +884,7 @@ $(document).ready(function() {
       $('#your-email').html('');
       $('#msg-label').html('Describe issue');
       $('#submit-links').html('<input type="button" id="issue-btn" data-id="'+id_for_submit+'" class="send" value="Submit">');
-    } else {
+    } else { // user_id is not set
       $('#emh-contact').html('<div class="log-issue-public">Logging issues is an integral part of keeping the information on this site reliable. As it carries a fair amount of responsibility on the part of the one reporting an issue, and to prevent it from being abused, this feature is available only while you are logged in. <div class="login-links"><a class="extras" href="login.php">Login</a><a class="extras" href="signup.php">Join</a></div></div>');
     }
 
@@ -894,11 +894,23 @@ $(document).ready(function() {
     theModal.style.display = "block";
   });
 
+  // if this user has already logged an issue about this meeting they can't log another
+  $(document).on('click','a[data-role=logissued]', function() {
+
+    var id         = $(this).data('id');
+    var theModal   = document.getElementById("theModal");
+
+    $('#emh-contact').html('<div class="log-issue-public">You have already logged an issue about this meeting. The Host has been notified and if 2 more users log unanswered issues about this meeting it will be removed from the site.</div>');
+
+    $('body').addClass('noscrollz');
+    theModal.style.display = "block";
+  });
+
   if ($(".closefp")[0]) {
     var closefp = document.getElementsByClassName("closefp")[0];
     closefp.onclick = function() {
 
-      $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" name="ri" id="ri"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" data-id="" class="submit-links"></div>');
+      $('#emh-contact').html('<input type="hidden" name="tuid" id="tuid"><input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" name="ri" id="ri"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" data-id="" class="submit-links"></div>');
 
       $('body').removeClass('noscrollz');
       theModal.style.display = "none";
@@ -924,7 +936,7 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
             $('#emh-contact').html('<span class="success-emh">The issue was noted successfully.</span>');
             $('#'+id).addClass('errors-reported');
-            $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
+            $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or if any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           }
@@ -1153,7 +1165,7 @@ $(document).ready(function() {
 
     $(document).on('change','#mng-usrzz', function() {
     var update = $('#mng-usrzz').val().substr($('#mng-usrzz').val().indexOf(',') + 1);
-    var updateun = '<p>Username: ' +  $('#mng-usrzz').val().substr($('#mng-usrzz').val().indexOf(',') + 1) + '</p>';
+    var updateun = '<p>Email: ' +  $('#mng-usrzz').val().split(',')[2].substr($('#mng-usrzz').val()) + '</p>';
     if (update != 'empty') {
       $('#um-un-btmz').html(updateun);
     } else {

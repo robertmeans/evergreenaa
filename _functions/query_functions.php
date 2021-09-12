@@ -10,7 +10,7 @@ function get_meetings_for_today($today) {
     return $result;
 }
 
-function get_all_public_meetings_for_today($today) {
+function get_all_public_meetings_for_today($today) { // for home.php
     global $db;
 
     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
@@ -25,7 +25,7 @@ function get_all_public_meetings_for_today($today) {
     return $result;
 }
 
-function get_all_public_and_private_meetings_for_today($today, $id_user) {
+function get_all_public_and_private_meetings_for_today($today, $id_user) { // home_private.php
     global $db;
 
     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
@@ -43,23 +43,23 @@ function get_all_public_and_private_meetings_for_today($today, $id_user) {
     return $result;
 }
 
-function get_all_public_and_private_meetings_for_admin($today, $user_id) {
-    global $db;
+// function get_all_public_and_private_meetings_for_admin($today, $user_id) {
+//     global $db;
 
-    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
-    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
-    $sql .= "WHERE (m." . $today . " != 0 ";
-    $sql .= "AND m.visible != 0 ";
-    $sql .= "AND m.visible != 1) ";
-    $sql .= "OR ";
-    $sql .= "(m." . $today . " != 0 ";
-    $sql .= "AND m.visible = 1 ";
-    $sql .= "AND u.id_user='" . db_escape($db, $user_id) . "') ";
-    $sql .= "ORDER BY m.meet_time;";
-    // echo $sql; 
-    $result = mysqli_query($db, $sql); 
-    return $result;
-}
+//     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+//     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+//     $sql .= "WHERE (m." . $today . " != 0 ";
+//     $sql .= "AND m.visible != 0 ";
+//     $sql .= "AND m.visible != 1) ";
+//     $sql .= "OR ";
+//     $sql .= "(m." . $today . " != 0 ";
+//     $sql .= "AND m.visible = 1 ";
+//     $sql .= "AND u.id_user='" . db_escape($db, $user_id) . "') ";
+//     $sql .= "ORDER BY m.meet_time;";
+
+//     $result = mysqli_query($db, $sql); 
+//     return $result;
+// }
 
 function verify_this_user($id) {
   global $db;
@@ -72,11 +72,12 @@ function verify_this_user($id) {
   return $result;   
 }
 
-function get_all_public_and_private_meetings_for_odin($today) {
+function get_all_public_and_private_meetings_for_odin($today) { // home_private.php (for admin 1 only)
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, i.idi_user, i.idi_mtg FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "LEFT JOIN issues as i ON i.idi_mtg=m.id_mtg ";
     $sql .= "WHERE m." . $today . " != 0 ";
     $sql .= "AND m.visible != 0 ";
     $sql .= "ORDER BY m.meet_time;";
@@ -464,7 +465,17 @@ function transfer_meeting($id) {
 
 
 
+function verify_first_issue($mtgid, $user_id) {
+    global $db;
 
+    $sql = "SELECT * FROM issues WHERE ";
+    $sql .= "idi_mtg='" . $mtgid . "' ";
+    $sql .= "AND idi_user='"  . $user_id . "' ";
+    $sql .= "LIMIT 1";
+    // echo $sql; 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
 function update_issues_number($mtgid, $num_issues) {
   global $db;
 
@@ -483,8 +494,42 @@ function update_issues_number($mtgid, $num_issues) {
       exit;
     }  
 }
+function log_into_issues_table($user_id, $mtgid, $message) {
+  global $db;
 
+  $sql = "INSERT INTO issues ";
+  $sql .= "(idi_user, idi_mtg, the_issue) ";
+  $sql .= "VALUES ("; 
+  $sql .= "'" . db_escape($db, $user_id) . "', ";
+  $sql .= "'" . db_escape($db, $mtgid) . "', ";
+  $sql .= "'" . db_escape($db, $message) . "'";
+  $sql .= ")";
+  $result = mysqli_query($db, $sql);  
 
+  if ($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+function remove_issue($id) {
+  global $db;
+
+  $sql = "DELETE FROM issues ";
+  $sql .= "WHERE idi_mtg='" . db_escape($db, $id) . "'";
+
+  $result = mysqli_query($db, $sql);
+
+  if($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }  
+}
 
 
 

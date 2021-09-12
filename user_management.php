@@ -138,7 +138,7 @@ $role = $_SESSION['admin'];
 						rsort($c);
 						return $c;
 					}
-					$sorted2 = cmpz($results, 'id_user');
+					$sorted2 = cmpz($results, 'id_user'); 
 					?>
 					<?php /* <pre><?php print_r($sorted); ?></pre> */ ?>
 					<?php 
@@ -149,7 +149,7 @@ $role = $_SESSION['admin'];
 						$username = ($li['username']);
 						$email = ($li['email']); 
 						?>
-						<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $user . ',' . $username; ?>"><?= date('m.d.y H:i', strtotime($joined)) . ' | ' . strtolower($username); ?></option>		
+						<option value="<?php echo WWW_ROOT . '/user_role.php?user=' . $user . ',' . $username . ','  . $email; ?>"><?= date('m.d.y H:i', strtotime($joined)) . ' | ' . strtolower($username); ?></option>		
 					<?php } ?>
 				</select> <a id="usr-role-gozz">GO</a>
 			</form>

@@ -991,6 +991,12 @@ p.no-mtgs {
 .email-host a i {
   margin-right: 0.5em;
 }
+.email-host a i.fa-exclamation-triangle {
+  color: #ffa500;
+}
+.email-host a i.fa-envelope {
+  color: #d6b385;
+}
 
 .email-host.admin-links a {
   max-width: 50%;
