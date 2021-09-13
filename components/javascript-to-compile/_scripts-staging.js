@@ -932,7 +932,7 @@ $(document).ready(function() {
       success: function(response) {
         console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#emh-contact').html('<span class="success-emh">The issue was noted successfully.</span>');
             $('#'+id).addClass('errors-reported');

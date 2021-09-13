@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 require_once 'config/database.php';
-require_once 'controllers/authController.php';
+// require_once 'controllers/authController.php';
 require_once '_functions/functions.php';
 require_once '_functions/query_functions.php';
 
@@ -15,8 +15,8 @@ $db = db_connect();
 
 	$user_id = $_POST['tuid'];
 	$mtgid = $_POST['mtgid'];
-	$name = trim($_POST['name']);
-	$email = trim($_POST['email']);
+	// $name = trim($_POST['name']);
+	// $email = trim($_POST['email']);
 	$message = trim($_POST['emhmsg']);
 	$mtgname = $_POST['mtgname'];
 	$subject = $mtgname;
