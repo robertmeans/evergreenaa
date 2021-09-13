@@ -45,6 +45,10 @@ if (is_post_request()) {
 				$emhemail = $rowq['email'];
 				$emhuser = $rowq['username'];
 
+
+			// this is to prevent the mail function from trying to run within an ajax call on localhost which seems to have prevented me from running tests locally. now this will only run on the server.
+			if (WWW_ROOT != 'http://localhost/evergreenaa') {
+
 		    $mail = new PHPMailer(true);
 
 		    try { 
@@ -75,6 +79,14 @@ if (is_post_request()) {
 		        $signal = 'bad';
 		        $msg = 'Mail Error: ' {$mail->ErrorInfo};
 		    }
+
+			} 
+			// still need the 'ok' signal to be returned locally though...
+			if (WWW_ROOT == 'http://localhost/evergreenaa') {
+			  $signal = 'ok';
+			  $msg =  'Message sent successfully';	
+			}
+
 
 
 		} else {
