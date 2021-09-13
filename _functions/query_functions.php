@@ -416,7 +416,7 @@ function edit_meeting($id) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
-  $sql .= "id_mtg='" . db_escape($db, $id) . "' ";
+  $sql .= "id_mtg='" . db_escape($db, $id) . "'";
   // $sql .= "ORDER BY meet_time;";
   // echo $sql; 
   $result = mysqli_query($db, $sql); 
@@ -496,6 +496,17 @@ function log_into_issues_table($user_id, $mtgid, $message) {
     exit;
   }
 }
+function display_issues($id) {
+  global $db;
+
+  $sql = "SELECT * FROM issues ";
+  $sql .= "WHERE idi_mtg='" . db_escape($db, $id) . "'";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
 function remove_issue($id) {
   global $db;
 
@@ -512,13 +523,6 @@ function remove_issue($id) {
     exit;
   }  
 }
-
-
-
-
-
-
-
 
 
 function find_all_users() {

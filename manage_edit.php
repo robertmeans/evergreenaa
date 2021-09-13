@@ -174,7 +174,7 @@ $role = $_SESSION['admin'];
 <?php require '_includes/link-label-txt.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="manage-wrap">
-	
+	<?php // print_r($row); ?>
 <div class="manage-simple intro">
 	<?php if (($row['id_user'] == $_SESSION['id']) || ($role != 1 && $role != 2 && $role != 3)) { ?>
 	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
@@ -196,6 +196,23 @@ $role = $_SESSION['admin'];
 		<h1 class="edit-h1">Edit this meeting</h1>
 	<?php } ?>
 
+	<?php 
+	$result = display_issues($id);
+	$issues_found = mysqli_num_rows($result);
+
+	if ($issues_found > 0) { 
+		if ($issues_found == 1) { ?>
+		<p class="address-this">Please resolve the following issue that was submitted by another member:</p>
+	<?php } else { ?>
+		<p class="address-this">Please resolve the following issues that were submitted by other members.</p>
+
+		<?php }
+		while($rowz = mysqli_fetch_assoc($result)) { ?>
+			<p class="display-issues"><?= nl2br($rowz['the_issue']); ?></p>
+	<?php 
+		}
+	}
+	?>
 
 	<?php if (($row['id_user'] == $_SESSION['id']) || ($role == 1 || $role == 2 || $role == 3)) { ?>
 
