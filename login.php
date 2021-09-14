@@ -2,8 +2,7 @@
 
 require_once 'config/initialize.php';
 
-include '_includes/head.php'; 
-?>
+include '_includes/head.php'; ?>
 
 <body>
 <?php require '_includes/nav.php'; ?>

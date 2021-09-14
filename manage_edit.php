@@ -156,9 +156,9 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 $row = edit_meeting($id);
 $role = $_SESSION['admin'];
-?>
 
-<?php require '_includes/head.php'; ?>
+require '_includes/head.php'; ?>
+
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">

@@ -15,6 +15,7 @@ if (isset($_SESSION['id'])) {
 }
 
 require '_includes/head.php'; ?>
+
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload">

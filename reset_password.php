@@ -1,7 +1,6 @@
-<?php $layout_context = "login-page"; ?>
-<?php require_once 'config/initialize.php'; ?>
-
-<?php include '_includes/head.php'; ?>
+<?php $layout_context = "login-page"; 
+require_once 'config/initialize.php'; 
+require '_includes/head.php'; ?>
 
 <body>
 <?php require '_includes/nav.php'; ?>

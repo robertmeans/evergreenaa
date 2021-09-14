@@ -6,9 +6,8 @@ $layout_context = "home-private";
 
 $user_id = $_SESSION['admin'];
 
-?>
+require '_includes/head.php'; ?>
 
-<?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload">

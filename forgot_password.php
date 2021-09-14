@@ -1,7 +1,6 @@
-<?php $layout_context = "forgot-password"; ?>
-<?php require_once 'config/initialize.php'; ?>
-
-<?php include '_includes/head.php'; ?>
+<?php $layout_context = "forgot-password"; 
+require_once 'config/initialize.php'; 
+require '_includes/head.php'; ?>
 
 <body>
 <?php require '_includes/nav.php'; ?> 

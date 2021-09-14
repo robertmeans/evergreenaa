@@ -21,11 +21,8 @@ if (isset($_SESSION['id'])) {
 	$role = $_SESSION['admin'];
 }
 
+require '_includes/head.php'; ?>
 
-// echo delete_success_message();
-?>
-
-<?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">

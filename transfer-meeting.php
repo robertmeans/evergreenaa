@@ -24,9 +24,8 @@ $role = $_SESSION['admin'];
 
 $row = transfer_meeting($id);
 
-?>
+require '_includes/head.php'; ?>
 
-<?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">

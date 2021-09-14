@@ -28,9 +28,7 @@ if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset
 	exit();
 }
 
-?>
-
-<?php include '_includes/head.php'; ?>
+include '_includes/head.php'; ?>
 
 <body>
 <?php require '_includes/nav.php'; ?>

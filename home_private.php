@@ -8,9 +8,8 @@ if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
 	$user_role = $_SESSION['admin'];
 }
-?>
+require '_includes/head.php'; ?>
 
-<?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload">

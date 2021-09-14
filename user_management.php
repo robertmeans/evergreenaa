@@ -21,10 +21,8 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 $user_id = $_SESSION['id'];
 $role = $_SESSION['admin'];
 
-// echo delete_success_message();
-?>
+require '_includes/head.php'; ?>
 
-<?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">

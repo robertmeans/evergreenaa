@@ -1,7 +1,6 @@
-<?php $layout_context = "password-message"; ?>
-<?php require_once 'config/initialize.php'; ?>
-
-<?php include '_includes/head.php'; ?>
+<?php $layout_context = "password-message"; 
+require_once 'config/initialize.php'; 
+require '_includes/head.php'; ?>
 
 <body>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

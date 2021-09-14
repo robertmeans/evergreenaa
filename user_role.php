@@ -18,9 +18,9 @@ if ($id != 1 && ($id == '' || $id == $_SESSION['id'])) {
 }
 
 $row = get_user_by_id($id);
-?>
 
-<?php require '_includes/head.php'; ?>
+require '_includes/head.php'; ?>
+
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload-manage">

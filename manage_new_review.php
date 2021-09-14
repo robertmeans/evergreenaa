@@ -25,9 +25,9 @@ $id = $_GET['id'];
 $role = $_SESSION['admin'];
 
 $row = edit_meeting($id);
-?>
 
-<?php require '_includes/head.php'; ?>
+require '_includes/head.php'; ?>
+
 <body>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>

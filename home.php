@@ -3,9 +3,9 @@
 require_once 'config/initialize.php'; 
 
 $user_id = 'ns'; // not set (for footer modal: submitting issues)
-?>
 
-<?php require '_includes/head.php'; ?>
+require '_includes/head.php'; ?>
+
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="preload">
