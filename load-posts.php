@@ -36,7 +36,7 @@ require_once 'config/initialize.php';
 
 				<p class="mb-body"><?= nl2br($row['reply']) ?></p>
 
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idr_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+    <?php if ((isset($_SESSION['id'])) && ($_SESSION['id'] == $row['idr_user'] || ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)))) { ?>
     	<?php if ($_SESSION['admin'] == 1 || ($_SESSION['id'] == $row['idr_user']) || ($_SESSION['admin'] == 3 && $row['admin'] != 1)) { // remember, there's only 1 admin=1 ?>
 	      <form id="dr_<?= $i ?>" class="delete-reply">
 	        <input type="hidden" name="id-reply" value="<?= $row['id_reply'] ?>">
