@@ -12,7 +12,6 @@
 //       }
 //   });
 // });
-
 // Navigation
 $(document).ready(function() {
   var url = window.location.href;
@@ -22,7 +21,6 @@ $(document).ready(function() {
     this.classList.toggle('acty');
   });
 }); 
-
 function openNav() {
   var eotw = document.getElementById("side-nav");
   if (eotw.style.width == '300px') { 
