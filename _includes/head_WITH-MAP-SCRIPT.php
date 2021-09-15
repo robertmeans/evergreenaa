@@ -28,6 +28,8 @@
 
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/jquery_1-12-1_ui_min.js"></script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcS8gagJkuoY6gB3utE1iyZnWk4JG5Suw&callback=initMap"></script>
 
 	<!-- Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140046709-8"></script>
