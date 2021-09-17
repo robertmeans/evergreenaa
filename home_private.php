@@ -7,6 +7,9 @@ $layout_context = "home-private";
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
 	$user_role = $_SESSION['admin'];
+} else {
+	$user_id = 'ns';
+	$user_role = '0';
 }
 require '_includes/head.php'; ?>
 

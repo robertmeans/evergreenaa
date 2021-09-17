@@ -7,7 +7,6 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 require_once 'config/database.php';
-// require_once 'controllers/authController.php';
 require_once '_functions/functions.php';
 require_once '_functions/query_functions.php';
 
@@ -20,8 +19,8 @@ $db = db_connect();
 	$message = trim($_POST['emhmsg']);
 	$mtgname = $_POST['mtgname'];
 	$subject = $mtgname;
-	$num_issue = $_POST['ri'];
-	$num_issues = $num_issue + 1;
+	$num_issues = $_POST['ri'] + 1;
+	// $num_issues = $num_issue + 1;
 
 if (is_post_request()) {
 

@@ -2,8 +2,13 @@
  
 require_once 'config/initialize.php'; 
 
-$user_id = 'ns'; // not set (for footer modal: submitting issues)
-
+if (isset($_SESSION['id'])) {
+	$user_id = $_SESSION['id'];
+	$user_role = $_SESSION['admin'];
+} else {
+	$user_id = 'ns';  // not set (for footer modal: submitting issues)
+	$user_role = '0';
+}
 require '_includes/head.php'; ?>
 
 <body>
