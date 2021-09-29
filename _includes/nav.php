@@ -1,7 +1,3 @@
-
-
-
-
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();">
 
@@ -14,9 +10,6 @@
 
 	</div>
 </nav>
-
-
-
 
 <nav id="navigation" class="lg-g"><?php // mobile nav ?>
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
@@ -51,13 +44,13 @@
 */
 ?>
 <?php // for PRODUCTION
-			
-		 if ($layout_context == 'message-board') { ?>
-			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
-		<?php } else { ?>
-			<a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();"><span class="new-item">New</span><span class="mb-new">Message Board</span></a>
-		<?php }
-		 
+      
+     if ($layout_context == 'message-board') { ?>
+      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
+    <?php } else { ?>
+      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board</a>
+    <?php }
+     
 ?>
 
 		<?php
