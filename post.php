@@ -32,7 +32,11 @@ require '_includes/head.php'; ?>
 
 <?php 
 
-	$post = $_GET['post-id'];
+  if (isset($_GET['post-id'])) {
+    $post = $_GET['post-id'];
+  } else {
+    $post = '0';
+  }
 	$get_post = get_this_post($post);
   $results = mysqli_num_rows($get_post);
 	$row = mysqli_fetch_assoc($get_post);

@@ -704,21 +704,19 @@ function get_mb_pg_replies($post) {
   return $result;
 }
 
-
 function get_mb_replies($post) {
   global $db;
 
-  $sql = "SELECT mbt.idt_topic, mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_topics as mbt ";
-  $sql .= "LEFT JOIN users as u ON u.id_user=mbt.idt_user ";
-  $sql .= "LEFT JOIN mb_replies as mbr on mbr.idr_topic=mbt.idt_topic ";
-  $sql .= "WHERE idt_topic='" . $post . "'";
+  $sql = "SELECT mbt.idt_topic, mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=mbr.idr_user ";
+  $sql .= "LEFT JOIN mb_topics as mbt on mbt.idt_topic=mbr.idr_topic ";
+  $sql .= "WHERE mbr.idr_topic='" . $post . "'";
   //$sql .= "ORDER BY mbr.replied ASC";
 
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;
 }
-
 
 function find_all_meetings() {
   global $db;

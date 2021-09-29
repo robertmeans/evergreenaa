@@ -1,7 +1,12 @@
 <?php 
 require_once 'config/initialize.php';
 
-	$post = $_GET['post-id'];
+
+	if (isset($_GET['post-id'])) {
+		$post = $_GET['post-id'];
+	} else {
+		$post = '0';
+	}
 	$get_replies = get_mb_replies($post);
   $replies = mysqli_fetch_assoc($get_replies);
 
