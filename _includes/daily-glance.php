@@ -1,5 +1,23 @@
 <?php if (isset($_SESSION['id'])) { ?>
 
+
+<?php  
+  // date_default_timezone_set('America/Denver');
+
+  $mt = new DateTime($row['meet_time']);
+  // $new_time = '1820';
+  // $mt = new DateTime($new_time);
+
+  // they all have to be named $denver in order to avoid having to change variables in other locations
+  $denver = new DateTimeZone('Pacific/Fakaofo'); // +14
+  // $denver = new DateTimeZone('Pacific/Niue'); // -11
+
+  // $denver = new DateTimeZone('America/Denver');
+  $mt->setTimezone($denver);
+  $mtz = $mt->format('g:i A');
+
+?>
+
 <?php /* 
 			user is logged in, show them their Private, their Members and their Public meetings (1's, 2's and 3's)
 */ ?><?php
@@ -8,7 +26,11 @@
 	<div class="daily-glance-wrap">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= date('g:i A', strtotime($row['meet_time'])); ?></p>
+
+
+				<p><?= $mtz; ?></p>
+
+
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
 				<p><?= $row['group_name']; ?></p>
@@ -63,7 +85,13 @@
 	<div class="daily-glance-wrap">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= date('g:i A', strtotime($row['meet_time'])); ?></p>
+
+				<?php /* <p><?= date('g:i A', strtotime($row['meet_time'])); ?></p> */ ?>
+
+
+				<p><?= $mtz; ?></p>
+
+
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
 				<p><?= $row['group_name']; ?></p>

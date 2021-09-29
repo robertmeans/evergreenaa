@@ -26,20 +26,7 @@ require '_includes/head.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="wrap">
 
-<?php if ($user_role != 86 && $user_role != 85) { 
-
-	$subject_set = get_all_public_and_private_meetings_for_today($user_id);
-	$tm = mysqli_fetch_assoc($subject_set);
-	// $result 	= mysqli_num_rows($subject_set);
-	$sun_m = $tm['sun'];
-	$mon_m = $tm['mon'];
-	$tue_m = $tm['tue'];
-	$wed_m = $tm['wed'];
-	$thu_m = $tm['thu'];
-	$fri_m = $tm['fri'];
-	$sat_m = $tm['sat'];
-	?>
-
+<?php if ($user_role != 86 && $user_role != 85) { ?>
 <ul id="weekdays">
 
 	<li class="ctr-day">
@@ -48,9 +35,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
-				mysqli_data_seek($subject_set, 0);
-				if ($tm['sun'] != '0') {
-					
+				$subject_set = get_all_public_and_private_meetings_for_today($sunday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
+
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					// $str_length = 4;
@@ -69,7 +57,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Sunday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -79,8 +67,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				mysqli_data_seek($subject_set, 0);
-				if ($mon_m == '1') {
+				$subject_set = get_all_public_and_private_meetings_for_today($monday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
+
+				if ($result > 0) {
 					$i = 1;	
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 
@@ -98,7 +88,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Monday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -108,8 +98,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
-				mysqli_data_seek($subject_set, 0);
-				if ($tue_m == '1') {
+				$subject_set = get_all_public_and_private_meetings_for_today($tuesday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
+
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) {
 					$ic = 'i2_'.$i;
@@ -126,7 +118,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Tuesday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -136,9 +128,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+				$subject_set = get_all_public_and_private_meetings_for_today($wednesday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($wed_m == '1') {
-					mysqli_data_seek($subject_set, 0);
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$ic = 'i3_'.$i;
@@ -155,7 +148,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Wednesday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -165,9 +158,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+				$subject_set = get_all_public_and_private_meetings_for_today($thursday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($thu_m == '1') {
-					mysqli_data_seek($subject_set, 0);
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$ic = 'i4_'.$i;
@@ -184,7 +178,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Thursday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -194,9 +188,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+				$subject_set = get_all_public_and_private_meetings_for_today($friday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($fri_m == '1') {
-					mysqli_data_seek($subject_set, 0);
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$ic = 'i5_'.$i;
@@ -213,7 +208,7 @@ require '_includes/head.php'; ?>
 				} else { ?>
 					<p class="no-mtgs">No meetings posted for Friday.</p>
 					
-				<?php } ?>
+				<?php } mysqli_free_result($subject_set); ?>
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -223,9 +218,10 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+				$subject_set = get_all_public_and_private_meetings_for_today($saturday, $user_id);
+				$result 	= mysqli_num_rows($subject_set);
 
-				if ($sat_m == '1') {
-					mysqli_data_seek($subject_set, 0);
+				if ($result > 0) {
 					$i = 1;
 					while ($row = mysqli_fetch_assoc($subject_set)) { 
 					$ic = 'i6_'.$i;

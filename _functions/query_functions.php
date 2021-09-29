@@ -25,23 +25,52 @@ function get_all_public_meetings_for_today($today) { // for home.php
     return $result;
 }
 
-function get_all_public_and_private_meetings_for_today($today, $id_user) { // home_private.php
+
+
+
+
+// function get_all_public_and_private_meetings_for_today($today, $id_user) { // home_private.php
+//     global $db;
+
+//     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+//     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+//     $sql .= "WHERE (m." . $today . " != 0 ";
+//     $sql .= "AND m.visible != 0 ";
+//     $sql .= "AND m.visible != 1) ";
+//     $sql .= "OR ";
+//     $sql .= "(m." . $today . " != 0 ";
+//     $sql .= "AND m.visible = 1 ";
+//     $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+//     $sql .= "ORDER BY m.meet_time;";
+ 
+//     $result = mysqli_query($db, $sql); 
+//     return $result;
+// }
+function get_all_public_and_private_meetings_for_today($id_user) { // home_private.php
     global $db;
 
     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
-    $sql .= "WHERE (m." . $today . " != 0 ";
-    $sql .= "AND m.visible != 0 ";
-    $sql .= "AND m.visible != 1) ";
+    // $sql .= "WHERE (m." . $today . " != 0 ";
+    $sql .= "WHERE m.visible != 0 ";
+    $sql .= "AND m.visible != 1 ";
     $sql .= "OR ";
-    $sql .= "(m." . $today . " != 0 ";
-    $sql .= "AND m.visible = 1 ";
-    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    // $sql .= "(m." . $today . " != 0 ";
+    $sql .= "m.visible = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "' ";
     $sql .= "ORDER BY m.meet_time;";
-    // echo $sql; 
+ 
     $result = mysqli_query($db, $sql); 
     return $result;
 }
+
+
+
+
+
+
+
+
 
 
 function verify_this_user($id) {
