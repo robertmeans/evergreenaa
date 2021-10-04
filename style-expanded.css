@@ -426,22 +426,22 @@ html {
 }
 .sidenav a.closebtn .ctxt {
   color: transparent;
-  transition: color 0.2s ease-out;
-}
-.sidenav a.closebtn:hover .ctxt {
-  color: rgba(0, 0, 0, 0.9);
-  transition: color 0.2s ease-in;
-}
-.sidenav a.closebtn:hover .ctd {
-  transition-delay: 1s;
 }
 .sidenav a.closebtn i {
   font-size: 1.5em;
   -ms-transform: rotate(270deg);
       transform: rotate(270deg);
   animation: in .25s 2 linear;
+  transition: color 0.65s ease;
 }
-.sidenav a.closebtn i:hover {
+.sidenav a.closebtn:hover .ctxt {
+  color: rgba(0, 0, 0, 0.9);
+}
+.sidenav a.closebtn:hover .ctd {
+  transition-delay: 0.5s;
+}
+.sidenav a.closebtn:hover i {
+  color: #fff;
   animation: out .5s 1 linear;
 }
 .sidenav a.admin-login,
@@ -4634,7 +4634,8 @@ li.focus a:hover {
 #transfer-form-topz,
 #user-list,
 #user-listz,
-#user-listzz {
+#user-listzz,
+#weekdays {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -4649,7 +4650,9 @@ li.focus a:hover {
 #user-listz .mng-usr,
 #user-listz .transfer-usr,
 #user-listzz .mng-usr,
-#user-listzz .transfer-usr {
+#user-listzz .transfer-usr,
+#weekdays .mng-usr,
+#weekdays .transfer-usr {
   font-size: 1em;
   padding: 0.5em;
   outline: none;
@@ -4667,7 +4670,9 @@ li.focus a:hover {
 #user-listz .mng-usr option,
 #user-listz .transfer-usr option,
 #user-listzz .mng-usr option,
-#user-listzz .transfer-usr option {
+#user-listzz .transfer-usr option,
+#weekdays .mng-usr option,
+#weekdays .transfer-usr option {
   cursor: pointer;
   color: #fff;
   background-color: #313131;
@@ -4681,7 +4686,9 @@ li.focus a:hover {
 #user-listz .mng-usr option:hover,
 #user-listz .transfer-usr option:hover,
 #user-listzz .mng-usr option:hover,
-#user-listzz .transfer-usr option:hover {
+#user-listzz .transfer-usr option:hover,
+#weekdays .mng-usr option:hover,
+#weekdays .transfer-usr option:hover {
   cursor: pointer;
 }
 #transfer-form-top #usr-role-go,
@@ -4708,7 +4715,12 @@ li.focus a:hover {
 #user-listzz #usr-role-goz,
 #user-listzz #usr-role-gozz,
 #user-listzz #transfer-this-top,
-#user-listzz #transfer-this-topz {
+#user-listzz #transfer-this-topz,
+#weekdays #usr-role-go,
+#weekdays #usr-role-goz,
+#weekdays #usr-role-gozz,
+#weekdays #transfer-this-top,
+#weekdays #transfer-this-topz {
   cursor: pointer;
   padding: 0.5em 1em;
   margin-left: 1em;
@@ -4740,7 +4752,12 @@ li.focus a:hover {
 #user-listzz #usr-role-goz:hover,
 #user-listzz #usr-role-gozz:hover,
 #user-listzz #transfer-this-top:hover,
-#user-listzz #transfer-this-topz:hover {
+#user-listzz #transfer-this-topz:hover,
+#weekdays #usr-role-go:hover,
+#weekdays #usr-role-goz:hover,
+#weekdays #usr-role-gozz:hover,
+#weekdays #transfer-this-top:hover,
+#weekdays #transfer-this-topz:hover {
   background-color: rgba(64, 178, 8, 0.4);
   color: #fff;
 }

@@ -212,24 +212,26 @@
 	  text-align: left;
 	  .ctxt {
 	  	color: transparent;
-	  	transition: color 0.2s ease-out;
-	  }
-	  &:hover {
-	  	.ctxt {
-	  		color: rgba(0,0,0,0.9);
-	  		transition: color 0.2s ease-in;
-	  	}
-	  	 .ctd {
-		  	transition-delay: 1s;
-		  }	
+	  	//transition: color 0.2s ease-in;
 	  }
 	  i {
 	  	font-size: 1.5em;
 	  	transform: rotate(270deg);
 	  	animation: in .25s 2 linear;
-	  	&:hover {
-	  		animation: out .5s 1 linear;
+	  	transition: color 0.65s ease;
+	  }
+	  &:hover {
+	  	.ctxt {
+	  		color: rgba(0,0,0,0.9);
+	  		// transition: color 0.2s ease-in;
 	  	}
+	  	 .ctd {
+		  	transition-delay: 0.5s;
+		  }	
+		  i {
+		  		color: #fff;
+		  		animation: out .5s 1 linear;
+		  }
 	  }
 	}	
 	a.admin-login,

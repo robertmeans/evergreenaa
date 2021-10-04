@@ -7,7 +7,7 @@
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host <?php if (isset($_SESSION['mode']) && ($_SESSION['mode'] == 1)) { echo ' admin-links'; } ?>">
 		
 		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
-		<span data-target="mtgday" style="display:none;"><?= substr($today, 0,3); ?></span>
+		<span data-target="mtgday" style="display:none;"><?= substr($todayz, 0,3); ?></span>
 		<span data-target="mtgid" style="display:none;"><?= $row['id_mtg']; ?></span>
 		<span data-target="tuid" style="display: none;"><?= $user_id ?></span>
 		<span data-target="ri" style="display:none;"><?= $row['issues']; ?></span>
