@@ -1,33 +1,33 @@
 <?php
 
-function day_range($get_range) {
-  if ($get_range == 'sun') {
-    $yesterday = 'sat'; $today = 'sun'; $tomorrow = 'mon';
-    return array($yesterday, $today, $tomorrow);
+function day_range($today) {
+  if ($today == 'Sunday') {
+    $yesterday = 'Saturday'; $tomorrow = 'Monday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'mon') {
-    $yesterday = 'sun'; $today = 'mon'; $tomorrow = 'tue';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Monday') {
+    $yesterday = 'Sunday'; $tomorrow = 'Tuesday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'tue') {
-    $yesterday = 'mon'; $today = 'tue'; $tomorrow = 'wed';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Tuesday') {
+    $yesterday = 'Monday'; $tomorrow = 'Wednesday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'wed') {
-    $yesterday = 'tue'; $today = 'wed'; $tomorrow = 'thu';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Wednesday') {
+    $yesterday = 'Tuesday'; $tomorrow = 'Thursday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'thu') {
-    $yesterday = 'wed'; $today = 'thu'; $tomorrow = 'fri';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Thursday') {
+    $yesterday = 'Wednesday'; $tomorrow = 'Friday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'fri') {
-    $yesterday = 'thu'; $today = 'fri'; $tomorrow = 'sat';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Friday') {
+    $yesterday = 'Thursday'; $tomorrow = 'Saturday';
+    return array($yesterday, $tomorrow);
   } 
-  if ($get_range == 'sat') {
-    $yesterday = 'fri'; $today = 'sat'; $tomorrow = 'sun';
-    return array($yesterday, $today, $tomorrow);
+  if ($today == 'Saturday') {
+    $yesterday = 'Friday'; $tomorrow = 'Sunday';
+    return array($yesterday, $tomorrow);
   } 
 }
 
@@ -51,82 +51,32 @@ function timezone_select_options($selected_timezone="America/Denver") {
   return $output;
 }
 
-
-
-
-
-
-
-
-
-// function orient_day($eval_today, $today) {
-
-//   if ($eval_today != 0) { 
-//     $day = ucfirst(substr($today, 0, 3));
-//     return $day; 
-//   }
-// }
-
-
-// function convert_timezone($eval_yesterday, $eval_today, $eval_tomorrow, $tz) {
-//   $user_tz  = new DateTimeZone($tz); // -7/dst: -6
-
-//   if (($eval_yesterday != '0' && $eval_today != '0' && $eval_tomorrow != '0') || 
-//       ($eval_yesterday != '0' && $eval_today != '0') || 
-//       ($eval_today != '0' && $eval_tomorrow != '0')) {
-//         $mt = new DateTime($eval_tomorrow);
-//         $mt->setTimezone($user_tz);
-//         $mtz = $mt->format('D g:i A');
-//         return $mtz; 
-//     } else {
-
-
-//     if ($eval_yesterday != '0') {
-//       $mt = new DateTime($eval_yesterday);
-//       $mt->setTimezone($user_tz);
-//       $mtz = $mt->format('D g:i A');
-//       return $mtz;
-//     }
-//     if ($eval_today != '0') {
-//       $mt = new DateTime($eval_today);
-//       $mt->setTimezone($user_tz);
-//       $mtz = $mt->format('D g:i A');
-//       return $mtz;
-//     }
-//     if ($eval_tomorrow != '0') {
-//       $mt = new DateTime($eval_tomorrow);
-//       $mt->setTimezone($user_tz);
-//       $mtz = $mt->format('D g:i A');
-//       return $mtz;
-//     }
-
-//   }
-// }
-
-function convert_timezone($eval_yesterday, $eval_today, $eval_tomorrow, $get_range, $tz) {
+function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz) {
   $user_tz  = new DateTimeZone($tz); // -7/dst: -6
+  $lc = substr(ucfirst($today), 0,3);
 
- if ($eval_yesterday != '0') {
-    $mt = new DateTime($eval_yesterday);
+ if ($ey != '0') { // yesterday
+    $mt = new DateTime($yesterday . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
-    if (strpos($mtz, ucfirst($get_range)) !== false) {
+    if (strpos($mtz, $lc) !== false) {
+
       return $mtz;
     }
   }
-  if ($eval_today != '0') {
-    $mt = new DateTime($eval_today);
+  if ($et != '0') { // today
+    $mt = new DateTime($today . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
-    if (strpos($mtz, ucfirst($get_range)) !== false) {
+    if (strpos($mtz, $lc) !== false) {
       return $mtz;
     }
   }
-  if ($eval_tomorrow != '0') {
-    $mt = new DateTime($eval_tomorrow);
+  if ($etm != '0') { // tomorrow
+    $mt = new DateTime($tomorrow . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
-    if (strpos($mtz, ucfirst($get_range)) !== false) {
+    if (strpos($mtz, $lc) !== false) {
       return $mtz;
     }
   }

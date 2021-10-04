@@ -55,7 +55,7 @@ function get_all_public_and_private_meetings_for_todayz($yesterday, $today, $tom
 
 
 
-function get_all_public_and_private_meetings_for_todayza($yesterday, $today, $tomorrow, $id_user) { // home_private.php
+function get_all_public_and_private_meetings_for_todayza($id_user) { // home_private.php
     global $db;
 
     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.tz, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
@@ -72,7 +72,7 @@ function get_all_public_and_private_meetings_for_todayza($yesterday, $today, $to
     $sql .= "(m.visible = 1 ";
     $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
     // $sql .= "GROUP BY m.id_mtg ";
-    $sql .= "ORDER BY m.mon ASC, m.tue ASC, m.wed ASC, m.thu ASC, m.fri ASC, m.sat ASC, m.sun ASC;";
+    $sql .= "ORDER BY  m.mon ASC, m.meet_time ASC, m.tue ASC, m.meet_time ASC, m.wed ASC, m.meet_time ASC, m.thu ASC, m.meet_time ASC, m.fri ASC, m.meet_time ASC, m.sat ASC, m.meet_time ASC;";
     // $sql .= "ORDER BY m." . $yesterday . " ASC, m." . $today . " ASC, m." . $tomorrow . " ASC;";
  
     $result = mysqli_query($db, $sql); 
