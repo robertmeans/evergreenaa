@@ -37,7 +37,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Sunday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -75,7 +75,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Monday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -112,7 +112,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Tuesday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -149,7 +149,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Wednesday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -186,7 +186,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Thursday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -223,7 +223,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Friday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {
@@ -260,7 +260,7 @@ require '_includes/head.php'; ?>
 			<?php
 				$today = 'Saturday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_todayza($user_id);
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
 
 					$i = 1;
 					foreach ($subject_set as $row) {

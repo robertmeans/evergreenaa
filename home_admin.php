@@ -29,34 +29,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 
 			<?php
+			$today = 'Sunday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($sunday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($sunday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					// $str_length = 4;
-					// $i = substr("000{$i}", -$str_length);
-					$ic = 'i0_'.$i;
-					$pc = 'p0_'.$i;
-					$today = 'Sunday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Sunday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i0_'.$i;
+				$pc = 'p0_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -66,33 +70,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Monday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($monday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($monday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;	
-					while ($row = mysqli_fetch_assoc($subject_set)) {
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					$ic = 'i1_'.$i;
-					$pc = 'p1_'.$i;
-					$today = 'Monday';
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$ic = 'i1_'.$i;
+				$pc = 'p1_'.$i;
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Monday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -102,32 +111,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Tuesday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($tuesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($tuesday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) {
-					$ic = 'i2_'.$i;
-					$pc = 'p2_'.$i;
-					$today = 'Tuesday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Tuesday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i2_'.$i;
+				$pc = 'p2_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -137,32 +152,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Wednesday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($wednesday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($wednesday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					$ic = 'i3_'.$i;
-					$pc = 'p3_'.$i;
-					$today = 'Wednesday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Wednesday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i3_'.$i;
+				$pc = 'p3_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -172,32 +193,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Thursday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($thursday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($thursday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					$ic = 'i4_'.$i;
-					$pc = 'p4_'.$i;
-					$today = 'Thursday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Thursday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i4_'.$i;
+				$pc = 'p4_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -207,32 +234,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Friday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($friday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($friday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					$ic = 'i5_'.$i;
-					$pc = 'p5_'.$i;
-					$today = 'Friday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Friday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i5_'.$i;
+				$pc = 'p5_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -242,32 +275,38 @@ require '_includes/head.php'; ?>
 		<?php include '_includes/collapse-day.php'; ?>
 		
 			<?php
+			$today = 'Saturday';
+			list($yesterday, $tomorrow) = day_range($today);
 			if ($user_id == 1) {
-				$subject_set = get_all_public_and_private_meetings_for_odin($saturday);
+				$subject_set = get_all_public_and_private_meetings_for_odin();
 			} else {
-				$subject_set = get_all_public_and_private_meetings_for_today($saturday, $user_id); 
+				$subject_set = get_all_public_and_private_meetings_for_today($user_id); 
 			}
-				$result 	= mysqli_num_rows($subject_set);
 
-				if ($result > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($subject_set)) { 
-					$ic = 'i6_'.$i;
-					$pc = 'p6_'.$i;
-					$today = 'Saturday';
+			$i = 1;
+			foreach ($subject_set as $row) {
+				$ey = $row[substr(lcfirst($yesterday), 0,3)];
+				$et = $row[substr(lcfirst($today), 0,3)];
+				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+				$meet_time = $row['meet_time'];
 
-					if ($row['issues'] < 3) {
-						require '_includes/admin-daily-glance.php'; ?>
-						<div class="weekday-wrap">
-							<?php require '_includes/admin-meeting-details.php'; ?>
-						</div><!-- .weekday-wrap -->
+				$tz = $row['tz'];
+				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
-					<?php }
-					$i++; } 
-				} else { ?>
-					<p class="no-mtgs">No meetings posted for Saturday.</p>
-					
-				<?php } mysqli_free_result($subject_set); ?>
+				$ic = 'i6_'.$i;
+				$pc = 'p6_'.$i;
+
+				if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+					$mtgs_exist = $today;
+					require '_includes/daily-glance.php'; ?>
+					<div class="weekday-wrap">
+						<?php require '_includes/meeting-details.php'; ?>
+					</div><!-- .weekday-wrap -->
+				<?php } 
+
+			$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+			
+		<?php mysqli_free_result($subject_set); ?>
 		</div><!-- #saturday-content .day-content -->
 	</li>
 

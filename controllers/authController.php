@@ -32,6 +32,7 @@ function remember_me()
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['tz'] = $user['tz'];
 		}
 	} 
 }
@@ -187,6 +188,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] 		= $user['admin'];
 			$_SESSION['mode'] 		= $user['mode'];
+			$_SESSION['tz'] 			= $user['tz'];
 			$_SESSION['token'] 		= $user['token'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
@@ -236,7 +238,9 @@ function verifyUser($token) {
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = 1;
-			// set flash message
+			$_SESSION['admin'] = $user['admin'];
+			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['tz'] = $user['tz'];
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
 			header('location:'. WWW_ROOT);
