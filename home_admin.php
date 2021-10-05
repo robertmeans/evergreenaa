@@ -4,6 +4,17 @@ require_once 'config/verify_admin.php';
 
 $layout_context = "home-private";
 
+if (!isset($_COOKIE['timezone'])) {
+	setCookie('timezone', 'not-set', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
+	$cookie = 'not-set';
+	$tz = 'America/Denver';
+} elseif ($_COOKIE['timezone'] == 'not-set') {
+	$cookie = 'not-set';
+	$tz = 'America/Denver';
+} else {
+	$tz = $_SESSION['tz'];	
+}
+
 $user_id = $_SESSION['admin'];
 
 require '_includes/head.php'; ?>
@@ -16,6 +27,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
@@ -44,7 +56,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i0_'.$i;
@@ -85,7 +97,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i1_'.$i;
@@ -126,7 +138,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i2_'.$i;
@@ -167,7 +179,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i3_'.$i;
@@ -208,7 +220,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i4_'.$i;
@@ -249,7 +261,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i5_'.$i;
@@ -290,7 +302,7 @@ require '_includes/head.php'; ?>
 				$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 				$meet_time = $row['meet_time'];
 
-				$tz = $row['tz'];
+				// $tz = $row['tz'];
 				$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 				$ic = 'i6_'.$i;

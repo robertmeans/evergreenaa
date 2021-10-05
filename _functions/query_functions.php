@@ -1,11 +1,22 @@
 <?php
 
+function set_timezone($timezone, $user_id) {
+  global $db;
+
+  $one = "UPDATE users ";
+  $one .= "SET tz='"  . db_escape($db, $timezone) . "' ";
+  $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
+
+  $result = mysqli_query($db, $one);
+  return $result; 
+}
+
 function get_meetings_for_today($today) {
     global $db;
 
     $sql = "SELECT * FROM meetings WHERE ";
     $sql .= "" . $today . " != 0 ORDER BY meet_time;";
-    // echo $sql; 
+     
     $result = mysqli_query($db, $sql); 
     return $result;
 }

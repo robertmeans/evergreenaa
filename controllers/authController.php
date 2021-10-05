@@ -25,7 +25,7 @@ function remember_me()
 			$result = $stmt->get_result();
 			$user = $result->fetch_assoc();
 
-			// put user in session (log them in)
+			// put variables in session
 			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];

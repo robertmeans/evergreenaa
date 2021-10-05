@@ -325,7 +325,49 @@ p.no-mtgs {
 	}
 }
 
-
+// .sel-tz {
+// 	width: 100%;
+// 	max-width: 900px;
+// 	margin-top: 1em;
+// 	padding: 0.5em 1em;
+// 	font-size: 0.8em;
+// 	line-height: 1.5em;
+// 	display: flex;
+// 	align-items: center;
+// 	color: #fff;
+// 	background-color: rgba(66,204,154,0.2);
+// 	.tz-txt {
+// 		color: orange;
+// 	}
+// 	a {
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		// font-size: 0.8em;
+// 		color: #fff;
+// 		text-decoration: none;
+// 		border-radius: 3px;
+// 		margin-left: 1em;
+// 		padding: 0.25em 1em;
+// 		background-color: #000;
+// 		transition: all 0.2s ease;
+// 		&:hover {
+// 			background-color: #757575;
+// 		}
+// 	}
+// }
+// @media screen and (max-width: 650px) {
+// 	.sel-tz {
+// 		flex-direction: column;
+// 		justify-content: center;
+// 		align-items: center;
+// 		text-align: center;
+// 		a {
+// 			width: 80%;
+// 			max-width: 250px;
+// 		}
+// 	}
+// }
 
 
 

@@ -167,7 +167,8 @@ html {
 }
 
 .preload,
-.preload-manage {
+.preload-manage,
+.set-tz {
   position: fixed;
   display: -ms-flexbox;
   display: flex;
@@ -184,21 +185,109 @@ html {
   z-index: 4567891;
 }
 .preload > p,
-.preload-manage > p {
+.preload-manage > p,
+.set-tz > p {
   font-family: 'Caveat', cursive;
   font-size: 3em;
   color: #fff;
 }
 .preload > i,
-.preload-manage > i {
+.preload-manage > i,
+.set-tz > i {
   font-size: 2em;
   margin-top: 0.5em;
+}
+
+.set-tz {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: Tahoma, Calbri, sans-serif;
+}
+.set-tz .tz-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 96%;
+  max-width: 600px;
+  padding: 1em;
+  line-height: 1.5em;
+}
+.set-tz .tz-box h3 {
+  width: 100%;
+  background-color: #2e3136;
+  color: #fff;
+  font-size: 1.25em;
+  padding: 0.25em 1em;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.set-tz .tz-box .tz-content {
+  width: 100%;
+  padding: 1em;
+  background-color: rgba(44, 62, 95, 0.9);
+  color: #fff;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.set-tz .tz-box .tz-content p.next-p {
+  margin-top: 1em;
+}
+.set-tz .tz-box .tz-content form {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.set-tz .tz-box .tz-content form select.pick-tz {
+  font-size: 1em;
+  padding: 0.5em;
+  outline: none;
+  cursor: pointer;
+  background-color: #313131;
+  color: #fff;
+}
+.set-tz .tz-box .tz-content form select.pick-tz option {
+  margin: 0 auto;
+  cursor: pointer;
+  color: #fff;
+  background-color: #313131;
+}
+.set-tz .tz-box .tz-content form select.pick-tz option:hover {
+  cursor: pointer;
+}
+.set-tz .tz-box .tz-content form input {
+  margin-top: 1em;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 1em;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #34844e;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.set-tz .tz-box .tz-content form input:hover {
+  background-color: #1b9a0a;
+}
+.set-tz .tz-box .tz-content form input#hide-tz {
+  margin-top: 0.5em;
+  background-color: #313131;
+}
+.set-tz .tz-box .tz-content form input#hide-tz:hover {
+  background-color: #757575;
 }
 
 @media screen and (max-width: 600px) {
   .preload > p,
   .preload-manage > p {
     font-size: 2em;
+  }
+
+  .set-tz .tz-box {
+    padding: 0.25em;
   }
 }
 #navigation {
@@ -390,6 +479,7 @@ html {
   cursor: default;
 }
 .sidenav a {
+  cursor: pointer;
   width: 100%;
   display: -ms-flexbox;
   display: flex;

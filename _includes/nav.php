@@ -59,9 +59,19 @@
 		<?php } 
 		if (isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
 			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>" onclick="closeNav();">My Dashboard</a>
-		<?php }
+		<?php } ?>
 
 
+
+
+			<a id="show-tz">Timezone: <?= $tz ?></a>
+
+
+
+
+
+
+		<?php
 		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context == 'um') { ?>
 			<a href="user_management.php" class="<?php if ($layout_context == 'um') { echo 'nav-active'; } ?>">Manage Users</a>
 		<?php } 

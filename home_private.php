@@ -4,6 +4,18 @@ require_once 'config/verify_admin.php';
 
 $layout_context = "home-private";
 
+if (!isset($_SESSION['tz']) || !isset($_COOKIE['timezone'])) {
+	setCookie('timezone', 'not-set', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
+	$cookie = 'not-set';
+	$tz = 'America/Denver';
+} elseif ($_COOKIE['timezone'] == 'not-set') {
+	$cookie = 'not-set';
+	$tz = 'America/Denver';
+} elseif (isset($_SESSION['tz'])) {
+	$tz = $_SESSION['tz'];	
+	$cookie = $tz;
+} 
+
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
 	$user_role = $_SESSION['admin'];
@@ -11,16 +23,52 @@ if (isset($_SESSION['id'])) {
 	$user_id = 'ns';
 	$user_role = '0';
 }
+
+
+if (is_post_request()) {
+	if (isset($_POST['set-tz'])) {
+		$timezone = $_POST['timezone'];
+
+		$result = set_timezone($timezone, $user_id);
+
+		if ($result === true) {
+			setCookie('timezone', $timezone, time() + (3650 * 24 * 60 * 60), '/'); // 10 years
+			$_SESSION['tz'] = $timezone;
+		  header('location:' . WWW_ROOT);
+		} else {
+			$errors = $result;
+		}
+	}
+}
+
 require '_includes/head.php'; ?>
 
 <body>
-<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<div class="preload">
-	<p>One day at a time.</p>
-</div>
+<?php 
+if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+	<div class="preload"><p>One day at a time.</p></div>
 <?php } ?>	
+<?php 
+if ($cookie == "not-set") { ?>
+	<div class="set-tz">
+		<div class="tz-box">
+			<h3>Set Timezone</h3>
+			<div class="tz-content">
+				<p>Let's set the timezone for this website. I will try to remember your setting on this device. You can always change it in the future from the Menu.</p>
+				<p class="next-p">Select your timezone:</p>
+				<form action="" method="post">
+					<select class="pick-tz" name="timezone">
+						<option value="empty"><?php echo timezone_select_options(); ?></option>
+					</select>
+					<input type="submit" name="set-tz" value="OK">
+				</form>
+			</div>
+		</div>
+	</div>
+<?php } ?>
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
@@ -46,7 +94,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i0_'.$i;
@@ -84,7 +132,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i1_'.$i;
@@ -121,7 +169,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i2_'.$i;
@@ -158,7 +206,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i3_'.$i;
@@ -195,7 +243,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i4_'.$i;
@@ -232,7 +280,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i5_'.$i;
@@ -269,7 +317,7 @@ require '_includes/head.php'; ?>
 						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
 						$meet_time = $row['meet_time'];
 
-						$tz = $row['tz'];
+						// $tz = $row['tz'];
 						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
 
 						$ic = 'i6_'.$i;

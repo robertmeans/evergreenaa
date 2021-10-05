@@ -44,7 +44,7 @@ function timezone_select_options($selected_timezone="America/Denver") {
     $output .= "<option value=\"{$zone}\"";
     if($selected_timezone == $zone) { $output .= " selected"; }
     $output .= ">";
-    $output .= $zone . " (UTC/GMT {$offset})";
+    // $output .= $zone . " (UTC/GMT {$offset})";
     $output .= $zone;
     $output .= "</option>";
   }

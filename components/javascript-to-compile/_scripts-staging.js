@@ -69,7 +69,16 @@ $(document).ready(function(){
         $("#why-join").fadeOut(500); 
     }
   });
-
+  $("#show-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeIn(500);
+  });
+  $("#hide-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeOut(500);
+  });
   $("#toggle-role-key").click(function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -116,10 +125,10 @@ $(document).click(function() {
     $("#why-join").fadeOut(500);
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
-
+  // } else if ($('#tz').is(':visible')) {
+  //   $("#tz").fadeOut(500);
   } else if ($('#mb-notes').is(':visible')) {
     $("#mb-notes").fadeOut(500); 
-
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
@@ -406,7 +415,7 @@ $(document).ready(function(){
   $("#why-join").hide();
   $("#gottajoin").hide();
   $("#mb-notes").hide();
-  // $("#reply-spot").hide();
+  $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
   $("#desc-loc").hide();

@@ -8,7 +8,8 @@
   top: 0; 
 }
 .preload,
-.preload-manage {
+.preload-manage,
+.set-tz {
   position: fixed;
   // left: 0px;
   // top: -33px;
@@ -33,11 +34,93 @@
 
   }
 }
+.set-tz {
+  background-color: rgba(0,0,0,0.8);
+  font-family: Tahoma, Calbri, sans-serif;
+  .tz-box {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    max-width: 600px;
+    padding: 1em;
+    line-height: 1.5em;
+    h3 {
+      width: 100%;
+      background-color: #2e3136;
+      color: #fff;
+      font-size: 1.25em;
+      padding: 0.25em 1em;
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+    }  
+    .tz-content {
+      width: 100%;
+      padding: 1em;
+      background-color: rgba(44,62,95,0.9);
+      color: #fff;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      p.next-p {
+        margin-top: 1em;
+      }
+      form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        select.pick-tz {
+          font-size: 1em;
+          padding: 0.5em;
+          outline: none;
+          cursor: pointer;
+          background-color: #313131;
+          color: #fff;
+          option { 
+            margin: 0 auto;
+            cursor: pointer;
+            color: #fff;
+            background-color: #313131;
+            // -webkit-appearance: none;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        input {
+          margin-top: 1em;
+          -webkit-appearance: none;
+          border: 1px solid rgba(255,255,255,0.9);
+          padding: 1em;
+          font-size: 1em;
+          cursor: pointer;
+          background-color: #34844e;
+          color: #fff;
+          transition: all 0.2s ease;
+          &:hover {
+            background-color: #1b9a0a;
+          }
+        }
+        input#hide-tz {
+          margin-top: 0.5em;
+          background-color: #313131;
+          &:hover {
+            background-color: #757575;
+          }
+        }
+      }
+    }  
+  }
+}
 @media screen and (max-width: 600px) {
   .preload,
   .preload-manage {
     & > p {
       font-size: 2em;
+    }
+  }
+  .set-tz {
+    .tz-box {
+      padding: 0.25em;
     }
   }
 }

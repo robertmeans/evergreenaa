@@ -79,55 +79,18 @@ $row = [];
 $row['id_user'] 		= $_SESSION['id']				 							 ;
 
 
-if ($_POST['sun'] != '0') {
-	$row['sun'] = 'Sunday ' . $row['meet_time']	?? '';
-} else {
-	$row['sun'] = $_POST['sun']	?? '';
-}
-if ($_POST['mon'] != '0') {
-	$row['mon'] = 'Monday ' . $row['meet_time']	?? '';
-} else {
-	$row['mon'] = $_POST['mon']	?? '';
-}
-if ($_POST['tue'] != '0') {
-	$row['tue'] = 'Tuesday ' . $row['meet_time']	?? '';
-} else {
-	$row['tue'] = $_POST['tue']	?? '';
-}
-if ($_POST['wed'] != '0') {
-	$row['wed'] = 'Wednesday ' . $row['meet_time']	?? '';
-} else {
-	$row['wed'] = $_POST['wed']	?? '';
-}
-if ($_POST['thu'] != '0') {
-	$row['thu'] = 'Thursday ' . $row['meet_time']	?? '';
-} else {
-	$row['thu'] = $_POST['thu']	?? '';
-}
-if ($_POST['fri'] != '0') {
-	$row['fri'] = 'Friday ' . $row['meet_time']	?? '';
-} else {
-	$row['fri'] = $_POST['fri']	?? '';
-}
-if ($_POST['sat'] != '0') {
-	$row['sat'] = 'Saturday ' . $row['meet_time']	?? '';
-} else {
-	$row['sat'] = $_POST['sat']	?? '';
-}
 
 
-// $row['sun'] 			= $_POST['sun'] 										?? '';
-// $row['mon'] 			= $_POST['mon'] 										?? '';
-// $row['tue'] 			= $_POST['tue'] 										?? '';
-// $row['wed'] 			= $_POST['wed'] 										?? '';
-// $row['thu'] 			= $_POST['thu'] 										?? '';
-// $row['fri'] 			= $_POST['fri'] 										?? '';
-// $row['sat']				= $_POST['sat'] 										?? '';
+$row['sun'] 			= $_POST['sun'] 										?? '';
+$row['mon'] 			= $_POST['mon'] 										?? '';
+$row['tue'] 			= $_POST['tue'] 										?? '';
+$row['wed'] 			= $_POST['wed'] 										?? '';
+$row['thu'] 			= $_POST['thu'] 										?? '';
+$row['fri'] 			= $_POST['fri'] 										?? '';
+$row['sat']				= $_POST['sat'] 										?? '';
 
 
 $row['meet_time'] 		= $_POST['meet_time'] 									?? '';
-
-
 
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
