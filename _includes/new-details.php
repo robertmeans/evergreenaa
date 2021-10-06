@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-
+	<?php /* <p class="mtg-tz">This will be in: <?php pretty_tz($tz); ?></p> */ ?>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group name</p>

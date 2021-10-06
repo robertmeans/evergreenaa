@@ -1,6 +1,8 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+require_once '_includes/set_timezone.php';
+
 if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
 	exit();
@@ -22,6 +24,22 @@ $role = $_SESSION['admin'];
 if (is_post_request()) {
 
 $rando_num = rand(100,999);
+
+
+
+//$tz set in: require_once '_includes/set_timezone.php'; (at top)
+$ut = $_POST['meet_time'] ?? '';
+$su = $_POST['sun'] ?? '';
+$mo = $_POST['mon'] ?? '';
+$tu = $_POST['tue'] ?? '';
+$we = $_POST['wed'] ?? '';
+$th = $_POST['thu'] ?? '';
+$fr = $_POST['fri'] ?? '';
+$sa = $_POST['sat'] ?? '';
+
+list($utime, $usun, $umon, $utue, $uwed, $uthu, $ufri, $usat) = figger_it_out($tz, $ut, $su, $mo, $tu, $we, $th, $fr, $sa);
+
+
 $row = [];
 
 	if (!empty($_FILES['file1']['name'])) {
@@ -76,21 +94,17 @@ $row = [];
 		$fn4 = ''; // file_name
 	}		
 
-$row['id_user'] 		= $_SESSION['id']				 							 ;
+$row['id_user'] = $_SESSION['id'];
 
+$row['sun'] = $usun;
+$row['mon'] = $umon;
+$row['tue'] = $utue;
+$row['wed'] = $uwed;
+$row['thu'] = $uthu;
+$row['fri'] = $ufri;
+$row['sat'] = $usat;
 
-
-
-$row['sun'] 			= $_POST['sun'] 										?? '';
-$row['mon'] 			= $_POST['mon'] 										?? '';
-$row['tue'] 			= $_POST['tue'] 										?? '';
-$row['wed'] 			= $_POST['wed'] 										?? '';
-$row['thu'] 			= $_POST['thu'] 										?? '';
-$row['fri'] 			= $_POST['fri'] 										?? '';
-$row['sat']				= $_POST['sat'] 										?? '';
-
-
-$row['meet_time'] 		= $_POST['meet_time'] 									?? '';
+$row['meet_time'] 		= $ut;
 
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';

@@ -1,12 +1,15 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+require_once '_includes/set_timezone.php';
+
 if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 
 $layout_context = "dashboard";
+$hide_this = "yep";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');

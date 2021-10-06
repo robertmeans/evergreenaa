@@ -62,13 +62,16 @@
 		<?php } ?>
 
 
-
-
-			<a id="show-tz">Timezone: <?= $tz ?></a>
-
-
-
-
+		<a id="show-tz">Timezone: <?php 
+			if ($tz == 'America/New_York') { echo 'USA Eastern'; }
+				elseif ($tz == 'America/Chicago') { echo 'USA Central'; }
+				elseif ($tz == 'America/Denver') { echo 'USA Mountain'; }
+				elseif ($tz == 'America/Phoenix') { echo 'USA Mtn Standard'; }
+				elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific'; }
+				elseif ($tz == 'America/Anchorage') { echo 'USA Alaska'; }
+				elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii'; }
+				else echo $tz; 
+				 ?></a>
 
 
 		<?php

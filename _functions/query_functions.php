@@ -30,7 +30,7 @@ function get_all_public_meetings_for_today() { // for home.php
     $sql .= "WHERE m.visible != 0 ";
     $sql .= "AND m.visible != 1 ";
     $sql .= "AND m.visible != 2 ";
-    $sql .= "ORDER BY  m.mon ASC, m.meet_time ASC, m.tue ASC, m.meet_time ASC, m.wed ASC, m.meet_time ASC, m.thu ASC, m.meet_time ASC, m.fri ASC, m.meet_time ASC, m.sat ASC, m.meet_time ASC;";
+    $sql .= "ORDER BY  m.mon, m.meet_time ASC, m.tue, m.meet_time ASC, m.wed, m.meet_time ASC, m.thu, m.meet_time ASC, m.fri, m.meet_time ASC, m.sat, m.meet_time ASC, m.sun, m.meet_time ASC;";
     // echo $sql; 
     $result = mysqli_query($db, $sql); 
     return $result;
@@ -48,7 +48,7 @@ function get_all_public_and_private_meetings_for_today($id_user) { // home_priva
     $sql .= "OR ";
     $sql .= "(m.visible = 1 ";
     $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
-    $sql .= "ORDER BY  m.mon ASC, m.meet_time ASC, m.tue ASC, m.meet_time ASC, m.wed ASC, m.meet_time ASC, m.thu ASC, m.meet_time ASC, m.fri ASC, m.meet_time ASC, m.sat ASC, m.meet_time ASC;";
+    $sql .= "ORDER BY  m.mon, m.meet_time ASC, m.tue, m.meet_time ASC, m.wed, m.meet_time ASC, m.thu, m.meet_time ASC, m.fri, m.meet_time ASC, m.sat, m.meet_time ASC, m.sun, m.meet_time ASC;";
  
     $result = mysqli_query($db, $sql); 
     return $result;

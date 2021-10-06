@@ -56,7 +56,7 @@
     .tz-content {
       width: 100%;
       padding: 1em;
-      background-color: rgba(44,62,95,0.9);
+      background-color: rgba(44,62,95,1);
       color: #fff;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
@@ -86,7 +86,9 @@
             }
           }
         }
-        input {
+        input,
+        a.btn {
+          text-align: center;
           margin-top: 1em;
           -webkit-appearance: none;
           border: 1px solid rgba(255,255,255,0.9);
@@ -100,7 +102,8 @@
             background-color: #1b9a0a;
           }
         }
-        input#hide-tz {
+        a#hide-tz {
+          text-align: center;
           margin-top: 0.5em;
           background-color: #313131;
           &:hover {

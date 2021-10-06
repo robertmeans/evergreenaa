@@ -368,8 +368,23 @@ p.no-mtgs {
 // 		}
 // 	}
 // }
-
-
+p.inline-tz {
+	margin-top: 1em;
+	font-size: 0.8em;
+	width: 100%;
+	max-width: 900px;
+	text-align: left;
+	color: rgba(255,255,255,0.6);
+}
+a.inline-show-tz {
+	cursor: pointer;
+	color: rgba(255,255,255,0.6);
+	text-decoration: none;
+	transition: all 0.2s ease;
+	&:hover {
+		color: orange;
+	}
+}
 
 
 

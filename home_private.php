@@ -1,20 +1,9 @@
 <?php  
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+require_once '_includes/set_timezone.php';
 
 $layout_context = "home-private";
-
-if (!isset($_SESSION['tz']) || !isset($_COOKIE['timezone'])) {
-	setCookie('timezone', 'not-set', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-	$cookie = 'not-set';
-	$tz = 'America/Denver';
-} elseif ($_COOKIE['timezone'] == 'not-set') {
-	$cookie = 'not-set';
-	$tz = 'America/Denver';
-} elseif (isset($_SESSION['tz'])) {
-	$tz = $_SESSION['tz'];	
-	$cookie = $tz;
-} 
 
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
@@ -54,13 +43,15 @@ if ($cookie == "not-set") { ?>
 		<div class="tz-box">
 			<h3>Set Timezone</h3>
 			<div class="tz-content">
-				<p>Let's set the timezone for this website. I will try to remember your setting on this device. You can always change it in the future from the Menu.</p>
+				<p>Let's set your timezone for this website. I will try to remember your setting on this device. You can always change it in the future from the Menu.</p>
 				<p class="next-p">Select your timezone:</p>
-				<form action="" method="post">
-					<select class="pick-tz" name="timezone">
+				<form id="init-set-tz" action="" method="post">
+					<select id="init-tz-select" class="pick-tz" name="timezone">
 						<option value="empty"><?php echo timezone_select_options(); ?></option>
 					</select>
-					<input type="submit" name="set-tz" value="OK">
+					<input type="hidden" name="set-tz">
+					<div id="init-pick-tz"></div>
+					<a id="init-tz-submit" class="btn">OK</a>
 				</form>
 			</div>
 		</div>
@@ -81,6 +72,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-sunday" class="day">Sunday</button>
 		<div id="sunday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 
 			<?php
 				$today = 'Sunday';
@@ -119,6 +111,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-monday" class="day">Monday</button>
 		<div id="monday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Monday';
@@ -156,6 +149,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-tuesday" class="day">Tuesday</button>
 		<div id="tuesday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Tuesday';
@@ -193,6 +187,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-wednesday" class="day">Wednesday</button>
 		<div id="wednesday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Wednesday';
@@ -230,6 +225,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-thursday" class="day">Thursday</button>
 		<div id="thursday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Thursday';
@@ -267,6 +263,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-friday" class="day">Friday</button>
 		<div id="friday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Friday';
@@ -304,6 +301,7 @@ if ($cookie == "not-set") { ?>
 		<button id="open-saturday" class="day">Saturday</button>
 		<div id="saturday-content" class="day-content">
 		<?php include '_includes/collapse-day.php'; ?>
+		<p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 		
 			<?php
 				$today = 'Saturday';

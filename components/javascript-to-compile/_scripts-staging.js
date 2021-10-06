@@ -74,10 +74,18 @@ $(document).ready(function(){
       e.stopPropagation();
     $("#tz").fadeIn(500);
   });
+  $(".inline-show-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeIn(500);
+  });
   $("#hide-tz").click(function(e) {
       e.preventDefault();
       e.stopPropagation();
     $("#tz").fadeOut(500);
+    setTimeout(function() {
+      $("#tz-form").trigger("reset");
+    }, 525);
   });
   $("#toggle-role-key").click(function(e) {
       e.preventDefault();
@@ -779,6 +787,25 @@ $(document).ready(function() {
       }
     })
   });
+});
+
+// submit initial timezone cookie + db
+$(document).ready(function() {
+  $(document).on('click','#init-tz-submit', function() {
+    if ($('#init-tz-select').val() != "empty") {
+      $('#init-set-tz').submit();
+    } else {
+      $('#init-pick-tz').html('<p>Gotsta picka timezone</p>');
+    }
+  });
+  $(document).on('click','#tz-submit', function() {
+    if ($('#tz-select').val() != "empty") {
+      $('#tz-form').submit();
+    } else {
+      $('#pick-tz').html('<p>Gotsta picka timezone</p>');
+    }
+  });
+
 });
 
 // email host modal
