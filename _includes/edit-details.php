@@ -44,7 +44,14 @@
 <div class="mtg-time">	
 
 	<?php /* https://timepicker.co/options/ */ ?>
-	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { echo date('g:i A', strtotime($row['meet_time'])); } ?>">
+	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
+
+		$time = $row['meet_time'];
+		$tz = $row['tz']; 
+		$nt = converted_time($time, $tz); 
+		echo $nt;
+
+	} ?>">
 
 </div>
 

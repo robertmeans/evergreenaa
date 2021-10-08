@@ -24,9 +24,10 @@ if (!isset($_GET['id'])) {
 }
 
 $id = $_GET['id'];
+$id_user = $_SESSION['id'];
 $role = $_SESSION['admin'];
 
-$row = edit_meeting($id);
+$row = edit_meeting($id_user, $id);
 
 require '_includes/head.php'; ?>
 

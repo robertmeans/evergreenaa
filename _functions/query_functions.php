@@ -30,7 +30,7 @@ function get_all_public_meetings_for_today() { // for home.php
     $sql .= "WHERE m.visible != 0 ";
     $sql .= "AND m.visible != 1 ";
     $sql .= "AND m.visible != 2 ";
-    $sql .= "ORDER BY  m.mon, m.meet_time ASC, m.tue, m.meet_time ASC, m.wed, m.meet_time ASC, m.thu, m.meet_time ASC, m.fri, m.meet_time ASC, m.sat, m.meet_time ASC, m.sun, m.meet_time ASC;";
+    $sql .= "ORDER BY  m.sun, m.meet_time ASC, m.mon, m.meet_time ASC, m.tue, m.meet_time ASC, m.wed, m.meet_time ASC, m.thu, m.meet_time ASC, m.fri, m.meet_time ASC, m.sat, m.meet_time ASC;";
     // echo $sql; 
     $result = mysqli_query($db, $sql); 
     return $result;
@@ -48,11 +48,121 @@ function get_all_public_and_private_meetings_for_today($id_user) { // home_priva
     $sql .= "OR ";
     $sql .= "(m.visible = 1 ";
     $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
-    $sql .= "ORDER BY  m.mon, m.meet_time ASC, m.tue, m.meet_time ASC, m.wed, m.meet_time ASC, m.thu, m.meet_time ASC, m.fri, m.meet_time ASC, m.sat, m.meet_time ASC, m.sun, m.meet_time ASC;";
+
+    $sql .= "ORDER BY m.meet_time;";
  
     $result = mysqli_query($db, $sql); 
     return $result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_offset_minus($id_user, $d, $t) { // home_private.php
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE (m.visible != 0 ";
+    $sql .= "AND m.visible != 1 ";
+    $sql .= "AND m." . $d . " = 1) ";
+    $sql .= "OR ";
+    $sql .= "(m.visible != 1 ";
+    $sql .= "AND m." . $t . " = 1) ";
+    $sql .= "OR ";
+    $sql .= "(m.visible = 1 ";
+    $sql .= "AND m." . $d . " = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "OR ";
+    $sql .= "(m.visible = 1 ";
+    $sql .= "AND m." . $t . " = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "ORDER BY m." . $t . ", m." . $d . ", meet_time;";
+    // $sql .= "ORDER BY (m." . $t . "), meet_time ASC, (m." . $d . "), meet_time ASC;";
+    // $sql .= "ORDER BY FIELD(m." . $t . ", '1'), m." . $d . ", m.meet_time;";
+ 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
+function get_offset_zero($id_user, $d) { // home_private.php
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE (m.visible != 0 ";
+    $sql .= "AND m.visible != 1 ";
+    $sql .= "AND m." . $d . " = 1) ";
+    $sql .= "OR ";
+    $sql .= "(m.visible = 1 ";
+    $sql .= "AND m." . $d . " = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "ORDER BY m.meet_time, m.group_name;";
+ 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
+function get_offset_plus($id_user, $y, $d) { // home_private.php
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE (m.visible != 0 ";
+    $sql .= "AND m.visible != 1 ";
+    $sql .= "AND m." . $y . " = 1) ";
+    $sql .= "OR ";
+    $sql .= "(m.visible != 1 ";
+    $sql .= "AND m." . $d . " = 1) ";
+    $sql .= "OR ";
+    $sql .= "(m.visible = 1 ";
+    $sql .= "AND m." . $y . " = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "OR ";
+    $sql .= "(m.visible = 1 ";
+    $sql .= "AND m." . $d . " = 1 ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "ORDER BY m.meet_time, m." . $d . ",m." . $y . ", m.group_name;";
+ 
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -327,15 +437,15 @@ function update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn
   $sql = "UPDATE meetings SET ";
   $sql .= "issues=0, ";
   $sql .= "visible='"       . $row['visible']           . "', ";
-  $sql .= "sun='"           . $row['sun']           . "', ";
-  $sql .= "mon='"           . $row['mon']           . "', ";
-  $sql .= "tue='"           . $row['tue']           . "', ";
-  $sql .= "wed='"           . $row['wed']           . "', ";
-  $sql .= "thu='"           . $row['thu']           . "', ";
-  $sql .= "fri='"           . $row['fri']           . "', ";
-  $sql .= "sat='"           . $row['sat']           . "', ";
+  $sql .= "sun='"           . $row['db_sun']           . "', ";
+  $sql .= "mon='"           . $row['db_mon']           . "', ";
+  $sql .= "tue='"           . $row['db_tue']           . "', ";
+  $sql .= "wed='"           . $row['db_wed']           . "', ";
+  $sql .= "thu='"           . $row['db_thu']           . "', ";
+  $sql .= "fri='"           . $row['db_fri']           . "', ";
+  $sql .= "sat='"           . $row['db_sat']           . "', ";
   $sql .= "group_name='"    . db_escape($db, $row['group_name'])    . "', ";
-  $sql .= "meet_time='"     . date('Hi', strtotime($row['meet_time']))        . "', ";
+  $sql .= "meet_time='"     . date('Hi', strtotime($row['db_time']))        . "', ";
   $sql .= "meet_phone='"    . db_escape($db, $row['meet_phone'])    . "', ";
   $sql .= "meet_id='"       . db_escape($db, $row['meet_id'])       . "', ";
   $sql .= "meet_pswd='"     . db_escape($db, $row['meet_pswd'])     . "', ";
@@ -424,13 +534,15 @@ function delete_meeting($id) {
   }
 }
 
-function edit_meeting($id) {
+function edit_meeting($id_user, $id) {
   global $db;
 
-  $sql = "SELECT * FROM meetings WHERE ";
-  $sql .= "id_mtg='" . db_escape($db, $id) . "'";
-  // $sql .= "ORDER BY meet_time;";
-  // echo $sql; 
+  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+  $sql .= "WHERE (u.id_user='" . db_escape($db, $id_user) . "' ";
+
+  $sql .= "AND m.id_mtg='" . db_escape($db, $id) . "')";
+ 
   $result = mysqli_query($db, $sql); 
   confirm_result_set($result);
   $row = mysqli_fetch_assoc($result);
@@ -755,7 +867,7 @@ function find_meetings_by_id($id) {
 function find_meetings_for_manage_page($id) {
   global $db;
 
-  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.tz FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_user='" . db_escape($db, $id) . "' ";
   // $sql .= "GROUP BY m.group_name ";

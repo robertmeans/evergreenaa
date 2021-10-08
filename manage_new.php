@@ -85,16 +85,6 @@ $row['id_user'] = $_SESSION['id'];
 
 
 
-
-// $_POST['sun'] ?? '';
-// $_POST['mon'] ?? '';
-// $_POST['tue'] ?? '';
-// $_POST['wed'] ?? '';
-// $_POST['thu'] ?? '';
-// $_POST['fri'] ?? '';
-// $_POST['sat'] ?? '';
-
-
 $time = [];
 //$tz set in: require_once '_includes/set_timezone.php'; (at top)
 $time['tz'] = $tz;
@@ -122,24 +112,24 @@ $row['db_sat'] = $sat;
 
 // use this to populate field if there are errors on pg ->
 // comment when testing
-// $row['meet_time'] = $_POST['meet_time'];
-// $row['sun'] = $_POST['sun'] ?? '';
-// $row['mon'] = $_POST['mon'] ?? '';
-// $row['tue'] = $_POST['tue'] ?? '';
-// $row['wed'] = $_POST['wed'] ?? '';
-// $row['thu'] = $_POST['thu'] ?? '';
-// $row['fri'] = $_POST['fri'] ?? '';
-// $row['sat'] = $_POST['sat'] ?? '';
+$row['meet_time'] = $_POST['meet_time'];
+$row['sun'] = $_POST['sun'] ?? '';
+$row['mon'] = $_POST['mon'] ?? '';
+$row['tue'] = $_POST['tue'] ?? '';
+$row['wed'] = $_POST['wed'] ?? '';
+$row['thu'] = $_POST['thu'] ?? '';
+$row['fri'] = $_POST['fri'] ?? '';
+$row['sat'] = $_POST['sat'] ?? '';
 
 // for testing... ->
-$row['meet_time'] = $ct->format('g:i A');
-$row['sun'] = $sun;
-$row['mon'] = $mon;
-$row['tue'] = $tue;
-$row['wed'] = $wed;
-$row['thu'] = $thu;
-$row['fri'] = $fri;
-$row['sat'] = $sat;
+// $row['meet_time'] = $ct->format('g:i A');
+// $row['sun'] = $sun;
+// $row['mon'] = $mon;
+// $row['tue'] = $tue;
+// $row['wed'] = $wed;
+// $row['thu'] = $thu;
+// $row['fri'] = $fri;
+// $row['sat'] = $sat;
 
 
 

@@ -83,15 +83,28 @@ function timezone_select_options($selected_timezone="America/Denver") {
 }
 
 function pretty_tz($tz) {
-  if ($tz == 'America/New_York') { echo 'USA Eastern'; }
-    elseif ($tz == 'America/Chicago') { echo 'USA Central'; }
-    elseif ($tz == 'America/Denver') { echo 'USA Mountain'; }
-    elseif ($tz == 'America/Phoenix') { echo 'USA Mtn Standard'; }
-    elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific'; }
-    elseif ($tz == 'America/Anchorage') { echo 'USA Alaska'; }
-    elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii'; }
-    else  { echo trim(str_replace('_', ' ', substr($tz, strpos($tz, '/') + 1))); } // :-)
+  if ($tz == 'America/New_York') { echo 'USA Eastern time'; }
+    elseif ($tz == 'America/Chicago') { echo 'USA Central time'; }
+    elseif ($tz == 'America/Denver') { echo 'USA Mountain time'; }
+    elseif ($tz == 'America/Phoenix') { echo 'USA Mtn Standard time'; }
+    elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific time'; }
+    elseif ($tz == 'America/Anchorage') { echo 'USA Alaska time'; }
+    elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii time'; }
+    elseif ($tz == 'UTC') { echo 'UTC/GMT time'; }
+    else  { echo trim(str_replace('_', ' ', substr($tz, strpos($tz, '/') + 1))) . ' time'; } // :-)
     return $tz;  
+}
+
+function converted_time($time, $tz) {
+  $utc = 'UTC';
+  $from_tz_obj = new DateTimeZone($utc);
+  $to_tz_obj = new DateTimeZone($tz);
+
+  $ct = new DateTime($time, $from_tz_obj);
+  $ct->setTimezone($to_tz_obj);
+  $nct = $ct->format('g:i A');
+
+  return $nct;
 }
 
 function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz) {
@@ -124,17 +137,22 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
   }
 }
 
-
-
-
 function figger_it_out($time) {
+  // initialize return variables
+  $sun = '0';
+  $mon = '0';
+  $tue = '0';
+  $wed = '0';
+  $thu = '0';
+  $fri = '0';
+  $sat = '0';
 
   $utc = 'UTC';
-  // $time['$ut'] = $from_time (user input)
-  // $time['$tz'] = $from_tz (user's tz)
+  // $time['ut'] = $from_time (user input)
+  // $time['tz'] = $from_tz (user's tz)
   // $utc = $to_tz (convert to UTC)
-  $from_tz_obj = new DateTimeZone($utc);
-  $to_tz_obj = new DateTimeZone($time['tz']);
+  $from_tz_obj = new DateTimeZone($time['tz']);
+  $to_tz_obj = new DateTimeZone($utc);
   // $ct = "converted time"
   $ct = new DateTime($time['ut'], $from_tz_obj);
   $ct->setTimezone($to_tz_obj);
@@ -153,9 +171,7 @@ function figger_it_out($time) {
     if (strpos($nsun, 'Monday') !== false) {
       $mon = '1';
     }
-  } else {
-    $sun = '0';
-  }
+  } 
 
   if($time['mon'] == '1') {
     $cmon = new DateTime('Monday ' . $time['ut'], $from_tz_obj);
@@ -171,9 +187,7 @@ function figger_it_out($time) {
     if (strpos($nmon, 'Tuesday') !== false) {
       $tue = '1';
     }
-  } else {
-      $mon = '0';
-    }    
+  }     
 
   if($time['tue'] == '1') {
     $ctue = new DateTime('Tuesday ' . $time['ut'], $from_tz_obj);
@@ -189,9 +203,7 @@ function figger_it_out($time) {
     if (strpos($ntue, 'Wednesday') !== false) {
       $wed = '1';
     }
-  } else {
-      $tue = '0';
-    }
+  } 
 
   if($time['wed'] == '1') {
     $cwed = new DateTime('Wednesday ' . $time['ut'], $from_tz_obj);
@@ -207,9 +219,7 @@ function figger_it_out($time) {
     if (strpos($nwed, 'Thursday') !== false) {
       $thu = '1';
     }
-  } else {
-      $wed = '0';
-    }
+  } 
 
   if($time['thu'] == '1') {
     $cthu = new DateTime('Thursday ' . $time['ut'], $from_tz_obj);
@@ -225,9 +235,7 @@ function figger_it_out($time) {
     if (strpos($nthu, 'Friday') !== false) {
       $fri = '1';
     }
-  } else {
-      $thu = '0';
-    }
+  } 
 
   if($time['fri'] == '1') {
     $cfri = new DateTime('Friday ' . $time['ut'], $from_tz_obj);
@@ -243,9 +251,7 @@ function figger_it_out($time) {
     if (strpos($nfri, 'Saturday') !== false) {
       $sat = '1';
     }
-  } else {
-      $fri = '0';
-    }
+  } 
 
   if($time['sat'] == '1') {
     $csat = new DateTime('Saturday ' . $time['ut'], $from_tz_obj);
@@ -261,9 +267,7 @@ function figger_it_out($time) {
     if (strpos($nsat, 'Sunday') !== false) {
       $sun = '1';
     }
-  } else {
-      $sat = '0';
-    }
+  } 
 
   return array($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat);
 }
@@ -286,6 +290,207 @@ function convert_day($tz, $day, $mtg_time) {
     }
   }
 }
+
+function find_offset($float) {
+  $hours = floor($float);
+  $minutes = ($float - $hours) * 60;
+  return sprintf("%+02d:%02d", $hours, $minutes);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function figger_it_outz($time) {
+//   $sun = '0';
+//   $mon = '0';
+//   $tue = '0';
+//   $wed = '0';
+//   $thu = '0';
+//   $fri = '0';
+//   $sat = '0';
+
+//   $utc = 'UTC';
+//   $from_tz_obj = new DateTimeZone($utc);
+//   $to_tz_obj = new DateTimeZone($time['tz']);
+
+//   $ct = new DateTime($time['meet_time'], $from_tz_obj);
+//   $ct->setTimezone($to_tz_obj);
+
+//   if($time['sun'] == '1') {
+//     $csun = new DateTime('Sunday ' . $time['meet_time'], $from_tz_obj);
+//     $csun->setTimezone($to_tz_obj);
+//     $nsun = $csun->format('l Hi');
+
+//     if (strpos($nsun, 'Saturday') !== false) {
+//       $sat = '1';
+//     }
+//     if (strpos($nsun, 'Sunday') !== false) {
+//       $sun = '1';
+//     }    
+//     if (strpos($nsun, 'Monday') !== false) {
+//       $mon = '1';
+//     }
+//   } 
+
+//   if($time['mon'] == '1') {
+//     $cmon = new DateTime('Monday ' . $time['meet_time'], $from_tz_obj);
+//     $cmon->setTimezone($to_tz_obj);
+
+//     $nmon = $cmon->format('l Hi');
+//     if (strpos($nmon, 'Sunday') !== false) {
+//       $sun = '1';
+//     }   
+//     if (strpos($nmon, 'Monday') !== false) {
+//       $mon = '1';
+//     }
+//     if (strpos($nmon, 'Tuesday') !== false) {
+//       $tue = '1';
+//     }
+//   }     
+
+//   if($time['tue'] == '1') {
+//     $ctue = new DateTime('Tuesday ' . $time['meet_time'], $from_tz_obj);
+//     $ctue->setTimezone($to_tz_obj);
+
+//     $ntue = $ctue->format('l Hi');
+//     if (strpos($ntue, 'Monday') !== false) {
+//       $mon = '1';
+//     }
+//     if (strpos($ntue, 'Tuesday') !== false) {
+//       $tue = '1';
+//     }    
+//     if (strpos($ntue, 'Wednesday') !== false) {
+//       $wed = '1';
+//     }
+//   } 
+
+//   if($time['wed'] == '1') {
+//     $cwed = new DateTime('Wednesday ' . $time['meet_time'], $from_tz_obj);
+//     $cwed->setTimezone($to_tz_obj);
+
+//     $nwed = $cwed->format('l Hi');
+//     if (strpos($nwed, 'Tuesday') !== false) {
+//       $tue = '1';
+//     }   
+//     if (strpos($nwed, 'Wednesday') !== false) {
+//       $wed = '1';
+//     }    
+//     if (strpos($nwed, 'Thursday') !== false) {
+//       $thu = '1';
+//     }
+//   } 
+
+//   if($time['thu'] == '1') {
+//     $cthu = new DateTime('Thursday ' . $time['meet_time'], $from_tz_obj);
+//     $cthu->setTimezone($to_tz_obj);
+
+//     $nthu = $cthu->format('l Hi');
+//     if (strpos($nthu, 'Wednesday') !== false) {
+//       $wed = '1';
+//     }    
+//     if (strpos($nthu, 'Thursday') !== false) {
+//       $thu = '1';
+//     }    
+//     if (strpos($nthu, 'Friday') !== false) {
+//       $fri = '1';
+//     }
+//   } 
+
+//   if($time['fri'] == '1') {
+//     $cfri = new DateTime('Friday ' . $time['meet_time'], $from_tz_obj);
+//     $cfri->setTimezone($to_tz_obj);
+
+//     $nfri = $cfri->format('l Hi');
+//     if (strpos($nfri, 'Thursday') !== false) {
+//       $thu = '1';
+//     }    
+//     if (strpos($nfri, 'Friday') !== false) {
+//       $fri = '1';
+//     }    
+//     if (strpos($nfri, 'Saturday') !== false) {
+//       $sat = '1';
+//     }
+//   } 
+
+//   if($time['sat'] == '1') {
+//     $csat = new DateTime('Saturday ' . $time['meet_time'], $from_tz_obj);
+//     $csat->setTimezone($to_tz_obj);
+
+//     $nsat = $csat->format('l Hi');
+//     if (strpos($nsat, 'Friday') !== false) {
+//       $fri = '1';
+//     }    
+//     if (strpos($nsat, 'Saturday') !== false) {
+//       $sat = '1';
+//     }    
+//     if (strpos($nsat, 'Sunday') !== false) {
+//       $sun = '1';
+//     }
+//   } 
+
+//   return array($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
