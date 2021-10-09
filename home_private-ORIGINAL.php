@@ -67,6 +67,24 @@ if ($cookie == "not-set") { ?>
 <?php if ($user_role != 86 && $user_role != 85) { ?>
 <ul id="weekdays">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<li class="ctr-day">
 		<button id="open-sunday" class="day">Sunday</button>
 		<div id="sunday-content" class="day-content">
@@ -76,17 +94,37 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Sunday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+				
+				// this block only needed once for page
+				$dt = new DateTime('now'); 
+				$user_tz = new DateTimeZone($tz);
+				$dt->setTimezone($user_tz);
+				$offset = $dt->format('P'); // find if offset has + or - or is = +00:00
+
+				// run corresponding query in order to get everything ordered correctly
+				if ($offset == '+00:00') {
+					$time_offset = '00';
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$time_offset = 'pos';
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$time_offset = 'neg';
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
 						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i0_'.$i;
 						$pc = 'p0_'.$i;
@@ -99,12 +137,38 @@ if ($cookie == "not-set") { ?>
 							</div><!-- .weekday-wrap -->
 						<?php } 
 
-					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
+
+
+
+
+
+
+
+
+					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today . ' ' . $offset ?>.</p> <?php } ?>
 					
 				<?php mysqli_free_result($subject_set); ?>
 
 		</div><!-- #sunday-content .day-content -->
 	</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<li class="ctr-day">
 		<button id="open-monday" class="day">Monday</button>
@@ -115,18 +179,27 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Monday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
-
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
+						// echo $time_offset;
 						$ic = 'i1_'.$i;
 						$pc = 'p1_'.$i;
 
@@ -153,17 +226,26 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Tuesday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i2_'.$i;
 						$pc = 'p2_'.$i;
@@ -191,17 +273,26 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Wednesday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i3_'.$i;
 						$pc = 'p3_'.$i;
@@ -229,17 +320,26 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Thursday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i4_'.$i;
 						$pc = 'p4_'.$i;
@@ -267,17 +367,26 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Friday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i5_'.$i;
 						$pc = 'p5_'.$i;
@@ -305,17 +414,26 @@ if ($cookie == "not-set") { ?>
 			<?php
 				$today = 'Saturday';
 				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_and_private_meetings_for_today($user_id);
+				$y = substr(lcfirst($yesterday), 0,3);
+				$d = substr(lcfirst($today), 0,3);
+				$t = substr(lcfirst($tomorrow), 0,3);
+
+				if ($offset == '+00:00') {
+					$subject_set = get_offset_zero($user_id, $d);
+				} elseif (strpos($offset, '+') !== false) {
+					$subject_set = get_offset_plus($user_id, $y, $d);
+				} elseif (strpos($offset, '-') !== false) {
+					$subject_set = get_offset_minus($user_id, $d, $t);
+				}
 
 					$i = 1;
 					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
+						$ey = $row[$y];
+						$et = $row[$d];
+						$etm = $row[$t];
 						$meet_time = $row['meet_time'];
 
-						// $tz = $row['tz'];
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset);
 
 						$ic = 'i6_'.$i;
 						$pc = 'p6_'.$i;

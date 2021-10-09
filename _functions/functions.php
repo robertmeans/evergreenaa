@@ -107,11 +107,42 @@ function converted_time($time, $tz) {
   return $nct;
 }
 
-function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz) {
+function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset) {
   $user_tz  = new DateTimeZone($tz); // -7/dst: -6
   $lc = substr(ucfirst($today), 0,3);
 
- if ($ey != '0') { // yesterday
+
+
+  // if ($time_offset == 'neg') {
+  //   if ($et == '1' && $etm == '1') {
+  //     $mt = new DateTime($tomorrow . ' ' . $meet_time);
+  //     $mt->setTimezone($user_tz);
+  //     $mtz = $mt->format('D g:i A');
+  //     if (strpos($mtz, $lc) !== false) {
+  //       return $mtz;
+  //     }    
+  //   }
+  //   if ($et == '1' && $etm == '0') {
+  //     $mt = new DateTime($today . ' ' . $meet_time);
+  //     $mt->setTimezone($user_tz);
+  //     $mtz = $mt->format('D g:i A');
+  //     if (strpos($mtz, $lc) !== false) {
+  //       return $mtz;
+  //     }  
+  //   }
+  //   if ($et == '0' && $etm == '1') {
+  //     $mt = new DateTime($tomorrow . ' ' . $meet_time);
+  //     $mt->setTimezone($user_tz);
+  //     $mtz = $mt->format('D g:i A');
+  //     if (strpos($mtz, $lc) !== false) {
+  //       return $mtz;
+  //     }  
+  //   }
+  // }
+
+
+
+ if ($ey == '1') { 
     $mt = new DateTime($yesterday . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
@@ -119,7 +150,7 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
       return $mtz;
     }
   }
-  if ($et != '0') { // today
+  if ($et == '1') { 
     $mt = new DateTime($today . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
@@ -127,7 +158,7 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
       return $mtz;
     }
   }
-  if ($etm != '0') { // tomorrow
+  if ($etm == '1') { 
     $mt = new DateTime($tomorrow . ' ' . $meet_time);
     $mt->setTimezone($user_tz);
     $mtz = $mt->format('D g:i A');
