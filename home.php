@@ -1,18 +1,8 @@
-<?php $layout_context = "home-public";
- 
+<?php 
 require_once 'config/initialize.php'; 
+require_once '_includes/set_timezone.php';
 
-if (!isset($_COOKIE['timezone'])) {
-	setCookie('timezone', 'not-set', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-	$cookie = 'not-set';
-	$tz = 'America/Denver';
-} elseif ($_COOKIE['timezone'] == 'not-set') {
-	$cookie = 'not-set';
-	$tz = 'America/Denver';
-} elseif (isset($_SESSION['tz'])) {
-	$tz = $_SESSION['tz'];
-	$cookie = $tz;	
-}
+$layout_context = "home-public";
 
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
@@ -69,6 +59,33 @@ if ($cookie == "not-set") { ?>
 	
 <ul id="weekdays">
 
+<?php  
+	// this block only needed once for page
+	$dt = new DateTime('now'); 
+	$user_tz = new DateTimeZone($tz);
+	$dt->setTimezone($user_tz);
+	$offset = $dt->format('P'); // find offset +, - or = +00:00
+
+	// get raw, UTC, data
+	$subject_set = get_all_public_meetings();
+
+	if ($offset == '+00:00') { 
+		$time_offset = '00';
+		$sorted = mysqli_fetch_all($subject_set, MYSQLI_ASSOC);
+		} else if (strpos($offset, '+') !== false) { 
+			$time_offset = 'pos';
+			$results = mysqli_fetch_all($subject_set, MYSQLI_ASSOC);
+		} else if (strpos($offset, '-') !== false) { 
+			$time_offset = 'neg';
+			$results = mysqli_fetch_all($subject_set, MYSQLI_ASSOC);
+	}
+
+if ($time_offset != '00') {
+	$sorted = apply_offset_to_meetings($results, $tz);
+}
+
+?>
+
 	<li class="ctr-day">
 		<button id="open-sunday" class="day">Sunday</button>
 		<div id="sunday-content" class="day-content">
@@ -77,23 +94,20 @@ if ($cookie == "not-set") { ?>
 
 			<?php
 				$today = 'Sunday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
+
+			  $user_tz  = new DateTimeZone($tz); // -7/dst: -6
+			  // $lc = substr($t, 0,3);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i0_'.$i;
 						$pc = 'p0_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -101,9 +115,8 @@ if ($cookie == "not-set") { ?>
 							</div><!-- .weekday-wrap -->
 						<?php } 
 
-					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today . ' ' . $offset ?>.</p> <?php } ?>
+
 		</div><!-- #sunday-content .day-content -->
 	</li>
 
@@ -115,23 +128,17 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Monday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i1_'.$i;
 						$pc = 'p1_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -140,8 +147,7 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #monday-content .day-content -->
 	</li>
 
@@ -153,24 +159,19 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Tuesday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) { // AM meetings
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i2_'.$i;
 						$pc = 'p2_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
+							// echo $today . ' ' . $mtz;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
 								<?php require '_includes/meeting-details.php'; ?>
@@ -178,8 +179,7 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #tuesday-content .day-content -->
 	</li>
 
@@ -191,23 +191,17 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Wednesday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i3_'.$i;
 						$pc = 'p3_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -216,8 +210,7 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #wednesday-content .day-content -->
 	</li>
 
@@ -229,23 +222,17 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Thursday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i4_'.$i;
 						$pc = 'p4_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -254,8 +241,7 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #thursday-content .day-content -->
 	</li>		
 
@@ -267,23 +253,17 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Friday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i5_'.$i;
 						$pc = 'p5_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -292,8 +272,7 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
-				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #friday-content .day-content -->
 	</li>
 
@@ -305,23 +284,17 @@ if ($cookie == "not-set") { ?>
 		
 			<?php
 				$today = 'Saturday';
-				list($yesterday, $tomorrow) = day_range($today);
-				$subject_set = get_all_public_meetings_for_today();
+				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
 					$i = 1;
-					foreach ($subject_set as $row) {
-						$ey = $row[substr(lcfirst($yesterday), 0,3)];
-						$et = $row[substr(lcfirst($today), 0,3)];
-						$etm = $row[substr(lcfirst($tomorrow), 0,3)];
-						$meet_time = $row['meet_time'];
-
-						// $tz = 'America/Denver';
-						$mtz = convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz);
+					foreach ($sorted as $row) {
+				    $mt = new DateTime($row['meet_time']);
+				    $mt->setTimezone($user_tz);
 
 						$ic = 'i6_'.$i;
 						$pc = 'p6_'.$i;
 
-						if (($row['issues'] < 3) && (strpos($mtz, substr(ucfirst($today), 0,3)) !== false)) {
+						if (($row['issues'] < 3) && ($row[$d] == '1')) {
 							$mtgs_exist = $today;
 							require '_includes/daily-glance.php'; ?>
 							<div class="weekday-wrap">
@@ -330,8 +303,9 @@ if ($cookie == "not-set") { ?>
 						<?php } 
 
 					$i++; } if (!isset($mtgs_exist) || $mtgs_exist != $today) { ?> <p class="no-mtgs">No meetings posted for <?= $today ?>.</p> <?php } ?>
-					
+
 				<?php mysqli_free_result($subject_set); ?>
+
 		</div><!-- #saturday-content .day-content -->
 	</li>
 

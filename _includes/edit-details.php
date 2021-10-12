@@ -46,15 +46,13 @@
 	<?php /* https://timepicker.co/options/ */ ?>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
 
-		$time = $row['meet_time'];
-		$tz = $row['tz']; 
+		$time = $row['meet_time']; 
 		$nt = converted_time($time, $tz); 
 		echo $nt;
 
 	} ?>">
 
 </div>
-
 </div><!-- .top-info -->
 <div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 	<label for="meet_phone">Phone number</label>

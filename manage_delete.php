@@ -1,6 +1,6 @@
 <?php 
-
 require_once 'config/initialize.php';
+require_once '_includes/set_timezone.php';
 
 $layout_context = "alt-manage";
 

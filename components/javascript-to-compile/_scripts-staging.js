@@ -805,8 +805,9 @@ $(document).ready(function() {
       $('#pick-tz').html('<p>Gotsta picka timezone</p>');
     }
   });
-
 });
+
+
 
 // email host modal
 $(document).ready(function() {

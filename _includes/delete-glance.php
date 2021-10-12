@@ -2,8 +2,11 @@
 	<div class="manage-glance-wrap">
 		<div class="manage-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= date('g:i A', strtotime($row['meet_time'])); ?>
-				<?php
+				<p><?php
+					$time = $row['meet_time'];
+					$nt = converted_time($time, $tz); 
+					echo $nt . ' ';
+
 				if ($row['sun'] != 0) { echo " Sun "; } 
 				if ($row['mon'] != 0) { echo " Mon "; }
 				if ($row['tue'] != 0) { echo " Tue "; }

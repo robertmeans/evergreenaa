@@ -3,12 +3,12 @@ require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 require_once '_includes/set_timezone.php';
 
+$layout_context = "alt-manage";
+
 if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
-
-$layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
 	header('location: ' . WWW_ROOT);
@@ -20,7 +20,6 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 }
 
 $id = $_GET['id'];
-$id_user = $_SESSION['id'];
 
 // If validation fails -> this page is rendered
 if (is_post_request()) {
@@ -154,11 +153,6 @@ $row['sat'] = $_POST['sat'] ?? '';
 // $row['fri'] = $fri;
 // $row['sat'] = $sat;
 
-
-
-
-
-
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
@@ -204,8 +198,31 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 	}
 }
 
-$row = edit_meeting($id_user, $id);
+$row = edit_meeting($id);
 $role = $_SESSION['admin'];
+
+// get days sorted based on TZ
+$time = [];
+$time['tz'] = $tz;
+$time['ut'] = $row['meet_time'];
+
+$time['sun'] = $row['sun'];
+$time['mon'] = $row['mon'];
+$time['tue'] = $row['tue'];
+$time['wed'] = $row['wed'];
+$time['thu'] = $row['thu'];
+$time['fri'] = $row['fri'];
+$time['sat'] = $row['sat'];
+
+list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+$row['sun'] = $sun;
+$row['mon'] = $mon;
+$row['tue'] = $tue;
+$row['wed'] = $wed;
+$row['thu'] = $thu;
+$row['fri'] = $fri;
+$row['sat'] = $sat;
 
 require '_includes/head.php'; ?>
 

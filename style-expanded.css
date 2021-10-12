@@ -1063,12 +1063,20 @@ p.inline-tz {
 
 a.inline-show-tz {
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.6);
+  color: orange;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 a.inline-show-tz:hover {
-  color: orange;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+span[data-ampm='AM'] {
+  color: #fff;
+}
+
+span[data-ampm='PM'] {
+  color: #a5a5a5;
 }
 
 .email-host {
