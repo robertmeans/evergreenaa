@@ -83,18 +83,9 @@ function get_it($id_user) { // home_private.php
     $sql .= "AND m.visible != 1) ";
     $sql .= "OR ";
     $sql .= "(m.visible = 1 ";
-    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "') ";
+    $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "');";
 
-    $sql .= "ORDER BY m.meet_time, group_name;";
-    // $sql .= "ORDER BY CASE ";
-    // $sql .= "WHEN m.sun =1 THEN 1 ";
-    // $sql .= "WHEN m.mon =1 THEN 2 ";
-    // $sql .= "WHEN m.tue =1 THEN 3 ";
-    // $sql .= "WHEN m.wed =1 THEN 4 ";
-    // $sql .= "WHEN m.thu =1 THEN 5 ";
-    // $sql .= "WHEN m.fri =1 THEN 6 ";
-    // $sql .= "WHEN m.sat =1 THEN 7 ";
-    // $sql .= "END, m.meet_time, m.group_name;";
+    // $sql .= "ORDER BY group_name;";
 
     $result = mysqli_query($db, $sql); 
     return $result;

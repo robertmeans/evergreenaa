@@ -67,6 +67,21 @@ if ($cookie == "not-set") { ?>
 <?php if ($user_role != 86 && $user_role != 85) { ?>
 <ul id="weekdays">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php  
 	// this block only needed once for page
 	$dt = new DateTime('now'); 
@@ -88,11 +103,163 @@ if ($cookie == "not-set") { ?>
 			$results = mysqli_fetch_all($subject_set, MYSQLI_ASSOC);
 	}
 
+
+
+
+
+function apply_offset_to_meetings($results, $tz) {
+
+  $sun = '0';
+  $mon = '0';
+  $tue = '0';
+  $wed = '0';
+  $thu = '0';
+  $fri = '0';
+  $sat = '0';
+
+	foreach($results as $k=>$v) {
+	  $from_tz_obj = new DateTimeZone('UTC');
+	  $to_tz_obj = new DateTimeZone($tz);
+
+    $cfoo = new DateTime($v['meet_time'], $from_tz_obj);
+    $cfoo->setTimezone($to_tz_obj);
+
+	  if (isset($v['sun'])) {
+
+	    $csun = new DateTime('Sunday ' . $v['meet_time'], $from_tz_obj);
+	    $csun->setTimezone($to_tz_obj);
+	    $nsun = $csun->format('l Hi');
+
+	    if ((strpos($nsun, 'Saturday') !== false) && ($v['sun'] == '1')) { 
+	    	$sat = '1';
+	    }
+	    if ((strpos($nsun, 'Monday') !== false) && ($v['sun'] == '1')) { 
+	    	$mon = '1';
+	    }
+	  }
+
+	  if (isset($v['mon'])) {
+
+	    $cmon = new DateTime('Monday ' . $v['meet_time'], $from_tz_obj);
+	    $cmon->setTimezone($to_tz_obj);
+	    $nmon = $cmon->format('l Hi');
+
+	    if ((strpos($nmon, 'Sunday') !== false) && ($v['mon'] == '1')) { 
+	    	$sun = '1';
+	    }
+	    if ((strpos($nmon, 'Tuesday') !== false) && ($v['mon'] == '1')) { 
+	    	$tue = '1';
+	    }
+	  }
+
+	  if (isset($v['tue'])) {
+
+	    $ctue = new DateTime('Tuesday ' . $v['meet_time'], $from_tz_obj);
+	    $ctue->setTimezone($to_tz_obj);
+	    $ntue = $ctue->format('l Hi');
+
+	    if ((strpos($ntue, 'Monday') !== false) && ($v['tue'] == '1')) { 
+	    	$mon = '1';
+	    }
+	    if ((strpos($ntue, 'Wednesday') !== false) && ($v['tue'] == '1')) { 
+	    	$wed = '1';
+	    }
+	  }
+
+	  if (isset($v['wed'])) {
+
+	    $cwed = new DateTime('Wednesday ' . $v['meet_time'], $from_tz_obj);
+	    $cwed->setTimezone($to_tz_obj);
+	    $nwed = $cwed->format('l Hi');
+
+	    if ((strpos($nwed, 'Tuesday') !== false) && ($v['wed'] == '1')) { 
+	    	$tue = '1';
+	    }
+	    if ((strpos($nwed, 'Thursday') !== false) && ($v['wed'] == '1')) { 
+	    	$thu = '1';
+	    }
+	  }
+
+	  if (isset($v['thu'])) {
+
+	    $cthu = new DateTime('Thursday ' . $v['meet_time'], $from_tz_obj);
+	    $cthu->setTimezone($to_tz_obj);
+	    $nthu = $cthu->format('l Hi');
+
+	    if ((strpos($nthu, 'Wednesday') !== false) && ($v['thu'] == '1')) { 
+	    	$wed = '1';
+	    }
+	    if ((strpos($nthu, 'Friday') !== false) && ($v['thu'] == '1')) { 
+	    	$fri = '1';
+	    }
+	  }
+
+	  if (isset($v['fri'])) {
+
+	    $cfri = new DateTime('Friday ' . $v['meet_time'], $from_tz_obj);
+	    $cfri->setTimezone($to_tz_obj);
+	    $nfri = $cfri->format('l Hi');
+
+	    if ((strpos($nfri, 'Thursday') !== false) && ($v['fri'] == '1')) { 
+	    	$thu = '1';
+	    }
+	    if ((strpos($nfri, 'Saturday') !== false) && ($v['fri'] == '1')) { 
+	    	$sat = '1';
+	    }
+	  }
+
+	  if (isset($v['sat'])) {
+
+	    $csat = new DateTime('Saturday ' . $v['meet_time'], $from_tz_obj);
+	    $csat->setTimezone($to_tz_obj);
+	    $nsat = $csat->format('l Hi');
+
+	    if ((strpos($nsat, 'Friday') !== false) && ($v['sat'] == '1')) { 
+	    	$fri = '1';
+	    }
+	    if ((strpos($nsat, 'Sunday') !== false) && ($v['sat'] == '1')) { 
+	    	$sun = '1';
+	    }
+	  }
+
+
+	  $v['meet_time'] = $cfoo->format('Hi');
+	  $results[$k]['sun'] = $sun;
+	  $results[$k]['mon'] = $mon;
+	  $results[$k]['tue'] = $tue;
+	  $results[$k]['wed'] = $wed;
+	  $results[$k]['thu'] = $thu;
+	  $results[$k]['fri'] = $fri;
+	  $results[$k]['sat'] = $sat;
+
+		// by here have meet_time and days updated in array
+		$b[] = $v['meet_time'] . ' ' . $v['group_name'];
+
+		// testing
+		// $b[] = $v['meet_time'] . ' ' . $v['group_name'] . ' ' . $v['sun'] . ' ' . $v['mon'] . ' ' . $v['tue'] . ' ' . $v['wed'] . ' ' . $v['thu'] . ' ' . $v['fri'] . ' ' . $v['sat'];
+		// echo "<pre style=\"font-size:1em;color:green;\">" . print_r($b) . "</pre>";
+	}
+	asort($b);
+
+	foreach ($b as $k=>$v) {
+		$c[] = $results[$k];
+	}
+
+	// echo '<pre style="font-size:1em;color:green;">' . print_r($c) . '</pre>';
+	// echo print_r($c);
+
+	return $c;
+
+}
+
+
+
 if ($time_offset != '00') {
 	$sorted = apply_offset_to_meetings($results, $tz);
 }
 
 ?>
+
 
 	<li class="ctr-day">
 		<button id="open-sunday" class="day">Sunday</button>
@@ -109,11 +276,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    // $mt = new DateTime($today . ' ' . $row['meet_time']);
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    // $mtz = $mt->format('D g:i A');
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i0_'.$i;
 						$pc = 'p0_'.$i;
@@ -146,9 +311,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i1_'.$i;
 						$pc = 'p1_'.$i;
@@ -178,9 +343,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) { // AM meetings
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i2_'.$i;
 						$pc = 'p2_'.$i;
@@ -211,9 +376,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i3_'.$i;
 						$pc = 'p3_'.$i;
@@ -243,9 +408,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i4_'.$i;
 						$pc = 'p4_'.$i;
@@ -275,9 +440,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i5_'.$i;
 						$pc = 'p5_'.$i;
@@ -307,9 +472,9 @@ if ($time_offset != '00') {
 
 					$i = 1;
 					foreach ($sorted as $row) {
-				    $mt = new DateTime($row['meet_time']);
+				    $mt = new DateTime($today . ' ' . $row['meet_time']);
 				    $mt->setTimezone($user_tz);
-				    $mtz = $mt->format('g:i A');
+				    $mtz = $mt->format('D g:i A');
 
 						$ic = 'i6_'.$i;
 						$pc = 'p6_'.$i;

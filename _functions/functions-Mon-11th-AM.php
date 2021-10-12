@@ -1,157 +1,5 @@
 <?php
 
-function apply_offset_to_meetings($results, $tz) {
-
-  foreach($results as $k=>$v) {
-    $from_tz_obj = new DateTimeZone('UTC');
-    $to_tz_obj = new DateTimeZone($tz);
-
-    $cfoo = new DateTime($v['meet_time'], $from_tz_obj);
-    $cfoo->setTimezone($to_tz_obj);
-
-    if ($v['sun'] == '1') {
-
-      $csun = new DateTime('Sunday ' . $v['meet_time'], $from_tz_obj);
-      $csun->setTimezone($to_tz_obj);
-      $nsun = $csun->format('l Hi');
-
-      if (strpos($nsun, 'Saturday') !== false) { 
-        $results[$k]['sat'] = '1';
-      }
-      if (strpos($nsun, 'Sunday') !== false) {  
-        $results[$k]['sun'] = '1';
-      } else {
-        $results[$k]['sun'] = '0';
-      }   
-      if (strpos($nsun, 'Monday') !== false) { 
-        $results[$k]['mon'] = '1';
-      }
-    }
-
-    if ($v['mon'] == '1') {
-  
-      $cmon = new DateTime('Monday ' . $v['meet_time'], $from_tz_obj);
-      $cmon->setTimezone($to_tz_obj);
-      $nmon = $cmon->format('l Hi');
-
-      if (strpos($nmon, 'Sunday') !== false) { 
-        $results[$k]['sun'] = '1';
-      }
-      if (strpos($nmon, 'Monday') !== false) {  
-        $results[$k]['mon'] = '1';
-      } else {
-        $results[$k]['mon'] = '0';
-      }    
-      if (strpos($nmon, 'Tuesday') !== false) { 
-        $results[$k]['tue'] = '1';
-      }
-    }
-
-    if ($v['tue'] == '1') {   
-
-      $ctue = new DateTime('Tuesday ' . $v['meet_time'], $from_tz_obj);
-      $ctue->setTimezone($to_tz_obj);
-      $ntue = $ctue->format('l Hi');
-
-      if (strpos($ntue, 'Monday') !== false) { // if converted time contains "Monday"
-        $results[$k]['mon'] = '1';
-      }
-      if (strpos($ntue, 'Tuesday') !== false) { // if converted time contains "Tuesday" 
-        $results[$k]['tue'] = '1';
-      } else {
-        $results[$k]['tue'] = '0';
-      }    
-      if (strpos($ntue, 'Wednesday') !== false) { // if converted time contains "Wednesday"
-        $results[$k]['wed'] = '1';
-      }
-    } 
-
-    if ($v['wed'] == '1') {
-
-      $cwed = new DateTime('Wednesday ' . $v['meet_time'], $from_tz_obj);
-      $cwed->setTimezone($to_tz_obj);
-      $nwed = $cwed->format('l Hi');
-
-      if (strpos($nwed, 'Tuesday') !== false) {  
-        $results[$k]['tue'] = '1';
-      }   
-      if (strpos($nwed, 'Wednesday') !== false) { 
-        $results[$k]['wed'] = '1';
-      } else {
-        $results[$k]['wed'] = '0';
-      }
-      if (strpos($nwed, 'Thursday') !== false) { 
-        $results[$k]['thu'] = '1';
-      }     
-    }
-
-    if ($v['thu'] == '1') {
-
-      $cthu = new DateTime('Thursday ' . $v['meet_time'], $from_tz_obj);
-      $cthu->setTimezone($to_tz_obj);
-      $nthu = $cthu->format('l Hi');
-
-      if (strpos($nthu, 'Wednesday') !== false) { 
-        $results[$k]['wed'] = '1';
-      }
-      if (strpos($nthu, 'Thursday') !== false) { 
-        $results[$k]['thu'] = '1';
-      } else {
-        $results[$k]['thu'] = '0';
-      }
-      if (strpos($nthu, 'Friday') !== false) {  
-        $results[$k]['fri'] = '1';
-      }             
-    }   
-
-    if ($v['fri'] == '1') {
-
-      $cfri = new DateTime('Friday ' . $v['meet_time'], $from_tz_obj);
-      $cfri->setTimezone($to_tz_obj);
-      $nfri = $cfri->format('l Hi');
-
-      if (strpos($nfri, 'Thursday') !== false) { 
-        $results[$k]['thu'] = '1';
-      }
-      if (strpos($nfri, 'Friday') !== false) {  
-        $results[$k]['fri'] = '1';
-      } else {
-        $results[$k]['fri'] = '0';
-      } 
-      if (strpos($nfri, 'Saturday') !== false) { 
-        $results[$k]['sat'] = '1';
-      }               
-    }
-
-    if ($v['sat'] == '1') {
-
-      $csat = new DateTime('Saturday ' . $v['meet_time'], $from_tz_obj);
-      $csat->setTimezone($to_tz_obj);
-      $nsat = $csat->format('l Hi');
-   
-      if (strpos($nsat, 'Friday') !== false) {  
-        $results[$k]['fri'] = '1';
-      }
-      if (strpos($nsat, 'Saturday') !== false) { 
-        $results[$k]['sat'] = '1';
-      } else {
-        $results[$k]['sat'] = '0';
-      } 
-      if (strpos($nsat, 'Sunday') !== false) { 
-        $results[$k]['sun'] = '1';
-      }                     
-    }
-    
-    $v['meet_time'] = $cfoo->format('Hi');
-    $b[] = $v['meet_time'] . ' ' . $v['group_name'];
-  }
-  asort($b);
-  foreach ($b as $k=>$v) {
-    $c[] = $results[$k];
-  }
-  return $c;
-}
-
 function day_range($today) {
   if ($today == 'Sunday') {
     $yesterday = 'Saturday'; $tomorrow = 'Monday';
@@ -203,7 +51,7 @@ function timezone_select_options($selected_timezone="America/Denver") {
 
   $output .= "<option value=\"America/Phoenix\"";
   if ($selected_timezone == 'America/Phoenix') { $output .= " selected"; } 
-  $output .= ">USA [Phoenix, AZ]</option>";
+  $output .= ">USA Mtn Standard</option>";
 
   $output .= "<option value=\"America/Los_Angeles\"";
   if ($selected_timezone == 'America/Los_Angeles') { $output .= " selected"; } 
@@ -237,7 +85,7 @@ function pretty_tz($tz) {
   if ($tz == 'America/New_York') { echo 'USA Eastern time'; }
     elseif ($tz == 'America/Chicago') { echo 'USA Central time'; }
     elseif ($tz == 'America/Denver') { echo 'USA Mountain time'; }
-    elseif ($tz == 'America/Phoenix') { echo 'USA [Phoenix, AZ]'; }
+    elseif ($tz == 'America/Phoenix') { echo 'USA Mtn Standard time'; }
     elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific time'; }
     elseif ($tz == 'America/Anchorage') { echo 'USA Alaska time'; }
     elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii time'; }
