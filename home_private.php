@@ -89,7 +89,7 @@ if ($cookie == "not-set") { ?>
 	}
 
 if ($time_offset != '00') {
-	$sorted = apply_offset_to_meetings($results, $tz);
+	$sorted = apply_offset_to_meetings($results, $tz, $time_offset);
 }
 
 ?>
@@ -119,7 +119,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -150,7 +150,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -182,7 +182,7 @@ if ($time_offset != '00') {
 						$mtgs_exist = $today;
 						// echo $today . ' ' . $mtz;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -213,7 +213,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -244,7 +244,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -275,7 +275,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 
@@ -306,7 +306,7 @@ if ($time_offset != '00') {
 					if (($row['issues'] < 3) && ($row[$d] == '1')) {
 						$mtgs_exist = $today;
 						require '_includes/daily-glance.php'; ?>
-						<div class="weekday-wrap">
+						<div class="weekday-wrap <?php if (!empty($row['add_note'])) { echo 'note-here'; } ?>">
 							<?php require '_includes/meeting-details.php'; ?>
 						</div><!-- .weekday-wrap -->
 					<?php } 

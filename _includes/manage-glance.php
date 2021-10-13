@@ -5,7 +5,6 @@
 
 				<p><?php  
 					$time = $row['meet_time'];
-					$tz = $row['tz']; 
 					$nt = converted_time($time, $tz); 
 					echo $nt . ' ';
  

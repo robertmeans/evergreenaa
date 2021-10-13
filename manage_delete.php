@@ -28,6 +28,29 @@ if (is_post_request()) {
 }
 	
 $row = edit_meeting($id); 
+
+$time = [];
+$time['tz'] = $tz;
+$time['ut'] = $row['meet_time'];
+
+$time['sun'] = $row['sun'];
+$time['mon'] = $row['mon'];
+$time['tue'] = $row['tue'];
+$time['wed'] = $row['wed'];
+$time['thu'] = $row['thu'];
+$time['fri'] = $row['fri'];
+$time['sat'] = $row['sat'];
+
+list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+$row['sun'] = $sun;
+$row['mon'] = $mon;
+$row['tue'] = $tue;
+$row['wed'] = $wed;
+$row['thu'] = $thu;
+$row['fri'] = $fri;
+$row['sat'] = $sat;
+
 $role = $_SESSION['admin'];
 
 require '_includes/head.php'; ?>

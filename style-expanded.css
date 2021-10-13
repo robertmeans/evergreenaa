@@ -885,6 +885,10 @@ p.no-mtgs {
       justify-content: flex-end;
 }
 
+.weekday-wrap.note-here {
+  border-bottom-left-radius: 15px;
+}
+
 .weekday-wrap {
   width: 100%;
   max-width: 900px;
@@ -1182,6 +1186,10 @@ span[data-ampm='PM'] {
     background: none;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
+  }
+
+  .weekday-wrap {
+    padding: 0px 10px 10px;
   }
 
   .weekday-wrap .meeting-details {

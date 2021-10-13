@@ -18,14 +18,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($nsun, 'Saturday') !== false) { 
         $results[$k]['sat'] = '1';
       }
-
-      if ($time_offset == 'neg' && $v['mon'] != '1' && strpos($nsun, 'Sunday') === false) {
+      if (strpos($nsun, 'Sunday') !== false) {  
+        $results[$k]['sun'] = '1';
+      } else {
         $results[$k]['sun'] = '0';
-      }
-      if ($time_offset == 'pos' && $v['sat'] != '1' && strpos($nsun, 'Sunday') === false) {
-        $results[$k]['sun'] = '0';
-      }
-   
+      }   
       if (strpos($nsun, 'Monday') !== false) { 
         $results[$k]['mon'] = '1';
       }
@@ -40,14 +37,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($nmon, 'Sunday') !== false) { 
         $results[$k]['sun'] = '1';
       }
-
-      if ($time_offset == 'neg' && $v['tue'] != '1' && strpos($nmon, 'Monday') === false) {
+      if (strpos($nmon, 'Monday') !== false) {  
+        $results[$k]['mon'] = '1';
+      } else {
         $results[$k]['mon'] = '0';
-      }
-      if ($time_offset == 'pos' && $v['sun'] != '1' && strpos($nmon, 'Monday') === false) {
-        $results[$k]['mon'] = '0';
-      }
-    
+      }    
       if (strpos($nmon, 'Tuesday') !== false) { 
         $results[$k]['tue'] = '1';
       }
@@ -62,14 +56,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($ntue, 'Monday') !== false) { // if converted time contains "Monday"
         $results[$k]['mon'] = '1';
       }
-
-      if ($time_offset == 'neg' && $v['wed'] != '1' && strpos($ntue, 'Tuesday') === false) {
+      if (strpos($ntue, 'Tuesday') !== false) { // if converted time contains "Tuesday" 
+        $results[$k]['tue'] = '1';
+      } else {
         $results[$k]['tue'] = '0';
-      }
-      if ($time_offset == 'pos' && $v['mon'] != '1' && strpos($ntue, 'Tuesday') === false) {
-        $results[$k]['tue'] = '0';
-      }
-   
+      }    
       if (strpos($ntue, 'Wednesday') !== false) { // if converted time contains "Wednesday"
         $results[$k]['wed'] = '1';
       }
@@ -84,14 +75,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($nwed, 'Tuesday') !== false) {  
         $results[$k]['tue'] = '1';
       }   
-
-      if ($time_offset == 'neg' && $v['thu'] != '1' && strpos($nwed, 'Wednesday') === false) {
+      if (strpos($nwed, 'Wednesday') !== false) { 
+        $results[$k]['wed'] = '1';
+      } else {
         $results[$k]['wed'] = '0';
       }
-      if ($time_offset == 'pos' && $v['tue'] != '1' && strpos($nwed, 'Wednesday') === false) {
-        $results[$k]['wed'] = '0';
-      }
-
       if (strpos($nwed, 'Thursday') !== false) { 
         $results[$k]['thu'] = '1';
       }     
@@ -106,14 +94,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($nthu, 'Wednesday') !== false) { 
         $results[$k]['wed'] = '1';
       }
-
-      if ($time_offset == 'neg' && $v['fri'] != '1' && strpos($nthu, 'Thursday') === false) {
+      if (strpos($nthu, 'Thursday') !== false) { 
+        $results[$k]['thu'] = '1';
+      } else {
         $results[$k]['thu'] = '0';
       }
-      if ($time_offset == 'pos' && $v['wed'] != '1' && strpos($nthu, 'Thursday') === false) {
-        $results[$k]['thu'] = '0';
-      }
-
       if (strpos($nthu, 'Friday') !== false) {  
         $results[$k]['fri'] = '1';
       }             
@@ -128,14 +113,11 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
       if (strpos($nfri, 'Thursday') !== false) { 
         $results[$k]['thu'] = '1';
       }
-
-      if ($time_offset == 'neg' && $v['sat'] != '1' && strpos($nfri, 'Friday') === false) {
+      if (strpos($nfri, 'Friday') !== false) {  
+        $results[$k]['fri'] = '1';
+      } else {
         $results[$k]['fri'] = '0';
-      }
-      if ($time_offset == 'pos' && $v['thu'] != '1' && strpos($nfri, 'Friday') === false) {
-        $results[$k]['fri'] = '0';
-      }
-
+      } 
       if (strpos($nfri, 'Saturday') !== false) { 
         $results[$k]['sat'] = '1';
       }               
@@ -151,12 +133,14 @@ function apply_offset_to_meetings($results, $tz, $time_offset) {
         $results[$k]['fri'] = '1';
       }
 
+
       if ($time_offset == 'neg' && $v['sun'] != '1' && strpos($nsat, 'Saturday') === false) {
         $results[$k]['sat'] = '0';
       }
       if ($time_offset == 'pos' && $v['fri'] != '1' && strpos($nsat, 'Saturday') === false) {
         $results[$k]['sat'] = '0';
       }
+
 
       if (strpos($nsat, 'Sunday') !== false) { 
         $results[$k]['sun'] = '1';

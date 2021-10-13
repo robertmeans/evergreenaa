@@ -7,13 +7,38 @@
 					$nt = converted_time($time, $tz); 
 					echo $nt . ' ';
 
-				if ($row['sun'] != 0) { echo " Sun "; } 
-				if ($row['mon'] != 0) { echo " Mon "; }
-				if ($row['tue'] != 0) { echo " Tue "; }
-				if ($row['wed'] != 0) { echo " Wed "; }
-				if ($row['thu'] != 0) { echo " Thu "; }
-				if ($row['fri'] != 0) { echo " Fri "; }
-				if ($row['sat'] != 0) { echo " Sat "; }
+				if ($row['sun'] == 0) {  } 
+				else if (($row['sun'] !=0) && (($row['mon'] != 0) || ($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) {
+					echo "Sun, "; 
+				} else { echo "Sun"; }
+
+				if ($row['mon'] == 0) {  }
+				else if (($row['mon'] !=0) && (($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+					echo "Mon, "; 
+				} else { echo "Mon"; }
+
+				if ($row['tue'] == 0) {  }
+				else if (($row['tue'] !=0) && (($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+					echo "Tue, "; 
+				} else { echo "Tue"; }
+
+				if ($row['wed'] == 0) {  }
+				else if (($row['wed'] !=0) && (($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+					echo "Wed, "; 
+				} else { echo "Wed"; }
+
+				if ($row['thu'] == 0) {  }
+				else if (($row['thu'] !=0) && (($row['fri'] != 0) || ($row['sat'] != 0))) { 
+					echo "Thu, "; 
+				} else { echo "Thu"; }
+
+				if ($row['fri'] == 0) {  }
+				else if (($row['fri'] !=0) && ($row['sat'] != 0)) { 
+					echo "Fri, "; 
+				} else { echo "Fri"; }
+
+				if ($row['sat'] == 0) {  }
+				else { echo "Sat "; }
 				?></p>
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">

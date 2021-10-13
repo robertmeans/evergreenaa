@@ -69,6 +69,31 @@ require '_includes/head.php'; ?>
 
 		<?php while ($row = mysqli_fetch_assoc($any_meetings_for_user)) { ?>
 
+			<?php
+			$time = [];
+			$time['tz'] = $tz;
+			$time['ut'] = $row['meet_time'];
+
+			$time['sun'] = $row['sun'];
+			$time['mon'] = $row['mon'];
+			$time['tue'] = $row['tue'];
+			$time['wed'] = $row['wed'];
+			$time['thu'] = $row['thu'];
+			$time['fri'] = $row['fri'];
+			$time['sat'] = $row['sat'];
+
+			list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+			$row['sun'] = $sun;
+			$row['mon'] = $mon;
+			$row['tue'] = $tue;
+			$row['wed'] = $wed;
+			$row['thu'] = $thu;
+			$row['fri'] = $fri;
+			$row['sat'] = $sat;
+
+			?>
+
 			<?php require '_includes/manage-glance.php'; ?>
 			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>

@@ -1,6 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+require_once '_includes/set_timezone.php';
 // you can only manage users if you're Admin 1 or 3
 if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
 	header('location: ' . WWW_ROOT);

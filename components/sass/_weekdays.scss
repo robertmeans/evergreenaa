@@ -156,7 +156,9 @@ p.no-mtgs {
 	}
 }
 
-
+.weekday-wrap.note-here {
+		border-bottom-left-radius: 15px;
+	}
 .weekday-wrap {
 	width: 100%;
 	max-width: 900px;
@@ -529,6 +531,12 @@ span[data-ampm='PM'] {
 		// background-color: #fff;
 		background-color: rgba(255,255,255,0.2);
 		color: #fff;
+	}
+	// .weekday-wrap.note-here {
+	// 	border-bottom-left-radius: 0px;
+	// }
+	.weekday-wrap {
+		padding: 0px 10px 10px;
 	}
 	.weekday-wrap .meeting-details {
 		flex-direction: column;
