@@ -24,6 +24,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
@@ -150,7 +151,7 @@ $(document).ready(function() {
   $('#replies').load('load-posts.php'+q);
   setInterval(function() {
     $('#replies').load('load-posts.php'+q);
-    }, 3000);
+    }, 3555000);
 
 
 
@@ -204,13 +205,6 @@ $(document).ready(function() {
   } else {
     location.reload();
   }
-
-
-
-
-
-
-
 
   });
 

@@ -27,17 +27,11 @@ if (is_post_request()) {
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-
 		$emh = get_host_address($mtgid);
 		$rowq = mysqli_fetch_assoc($emh);
 
 		$emhemail = $rowq['email'];
 		$emhuser = $rowq['username'];
-
-		
-		// echo '<script>alert(' . $emhemail . ')</script>';
-
-
 
     $mail = new PHPMailer(true);
 

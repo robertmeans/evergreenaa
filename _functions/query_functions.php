@@ -696,8 +696,8 @@ function get_mb_pg_replies($post) {
 
   $sql = "SELECT mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mbr.idr_user ";
-  $sql .= "LEFT JOIN mb_topics as mbt on idt_user=mbr.idr_user ";
-  $sql .= "WHERE idr_topic='" . $post . "'";
+  $sql .= "LEFT JOIN mb_topics as mbt on mbt.idt_user=mbr.idr_user ";
+  $sql .= "WHERE mbr.idr_topic='" . $post . "';";
   //$sql .= "GROUP BY idr_topic";
 
   $result = mysqli_query($db, $sql);

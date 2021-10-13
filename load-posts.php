@@ -14,12 +14,16 @@ require_once 'config/initialize.php';
 			/* both topic and reply were returned from this query */
   		mysqli_data_seek($get_replies, 0);
 		$i = 1;
-		while ($row = mysqli_fetch_assoc($get_replies)) { ?>
+		while ($row = mysqli_fetch_assoc($get_replies)) { 
+
+		  $mt = new DateTime($row['replied'], new DateTimeZone('America/Denver'));
+		  $mt->setTimezone(new DateTimeZone($tz)); ?>
+
 			<li id="li_<?= $i ?>">
 				<?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idr_user']) { ?>
-				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])+3600); ?> | You replied:</p>
+				<p class="date"><p class="mp-date"><?= $mt->format("g:i A D, M d, 'y") ?> | You replied:</p>
 				<?php } else { ?>
-				<p class="date"><p class="mp-date"><?= date('g:i A D, M d, \'y', strtotime($row['replied'])+3600) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
+				<p class="date"><p class="mp-date"><?= $mt->format("g:i A D, M d, 'y") ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Replied:</p>
 				<?php } ?>
 
 

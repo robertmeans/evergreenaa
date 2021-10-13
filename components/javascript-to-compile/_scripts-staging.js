@@ -16,6 +16,7 @@
 $(document).ready(function() {
   var url = window.location.href;
   $('#url').val(url);
+  $('#tz-url').val(url);
 
   $('.top-nav').on('click', function() {
     this.classList.toggle('acty');

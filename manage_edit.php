@@ -1,7 +1,6 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-require_once '_includes/set_timezone.php';
 
 $layout_context = "alt-manage";
 
@@ -104,11 +103,7 @@ $row = [];
 
 $row['visible'] 		= $_POST['visible'] 									?? '';
 
-
-
-
 $time = [];
-//$tz set in: require_once '_includes/set_timezone.php'; (at top)
 $time['tz'] = $tz;
 $time['ut'] = $_POST['meet_time'] ?? '';
 
@@ -233,6 +228,7 @@ require '_includes/head.php'; ?>
 </div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>

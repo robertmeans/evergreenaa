@@ -1,27 +1,12 @@
 <?php  
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-require_once '_includes/set_timezone.php';
 
 $layout_context = "home-private";
 
+// keep this bc it overrides previous setting
+// and allows admin to do whatever they need
 $user_id = $_SESSION['admin'];
-
-if (is_post_request()) {
-	if (isset($_POST['set-tz'])) {
-		$timezone = $_POST['timezone'];
-
-		$result = set_timezone($timezone, $user_id);
-
-		if ($result === true) {
-			setCookie('timezone', $timezone, time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-			$_SESSION['tz'] = $timezone;
-		  header('location:' . WWW_ROOT);
-		} else {
-			$errors = $result;
-		}
-	}
-}
 
 require '_includes/head.php'; ?>
 

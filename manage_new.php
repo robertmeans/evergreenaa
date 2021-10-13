@@ -1,7 +1,6 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-require_once '_includes/set_timezone.php';
 
 if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
@@ -21,7 +20,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $role = $_SESSION['admin'];
 
-if (is_post_request()) {
+if (is_post_request() && isset($_POST['review-mtg'])) {
 
 $rando_num = rand(100,999);
 
@@ -81,12 +80,7 @@ $row = [];
 
 $row['id_user'] = $_SESSION['id'];
 
-
-
-
-
 $time = [];
-//$tz set in: require_once '_includes/set_timezone.php'; (at top)
 $time['tz'] = $tz;
 $time['ut'] = $_POST['meet_time'] ?? '';
 
@@ -130,15 +124,6 @@ $row['sat'] = $_POST['sat'] ?? '';
 // $row['thu'] = $thu;
 // $row['fri'] = $fri;
 // $row['sat'] = $sat;
-
-
-
-
-
-
-
-
-
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
@@ -191,6 +176,7 @@ require '_includes/head.php'; ?>
 </div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>

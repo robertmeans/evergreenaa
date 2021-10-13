@@ -2115,6 +2115,15 @@ a.youtube:hover {
       flex-wrap: wrap;
   line-height: 1.5em;
 }
+#landing .uc-page {
+  width: 96%;
+  max-width: 600px;
+  padding: 0em 1em;
+}
+#landing .uc-page p {
+  margin-top: 1em;
+  line-height: 1.5em;
+}
 #landing > form {
   width: 96%;
   max-width: 450px;

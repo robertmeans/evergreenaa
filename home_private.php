@@ -1,33 +1,8 @@
 <?php  
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-require_once '_includes/set_timezone.php';
 
 $layout_context = "home-private";
-
-if (isset($_SESSION['id'])) {
-	$user_id = $_SESSION['id'];
-	$user_role = $_SESSION['admin'];
-} else {
-	$user_id = 'ns';
-	$user_role = '0';
-}
-
-if (is_post_request()) {
-	if (isset($_POST['set-tz'])) {
-		$timezone = $_POST['timezone'];
-
-		$result = set_timezone($timezone, $user_id);
-
-		if ($result === true) {
-			setCookie('timezone', $timezone, time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-			$_SESSION['tz'] = $timezone;
-		  header('location:' . WWW_ROOT);
-		} else {
-			$errors = $result;
-		}
-	}
-}
 
 require '_includes/head.php'; ?>
 
@@ -35,26 +10,6 @@ require '_includes/head.php'; ?>
 <?php 
 if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 	<div class="preload"><p>One day at a time.</p></div>
-<?php } ?>	
-<?php 
-if ($cookie == "not-set") { ?>
-	<div class="set-tz">
-		<div class="tz-box">
-			<h3>Set Timezone</h3>
-			<div class="tz-content">
-				<p>Let's set your timezone for this website. I will try to remember your setting on this device. You can always change it in the future from the Menu.</p>
-				<p class="next-p">Select your timezone:</p>
-				<form id="init-set-tz" action="" method="post">
-					<select id="init-tz-select" class="pick-tz" name="timezone">
-						<option value="empty"><?php echo timezone_select_options(); ?></option>
-					</select>
-					<input type="hidden" name="set-tz">
-					<div id="init-pick-tz"></div>
-					<a id="init-tz-submit" class="btn">OK</a>
-				</form>
-			</div>
-		</div>
-	</div>
 <?php } ?>
 
 <?php require '_includes/nav.php'; ?>

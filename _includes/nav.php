@@ -59,22 +59,22 @@
 		<?php } 
 		if (isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
 			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>" onclick="closeNav();">My Dashboard</a>
-		<?php } ?>
+		<?php } 
+
+		if ($layout_context != "login-page") { ?>
+			<a id="show-tz">Timezone: <?php 
+				if ($tz == 'America/New_York') { echo 'USA Eastern'; }
+					elseif ($tz == 'America/Chicago') { echo 'USA Central'; }
+					elseif ($tz == 'America/Denver') { echo 'USA Mountain'; }
+					elseif ($tz == 'America/Phoenix') { echo 'USA [Phoenix, AZ]'; }
+					elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific'; }
+					elseif ($tz == 'America/Anchorage') { echo 'USA Alaska'; }
+					elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii'; }
+					else echo $tz; 
+					 ?></a>
+		<?php }
 
 
-		<a id="show-tz">Timezone: <?php 
-			if ($tz == 'America/New_York') { echo 'USA Eastern'; }
-				elseif ($tz == 'America/Chicago') { echo 'USA Central'; }
-				elseif ($tz == 'America/Denver') { echo 'USA Mountain'; }
-				elseif ($tz == 'America/Phoenix') { echo 'USA [Phoenix, AZ]'; }
-				elseif ($tz == 'America/Los_Angeles') { echo 'USA Pacific'; }
-				elseif ($tz == 'America/Anchorage') { echo 'USA Alaska'; }
-				elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii'; }
-				else echo $tz; 
-				 ?></a>
-
-
-		<?php
 		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context == 'um') { ?>
 			<a href="user_management.php" class="<?php if ($layout_context == 'um') { echo 'nav-active'; } ?>">Manage Users</a>
 		<?php } 

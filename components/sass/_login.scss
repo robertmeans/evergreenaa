@@ -24,6 +24,17 @@
 	align-items: center;
 	flex-wrap: wrap;
 	line-height: 1.5em;
+	// under construction pg...
+	.uc-page {
+		width: 96%;
+		max-width: 600px;
+		padding: 0em 1em;
+		p {
+			margin-top: 1em;
+			line-height: 1.5em;
+		}
+	}	
+	// end uc pg
 	& > form {
 		width: 96%;
 		max-width: 450px;

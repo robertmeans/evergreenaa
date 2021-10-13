@@ -44,7 +44,7 @@
 
 	<?php /* https://timepicker.co/options/ */ ?>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time'])) { echo $row['meet_time']; } ?>">
-
+	<!-- <p style="font-size:0.8em;margin-top:-1em;">Note: Schedule this meeting as it should appear according to your currently set (<?php pretty_tz($tz) ?>) timezone.</p> -->
 </div>
 
 </div><!-- .top-info -->

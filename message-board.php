@@ -20,6 +20,7 @@ require '_includes/head.php'; ?>
 <?php } ?>
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-mb-notes.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
@@ -49,7 +50,7 @@ $(document).ready(function() {
   $('#post-topics').load('load-message-board.php');
   	setInterval(function() {
     	$('#post-topics').load('load-message-board.php');
-  	}, 3000);  	
+  	}, 3555000);  	
 });
 </script>
 
