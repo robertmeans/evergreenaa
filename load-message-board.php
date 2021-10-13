@@ -9,12 +9,14 @@ if ($results > 0) {
 $i = 1;
 while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 <?php  
+
 	$get_replies = get_mb_pg_replies($row['idt_topic']);
 	$resultz = mysqli_num_rows($get_replies);
 
   $mt = new DateTime($row['opened'], new DateTimeZone('America/Denver'));
   $mt->setTimezone(new DateTimeZone($tz));
 
+// echo $row['mb_header'] . ' | number of replies: ' . $resultz . ' topic ID: ' . $row['idr_topic'];
 ?>
 
 	<li id="li_<?= $i ?>">

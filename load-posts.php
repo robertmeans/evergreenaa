@@ -8,9 +8,10 @@ require_once 'config/initialize.php';
 		$post = '0';
 	}
 	$get_replies = get_mb_replies($post);
+	$any_replies = mysqli_num_rows($get_replies);
   $replies = mysqli_fetch_assoc($get_replies);
 
-	if (isset($replies['idt_topic']) && isset($replies['idr_topic'])) { 
+	if ($any_replies > 0) { 
 			/* both topic and reply were returned from this query */
   		mysqli_data_seek($get_replies, 0);
 		$i = 1;
@@ -58,7 +59,7 @@ require_once 'config/initialize.php';
 
 		<?php $i++; } // end while  ?>
 
-		<?php } else if (isset($replies['idt_topic']) && !isset($replies['idr_topic'])) { ?>
+		<?php } else { ?>
 			<?php /* there's a topic but no replies */ ?>
 			<?php mysqli_data_seek($get_replies, 0); ?>
 			<li>
@@ -66,10 +67,4 @@ require_once 'config/initialize.php';
 			</li>
 
 
-		<?php } else { ?>
-			<?php /* no topic - thread has been closed */ ?>
-			<li id="<?php if (!isset($row['idt_topic'])) { echo 'ngtg'; } ?>">
-				<p class="nry">This topic has been closed.</p>
-			</li>
-
-	<?php } ?>
+		<?php } ?>

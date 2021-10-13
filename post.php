@@ -151,7 +151,7 @@ $(document).ready(function() {
   $('#replies').load('load-posts.php'+q);
   setInterval(function() {
     $('#replies').load('load-posts.php'+q);
-    }, 3555000);
+    }, 3000);
 
 
 
