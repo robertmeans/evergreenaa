@@ -7,7 +7,7 @@ require '_includes/head.php'; ?>
 
 <body>
 <?php 
-if (WWW_ROOT != 'http://localhost/evergreenaaa') { ?>
+if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 	<div class="preload"><p>One day at a time.</p></div>
 <?php } ?>	
 

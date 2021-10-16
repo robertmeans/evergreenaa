@@ -8,8 +8,8 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 require_once 'config/database.php';
-require_once 'controllers/authController.php';
 require_once '_functions/functions.php';
+require_once 'controllers/authController.php';
 require_once '_functions/query_functions.php';
 
 $db = db_connect();

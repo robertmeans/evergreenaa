@@ -37,12 +37,12 @@ $row = [];
 		$fn1 = $_FILES['file1']['tmp_name'];
 	} 
 	// whoops, they added a label but no file to upload or in hidden field (they're not renaming)
-	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] != '') && $_POST['link1'] != ''))  {
+	if ((empty($_FILES['file1']['name'])) && (isset($_POST['hid_f1']) && isset($_POST['link1'])))  {
 		$nf1 = $_POST['hid_f1']; 
 		$fn1 = ''; 
 	} 
 	// to catch no file/label OR if they deleted the the label then delete the file reference too
-	if ((empty($_FILES['file1']['name'])) && (($_POST['hid_f1'] == '') && $_POST['link1'] == '')) {
+	if ((empty($_FILES['file1']['name'])) && (!isset($_POST['hid_f1']) && !isset($_POST['link1']))) {
 		$nf1 = ''; 
 		$fn1 = ''; 	
 	}
@@ -56,11 +56,11 @@ $row = [];
 		$nf2 = $rename2 . '.' . $ext2;
 		$fn2 = $_FILES['file2']['tmp_name'];
 	} 
-	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] != '') && $_POST['link2'] != ''))  {
+	if ((empty($_FILES['file2']['name'])) && (isset($_POST['hid_f2']) && isset($_POST['link2'])))  {
 		$nf2 = $_POST['hid_f2']; 
 		$fn2 = ''; 
 	} 
-	if ((empty($_FILES['file2']['name'])) && (($_POST['hid_f2'] == '') && $_POST['link2'] == '')) {
+	if ((empty($_FILES['file2']['name'])) && (!isset($_POST['hid_f2']) && !isset($_POST['link2']))) {
 		$nf2 = ''; 
 		$fn2 = ''; 	
 	}
@@ -74,11 +74,11 @@ $row = [];
 		$nf3 = $rename3 . '.' . $ext3;
 		$fn3 = $_FILES['file3']['tmp_name'];
 	} 
-	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] != '') && $_POST['link3'] != ''))  {
+	if ((empty($_FILES['file3']['name'])) && (isset($_POST['hid_f3']) && isset($_POST['link3'])))  {
 		$nf3 = $_POST['hid_f3']; 
 		$fn3 = ''; 
 	} 
-	if ((empty($_FILES['file3']['name'])) && (($_POST['hid_f3'] == '') && $_POST['link3'] == '')) {
+	if ((empty($_FILES['file3']['name'])) && (!isset($_POST['hid_f3']) && !isset($_POST['link3']))) {
 		$nf3 = ''; 
 		$fn3 = ''; 	
 	}
@@ -92,11 +92,11 @@ $row = [];
 		$nf4 = $rename4 . '.' . $ext4;
 		$fn4 = $_FILES['file4']['tmp_name'];
 	} 
-	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] != '') && $_POST['link4'] != ''))  {
+	if ((empty($_FILES['file4']['name'])) && (isset($_POST['hid_f4']) && isset($_POST['link4'])))  {
 		$nf4 = $_POST['hid_f4']; 
 		$fn4 = ''; 
 	} 
-	if ((empty($_FILES['file4']['name'])) && (($_POST['hid_f4'] == '') && $_POST['link4'] == '')) {
+	if ((empty($_FILES['file4']['name'])) && (!isset($_POST['hid_f4']) && !isset($_POST['link4']))) {
 		$nf4 = ''; 
 		$fn4 = ''; 	
 	}
@@ -129,7 +129,12 @@ $row['db_sat'] = $sat;
 
 // use this to populate field if there are errors on pg ->
 // comment when testing
-$row['meet_time'] = $_POST['meet_time'];
+if (isset($_POST['meet_time'])) {
+	$row['meet_time'] = $_POST['meet_time'];
+} else {
+	$row['meet_time'] = '';
+}
+
 $row['sun'] = $_POST['sun'] ?? '';
 $row['mon'] = $_POST['mon'] ?? '';
 $row['tue'] = $_POST['tue'] ?? '';
@@ -149,7 +154,13 @@ $row['sat'] = $_POST['sat'] ?? '';
 // $row['sat'] = $sat;
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
-$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
+
+if (isset($_POST['meet_phone'])) {
+	$row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
+} else {
+	$row['meet_phone'] 		= '';
+}
+
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
 $row['meet_url'] 		= $_POST['meet_url'] 									?? '';
@@ -170,13 +181,36 @@ $row['month_speaker'] 	= $_POST['month_speaker'] 								?? '';
 $row['potluck'] 		= $_POST['potluck']										?? '';
 
 $row['hid_f1'] 		= $_POST['hid_f1']										?? '';
-$row['link1'] 		= trim($_POST['link1'])										?? '';
+
+if (isset($_POST['link1'])) {
+	$row['link1'] 		= trim($_POST['link1'])										?? '';
+} else {
+	$row['link1'] = '';
+}
+
 $row['hid_f2'] 		= $_POST['hid_f2']										?? '';
-$row['link2'] 		= trim($_POST['link2'])										?? '';
+
+if (isset($_POST['link2'])) {
+	$row['link2'] 		= trim($_POST['link2'])										?? '';
+} else {
+	$row['link2'] = '';
+}
 $row['hid_f3'] 		= $_POST['hid_f3']										?? '';
-$row['link3'] 		= trim($_POST['link3'])										?? '';
+
+if (isset($_POST['link3'])) {
+	$row['link3'] 		= trim($_POST['link3'])										?? '';
+} else {
+	$row['link3'] = '';
+}
+
 $row['hid_f4'] 		= $_POST['hid_f4']										?? '';
-$row['link4'] 		= trim($_POST['link4'])										?? '';
+
+if (isset($_POST['link4'])) {
+	$row['link4'] 		= trim($_POST['link4'])										?? '';
+} else {
+	$row['link4'] = '';
+}
+
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);

@@ -201,6 +201,7 @@ html {
 .set-tz {
   background-color: rgba(0, 0, 0, 0.8);
   font-family: Tahoma, Calbri, sans-serif;
+  z-index: 4567890;
 }
 .set-tz .tz-box {
   display: -ms-flexbox;
@@ -1063,6 +1064,14 @@ p.inline-tz {
   max-width: 900px;
   text-align: left;
   color: rgba(255, 255, 255, 0.6);
+}
+
+p.mtg-tz {
+  color: #d2d2cf;
+  font-size: 0.8em;
+  margin-bottom: 1em;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1em;
 }
 
 a.inline-show-tz {

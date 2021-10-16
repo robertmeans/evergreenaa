@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-	<?php /* <p class="mtg-tz">This will be in: <?php pretty_tz($tz); ?></p> */ ?>
+	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group name</p>
