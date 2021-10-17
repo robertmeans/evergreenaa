@@ -248,6 +248,7 @@ html {
   outline: none;
   cursor: pointer;
   background-color: #313131;
+  -webkit-appearance: none;
   color: #fff;
 }
 .set-tz .tz-box .tz-content form select.pick-tz option {

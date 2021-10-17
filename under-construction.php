@@ -13,7 +13,7 @@ include '_includes/head.php'; ?>
 
 <div id="landing">
 	<div class="uc-page">
-		<p>Wednesday, October 13 at 11:04 AM</p>
+		<p>Saturday, October 16 at 1:51 PM Mountain Time</p>
 		<p>Implementing a major update at the moment. The site will be down for about an hour. Sorry for any inconvenience.</p>
 	</div>
 </div><!-- #landing -->
