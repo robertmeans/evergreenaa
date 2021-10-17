@@ -1221,8 +1221,6 @@ span[data-ampm='PM'] {
   .manage-glance {
     padding: 0.5em;
     line-height: 1.4em;
-    -ms-flex-direction: column;
-        flex-direction: column;
   }
   .daily-glance:hover,
   .manage-glance:hover {
@@ -2959,10 +2957,10 @@ ul.manage-weekdays .day:hover {
 .manage-glance {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -2976,17 +2974,37 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance .glance-mtg-time {
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
-  width: 100%;
+  width: 50%;
   min-width: 150px;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-group-title {
+  -ms-flex-order: 3;
+      order: 3;
   width: 100%;
   line-height: 1.5em;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  padding: 0em 0.5em 0em;
+  -ms-flex-order: 2;
+      order: 2;
+  width: 50%;
   padding: 0 1em;
   text-align: right;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type p {
   width: 100%;
@@ -3016,10 +3034,6 @@ ul.manage-weekdays .day:hover {
   border-left: 1px solid transparent;
 }
 
-.daily-glance .glance-mtg-type {
-  padding: 0em 1em 0em 0em;
-}
-
 .manage-glance-wrap-review {
   width: 100%;
   max-width: 900px;
@@ -3032,6 +3046,8 @@ ul.manage-weekdays .day:hover {
   display: flex;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: default;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -3049,20 +3065,27 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance-review .glance-mtg-time {
-  -ms-flex: 2 1 0;
-      flex: 2 1 0;
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
-  width: 20%;
-  min-width: 150px;
+  width: 50%;
 }
 .manage-glance-review .glance-group-title {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  width: 70%;
+  -ms-flex-order: 3;
+      order: 3;
+  width: 100%;
   line-height: 1.5em;
 }
 .manage-glance-review .glance-mtg-type {
-  padding: 0em 1.5em 0em 0.5em;
+  -ms-flex-order: 2;
+      order: 2;
+  width: 50%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 .manage-glance-review .glance-mtg-type p {
   display: -ms-flexbox;
@@ -3802,25 +3825,9 @@ form#manage-mtg label.pdf-label {
     text-align: left;
   }
 
-  .manage-glance-wrap-review .manage-glance-review {
-    -ms-flex-direction: column;
-        flex-direction: column;
-  }
-
   .manage-glance-review .glance-group-title {
     margin: 0.5em 0;
     width: 100%;
-  }
-
-  .manage-glance-review .glance-mtg-type {
-    text-align: right;
-    padding: 0px;
-    -ms-flex-item-align: end;
-        align-self: flex-end;
-  }
-
-  .manage-glance .glance-mtg-type {
-    padding: 0 0.25em;
   }
 
   .manage-glance .glance-mtg-time {
@@ -3958,10 +3965,6 @@ form#manage-mtg label.pdf-label {
 
   a.manage-delete {
     margin-left: 1.6em;
-  }
-
-  a.map-dir {
-    padding: 1.5em;
   }
 
   a.zoom {
@@ -4512,10 +4515,6 @@ a.manage-edit.spec:hover {
   width: 100%;
   line-height: 1.5em;
 }
-.manage-glance-user .glance-mtg-type {
-  padding: 0 1em;
-  text-align: right;
-}
 .manage-glance-user .glance-mtg-type p {
   width: 100%;
   text-align: right;
@@ -4940,6 +4939,101 @@ li.focus a:hover {
     display: flex;
     -ms-flex-pack: end;
         justify-content: flex-end;
+  }
+}
+@media screen and (max-width: 800px) {
+  .backstretch {
+    display: none;
+  }
+
+  .background-image {
+    display: block;
+  }
+
+  .day {
+    font-size: 1.1em;
+  }
+  .day:hover {
+    background: none;
+    background-color: transparent;
+    color: #fff;
+  }
+
+  .active {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .weekday-wrap {
+    padding: 0px 10px 10px;
+  }
+
+  .weekday-wrap .meeting-details {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .weekday-wrap .meeting-details .details-left,
+  .weekday-wrap .meeting-details .details-right {
+    width: 100%;
+    padding: 0em;
+    margin-top: 1em;
+  }
+  .weekday-wrap .meeting-details .details-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .daily-glance,
+  .manage-glance {
+    padding: 0.5em;
+    line-height: 1.4em;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .daily-glance:hover,
+  .manage-glance:hover {
+    background-color: inherit;
+  }
+  .daily-glance .glance-mtg-time,
+  .manage-glance .glance-mtg-time {
+    -ms-flex-order: 1;
+        order: 1;
+    width: 50%;
+    -ms-flex: auto;
+        flex: auto;
+  }
+  .daily-glance .glance-group-title,
+  .manage-glance .glance-group-title {
+    -ms-flex-order: 3;
+        order: 3;
+    width: 100%;
+    -ms-flex: auto;
+        flex: auto;
+    margin-top: 0.5em;
+    padding: 0em;
+  }
+  .daily-glance .glance-mtg-type,
+  .manage-glance .glance-mtg-type {
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+    -ms-flex-order: 2;
+        order: 2;
+    width: 50%;
+    -ms-flex: auto;
+        flex: auto;
+    padding: 0em 0.5em 0em;
+  }
+
+  .day-content {
+    padding: 0.5em 0.5em 1.5em;
+  }
+
+  .daily-glance-wrap,
+  .manage-glance-wrap {
+    background-color: rgba(0, 0, 0, 0.45);
   }
 }
 #mb-wrap {

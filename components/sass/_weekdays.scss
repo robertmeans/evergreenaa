@@ -559,11 +559,14 @@ span[data-ampm='PM'] {
 			border-bottom: 1px solid rgba(255,255,255,0.2);
 		}
 	}
+
+
+
 	.daily-glance,
 	.manage-glance {
 		padding: 0.5em;
 		line-height: 1.4em;
-		flex-direction: column;
+		// flex-direction: column;
 		&:hover {
 			background-color: inherit;
 		}
