@@ -376,14 +376,14 @@ ul.manage-weekdays {
 	.glance-mtg-time, {
 		order: 1;
 		padding: 0 1em 0 0;
-		width: 50%;
-		min-width: 150px;
+		// width: 50%;
+		// min-width: 150px;
 		flex: auto;
 	}
 	.glance-group-title {
 		order: 3;
 		width: 100%;
-		line-height: 1.5em;
+		// line-height: 1.5em;
 		flex: auto;
 	}
 	.glance-mtg-type {
@@ -392,7 +392,7 @@ ul.manage-weekdays {
 		justify-content: flex-end;
 		padding: 0em 0.5em 0em;
 		order: 2;
-		width: 50%;
+		// width: 50%;
 		padding: 0 1em;
 		text-align: right;
 		flex: auto;
@@ -463,16 +463,16 @@ ul.manage-weekdays {
 	.glance-mtg-time {
 		order: 1;
 		padding: 0 1em 0 0;
-		width: 50%;
+		// width: 50%;
 	}
 	.glance-group-title {
 		order: 3;
 		width: 100%;
-		line-height: 1.5em;
+		// line-height: 1.5em;
 	}
 	.glance-mtg-type {
 		order: 2;
-		width: 50%;
+		// width: 50%;
 		display: flex;
 		justify-content: flex-end;
 		flex-wrap: nowrap;
@@ -1205,9 +1205,9 @@ form#manage-mtg {
 	// .manage-glance .glance-mtg-type {
 	// 	padding: 0 0.25em;
 	// }
-	.manage-glance .glance-mtg-time {
-		width: 100%;
-	}
+	// .manage-glance .glance-mtg-time {
+	// 	width: 100%;
+	// }
 	.manage-glance .glance-group-title {
 		width: 100%;
 	}
@@ -1364,15 +1364,15 @@ span.contact-update-message {
 // final say in all this...
 .daily-glance .glance-mtg-time {
 	flex: 1;
-	align-items: center;
+	// align-items: center;
 }
 .daily-glance .glance-group-title {
 	flex: 4;
-	align-items: center;
+	// align-items: center;
 }
 .daily-glance .glance-mtg-type {
 	flex: 2;
-	align-items: center;
+	// align-items: center;
 	justify-content: flex-end;
 }
 .tooltip .tooltiptext.type {

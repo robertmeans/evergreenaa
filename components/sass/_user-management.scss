@@ -27,22 +27,14 @@
 		background-color: rgba(0,0,0,0.2);
 	}
 	.glance-mtg-time, {
-		// flex: 2 1 0;
 		padding: 0 1em 0 0;
-		width: 100%;
-		min-width: 150px;
 	}
 	.glance-group-title {
-		// align-self: flex-end;
-		// align-self: flex-start;
 		width: 100%;
-		line-height: 1.5em;
+		// line-height: 1.5em;
 	}
 	.glance-mtg-type {
-		// padding: 0 1em;
-		// text-align: right;
 		p {
-			// display: flex;
 			width: 100%;
 			text-align: right;
 		}
@@ -446,8 +438,8 @@ li.focus a:hover {
 		}
 		.glance-mtg-time {
 			order: 1;
-			width: 50%;
-			flex: auto;
+			padding: 0;
+			line-height: 1.5em;
 		}
 		.glance-group-title {
 			order: 3;
@@ -455,13 +447,15 @@ li.focus a:hover {
 			flex: auto;
 			margin-top: 0.5em;
 			padding: 0em;
+			// line-height: 1.5em;
 		}
 		.glance-mtg-type {
 			justify-content: flex-end;
 			order: 2;
-			width: 50%;
-			flex: auto;
-			padding: 0em 0.5em 0em;
+			align-items: self-start;
+			padding: 0;
+			align-self: flex-start;
+			line-height: 1.5em;
 		}
 
 	}

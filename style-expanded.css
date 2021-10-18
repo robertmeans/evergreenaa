@@ -866,6 +866,7 @@ p.no-mtgs {
   border-bottom: 1px solid transparent;
   border-left: 1px solid transparent;
   color: inherit;
+  line-height: 1.5em;
 }
 .daily-glance:hover {
   background-color: rgba(0, 0, 0, 0.2);
@@ -880,7 +881,6 @@ p.no-mtgs {
   -ms-flex: 2;
       flex: 2;
   padding: 0em 0.5em;
-  line-height: 1.5em;
 }
 .daily-glance .glance-mtg-type {
   -ms-flex-pack: end;
@@ -2977,8 +2977,6 @@ ul.manage-weekdays .day:hover {
   -ms-flex-order: 1;
       order: 1;
   padding: 0 1em 0 0;
-  width: 50%;
-  min-width: 150px;
   -ms-flex: auto;
       flex: auto;
 }
@@ -2986,7 +2984,6 @@ ul.manage-weekdays .day:hover {
   -ms-flex-order: 3;
       order: 3;
   width: 100%;
-  line-height: 1.5em;
   -ms-flex: auto;
       flex: auto;
 }
@@ -3000,7 +2997,6 @@ ul.manage-weekdays .day:hover {
   padding: 0em 0.5em 0em;
   -ms-flex-order: 2;
       order: 2;
-  width: 50%;
   padding: 0 1em;
   text-align: right;
   -ms-flex: auto;
@@ -3068,18 +3064,15 @@ ul.manage-weekdays .day:hover {
   -ms-flex-order: 1;
       order: 1;
   padding: 0 1em 0 0;
-  width: 50%;
 }
 .manage-glance-review .glance-group-title {
   -ms-flex-order: 3;
       order: 3;
   width: 100%;
-  line-height: 1.5em;
 }
 .manage-glance-review .glance-mtg-type {
   -ms-flex-order: 2;
       order: 2;
-  width: 50%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;
@@ -3830,10 +3823,6 @@ form#manage-mtg label.pdf-label {
     width: 100%;
   }
 
-  .manage-glance .glance-mtg-time {
-    width: 100%;
-  }
-
   .manage-glance .glance-group-title {
     width: 100%;
   }
@@ -4002,22 +3991,16 @@ span.contact-update-message {
 .daily-glance .glance-mtg-time {
   -ms-flex: 1;
       flex: 1;
-  -ms-flex-align: center;
-      align-items: center;
 }
 
 .daily-glance .glance-group-title {
   -ms-flex: 4;
       flex: 4;
-  -ms-flex-align: center;
-      align-items: center;
 }
 
 .daily-glance .glance-mtg-type {
   -ms-flex: 2;
       flex: 2;
-  -ms-flex-align: center;
-      align-items: center;
   -ms-flex-pack: end;
       justify-content: flex-end;
 }
@@ -4508,12 +4491,9 @@ a.manage-edit.spec:hover {
 }
 .manage-glance-user .glance-mtg-time {
   padding: 0 1em 0 0;
-  width: 100%;
-  min-width: 150px;
 }
 .manage-glance-user .glance-group-title {
   width: 100%;
-  line-height: 1.5em;
 }
 .manage-glance-user .glance-mtg-type p {
   width: 100%;
@@ -5001,9 +4981,8 @@ li.focus a:hover {
   .manage-glance .glance-mtg-time {
     -ms-flex-order: 1;
         order: 1;
-    width: 50%;
-    -ms-flex: auto;
-        flex: auto;
+    padding: 0;
+    line-height: 1.5em;
   }
   .daily-glance .glance-group-title,
   .manage-glance .glance-group-title {
@@ -5021,10 +5000,12 @@ li.focus a:hover {
         justify-content: flex-end;
     -ms-flex-order: 2;
         order: 2;
-    width: 50%;
-    -ms-flex: auto;
-        flex: auto;
-    padding: 0em 0.5em 0em;
+    -ms-flex-align: self-start;
+        align-items: self-start;
+    padding: 0;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    line-height: 1.5em;
   }
 
   .day-content {
