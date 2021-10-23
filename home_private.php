@@ -47,6 +47,12 @@ if ($time_offset != '00') {
 	$sorted = apply_offset_to_meetings($results, $tz, $time_offset);
 }
 
+/* 
+<pre>
+<?php echo print_r($sorted); ?>
+</pre>
+*/
+
 ?>
 
 	<li class="ctr-day">
