@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-
+	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="visible" value="<?= $row['visible']; ?>">
 		<div class="top-info">
@@ -44,10 +44,15 @@
 <div class="mtg-time">	
 
 	<?php /* https://timepicker.co/options/ */ ?>
-	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { echo date('g:i A', strtotime($row['meet_time'])); } ?>">
+	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
+
+		$time = $row['meet_time']; 
+		$nt = converted_time($time, $tz); 
+		echo $nt;
+
+	} ?>">
 
 </div>
-
 </div><!-- .top-info -->
 <div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 	<label for="meet_phone">Phone number</label>

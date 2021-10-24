@@ -1,5 +1,4 @@
 <?php 
-
 require_once 'config/initialize.php';
 
 $layout_context = "alt-manage";
@@ -28,12 +27,36 @@ if (is_post_request()) {
 }
 	
 $row = edit_meeting($id); 
+
+$time = [];
+$time['tz'] = $tz;
+$time['ut'] = $row['meet_time'];
+
+$time['sun'] = $row['sun'];
+$time['mon'] = $row['mon'];
+$time['tue'] = $row['tue'];
+$time['wed'] = $row['wed'];
+$time['thu'] = $row['thu'];
+$time['fri'] = $row['fri'];
+$time['sat'] = $row['sat'];
+
+list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+$row['sun'] = $sun;
+$row['mon'] = $mon;
+$row['tue'] = $tue;
+$row['wed'] = $wed;
+$row['thu'] = $thu;
+$row['fri'] = $fri;
+$row['sat'] = $sat;
+
 $role = $_SESSION['admin'];
 
 require '_includes/head.php'; ?>
 
 <body>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

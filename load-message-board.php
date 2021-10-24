@@ -9,17 +9,23 @@ if ($results > 0) {
 $i = 1;
 while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 <?php  
+
 	$get_replies = get_mb_pg_replies($row['idt_topic']);
-	$results = mysqli_num_rows($get_replies);
+	$resultz = mysqli_num_rows($get_replies);
+
+  $mt = new DateTime($row['opened'], new DateTimeZone('America/Denver'));
+  $mt->setTimezone(new DateTimeZone($tz));
+
+// echo $row['mb_header'] . ' | number of replies: ' . $resultz . ' topic ID: ' . $row['idr_topic'];
 ?>
 
 	<li id="li_<?= $i ?>">
 
 		<div class="mb-individual">
 			<?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['idt_user']) { ?>
-			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])+3600) ?> | You posted:</a>
+			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= $mt->format("g:i A D, M d, 'y") ?> | You posted:</a>
 			<?php } else { ?>
-			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= date('g:i A D, M d, \'y', strtotime($row['opened'])+3600) ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</a>
+			<a class="mb-date" href="post.php?post-id=<?= $row['idt_topic'] ?>"><?= $mt->format("g:i A D, M d, 'y") ?> | <?= substr($row['username'], 0, 1) . '... ' ?> Posted:</a>
 			<?php } ?>
 
 		<div class="group-mb"><?php /* favicon links */ ?>
@@ -100,7 +106,7 @@ while ($row = mysqli_fetch_assoc($mb_posts)) { ?>
 		<?php /* end username + email for Admins 1 & 3 */ ?>	
 
 			<a class="mb-entire" href="post.php?post-id=<?= $row['idt_topic'] ?>">
-			<p class="title"><?= $row['mb_header'] ?> | <span class="num-replies"><?php if ($results == 0 || $results > 1) { echo $results . ' replies'; } else { echo $results . ' reply'; } ?></span></p>
+			<p class="title"><?= $row['mb_header'] ?> | <span class="num-replies"><?php if ($resultz == 0 || $resultz > 1) { echo $resultz . ' replies'; } else { echo $resultz . ' reply'; } ?></span></p>
 
 			<?php 
 				$firstLine = preg_split('~<br */?>|\R~i', $row['mb_body'], -1, PREG_SPLIT_NO_EMPTY)[0]; 

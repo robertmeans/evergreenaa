@@ -135,6 +135,7 @@ p.no-mtgs {
 	border-bottom: 1px solid transparent;
 	border-left: 1px solid transparent;
 	color: inherit;
+	line-height: 1.5em;
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
@@ -142,21 +143,19 @@ p.no-mtgs {
 		display: flex;
 		flex: 1;
 	}
-	.glance-mtg-time,
-	.glance-group-title {
-		// padding-right: 10px;
-	}
 	.glance-group-title {
 		flex: 2;
 		padding: 0em 0.5em;
-		line-height: 1.5em;
+		// line-height: 1.5em;
 	}
 	.glance-mtg-type {
 		justify-content: flex-end;
 	}
 }
 
-
+.weekday-wrap.note-here {
+		border-bottom-left-radius: 15px;
+	}
 .weekday-wrap {
 	width: 100%;
 	max-width: 900px;
@@ -325,10 +324,80 @@ p.no-mtgs {
 	}
 }
 
-
-
-
-
+// .sel-tz {
+// 	width: 100%;
+// 	max-width: 900px;
+// 	margin-top: 1em;
+// 	padding: 0.5em 1em;
+// 	font-size: 0.8em;
+// 	line-height: 1.5em;
+// 	display: flex;
+// 	align-items: center;
+// 	color: #fff;
+// 	background-color: rgba(66,204,154,0.2);
+// 	.tz-txt {
+// 		color: orange;
+// 	}
+// 	a {
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		// font-size: 0.8em;
+// 		color: #fff;
+// 		text-decoration: none;
+// 		border-radius: 3px;
+// 		margin-left: 1em;
+// 		padding: 0.25em 1em;
+// 		background-color: #000;
+// 		transition: all 0.2s ease;
+// 		&:hover {
+// 			background-color: #757575;
+// 		}
+// 	}
+// }
+// @media screen and (max-width: 650px) {
+// 	.sel-tz {
+// 		flex-direction: column;
+// 		justify-content: center;
+// 		align-items: center;
+// 		text-align: center;
+// 		a {
+// 			width: 80%;
+// 			max-width: 250px;
+// 		}
+// 	}
+// }
+p.inline-tz {
+	margin-top: 1em;
+	font-size: 0.8em;
+	width: 100%;
+	max-width: 900px;
+	text-align: left;
+	color: rgba(255,255,255,0.6);
+}
+p.mtg-tz {
+	color: #d2d2cf;
+	font-size: 0.8em;
+	margin-bottom: 1em;
+	background-color: rgba(255,255,255,0.1);
+	padding: 1em;
+}
+a.inline-show-tz {
+	cursor: pointer;
+	color: orange;
+	text-decoration: none;
+	// text-shadow: 0px 0px 5px #000;
+	transition: all 0.2s ease;
+	&:hover {
+		color: rgba(255,255,255,0.6);
+	}
+}
+span[data-ampm='AM'] {
+	color: #fff;
+}
+span[data-ampm='PM'] {
+	color: #a5a5a5;
+}
 
 
 
@@ -468,6 +537,12 @@ p.no-mtgs {
 		background-color: rgba(255,255,255,0.2);
 		color: #fff;
 	}
+	// .weekday-wrap.note-here {
+	// 	border-bottom-left-radius: 0px;
+	// }
+	.weekday-wrap {
+		padding: 0px 10px 10px;
+	}
 	.weekday-wrap .meeting-details {
 		flex-direction: column;
 		.details-left,
@@ -481,11 +556,14 @@ p.no-mtgs {
 			border-bottom: 1px solid rgba(255,255,255,0.2);
 		}
 	}
+
+
+
 	.daily-glance,
 	.manage-glance {
 		padding: 0.5em;
 		line-height: 1.4em;
-		flex-direction: column;
+		// flex-direction: column;
 		&:hover {
 			background-color: inherit;
 		}

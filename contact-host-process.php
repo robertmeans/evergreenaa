@@ -8,8 +8,8 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 require_once 'config/database.php';
-require_once 'controllers/authController.php';
 require_once '_functions/functions.php';
+require_once 'controllers/authController.php';
 require_once '_functions/query_functions.php';
 
 $db = db_connect();
@@ -27,17 +27,11 @@ if (is_post_request()) {
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-
 		$emh = get_host_address($mtgid);
 		$rowq = mysqli_fetch_assoc($emh);
 
 		$emhemail = $rowq['email'];
 		$emhuser = $rowq['username'];
-
-		
-		// echo '<script>alert(' . $emhemail . ')</script>';
-
-
 
     $mail = new PHPMailer(true);
 

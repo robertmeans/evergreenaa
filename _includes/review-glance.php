@@ -2,9 +2,13 @@
 	<div class="manage-glance-wrap-review">
 		<div class="manage-glance-review<?php if ($row['visible'] == 0) { echo ' draft'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= date('g:i A', strtotime($row['meet_time'])); ?>
 
-				<?php 
+				<p><?php
+					$time = $row['meet_time'];
+					// $tz = $row['tz']; 
+					$nt = converted_time($time, $tz); 
+					echo $nt . ' ';
+ 
 				if ($row['sun'] == 0) {  } 
 				else if (($row['sun'] !=0) && (($row['mon'] != 0) || ($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) {
 					echo "Sun, "; 

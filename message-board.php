@@ -20,6 +20,7 @@ require '_includes/head.php'; ?>
 <?php } ?>
 
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-mb-notes.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>

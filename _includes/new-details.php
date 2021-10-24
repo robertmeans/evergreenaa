@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-
+	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group name</p>
@@ -44,7 +44,7 @@
 
 	<?php /* https://timepicker.co/options/ */ ?>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time'])) { echo $row['meet_time']; } ?>">
-
+	<!-- <p style="font-size:0.8em;margin-top:-1em;">Note: Schedule this meeting as it should appear according to your currently set (<?php pretty_tz($tz) ?>) timezone.</p> -->
 </div>
 
 </div><!-- .top-info -->

@@ -167,7 +167,8 @@ html {
 }
 
 .preload,
-.preload-manage {
+.preload-manage,
+.set-tz {
   position: fixed;
   display: -ms-flexbox;
   display: flex;
@@ -184,21 +185,115 @@ html {
   z-index: 4567891;
 }
 .preload > p,
-.preload-manage > p {
+.preload-manage > p,
+.set-tz > p {
   font-family: 'Caveat', cursive;
   font-size: 3em;
   color: #fff;
 }
 .preload > i,
-.preload-manage > i {
+.preload-manage > i,
+.set-tz > i {
   font-size: 2em;
   margin-top: 0.5em;
+}
+
+.set-tz {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: Tahoma, Calbri, sans-serif;
+  z-index: 4567890;
+}
+.set-tz .tz-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 96%;
+  max-width: 600px;
+  padding: 1em;
+  line-height: 1.5em;
+}
+.set-tz .tz-box h3 {
+  width: 100%;
+  background-color: #2e3136;
+  color: #fff;
+  font-size: 1.25em;
+  padding: 0.25em 1em;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.set-tz .tz-box .tz-content {
+  width: 100%;
+  padding: 1em;
+  background-color: #2c3e5f;
+  color: #fff;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.set-tz .tz-box .tz-content p.next-p {
+  margin-top: 1em;
+}
+.set-tz .tz-box .tz-content form {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.set-tz .tz-box .tz-content form select.pick-tz {
+  font-size: 1em;
+  padding: 0.5em;
+  outline: none;
+  cursor: pointer;
+  background-color: #313131;
+  -webkit-appearance: none;
+  color: #fff;
+}
+.set-tz .tz-box .tz-content form select.pick-tz option {
+  margin: 0 auto;
+  cursor: pointer;
+  color: #fff;
+  background-color: #313131;
+}
+.set-tz .tz-box .tz-content form select.pick-tz option:hover {
+  cursor: pointer;
+}
+.set-tz .tz-box .tz-content form input,
+.set-tz .tz-box .tz-content form a.btn {
+  text-align: center;
+  margin-top: 1em;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 1em;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #34844e;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.set-tz .tz-box .tz-content form input:hover,
+.set-tz .tz-box .tz-content form a.btn:hover {
+  background-color: #1b9a0a;
+}
+.set-tz .tz-box .tz-content form a#hide-tz {
+  text-align: center;
+  margin-top: 0.5em;
+  background-color: #313131;
+}
+.set-tz .tz-box .tz-content form a#hide-tz:hover {
+  background-color: #757575;
 }
 
 @media screen and (max-width: 600px) {
   .preload > p,
   .preload-manage > p {
     font-size: 2em;
+  }
+
+  .set-tz .tz-box {
+    padding: 0.25em;
   }
 }
 #navigation {
@@ -390,6 +485,7 @@ html {
   cursor: default;
 }
 .sidenav a {
+  cursor: pointer;
   width: 100%;
   display: -ms-flexbox;
   display: flex;
@@ -426,22 +522,22 @@ html {
 }
 .sidenav a.closebtn .ctxt {
   color: transparent;
-  transition: color 0.2s ease-out;
-}
-.sidenav a.closebtn:hover .ctxt {
-  color: rgba(0, 0, 0, 0.9);
-  transition: color 0.2s ease-in;
-}
-.sidenav a.closebtn:hover .ctd {
-  transition-delay: 1s;
 }
 .sidenav a.closebtn i {
   font-size: 1.5em;
   -ms-transform: rotate(270deg);
       transform: rotate(270deg);
   animation: in .25s 2 linear;
+  transition: color 0.65s ease;
 }
-.sidenav a.closebtn i:hover {
+.sidenav a.closebtn:hover .ctxt {
+  color: rgba(0, 0, 0, 0.9);
+}
+.sidenav a.closebtn:hover .ctd {
+  transition-delay: 0.5s;
+}
+.sidenav a.closebtn:hover i {
+  color: #fff;
   animation: out .5s 1 linear;
 }
 .sidenav a.admin-login,
@@ -770,6 +866,7 @@ p.no-mtgs {
   border-bottom: 1px solid transparent;
   border-left: 1px solid transparent;
   color: inherit;
+  line-height: 1.5em;
 }
 .daily-glance:hover {
   background-color: rgba(0, 0, 0, 0.2);
@@ -784,11 +881,14 @@ p.no-mtgs {
   -ms-flex: 2;
       flex: 2;
   padding: 0em 0.5em;
-  line-height: 1.5em;
 }
 .daily-glance .glance-mtg-type {
   -ms-flex-pack: end;
       justify-content: flex-end;
+}
+
+.weekday-wrap.note-here {
+  border-bottom-left-radius: 15px;
 }
 
 .weekday-wrap {
@@ -958,6 +1058,41 @@ p.no-mtgs {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+p.inline-tz {
+  margin-top: 1em;
+  font-size: 0.8em;
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+p.mtg-tz {
+  color: #d2d2cf;
+  font-size: 0.8em;
+  margin-bottom: 1em;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1em;
+}
+
+a.inline-show-tz {
+  cursor: pointer;
+  color: orange;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a.inline-show-tz:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+span[data-ampm='AM'] {
+  color: #fff;
+}
+
+span[data-ampm='PM'] {
+  color: #a5a5a5;
+}
+
 .email-host {
   display: -ms-flexbox;
   display: flex;
@@ -1063,6 +1198,10 @@ p.no-mtgs {
     color: #fff;
   }
 
+  .weekday-wrap {
+    padding: 0px 10px 10px;
+  }
+
   .weekday-wrap .meeting-details {
     -ms-flex-direction: column;
         flex-direction: column;
@@ -1082,8 +1221,6 @@ p.no-mtgs {
   .manage-glance {
     padding: 0.5em;
     line-height: 1.4em;
-    -ms-flex-direction: column;
-        flex-direction: column;
   }
   .daily-glance:hover,
   .manage-glance:hover {
@@ -1986,6 +2123,15 @@ a.youtube:hover {
       flex-wrap: wrap;
   line-height: 1.5em;
 }
+#landing .uc-page {
+  width: 96%;
+  max-width: 600px;
+  padding: 0em 1em;
+}
+#landing .uc-page p {
+  margin-top: 1em;
+  line-height: 1.5em;
+}
 #landing > form {
   width: 96%;
   max-width: 450px;
@@ -2811,10 +2957,10 @@ ul.manage-weekdays .day:hover {
 .manage-glance {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -2828,17 +2974,33 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance .glance-mtg-time {
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
-  width: 100%;
-  min-width: 150px;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-group-title {
+  -ms-flex-order: 3;
+      order: 3;
   width: 100%;
-  line-height: 1.5em;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  padding: 0em 0.5em 0em;
+  -ms-flex-order: 2;
+      order: 2;
   padding: 0 1em;
   text-align: right;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type p {
   width: 100%;
@@ -2868,10 +3030,6 @@ ul.manage-weekdays .day:hover {
   border-left: 1px solid transparent;
 }
 
-.daily-glance .glance-mtg-type {
-  padding: 0em 1em 0em 0em;
-}
-
 .manage-glance-wrap-review {
   width: 100%;
   max-width: 900px;
@@ -2884,6 +3042,8 @@ ul.manage-weekdays .day:hover {
   display: flex;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: default;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -2901,20 +3061,24 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance-review .glance-mtg-time {
-  -ms-flex: 2 1 0;
-      flex: 2 1 0;
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
-  width: 20%;
-  min-width: 150px;
 }
 .manage-glance-review .glance-group-title {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  width: 70%;
-  line-height: 1.5em;
+  -ms-flex-order: 3;
+      order: 3;
+  width: 100%;
 }
 .manage-glance-review .glance-mtg-type {
-  padding: 0em 1.5em 0em 0.5em;
+  -ms-flex-order: 2;
+      order: 2;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 .manage-glance-review .glance-mtg-type p {
   display: -ms-flexbox;
@@ -3013,6 +3177,9 @@ a.manage-delete:hover {
   margin-top: 1em;
   position: relative;
   width: 98%;
+}
+.weekday-edit-wrap .meeting-details p.mtg-tz {
+  width: 100%;
 }
 .weekday-edit-wrap .meeting-details i.far.fa-edit {
   position: absolute;
@@ -3651,28 +3818,8 @@ form#manage-mtg label.pdf-label {
     text-align: left;
   }
 
-  .manage-glance-wrap-review .manage-glance-review {
-    -ms-flex-direction: column;
-        flex-direction: column;
-  }
-
   .manage-glance-review .glance-group-title {
     margin: 0.5em 0;
-    width: 100%;
-  }
-
-  .manage-glance-review .glance-mtg-type {
-    text-align: right;
-    padding: 0px;
-    -ms-flex-item-align: end;
-        align-self: flex-end;
-  }
-
-  .manage-glance .glance-mtg-type {
-    padding: 0 0.25em;
-  }
-
-  .manage-glance .glance-mtg-time {
     width: 100%;
   }
 
@@ -3809,10 +3956,6 @@ form#manage-mtg label.pdf-label {
     margin-left: 1.6em;
   }
 
-  a.map-dir {
-    padding: 1.5em;
-  }
-
   a.zoom {
     padding: 1.5em 1em;
     width: 90%;
@@ -3848,22 +3991,16 @@ span.contact-update-message {
 .daily-glance .glance-mtg-time {
   -ms-flex: 1;
       flex: 1;
-  -ms-flex-align: center;
-      align-items: center;
 }
 
 .daily-glance .glance-group-title {
   -ms-flex: 4;
       flex: 4;
-  -ms-flex-align: center;
-      align-items: center;
 }
 
 .daily-glance .glance-mtg-type {
   -ms-flex: 2;
       flex: 2;
-  -ms-flex-align: center;
-      align-items: center;
   -ms-flex-pack: end;
       justify-content: flex-end;
 }
@@ -4354,16 +4491,9 @@ a.manage-edit.spec:hover {
 }
 .manage-glance-user .glance-mtg-time {
   padding: 0 1em 0 0;
-  width: 100%;
-  min-width: 150px;
 }
 .manage-glance-user .glance-group-title {
   width: 100%;
-  line-height: 1.5em;
-}
-.manage-glance-user .glance-mtg-type {
-  padding: 0 1em;
-  text-align: right;
 }
 .manage-glance-user .glance-mtg-type p {
   width: 100%;
@@ -4634,7 +4764,8 @@ li.focus a:hover {
 #transfer-form-topz,
 #user-list,
 #user-listz,
-#user-listzz {
+#user-listzz,
+#weekdays {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -4649,7 +4780,9 @@ li.focus a:hover {
 #user-listz .mng-usr,
 #user-listz .transfer-usr,
 #user-listzz .mng-usr,
-#user-listzz .transfer-usr {
+#user-listzz .transfer-usr,
+#weekdays .mng-usr,
+#weekdays .transfer-usr {
   font-size: 1em;
   padding: 0.5em;
   outline: none;
@@ -4667,7 +4800,9 @@ li.focus a:hover {
 #user-listz .mng-usr option,
 #user-listz .transfer-usr option,
 #user-listzz .mng-usr option,
-#user-listzz .transfer-usr option {
+#user-listzz .transfer-usr option,
+#weekdays .mng-usr option,
+#weekdays .transfer-usr option {
   cursor: pointer;
   color: #fff;
   background-color: #313131;
@@ -4681,7 +4816,9 @@ li.focus a:hover {
 #user-listz .mng-usr option:hover,
 #user-listz .transfer-usr option:hover,
 #user-listzz .mng-usr option:hover,
-#user-listzz .transfer-usr option:hover {
+#user-listzz .transfer-usr option:hover,
+#weekdays .mng-usr option:hover,
+#weekdays .transfer-usr option:hover {
   cursor: pointer;
 }
 #transfer-form-top #usr-role-go,
@@ -4708,7 +4845,12 @@ li.focus a:hover {
 #user-listzz #usr-role-goz,
 #user-listzz #usr-role-gozz,
 #user-listzz #transfer-this-top,
-#user-listzz #transfer-this-topz {
+#user-listzz #transfer-this-topz,
+#weekdays #usr-role-go,
+#weekdays #usr-role-goz,
+#weekdays #usr-role-gozz,
+#weekdays #transfer-this-top,
+#weekdays #transfer-this-topz {
   cursor: pointer;
   padding: 0.5em 1em;
   margin-left: 1em;
@@ -4740,7 +4882,12 @@ li.focus a:hover {
 #user-listzz #usr-role-goz:hover,
 #user-listzz #usr-role-gozz:hover,
 #user-listzz #transfer-this-top:hover,
-#user-listzz #transfer-this-topz:hover {
+#user-listzz #transfer-this-topz:hover,
+#weekdays #usr-role-go:hover,
+#weekdays #usr-role-goz:hover,
+#weekdays #usr-role-gozz:hover,
+#weekdays #transfer-this-top:hover,
+#weekdays #transfer-this-topz:hover {
   background-color: rgba(64, 178, 8, 0.4);
   color: #fff;
 }
@@ -4772,6 +4919,102 @@ li.focus a:hover {
     display: flex;
     -ms-flex-pack: end;
         justify-content: flex-end;
+  }
+}
+@media screen and (max-width: 800px) {
+  .backstretch {
+    display: none;
+  }
+
+  .background-image {
+    display: block;
+  }
+
+  .day {
+    font-size: 1.1em;
+  }
+  .day:hover {
+    background: none;
+    background-color: transparent;
+    color: #fff;
+  }
+
+  .active {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .weekday-wrap {
+    padding: 0px 10px 10px;
+  }
+
+  .weekday-wrap .meeting-details {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .weekday-wrap .meeting-details .details-left,
+  .weekday-wrap .meeting-details .details-right {
+    width: 100%;
+    padding: 0em;
+    margin-top: 1em;
+  }
+  .weekday-wrap .meeting-details .details-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .daily-glance,
+  .manage-glance {
+    padding: 0.5em;
+    line-height: 1.4em;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .daily-glance:hover,
+  .manage-glance:hover {
+    background-color: inherit;
+  }
+  .daily-glance .glance-mtg-time,
+  .manage-glance .glance-mtg-time {
+    -ms-flex-order: 1;
+        order: 1;
+    padding: 0;
+    line-height: 1.5em;
+  }
+  .daily-glance .glance-group-title,
+  .manage-glance .glance-group-title {
+    -ms-flex-order: 3;
+        order: 3;
+    width: 100%;
+    -ms-flex: auto;
+        flex: auto;
+    margin-top: 0.5em;
+    padding: 0em;
+  }
+  .daily-glance .glance-mtg-type,
+  .manage-glance .glance-mtg-type {
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+    -ms-flex-order: 2;
+        order: 2;
+    -ms-flex-align: self-start;
+        align-items: self-start;
+    padding: 0;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    line-height: 1.5em;
+  }
+
+  .day-content {
+    padding: 0.5em 0.5em 1.5em;
+  }
+
+  .daily-glance-wrap,
+  .manage-glance-wrap {
+    background-color: rgba(0, 0, 0, 0.45);
   }
 }
 #mb-wrap {

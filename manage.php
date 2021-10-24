@@ -1,12 +1,14 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+
 if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 
 $layout_context = "dashboard";
+$hide_this = "yep";
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -31,6 +33,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 	
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
@@ -65,6 +68,31 @@ require '_includes/head.php'; ?>
 <?php // if user has meetings to manage, display them in order: Day > time, starting with Sun ?>
 
 		<?php while ($row = mysqli_fetch_assoc($any_meetings_for_user)) { ?>
+
+			<?php
+			$time = [];
+			$time['tz'] = $tz;
+			$time['ut'] = $row['meet_time'];
+
+			$time['sun'] = $row['sun'];
+			$time['mon'] = $row['mon'];
+			$time['tue'] = $row['tue'];
+			$time['wed'] = $row['wed'];
+			$time['thu'] = $row['thu'];
+			$time['fri'] = $row['fri'];
+			$time['sat'] = $row['sat'];
+
+			list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+			$row['sun'] = $sun;
+			$row['mon'] = $mon;
+			$row['tue'] = $tue;
+			$row['wed'] = $wed;
+			$row['thu'] = $thu;
+			$row['fri'] = $fri;
+			$row['sat'] = $sat;
+
+			?>
 
 			<?php require '_includes/manage-glance.php'; ?>
 			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">

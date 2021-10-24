@@ -360,10 +360,8 @@ ul.manage-weekdays {
 }
 .manage-glance {
 	display: flex;
-	// 08.01.21
-	flex-direction: column;
-	// end 08.01.21
 	justify-content: space-between;
+	flex-wrap: wrap;
 	cursor: pointer;
 	padding: 0.5em 1em;
 	background-color: transparent;
@@ -376,22 +374,29 @@ ul.manage-weekdays {
 		background-color: rgba(0,0,0,0.2);
 	}
 	.glance-mtg-time, {
-		// flex: 2 1 0;
+		order: 1;
 		padding: 0 1em 0 0;
-		width: 100%;
-		min-width: 150px;
+		// width: 50%;
+		// min-width: 150px;
+		flex: auto;
 	}
 	.glance-group-title {
-		// align-self: flex-end;
-		// align-self: flex-start;
+		order: 3;
 		width: 100%;
-		line-height: 1.5em;
+		// line-height: 1.5em;
+		flex: auto;
 	}
 	.glance-mtg-type {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-end;
+		padding: 0em 0.5em 0em;
+		order: 2;
+		// width: 50%;
 		padding: 0 1em;
 		text-align: right;
+		flex: auto;
 		p {
-			// display: flex;
 			width: 100%;
 			text-align: right;
 		}
@@ -418,9 +423,9 @@ ul.manage-weekdays {
 	border-left: 1px solid transparent;
 }
 
-.daily-glance .glance-mtg-type {
-	padding: 0em 1em 0em 0em;
-}
+// .daily-glance .glance-mtg-type {
+// 	padding: 0em 1em 0em 0em;
+// }
 // @media screen and (max-width: 800px) {
 // 	.daily-glance .glance-mtg-time {
 // 		padding-bottom: 0.5em;
@@ -439,6 +444,7 @@ ul.manage-weekdays {
 .manage-glance-review {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	cursor: default;
 	padding: 0.5em 1em;
 	background-color: transparent;
@@ -454,20 +460,23 @@ ul.manage-weekdays {
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
-	.glance-mtg-time, {
-		flex: 2 1 0;
+	.glance-mtg-time {
+		order: 1;
 		padding: 0 1em 0 0;
-		width: 20%;
-		min-width: 150px;
+		// width: 50%;
 	}
 	.glance-group-title {
-		// align-self: flex-end;
-		align-self: flex-start;
-		width: 70%;
-		line-height: 1.5em;
+		order: 3;
+		width: 100%;
+		// line-height: 1.5em;
 	}
 	.glance-mtg-type {
-		padding: 0em 1.5em 0em 0.5em;
+		order: 2;
+		// width: 50%;
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: nowrap;
+		// padding: 0em 1.5em 0em 0.5em;
 		p {
 			display: flex;
 		}
@@ -559,6 +568,9 @@ a.manage-delete {
 		margin-top: 1em;
 		position: relative;
 		width: 98%;
+		p.mtg-tz {
+			width: 100%;
+		}
 		i.far.fa-edit {
 			position: absolute;
 			top: 5px;
@@ -1183,24 +1195,19 @@ form#manage-mtg {
 		text-align: left;
 	}
 	.manage-glance-wrap-review .manage-glance-review {
-		flex-direction: column;
+		// flex-direction: column;
 
 	}
 	.manage-glance-review .glance-group-title {
 		margin: 0.5em 0;
 		width: 100%;
 	}
-	.manage-glance-review .glance-mtg-type {
-		text-align: right;
-		padding: 0px;
-		align-self: flex-end;
-	}
-	.manage-glance .glance-mtg-type {
-		padding: 0 0.25em;
-	}
-	.manage-glance .glance-mtg-time {
-		width: 100%;
-	}
+	// .manage-glance .glance-mtg-type {
+	// 	padding: 0 0.25em;
+	// }
+	// .manage-glance .glance-mtg-time {
+	// 	width: 100%;
+	// }
 	.manage-glance .glance-group-title {
 		width: 100%;
 	}
@@ -1320,7 +1327,7 @@ form#manage-mtg {
 		margin-left: 1.6em;
 	}
 	a.map-dir {
-		padding: 1.5em;
+		// padding: 1.5em;
 	}
 	a.zoom {
 		padding: 1.5em 1em;
@@ -1352,22 +1359,22 @@ span.contact-update-message {
 	}
 }
 
+
+// see end of _user-management.scss for the
+// final say in all this...
 .daily-glance .glance-mtg-time {
 	flex: 1;
-	align-items: center;
+	// align-items: center;
 }
 .daily-glance .glance-group-title {
 	flex: 4;
-	align-items: center;
+	// align-items: center;
 }
 .daily-glance .glance-mtg-type {
 	flex: 2;
-	align-items: center;
+	// align-items: center;
 	justify-content: flex-end;
 }
-// .daily-glance .ctr-type {
-// 	justify-self: flex-end;
-// }
 .tooltip .tooltiptext.type {
 	margin-left: -80px;
 }

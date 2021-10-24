@@ -1,6 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+
 // you can only manage users if you're Admin 1 or 3
 if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
 	header('location: ' . WWW_ROOT);
@@ -29,6 +30,7 @@ require '_includes/head.php'; ?>
 <?php } ?>	
 	
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

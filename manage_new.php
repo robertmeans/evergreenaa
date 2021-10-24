@@ -1,6 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
+
 if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
 	exit();
@@ -19,9 +20,10 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $role = $_SESSION['admin'];
 
-if (is_post_request()) {
+if (is_post_request() && isset($_POST['review-mtg'])) {
 
 $rando_num = rand(100,999);
+
 $row = [];
 
 	if (!empty($_FILES['file1']['name'])) {
@@ -76,15 +78,53 @@ $row = [];
 		$fn4 = ''; // file_name
 	}		
 
-$row['id_user'] 		= $_SESSION['id']				 							 ;
-$row['sun'] 			= $_POST['sun'] 										?? '';
-$row['mon'] 			= $_POST['mon'] 										?? '';
-$row['tue'] 			= $_POST['tue'] 										?? '';
-$row['wed'] 			= $_POST['wed'] 										?? '';
-$row['thu'] 			= $_POST['thu'] 										?? '';
-$row['fri'] 			= $_POST['fri'] 										?? '';
-$row['sat']				= $_POST['sat'] 										?? '';
-$row['meet_time'] 		= $_POST['meet_time'] 									?? '';
+$row['id_user'] = $_SESSION['id'];
+
+$time = [];
+$time['tz'] = $tz;
+$time['ut'] = $_POST['meet_time'] ?? '';
+
+$time['sun'] = $_POST['sun'] ?? '';
+$time['mon'] = $_POST['mon'] ?? '';
+$time['tue'] = $_POST['tue'] ?? '';
+$time['wed'] = $_POST['wed'] ?? '';
+$time['thu'] = $_POST['thu'] ?? '';
+$time['fri'] = $_POST['fri'] ?? '';
+$time['sat'] = $_POST['sat'] ?? '';
+
+list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = figger_it_out($time);
+
+// use this for db insert, converted to UTC ->
+$row['db_time'] = $ct->format('Hi');
+$row['db_sun'] = $sun;
+$row['db_mon'] = $mon;
+$row['db_tue'] = $tue;
+$row['db_wed'] = $wed;
+$row['db_thu'] = $thu;
+$row['db_fri'] = $fri;
+$row['db_sat'] = $sat;
+
+// use this to populate field if there are errors on pg ->
+// comment when testing
+$row['meet_time'] = $_POST['meet_time'];
+$row['sun'] = $_POST['sun'] ?? '';
+$row['mon'] = $_POST['mon'] ?? '';
+$row['tue'] = $_POST['tue'] ?? '';
+$row['wed'] = $_POST['wed'] ?? '';
+$row['thu'] = $_POST['thu'] ?? '';
+$row['fri'] = $_POST['fri'] ?? '';
+$row['sat'] = $_POST['sat'] ?? '';
+
+// for testing... ->
+// $row['meet_time'] = $ct->format('g:i A');
+// $row['sun'] = $sun;
+// $row['mon'] = $mon;
+// $row['tue'] = $tue;
+// $row['wed'] = $wed;
+// $row['thu'] = $thu;
+// $row['fri'] = $fri;
+// $row['sat'] = $sat;
+
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
@@ -136,6 +176,7 @@ require '_includes/head.php'; ?>
 </div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
+<?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <?php require '_includes/lat-long-instructions.php'; ?>

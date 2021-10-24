@@ -16,6 +16,7 @@
 $(document).ready(function() {
   var url = window.location.href;
   $('#url').val(url);
+  $('#tz-url').val(url);
 
   $('.top-nav').on('click', function() {
     this.classList.toggle('acty');
@@ -69,7 +70,24 @@ $(document).ready(function(){
         $("#why-join").fadeOut(500); 
     }
   });
-
+  $("#show-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeIn(500);
+  });
+  $(".inline-show-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeIn(500);
+  });
+  $("#hide-tz").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    $("#tz").fadeOut(500);
+    setTimeout(function() {
+      $("#tz-form").trigger("reset");
+    }, 525);
+  });
   $("#toggle-role-key").click(function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -116,10 +134,10 @@ $(document).click(function() {
     $("#why-join").fadeOut(500);
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
-
+  // } else if ($('#tz').is(':visible')) {
+  //   $("#tz").fadeOut(500);
   } else if ($('#mb-notes').is(':visible')) {
     $("#mb-notes").fadeOut(500); 
-
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
@@ -406,7 +424,7 @@ $(document).ready(function(){
   $("#why-join").hide();
   $("#gottajoin").hide();
   $("#mb-notes").hide();
-  // $("#reply-spot").hide();
+  $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
   $("#desc-loc").hide();
@@ -771,6 +789,26 @@ $(document).ready(function() {
     })
   });
 });
+
+// submit initial timezone cookie + db
+$(document).ready(function() {
+  $(document).on('click','#init-tz-submit', function() {
+    if ($('#init-tz-select').val() != "empty") {
+      $('#init-set-tz').submit();
+    } else {
+      $('#init-pick-tz').html('<p>Gotsta picka timezone</p>');
+    }
+  });
+  $(document).on('click','#tz-submit', function() {
+    if ($('#tz-select').val() != "empty") {
+      $('#tz-form').submit();
+    } else {
+      $('#pick-tz').html('<p>Gotsta picka timezone</p>');
+    }
+  });
+});
+
+
 
 // email host modal
 $(document).ready(function() {

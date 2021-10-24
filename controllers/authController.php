@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once 'controllers/emailController.php';
 
 $errors = [];
@@ -25,13 +23,14 @@ function remember_me()
 			$result = $stmt->get_result();
 			$user = $result->fetch_assoc();
 
-			// put user in session (log them in)
+			// put variables in session
 			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['db-tz'] = $user['tz'];
 		}
 	} 
 }
@@ -39,7 +38,7 @@ function remember_me()
 remember_me();
 
 // sign-up
-if (isset($_POST['submit'])) {
+if (is_post_request() && isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	$email = strtolower($_POST['email']);
 	$password = $_POST['password'];
@@ -138,7 +137,7 @@ if (isset($_POST['submit'])) {
 }
 
 // if user clicks on login
-if (isset($_POST['login'])) {
+if (is_post_request() && isset($_POST['login'])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
@@ -187,6 +186,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] 		= $user['admin'];
 			$_SESSION['mode'] 		= $user['mode'];
+			$_SESSION['db-tz'] 			= $user['tz'];
 			$_SESSION['token'] 		= $user['token'];
 
 			// you're not verified yet -> go see a msg telling you we're waiting for
@@ -236,7 +236,9 @@ function verifyUser($token) {
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = 1;
-			// set flash message
+			$_SESSION['admin'] = $user['admin'];
+			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['db-tz'] = $user['tz'];
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
 			header('location:'. WWW_ROOT);
@@ -248,7 +250,7 @@ function verifyUser($token) {
 }
 
 // if user clicks on forgot password 
-if (isset($_POST['forgot-password'])) {
+if (is_post_request() && isset($_POST['forgot-password'])) {
 	$email = $_POST['email'];
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -272,7 +274,7 @@ if (isset($_POST['forgot-password'])) {
 }
 
 // if user clicked on the reset password 
-if (isset($_POST['reset-password-btn'])) {
+if (is_post_request() && isset($_POST['reset-password-btn'])) {
 	$password = $_POST['password'];
 	$passwordConf = $_POST['passwordConf'];
 

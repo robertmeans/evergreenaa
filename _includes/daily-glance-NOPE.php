@@ -8,7 +8,9 @@
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 
-				<p><?= $mt->format('g:i') ?>&nbsp;<span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
+
+				<p><?= $mtz; ?></p>
+
 
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
@@ -65,8 +67,12 @@
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 
-				<p><?= $mt->format('g:i') ?>&nbsp;<span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
-				
+				<?php /* <p><?= date('g:i A', strtotime($row['meet_time'])); ?></p> */ ?>
+
+
+				<p><?= $mtz; ?></p>
+
+
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
 				<p><?= $row['group_name']; ?></p>
@@ -122,7 +128,7 @@
 	<div class="daily-glance-wrap">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
-				<p><?= $mt->format('g:i') ?>&nbsp;<span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
+				<p><?= date('g:i A', strtotime($row['meet_time'])); ?></p>
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">
 				<p><?= $row['group_name']; ?></p>
