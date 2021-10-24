@@ -45,14 +45,14 @@
 
 <?php /* } */ ?>
 
-<?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
-					<div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
+<?php if (($row['dedicated_om'] == '0') && (trim($row['meet_phone']) == '') && (trim($row['meet_id']) == '') && (trim($row['meet_pswd']) == '') && (trim($row['meet_url']) == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
+					<div class="details-left<?php if (trim($row['meet_url']) != '') { echo " l-stacked"; } ?>">
 <?php /* if ($row['dedicated_om'] != 0) { ?><p class="dd-meet">Dedicated Online Meeting</p> } */ ?>
-<?php 					if ($row['meet_phone'] != null) { ?>
+<?php 					if (trim($row['meet_phone']) != '') { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 
 
-<?php 		if ($row['meet_url'] != null) { ?>
+<?php 		if (trim($row['meet_url']) != '') { ?>
 						<p class="zoom-info">Zoom Information</p>
 <?php } ?>
 
@@ -63,7 +63,7 @@
 						<a data-role="ic" data-id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</a>
 
 <?php } ?>
-<?php 		if ($row['meet_pswd'] != null) { ?>
+<?php 		if (trim($row['meet_pswd']) != '') { ?>
 						<p class="id-num">Password: <input id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" type="text" value="<?php echo $row['meet_pswd']; ?>" class="day-values input-copyz"></p>
 
 						<a data-role="pc" data-id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</a>
@@ -71,14 +71,14 @@
 <?php } ?>
 
 
-<?php 					if ($row['meet_url'] != null) { ?>
+<?php 					if (trim($row['meet_url']) != '') { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM MEETING</a></p>
 <?php } ?>
 					</div><!-- .details-left -->
 <?php } ?>
-					<div class="details-right <?php if ($row['meet_url'] != null) { echo "rt-stacked"; } ?>" <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) { echo "style=\"width:100%;\""; } ?>>
+					<div class="details-right<?php if (trim($row['meet_url']) != '') { echo " rt-stacked"; } ?>" <?php if ($full_width == 'true') { echo " style=\"width:100%;\""; } ?>>
 
-<?php 				if ($row['meet_addr'] != null) { ?>
+<?php 				if (trim($row['meet_addr']) != '') { ?>
 
 						<div id="map">
 							<iframe
@@ -92,7 +92,7 @@
 							</iframe>
 						</div>
 
-<?php 			if (($row['meet_addr'] != null) && ($row['meet_desc'] != null)) { ?>
+<?php 			if ((trim($row['meet_addr']) != '') && (trim($row['meet_desc']) != '')) { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_desc']); ?></p>
 					<?php } else { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_addr']); ?></p>
@@ -147,5 +147,5 @@
 						</div>
 					<?php } ?>
 
-					<?php if($row['add_note'] != null) { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
+					<?php if(trim($row['add_note']) != '') { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
 				</div><!-- .meeting-details -->

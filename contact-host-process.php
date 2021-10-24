@@ -21,7 +21,8 @@ $db = db_connect();
 	$mtgname = $_POST['mtgname'];
 	$subject = $mtgname;
 
-if (is_post_request()) {
+if (is_post_request()) { 
+	// header('location: http://www.google.com');
 
 	if($name && $email && $message) {
 

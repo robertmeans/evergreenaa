@@ -1,24 +1,14 @@
-# Options +MultiViews
-# RewriteEngine on
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# ErrorDocument 401 http://www.evergreenaa.com/
-# ErrorDocument 404 http://www.evergreenaa.com/
-# ErrorDocument 500 http://www.evergreenaa.com/
-
-# -----------------------------------------------------
-# ^^ above all replaced with below on 04.20.20 at 07:14
-# -----------------------------------------------------
+# OFF FOR LOCALHOST
 
 # Options +MultiViews
 # RewriteEngine on
-# 
+
 # RewriteCond %{HTTPS} off [OR]
 # RewriteCond %{HTTP_HOST} ^www\.evergreenaa\.com [NC]
 # RewriteRule (.*) https://evergreenaa.com/$1 [L,R=301]
-# 
-# ErrorDocument 401 http://www.evergreenaa.com/
-# ErrorDocument 404 http://www.evergreenaa.com/
-# ErrorDocument 500 http://www.evergreenaa.com/
+
+# ErrorDocument 401 https://evergreenaa.com/
+# ErrorDocument 404 https://evergreenaa.com/
+# ErrorDocument 500 https://evergreenaa.com/
 

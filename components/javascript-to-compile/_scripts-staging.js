@@ -848,7 +848,7 @@ $(document).ready(function() {
 
 // email host submit
   $(document).on('click','#emh-btn', function() {
-
+    // alert ('yo!');
     $.ajax({
       dataType: "JSON",
       url: "contact-host-process.php",
