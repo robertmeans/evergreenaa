@@ -55,6 +55,11 @@ $role = $_SESSION['admin'];
 require '_includes/head.php'; ?>
 
 <body>
+<?php 
+if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+	<div class="preload"><p>One day at a time.</p></div>
+<?php } ?>
+	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
