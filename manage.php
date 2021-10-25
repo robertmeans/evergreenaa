@@ -48,15 +48,21 @@ require '_includes/head.php'; ?>
 	<?php } else { ?>
 		<p>My Dashboard</p>
 	<?php } ?>
+	<?php 
+	$any_meetings_for_user = find_meetings_for_manage_page($user_id);
+	$email_opt = mysqli_fetch_assoc($any_meetings_for_user);
+	$result 	= mysqli_num_rows($any_meetings_for_user);
+	// find out if user has any meetings they manage ?>
+
+	<form action="" class="email-updates">
+		<input type="hidden" name="email-updates" value="0">
+		<input type="checkbox" name="email-updates" id="email-updates" value="1" <?php if ($email_opt['email_opt'] == '1') { echo 'checked'; } ?>> <label for="email-updates" id="opt_inout">Email updates: Enabled</label>
+	</form>
 
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 	<a href="manage_new.php" class="new-mtg-btn">Add a new meeting</a>
 <div class="manage-simple">	
-	<?php 
-	$any_meetings_for_user = find_meetings_for_manage_page($user_id);
-	$result 	= mysqli_num_rows($any_meetings_for_user);
-	// find out if user has any meetings they manage ?>
 	<h1 class="my-meet">My Meetings</h1><?php if ($result > 1) { ?>
 	<p class="my-sort">(sorted by time of day)</p>
 	<?php } ?>

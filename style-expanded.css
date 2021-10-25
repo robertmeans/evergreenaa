@@ -2805,6 +2805,15 @@ p.display-issues {
       align-items: center;
 }
 
+form.email-updates input[type="checkbox"],
+form.email-updates label {
+  cursor: pointer;
+}
+form.email-updates input[type="checkbox"]:checked + label {
+  color: #96ff00;
+  display: inline-block;
+}
+
 form.admin-email-form {
   width: 100%;
   max-width: 560px;

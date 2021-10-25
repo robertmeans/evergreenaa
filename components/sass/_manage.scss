@@ -176,6 +176,32 @@ p.display-issues {
 	justify-content: center;
 	align-items: center;	
 }
+
+
+
+
+
+form.email-updates {
+	input[type="checkbox"] {
+		// -webkit-appearance: none;
+		// height: 1em;
+		// width: 1em;
+	}
+	input[type="checkbox"],
+	label {
+		cursor: pointer;
+	}
+	input[type="checkbox"]:checked + label {
+		color: #96ff00;
+		display: inline-block;
+	}	
+}
+
+
+
+
+
+
 form.admin-email-form {
 	width: 100%;
 	max-width: 560px;
