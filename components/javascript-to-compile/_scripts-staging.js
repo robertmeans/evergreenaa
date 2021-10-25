@@ -832,8 +832,10 @@ $(document).ready(function() {
     var theModal   = document.getElementById("theModal");
 
     $('#mtgid').val(mtgid);
-    $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-    $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+    // $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+    // $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+    $('#mtgname').html(mtgname);
+    $('#mtgnamez').val(mtgname);
     $('#your-name').html('Your name<input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30">');
     $('#your-email').html('Your email<input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250">');
     $('#msg-title').html('Message the host of:');
@@ -921,8 +923,10 @@ $(document).ready(function() {
     if (user_id != 'ns') { // ns = not set
       $('#tuid').val(user_id);
       $('#mtgid').val(mtgid);
-      $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-      $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+      // $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+      // $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+      $('#mtgname').html(mtgname);
+      $('#mtgnamez').val(mtgname);
       $('#ri').val(num_issues);
       $('#msg-title').html('Abandoned meeting? Broken links?<div class="issue-header">Submitting this form will post an alert on this meeting to notify all visitors of an issue and will email the Host to give them the opportunity to fix it. 3 issues without a response from the Host will remove the meeting from the site.</div>');
       $('#your-name').html('');

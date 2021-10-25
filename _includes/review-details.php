@@ -22,7 +22,7 @@
 						<button type="submit" class="zoom-id btnz"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</button>
 <?php } ?>
 <?php     			if ($row['meet_url'] != null) { ?>
-						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM MEETING</a></p>
+						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM: VIDEO</a></p>
 <?php } ?>
 					</div><!-- .details-left -->
 <?php } ?>

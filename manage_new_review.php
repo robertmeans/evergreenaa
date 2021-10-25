@@ -64,7 +64,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 
 			<?php require '_includes/new-review-glance.php'; ?>
 			<div class="weekday-edit-wrap">
-				<?php require '_includes/new-review-details.php'; ?>
+				<?php require '_includes/meeting-details.php'; ?>
 
 			</div><!-- .weekday-wrap -->
 

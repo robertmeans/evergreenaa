@@ -401,37 +401,6 @@ span[data-ampm='PM'] {
 
 
 
-
-
-
-
-
-
-
-// .email-host {
-// 	width: 100%;
-// 	display: block;
-// 	padding: 1em;
-// 	a {
-// 		margin-left: 0;
-// 		color: #fff;
-// 		text-decoration: none;
-// 		line-height: 1.2em;
-// 		cursor: pointer;
-// 		transition: all 0.2s ease;
-// 		&:hover {
-// 			color: #96ff00;
-// 		}
-// 	}
-// 	i.far.fa-envelope {
-// 		position: relative;
-// 		margin-right: 0.5em;
-// 		float: left;
-// 		margin-bottom: 1em;
-// 		line-height: 1.2em;
-// 	}
-// }
-
 .email-host {
 	display: flex;
 	justify-content: flex-start;
@@ -582,6 +551,13 @@ span[data-ampm='PM'] {
 	.manage-glance .glance-mtg-type {
 		padding: 0px;
 	}
+
+
+	.email-host {
+		a {
+			max-width: 100%;
+		}
+	}
 }
 
 
@@ -606,7 +582,6 @@ input.day-values
 }
 .zoom-id,
 a.zoom {
-  width: 165px;
   width: 90%;
   text-align: center;
   font-family: inherit;
@@ -623,7 +598,7 @@ a.zoom {
     cursor: pointer;
   }
 }
-a.ot {
+a.zoom.ot {
 	margin: 0.5em 0 1em;
 }
 a.zoom-id.copied {
@@ -651,4 +626,13 @@ a.zoom {
   &:hover {
   	background-color: #25d422;
   }
+}
+
+@media screen and (max-width: 490px) {
+	a.zoom.ot,
+	a.zoom,
+	a.zoom-id {
+		width: 100%;
+	}
+
 }

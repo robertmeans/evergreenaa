@@ -1244,6 +1244,10 @@ span[data-ampm='PM'] {
   .manage-glance .glance-mtg-type {
     padding: 0px;
   }
+
+  .email-host a {
+    max-width: 100%;
+  }
 }
 input.day-values {
   font-size: 18px;
@@ -1266,7 +1270,6 @@ input.day-values {
 
 .zoom-id,
 a.zoom {
-  width: 165px;
   width: 90%;
   text-align: center;
   font-family: inherit;
@@ -1284,7 +1287,7 @@ a.zoom:hover {
   cursor: pointer;
 }
 
-a.ot {
+a.zoom.ot {
   margin: 0.5em 0 1em;
 }
 
@@ -1314,6 +1317,13 @@ a.zoom:hover {
   background-color: #25d422;
 }
 
+@media screen and (max-width: 490px) {
+  a.zoom.ot,
+  a.zoom,
+  a.zoom-id {
+    width: 100%;
+  }
+}
 footer {
   width: 100%;
   background-color: #000;
@@ -3988,19 +3998,6 @@ form#manage-mtg label.pdf-label {
 
   a.manage-delete {
     margin-left: 1.6em;
-  }
-
-  a.zoom {
-    padding: 1.5em 1em;
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .zoom-id {
-    width: 50%;
-    min-width: 250px;
-    padding: 0.75em 0.5em 0.75em 1em;
   }
 }
 span.contact-update-message {
