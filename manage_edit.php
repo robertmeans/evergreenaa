@@ -160,7 +160,7 @@ if (isset($_POST['meet_phone'])) {
 } else {
 	$row['meet_phone'] 		= '';
 }
-
+$row['one_tap']			= $_POST['one_tap'] 									?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
 $row['meet_url'] 		= $_POST['meet_url'] 									?? '';

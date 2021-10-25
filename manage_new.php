@@ -127,6 +127,7 @@ $row['sat'] = $_POST['sat'] ?? '';
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';
+$row['one_tap'] = $_POST['one_tap'] ?? '';
 $row['meet_id']			= $_POST['meet_id'] 									?? '';
 $row['meet_pswd'] 		= $_POST['meet_pswd'] 									?? '';
 $row['meet_url'] 		= $_POST['meet_url'] 									?? '';

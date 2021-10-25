@@ -140,6 +140,8 @@ $(document).click(function() {
     $("#mb-notes").fadeOut(500); 
   } else if ($('#lat-long').is(':visible')) {
     $("#lat-long").fadeOut(500);
+  } else if ($('#one-tap').is(':visible')) {
+    $("#one-tap").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
     $("#desc-loc").fadeOut(500);
   } else if ($('#pdf-upload').is(':visible')) {
@@ -427,6 +429,7 @@ $(document).ready(function(){
   $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
+  $("#one-tap").hide();
   $("#desc-loc").hide();
   $("#pdf-upload").hide();
   $("#link-label").hide();
@@ -685,6 +688,12 @@ $(document).ready(function(){
 // _includes/edit-details.php page
 $("#toggle-lat-long-msg").click(function(e) {
   $("#lat-long").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$("#toggle-one-tap-msg").click(function(e) {
+  $("#one-tap").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });

@@ -9,3 +9,15 @@
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
 </div><!-- #lat-long -->
+
+<div id="one-tap">
+	<div class="msg-bkg">
+		<div class="inside-msg-one">
+			<i class="far fa-times-circle"></i>
+			<h1>One Tap Mobile Number</h1>
+			<p>This is a specific string of numbers &amp; characters that Zoom provides so mobile users only have to press 1 link to dial the whole set of instructions to join a Zoom meeting. It looks something like this:</p>
+			<p>13122326799,,85589390399##,,,,*963889#</p>
+			<p>If you're unsure whether you've got it entered correctly give it a test run once it's on the site.</p>
+		</div><!-- .inside-msg-one -->
+	</div><!-- .msg-bkg -->
+</div><!-- #one-tap -->

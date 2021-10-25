@@ -11,6 +11,13 @@
 						<p class="zoom-info">Zoom Information</p>
 <?php } ?>
 
+
+<?php 	if (trim($row['one_tap']) != '') { ?>
+			<p><a href="tel:<?= h($row['one_tap']); ?>" class="zoom ot" target="_blank">ONE TAP MOBILE #</a></p>
+<?php } ?>
+
+
+
 <?php 		if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>
 						<p class="id-num">ID: <input id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" type="text" value="<?php echo $row['meet_id']; ?>" class="day-values input-copy"></p>
 

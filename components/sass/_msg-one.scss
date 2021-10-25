@@ -1,4 +1,5 @@
 a#toggle-lat-long-msg,
+a#toggle-one-tap-msg,
 a#toggle-descriptive-location,
 a#toggle-pdf-info,
 a#toggle-link-label,
@@ -42,6 +43,7 @@ a#gmaps {
 #msg-one,
 #gottajoin,
 #lat-long,
+#one-tap,
 #desc-loc,
 #pdf-upload,
 #link-label,
@@ -201,6 +203,7 @@ a.youtube {
 @media screen and (max-width: 800px) {
   #msg-one,
   #lat-long,
+  #one-tap,
   #desc-loc,
   #pdf-upload,
   #link-label,
@@ -235,6 +238,7 @@ a.youtube {
 @media screen and (max-width: 390px) {
   #msg-one,
   #lat-long,
+  #one-tap,
   #desc-loc,
   #pdf-upload,
   #link-label,

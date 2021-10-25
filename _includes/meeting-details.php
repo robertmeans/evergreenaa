@@ -45,17 +45,17 @@
 
 <?php /* } */ ?>
 
-<?php if (($row['dedicated_om'] == '0') && (trim($row['meet_phone']) == '') && (trim($row['meet_id']) == '') && (trim($row['meet_pswd']) == '') && (trim($row['meet_url']) == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
+<?php if (($row['dedicated_om'] == '0') && (trim($row['one_tap']) == '') && (trim($row['meet_phone']) == '') && (trim($row['meet_id']) == '') && (trim($row['meet_pswd']) == '') && (trim($row['meet_url']) == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
 					<div class="details-left<?php if (trim($row['meet_url']) != '') { echo " l-stacked"; } ?>">
 <?php /* if ($row['dedicated_om'] != 0) { ?><p class="dd-meet">Dedicated Online Meeting</p> } */ ?>
 <?php 					if (trim($row['meet_phone']) != '') { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 
-
-<?php 		if (trim($row['meet_url']) != '') { ?>
 						<p class="zoom-info">Zoom Information</p>
-<?php } ?>
 
+<?php 	if (trim($row['one_tap']) != '') { ?>
+			<p><a href="tel:<?= h($row['one_tap']); ?>" class="zoom ot" target="_blank">ONE TAP MOBILE #</a></p>
+<?php } ?>
 
 <?php 		if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>
 						<p class="id-num">ID: <input id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" type="text" value="<?php echo $row['meet_id']; ?>" class="day-values input-copy"></p>
