@@ -54,9 +54,10 @@ require '_includes/head.php'; ?>
 	$result 	= mysqli_num_rows($any_meetings_for_user);
 	// find out if user has any meetings they manage ?>
 
-	<form action="" class="email-updates">
+	<form id="emailopt-form" class="email-updates">
 		<input type="hidden" name="email-updates" value="0">
-		<input type="checkbox" name="email-updates" id="email-updates" value="1" <?php if ($email_opt['email_opt'] == '1') { echo 'checked'; } ?>> <label for="email-updates" id="opt_inout">Email updates: Enabled</label>
+		<input type="checkbox" name="email-updates" id="email-updates" value="1" <?php if ($email_opt['email_opt'] == '1') { echo 'checked'; } ?>> <label for="email-updates" id="opt-inout"><?php if ($email_opt['email_opt'] == '1') { echo 'Email updates: Enabled'; } else { echo 'Email updates: OFF'; } ?></label>
+		<div id="email-opt-msg"></div>
 	</form>
 
 	<?php require '_includes/inner_nav.php'; ?>

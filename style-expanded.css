@@ -2807,6 +2807,7 @@ p.display-issues {
 
 form.email-updates input[type="checkbox"],
 form.email-updates label {
+  color: #f18282;
   cursor: pointer;
 }
 form.email-updates input[type="checkbox"]:checked + label {

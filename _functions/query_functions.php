@@ -157,6 +157,17 @@ function update_admin_mode($id, $mode) {
   return $result; 
 }
 
+function email_opt($id, $email_opt) {
+  global $db;
+
+  $one = "UPDATE users ";
+  $one .= "SET email_opt='"  . db_escape($db, $email_opt) . "' ";
+  $one .= "WHERE id_user='"  . db_escape($db, $id) . "'";
+
+  $result = mysqli_query($db, $one);
+  return $result; 
+}
+
 function update_sus_note($reason, $user) {
   global $db;
 
@@ -533,6 +544,7 @@ function find_all_users() {
   $sql  = "SELECT * FROM users ";
   $sql .= "WHERE id_user != 1 ";  
   $sql .= "AND id_user != 13 ";
+  $sql .= "AND email_opt != 0 ";
   $sql .= "ORDER BY LOWER(username) ASC";
   // echo $sql;
   $result = mysqli_query($db, $sql);

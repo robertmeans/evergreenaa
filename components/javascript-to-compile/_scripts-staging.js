@@ -1149,6 +1149,50 @@ $(document).ready(function() { // 0829210847
 
 }); // 0829210847
 
+// email updates opt in out
+$(document).ready(function() {
+  $('#email-updates').on('change', function(e) {
+    close_navigation_first();
+    var opt_value = $('#opt-inout').html();
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-email-optinout.php",
+      type: "POST",
+      data: $('#emailopt-form').serialize(),
+      beforeSend: function(xhr) {
+        // $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
+      },
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          console.log(response);
+          if(response['signal'] == 'ok') {
+
+            if(opt_value == 'Email updates: Enabled') {
+
+              $('#opt-inout').html('Email updates: OFF');
+              $('#email-opt-msg').html('<div class="alert alert-warning">You will not receive email updates from this website. If you have meeting(s) hosted for the public you will still get emails from visitors or if an issue is logged against your meeting.</div>');
+            } else {
+              $('#opt-inout').html('Email updates: Enabled');
+              $('#email-opt-msg').html('');
+            }
+
+          } else {
+            $('#email-opt-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+          }
+        } 
+      },
+      error: function() {
+        $('#email-opt-msg').html('<div class="alert alert-warning">There was an error somehow, somewhere and I don\'t think that worked. Refresh this page and try again.</div>');
+      }, 
+      complete: function() {
+
+      }
+    })    
+  });
+});
+
 // Transfer Meeting and User Management tabs to separate
 // username from email dropdown lists in order to keep
 // beautiful and work in mobile
