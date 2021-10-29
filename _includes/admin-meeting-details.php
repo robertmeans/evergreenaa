@@ -1,24 +1,31 @@
-				<?php $emh = rand(10000, 99999);  ?>
-				<div class="meeting-details">
+<?php $emh = rand(10000, 99999);  ?>
+<div class="meeting-details">
 
 
 <?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host admin-links">
-		
-		<span data-target="mtgtime" style="display:none;"><?= date('g:i A', strtotime($row['meet_time'])); ?></span>
+	
+		<?php 
+		// convert time based on visitor's tz for h4 title of modal
+		// you will convert for host's tz in corresponding processing script
+		// i.e, contact-host-process.php or log-issue-process.php	
+			$time = $row['meet_time'];
+			$nt = converted_time($time, $tz); 
+		?>
+		<span data-target="vtz" style="display:none;"><?= $tz; ?></span>
+		<span data-target="mtgtime" style="display:none;"><?= $nt; ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr(ucfirst($today), 0,3); ?></span>
 		<span data-target="mtgid" style="display:none;"><?= $row['id_mtg']; ?></span>
 		<span data-target="tuid" style="display: none;"><?= $user_id ?></span>
 		<span data-target="ri" style="display:none;"><?= $row['issues']; ?></span>
-		<span data-target="mtgname" style="display:none;">
-		<?php if (strlen($row['group_name']) < 22) { 
+		<span data-target="mtgname" style="display:none;"><?php 
+		if (strlen($row['group_name']) < 22) { 
 				echo trim($row['group_name']); 
 			} else {
 				echo trim(substr($row['group_name'], 0,22)) . '...';
 			} 
-		?>
-		</span>
+		?></span>
 
 		<?php if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3)) { ?>
 			<a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a> <a data-role="<?php if ((isset($row['idi_user'])) && ($row['idi_user'] == $_SESSION['id'])) { echo 'logissued'; } else { echo 'logissue'; } ?>" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log an issue</a>

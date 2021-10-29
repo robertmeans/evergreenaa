@@ -994,6 +994,7 @@ p.no-mtgs {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 0px;
   margin-top: 0.5em;
+  word-break: break-word;
 }
 .weekday-wrap .meeting-details #add-note > p {
   text-align: left;

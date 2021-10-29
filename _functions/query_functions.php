@@ -594,7 +594,7 @@ function update_host($mtgid, $new_host) {
 function get_host_address($mtgid) {
   global $db;
 
-  $sql  = "SELECT u.username, u.email ";
+  $sql  = "SELECT u.username, u.email, u.tz ";
   $sql .= "FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_mtg='" . db_escape($db, $mtgid) . "' ";

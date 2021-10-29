@@ -825,17 +825,27 @@ $(document).ready(function() {
 
     var id         = $(this).data('id');
     var mtgid      = $('#'+id).children('span[data-target=mtgid]').text();
-    var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
-    var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
-    var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
 
+    var vtz    = $('#'+id).children('span[data-target=vtz]').text(); // visitor's tz to use in creating Subject line
+    // mtgtime comes from meeting-details.php and is based on visitors tz. this can't be the
+    // same as what the host gets in their Subjec line bc their tz might be different. there are some real
+    // coding gymnastics going on here to get everything right.
+    var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text(); // in meeting-details.php
+    // same goes with mtgday - these might be different between visitor and host...
+    var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
+
+    var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
     var theModal   = document.getElementById("theModal");
 
     $('#mtgid').val(mtgid);
-    // $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-    // $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-    $('#mtgname').html(mtgname);
-    $('#mtgnamez').val(mtgname);
+    $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname); // used for h4
+
+    $('#vdt').val(mtgday + ', ' + mtgtime); // visitor's day + time.
+    // for crying out loud! day, time has to be the order for this to work
+    // figure out why one day.
+    $('#vtz').val(vtz); // visitor's tz
+    $('#mtgnamez').val(mtgname); // meeting name
+
     $('#your-name').html('Your name<input name="name" id="emh-name" class="edit-input link-name" type="text" maxlength="30">');
     $('#your-email').html('Your email<input name="email" id="emh-email" class="edit-input link-email" type="email" maxlength="250">');
     $('#msg-title').html('Message the host of:');
@@ -850,7 +860,7 @@ $(document).ready(function() {
     var closefp = document.getElementsByClassName("closefp")[0];
     closefp.onclick = function() {
 
-      $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" class="submit-links"></div>');
+      $('#emh-contact').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="vdt" id="vdt"><input type="hidden" name="vtz" id="vtz"><input type="hidden" name="mtgname" id="mtgnamez"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" class="submit-links"></div>');
 
       $('body').removeClass('noscrollz');
       theModal.style.display = "none";
@@ -911,22 +921,34 @@ $(document).ready(function() {
 
     var id         = $(this).data('id');
     var mtgid      = $('#'+id).children('span[data-target=mtgid]').text();
+
+    var vtz    = $('#'+id).children('span[data-target=vtz]').text(); // visitor's tz to use in creating Subject line
+    // mtgtime comes from meeting-details.php and is based on visitors tz. this can't be the
+    // same as what the host gets in their Subjec line bc their tz might be different. there are some real
+    // coding gymnastics going on here to get everything right.
     var mtgtime    = $('#'+id).children('span[data-target=mtgtime]').text();
+    // same goes with mtgday - these might be different between visitor and host...
     var mtgday    = $('#'+id).children('span[data-target=mtgday]').text();
+
     var mtgname    = $('#'+id).children('span[data-target=mtgname]').text();
     var user_id    = $('#'+id).children('span[data-target=tuid]').text();
     var num_issues    = $('#'+id).children('span[data-target=ri]').text();
-    // var id_for_submit  = $('#'+id+'_er');
     var id_for_submit = id+'_er';
     var theModal   = document.getElementById("theModal");
 
     if (user_id != 'ns') { // ns = not set
       $('#tuid').val(user_id);
       $('#mtgid').val(mtgid);
-      // $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-      // $('#mtgnamez').val(mtgtime + ', ' + mtgday + ' - ' + mtgname);
-      $('#mtgname').html(mtgname);
+
+      // #mtgname goes into h4 and is based on visitors tz
+      $('#mtgname').html(mtgtime + ', ' + mtgday + ' - ' + mtgname);
+
+      $('#vdt').val(mtgday + ', ' + mtgtime); // visitor's day + time.
+      $('#vtz').val(vtz); // visitor's tz
+      // #mtgnamez goes into log-issue-process.php for host's Subject line.
+      // we'll build the appropriate day/time to procede the meeting name there...
       $('#mtgnamez').val(mtgname);
+
       $('#ri').val(num_issues);
       $('#msg-title').html('Abandoned meeting? Broken links?<div class="issue-header">Submitting this form will post an alert on this meeting to notify all visitors of an issue and will email the Host to give them the opportunity to fix it. 3 issues without a response from the Host will remove the meeting from the site.</div>');
       $('#your-name').html('');
@@ -959,7 +981,7 @@ $(document).ready(function() {
     var closefp = document.getElementsByClassName("closefp")[0];
     closefp.onclick = function() {
 
-      $('#emh-contact').html('<input type="hidden" name="tuid" id="tuid"><input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" name="ri" id="ri"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" data-id="" class="submit-links"></div>');
+      $('#emh-contact').html('<input type="hidden" name="tuid" id="tuid"><input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="vdt" id="vdt"><input type="hidden" name="vtz" id="vtz"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" name="ri" id="ri"><label id="your-name"></label><label id="your-email"></label><label><span id="msg-label"></span><textarea name="emhmsg" id="emh-msg" class="edit-input link-msg" maxlength="2000"></textarea></label><div id="emh-contact-msg"></div><div id="submit-links" data-id="" class="submit-links"></div>');
 
       $('body').removeClass('noscrollz');
       theModal.style.display = "none";
@@ -1489,7 +1511,6 @@ $('.radio-groupz .radioz').click(function(){
 
 // Suspend user
 $(document).ready(function() {
-  //$('#emh-btn').click(function() {
   $(document).on('click','#suspend-user', function() {
     close_navigation_first();
 
@@ -1536,7 +1557,6 @@ $(document).ready(function() {
 
 // change user role
 $(document).ready(function() {
-  //$('#emh-btn').click(function() {
   $(document).on('click','#change-user-role', function() {
     close_navigation_first();
 

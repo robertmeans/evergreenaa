@@ -416,6 +416,18 @@ function converted_time($time, $tz) {
   return $nct;
 }
 
+// function visitor_to_host($vdt, $vtz, $emhtz) {
+//   $utc = $vtz;
+//   $from_tz_obj = new DateTimeZone($utc);
+//   $to_tz_obj = new DateTimeZone($emhtz);
+
+//   $ct = new DateTime($vdt, $from_tz_obj);
+//   $ct->setTimezone($to_tz_obj);
+//   $nct = $ct->format('g:i A');
+
+//   return $nct;
+// }
+
 function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset) {
   $user_tz  = new DateTimeZone($tz); // -7/dst: -6
   $lc = substr(ucfirst($today), 0,3);

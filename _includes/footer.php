@@ -66,6 +66,8 @@
       <form id="emh-contact" class="emh-form">
         <input type="hidden" name="tuid" id="tuid">
         <input type="hidden" name="mtgid" id="mtgid">
+        <input type="hidden" name="vdt" id="vdt">
+        <input type="hidden" name="vtz" id="vtz">
         <input type="hidden" name="mtgname" id="mtgnamez">
         <input type="hidden" name="ri" id="ri">
 

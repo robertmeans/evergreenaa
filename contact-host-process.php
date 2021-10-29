@@ -1,4 +1,6 @@
 <?php
+include_once 'error-reporting.php';
+
 // header('location: https://www.google.com');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -18,11 +20,13 @@ $db = db_connect();
 	$name = trim($_POST['name']);
 	$email = trim($_POST['email']);
 	$message = trim($_POST['emhmsg']);
-	$mtgname = $_POST['mtgname'];
-	$subject = $mtgname;
+
+	$vdt = $_POST['vdt']; // visitor's day + time (really time + day (e.g. '1:15 PM, Sun'))
+	$vtz = $_POST['vtz']; // visitor's tz
+
+	$meetname = $_POST['mtgname']; // all that's here is meeting name (no day or time)
 
 if (is_post_request()) { 
-	// header('location: http://www.google.com');
 
 	if($name && $email && $message) {
 
@@ -33,6 +37,22 @@ if (is_post_request()) {
 
 		$emhemail = $rowq['email'];
 		$emhuser = $rowq['username'];
+		$emhtz = $rowq['tz'];
+
+		function visitor_to_host($vdt, $vtz, $emhtz) {
+		  $from_tz_obj = new DateTimeZone($vtz);
+		  $to_tz_obj = new DateTimeZone($emhtz);
+
+		  $ct = new DateTime($vdt, $from_tz_obj);
+		  $ct->setTimezone($to_tz_obj);
+		  $nct = $ct->format('g:i A, D');
+
+		  return $nct;
+		}
+
+		$mtgdt = visitor_to_host($vdt, $vtz, $emhtz);
+
+		$mtgname = $mtgdt . ' - ' . $meetname;
 
     $mail = new PHPMailer(true);
 
@@ -53,7 +73,7 @@ if (is_post_request()) {
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = $subject;
+        $mail->Subject = $mtgname;
         $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br>Note: The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". A visitor has sent you the following question/comment. When you reply to this message you will be communicating directly with them.<hr><br>' . nl2br($message);
 
         $mail->send();
