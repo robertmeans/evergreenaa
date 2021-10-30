@@ -106,12 +106,12 @@ require '_includes/head.php'; ?>
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
-		<?php }  ?>
+		<?php } mysqli_free_result($any_meetings_for_user); ?>
 
 	<?php  
 	} else { // user has no meetings to manage
 		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">When you add a meeting it will display here and wherever else you choose. You can make your meetings public or keep them private. Add a new meeting and give it a try.</p>";
-	}  mysqli_free_result($any_meetings_for_user); ?>
+	} ?>
 
 </ul><!-- .manage-weekdays -->
 
