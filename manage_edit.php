@@ -275,7 +275,6 @@ require '_includes/head.php'; ?>
 <div class="manage-simple intro">
 	<?php if (($row['id_user'] == $_SESSION['id']) || ($role != 1 && $role != 2 && $role != 3)) { ?>
 	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
-	<p>Looks like you've got some corrections to make.</p>
 <?php } else if ($role == 1) { ?>
 	<p>Hey Me,</p>
 	<p>Quit talking to yourself.</p>

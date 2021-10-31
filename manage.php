@@ -9,6 +9,7 @@ if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 85 || $_SESSION['admin
 
 $layout_context = "dashboard";
 $hide_this = "yep";
+$email_opt = $_SESSION['email_opt'];
 
 if (!isset($_SESSION['id'])) {
 	header('location: home.php');
@@ -50,13 +51,13 @@ require '_includes/head.php'; ?>
 	<?php } ?>
 	<?php 
 	$any_meetings_for_user = find_meetings_for_manage_page($user_id);
-	$email_opt = mysqli_fetch_assoc($any_meetings_for_user);
+	// $email_opt = mysqli_fetch_assoc($any_meetings_for_user);
 	$result 	= mysqli_num_rows($any_meetings_for_user);
 	// find out if user has any meetings they manage ?>
 
 	<form id="emailopt-form" class="email-updates">
 		<input type="hidden" name="email-updates" value="0">
-		<input type="checkbox" name="email-updates" id="email-updates" value="1" <?php if ($email_opt['email_opt'] == '1') { echo 'checked'; } ?>> <label for="email-updates" id="opt-inout"><?php if ($email_opt['email_opt'] == '1') { echo 'Email updates: Enabled'; } else { echo 'Email updates: OFF'; } ?></label>
+		<input type="checkbox" name="email-updates" id="email-updates" value="1" <?php if ($email_opt == '1') { echo 'checked'; } ?>> <label for="email-updates" id="opt-inout"><?php if ($email_opt == '1') { echo 'Email updates: Enabled'; } else { echo 'Email updates: OFF'; } ?></label>
 		<div id="email-opt-msg"></div>
 	</form>
 
@@ -106,12 +107,12 @@ require '_includes/head.php'; ?>
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
-		<?php } mysqli_free_result($any_meetings_for_user); ?>
+		<?php } ?>
 
 	<?php  
 	} else { // user has no meetings to manage
 		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">When you add a meeting it will display here and wherever else you choose. You can make your meetings public or keep them private. Add a new meeting and give it a try.</p>";
-	} ?>
+	} mysqli_free_result($any_meetings_for_user); ?>
 
 </ul><!-- .manage-weekdays -->
 

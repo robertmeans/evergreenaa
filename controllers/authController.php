@@ -30,6 +30,7 @@ function remember_me()
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
 		}
 	} 
@@ -186,6 +187,7 @@ if (is_post_request() && isset($_POST['login'])) {
 			$_SESSION['verified'] = $user['verified'];
 			$_SESSION['admin'] 		= $user['admin'];
 			$_SESSION['mode'] 		= $user['mode'];
+			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] 			= $user['tz'];
 			$_SESSION['token'] 		= $user['token'];
 
@@ -238,6 +240,7 @@ function verifyUser($token) {
 			$_SESSION['verified'] = 1;
 			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
