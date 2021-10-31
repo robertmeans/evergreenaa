@@ -58,7 +58,7 @@ function get_meetings_for_members($id_user) { // home_private.php
 function verify_this_user($id) {
   global $db;
 
-  $sql = "SELECT admin, mode FROM users WHERE ";
+  $sql = "SELECT admin, mode, email_opt FROM users WHERE ";
   $sql .= "id_user='" . db_escape($db, $id) . "' ";
  
   $result = mysqli_query($db, $sql);

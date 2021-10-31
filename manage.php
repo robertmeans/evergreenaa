@@ -51,7 +51,6 @@ require '_includes/head.php'; ?>
 	<?php } ?>
 	<?php 
 	$any_meetings_for_user = find_meetings_for_manage_page($user_id);
-	// $email_opt = mysqli_fetch_assoc($any_meetings_for_user);
 	$result 	= mysqli_num_rows($any_meetings_for_user);
 	// find out if user has any meetings they manage ?>
 
