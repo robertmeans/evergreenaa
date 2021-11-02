@@ -1,6 +1,6 @@
 <?php 
 require_once 'config/initialize.php';
-require_once 'config/verify_admin.php';
+// require_once 'config/verify_admin.php';
 
 $mb_posts = get_mb_posts(); 
 $results = mysqli_num_rows($mb_posts);

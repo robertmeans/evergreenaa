@@ -1,6 +1,6 @@
 <?php 
 require_once 'config/initialize.php';
-require_once 'config/verify_admin.php';
+// require_once 'config/verify_admin.php';
 
 $layout_context = 'message-board';
 
