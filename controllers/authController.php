@@ -122,6 +122,9 @@ if (is_post_request() && isset($_POST['submit'])) {
 			$_SESSION['email'] = $email;
 			// don't send a verified token because they're not verified yet!
 			$_SESSION['verified'] = $verified;
+			$_SESSION['admin'] = $user['admin'];
+			$_SESSION['mode'] = $user['mode'];
+			$_SESSION['email_opt'] = $user['email_opt'];
 
 		  	sendVerificationEmail($username, $email, $token);
 
