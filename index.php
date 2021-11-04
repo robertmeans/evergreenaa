@@ -25,12 +25,16 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
 
 if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset($_SESSION['message'])))) {
 	require 'home_private.php';
-	exit();
+	exit;
 }
 
 include '_includes/head.php'; ?>
 
 <body>
+<?php 
+if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+	<div class="preload"><p>One day at a time.</p></div>
+<?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

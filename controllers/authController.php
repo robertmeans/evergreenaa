@@ -122,9 +122,9 @@ if (is_post_request() && isset($_POST['submit'])) {
 			$_SESSION['email'] = $email;
 			// don't send a verified token because they're not verified yet!
 			$_SESSION['verified'] = $verified;
-			$_SESSION['admin'] = $user['admin'];
-			$_SESSION['mode'] = $user['mode'];
-			$_SESSION['email_opt'] = $user['email_opt'];
+			$_SESSION['admin'] = '0';
+			$_SESSION['mode'] = '0';
+			$_SESSION['email_opt'] = '1';
 
 		  	sendVerificationEmail($username, $email, $token);
 
@@ -272,10 +272,19 @@ if (is_post_request() && isset($_POST['forgot-password'])) {
 		$sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
 		$result = mysqli_query($conn, $sql);
 		$user = mysqli_fetch_assoc($result);
-		$token = $user['token'];
-		sendPasswordResetLink($email, $token);
-		header('location: password_message.php');
-		exit(0);
+		$user_exists = mysqli_num_rows($result);
+
+		if ($user_exists > 0) {
+			$token = $user['token'];
+			sendPasswordResetLink($email, $token);
+			header('location: password_message.php');
+			exit(0);
+		} else {
+			$_SESSION['message'] = "There is no user here with that email address.";
+			$_SESSION['alert-class'] = "alert-danger";				
+			header('location:'. WWW_ROOT . '/forgot_password.php');
+			exit();
+		}
 	}
 }
 

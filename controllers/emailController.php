@@ -33,30 +33,35 @@ function sendVerificationEmail($username, $userEmail, $token) {
 		<meta charset="UTF-8">
 		<title>Verify EvergreenAA.com Registration</title>
 		<style>
-			.wrapper {
-			  padding: 20px;
-			  color: #444;
-			  font-size: 1.3em;
-			}
-			a {
-			  background-color: #2c496a;
-			  text-decoration: none;
-			  padding: 8px 15px;
-			  border-radius: 5px;
-			  color: #fff;
-			}
-			a:hover {
-				background-color: #9bafc6;
+			body {
+				font-size: 16px;
 				color: #313131;
+				font-family: Verdana, Tahoma, Calbri, Arial, sans-serif;
+			}
+			.wrapper {
+			  padding: 1.5em;
+			  font-size: 1em;
 			}
 		</style>		
 	</head>
 	<body>
 		<div class="wrapper">
-			<p>Hello ' . $username . ',
-			<p>Thank you for joining this neat project. As I type this we are all buckled down for the Coronavirus which has introduced a new opportunity for AA members to meet. This website is being developed in hopes of providing everyone a safer, more convenient way to manage their Zoom meetings while keeping private information private.</p>
-			<p><a style="padding:5px 8px;border-radius:3px;background-color:#2c496a;color:#fff;margin:0.5em 0em 0.5em;text-decoration:none;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address.</p>
-			<p>Sincerely,<br>Evergreen Bob</p>
+			<p>Hello ' . $username . ',</p>
+
+			<p>Welcome to this neat project!</p>
+
+			<p>EvergreenAA.com provides a convenient outlet to consolidate, organize, publish and edit your meeting information. Whether you maintain this information for your own private use or make it available to everyone is up to you.</p>
+
+			<p><a style="color:#0000ff;text-decoration:underline;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address (or use copy &amp; paste option below).</p>
+
+			<p>If you encounter issues with the site or have feature requests please email me anytime. There is a contact form at the bottom of every page labeled, "comments | questions | suggestions".</p>
+
+			<p>Sincerely,<br>
+			Evergreen Bob<br>
+			info@evergreenaa.com</p>
+
+			<p><u>Copy &amp; paste verification URL</u>:<br>
+			https://www.evergreenaa.com/index.php?token=' . $token . '
 		</div>
 		
 	</body>

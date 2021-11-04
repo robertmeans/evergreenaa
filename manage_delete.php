@@ -4,11 +4,13 @@ require_once 'config/initialize.php';
 $layout_context = "alt-manage";
 
 if (!isset($_SESSION['id'])) {
-	header('location: home.php');
+	$_SESSION['message'] = "You need to be logged in to access that page.";
+	$_SESSION['alert-class'] = "alert-danger";
+	header('location: ' . WWW_ROOT . '/login.php');
 	exit();
 }
 if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
-	header('location: home.php');
+	header('location: ' . WWW_ROOT);
 	exit();
 }
 

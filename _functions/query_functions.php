@@ -69,7 +69,7 @@ function verify_this_user($id) {
 function get_all_public_and_private_meetings_for_odin() { // home_private.php (for admin 1 only)
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.mode, u.tz, u.email_opt FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     // $sql .= "WHERE m." . $today . " != 0 ";
     $sql .= "WHERE m.visible != 0;"; 

@@ -2289,6 +2289,18 @@ a.youtube:hover {
 #landing > form > input.login-pswd {
   margin-bottom: 0.5em;
 }
+#landing .fpwd {
+  font-size: 0.8em;
+  text-align: center;
+  color: #fff;
+}
+#landing .fpwd a {
+  color: #fff;
+  text-decoration: underline;
+}
+#landing .fpwd a:hover {
+  text-decoration: none;
+}
 
 .rm-wrap {
   cursor: pointer;

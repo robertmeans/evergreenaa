@@ -152,6 +152,22 @@
 			margin-bottom: 0.5em;
 		}
 	}
+
+	.fpwd {
+		font-size: 0.8em;
+		text-align: center;
+		color: #fff;
+		a {
+			color: #fff;
+			text-decoration: underline;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+
+
 }
 
 .rm-wrap {
