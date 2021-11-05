@@ -2,7 +2,7 @@
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-if ($_SESSION['mode'] != 1 || ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3)) {
+if (!isset($_SESSION['mode']) || ($_SESSION['mode'] != 1 || ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3))) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }

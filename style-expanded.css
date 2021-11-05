@@ -4688,6 +4688,16 @@ a.manage-edit.spec:hover {
   height: 8em;
 }
 
+h1.usr-role-mtg {
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+  font-size: 1.25em;
+  margin-top: 0.5em;
+  padding: 0em 0.25em;
+  border-bottom: 1px solid #fff;
+}
+
 .manage-simple.s-a,
 .manage-simple.c-a {
   background-color: rgba(255, 255, 255, 0.1);
