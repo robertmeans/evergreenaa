@@ -2841,6 +2841,8 @@ form.admin-email-form .bccem {
   display: flex;
   -ms-flex-pack: end;
       justify-content: flex-end;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 form.admin-email-form .bccem a {
   cursor: pointer;
