@@ -323,6 +323,7 @@ $(document).ready(function() {
   // clipboard for BCC email addresses
   $(document).on('click','a[data-role=em]',function() {
     var id   = $(this).data('id');
+
     var text = document.getElementById(id).value;
 
     var elem = document.createElement("textarea");
@@ -332,7 +333,7 @@ $(document).ready(function() {
     document.execCommand("copy");
     document.body.removeChild(elem);
 
-    var originalIcon = "<i class=\"far fa-copy\"></i> Copy Addresses</a>";
+    var originalIcon = "<i class=\"far fa-copy\"></i> All Addresses</a>";
     var changeBack  = $(this);
 
     $(this).html("<i class=\"fas fa-check fa-fw\"></i> Addresses Copied!");
@@ -344,7 +345,6 @@ $(document).ready(function() {
     }, 1000);
  
   });
-
 
 });
 
