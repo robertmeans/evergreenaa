@@ -437,6 +437,10 @@ function edit_meeting($id) {
   global $db;
 
   $sql = "SELECT * FROM meetings WHERE ";
+
+
+
+  
   $sql .= "id_mtg='" . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1"; 
   $result = mysqli_query($db, $sql); 

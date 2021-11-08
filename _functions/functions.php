@@ -189,8 +189,8 @@ function apply_offset_to_edit($time) {
   // $time['ut'] = $from_time (user input)
   // $time['tz'] = $from_tz (user's tz)
   // $utc = $to_tz (convert to UTC)
-  $to_tz_obj = new DateTimeZone($time['tz']);
   $from_tz_obj = new DateTimeZone($utc);
+  $to_tz_obj = new DateTimeZone($time['tz']);
   // $ct = "converted time"
   $ct = new DateTime($time['ut'], $from_tz_obj);
   $ct->setTimezone($to_tz_obj);
