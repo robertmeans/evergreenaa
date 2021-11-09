@@ -8,18 +8,23 @@ if ($_SESSION['id'] != 1) {
 	exit();
 }
 
-$result = find_all_users();
+$resultz = find_all_hosts();
+	$emailz = array();
+	while($subject = mysqli_fetch_assoc($resultz)) {
+		$emailz[] = $subject['email'] . "; ";
+	}
+	$member_addresses = substr(implode($emailz), 0 , -2);
 
+$result = find_all_users();
 	$emails = array();
 	// get email addresses ready for sending and put them in a hidden field
 	while($subject = mysqli_fetch_assoc($result)) {
 		$emails[] = $subject['email'] . "; ";
 	}
 	// get rid of the last comma
-	$email_addresses = substr(implode($emails), 0 , -2);
+	$all_email_addresses = substr(implode($emails), 0 , -2);
 
 ?>
-
 
 <?php require '_includes/head.php'; ?>
 <body>	
@@ -40,11 +45,11 @@ $result = find_all_users();
 	<form class="admin-email-form" action="email_review_BCC.php" method="post">
 
 		<div class="bccem">
-			<input id="pickitup" type="hidden" value="<?= strtolower($email_addresses); ?>" class="day-values input-copy">
+			<input id="pickitup" type="hidden" value="<?= strtolower($member_addresses); ?>" class="day-values input-copy">
 			<a data-role="em" data-id="pickitup"><i class="far fa-copy"></i> Only Hosts</a>
 
 
-			<input id="pickemup" type="hidden" value="<?= strtolower($email_addresses); ?>" class="day-values input-copy">
+			<input id="pickemup" type="hidden" value="<?= strtolower($all_email_addresses); ?>" class="day-values input-copy">
 			<a data-role="em" data-id="pickemup"><i class="far fa-copy"></i> All Addresses</a>			
 		</div>
 

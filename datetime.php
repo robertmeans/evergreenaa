@@ -11,10 +11,10 @@ if (strcmp($script_tz, ini_get('date.timezone'))){
 
 ?><br><br><?php
 
-echo 'deal with the wrong time on your localhost later... ' . date(' l, F j, Y') . " at " . date('g:i');
+echo 'In the Mountain timezone it\'s ' . date(' l, F j, Y') . " at " . date('g:i A');
 
 
-$meet_time = strtotime('g:i');
+$meet_time = strtotime('g:i A');
 echo date($meet_time);
 
 ?>

@@ -333,7 +333,11 @@ $(document).ready(function() {
     document.execCommand("copy");
     document.body.removeChild(elem);
 
-    var originalIcon = "<i class=\"far fa-copy\"></i> All Addresses</a>";
+    if ($(this).data('id') == 'pickemup') {
+      var originalIcon = "<i class=\"far fa-copy\"></i> All Addresses</a>";
+    } else {
+      var originalIcon = "<i class=\"far fa-copy\"></i> Only Hosts</a>";
+    }
     var changeBack  = $(this);
 
     $(this).html("<i class=\"fas fa-check fa-fw\"></i> Addresses Copied!");

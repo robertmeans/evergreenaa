@@ -50,7 +50,7 @@
 </footer>
 
 
-<?php if (($layout_context) == 'home-private' || ($layout_context) == 'home-public') {  ?>
+<?php if (($layout_context) != 'login-page') {  ?>
 <!-- Modal -->
 <div id="theModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

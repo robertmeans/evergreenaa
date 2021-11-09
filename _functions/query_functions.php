@@ -436,12 +436,14 @@ function delete_meeting($id) {
 function edit_meeting($id) {
   global $db;
 
-  $sql = "SELECT * FROM meetings WHERE ";
+  // $sql = "SELECT * FROM meetings WHERE ";
+  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+  $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
 
 
 
   
-  $sql .= "id_mtg='" . db_escape($db, $id) . "' ";
+  $sql .= "WHERE m.id_mtg='" . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1"; 
   $result = mysqli_query($db, $sql); 
   confirm_result_set($result);
@@ -541,7 +543,24 @@ function remove_issue($id) {
   }  
 }
 
+// for email_members.php, "Hosts Only"
+function find_all_hosts() {
+  global $db;
 
+  $sql = "SELECT m.id_mtg, m.id_user, u.email_opt, u.email FROM users as u ";
+  $sql .= "LEFT JOIN meetings as m ON m.id_user=u.id_user ";
+  $sql .= "WHERE m.id_user=u.id_user ";
+  $sql .= "AND u.id_user != 1 ";  
+  $sql .= "AND u.id_user != 13 ";
+  $sql .= "AND u.email_opt != 0 ";
+  $sql .= "GROUP BY u.id_user ";
+  $sql .= "ORDER BY LOWER(u.email) ASC";
+  
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+// for email_members.php, "All Addresses"
 function find_all_users() {
   global $db;
 
@@ -550,7 +569,7 @@ function find_all_users() {
   $sql .= "AND id_user != 13 ";
   $sql .= "AND email_opt != 0 ";
   $sql .= "ORDER BY LOWER(username) ASC";
-  // echo $sql;
+
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;

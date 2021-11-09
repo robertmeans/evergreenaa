@@ -85,7 +85,7 @@
 
 		// my eyes only 
 		if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && $_SESSION['admin'] == 1)) { ?>
-			<a href="email_everyone_BCC.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
+			<a href="email_members.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
 		<?php } 
 
 		if (isset($_SESSION['admin']) && (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 0)) { ?>
