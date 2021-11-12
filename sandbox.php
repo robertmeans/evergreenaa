@@ -1,45 +1,55 @@
-<?php  
-// echo date('l Hi');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+<?php 
+function converted_time($time, $tz) {
+  $utc = 'UTC';
+  $from_tz_obj = new DateTimeZone($utc);
+  $to_tz_obj = new DateTimeZone($tz);
+
+  $ct = new DateTime($time, $from_tz_obj);
+  $ct->setTimezone($to_tz_obj);
+  $nct = $ct->format('g:i A');
+
+  return $nct;
+}
+
+$nct = converted_time('0100', 'America/Denver');
+echo $nct . '<br />'; // checks out
+
+// ------------------------------------
+
+function apply_offset_to_edit($time) {
+  // $utc = 'UTC';
+  $from_tz_obj = new DateTimeZone('UTC');
+  $to_tz_obj = new DateTimeZone($time['tz']);
+
+  // $ct = new DateTime($time['ut'], $from_tz_obj);
+  // $ct->setTimezone($to_tz_obj);
 
 
+    $csun = new DateTime('Sunday ' . $time['ut'], $from_tz_obj);
+    $csun->setTimezone($to_tz_obj);
+    $nsun = $csun->format('l Hi');
 
-
-
-
-function tz($subject_set, $tz) {
-
-// list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = figger_it_outz($time);
-
-	foreach($subject_set as $k=>$v) {
-		$time = [];
-		$time['tz'] = $tz;
-		if ($k == 'sun') { $time['sun'] = $v; }
-		if ($k == 'mon') { $time['mon'] = $v; }
-		if ($k == 'tue') { $time['tue'] = $v; }
-		if ($k == 'wed') { $time['wed'] = $v; }
-		if ($k == 'thu') { $time['thu'] = $v; }
-		if ($k == 'fri') { $time['fri'] = $v; }
-		if ($k == 'sat') { $time['sat'] = $v; }
-		if ($k == 'meet_time') { $time['meet_time'] = $v;	}
- 	}	return $time;
-
- 	list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = figger_it_outz($time);
+return $nsun;
 
 }
 
 
+$time = [];
+$time['tz'] = 'America/Denver';
+$time['ut'] = '0100';
 
+$nsun = apply_offset_to_edit($time);
+echo $nsun . '<br />'; // checks out
 
+?>
 
-$user_management_list = find_all_users_to_manage($user_id);
-$subject_set = mysqli_fetch_all($user_management_list, MYSQLI_ASSOC);
-
-$sorted = tz($subject_set);
-
-foreach ($sorted as $row) {
-	// everything...
-	require '_includes/daily-glance.php'; ?>
-	<div class="weekday-wrap">
-		<?php require '_includes/meeting-details.php'; ?>
-	</div><!-- .weekday-wrap -->	
-}
+</body>
+</html>
