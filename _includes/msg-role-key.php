@@ -15,7 +15,7 @@
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Top dog</h1>
+			<h1>Top Dog</h1>
 
 			<p>You can do anything you want here while in Admin Mode including:</p>
 			<ul>

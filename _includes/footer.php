@@ -50,7 +50,7 @@
 </footer>
 
 
-<?php if (($layout_context) != 'login-page') {  ?>
+<?php if ($layout_context != ('login-page' || 'message-board')) {  ?>
 <!-- Modal -->
 <div id="theModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -94,7 +94,7 @@
 </div>    
 <?php } ?>
 
-<?php if (($layout_context) == 'message-board') {  ?>
+<?php if ($layout_context == 'message-board') {  ?>
 <!-- Modal -->
 <div id="theModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

@@ -1043,6 +1043,7 @@ $(document).ready(function() { // 0829210847
   // open modal
   $(document).on('click','a[data-role=mb]', function() {
     var id         = $(this).data('id');
+    // var theModal   = document.getElementById("theModal");
     $('body').addClass('noscrollz');
     theModal.style.display = "block";
   });
