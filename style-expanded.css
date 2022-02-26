@@ -328,6 +328,17 @@ html {
   background-color: #313131;
   color: #fff;
 }
+#navigation .top-nav .tooltip {
+  position: absolute;
+  right: -0.4em;
+  bottom: -0.4em;
+}
+#navigation .top-nav .tooltip .tooltiptext {
+  position: static;
+}
+#navigation .top-nav i.fa-star {
+  color: gold;
+}
 #navigation .top-nav.admin-logged {
   background-color: gold;
   color: #000;
@@ -586,6 +597,9 @@ html {
 .sidenav a.cc-x.eotw {
   margin-top: 0;
   margin-bottom: 2em;
+}
+.sidenav i.fa-star {
+  color: gold;
 }
 
 @keyframes in {

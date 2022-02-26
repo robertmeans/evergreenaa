@@ -8,6 +8,10 @@
 			<div class="mt">Menu</div>
 		</div>
 
+		<?php /* works - just needs an if statement to wrap it...
+		<div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div> 
+		*/ ?>
+
 	</div>
 </nav>
 
@@ -48,7 +52,13 @@
      if ($layout_context == 'message-board') { ?>
       <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
     <?php } else { ?>
-      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board</a>
+
+      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board </a>
+      
+      <?php /* this works - just needs an if statement to wrap it
+      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board <div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div></a> 
+			*/ ?>
+
     <?php }
      
 ?>

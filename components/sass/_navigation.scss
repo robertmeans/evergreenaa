@@ -28,6 +28,20 @@
 			background-color: #313131;
 			color: #fff;
 		}
+		.tooltip {
+			position: absolute;
+			right: -0.4em;
+			bottom: -0.4em;
+		}
+		.tooltip .tooltiptext {
+			position: static;
+		}
+		i.fa-star {
+			// position: absolute;
+			// right: -0.4em;
+			// bottom: -0.4em;
+			color: gold;
+		}
 	}
 	.top-nav.admin-logged {
 		background-color: gold;
@@ -282,6 +296,20 @@
 		margin-top: 0;
 		margin-bottom: 2em;
 	}
+
+		// .tooltip {
+		// 	position: absolute;
+		// 	right: -0.4em;
+		// 	bottom: -0.4em;
+		// }
+		// .tooltip .tooltiptext {
+		// 	position: static;
+		// }
+		i.fa-star {
+			color: gold;
+		}
+
+
 }
 
 @keyframes in {
