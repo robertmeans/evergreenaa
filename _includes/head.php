@@ -14,10 +14,10 @@
 	<meta name="description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)">
 	<meta name="format-detection" content="telephone=no">
 
-	<meta property="og:url" content="https://www.evergreenaa.com/home.php" />
+	<meta property="og:url" content="https://evergreenaa.com/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Evergreen AA | Online AA Meetings" />
-	<meta property="og:image" content="https://www.evergreenaa.com/_images/aa-logo.jpg" />
+	<meta property="og:image" content="https://evergreenaa.com/_images/aa-logo.jpg" />
 	<meta property="og:image:alt" content="AA Logo" />
 	<meta property="og:description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location. For happy, beautiful people everywhere. :)" />
 
