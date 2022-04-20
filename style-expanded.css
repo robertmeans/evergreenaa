@@ -2096,7 +2096,8 @@ a.youtube:hover {
   #desc-loc .msg-bkg,
   #pdf-upload .msg-bkg,
   #link-label .msg-bkg,
-  #role-key .msg-bkg {
+  #role-key .msg-bkg,
+  #mb-notes .msg-bkg {
     -ms-flex-pack: start;
         justify-content: flex-start;
     overflow-y: auto;
@@ -2109,7 +2110,8 @@ a.youtube:hover {
   #desc-loc .inside-msg-one,
   #pdf-upload .inside-msg-one,
   #link-label .inside-msg-one,
-  #role-key .inside-msg-one {
+  #role-key .inside-msg-one,
+  #mb-notes .inside-msg-one {
     padding: 45px 25px 50px;
     width: 92%;
     margin-bottom: 120px;
@@ -2120,7 +2122,8 @@ a.youtube:hover {
   #desc-loc .inside-msg-one > i,
   #pdf-upload .inside-msg-one > i,
   #link-label .inside-msg-one > i,
-  #role-key .inside-msg-one > i {
+  #role-key .inside-msg-one > i,
+  #mb-notes .inside-msg-one > i {
     top: 10px;
     right: 10px;
   }
@@ -2130,7 +2133,8 @@ a.youtube:hover {
   #desc-loc .inside-msg-one p.info-links,
   #pdf-upload .inside-msg-one p.info-links,
   #link-label .inside-msg-one p.info-links,
-  #role-key .inside-msg-one p.info-links {
+  #role-key .inside-msg-one p.info-links,
+  #mb-notes .inside-msg-one p.info-links {
     margin-bottom: 2em;
   }
 }
@@ -2141,7 +2145,8 @@ a.youtube:hover {
   #desc-loc .inside-msg-one p.aa-link,
   #pdf-upload .inside-msg-one p.aa-link,
   #link-label .inside-msg-one p.aa-link,
-  #role-key .inside-msg-one p.aa-link {
+  #role-key .inside-msg-one p.aa-link,
+  #mb-notes .inside-msg-one p.aa-link {
     margin-bottom: 3em;
   }
 }
@@ -4115,19 +4120,27 @@ body.noscrollz {
   animation-duration: 0.4s;
 }
 #theModal .closefp {
-  color: #313131;
-  color: #cd3333;
+  color: #fff;
   float: right;
-  margin-top: -0.2em;
-  font-size: 1.5em;
+  margin-top: -0.25em;
+  margin-right: -0.2em;
+  font-size: 1.25em;
   font-weight: bold;
-  background-color: #fff;
-  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.25em 0.15em;
+  border-radius: 5px;
+  transition: all 0.2s ease;
 }
 #theModal .closefp:hover, #theModal .closefp:focus {
-  color: black;
+  color: white;
   text-decoration: none;
+  background-color: #cd3333;
   cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  #theModal .closefp {
+    font-size: 1em;
+  }
 }
 #theModal .close:hover,
 #theModal .close:focus {

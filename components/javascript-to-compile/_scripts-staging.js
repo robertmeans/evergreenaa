@@ -960,6 +960,7 @@ $(document).ready(function() {
       $('#msg-label').html('Describe issue');
       $('#submit-links').html('<input type="button" id="issue-btn" data-id="'+id_for_submit+'" class="send" value="Submit">');
     } else { // user_id is not set
+      $('#msg-title').html('Members only');
       $('#emh-contact').html('<div class="log-issue-public">Logging issues is an integral part of keeping the information on this site reliable. As it carries a fair amount of responsibility on the part of the one reporting an issue, and to prevent it from being abused, this feature is available only while you are logged in. <div class="login-links"><a class="extras" href="login.php">Login</a><a class="extras" href="signup.php">Join</a></div></div>');
     }
 

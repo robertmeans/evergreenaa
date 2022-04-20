@@ -57,7 +57,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <a class="static closefp"><i class="fas fa-times-circle"></i></a>
+        <a class="static closefp"><i class="fas fa-fw fa-times"></i></a>
         <h4 id="msg-title" class="modal-title"></h4>
         <h4 id="mtgname" class="modal-title"></h4>
       </div>
@@ -101,7 +101,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <a class="static closefp"><i class="fas fa-times-circle"></i></a>
+        <a class="static closefp"><i class="fas fa-fw fa-times"></i></a>
         <h4 class="modal-title">Start a new topic</h4>
         <h4 id="mtgname" class="modal-title"></h4>
       </div>
