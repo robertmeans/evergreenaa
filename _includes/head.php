@@ -23,7 +23,7 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
-	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Cinzel|Courier+Prime|Special+Elite|Caveat&display=swap' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Cinzel|Courier+Prime|Special+Elite|Caveat&display=block' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" type="text/css">
 
 	<script src="js/jquery-3.5.1.min.js"></script>
