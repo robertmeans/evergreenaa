@@ -47,21 +47,20 @@
 		<?php }
 */
 ?>
+
 <?php // for PRODUCTION
-      
+     /* start 001 comment
      if ($layout_context == 'message-board') { ?>
       <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr nav-active">Message Board</a>
     <?php } else { ?>
 
       <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board </a>
-      
-      <?php /* this works - just needs an if statement to wrap it
-      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board <div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div></a> 
-			*/ ?>
-
-    <?php }
      
-?>
+      <?php (end 001 comment)*/ /* start 002 comment; - this works - just needs an if statement to wrap it
+      <a href="<?= WWW_ROOT . '/message-board.php'; ?>" class="apr" onclick="closeNav();">Message Board <div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div></a> 
+			(end 002 comment) */ ?>
+
+    <?php /* start 003 comment } (end 003 comment)*/ // end else ?>
 
 		<?php
 		if (isset($_SESSION['id']) && $layout_context == 'dashboard') { ?>
