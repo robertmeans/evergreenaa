@@ -12,12 +12,10 @@ function sendVerificationEmail($username, $userEmail, $token) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465;
 
       //Recipients
       $mail->setFrom(EMAIL, 'Evergreen AA Website');
@@ -82,12 +80,10 @@ function sendPasswordResetLink($userEmail, $token) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465;
 
       //Recipients
       $mail->setFrom(EMAIL, 'Evergreen AA Website');
@@ -147,12 +143,10 @@ function email_everyone_BCC($msgsubject, $email_addresses, $message) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465; 
 
       //Recipients
       $mail->setFrom(EMAIL, 'EvergreenAA Website');
@@ -175,12 +169,10 @@ function email_everyone_PERSONAL($msgsubject, $send_to, $message) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465;
 
       //Recipients
       $mail->setFrom(EMAIL, 'EvergreenAA Website');
