@@ -166,7 +166,7 @@ if (is_post_request() && isset($_POST['login'])) {
 	$stmt->close();
 
 	if($userCount > 1) {
-		$errors['usermane'] = "There are multiple \"" . $username . "'s\" here AND you have the same password... but you don't have the same email address! You'll have to use your email address to login.";
+		$errors['usermane'] = "There are multiple \"" . $username . "'s\" here. You'll have to use your email address to login.";
 	}	
 
 	if (count($errors) === 0) {

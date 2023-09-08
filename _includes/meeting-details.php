@@ -54,7 +54,9 @@
 <?php 					if (trim($row['meet_phone']) != '') { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 
-						<p class="zoom-info">Zoom Information</p>
+<?php     if ($row['meet_url'] != null) { ?>
+            <p class="zoom-info">Zoom Information</p>
+<?php } ?>
 
 <?php 	if (trim($row['one_tap']) != '') { ?>
 			<p><a href="tel:<?= h($row['one_tap']); ?>" class="zoom ot" target="_blank">ONE TAP MOBILE #</a></p>

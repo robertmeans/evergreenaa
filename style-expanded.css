@@ -132,8 +132,6 @@ table {
 }
 
 .ui-timepicker-corners, .ui-timepicker-corners .ui-corner-all {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -172,10 +170,14 @@ html {
 .preload-manage,
 .set-tz {
   position: fixed;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   background-color: #1d1d1d;
   width: 100%;
   height: 100%;
@@ -202,8 +204,10 @@ html {
   z-index: 4567890;
 }
 .set-tz .tz-box {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 96%;
   max-width: 600px;
   padding: 1em;
@@ -231,9 +235,12 @@ html {
 }
 .set-tz .tz-box .tz-content form {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 .set-tz .tz-box .tz-content form select.pick-tz {
   font-size: 1em;
@@ -295,8 +302,10 @@ html {
   width: 96%;
   max-width: 900px;
   margin: 0 auto;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   z-index: 78;
   position: relative;
 }
@@ -391,17 +400,21 @@ html {
 }
 
 .top-nav.acty .bars:before {
-  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 
 .top-nav.acty .bars:after {
-  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 
 #side-nav-bkg {
   z-index: 81;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   transition: 0.6s;
   width: 100%;
   height: 100%;
@@ -412,8 +425,10 @@ html {
 }
 
 .sidenav {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   height: 100%;
   min-height: 100vh;
   width: 0;
@@ -429,12 +444,15 @@ html {
   /* slide in the sidenav */
 }
 .sidenav #sidenav-wrapper {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   position: relative;
   padding-top: 2em;
   width: 300px;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 .sidenav #sidenav-wrapper i {
   margin-right: 0.5em;
@@ -444,8 +462,10 @@ html {
 .sidenav .member-role,
 .sidenav .sus-user {
   width: 300px;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .sidenav .admin-role {
   padding: 1em 0em 1em 1.5em;
@@ -478,9 +498,12 @@ html {
 .sidenav a {
   cursor: pointer;
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
   padding: 1em 1em 1em 1.5em;
   background-color: transparent;
   text-decoration: none;
@@ -501,8 +524,10 @@ html {
   width: 100%;
   padding-left: 0.75em;
   margin-bottom: 0.75em;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   cursor: pointer;
   text-align: left;
 }
@@ -511,7 +536,8 @@ html {
 }
 .sidenav a.closebtn i {
   font-size: 1.5em;
-  transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+      transform: rotate(270deg);
   animation: in .25s 2 linear;
   transition: color 0.65s ease;
 }
@@ -590,54 +616,6 @@ html {
   }
   to {
     transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes in {
-  0% {
-    -webkit-transform: rotate(360deg);
-  }
-  100% {
-    -webkit-transform: rotate(0deg);
-  }
-}
-@-webkit-keyframes out {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-moz-keyframes in {
-  0% {
-    -moz-transform: rotate(360deg);
-  }
-  100% {
-    -moz-transform: rotate(0deg);
-  }
-}
-@-moz-keyframes out {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-ms-keyframes in {
-  0% {
-    -ms-transform: rotate(360deg);
-  }
-  100% {
-    -ms-transform: rotate(0deg);
-  }
-}
-@-ms-keyframes out {
-  from {
-    -ms-transform: rotate(0deg);
-  }
-  to {
-    -ms-transform: rotate(360deg);
   }
 }
 @media screen and (max-width: 767px) {
@@ -722,7 +700,8 @@ a.apr {
 }
 
 .new-item {
-  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
   font-size: 0.8em;
   color: #a6e22b;
   z-index: 100;
@@ -763,18 +742,26 @@ hr {
 
 #wrap {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   margin-bottom: 50px;
 }
 
 ul#weekdays {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
   min-height: 100vh;
   font-size: 2em;
@@ -784,11 +771,16 @@ ul#weekdays {
 li.ctr-day {
   width: 100%;
   text-align: center;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 li.ctr-day button::-moz-focus-inner {
   outline: none;
@@ -809,11 +801,16 @@ li.ctr-day .day-content {
   width: 100%;
   padding: 0.2em;
   outline: none;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex: 1;
+      flex: 1;
   transition: font-size 0.3s ease, background 0.5s ease;
   /* trippy, trippy background transition. does something with backstretch that results in neat hover effect */
 }
@@ -850,10 +847,14 @@ li.ctr-day .day-content {
   background-color: rgba(81, 81, 81, 0.7);
   width: 100%;
   text-align: left;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 
 p.no-mtgs {
@@ -867,8 +868,10 @@ p.no-mtgs {
 }
 
 .daily-glance {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -883,15 +886,19 @@ p.no-mtgs {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .daily-glance .glance-mtg {
+  display: -ms-flexbox;
   display: flex;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 .daily-glance .glance-group-title {
-  flex: 2;
+  -ms-flex: 2;
+      flex: 2;
   padding: 0em 0.5em;
 }
 .daily-glance .glance-mtg-type {
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 
 .weekday-wrap.note-here {
@@ -902,16 +909,22 @@ p.no-mtgs {
   width: 100%;
   max-width: 900px;
   padding: 0px 20px 20px;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
 }
 .weekday-wrap .meeting-details {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 1em;
 }
 .weekday-wrap .meeting-details i.far.fa-edit {
@@ -940,9 +953,12 @@ p.no-mtgs {
   margin-bottom: 0.75em;
 }
 .weekday-wrap .meeting-details .details-left {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-self: flex-start;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   width: 50%;
   padding: 1em;
   margin-top: 1em;
@@ -961,8 +977,10 @@ p.no-mtgs {
   text-decoration: none;
 }
 .weekday-wrap .meeting-details .details-right {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 50%;
   padding: 1em;
 }
@@ -999,9 +1017,12 @@ p.no-mtgs {
   width: 100%;
   margin: 1em 0em;
   padding: 1em;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 .weekday-wrap .meeting-details #upload-links p.mtg-files {
   width: 100%;
@@ -1038,6 +1059,7 @@ p.no-mtgs {
 }
 
 .collapse-btn {
+  display: -ms-inline-flexbox;
   display: inline-flex;
   background-color: black;
   color: white;
@@ -1086,16 +1108,21 @@ span[data-ampm='PM'] {
 }
 
 .email-host {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   width: 100%;
   font-size: 0.8em;
 }
 .email-host a {
   cursor: pointer;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 50%;
   max-width: 200px;
   padding: 0.75em 1em;
@@ -1139,13 +1166,16 @@ span[data-ampm='PM'] {
 }
 
 .log-issue-public {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 100%;
   line-height: 1.5em;
 }
 
 .errors-reported {
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   margin-top: 0.5em;
@@ -1187,7 +1217,8 @@ span[data-ampm='PM'] {
   }
 
   .weekday-wrap .meeting-details {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
   .weekday-wrap .meeting-details .details-left,
   .weekday-wrap .meeting-details .details-right {
@@ -1211,7 +1242,8 @@ span[data-ampm='PM'] {
   }
   .daily-glance .glance-mtg-type,
   .manage-glance .glance-mtg-type {
-    justify-content: flex-end;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
   }
 
   .day-content {
@@ -1313,7 +1345,8 @@ footer {
   text-align: center;
   padding-top: 60px;
   padding-bottom: 80px;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 footer #email-bob {
   width: 94%;
@@ -1588,9 +1621,12 @@ div#success-wrap {
   width: 100%;
   height: 100%;
   height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
 }
 div#success-wrap span.success-msg {
@@ -1704,8 +1740,10 @@ a#gmaps:hover {
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 #msg-one .msg-bkg,
 #gottajoin .msg-bkg,
@@ -1720,10 +1758,14 @@ a#gmaps:hover {
   position: relative;
   height: 100%;
   min-height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   padding: 20px 20px 0px;
 }
 #msg-one .inside-msg-one,
@@ -1899,11 +1941,16 @@ a#gmaps:hover {
 #role-key .inside-msg-one p.info-links,
 #why-join .inside-msg-one p.info-links,
 #mb-notes .inside-msg-one p.info-links {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  align-items: center;
-  justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
   margin: 1.5em auto 1em auto;
 }
 #msg-one .inside-msg-one p.info-links > a,
@@ -1921,11 +1968,15 @@ a#gmaps:hover {
   border: 1px solid #fff;
   padding: 15px;
   margin-bottom: 1em;
+  display: -ms-flexbox;
   display: flex;
-  flex: 2 1 auto;
+  -ms-flex: 2 1 auto;
+      flex: 2 1 auto;
   margin: 0.5em;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease;
@@ -2046,7 +2097,8 @@ a.youtube:hover {
   #link-label .msg-bkg,
   #role-key .msg-bkg,
   #mb-notes .msg-bkg {
-    justify-content: flex-start;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
     overflow-y: auto;
     padding-top: 50px;
     padding: 50px 0px 0px;
@@ -2105,10 +2157,14 @@ a.youtube:hover {
   left: 0px;
   top: 0px;
   z-index: -999;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 #landing-bkg img.stretch {
   width: 100%;
@@ -2118,11 +2174,16 @@ a.youtube:hover {
   width: 100%;
   height: 100%;
   height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   line-height: 1.5em;
 }
 #landing .uc-page {
@@ -2139,10 +2200,14 @@ a.youtube:hover {
   max-width: 450px;
   padding: 30px 50px;
   background-color: transparent;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   background-color: rgba(255, 255, 255, 0.06);
   border: 1px solid #fff;
   box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.18);
@@ -2172,6 +2237,9 @@ a.youtube:hover {
   border-bottom: 1px dotted #fff;
   border-left: none;
   transition: background-color 0.2s ease;
+}
+#landing > form > input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.75);
 }
 #landing > form > input::placeholder {
   color: rgba(255, 255, 255, 0.75);
@@ -2254,9 +2322,12 @@ a.youtube:hover {
 
 .rm-wrap {
   cursor: pointer;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   padding: 0.5em 1em;
 }
 
@@ -2480,20 +2551,28 @@ form#logout-form > button {
 }
 
 #register {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
   height: 100%;
   height: 100vh;
   line-height: 2em;
 }
 #register > form {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 96%;
   max-width: 500px;
   padding: 30px;
@@ -2570,11 +2649,16 @@ span.yo-email {
   width: 100%;
   height: auto;
   min-height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   line-height: 1.5em;
   padding: 100px 20px;
 }
@@ -2647,10 +2731,13 @@ span.yo-email {
   background-color: #40b208;
   color: #fff;
   text-decoration: none;
+  display: -ms-flexbox;
   display: flex;
   width: 80%;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .manage-simple.review a.done:hover {
   background-color: rgba(64, 178, 8, 0.4);
@@ -2662,10 +2749,13 @@ span.yo-email {
   background-color: #40b208;
   color: #fff;
   text-decoration: none;
+  display: -ms-flexbox;
   display: flex;
   width: 80%;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   cursor: pointer;
   padding: 1em;
   font-size: 1em;
@@ -2707,8 +2797,10 @@ p.display-issues {
   border-bottom: 1px solid #fff;
   padding-bottom: 0.5em;
   position: relative;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 .manage-simple-admin > h1 {
   font-size: 1.4em;
@@ -2734,10 +2826,14 @@ p.display-issues {
   margin-bottom: 1em;
   padding: 1em;
   position: relative;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 
 form.email-updates input[type="checkbox"],
@@ -2759,9 +2855,12 @@ form.admin-email-form {
 form.admin-email-form .bccem {
   width: 100%;
   text-align: right;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
-  justify-content: space-around;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 form.admin-email-form .bccem a {
   cursor: pointer;
@@ -2812,8 +2911,10 @@ form.admin-email-form textarea {
   margin-bottom: 0.5em;
 }
 form.admin-email-form > .update-rt {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   width: 96%;
 }
 form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-rt > input[type="submit"], form.admin-email-form > .update-rt > input[type="submit"].revise-email {
@@ -2824,7 +2925,8 @@ form.admin-email-form > .update-rt > a.cancel, form.admin-email-form > .update-r
   border: 1px solid #fff;
   cursor: pointer;
   font-size: 1em;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
   text-align: center;
   -webkit-appearance: none;
   transition: all 0.2s ease;
@@ -2855,9 +2957,12 @@ a.ytv:hover {
 }
 
 .email-everyone-review {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
   color: #313131;
   line-height: 1.5em;
   width: 100%;
@@ -2889,9 +2994,12 @@ ul.manage-weekdays > h1.edit-h1 {
   margin-bottom: 1em;
 }
 ul.manage-weekdays div.manage-day-toggle {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   font-weight: normal;
   font-size: 1.2em;
   padding-left: 1em;
@@ -2906,11 +3014,16 @@ ul.manage-weekdays .day {
   width: 100%;
   padding: 0.2em;
   outline: none;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex: 1;
+      flex: 1;
   transition: font-size 0.3s ease, background 0.5s ease;
 }
 ul.manage-weekdays .day:hover {
@@ -2929,9 +3042,12 @@ ul.manage-weekdays .day:hover {
 }
 
 .manage-glance {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -2945,24 +3061,33 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance .glance-mtg-time {
-  order: 1;
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
-  flex: auto;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-group-title {
-  order: 3;
+  -ms-flex-order: 3;
+      order: 3;
   width: 100%;
-  flex: auto;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   padding: 0em 0.5em 0em;
-  order: 2;
+  -ms-flex-order: 2;
+      order: 2;
   padding: 0 1em;
   text-align: right;
-  flex: auto;
+  -ms-flex: auto;
+      flex: auto;
 }
 .manage-glance .glance-mtg-type p {
   width: 100%;
@@ -3000,9 +3125,12 @@ ul.manage-weekdays .day:hover {
 }
 
 .manage-glance-review {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   cursor: default;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -3020,20 +3148,27 @@ ul.manage-weekdays .day:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .manage-glance-review .glance-mtg-time {
-  order: 1;
+  -ms-flex-order: 1;
+      order: 1;
   padding: 0 1em 0 0;
 }
 .manage-glance-review .glance-group-title {
-  order: 3;
+  -ms-flex-order: 3;
+      order: 3;
   width: 100%;
 }
 .manage-glance-review .glance-mtg-type {
-  order: 2;
+  -ms-flex-order: 2;
+      order: 2;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 .manage-glance-review .glance-mtg-type p {
+  display: -ms-flexbox;
   display: flex;
 }
 .manage-glance-review.draft {
@@ -3041,8 +3176,10 @@ ul.manage-weekdays .day:hover {
 }
 
 form.new-review {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   padding: 1em;
 }
 form.new-review label {
@@ -3105,8 +3242,10 @@ a.manage-delete:hover {
   width: 100%;
   max-width: 900px;
   padding: 0px 20px 20px;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   position: relative;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.3);
@@ -3114,10 +3253,14 @@ a.manage-delete:hover {
   border-bottom-left-radius: 10px;
 }
 .weekday-edit-wrap .meeting-details {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 1em;
   position: relative;
   width: 98%;
@@ -3143,8 +3286,12 @@ a.manage-delete:hover {
   margin-bottom: 0.75em;
 }
 .weekday-edit-wrap .meeting-details .details-left {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   width: 50%;
   padding: 1em;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -3162,8 +3309,10 @@ a.manage-delete:hover {
   text-decoration: none;
 }
 .weekday-edit-wrap .meeting-details .details-right {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 50%;
   padding: 1em;
 }
@@ -3201,9 +3350,12 @@ a.manage-delete:hover {
   width: 100%;
   margin: 1em 0em;
   padding: 1em;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 .weekday-edit-wrap .meeting-details #upload-links p.mtg-files {
   width: 100%;
@@ -3231,8 +3383,10 @@ a.manage-delete:hover {
   padding: 50px;
 }
 .weekday-edit-wrap form {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 
 p.add-info {
@@ -3377,8 +3531,10 @@ a.new-mtg-btn:hover {
 }
 
 form#manage-mtg {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 98%;
   text-align: left;
 }
@@ -3387,8 +3543,10 @@ form#manage-mtg .top-info {
   margin: 0.5em 0;
 }
 form#manage-mtg .align-days {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 form#manage-mtg .align-days.fixerror {
   background-color: #ffbdc0;
@@ -3540,8 +3698,10 @@ form#manage-mtg label.pdf-label {
   color: #fff;
 }
 .btm-notes .file-uploads .pdf-wrap {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   padding: 0.5em;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0.2);
@@ -3549,9 +3709,12 @@ form#manage-mtg label.pdf-label {
   margin-bottom: 0.5em;
 }
 .btm-notes .file-uploads .pdf-remove {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .btm-notes .file-uploads .pdf-remove a {
   color: #fff;
@@ -3565,8 +3728,10 @@ form#manage-mtg label.pdf-label {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .btm-notes .file-uploads .pdf-row {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 .btm-notes .file-uploads .pdf-row input[type="text"] {
   font-size: 1.1em;
@@ -3609,13 +3774,17 @@ form#manage-mtg label.pdf-label {
   outline: none;
 }
 .btm-notes .update-rt {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
   width: 100%;
 }
 .btm-notes .visible {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 .btm-notes input[name="update-mtg"],
 .btm-notes input[name="create-mtg"],
@@ -3630,7 +3799,8 @@ form#manage-mtg label.pdf-label {
   border: 1px solid #fff;
   padding: 1em 2em;
   margin: 0 0.5em;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
   text-align: center;
   margin-top: 1.5em;
   -webkit-appearance: none;
@@ -3747,7 +3917,8 @@ form#manage-mtg label.pdf-label {
   }
 
   form#manage-mtg {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
 
   .weekday-edit-wrap .meeting-details .details-right {
@@ -3793,22 +3964,28 @@ form#manage-mtg label.pdf-label {
   }
 
   form#manage-mtg .update-rt {
-    justify-content: center;
+    -ms-flex-pack: center;
+        justify-content: center;
   }
 
   .weekday-edit-wrap .delete-record {
-    justify-content: center;
+    -ms-flex-pack: center;
+        justify-content: center;
     padding: 0px;
   }
 
   .btm-notes {
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
     width: 100%;
   }
   .btm-notes .pdf-wrap {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
   .btm-notes .file-uploads {
     padding: 0;
@@ -3819,7 +3996,8 @@ form#manage-mtg label.pdf-label {
   }
 
   .weekday-edit-wrap form {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
     width: 100%;
   }
   .weekday-edit-wrap form .btm-notes input[name="delete-mtg"] {
@@ -3827,7 +4005,8 @@ form#manage-mtg label.pdf-label {
     margin: 0 0 0.5em;
   }
   .weekday-edit-wrap form .btm-notes .update-rt {
-    justify-content: center;
+    -ms-flex-pack: center;
+        justify-content: center;
   }
   .weekday-edit-wrap form .btm-notes .update-rt a {
     width: 100%;
@@ -3835,13 +4014,15 @@ form#manage-mtg label.pdf-label {
 
   .manage-glance .glance-group-title {
     padding: 0em;
-    align-self: flex-start;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
     margin: 0.5em 0;
   }
 
   .manage-glance .glance-mtg-type {
     text-align: right;
-    align-self: flex-end;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
   }
 
   .daily-glance .glance-mtg-time {
@@ -3877,21 +4058,27 @@ span.contact-update-message {
 
 @media screen and (max-width: 360px) {
   form#manage-mtg .align-days {
-    flex-direction: column;
-    flex-wrap: nowrap;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
 }
 .daily-glance .glance-mtg-time {
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 
 .daily-glance .glance-group-title {
-  flex: 4;
+  -ms-flex: 4;
+      flex: 4;
 }
 
 .daily-glance .glance-mtg-type {
-  flex: 2;
-  justify-content: flex-end;
+  -ms-flex: 2;
+      flex: 2;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 
 .tooltip .tooltiptext.type {
@@ -3984,9 +4171,12 @@ body.noscrollz {
   margin: 1em auto;
 }
 #theModal .modal-body {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
   height: 100%;
   color: #313131;
@@ -4025,8 +4215,10 @@ body.noscrollz {
 }
 #theModal .modal-body form.emh-form .submit-links {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin: 1em auto;
   -webkit-appearance: none;
 }
@@ -4112,11 +4304,16 @@ span.sending-msg.downgraded {
   width: 100%;
   height: auto;
   min-height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   line-height: 1.5em;
   padding: 50px 5px;
 }
@@ -4171,8 +4368,10 @@ span.sending-msg.downgraded {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 #transfer-host form {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 #transfer-host form p {
   margin-bottom: 0.25em;
@@ -4220,9 +4419,12 @@ span.sending-msg.downgraded {
 #transfer-host a#suspend-user,
 #transfer-host a#not-yourself,
 #transfer-host a#change-user-role {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   cursor: pointer;
   text-align: center;
   width: 100%;
@@ -4292,10 +4494,14 @@ h2.change-role.upgrade {
 }
 #sus-wrap {
   min-height: 100vh;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 96%;
   max-width: 600px;
   line-height: 1.5em;
@@ -4351,8 +4557,10 @@ a.manage-edit.spec:hover {
 }
 
 .manage-glance-user {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   cursor: pointer;
   padding: 0.5em 1em;
   background-color: transparent;
@@ -4387,26 +4595,34 @@ a.manage-edit.spec:hover {
   margin-top: 0.5em;
   padding: 0px;
   background-color: rgba(255, 255, 255, 0.2);
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 .notes-glance .reason-header {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   background-color: #811d1d;
 }
 .notes-glance p.reason-note {
   padding: 0.5em;
+  display: -ms-flexbox;
   display: flex;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 .notes-glance a.reason-note.rt {
   cursor: pointer;
   background-color: #8a1d1d;
   color: #fff;
   padding: 0.5em;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -4415,8 +4631,10 @@ a.manage-edit.spec:hover {
 }
 
 .reason-header .ricons {
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
   margin-right: 0.5em;
 }
 .reason-header .ricons a {
@@ -4441,14 +4659,17 @@ a.manage-edit.spec:hover {
 
 #revise-sus-note {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   font-family: courier;
 }
 
 .sus-notes,
 .note-reason,
 #sus-note {
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   color: #fff;
@@ -4490,6 +4711,7 @@ a.manage-edit.spec:hover {
 
 #sus-note {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
   background-color: black;
   padding: 1em;
@@ -4560,13 +4782,17 @@ ul.tab-links {
   margin-bottom: -1px;
   list-style: none;
   display: inline-block;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   width: 80%;
-  flex: 1;
+  -ms-flex: 1;
+      flex: 1;
 }
 ul.tab-links li {
   list-style: none;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   margin: 0;
@@ -4616,8 +4842,10 @@ li.focus a:hover {
 }
 .user-box #transfer-form-top,
 .user-box #transfer-form-topz {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -ms-flex-direction: row;
+      flex-direction: row;
   margin-bottom: 1em;
 }
 .user-box #transfer-form-top select,
@@ -4632,8 +4860,10 @@ li.focus a:hover {
 #user-listz,
 #user-listzz,
 #weekdays {
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 #transfer-form-top .mng-usr,
 #transfer-form-top .transfer-usr,
@@ -4774,12 +5004,15 @@ li.focus a:hover {
 
 @media screen and (max-width: 600px) {
   .manage-glance-user {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
     word-wrap: break-word;
   }
   .manage-glance-user .manage-user-right {
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-end;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
   }
 }
 @media screen and (max-width: 800px) {
@@ -4811,7 +5044,8 @@ li.focus a:hover {
   }
 
   .weekday-wrap .meeting-details {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
   .weekday-wrap .meeting-details .details-left,
   .weekday-wrap .meeting-details .details-right {
@@ -4828,8 +5062,10 @@ li.focus a:hover {
   .manage-glance {
     padding: 0.5em;
     line-height: 1.4em;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .daily-glance:hover,
   .manage-glance:hover {
@@ -4837,25 +5073,32 @@ li.focus a:hover {
   }
   .daily-glance .glance-mtg-time,
   .manage-glance .glance-mtg-time {
-    order: 1;
+    -ms-flex-order: 1;
+        order: 1;
     padding: 0;
     line-height: 1.5em;
   }
   .daily-glance .glance-group-title,
   .manage-glance .glance-group-title {
-    order: 3;
+    -ms-flex-order: 3;
+        order: 3;
     width: 100%;
-    flex: auto;
+    -ms-flex: auto;
+        flex: auto;
     margin-top: 0.5em;
     padding: 0em;
   }
   .daily-glance .glance-mtg-type,
   .manage-glance .glance-mtg-type {
-    justify-content: flex-end;
-    order: 2;
-    align-items: self-start;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+    -ms-flex-order: 2;
+        order: 2;
+    -ms-flex-align: self-start;
+        align-items: self-start;
     padding: 0;
-    align-self: flex-start;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
     line-height: 1.5em;
   }
 
@@ -4872,15 +5115,19 @@ li.focus a:hover {
   min-height: 100vh;
   width: 98%;
   max-width: 900px;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
 }
 #mb-wrap h1 {
   font-size: 2em;
   font-weight: bold;
   margin-top: 1em;
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid #fff;
 }
@@ -4888,9 +5135,11 @@ li.focus a:hover {
   color: #61a6c0;
 }
 #mb-wrap .new-topic {
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
   margin-top: 0.5em;
   position: sticky;
   top: 5px;
@@ -4930,10 +5179,14 @@ li.focus a:hover {
 }
 
 .post-deleted {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
   height: 100vh;
 }
@@ -4966,15 +5219,20 @@ li.focus a:hover {
 ul#post-topics,
 ul#post-topicsz,
 ul#post-topics-empty {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 ul#post-topics li,
 ul#post-topicsz li,
 ul#post-topics-empty li {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   width: 100%;
   line-height: 1.5em;
   padding: 1em;
@@ -4989,14 +5247,17 @@ ul#post-topicsz li p.title,
 ul#post-topicsz li p.body,
 ul#post-topics-empty li p.title,
 ul#post-topics-empty li p.body {
+  display: -ms-flexbox;
   display: flex;
 }
 ul#post-topics li p.title,
 ul#post-topicsz li p.title,
 ul#post-topics-empty li p.title {
   font-size: 1.5em;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
   font-family: 'Cinzel', Times New Roman, serif;
 }
 ul#post-topics li p.title span.num-replies,
@@ -5011,8 +5272,10 @@ ul#post-topics-empty li p.title span.num-replies {
 ul#post-topics li .mbform,
 ul#post-topicsz li .mbform,
 ul#post-topics-empty li .mbform {
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 ul#post-topics li:first-of-type,
 ul#post-topicsz li:first-of-type,
@@ -5041,17 +5304,24 @@ a.mb-entire:hover {
 }
 
 .mb-individual {
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 
 .group-mb {
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex: 0;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex: 0;
+      flex: 0;
 }
 
 a.manage-delete-mb {
@@ -5065,8 +5335,10 @@ a.manage-delete-mb:hover {
 }
 
 ul#replies {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   margin-left: 1.5em;
 }
 ul#replies li {
@@ -5078,14 +5350,19 @@ ul#replies li {
 }
 
 .pt-wrap {
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 
 #delete-post {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 
 .delete-reply {
@@ -5095,8 +5372,10 @@ ul#replies li {
 }
 
 .post-content {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
@@ -5108,10 +5387,13 @@ ul#replies li {
 
 #post-reply {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 #post-reply textarea {
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 6em;
@@ -5125,14 +5407,19 @@ ul#replies li {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+#post-reply textarea:-ms-input-placeholder {
+  color: #707070;
+}
 #post-reply textarea::placeholder {
   color: #707070;
 }
 #post-reply #reply {
   cursor: pointer;
+  display: -ms-flexbox;
   display: flex;
   min-width: 50%;
-  justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   padding: 1em;
   text-align: center;
   background-color: #61c068;
@@ -5154,17 +5441,24 @@ ul#replies li {
 }
 
 .login-links {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 .login-links a {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   text-decoration: none;
   width: 40%;
   padding: 0.5em 1em;
@@ -5200,7 +5494,8 @@ a.mb-date {
   font-size: 0.8em;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.6);
-  flex: 2;
+  -ms-flex: 2;
+      flex: 2;
   padding: 0.25em 0.5em;
   transition: all 0.2s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -5218,7 +5513,8 @@ p.mp-date {
 
 @media screen and (max-width: 600px) {
   .mb-individual {
-    flex-direction: column;
+    -ms-flex-direction: column;
+        flex-direction: column;
     background-color: transparent;
   }
   .mb-individual .mb-date {
@@ -5230,7 +5526,8 @@ p.mp-date {
   }
   .mb-individual .group-mb {
     width: 100%;
-    justify-content: flex-end;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
   }
   .mb-individual .gtp,
   .mb-individual a.manage-delete-mb {
@@ -5295,6 +5592,7 @@ p.mp-date {
 
 .post-error {
   padding: 20px;
+  display: -ms-flexbox;
   display: flex;
   margin-left: 1.5em;
   background-color: #ffc6c6;
@@ -5303,6 +5601,7 @@ p.mp-date {
 }
 
 .mb-reply {
+  display: -ms-flexbox;
   display: flex;
   margin-left: 1.5em;
 }

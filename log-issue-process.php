@@ -81,9 +81,9 @@ if (is_post_request()) {
 					// email routing set to Remote
 
 	        //Recipients
-	        $mail->setFrom(EMAIL, 'EvergreenAA Website');
+	        $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
 	        $mail->addAddress($emhemail, $emhuser);     // Add a recipient
-	        $mail->addReplyTo($emhemail, $emhuser);
+	        $mail->addReplyTo('donotreply@evergreenaa.com', 'Anonymous Member');
 	        // $mail->addCC('cc@example.com');
 	        $mail->addBCC('robertmeans01@gmail.com');
 
@@ -98,7 +98,7 @@ if (is_post_request()) {
 			    $msg =  'Message sent successfully';
 		    } catch (Exception $e) {
 		        $signal = 'bad';
-		        $msg = 'Mail Error: ' {$mail->ErrorInfo};
+		        $msg = 'Mail Error: '  {$mail->ErrorInfo};
 		    }
 
 			} 

@@ -65,7 +65,7 @@ if (is_post_request()) {
 				// email routing set to Remote
 
         //Recipients
-        $mail->setFrom(EMAIL, 'EvergreenAA Website');
+        $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
         $mail->addAddress($emhemail, $emhuser);     // Add a recipient
         $mail->addReplyTo($email, $name);
         // $mail->addCC('cc@example.com');

@@ -12,15 +12,21 @@ function sendVerificationEmail($username, $userEmail, $token) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      // $mail->Host       = 'smtp.gmail.com';
+      // $mail->SMTPAuth   = true;
+      // $mail->Username   = EMAIL;
+      // $mail->Password   = PASSWORD; 
+      // $mail->SMTPSecure = 'ssl';
+      // $mail->Port       = 465;
+
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      // $mail->setFrom($email, 'Evergreen AA Website');
+      $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addAddress($userEmail, $username);     // Add a recipient
       $mail->addReplyTo($userEmail);
       // $mail->addCC('cc@example.com');
@@ -82,15 +88,21 @@ function sendPasswordResetLink($userEmail, $token) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      // $mail->Host       = 'smtp.gmail.com';
+      // $mail->SMTPAuth   = true;
+      // $mail->Username   = EMAIL;
+      // $mail->Password   = PASSWORD; 
+      // $mail->SMTPSecure = 'ssl';
+      // $mail->Port       = 465;
+
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom(EMAIL, 'Evergreen AA Website');
+      // $mail->setFrom($email, 'Evergreen AA Website');
+      $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addAddress($userEmail);     // Add a recipient
       $mail->addReplyTo($userEmail);
       // $mail->addCC('cc@example.com');
@@ -147,15 +159,21 @@ function email_everyone_BCC($msgsubject, $email_addresses, $message) {
   $mail = new PHPMailer(true);
 
   try {
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->SMTPAuth   = true;
+      // $mail->Host       = 'smtp.gmail.com';
+      // $mail->SMTPAuth   = true;
+      // $mail->Username   = EMAIL;
+      // $mail->Password   = PASSWORD; 
+      // $mail->SMTPSecure = 'ssl';
+      // $mail->Port       = 465;
+
+      $mail->Host       = 'localhost';
+      $mail->SMTPAuth   = false;
       $mail->Username   = EMAIL;
       $mail->Password   = PASSWORD; 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port       = 465; 
 
       //Recipients
-      $mail->setFrom(EMAIL, 'EvergreenAA Website');
+      // $mail->setFrom($email, 'Evergreen AA Website');
+      $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addBCC($email_addresses);
       // $mail->addBCC('robertmeans01@gmail.com');
 

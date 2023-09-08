@@ -56,16 +56,21 @@
 </div><!-- .top-info -->
 <div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 	<label for="meet_phone">Phone number</label>
-	<input type="text" class="mtg-update<?php if (isset($errors['meet_phone'])) { echo " fixerror"; } ?>" name="meet_phone" <?php
-	if (isset($_POST['meet_phone'])) { $postphone = preg_replace('/[^0-9]/', '', $_POST['meet_phone']); }
-	if ( isset($_POST['meet_phone']) && $postphone != '' ) {
-		echo  "value=\"(" .substr($postphone, 0, 3).") ".substr($postphone, 3, 3)."-".substr($postphone, 6)."\""; }
- 	else if (isset($_POST['meet_phone']) && $_POST['meet_phone'] == '') {
- 		echo "value=\"\""; }
+
+	<input type="text" class="mtg-update<?php if (isset($errors['meet_phone'])) { echo " fixerror"; } ?>" name="meet_phone" value="<?php
+
+	// if (isset($_POST['meet_phone'])) { $postphone = preg_replace('/[^0-9]/', '', $_POST['meet_phone']); }
+
+	if (isset($_POST['meet_phone']) && $postphone != '' ) {
+    echo '(' .substr($postphone, 0, 3). ') '.substr($postphone, 3, 3). '-'.substr($postphone,6); }
+
  	else if (!empty($row['meet_phone'])) { 
-		echo  "(" .substr(h($row['meet_phone']), 0, 3).") ".substr(h($row['meet_phone']), 3, 3)."-".substr(h($row['meet_phone']),6); }
+    echo '(' . substr(h($row['meet_phone']), 0,3) . ') ' . substr(h($row['meet_phone']), 3,3). '-' . substr(h($row['meet_phone']),6); }
+
 	else { }
-		?> placeholder="10-digit phone #">
+		?>" placeholder="10-digit phone #">
+
+
 
 	<label for="one_tap">One Tap Mobile <a id="toggle-one-tap-msg"><i class="far fa-question-circle fa-fw"></i></a></label><?php // #toggle-one-tap-msg is inside lat-long-instructions.php ?>
 	<input type="text" class="mtg-update<?php if (isset($errors['one_tap'])) { echo " fixerror"; } ?>" name="one_tap" value="<?php if (isset($row['one_tap'])) { echo h($row['one_tap']); } ?>" placeholder="One Tap Mobile #">
