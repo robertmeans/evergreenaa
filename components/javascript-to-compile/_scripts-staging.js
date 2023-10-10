@@ -392,11 +392,11 @@ $("#showLoginPass").click(function(){
 
     $(this).toggleClass("showPassOn");
 
-    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide password') {
-        $(this).html('<i class="far fa-eye"></i> Show password');
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide Password') {
+        $(this).html('<i class="far fa-eye"></i> Show Password');
         x.type = "password";
     } else {
-        $(this).html('<i class="far fa-eye-slash"></i> Hide password');
+        $(this).html('<i class="far fa-eye-slash"></i> Hide Password');
         x.type = "text";
     }
     return false;
@@ -407,12 +407,12 @@ $("#showSignupPass").click(function(){
   var y = document.getElementById("showConf");
     $(this).toggleClass("showPassOn");
 
-    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide passwords') {
-        $(this).html('<i class="far fa-eye"></i> Show passwords');
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide Passwords') {
+        $(this).html('<i class="far fa-eye"></i> Show Passwords');
         x.type = "password";
         y.type = "password";
     } else {
-        $(this).html('<i class="far fa-eye-slash"></i> Hide passwords');
+        $(this).html('<i class="far fa-eye-slash"></i> Hide Passwords');
         x.type = "text";
         y.type = "text";
     }
@@ -919,7 +919,94 @@ $(document).ready(function() {
 
 
 
-// log issue modal
+
+
+
+
+
+
+
+// login begin 
+$(document).ready(function() {
+
+  $(document).on('click','#login-btn', function() {
+
+    $.ajax({
+      dataType: "JSON",
+      url: "login-process.php",
+      type: "POST",
+      data: $('#login-form').serialize(),
+      beforeSend: function(xhr) {
+        // $('#login-msg').html('<span class="sending-msg">Verifying - one moment...</span>');
+        $('#login-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+      },
+      success: function(response) {
+        console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['signal'] == 'ok') {
+            $('#login-btn').html('<span class="login-txt"><img src="_images/login.png"></span>');
+            // $('#'+id).addClass('errors-reported');
+
+            if ($('#'+id).html().indexOf("There has been an issue reported") >= 0) {
+              $('#'+id).html('Attention: There have been 2 issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
+            } else if ($('#'+id).html().indexOf("There have been 2 issues reported") >= 0) {
+              $('#'+id).html('The issue you logged has tipped the scale. If you refresh your browser this meeting is no longer available for public view and will remain hidden until the Host addresses the issue(s).'); 
+            }  else {
+              $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.'); 
+            }
+
+          } else {
+            $('#login-alert').addClass('errors-present');
+            $('#errors').html(response['li']);
+            $('#login-btn').html(response['msg']);
+          }
+        } 
+      },
+      error: function() {
+        $('#login-btn').html(response['msg']);
+      }, 
+      complete: function() {
+
+      }
+    })
+  });
+
+}); // $(document).ready login end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// log issue start
+// document.ready + log issue modal
 $(document).ready(function() {
   $(document).on('click','a[data-role=logissue]', function() {
 
@@ -1035,7 +1122,8 @@ $(document).ready(function() {
     })
   });
 
-});
+}); // $(document).ready login issue end
+// log issue end
 
 
 // message board modal

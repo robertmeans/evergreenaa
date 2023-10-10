@@ -378,6 +378,107 @@ p.logins {
 		font-family: 'Courier Prime', monospace;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#login-form {
+  #login-alert {
+
+
+ 
+  }
+  #login-alert.errors-present {
+
+    font-family: 'Courier Prime', monospace;
+    
+    color: #fff;
+    // margin-bottom: 1em;
+    width: 100%;
+    text-align: center;
+    // border: 1px solid #ff0000;
+    border: 1px solid transparent;
+    text-align: left; 
+
+    
+    background-color: rgba(255,76,76,1);
+    padding: 20px;
+    margin-bottom: 1em;
+    border: 1px solid #f02222;
+    ul {
+      margin-left: 20px;
+      li {
+        list-style-type: disc;
+      }
+    }
+  }
+  #login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #fff;
+    // background-color: rgba(0,0,0,0.9);
+    margin: 0.5em 0 1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    .login-txt {
+      background-color: rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      // padding: 10px 20px;
+      height: 2.5em;
+    &:hover {
+        background-color: #000;
+      }
+    }
+    
+    .login-verify {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      // padding: 10px 20px;
+      height: 2.5em;
+
+    }
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 a.signup-link {
 	color: #fff;
 	text-decoration: none;

@@ -2,7 +2,7 @@
 
 $layout_context = "login-page";
 
-require_once 'config/initialize.php'; 
+require_once 'config/initialize.php';
 
 include '_includes/head.php'; ?>
 
@@ -16,15 +16,27 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
-<form id="login-form">
+<form action="" method="post">
   <h1 class="text-center">Login</h1>
 
-
-      <div id="login-alert">
-        <ul id="errors"></ul>
+  <?php if(count($errors) > 0): ?>
+      <div class="alert alert-danger">
+          <?php // if(isset($rememberme_error)) { echo $rememberme_error; } ?>
+          <?php foreach($errors as $error): ?>
+          <li><?php echo $error; ?></li>
+      <?php endforeach; ?>
       </div>
+  <?php endif; ?>
 
-
+  <?php if(isset($_SESSION['message'])): ?>
+  <div class="alert <?= $_SESSION['alert-class']; ?>">
+      <?php 
+          echo $_SESSION['message'];
+          unset($_SESSION['message']);
+          unset($_SESSION['alert-class']); 
+      ?>
+  </div><!-- .alert -->
+  <?php endif; ?>
 
   <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
           
@@ -43,29 +55,8 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
           <span class="rm-rm">Remember me</span>
       </div>
  </label>
-  
 
-
-
-
-
-
- <input type="hidden" name="login" value="login">
-  <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <input type="submit" name="login" class="submit" value="Login">
 
   <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
 
