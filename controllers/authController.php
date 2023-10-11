@@ -141,6 +141,7 @@ if (is_post_request() && isset($_POST['submit'])) {
 }
 
 // if user clicks on login
+/*
 if (is_post_request() && isset($_POST['login'])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -222,7 +223,7 @@ if (is_post_request() && isset($_POST['login'])) {
 		}
 	}
 }
-
+*/
 
 // verify user by token
 function verifyUser($token) {

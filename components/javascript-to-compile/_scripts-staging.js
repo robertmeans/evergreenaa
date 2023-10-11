@@ -913,23 +913,11 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // login begin 
 $(document).ready(function() {
 
   $(document).on('click','#login-btn', function() {
+    var current_loc = window.location.href;
 
     $.ajax({
       dataType: "JSON",
@@ -937,7 +925,6 @@ $(document).ready(function() {
       type: "POST",
       data: $('#login-form').serialize(),
       beforeSend: function(xhr) {
-        // $('#login-msg').html('<span class="sending-msg">Verifying - one moment...</span>');
         $('#login-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
@@ -945,15 +932,14 @@ $(document).ready(function() {
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
-            $('#login-btn').html('<span class="login-txt"><img src="_images/login.png"></span>');
-            // $('#'+id).addClass('errors-reported');
+            // $('#login-alert').removeClass('errors-present');
+            // $('#errors').html(response['li']);
+            // $('#login-btn').html('<span class="login-txt"><img src="_images/login.png"></span>');
 
-            if ($('#'+id).html().indexOf("There has been an issue reported") >= 0) {
-              $('#'+id).html('Attention: There have been 2 issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
-            } else if ($('#'+id).html().indexOf("There have been 2 issues reported") >= 0) {
-              $('#'+id).html('The issue you logged has tipped the scale. If you refresh your browser this meeting is no longer available for public view and will remain hidden until the Host addresses the issue(s).'); 
-            }  else {
-              $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.'); 
+            if (current_loc.indexOf("localhost") > -1) {
+              window.location.replace("http://localhost/evergreenaa");
+            } else {
+              window.location.replace("https://evergreenaa.com");
             }
 
           } else {
@@ -963,7 +949,8 @@ $(document).ready(function() {
           }
         } 
       },
-      error: function() {
+      error: function(response) {
+        // console.log(response);
         $('#login-btn').html(response['msg']);
       }, 
       complete: function() {
