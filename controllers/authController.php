@@ -216,7 +216,9 @@ if (is_post_request() && isset($_POST['login'])) {
 			}
 
 		} else if ($userCount < 1) {
-			$errors['login_fail'] = "That user does not exist";
+      $signal = 'bad';
+      $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
+      $li = '<li>That user does not exist</li>';
 		} else {
 			// the combination of stuff you typed doesn't match anything in the db
 			$errors['login_fail'] = "Wrong Username/Password combination. Note: passwords are case sensitive.";

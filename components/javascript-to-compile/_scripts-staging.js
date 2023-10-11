@@ -910,15 +910,17 @@ $(document).ready(function() {
 
 
 
-
-
-
-// login begin 
+// login begin
+$("#login-form").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#login-btn").click();
+    }
+});
 $(document).ready(function() {
 
   $(document).on('click','#login-btn', function() {
     var current_loc = window.location.href;
-
+    
     $.ajax({
       dataType: "JSON",
       url: "login-process.php",
@@ -943,7 +945,8 @@ $(document).ready(function() {
             }
 
           } else {
-            $('#login-alert').addClass('errors-present');
+            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass(response['class']);
             $('#errors').html(response['li']);
             $('#login-btn').html(response['msg']);
           }

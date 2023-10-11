@@ -397,33 +397,30 @@ p.logins {
 
 #login-form {
   #login-alert {
-
-
- 
-  }
-  #login-alert.errors-present {
-
-    font-family: 'Courier Prime', monospace;
-    
+    font-family: 'Courier Prime', monospace; 
     color: #fff;
-    // margin-bottom: 1em;
     width: 100%;
     text-align: center;
-    // border: 1px solid #ff0000;
     border: 1px solid transparent;
-    text-align: left; 
-
-    
-    background-color: rgba(255,76,76,1);
-    padding: 20px;
-    margin-bottom: 1em;
-    border: 1px solid #f02222;
+    text-align: left;
     ul {
       margin-left: 20px;
       li {
         list-style-type: disc;
       }
     }
+  }
+  #login-alert.errors-present {
+    background-color: #ff4c4c;
+    padding: 20px;
+    margin-bottom: 1em;
+    border: 1px solid #f02222;
+  }
+  #login-alert.warning-msg {
+    background-color: #d68d24;
+    padding: 20px;
+    margin-bottom: 1em;
+    border: 1px solid #f02222;    
   }
   #login-btn {
     display: flex;

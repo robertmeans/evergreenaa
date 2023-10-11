@@ -19,12 +19,9 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <form id="login-form">
   <h1 class="text-center">Login</h1>
 
-
-      <div id="login-alert">
-        <ul id="errors"></ul>
-      </div>
-
-
+  <div id="login-alert">
+    <ul id="errors"></ul>
+  </div>
 
   <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
           
@@ -44,28 +41,8 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
       </div>
  </label>
   
-
-
-
-
-
-
  <input type="hidden" name="login" value="login">
   <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
 

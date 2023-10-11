@@ -2537,23 +2537,31 @@ p.logins {
   font-family: 'Courier Prime', monospace;
 }
 
-#login-form #login-alert.errors-present {
+#login-form #login-alert {
   font-family: 'Courier Prime', monospace;
   color: #fff;
   width: 100%;
   text-align: center;
   border: 1px solid transparent;
   text-align: left;
+}
+#login-form #login-alert ul {
+  margin-left: 20px;
+}
+#login-form #login-alert ul li {
+  list-style-type: disc;
+}
+#login-form #login-alert.errors-present {
   background-color: #ff4c4c;
   padding: 20px;
   margin-bottom: 1em;
   border: 1px solid #f02222;
 }
-#login-form #login-alert.errors-present ul {
-  margin-left: 20px;
-}
-#login-form #login-alert.errors-present ul li {
-  list-style-type: disc;
+#login-form #login-alert.warning-msg {
+  background-color: #d68d24;
+  padding: 20px;
+  margin-bottom: 1em;
+  border: 1px solid #f02222;
 }
 #login-form #login-btn {
   display: -ms-flexbox;
