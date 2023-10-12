@@ -38,8 +38,19 @@ function remember_me()
 
 remember_me();
 
+
+
+
+
+
+
+
+
+
+
+
 // sign-up
-if (is_post_request() && isset($_POST['submit'])) {
+if (is_post_request() && isset($_POST['submitzy'])) {
 	$username = $_POST['username'];
 	$email = strtolower($_POST['email']);
 	$password = $_POST['password'];
@@ -139,6 +150,19 @@ if (is_post_request() && isset($_POST['submit'])) {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if user clicks on login
 /*

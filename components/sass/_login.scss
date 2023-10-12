@@ -395,7 +395,8 @@ p.logins {
 
 
 
-#login-form {
+#login-form,
+#signup-form {
   #login-alert {
     font-family: 'Courier Prime', monospace; 
     color: #fff;
@@ -410,19 +411,26 @@ p.logins {
       }
     }
   }
-  #login-alert.errors-present {
+  #login-alert.red {
     background-color: #ff4c4c;
     padding: 20px;
     margin-bottom: 1em;
     border: 1px solid #f02222;
   }
-  #login-alert.warning-msg {
-    background-color: #d68d24;
+  #login-alert.blue {
+    background-color: #386ab4;
     padding: 20px;
     margin-bottom: 1em;
-    border: 1px solid #f02222;    
+    border: 1px solid #0f356d;    
   }
-  #login-btn {
+  #login-alert.orange {
+    background-color: #d08b1f;
+    padding: 20px;
+    margin-bottom: 1em;
+    border: 1px solid #ff9c00;    
+  }
+  #login-btn,
+  #signup-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -456,9 +464,6 @@ p.logins {
 
     }
   }
-
-
-
 
 }
 

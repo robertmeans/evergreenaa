@@ -392,11 +392,11 @@ $("#showLoginPass").click(function(){
 
     $(this).toggleClass("showPassOn");
 
-    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide Password') {
-        $(this).html('<i class="far fa-eye"></i> Show Password');
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide password') {
+        $(this).html('<i class="far fa-eye"></i> Show password');
         x.type = "password";
     } else {
-        $(this).html('<i class="far fa-eye-slash"></i> Hide Password');
+        $(this).html('<i class="far fa-eye-slash"></i> Hide password');
         x.type = "text";
     }
     return false;
@@ -407,12 +407,12 @@ $("#showSignupPass").click(function(){
   var y = document.getElementById("showConf");
     $(this).toggleClass("showPassOn");
 
-    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide Passwords') {
-        $(this).html('<i class="far fa-eye"></i> Show Passwords');
+    if ($.trim($(this).html()) === '<i class="far fa-eye-slash"></i> Hide passwords') {
+        $(this).html('<i class="far fa-eye"></i> Show passwords');
         x.type = "password";
         y.type = "password";
     } else {
-        $(this).html('<i class="far fa-eye-slash"></i> Hide Passwords');
+        $(this).html('<i class="far fa-eye-slash"></i> Hide passwords');
         x.type = "text";
         y.type = "text";
     }
@@ -910,17 +910,98 @@ $(document).ready(function() {
 
 
 
+
+
+
+
+
+
+
+// signup begin
+$("#signup-form").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#signup-btn").click();
+    }
+});
+$(document).ready(function() {
+
+  $(document).on('click','#signup-btn', function() {
+    var current_loc = window.location.href;
+
+    $.ajax({
+      dataType: "JSON",
+      url: "signup-process.php",
+      type: "POST",
+      data: $('#signup-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#signup-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+      },
+      success: function(response) {
+        console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['signal'] == 'ok') {
+
+            if (current_loc.indexOf("localhost") > -1) {
+              window.location.replace("http://localhost/evergreenaa");
+            } else {
+              window.location.replace("https://evergreenaa.com");
+            }
+
+          } else {
+            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass(response['class']);
+            $('#errors').html(response['li']);
+            $('#signup-btn').html(response['msg']);
+          }
+        } 
+      },
+      error: function(response) {
+        // console.log(response);
+        $('#signup-btn').html(response['msg']);
+      }, 
+      complete: function() {
+
+      }
+    })
+
+  });
+
+}); // $(document).ready signup end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // login begin
 $("#login-form").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#login-btn").click();
-    }
+  if (event.keyCode === 13) {
+    $("#login-btn").click();
+  }
 });
 $(document).ready(function() {
 
   $(document).on('click','#login-btn', function() {
     var current_loc = window.location.href;
-    
+    // var ul_html = $('#errors').html();
+    // if (ul_html.includes('Wrong Username/Password combination.')) {
+    //   alert(ul_html);
+    // }
+
     $.ajax({
       dataType: "JSON",
       url: "login-process.php",

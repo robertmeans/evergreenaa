@@ -2537,7 +2537,8 @@ p.logins {
   font-family: 'Courier Prime', monospace;
 }
 
-#login-form #login-alert {
+#login-form #login-alert,
+#signup-form #login-alert {
   font-family: 'Courier Prime', monospace;
   color: #fff;
   width: 100%;
@@ -2545,25 +2546,39 @@ p.logins {
   border: 1px solid transparent;
   text-align: left;
 }
-#login-form #login-alert ul {
+#login-form #login-alert ul,
+#signup-form #login-alert ul {
   margin-left: 20px;
 }
-#login-form #login-alert ul li {
+#login-form #login-alert ul li,
+#signup-form #login-alert ul li {
   list-style-type: disc;
 }
-#login-form #login-alert.errors-present {
+#login-form #login-alert.red,
+#signup-form #login-alert.red {
   background-color: #ff4c4c;
   padding: 20px;
   margin-bottom: 1em;
   border: 1px solid #f02222;
 }
-#login-form #login-alert.warning-msg {
-  background-color: #d68d24;
+#login-form #login-alert.blue,
+#signup-form #login-alert.blue {
+  background-color: #386ab4;
   padding: 20px;
   margin-bottom: 1em;
-  border: 1px solid #f02222;
+  border: 1px solid #0f356d;
 }
-#login-form #login-btn {
+#login-form #login-alert.orange,
+#signup-form #login-alert.orange {
+  background-color: #d08b1f;
+  padding: 20px;
+  margin-bottom: 1em;
+  border: 1px solid #ff9c00;
+}
+#login-form #login-btn,
+#login-form #signup-btn,
+#signup-form #login-btn,
+#signup-form #signup-btn {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -2576,7 +2591,10 @@ p.logins {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-#login-form #login-btn .login-txt {
+#login-form #login-btn .login-txt,
+#login-form #signup-btn .login-txt,
+#signup-form #login-btn .login-txt,
+#signup-form #signup-btn .login-txt {
   background-color: rgba(0, 0, 0, 0.2);
   display: -ms-flexbox;
   display: flex;
@@ -2587,10 +2605,16 @@ p.logins {
   width: 100%;
   height: 2.5em;
 }
-#login-form #login-btn .login-txt:hover {
+#login-form #login-btn .login-txt:hover,
+#login-form #signup-btn .login-txt:hover,
+#signup-form #login-btn .login-txt:hover,
+#signup-form #signup-btn .login-txt:hover {
   background-color: #000;
 }
-#login-form #login-btn .login-verify {
+#login-form #login-btn .login-verify,
+#login-form #signup-btn .login-verify,
+#signup-form #login-btn .login-verify,
+#signup-form #signup-btn .login-verify {
   background-color: #000;
   display: -ms-flexbox;
   display: flex;

@@ -11,27 +11,25 @@ $layout_context = "login-page"; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
-	<form action="" method="post">
+	<form id="signup-form">
     <h1 class="text-center">Join here</h1>
 
-    <?php if(count($errors) > 0): ?>
-        <div class="alert alert-danger">
-            <?php foreach($errors as $error): ?>
-            <li><?php echo $error; ?></li>
-        <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+    <div id="login-alert">
+      <ul id="errors"></ul>
+    </div>
 
-    <input type="text" class="text" name="username" value="<?= h($username); ?>" placeholder="Username">
+    <input type="text" class="text" name="username" value="<?= h($username); ?>" placeholder="Username" autoFocus>
     <input type="email" class="text" name="email" value="<?= h($email); ?>" placeholder="Email address" required>
     <input type="password" id="showPassword" class="text" name="password" placeholder="Password">
     <input type="password" id="showConf" class="text" name="passwordConf" placeholder="Confirm password">
     
     <div class="showpassword-wrap"> 
-        <div id="showSignupPass"><i class="far fa-eye"></i> Show Passwords</div>
+        <div id="showSignupPass"><i class="far fa-eye"></i> Show passwords</div>
     </div>
 
-		<input type="submit" name="submit" class="submit" value="Sign up">
+		<input type="hidden" name="signup" value="signup">
+    <div id="signup-btn"><span class="login-txt"><img src="_images/signup.png"></span></div>
+
       <p class="btm-p">Already a member? <a class="log" href="login.php">Sign in</a></p>
 	</form>
     

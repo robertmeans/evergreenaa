@@ -23,25 +23,25 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
     <ul id="errors"></ul>
   </div>
 
-  <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email">
+  <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email" autoFocus>
           
   <input type="password" id="password" class="text login-pswd" name="password" placeholder="Password">
   
   <div class="showpassword-wrap"> 
-      <div id="showLoginPass"><i class="far fa-eye"></i> Show Password</div>
+      <div id="showLoginPass"><i class="far fa-eye"></i> Show password</div>
   </div>
 
   <input type="checkbox" name="remember_me" id="remember_me">
   <label for="remember_me" class="rm-checked"> 
-      <div class="rm-wrap">
-          <div class="aa-rm-out">
-              <div class="aa-rm-in"></div>
-          </div>
-          <span class="rm-rm">Remember me</span>
-      </div>
- </label>
+    <div class="rm-wrap">
+        <div class="aa-rm-out">
+            <div class="aa-rm-in"></div>
+        </div>
+        <span class="rm-rm">Remember me</span>
+    </div>
+  </label>
   
- <input type="hidden" name="login" value="login">
+  <input type="hidden" name="login" value="login">
   <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
 
   <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
