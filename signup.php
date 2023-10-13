@@ -28,7 +28,10 @@ include '_includes/head.php'; ?>
     </div>
 
 		<input type="hidden" name="signup" value="signup">
-    <div id="signup-btn"><span class="login-txt"><img src="_images/signup.png"></span></div>
+
+    <div id="toggle-btn">
+      <div id="signup-btn"><span class="login-txt"><img src="_images/signup.png"></span></div>
+    </div>
 
       <p class="btm-p">Already a member? <a class="log" href="login.php">Sign in</a></p>
 	</form>

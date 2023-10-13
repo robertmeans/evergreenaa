@@ -15,7 +15,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
 <div id="landing">
 	<form id="forgotpass-form">
-    <h1 class="text-center">Recover your password</h1>
+    <h1 class="text-center">Reset your password</h1>
 
     <div id="login-alert">
       <ul id="errors"></ul>
@@ -25,7 +25,10 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
     <input type="email" class="text" name="email" placeholder="Email address" autoFocus>
 
     <input type="hidden" name="forgotpass" value="forgotpass">
-    <div id="forgotpass-btn"><span class="login-txt"><img src="_images/forgotpass.png"></span></div>
+
+    <div id="toggle-btn">
+      <div id="forgotpass-btn"><span class="login-txt"><img src="_images/resetpass.png"></span></div>
+    </div>
 
     <p class="btm-p try-again">Think you remembered it? <a class="log" href="login.php">Try again</a></p>
 	</form>

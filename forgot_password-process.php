@@ -46,6 +46,14 @@ if (is_post_request() && isset($_POST['forgotpass'])) {
       if (WWW_ROOT != 'http://localhost/evergreenaa') {
         sendPasswordResetLink($email, $token);
       }
+      /*  else statement below set aside so you can easily toggle on and off when testing locally.
+          leaving it on will cause the signup form to stall (indefinitely) on "Preparing Account".
+          This will allow you to study that step in dev mode but still work online in case you
+          forgot to un-comment when in production. */
+      // else {
+      //   sendVerificationEmail($username, $email, $token);
+      // }
+      
 
       $signal = 'ok';
       $msg = '<span class="login-txt">Help on the way!</span>';

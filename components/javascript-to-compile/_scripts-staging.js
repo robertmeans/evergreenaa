@@ -934,7 +934,9 @@ $(document).ready(function() {
       type: "POST",
       data: $('#signup-form').serialize(),
       beforeSend: function(xhr) {
-        $('#signup-btn').html('<span class="login-verify"><img src="_images/preparing.gif"></span>');
+        $('#login-alert').removeClass(); // reset class every click
+        $('#errors').html('');
+        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/preparing.gif"></span></div>');
       },
       success: function(response) {
         console.log(response);
@@ -949,10 +951,11 @@ $(document).ready(function() {
             }
 
           } else {
-            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass('fade');
             $('#login-alert').addClass(response['class']);
             $('#errors').html(response['li']);
-            $('#signup-btn').html(response['msg']);
+            // $('#signup-btn').html(response['msg']);
+            $('#toggle-btn').html('<div id="signup-btn"><span class="login-txt"><img src="_images/signup.png"></span></div>');
           }
         } 
       },
@@ -980,12 +983,10 @@ $("#login-form").keyup(function(event) {
 });
 $(document).ready(function() {
 
+  var login_attempts = 0;
   $(document).on('click','#login-btn', function() {
     var current_loc = window.location.href;
-    // var ul_html = $('#errors').html();
-    // if (ul_html.includes('Wrong Username/Password combination.')) {
-    //   alert(ul_html);
-    // }
+    login_attempts += 1;
 
     $.ajax({
       dataType: "JSON",
@@ -993,16 +994,17 @@ $(document).ready(function() {
       type: "POST",
       data: $('#login-form').serialize(),
       beforeSend: function(xhr) {
-        $('#login-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+        $('#login-alert').removeClass(); // reset class every click
+        $('#errors').html('');
+        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
+
+        // $('#login-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
         console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
-            // $('#login-alert').removeClass('errors-present');
-            // $('#errors').html(response['li']);
-            // $('#login-btn').html('<span class="login-txt"><img src="_images/login.png"></span>');
 
             if (current_loc.indexOf("localhost") > -1) {
               window.location.replace("http://localhost/evergreenaa");
@@ -1011,10 +1013,20 @@ $(document).ready(function() {
             }
 
           } else {
-            $('#login-alert').removeClass(); // reset class every click
+            $('#session-msg').html('');
+            $('#login-alert').addClass('fade');
             $('#login-alert').addClass(response['class']);
-            $('#errors').html(response['li']);
-            $('#login-btn').html(response['msg']);
+
+            if (login_attempts >= 3 && current_loc.indexOf("localhost") > -1) {
+              $('#errors').html(response['li'] + '<li>You\'ve tried logging in ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="http://localhost/evergreenaa/forgot_password.php">reset</a> your password.</li>');
+            } else if (login_attempts >= 3 && current_loc.indexOf("evergreenaa.com") > -1)  {
+              $('#errors').html(response['li'] + '<li>You\'ve tried logging in ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="https://evergreenaa.com/forgot_password.php">reset</a> your password.</li>');
+            } else {
+              $('#errors').html(response['li']);
+            }
+
+            // $('#login-btn').html(response['msg']);
+            $('#toggle-btn').html('<div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>');
           }
         } 
       },
@@ -1033,18 +1045,7 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// forgot password begin
+// forgot password (start reset process) begin
 $("#forgotpass-form").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#forgotpass-btn").click();
@@ -1061,7 +1062,10 @@ $(document).ready(function() {
       type: "POST",
       data: $('#forgotpass-form').serialize(),
       beforeSend: function(xhr) {
-        $('#forgotpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+        $('#login-alert').removeClass(); // reset class every click
+        $('#errors').html('');
+        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
+        // $('#forgotpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
         console.log(response);
@@ -1072,13 +1076,14 @@ $(document).ready(function() {
             $('#login-alert').removeClass(); // reset class every click
             $('#login-alert').addClass(response['class']);
             $('#errors').html(response['li']);
-            $('#forgotpass-btn').html(response['msg']);
+            $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt">Help on the way!</span></div>');
 
           } else {
-            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass('fade');
             $('#login-alert').addClass(response['class']);
             $('#errors').html(response['li']);
-            $('#forgotpass-btn').html(response['msg']);
+            // $('#forgotpass-btn').html(response['msg']);
+            $('#toggle-btn').html('<div id="forgotpass-btn"><span class="login-txt"><img src="_images/resetpass.png"></span></div>');
           }
         } 
       },
@@ -1093,9 +1098,66 @@ $(document).ready(function() {
 
   });
 
+}); // $(document).ready forgot password (start reset process) end
+
+
+
+
+// reset password begin
+$("#resetpass-form").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#resetpass-btn").click();
+    }
+});
+$(document).ready(function() {
+
+  $(document).on('click','#resetpass-btn', function() {
+    var current_loc = window.location.href;
+
+    $.ajax({
+      dataType: "JSON",
+      url: "reset_password-process.php",
+      type: "POST",
+      data: $('#resetpass-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#login-alert').removeClass(); // reset class every click
+        $('#errors').html('');
+        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
+        // $('#resetpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+      },
+      success: function(response) {
+        console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['signal'] == 'ok') {
+
+            if (current_loc.indexOf("localhost") > -1) {
+              window.location.replace("http://localhost/evergreenaa/login.php");
+            } else {
+              window.location.replace("https://evergreenaa.com/login.php");
+            }
+
+          } else {
+            $('#login-alert').addClass('fade');
+            $('#login-alert').addClass(response['class']);
+            $('#errors').html(response['li']);
+            // $('#resetpass-btn').html(response['msg']);
+            $('#toggle-btn').html('<div id="resetpass-btn"><span class="login-txt"><img src="_images/resetpass.png"></span></div>');
+          }
+        } 
+      },
+      error: function(response) {
+        // console.log(response);
+        $('#resetpass-btn').html(response['msg']);
+      }, 
+      complete: function() {
+
+      }
+    })
+
+  });
+
 }); // $(document).ready forgot password end
-
-
 
 
 

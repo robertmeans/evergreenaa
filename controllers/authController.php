@@ -329,24 +329,8 @@ if (is_post_request() && isset($_POST['forgot-password-zzz'])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // if user clicked on the reset password 
+/*
 if (is_post_request() && isset($_POST['reset-password-btn-zzz'])) {
 	$password = $_POST['password'];
 	$passwordConf = $_POST['passwordConf'];
@@ -373,6 +357,13 @@ if (is_post_request() && isset($_POST['reset-password-btn-zzz'])) {
 		}
 	}
 }
+*/
+
+
+
+
+
+
 
 function resetPassword($token) 
 {

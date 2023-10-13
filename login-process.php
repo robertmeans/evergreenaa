@@ -87,6 +87,16 @@ if (is_post_request() && isset($_POST['login'])) {
             $token = $_SESSION['token'];
             setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
           }
+
+      /*  if statement below set aside so you can easily toggle on and off when testing locally.
+          leaving it on will cause the login form to stall (indefinitely) on "Verifying Account".
+          This will allow you to study that step in dev mode. Don't forget to comment it out
+          for production! */
+            
+      // if (1 == 1) {
+      //   sendVerificationEmail($username, $email, $token);
+      // }
+
           // everything checks out -> you're good to go!
           $signal = 'ok';
         }

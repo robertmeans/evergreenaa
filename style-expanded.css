@@ -2539,70 +2539,138 @@ p.logins {
 
 #login-form #hidethis,
 #signup-form #hidethis,
-#forgotpass-form #hidethis {
+#forgotpass-form #hidethis,
+#resetpass-form #hidethis {
   display: none;
+}
+#login-form a.fp-link,
+#signup-form a.fp-link,
+#forgotpass-form a.fp-link,
+#resetpass-form a.fp-link {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 2px 10px;
+  border: 1px solid transparent;
+  background-color: #cd2b2b;
+}
+#login-form a.fp-link:hover,
+#signup-form a.fp-link:hover,
+#forgotpass-form a.fp-link:hover,
+#resetpass-form a.fp-link:hover {
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid #fff;
 }
 #login-form #login-alert,
 #signup-form #login-alert,
-#forgotpass-form #login-alert {
+#forgotpass-form #login-alert,
+#resetpass-form #login-alert {
   font-family: 'Courier Prime', monospace;
   color: #fff;
   width: 100%;
   text-align: center;
   border: 1px solid transparent;
   text-align: left;
+  background-color: transparent;
 }
 #login-form #login-alert ul,
 #signup-form #login-alert ul,
-#forgotpass-form #login-alert ul {
+#forgotpass-form #login-alert ul,
+#resetpass-form #login-alert ul {
   margin-left: 20px;
 }
 #login-form #login-alert ul li,
 #signup-form #login-alert ul li,
-#forgotpass-form #login-alert ul li {
+#forgotpass-form #login-alert ul li,
+#resetpass-form #login-alert ul li {
   list-style-type: disc;
+}
+#login-form #login-alert.fade,
+#signup-form #login-alert.fade,
+#forgotpass-form #login-alert.fade,
+#resetpass-form #login-alert.fade {
+  background-color: blue;
+  padding: 20px;
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: background-color 1s ease, border-radius 1.5s ease, border 1.5s ease;
 }
 #login-form #login-alert.red,
 #signup-form #login-alert.red,
-#forgotpass-form #login-alert.red {
+#forgotpass-form #login-alert.red,
+#resetpass-form #login-alert.red {
   background-color: #ff4c4c;
   padding: 20px;
   margin-bottom: 1em;
-  border: 1px solid #f02222;
+  border-radius: 15px;
+  border: 1px solid #fff;
 }
 #login-form #login-alert.blue,
 #signup-form #login-alert.blue,
-#forgotpass-form #login-alert.blue {
+#forgotpass-form #login-alert.blue,
+#resetpass-form #login-alert.blue {
   background-color: #386ab4;
   padding: 20px;
   margin-bottom: 1em;
+  border-radius: 15px;
   border: 1px solid #0f356d;
 }
 #login-form #login-alert.orange,
 #signup-form #login-alert.orange,
-#forgotpass-form #login-alert.orange {
+#forgotpass-form #login-alert.orange,
+#resetpass-form #login-alert.orange {
   background-color: #d08b1f;
   padding: 20px;
   margin-bottom: 1em;
+  border-radius: 15px;
   border: 1px solid #ff9c00;
 }
 #login-form #login-alert.green,
 #signup-form #login-alert.green,
-#forgotpass-form #login-alert.green {
+#forgotpass-form #login-alert.green,
+#resetpass-form #login-alert.green {
   background-color: #139f19;
   padding: 20px;
   margin-bottom: 1em;
+  border-radius: 15px;
   border: 1px solid #09f514;
+}
+#login-form #toggle-btn,
+#signup-form #toggle-btn,
+#forgotpass-form #toggle-btn,
+#resetpass-form #toggle-btn {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+#login-form .verifying-msg,
+#signup-form .verifying-msg,
+#forgotpass-form .verifying-msg,
+#resetpass-form .verifying-msg {
+  background-color: #000;
 }
 #login-form #login-btn,
 #login-form #signup-btn,
 #login-form #forgotpass-btn,
+#login-form #resetpass-btn,
+#login-form .verifying-msg,
 #signup-form #login-btn,
 #signup-form #signup-btn,
 #signup-form #forgotpass-btn,
+#signup-form #resetpass-btn,
+#signup-form .verifying-msg,
 #forgotpass-form #login-btn,
 #forgotpass-form #signup-btn,
-#forgotpass-form #forgotpass-btn {
+#forgotpass-form #forgotpass-btn,
+#forgotpass-form #resetpass-btn,
+#forgotpass-form .verifying-msg,
+#resetpass-form #login-btn,
+#resetpass-form #signup-btn,
+#resetpass-form #forgotpass-btn,
+#resetpass-form #resetpass-btn,
+#resetpass-form .verifying-msg {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -2618,12 +2686,23 @@ p.logins {
 #login-form #login-btn .login-txt,
 #login-form #signup-btn .login-txt,
 #login-form #forgotpass-btn .login-txt,
+#login-form #resetpass-btn .login-txt,
+#login-form .verifying-msg .login-txt,
 #signup-form #login-btn .login-txt,
 #signup-form #signup-btn .login-txt,
 #signup-form #forgotpass-btn .login-txt,
+#signup-form #resetpass-btn .login-txt,
+#signup-form .verifying-msg .login-txt,
 #forgotpass-form #login-btn .login-txt,
 #forgotpass-form #signup-btn .login-txt,
-#forgotpass-form #forgotpass-btn .login-txt {
+#forgotpass-form #forgotpass-btn .login-txt,
+#forgotpass-form #resetpass-btn .login-txt,
+#forgotpass-form .verifying-msg .login-txt,
+#resetpass-form #login-btn .login-txt,
+#resetpass-form #signup-btn .login-txt,
+#resetpass-form #forgotpass-btn .login-txt,
+#resetpass-form #resetpass-btn .login-txt,
+#resetpass-form .verifying-msg .login-txt {
   background-color: rgba(0, 0, 0, 0.2);
   display: -ms-flexbox;
   display: flex;
@@ -2637,23 +2716,45 @@ p.logins {
 #login-form #login-btn .login-txt:hover,
 #login-form #signup-btn .login-txt:hover,
 #login-form #forgotpass-btn .login-txt:hover,
+#login-form #resetpass-btn .login-txt:hover,
+#login-form .verifying-msg .login-txt:hover,
 #signup-form #login-btn .login-txt:hover,
 #signup-form #signup-btn .login-txt:hover,
 #signup-form #forgotpass-btn .login-txt:hover,
+#signup-form #resetpass-btn .login-txt:hover,
+#signup-form .verifying-msg .login-txt:hover,
 #forgotpass-form #login-btn .login-txt:hover,
 #forgotpass-form #signup-btn .login-txt:hover,
-#forgotpass-form #forgotpass-btn .login-txt:hover {
+#forgotpass-form #forgotpass-btn .login-txt:hover,
+#forgotpass-form #resetpass-btn .login-txt:hover,
+#forgotpass-form .verifying-msg .login-txt:hover,
+#resetpass-form #login-btn .login-txt:hover,
+#resetpass-form #signup-btn .login-txt:hover,
+#resetpass-form #forgotpass-btn .login-txt:hover,
+#resetpass-form #resetpass-btn .login-txt:hover,
+#resetpass-form .verifying-msg .login-txt:hover {
   background-color: #000;
 }
 #login-form #login-btn .login-verify,
 #login-form #signup-btn .login-verify,
 #login-form #forgotpass-btn .login-verify,
+#login-form #resetpass-btn .login-verify,
+#login-form .verifying-msg .login-verify,
 #signup-form #login-btn .login-verify,
 #signup-form #signup-btn .login-verify,
 #signup-form #forgotpass-btn .login-verify,
+#signup-form #resetpass-btn .login-verify,
+#signup-form .verifying-msg .login-verify,
 #forgotpass-form #login-btn .login-verify,
 #forgotpass-form #signup-btn .login-verify,
-#forgotpass-form #forgotpass-btn .login-verify {
+#forgotpass-form #forgotpass-btn .login-verify,
+#forgotpass-form #resetpass-btn .login-verify,
+#forgotpass-form .verifying-msg .login-verify,
+#resetpass-form #login-btn .login-verify,
+#resetpass-form #signup-btn .login-verify,
+#resetpass-form #forgotpass-btn .login-verify,
+#resetpass-form #resetpass-btn .login-verify,
+#resetpass-form .verifying-msg .login-verify {
   background-color: #000;
   display: -ms-flexbox;
   display: flex;

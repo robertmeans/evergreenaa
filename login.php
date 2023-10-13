@@ -19,9 +19,25 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <form id="login-form">
   <h1 class="text-center">Login</h1>
 
+
+  <div id="session-msg">
+    <?php if(isset($_SESSION['message'])): ?>
+    <div class="alert <?= $_SESSION['alert-class']; ?>">
+        <?php 
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            unset($_SESSION['alert-class']); 
+        ?>
+    </div><!-- .alert -->
+    <?php endif; ?>
+  </div>
+
+
   <div id="login-alert">
     <ul id="errors"></ul>
   </div>
+
+
 
   <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email" autoFocus>
           
@@ -42,7 +58,17 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
   </label>
   
   <input type="hidden" name="login" value="login">
-  <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
+
+
+
+
+  <div id="toggle-btn">
+    <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
+  </div>
+
+
+
+
 
   <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
 
