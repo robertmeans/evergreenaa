@@ -934,7 +934,7 @@ $(document).ready(function() {
       type: "POST",
       data: $('#signup-form').serialize(),
       beforeSend: function(xhr) {
-        $('#signup-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+        $('#signup-btn').html('<span class="login-verify"><img src="_images/preparing.gif"></span>');
       },
       success: function(response) {
         console.log(response);
@@ -968,21 +968,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready signup end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1049,6 +1034,66 @@ $(document).ready(function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// forgot password begin
+$("#forgotpass-form").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#forgotpass-btn").click();
+    }
+});
+$(document).ready(function() {
+
+  $(document).on('click','#forgotpass-btn', function() {
+    // var current_loc = window.location.href;
+
+    $.ajax({
+      dataType: "JSON",
+      url: "forgot_password-process.php",
+      type: "POST",
+      data: $('#forgotpass-form').serialize(),
+      beforeSend: function(xhr) {
+        $('#forgotpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
+      },
+      success: function(response) {
+        console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['signal'] == 'ok') {
+
+            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass(response['class']);
+            $('#errors').html(response['li']);
+            $('#forgotpass-btn').html(response['msg']);
+
+          } else {
+            $('#login-alert').removeClass(); // reset class every click
+            $('#login-alert').addClass(response['class']);
+            $('#errors').html(response['li']);
+            $('#forgotpass-btn').html(response['msg']);
+          }
+        } 
+      },
+      error: function(response) {
+        // console.log(response);
+        $('#forgotpass-btn').html(response['msg']);
+      }, 
+      complete: function() {
+
+      }
+    })
+
+  });
+
+}); // $(document).ready forgot password end
 
 
 

@@ -394,9 +394,12 @@ p.logins {
 
 
 
-
 #login-form,
-#signup-form {
+#signup-form,
+#forgotpass-form {
+  #hidethis {
+    display: none;
+  }
   #login-alert {
     font-family: 'Courier Prime', monospace; 
     color: #fff;
@@ -429,8 +432,15 @@ p.logins {
     margin-bottom: 1em;
     border: 1px solid #ff9c00;    
   }
+  #login-alert.green {
+    background-color: #139f19;
+    padding: 20px;
+    margin-bottom: 1em;
+    border: 1px solid #09f514;    
+  }
   #login-btn,
-  #signup-btn {
+  #signup-btn,
+  #forgotpass-btn {
     display: flex;
     justify-content: center;
     align-items: center;

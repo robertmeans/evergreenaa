@@ -115,13 +115,6 @@ if (is_post_request() && isset($_POST['signup'])) {
     $class = 'red';
   }
 
-
-
-
-
-
-
-
   if ($li === '') {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $token = bin2hex(random_bytes(50));
@@ -143,7 +136,9 @@ if (is_post_request() && isset($_POST['signup'])) {
       $_SESSION['mode'] = '0';
       $_SESSION['email_opt'] = '1';
 
+      if (WWW_ROOT != 'http://localhost/evergreenaa') {
         sendVerificationEmail($username, $email, $token);
+      }
 
       // set flash message
       $_SESSION['message'] = "Success! Almost there...";

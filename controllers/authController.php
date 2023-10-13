@@ -50,6 +50,7 @@ remember_me();
 
 
 // sign-up
+/*
 if (is_post_request() && isset($_POST['submitzy'])) {
 	$username = $_POST['username'];
 	$email = strtolower($_POST['email']);
@@ -105,8 +106,8 @@ if (is_post_request() && isset($_POST['submitzy'])) {
 	$stmt->bind_param('s', $email);
 	$stmt->execute();
 
-	/* updated to PHP v7.2 on GoDaddy and unchecked mysqli and checked nd_mysqli */
-	/* in order to get this command to work */
+	// updated to PHP v7.2 on GoDaddy and unchecked mysqli and checked nd_mysqli
+	// in order to get this command to work
 	$result = $stmt->get_result();
 
 	$userCount = $result->num_rows;
@@ -150,18 +151,7 @@ if (is_post_request() && isset($_POST['submitzy'])) {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 // if user clicks on login
@@ -282,8 +272,27 @@ function verifyUser($token) {
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // if user clicks on forgot password 
-if (is_post_request() && isset($_POST['forgot-password'])) {
+/*
+if (is_post_request() && isset($_POST['forgot-password-zzz'])) {
 	$email = $_POST['email'];
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -312,11 +321,33 @@ if (is_post_request() && isset($_POST['forgot-password'])) {
 			header('location:'. WWW_ROOT . '/forgot_password.php');
 			exit();
 		}
+
 	}
 }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if user clicked on the reset password 
-if (is_post_request() && isset($_POST['reset-password-btn'])) {
+if (is_post_request() && isset($_POST['reset-password-btn-zzz'])) {
 	$password = $_POST['password'];
 	$passwordConf = $_POST['passwordConf'];
 

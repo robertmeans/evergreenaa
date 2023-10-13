@@ -29,15 +29,18 @@
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/jquery_1-12-1_ui_min.js"></script>
 
-	<!-- Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140046709-8"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+  <?php
+  if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+  	<!-- Google Analytics -->
+  	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140046709-8"></script>
+  	<script>
+  	  window.dataLayer = window.dataLayer || [];
+  	  function gtag(){dataLayer.push(arguments);}
+  	  gtag('js', new Date());
 
-	  gtag('config', 'UA-140046709-8');
-	</script>	
+  	  gtag('config', 'UA-140046709-8');
+  	</script>	
+  <?php } ?>
 
 	<script src="js/preload.js?<?php echo time(); ?>"></script>
 	
