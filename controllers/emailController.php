@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 
-function sendVerificationEmail($username, $userEmail, $token) {
+function sendVerificationEmail($username, $email, $token) {
   $mail = new PHPMailer(true);
 
   try {
@@ -27,8 +27,8 @@ function sendVerificationEmail($username, $userEmail, $token) {
       //Recipients
       // $mail->setFrom($email, 'Evergreen AA Website');
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
-      $mail->addAddress($userEmail, $username);     // Add a recipient
-      $mail->addReplyTo($userEmail);
+      $mail->addAddress($email, $username);     // Add a recipient
+      $mail->addReplyTo($email);
       // $mail->addCC('cc@example.com');
       $mail->addBCC('myevergreenaa@gmail.com');
 
@@ -83,7 +83,7 @@ function sendVerificationEmail($username, $userEmail, $token) {
   }
 }
 
-function sendPasswordResetLink($userEmail, $token) {
+function sendPasswordResetLink($username, $email, $token) {
 
   $mail = new PHPMailer(true);
 
@@ -103,8 +103,8 @@ function sendPasswordResetLink($userEmail, $token) {
       //Recipients
       // $mail->setFrom($email, 'Evergreen AA Website');
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
-      $mail->addAddress($userEmail);     // Add a recipient
-      $mail->addReplyTo($userEmail);
+      $mail->addAddress($email, $username);     // Add a recipient
+      $mail->addReplyTo($email);
       // $mail->addCC('cc@example.com');
       $mail->addBCC('myevergreenaa@gmail.com');
 

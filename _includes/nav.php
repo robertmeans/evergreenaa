@@ -26,14 +26,10 @@
 		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a><?php 
 
 		// make sure session is cleared if going from login to homepage via nav
-		if ($layout_context == 'login-page') { ?>
+		if ($layout_context == 'login-page' || (isset($_SESSION['admin']) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86))) { ?>
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>" class="<?php if ($layout_context == 'home-public' || $layout_context == 'home-private') { echo 'nav-active'; } ?>">Homepage</a>
-		<?php } 
-
-		if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) { ?>
-			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } ?>
 
 <?php // for DEVELOPMENT

@@ -42,9 +42,10 @@ if (is_post_request() && isset($_POST['forgotpass'])) {
 
     if ($userCount > 0) {
       $token = $user['token'];
+      $username = $user['username'];
       
       if (WWW_ROOT != 'http://localhost/evergreenaa') {
-        sendPasswordResetLink($email, $token);
+        sendPasswordResetLink($username, $email, $token);
       }
       /*  else statement below set aside so you can easily toggle on and off when testing locally.
           leaving it on will cause the signup form to stall (indefinitely) on "Preparing Account".

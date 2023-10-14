@@ -913,10 +913,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
 // signup begin
 $("#signup-form").keyup(function(event) {
     if (event.keyCode === 13) {
@@ -971,8 +967,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready signup end
-
-
 
 
 // login begin
@@ -1043,8 +1037,6 @@ $(document).ready(function() {
 }); // $(document).ready login end
 
 
-
-
 // forgot password (start reset process) begin
 $("#forgotpass-form").keyup(function(event) {
     if (event.keyCode === 13) {
@@ -1099,8 +1091,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready forgot password (start reset process) end
-
-
 
 
 // reset password begin
@@ -1158,13 +1148,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready forgot password end
-
-
-
-
-
-
-
 
 
 

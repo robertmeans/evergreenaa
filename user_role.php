@@ -19,6 +19,9 @@ if ($id != 1 && ($id == '' || $id == $_SESSION['id'])) {
 }
 
 $row = get_user_by_id($id);
+$users_mtgs = find_meetings_for_manage_page($id);
+$mtg_found  = mysqli_num_rows($users_mtgs);
+
 
 require '_includes/head.php'; ?>
 
@@ -92,12 +95,12 @@ require '_includes/head.php'; ?>
 
 					<?php if ($_SESSION['admin'] == 1 && ($row['admin'] == 0 || $row['admin'] == 2 || $row['admin'] == 85 || $row['admin'] == 86)) { // just me ?>
 						<div class='radioz' value="3">
-							Upgrade <?= $row['username'] . ' to ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
+							Upgrade <?= $row['username'] . ' to ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings ]' ?>
 						</div>					
 					<?php } ?>
 					<?php if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { // just me ?> 
 						<div class='radioz' value="2">
-							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings]' ?>
+							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings ]' ?>
 						</div>
 						<div class='radioz' value="0">
 							Downgrade <?= $row['username'] . ' to Member' ?>
@@ -122,7 +125,7 @@ require '_includes/head.php'; ?>
 					<?php /* user is currently Member or suspended */ ?>
 						<?php if ($row['admin'] == 0) { // user is Member ?>
 							<div class='radioz' value="2">
-								Grant <?= $row['username'] . ' ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
+								Grant <?= $row['username'] . ' ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings ]' ?>
 							</div>
 
 						<?php } else { // user is suspended ?>
@@ -132,7 +135,7 @@ require '_includes/head.php'; ?>
 							</div>
 						*/ ?>
 							<div class='radioz' value="2">
-								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings]' ?>
+								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings ]' ?>
 							</div>
 							<div class='radioz' value="0">
 								Reinstate <?= $row['username'] . ' as Member' ?>
@@ -141,7 +144,14 @@ require '_includes/head.php'; ?>
 					<?php } ?>
 
 
-					<?php if ($row['admin'] != 85 && $row['admin'] != 86) { ?> 
+          <?php if (($row['admin'] != 85 && $row['admin'] != 86) && $mtg_found === 0) { ?> 
+            <div class='radioz' value="85">
+              Suspend <?= $row['username'] ?><br>This user has no meetings
+            </div>
+          <?php } ?>
+
+
+					<?php if (($row['admin'] != 85 && $row['admin'] != 86) && $mtg_found > 0) { ?> 
 						<div class='radioz' value="85">
 							Suspend <?= $row['username'] ?> but KEEP meetings
 						</div>
@@ -185,10 +195,6 @@ require '_includes/head.php'; ?>
 	</div>
 
 <h1 class="usr-role-mtg"><?= $row['username'] . '\'s ' ?>Meetings</h1>
-<?php 
-	$users_mtgs = find_meetings_for_manage_page($id);
-	$mtg_found 	= mysqli_num_rows($users_mtgs);
-	?>
 
 <ul class="manage-weekdays">
 <?php if ($mtg_found > 0) { ?>
