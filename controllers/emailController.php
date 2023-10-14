@@ -20,9 +20,10 @@ function sendVerificationEmail($username, $email, $token) {
       // $mail->Port       = 465;
 
       $mail->Host       = 'localhost';
+      $mail->Port       = 25;
       $mail->SMTPAuth   = false;
-      $mail->Username   = EMAIL;
-      $mail->Password   = PASSWORD; 
+      $mail->Username   = '';
+      $mail->Password   = ''; 
 
       //Recipients
       // $mail->setFrom($email, 'Evergreen AA Website');
@@ -93,12 +94,13 @@ function sendPasswordResetLink($username, $email, $token) {
       // $mail->Username   = EMAIL;
       // $mail->Password   = PASSWORD; 
       // $mail->SMTPSecure = 'ssl';
-      // $mail->Port       = 465;
 
       $mail->Host       = 'localhost';
+      $mail->Port       = 25;
       $mail->SMTPAuth   = false;
-      $mail->Username   = EMAIL;
-      $mail->Password   = PASSWORD; 
+      // $mail->SMTPAutoTLS = false;
+      $mail->Username   = '';
+      $mail->Password   = ''; 
 
       //Recipients
       // $mail->setFrom($email, 'Evergreen AA Website');

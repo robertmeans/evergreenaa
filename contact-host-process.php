@@ -60,8 +60,9 @@ if (is_post_request()) {
 
         $mail->Host       = 'localhost';
         $mail->SMTPAuth   = false;
-        $mail->Username   = EMAIL;
-        $mail->Password   = PASSWORD; 
+        $mail->Port       = 25;
+        $mail->Username   = '';
+        $mail->Password   = ''; 
 				// email routing set to Remote
 
         //Recipients

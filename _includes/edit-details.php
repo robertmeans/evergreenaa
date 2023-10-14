@@ -61,8 +61,8 @@
 
 	// if (isset($_POST['meet_phone'])) { $postphone = preg_replace('/[^0-9]/', '', $_POST['meet_phone']); }
 
-	if (isset($_POST['meet_phone']) && $postphone != '' ) {
-    echo '(' .substr($postphone, 0, 3). ') '.substr($postphone, 3, 3). '-'.substr($postphone,6); }
+	if (isset($_POST['meet_phone'])) {
+    echo '(' .substr($_POST['meet_phone'], 0, 3). ') '.substr($_POST['meet_phone'], 3, 3). '-'.substr($_POST['meet_phone'],6); }
 
  	else if (!empty($row['meet_phone'])) { 
     echo '(' . substr(h($row['meet_phone']), 0,3) . ') ' . substr(h($row['meet_phone']), 3,3). '-' . substr(h($row['meet_phone']),6); }
