@@ -53,7 +53,6 @@ if (is_post_request()) {
 			// this is to prevent the mail function from trying to run within an ajax call on localhost which seems to have prevented me from running tests locally. now this will only run on the server.
 			if (WWW_ROOT != 'http://localhost/evergreenaa') {
 
-
 				function visitor_to_host($vdt, $vtz, $emhtz) {
 				  $from_tz_obj = new DateTimeZone($vtz);
 				  $to_tz_obj = new DateTimeZone($emhtz);
@@ -69,28 +68,23 @@ if (is_post_request()) {
 
 				$mtgname = $mtgdt . ' - ' . $meetname;
 
-
 		    $mail = new PHPMailer(true);
 
 		    try { 
 
-	        $mail->Host       = 'localhost';
-	        $mail->SMTPAuth   = false;
-	        $mail->Username   = EMAIL;
-	        $mail->Password   = PASSWORD; 
-					// email routing set to Remote
+	        mail_config();
 
 	        //Recipients
 	        $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
 	        $mail->addAddress($emhemail, $emhuser);     // Add a recipient
 	        $mail->addReplyTo('donotreply@evergreenaa.com', 'Anonymous Member');
 	        // $mail->addCC('cc@example.com');
-	        $mail->addBCC('robertmeans01@gmail.com');
+	        $mail->addBCC('robert@evergreenwebdesign.com');
 
 	        // Content
 	        $mail->isHTML(true);
 	        $mail->Subject = $mtgname;
-	        $mail->Body    =  'The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". <br><br>There has been an issue reported about this meeting. Please log into your Dashboard and click on the edit button for this meeting to address this concern. If 3 issues are reported without your response this meeting will be set to &quot;Draft&quot; and removed from view. It will remain in your account and you will still be able to remedy the issue if you would like to.<br><br>A member reported the following issue(s).<hr><br>' . nl2br($message);
+	        $mail->Body    =  'The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". <br><br><span style="font-weight:bold;color:red;">There has been an issue reported about this meeting.</span> Please log into your Dashboard and click on the edit button for this meeting to address this concern. If 3 issues are reported without your response this meeting will be set to &quot;Draft&quot; and removed from view. It will remain in your account and you will still be able to remedy the issue if you would like to.<br><br>A member reported the following issue(s).<hr><br>' . nl2br($message);
 
 	        $mail->send();
 			    // echo 'Message has been sent';
@@ -107,8 +101,6 @@ if (is_post_request()) {
 			  $signal = 'ok';
 			  $msg =  'Message sent successfully';	
 			}
-
-
 
 		} else {
 			$signal = 'bad';

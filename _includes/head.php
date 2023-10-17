@@ -31,15 +31,15 @@
 
   <?php
   if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-  	<!-- Google Analytics -->
-  	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140046709-8"></script>
-  	<script>
-  	  window.dataLayer = window.dataLayer || [];
-  	  function gtag(){dataLayer.push(arguments);}
-  	  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LW85QCP3GZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  	  gtag('config', 'UA-140046709-8');
-  	</script>	
+      gtag('config', 'G-LW85QCP3GZ');
+    </script>
   <?php } ?>
 
 	<script src="js/preload.js?<?php echo time(); ?>"></script>

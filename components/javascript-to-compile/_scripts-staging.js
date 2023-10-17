@@ -769,39 +769,55 @@ $(".oc").change(function() {
 });
 
 
+
+
+
 // footer ajax contact
+// $("#footer-contact-form").keyup(function(event) {
+//   if (event.keyCode === 13) {
+//     $("#emailBob").click();
+//   }
+// });
 $(document).ready(function() {
-  $('#emailBob').click(function() {
-    //event.preventDefault();
+
+  $(document).on('click','#emailBob', function() {
+
     $.ajax({
       dataType: "JSON",
       url: "contact-process.php",
       type: "POST",
-      data: $('#contactForm').serialize(),
+      data: $('#footer-contact-form').serialize(),
       beforeSend: function(xhr) {
-        $('#msg').html('<span class="email-me">Sending - one moment...</span>');
+        $('#msg').html('<span class="email-me"><img src="_images/sending.gif"></span>');
+        $('#send-btn-nope').html('');
       },
       success: function(response) {
-        // console.log(response);
+        console.log(response);
         if(response) {
           console.log(response);
           if(response['signal'] == 'ok') {
-            $('#contactForm').html('<span>Your message was sent successfully.</span>');
+            $('#footer-contact-form').html('<span class="succ">Your message was sent successfully.</span>');
           } else {
-            $('#msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+            $('#msg').html('<div class="alert alert-warning"><ul class="ftr-con">' + response['msg'] + '</ul></div>');
+            $('#send-btn-nope').html('<input id="emailBob" value="Send">');
+            
+
           }
         } 
       },
-      error: function() {
-        $('#msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+      error: function(response) {
+        $('#msg').html(response['msg']);
       }, 
       complete: function() {
-        // $('#contact').html('<span>Your message was sent successfully.</span>');
-        // $('#send-success').html('<input name="clozer" id="clozer" class="clozer" value="Close">');
+
       }
     })
   });
+
 });
+
+
+
 
 // submit initial timezone cookie + db
 $(document).ready(function() {
@@ -880,7 +896,8 @@ $(document).ready(function() {
       type: "POST",
       data: $('#emh-contact').serialize(),
       beforeSend: function(xhr) {
-        $('#emh-contact-msg').html('<span class="sending-msg">Sending - one moment...</span>');
+        $('#emh-contact-msg').html('<span class="sending-msg"><img src="_images/sending.gif"></span>');
+        $('#submit-links').html('');
       },
       success: function(response) {
         // console.log(response);
@@ -889,12 +906,14 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
             $('#emh-contact').html('<span class="success-emh">Your message was sent successfully.</span>');
           } else {
-            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+            $('#emh-contact-msg').html('<div class="alert alert-warning"><ul>' + response['msg'] + '</ul></div>');
+            $('#submit-links').html('<input type="button" id="emh-btn" class="send" value="Send">');
           }
         } 
       },
       error: function() {
         $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
+        $('#submit-links').html('<input type="button" id="emh-btn" class="send" value="Send">');
       }, 
       complete: function() {
 
@@ -902,13 +921,6 @@ $(document).ready(function() {
     })
   });
 });
-
-
-
-
-
-
-
 
 
 
@@ -969,14 +981,27 @@ $(document).ready(function() {
 }); // $(document).ready signup end
 
 
+
 // login begin
 $("#login-form").keyup(function(event) {
   if (event.keyCode === 13) {
     $("#login-btn").click();
   }
 });
+
 $(document).ready(function() {
 
+  // before we get started - pimp that remember me feature
+  if (!$('.aa-rm-in').hasClass('checkaroo')) {
+    $('.rm-rm').mouseover(function() {
+      $('.aa-rm-in').addClass('checkit');
+    });
+    $('.rm-rm').mouseleave(function() {
+      $('.aa-rm-in').removeClass('checkit');
+    });
+  } 
+
+  // now, get to business...
   var login_attempts = 0;
   $(document).on('click','#login-btn', function() {
     var current_loc = window.location.href;
@@ -1039,9 +1064,9 @@ $(document).ready(function() {
 
 // forgot password (start reset process) begin
 $("#forgotpass-form").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#forgotpass-btn").click();
-    }
+  if (event.keyCode === 13) {
+    $("#forgotpass-btn").click();
+  }
 });
 $(document).ready(function() {
 
@@ -1057,7 +1082,6 @@ $(document).ready(function() {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
         $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
-        // $('#forgotpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
         console.log(response);
@@ -1148,20 +1172,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready forgot password end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1396,31 +1396,31 @@ footer #toggle-contact-form .close-right {
   padding-left: 30px;
   padding-right: 70px;
 }
-footer form#contactForm {
+footer #footer-contact-form {
   width: 100%;
   margin: 1.5em auto 5em auto;
 }
-footer form#contactForm ul {
+footer #footer-contact-form ul {
   margin: 0;
   padding: 0;
 }
-footer form#contactForm ul li {
+footer #footer-contact-form ul li {
   list-style: none;
 }
-footer form#contactForm ul li.embtn {
+footer #footer-contact-form ul li.embtn {
   list-style: none;
   text-align: right;
 }
-footer form#contactForm label {
+footer #footer-contact-form label {
   display: block;
   margin-bottom: .5em;
 }
-footer form#contactForm input {
+footer #footer-contact-form input {
   margin-bottom: 20px;
   margin-top: 5px;
 }
-footer form#contactForm input#name,
-footer form#contactForm input#email {
+footer #footer-contact-form input#name,
+footer #footer-contact-form input#email {
   height: 1.5em;
   width: 100%;
   max-width: 400px;
@@ -1428,7 +1428,7 @@ footer form#contactForm input#email {
   font-family: 'Architects Daughter', Tahoma, sans-serif;
   text-align: center;
 }
-footer form#contactForm textarea#comments {
+footer #footer-contact-form textarea#comments {
   height: 6em;
   width: 100%;
   margin-top: .2em;
@@ -1437,9 +1437,9 @@ footer form#contactForm textarea#comments {
   font-family: 'Architects Daughter', Tahoma, sans-serif;
   resize: none;
 }
-footer form#contactForm input#name,
-footer form#contactForm input#email,
-footer form#contactForm textarea#comments {
+footer #footer-contact-form input#name,
+footer #footer-contact-form input#email,
+footer #footer-contact-form textarea#comments {
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   outline: none;
@@ -1451,21 +1451,21 @@ footer form#contactForm textarea#comments {
   padding: 1em;
   transition: background-color 0.3s ease, border-top 0.8s ease, border-right 0.8s ease, border-bottom 0.8s ease, border-left 0.8s ease;
 }
-footer form#contactForm input#name:hover,
-footer form#contactForm input#email:hover,
-footer form#contactForm textarea#comments:hover {
+footer #footer-contact-form input#name:hover,
+footer #footer-contact-form input#email:hover,
+footer #footer-contact-form textarea#comments:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-footer form#contactForm input#name:focus,
-footer form#contactForm input#email:focus,
-footer form#contactForm textarea#comments:focus {
+footer #footer-contact-form input#name:focus,
+footer #footer-contact-form input#email:focus,
+footer #footer-contact-form textarea#comments:focus {
   background-color: transparent;
   border-top: 1px solid #ccc;
   border-right: transparent;
   border-bottom: 1px solid #ccc;
   border-left: transparent;
 }
-footer form#contactForm input#send {
+footer #footer-contact-form input#send {
   display: inline-block;
   float: left;
   width: 150px;
@@ -1476,18 +1476,18 @@ footer form#contactForm input#send {
   background: #ccc;
   color: #000;
 }
-footer form#contactForm input#send:hover {
+footer #footer-contact-form input#send:hover {
   background: #565656;
   color: #fff;
 }
-footer form#contactForm input#send:active, footer form#contactForm input#send:focus {
+footer #footer-contact-form input#send:active, footer #footer-contact-form input#send:focus {
   outline: 0;
   outline-style: 0;
 }
-footer form#contactForm input#send:visited {
+footer #footer-contact-form input#send:visited {
   background: #ccc;
 }
-footer form#contactForm input#emailBob {
+footer #footer-contact-form input#emailBob {
   width: 100%;
   padding: 1em 1.5em;
   font-size: 16px;
@@ -1501,29 +1501,35 @@ footer form#contactForm input#emailBob {
   transition: all 0.2s ease;
   -webkit-appearance: none;
 }
-footer form#contactForm input#emailBob:hover {
+footer #footer-contact-form input#emailBob:hover {
   background-color: #82c33a;
   color: #fff;
 }
-footer form#contactForm input#emailBob:active, footer form#contactForm input#emailBob:focus {
+footer #footer-contact-form input#emailBob:active, footer #footer-contact-form input#emailBob:focus {
   outline: none;
   outline-style: 0;
 }
-footer form#contactForm #msg {
+footer #footer-contact-form #msg {
   margin-top: 0.75em;
   width: 100%;
 }
-footer form#contactForm #msg .alert-warning {
-  margin-bottom: 0.5em;
-  border-radius: 5px;
-  padding: 0.75em;
-  font-size: 1em;
-  color: #313131;
-  background-color: #ffdddd;
-  border: 1px solid #ff5a5a;
+footer #footer-contact-form #msg .alert-warning {
+  margin-bottom: 1em;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: 'Courier Prime', monospace;
+  color: #fff;
+  background-color: #ff4c4c;
+  border: 1px solid #fff;
   text-align: left;
 }
-footer form#contactForm #msg .alert-success {
+footer #footer-contact-form #msg ul {
+  margin-left: 20px;
+}
+footer #footer-contact-form #msg ul li {
+  list-style-type: disc;
+}
+footer #footer-contact-form #msg .alert-success {
   margin-bottom: 0.5em;
   border-radius: 5px;
   padding: 0.75em;
@@ -1533,12 +1539,22 @@ footer form#contactForm #msg .alert-success {
   border: 1px solid #45661f;
   text-align: left;
 }
-footer form#contactForm span {
+footer #footer-contact-form span {
   display: block;
   margin: 0.5em auto;
   background: rgba(150, 255, 0, 0.1);
   padding: 1em;
   border: 1px solid #96ff00;
+}
+footer #footer-contact-form .succ,
+footer #footer-contact-form .email-me {
+  cursor: default;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 footer button#confirm {
   float: left;
@@ -1644,8 +1660,8 @@ div#success-wrap span.success-msg {
 }
 
 @media screen and (max-width: 430px) {
-  footer form#contactForm input#name,
-  footer form#contactForm input#email {
+  footer form#footer-contact-form input#name,
+  footer form#footer-contact-form input#email {
     height: 30px;
   }
   footer button#toggle-contact-form {
@@ -2352,12 +2368,20 @@ input[name="remember_me"] {
   margin-top: -2px;
 }
 
-.aa-rm-in.checkaroo {
+.aa-rm-in.checkaroo,
+.aa-rm-in.checkaroo.checkit {
+  border-bottom: 17.32px solid #96ff00;
+}
+
+.aa-rm-in.checkit {
   border-bottom: 17.32px solid #96ff00;
 }
 
 .rm-rm {
   color: #fff;
+}
+.rm-rm:hover {
+  color: #96ff00;
 }
 
 .rm-rm.hot {
@@ -2764,6 +2788,42 @@ p.logins {
       align-items: center;
   width: 100%;
   height: 2.5em;
+}
+#login-form #toggle-btn .verifying-msg .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt {
+  cursor: default;
+}
+#login-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#login-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#signup-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#forgotpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt .login-txt,
+#resetpass-form #toggle-btn .verifying-msg .login-txt .login-txt {
+  background-color: #000;
 }
 
 a.signup-link {
@@ -4487,13 +4547,18 @@ body.noscrollz {
 }
 
 span.sending-msg {
-  background-color: #92fc8a;
-  color: #086c00;
+  background-color: #0f1a00;
   padding: 20px;
-  border: 1px solid #736552;
+  border: 1px solid #45661f;
   margin-top: 0.5em;
-  display: block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
+  cursor: default;
 }
 
 span.sending-msg.whoops {
@@ -4513,8 +4578,21 @@ span.sending-msg.downgraded {
 }
 
 .alert.alert-warning {
-  background-color: #ffc6c6;
-  color: #c72222;
+  margin-bottom: 1em;
+  line-height: 1.5em;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: 'Courier Prime', monospace;
+  color: #fff;
+  background-color: #ff4c4c;
+  border: 1px solid #fff;
+  text-align: left;
+}
+.alert.alert-warning ul {
+  margin-left: 20px;
+}
+.alert.alert-warning ul li {
+  list-style-type: disc;
   line-height: 1.5em;
 }
 

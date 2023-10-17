@@ -60,9 +60,8 @@ footer {
         padding-right: 70px;
       }
   }
-  form#contactForm {
+  #footer-contact-form {
     width: 100%;
-    // max-width: 400px;
     margin: 1.5em auto 5em auto;
     ul {
       margin: 0;
@@ -183,14 +182,20 @@ footer {
       margin-top: 0.75em;
       width: 100%;
       .alert-warning {
-        margin-bottom: 0.5em;
-        border-radius: 5px;
-        padding: 0.75em;
-        font-size: 1em;
-        color: #313131;
-        background-color: #ffdddd;
-        border: 1px solid #ff5a5a;
+        margin-bottom: 1em;
+        border-radius: 15px;
+        padding: 20px;
+        font-family: 'Courier Prime', monospace;
+        color: #fff;
+        background-color: #ff4c4c;
+        border: 1px solid #fff;
         text-align: left;
+      }
+      ul {
+        margin-left: 20px;
+        li {
+          list-style-type: disc;
+        }
       }
       .alert-success {
         margin-bottom: 0.5em;
@@ -210,7 +215,13 @@ footer {
       padding: 1em;
       border: 1px solid #96ff00;
     }
-
+    .succ,
+    .email-me {
+      cursor: default;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   button#confirm {
@@ -323,7 +334,7 @@ div#success-wrap {
 
 @media screen and (max-width: 430px) {
   footer {
-    form#contactForm {
+    form#footer-contact-form {
       // width: 94%;
       // max-width: 420px;
       input#name,

@@ -2,13 +2,11 @@
 require_once 'config/initialize.php';
 require_once 'controllers/emailController.php';
 
-$signal = '';
-$msg = '';
-$li = '';
-$class = '';
-
-// if user clicks on login
 if (is_post_request() && isset($_POST['forgotpass'])) {
+  $signal = '';
+  $msg = '';
+  $li = '';
+  $class = '';
   $email = strtolower($_POST['email']);
 
   // validation

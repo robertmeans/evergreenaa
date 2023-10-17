@@ -16,86 +16,90 @@ require_once '_functions/query_functions.php';
 
 $db = db_connect();
 
-	$mtgid = $_POST['mtgid'];
-	$name = trim($_POST['name']);
-	$email = trim($_POST['email']);
-	$message = trim($_POST['emhmsg']);
+$mtgid = $_POST['mtgid'];
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$message = trim($_POST['emhmsg']);
 
-	$vdt = $_POST['vdt']; // visitor's day + time (really time + day (e.g. '1:15 PM, Sun'))
-	$vtz = $_POST['vtz']; // visitor's tz
+$vdt = $_POST['vdt']; // visitor's day + time (really time + day (e.g. '1:15 PM, Sun'))
+$vtz = $_POST['vtz']; // visitor's tz
 
-	$meetname = $_POST['mtgname']; // all that's here is meeting name (no day or time)
+$meetname = $_POST['mtgname']; // all that's here is meeting name (no day or time)
 
-if (is_post_request()) { 
+if (is_post_request() && isset($_POST['mtgid'])) { 
+  $signal = '';
+  $msg = '';
 
-	if($name && $email && $message) {
+  // validation
+  if (empty($name) || empty($email) || empty($message)) {
+    $signal = 'bad';
+    $msg .= '<li>Please fill in all the fields.</li>';
+  }
+  if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $signal = 'bad';
+    $msg .= '<li>Email is invalid.</li>';
+  }
 
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-		$emh = get_host_address($mtgid);
-		$rowq = mysqli_fetch_assoc($emh);
+  if (empty($msg) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-		$emhemail = $rowq['email'];
-		$emhuser = $rowq['username'];
-		$emhtz = $rowq['tz'];
+    // all these WWW_ROOT's are for local testing
+    if (WWW_ROOT == 'http://localhost/evergreenaa') {
+      sleep(3600);
+    }
 
-		function visitor_to_host($vdt, $vtz, $emhtz) {
-		  $from_tz_obj = new DateTimeZone($vtz);
-		  $to_tz_obj = new DateTimeZone($emhtz);
+  	$emh = get_host_address($mtgid);
+  	$rowq = mysqli_fetch_assoc($emh);
 
-		  $ct = new DateTime($vdt, $from_tz_obj);
-		  $ct->setTimezone($to_tz_obj);
-		  $nct = $ct->format('g:i A, D');
+  	$emhemail = $rowq['email'];
+  	$emhuser = $rowq['username'];
+  	$emhtz = $rowq['tz'];
 
-		  return $nct;
-		}
+  	function visitor_to_host($vdt, $vtz, $emhtz) {
+  	  $from_tz_obj = new DateTimeZone($vtz);
+  	  $to_tz_obj = new DateTimeZone($emhtz);
 
-		$mtgdt = visitor_to_host($vdt, $vtz, $emhtz);
+  	  $ct = new DateTime($vdt, $from_tz_obj);
+  	  $ct->setTimezone($to_tz_obj);
+  	  $nct = $ct->format('g:i A, D');
 
-		$mtgname = $mtgdt . ' - ' . $meetname;
+  	  return $nct;
+  	}
+
+  	$mtgdt = visitor_to_host($vdt, $vtz, $emhtz);
+
+  	$mtgname = $mtgdt . ' - ' . $meetname;
 
     $mail = new PHPMailer(true);
 
     try { 
 
-        $mail->Host       = 'localhost';
-        $mail->SMTPAuth   = false;
-        $mail->Port       = 25;
-        $mail->Username   = '';
-        $mail->Password   = ''; 
-				// email routing set to Remote
+      mail_config(); 
 
-        //Recipients
-        $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
-        $mail->addAddress($emhemail, $emhuser);     // Add a recipient
-        $mail->addReplyTo($email, $name);
-        // $mail->addCC('cc@example.com');
-        $mail->addBCC('robertmeans01@gmail.com');
+      $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
+      $mail->addAddress($emhemail, $emhuser);     // Add a recipient
+      $mail->addReplyTo($email, $name);
+      // $mail->addCC('cc@example.com');
+      $mail->addBCC('robert@evergreenwebdesign.com');
 
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = $mtgname;
-        $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br>Note: The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". A visitor has sent you the following question/comment. When you reply to this message you will be communicating directly with them.<hr><br>' . nl2br($message);
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = $mtgname;
+      $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br>Note: The following email is being sent from <a href="https://evergreenaa.com" target="_blank">evergreenaa.com</a> and is regarding the meeting that you (Username: ' . $emhuser . ') have posted there titled, "' . $mtgname . '". A visitor has sent you the following question/comment. When you reply to this message you will be communicating directly with them.<hr><br>' . nl2br($message);
 
-        $mail->send();
-		    // echo 'Message has been sent';
-		    $signal = 'ok';
-		    $msg =  'Message sent successfully';
-	    } catch (Exception $e) {
-	        $signal = 'bad';
-	        $msg = 'Mail Error: ' {$mail->ErrorInfo};
-	    }
+      $mail->send();
+      $signal = 'ok';
+      $msg =  'Message sent successfully';
+    } catch (Exception $e) {
+        $signal = 'bad';
+        $msg = 'Mail Error: ' {$mail->ErrorInfo};
+    }
 
-		} else {
-		  $signal = 'bad';
-		  $msg = 'Invalid email address. Please fix.';
-		}
+  } 
 
-	} else {
-		$signal = 'bad';
-		$msg = 'Please fill in all the fields.';
-	}
-
+} else {
+  $signal = 'bad';
+  $msg =  '<li>How in the world are you seeing this message?!</li>'; 
 }
 	$data = array(
 		'signal' => $signal,

@@ -1,72 +1,43 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require_once '_functions/functions.php';
-require_once 'vendor/autoload.php';
-require_once 'config/constants.php';
-
-	$name = trim($_POST['name']);
-	$email = trim($_POST['email']);
-	$message = trim($_POST['comments']);
-
-if (is_post_request()) {
-
-	if($name && $email && $message) {
-
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+require_once 'config/initialize.php';
+require_once 'controllers/emailController.php';
 
 
-    $mail = new PHPMailer(true);
+if (is_post_request() && isset($_POST['footercontact'])) {
+  $signal = '';
+  $msg = '';
+  $name = trim($_POST['name']);
+  $email = trim($_POST['email']);
+  $message = trim($_POST['comments']);
 
-    try { 
 
-        $mail->Host       = 'localhost';
-        $mail->SMTPAuth   = false;
-        $mail->Username   = EMAIL;
-        $mail->Password   = PASSWORD; 
-				// email routing set to Remote
+  // validation
+  if (empty($name) || empty($email) || empty($message)) {
+    $signal = 'bad';
+    $msg .= '<li>Please fill in all the fields.</li>';
+  }
 
-        //Recipients
-        $mail->setFrom('donotreply@evergreenaa.com', $name);
-        $mail->addAddress(EMAIL, 'EvergreenAA Website Contact Form');     // Add a recipient
-        $mail->addReplyTo($email, $name);
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('robertmeans01@gmail.com');
+  if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $signal = 'bad';
+    $msg .= '<li>Email is invalid.</li>';
+  }
 
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = 'Email from EvergreenAA Website';
-        $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><hr><br>' . nl2br($message);
-
-        $mail->send();
-		    // echo 'Message has been sent';
-		    $signal = 'ok';
-		    $msg =  'Message sent successfully';
-	    } catch (Exception $e) {
-	        $signal = 'bad';
-	        $msg = 'Mail Error: ' {$mail->ErrorInfo};
-	    }
-
-		} else {
-		  $signal = 'bad';
-		  $msg = 'Invalid email address. Please fix.';
-		}
-
-	} else {
-		$signal = 'bad';
-		$msg = 'Please fill in all the fields.';
-	}
+  if (empty($msg) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (WWW_ROOT != 'http://localhost/evergreenaa') {
+      footer_contact($name, $email, $message);
+      $signal = 'ok';
+      $msg = '<li>Message sent successfully.</li>';
+    } else {
+      $signal = 'bad';
+      $msg .= '<li>Transmission failed. Please use email and report this error so I can fix it along with your message to: myevergreenaa@gmail.com</li>';
+    }
+    
+  } 
 
 }
-	$data = array(
-		'signal' => $signal,
-		'msg' => $msg
-	);
-	echo json_encode($data);
-
-// stop
-
-?>
+$data = array(
+	'signal' => $signal,
+	'msg' => $msg
+);
+echo json_encode($data);

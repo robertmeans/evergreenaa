@@ -204,11 +204,19 @@ input[name="remember_me"] {
 
   margin-top: -2px;
 }
-.aa-rm-in.checkaroo {
+.aa-rm-in.checkaroo,
+.aa-rm-in.checkaroo.checkit {
 	border-bottom: 17.32px solid rgba(150,255,0,1);
+}
+.aa-rm-in.checkit {
+  border-bottom: 17.32px solid rgba(150,255,0,1);
 }
 .rm-rm {
 	color: #fff;
+  &:hover {
+    color: rgba(150,255,0,1);
+  }
+
 }
 .rm-rm.hot {
 	color: rgba(150,255,0,1);
@@ -482,7 +490,6 @@ p.logins {
     align-items: center;
     width: 100%;
     border: 1px solid #fff;
-    // background-color: rgba(0,0,0,0.9);
     margin: 0.5em 0 1em;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -492,7 +499,6 @@ p.logins {
       justify-content: center;
       align-items: center;
       width: 100%;
-      // padding: 10px 20px;
       height: 2.5em;
     &:hover {
         background-color: #000;
@@ -509,7 +515,17 @@ p.logins {
 
     }
   }
-
+  // when form is processing - remove
+  // pointer and keep bkg solid (no hover)
+  #toggle-btn .verifying-msg .login-txt,
+  #toggle-btn .verifying-msg .login-txt,
+  #toggle-btn .verifying-msg .login-txt,
+  #toggle-btn .verifying-msg .login-txt {
+    cursor: default;
+    .login-txt {
+      background-color: #000;
+    }
+  }
 }
 
 

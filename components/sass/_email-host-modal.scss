@@ -172,13 +172,16 @@ body.noscrollz {
 }
 
 span.sending-msg {
-  background-color: #92fc8a;
-  color: #086c00;
+  background-color: #0f1a00;
+  // color: #086c00;
   padding: 20px;
-  border: 1px solid #736552;
+  border: 1px solid #45661f;
   margin-top: 0.5em;
-  display: block;
-  width: 100%;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  cursor: default; 
 }
 span.sending-msg.whoops {
   cursor: pointer;
@@ -195,9 +198,22 @@ span.sending-msg.downgraded {
   color: #fff;
 }
 .alert.alert-warning {
-  background-color: #ffc6c6;
-  color: #c72222;
+  margin-bottom: 1em;
   line-height: 1.5em;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: 'Courier Prime', monospace;
+  color: #fff;
+  background-color: #ff4c4c;
+  border: 1px solid #fff;
+  text-align: left;
+  ul {
+    margin-left: 20px;
+    li {
+      list-style-type: disc;
+      line-height: 1.5em;
+    }
+  }
 }
 
 

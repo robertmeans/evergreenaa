@@ -19,7 +19,7 @@
 <div id="email-bob">
     <p class="form-note">Note: Hosts are responsible for the content of their meetings. Contact below for technical issues and feature requests. If you would like to personalize this website <a class="ytv" href="https://youtu.be/CC1HlQcmy6c" target="_blank">please see this</a> short YouTube video. <i class="far fa-smile"></i></p>
 
-    <form id="contactForm">
+    <form id="footer-contact-form">
       
         <ul>
           <li>
@@ -33,17 +33,19 @@
           <li>
             <label class="text" for="comments">Message</label>
             <textarea required name="comments" id="comments"></textarea>
+            <input type="hidden" name="footercontact" value="footercontact">
           </li>
           <li>
-            <div id="msg"></div>
+            <div id="msg">
+              <ul class="ftr-con"></ul></div>
           </li>
-          <li class="embtn">
+          <li id="send-btn-nope" class="embtn">
             <input id="emailBob" value="Send">
           </li>
         </ul> 
 
     </form>
-
+    <img src="_images/sending.gif" style="display:none;"><!-- preload -->
 </div>
 
 <p class="copyright"><?= ewd_copyright(2020); ?> <a class="eb" href="http://evergreenbob.com" target="_blank">Evergreen Bob</a></p> 
@@ -85,6 +87,7 @@
 
         <div id="submit-links" class="submit-links"></div><!-- #submit-links -->
       </form>
+      <img src="_images/sending.gif" style="display:none;"><!-- preload -->
       </div>
       <div class="modal-footer">
         <h3>&nbsp;</h3>
@@ -125,6 +128,7 @@
           <input type="button" id="mb-new" class="send" value="Post it">
         </div><!-- #submit-links -->
       </form>
+      <img src="_images/sending.gif" style="display:none;"><!-- preload -->
       </div>
       <div class="modal-footer">
         <h3>&nbsp;</h3>
