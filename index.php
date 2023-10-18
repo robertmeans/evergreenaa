@@ -53,9 +53,9 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 		<?php } ?>
 
     <?php 
-      
       $not_found = 'User not found.';
       if (isset($_SESSION['username']) && strpos($check_for, $not_found) === false) { 
+        // if 'User not found' is NOT the session message then greet with their username
     ?>
 		  <h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
     <?php } ?>
