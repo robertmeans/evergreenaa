@@ -161,6 +161,7 @@ body.noscrollz {
     }
     span.success-emh {
       background-color: #52910f;
+      cursor: default;
       text-align: center;
       width: 100%;
       display: block;
@@ -173,7 +174,6 @@ body.noscrollz {
 
 span.sending-msg {
   background-color: #0f1a00;
-  // color: #086c00;
   padding: 20px;
   border: 1px solid #45661f;
   margin-top: 0.5em;

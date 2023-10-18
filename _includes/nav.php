@@ -59,10 +59,10 @@
     <?php /* start 003 comment } (end 003 comment)*/ // end else ?>
 
 		<?php
-		if (isset($_SESSION['id']) && $layout_context == 'dashboard') { ?>
+		if (isset($_SESSION['verified']) && $_SESSION['verified'] != '0' && isset($_SESSION['id']) && $layout_context == 'dashboard') { ?>
 			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>">My Dashboard</a>
 		<?php } 
-		if (isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
+		if (isset($_SESSION['verified']) && $_SESSION['verified'] != '0' && isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
 			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>" onclick="closeNav();">My Dashboard</a>
 		<?php } 
 

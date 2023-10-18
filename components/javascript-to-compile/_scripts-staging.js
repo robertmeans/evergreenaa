@@ -1146,9 +1146,9 @@ $(document).ready(function() {
           if(response['signal'] == 'ok') {
 
             if (current_loc.indexOf("localhost") > -1) {
-              window.location.replace("http://localhost/evergreenaa/login.php");
+              window.location.replace("http://localhost/evergreenaa/verified.php");
             } else {
-              window.location.replace("https://evergreenaa.com/login.php");
+              window.location.replace("https://evergreenaa.com/verified.php");
             }
 
           } else {
@@ -1261,7 +1261,8 @@ $(document).ready(function() {
       type: "POST",
       data: $('#emh-contact').serialize(),
       beforeSend: function(xhr) {
-        $('#emh-contact-msg').html('<span class="sending-msg">Sending - one moment...</span>');
+        $('#emh-contact-msg').html('<span class="sending-msg"><img src="_images/sending.gif"></span>');
+        // $('#submit-links').html('');
       },
       success: function(response) {
         console.log(response);
@@ -1271,6 +1272,7 @@ $(document).ready(function() {
             $('#emh-contact').html('<span class="success-emh">The issue was noted successfully.</span>');
             $('#'+id).addClass('errors-reported');
 
+
             if ($('#'+id).html().indexOf("There has been an issue reported") >= 0) {
               $('#'+id).html('Attention: There have been 2 issues reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.');
             } else if ($('#'+id).html().indexOf("There have been 2 issues reported") >= 0) {
@@ -1279,8 +1281,12 @@ $(document).ready(function() {
               $('#'+id).html('Attention: There has been an issue reported with this meeting that the Host has not addressed yet. If you find the meeting abandoned or any of the links do not work correctly please use the link above, "Log issue" to help keep the information on this site reliable. If 3 issues go unaddressed the meeting will be removed from the site until the necessary corrections are made.'); 
             }
 
+          } else if (response['msg'] == 'You have already filed an issue on this meeting. You can only file 1 issue per meeting.') {
+            $('#submit-links').html('');
+            $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
           } else {
             $('#emh-contact-msg').html('<div class="alert alert-warning">' + response['msg'] + '</div>');
+            // $('#submit-links').html('<input type="button" id="issue-btn" data-id="' + id_for_submit + '" class="send" value="Submit">');
           }
         } 
       },

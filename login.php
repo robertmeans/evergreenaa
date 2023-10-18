@@ -21,7 +21,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 
 
   <div id="session-msg">
-    <?php if(isset($_SESSION['message'])): ?>
+    <?php if(isset($_SESSION['message'])) { ?>
     <div class="alert <?= $_SESSION['alert-class']; ?>">
         <?php 
             echo $_SESSION['message'];
@@ -29,7 +29,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
             unset($_SESSION['alert-class']); 
         ?>
     </div><!-- .alert -->
-    <?php endif; ?>
+    <?php } ?>
   </div>
 
 

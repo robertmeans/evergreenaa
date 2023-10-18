@@ -9,7 +9,7 @@ $class = '';
 $password_txt = '';
 $msg_txt = '';
 
-// if user clicks on login
+// if user clicks on signup
 if (is_post_request() && isset($_POST['signup'])) {
   $username = $_POST['username'];
   $email = strtolower($_POST['email']);
@@ -127,6 +127,7 @@ if (is_post_request() && isset($_POST['signup'])) {
     if ($stmt-> execute()) {
       // login user
       $user_id = $conn->insert_id;
+
       $_SESSION['id'] = $user_id;
       $_SESSION['username'] = $username;
       $_SESSION['email'] = $email;
@@ -136,22 +137,16 @@ if (is_post_request() && isset($_POST['signup'])) {
       $_SESSION['mode'] = '0';
       $_SESSION['email_opt'] = '1';
 
-      if (WWW_ROOT != 'http://localhost/evergreenaa') {
-        sendVerificationEmail($username, $email, $token);
-      }
-      /*  else statement below set aside so you can easily toggle on and off when testing locally.
-          leaving it on will cause the signup form to stall (indefinitely) on "Preparing Account".
-          This will allow you to study that step in dev mode but still work online in case you
-          forgot to un-comment when in production. */
-      // else {
-      //   sendVerificationEmail($username, $email, $token);
-      // }
-
       // set flash message
       $_SESSION['message'] = "Success! Almost there...";
       $_SESSION['alert-class'] = "alert-success";
-      // header('location:' . WWW_ROOT);
-      // exit();
+
+      if (WWW_ROOT != 'http://localhost/evergreenaa') {
+        sendVerificationEmail($username, $email, $token);
+      } else {
+        sleep(3600); // for local testing
+      }
+
       $signal = 'ok';
 
     } else {

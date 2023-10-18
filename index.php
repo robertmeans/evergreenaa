@@ -41,7 +41,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div id="landing">
 	<div id="landing-content">
 
-		<?php if(isset($_SESSION['message'])): ?>
+		<?php if(isset($_SESSION['message'])) { ?>
 		<div class="alert <?= $_SESSION['alert-class']; ?>">
 			<?php 
 				echo $_SESSION['message'];
@@ -49,11 +49,14 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 				unset($_SESSION['alert-class']); 
 			?>
 		</div><!-- .alert -->
-		<?php endif; ?>
+		<?php } ?>
 
-		<h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
+    <?php if (isset($_SESSION['username'])) { ?>
+		  <h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
+    <?php } ?>
 
-		<?php if(!$_SESSION['verified']): ?>
+
+		<?php if($_SESSION['verified'] === false) { ?>
 			<div class="alert new-member">
 				<p>Check your email and click on the link verification that was sent to: <span class="yo-email"><?= $_SESSION['email']; ?></span></p>
 				<p>It could take up to 2 minutes. Check Spam, Junk, etc. if you don't see it.</p>
@@ -61,11 +64,12 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 				<p>If you think you are seeing this message in error...</p>
 				<a class="verified" href="login.php">try to log in</a>
 			</div>
-		<?php endif; ?>
+		<?php } ?>
 
-		<?php if($_SESSION['verified']): ?>
-		 	<a class="verified" href="<?= WWW_ROOT ?>">Let me in already!</a>
-		 <?php endif; ?>
+		<?php if($_SESSION['verified']) { ?>
+      <p>Your account is ready!</p>
+		 	<a class="verified" href="<?= WWW_ROOT ?>">Click here to sign in</a>
+		 <?php } ?>
 
 	</div><!-- #landing-content -->
 </div><!-- #landing -->

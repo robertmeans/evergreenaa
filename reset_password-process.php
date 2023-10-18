@@ -42,8 +42,7 @@ if (is_post_request() && isset($_POST['resetpass'])) {
     if (mysqli_query($conn, $sql)) {
       $_SESSION['message'] = "Your password was changed successfully. You can now login with your new credentials.";
       $_SESSION['alert-class'] = "pass-reset";
-      // header('location: login.php');
-      // exit(0);
+ 
       $signal = 'ok';
     } else {
       $signal = 'bad';

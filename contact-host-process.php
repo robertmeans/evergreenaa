@@ -99,7 +99,7 @@ if (is_post_request() && isset($_POST['mtgid'])) {
 
 } else {
   $signal = 'bad';
-  $msg =  '<li>How in the world are you seeing this message?!</li>'; 
+  $msg .=  '<li>How in the world are you seeing this message?!</li>'; 
 }
 	$data = array(
 		'signal' => $signal,

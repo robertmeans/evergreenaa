@@ -52,6 +52,7 @@ function verifyUser($token) {
 
 		if (mysqli_query($conn, $update_query)) {
 			// login success
+      $_SESSION['skip'] = 'skip-intro';
 			$_SESSION['id'] = $user['id_user'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
@@ -62,11 +63,12 @@ function verifyUser($token) {
 			$_SESSION['db-tz'] = $user['tz'];
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
-			header('location:'. WWW_ROOT);
+			header('location:'. WWW_ROOT . '/verified.php?token=' . $token);
 			exit();
 		}
 	} else {
-		echo 'User not found';
+    $_SESSION['verified'] = 0;
+		$_SESSION['message'] = "User not found.";
 	}
 }
 
@@ -78,6 +80,7 @@ function resetPassword($token)
 	$result = mysqli_query($conn, $sql);
 	$user = mysqli_fetch_assoc($result);
 	$_SESSION['email'] = $user['email'];
+  $_SESSION['reset-token'] = $token;
 	header('location: reset_password.php');
 	exit(0);
 

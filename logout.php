@@ -2,11 +2,11 @@
 require_once 'config/initialize.php';
 
 class Util {       
-    public function clearAuthCookie() {
-        if (isset($_COOKIE["token"])) {
-            setcookie("token", "");
-        }
+  public function clearAuthCookie() {
+    if (isset($_COOKIE["token"])) {
+        setcookie("token", "");
     }
+  }
 }
 
 $util = new Util();

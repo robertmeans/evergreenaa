@@ -4539,6 +4539,7 @@ body.noscrollz {
 }
 #theModal .modal-body form.emh-form span.success-emh {
   background-color: #52910f;
+  cursor: default;
   text-align: center;
   width: 100%;
   display: block;
