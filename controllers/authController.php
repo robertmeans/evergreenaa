@@ -79,6 +79,7 @@ function resetPassword($token)
 	$sql = "SELECT * FROM users WHERE token='$token' LIMIT 1";
 	$result = mysqli_query($conn, $sql);
 	$user = mysqli_fetch_assoc($result);
+  $_SESSION['username'] = $user['username'];
 	$_SESSION['email'] = $user['email'];
   $_SESSION['reset-token'] = $token;
 	header('location: reset_password.php');

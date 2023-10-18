@@ -15,7 +15,7 @@ if (isset($_GET['token'])) {
 
 
 if (isset($_SESSION['reset-token'])) {
-  $_SESSION['message'] = "Your password was changed successfully.";
+  $_SESSION['message'] = "Your password has been updated.";
   $_SESSION['alert-class'] = "alert-success";
   header('location:'. WWW_ROOT . '/login.php');
   exit(); 

@@ -2501,7 +2501,7 @@ a.verified:hover {
   background-color: #fff1cf;
   color: #7e652e;
   padding: 20px;
-  border: 1px solid #736552;
+  border: 1px solid #fff;
   margin-top: 0.5em;
 }
 
@@ -2509,12 +2509,16 @@ a.verified:hover {
   background-color: #fff1cf;
   color: #7e652e;
   padding: 20px;
-  border: 1px solid #736552;
+  border: 1px solid #fff;
   margin-top: 0.5em;
 }
 
 p.logins {
   margin-top: 1em;
+}
+
+#session-msg {
+  width: 100%;
 }
 
 .alert-danger {
@@ -2526,19 +2530,22 @@ p.logins {
   margin-bottom: 1em;
   width: 100%;
   text-align: center;
-  border: 1px solid #ff0000;
-  border: 1px solid #f02222;
+  border: 1px solid #fff;
   text-align: left;
 }
 
 .alert.alert-success {
   padding: 20px;
-  background-color: #d4e8da;
-  color: #415b45;
+  background-color: #50ae4c;
+  color: #fff;
   margin-bottom: 1em;
   width: 100%;
   text-align: center;
-  border: 1px solid #415b45;
+  border: 1px solid #fff;
+}
+
+.alert.alert-success.left {
+  text-align: left;
 }
 
 .alert.pass-reset {
@@ -2548,7 +2555,7 @@ p.logins {
   margin-bottom: 1em;
   width: 100%;
   text-align: left;
-  border: 1px solid #415b45;
+  border: 1px solid #fff;
 }
 
 #login-wrap {

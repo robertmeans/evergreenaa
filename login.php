@@ -22,12 +22,25 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 
   <div id="session-msg">
     <?php if(isset($_SESSION['message'])) { ?>
-    <div class="alert <?= $_SESSION['alert-class']; ?>">
-        <?php 
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-            unset($_SESSION['alert-class']); 
-        ?>
+    <div class="alert <?php 
+    echo $_SESSION['alert-class'];
+
+    $reset_pswd = strval($_SESSION['message']);
+    $reset_txt = 'Your password has been updated.';
+    $new_mem = 'Your email address was successfully verified! You can now login.';
+
+    if (strpos($reset_pswd, $reset_txt) !== false || strpos($reset_pswd, $new_mem) !== false) {
+    // strpos() instead of str_contins() bc we're on PHP 7.4 
+      echo ' left'; 
+    } 
+    ?>">
+
+      <?php
+        if (isset($_SESSION['username'])) { echo $_SESSION['username'] . ',<br>'; } 
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        unset($_SESSION['alert-class']); 
+      ?>
     </div><!-- .alert -->
     <?php } ?>
   </div>

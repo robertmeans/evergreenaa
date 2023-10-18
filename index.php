@@ -45,13 +45,18 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 		<div class="alert <?= $_SESSION['alert-class']; ?>">
 			<?php 
 				echo $_SESSION['message'];
+        $check_for = strval($_SESSION['message']);
 				unset($_SESSION['message']);
 				unset($_SESSION['alert-class']); 
 			?>
 		</div><!-- .alert -->
 		<?php } ?>
 
-    <?php if (isset($_SESSION['username'])) { ?>
+    <?php 
+      
+      $not_found = 'User not found.';
+      if (isset($_SESSION['username']) && strpos($check_for, $not_found) === false) { 
+    ?>
 		  <h1 class="welcome">Welcome<?php if (isset($_SESSION['username'])) { echo ' ' . h($_SESSION['username']) . ','; } else { echo ','; } ?></h1>
     <?php } ?>
 

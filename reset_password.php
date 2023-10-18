@@ -38,12 +38,12 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
  <?php } else { ?>
     <div id="login-alert" class="red">
       <ul id="errors">
-        <li>It seems you got here without a password reset verification token. Please visit <a class="fp-link" href="<?= WWW_ROOT ?>/forgot_password.php">Forgot Password</a> to initiate the process. You need to use the unique link sent to your email.</li>
+        <li>It seems you got here without a valid password reset token. Please visit <a class="fp-link" href="<?= WWW_ROOT ?>/forgot_password.php">Forgot Password</a> to initiate the process. You need to use the unique link sent to your email.</li>
       </ul>
     </div>
   <?php } ?>
 
-
+  <p class="btm-p try-again">Think you remembered it? <a class="log" href="login.php">Try it</a>.</p>
 	</form>
     
 </div>
