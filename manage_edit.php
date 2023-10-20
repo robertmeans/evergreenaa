@@ -257,9 +257,7 @@ require '_includes/head.php'; ?>
 
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<div class="preload-manage">
-	<p>One meeting at a time.</p>
-</div>
+  <div class="preload anni"><img src="_images/preload.gif"></div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>

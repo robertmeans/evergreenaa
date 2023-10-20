@@ -7,6 +7,16 @@
   left: 100px; 
   top: 0; 
 }
+.preload.anni {
+  background-color: #2a2826;
+}
+.preload img {
+  width: 90%;
+  max-width: 500px;
+  .plbkg {
+    display: none;
+  }
+}
 .preload,
 .preload-manage,
 .set-tz {
@@ -17,7 +27,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(29,29,29,1);
+  // background-color: rgba(29,29,29,1);
+  background-color: #2a2826;
   width: 100%;
   height: 100%;
   height: 100vh;

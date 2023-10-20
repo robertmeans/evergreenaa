@@ -9,7 +9,7 @@ include '_includes/head.php'; ?>
 <body>
 <?php 
 if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-  <div class="preload"><p>One day at a time.</p></div>
+  <div class="preload anni"><img src="_images/preload.gif"></div>
 <?php } ?> 
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
@@ -18,7 +18,6 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div id="landing">
 <form id="login-form">
   <h1 class="text-center">Login</h1>
-
 
   <div id="session-msg">
     <?php if(isset($_SESSION['message'])) { ?>
@@ -45,15 +44,11 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
     <?php } ?>
   </div>
 
-
   <div id="login-alert">
     <ul id="errors"></ul>
   </div>
 
-
-
-  <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email" autoFocus>
-          
+  <input type="text" class="text" name="username" value="<?= $username; ?>" placeholder="Username or Email" autoFocus>       
   <input type="password" id="password" class="text login-pswd" name="password" placeholder="Password">
   
   <div class="showpassword-wrap"> 
@@ -72,16 +67,9 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
   
   <input type="hidden" name="login" value="login">
 
-
-
-
   <div id="toggle-btn">
     <div id="login-btn"><span class="login-txt"><img src="_images/login.png"></span></div>
   </div>
-
-
-
-
 
   <p class="btm-p">No account? <a class="log" href="signup.php">Create one</a></p>
 

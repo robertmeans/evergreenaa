@@ -49,7 +49,7 @@ function sendVerificationEmail($username, $email, $token) {
 
       <p>EvergreenAA.com provides a convenient outlet to consolidate, organize, publish and edit your meeting information. Whether you maintain this information for your own private use or make it available to everyone is up to you.</p>
 
-      <p><a style="color:#0000ff;text-decoration:underline;" href="https://www.evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address (or use copy &amp; paste option below).</p>
+      <p><a style="color:#0000ff;text-decoration:underline;" href="https://evergreenaa.com/index.php?token=' . $token . '">Click here</a> to verify your email address (or use copy &amp; paste option below).</p>
 
       <p>If you encounter issues with the site or have feature requests please email me anytime. There is a contact form at the bottom of every page labeled, "comments | questions | suggestions".</p>
 
@@ -58,12 +58,12 @@ function sendVerificationEmail($username, $email, $token) {
       info@evergreenaa.com</p>
 
       <p><u>Copy &amp; paste verification URL</u>:<br>
-      https://www.evergreenaa.com/index.php?token=' . $token . '
+      https://evergreenaa.com/index.php?token=' . $token . '
     </div>
     
   </body>
   </html>';
-      $mail->AltBody = 'Hello ' . $username . ', Please copy and paste this verification link into your browser address bar to validate your EvergreenAA.com registration: https://www.evergreenaa.com/index.php?token=' . $token;
+      $mail->AltBody = 'Hello ' . $username . ', Please copy and paste this verification link into your browser address bar to validate your EvergreenAA.com registration: https://evergreenaa.com/index.php?token=' . $token;
 
       $mail->send();
 
@@ -112,7 +112,7 @@ function sendPasswordResetLink($username, $email, $token) {
 
       <p>A request has been made to change the password on your account at EvergreenAA.com. If you did not request this change you can ignore this message.</p>
 
-      <p><a style="color:#0000ff;text-decoration:underline;" href="https://www.evergreenaa.com/index.php?password-token=' . $token . '">Click here</a> to change your password (or use copy &amp; paste option below).</p>
+      <p><a style="color:#0000ff;text-decoration:underline;" href="https://evergreenaa.com/index.php?password-token=' . $token . '">Click here</a> to change your password (or use copy &amp; paste option below).</p>
 
       <p>If you encounter issues with the site or have feature requests please email me anytime. There is a contact form at the bottom of every page labeled, "comments | questions | suggestions".</p>
 

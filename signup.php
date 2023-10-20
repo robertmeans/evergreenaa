@@ -6,6 +6,10 @@ require_once 'config/initialize.php';
 include '_includes/head.php'; ?>
 
 <body>
+<?php 
+if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
+  <div class="preload anni"><img src="_images/preload.gif"></div>
+<?php } ?>   
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>

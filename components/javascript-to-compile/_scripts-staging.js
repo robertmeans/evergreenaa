@@ -1002,10 +1002,19 @@ $(document).ready(function() {
   } 
 
   // now, get to business...
-  var login_attempts = 0;
+  var login_attempts = 1;
   $(document).on('click','#login-btn', function() {
     var current_loc = window.location.href;
-    login_attempts += 1;
+
+    var list = $('li').attr('class');
+
+    if ( (typeof list !== 'undefined') && (list.indexOf('no-count') === -1) ) {
+      login_attempts += 1;
+    } else {
+      login_attempts += 0;
+    }
+
+
 
     $.ajax({
       dataType: "JSON",
@@ -1017,7 +1026,6 @@ $(document).ready(function() {
         $('#errors').html('');
         $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
 
-        // $('#login-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
         console.log(response);
@@ -1036,10 +1044,10 @@ $(document).ready(function() {
             $('#login-alert').addClass('fade');
             $('#login-alert').addClass(response['class']);
 
-            if (login_attempts >= 3 && current_loc.indexOf("localhost") > -1) {
-              $('#errors').html(response['li'] + '<li>You\'ve tried logging in ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="http://localhost/evergreenaa/forgot_password.php">reset</a> your password.</li>');
-            } else if (login_attempts >= 3 && current_loc.indexOf("evergreenaa.com") > -1)  {
-              $('#errors').html(response['li'] + '<li>You\'ve tried logging in ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="https://evergreenaa.com/forgot_password.php">reset</a> your password.</li>');
+            if ((response['count'] == 'on') && login_attempts >= 3 && current_loc.indexOf("localhost") > -1) {
+              $('#errors').html(response['li'] + '<li>You\'ve entered the wrong password ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="http://localhost/evergreenaa/forgot_password.php">reset</a> your password.</li>');
+            } else if ((response['count'] == 'on') && login_attempts >= 3 && current_loc.indexOf("evergreenaa.com") > -1)  {
+              $('#errors').html(response['li'] + '<li>You\'ve entered the wrong password ' + login_attempts + ' times now. Don\'t forget, you can always <a class="fp-link" href="https://evergreenaa.com/forgot_password.php">reset</a> your password.</li>');
             } else {
               $('#errors').html(response['li']);
             }

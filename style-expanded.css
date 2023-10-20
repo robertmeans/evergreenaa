@@ -166,6 +166,18 @@ html {
   top: 0;
 }
 
+.preload.anni {
+  background-color: #2a2826;
+}
+
+.preload img {
+  width: 90%;
+  max-width: 500px;
+}
+.preload img .plbkg {
+  display: none;
+}
+
 .preload,
 .preload-manage,
 .set-tz {
@@ -178,7 +190,7 @@ html {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  background-color: #1d1d1d;
+  background-color: #2a2826;
   width: 100%;
   height: 100%;
   height: 100vh;

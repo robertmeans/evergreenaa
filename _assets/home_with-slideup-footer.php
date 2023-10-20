@@ -1,5 +1,3 @@
-
-
 <?php /* to set this into working order you'll need the following in _scripts-staging.js turned on and _popup.scss enabled in sass/style.scss
 
 
@@ -28,9 +26,7 @@ require_once 'config/initialize.php';
 <?php require '_includes/head.php'; ?>
 <body>
 <?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<div class="preload">
-	<p>One day at a time.</p>
-</div>
+ 
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/public-msg-one.php'; ?>

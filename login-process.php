@@ -7,30 +7,33 @@ $li = '';
 $class = '';
 $password_txt = '';
 $msg_txt = '';
+$count - '';
 
 // if user clicks on login
 if (is_post_request() && isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-
   // validation
-  if (empty($username) && empty($password)) {
+  if (empty($username)) {
     $signal = 'bad';
     $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-    $li = '<li>Username or email required</li><li>You forgot your password</li>';
+    $li .= '<li class="no-count">Username or email required</li>';
     $class = 'red';
-  } else if (empty($username)) {
+  }
+
+  if (empty($password)) {
     $signal = 'bad';
     $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-    $li = '<li>Username or email required</li>';
+    $li .= '<li class="no-count">Please enter your password</li>';
     $class = 'red';
-  } else if (empty($password)) {
-    $signal = 'bad';
-    $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-    $li = '<li>You forgot your password</li>';
-    $class = 'red';
-  } else if (!empty($username) && !empty($password)) {
+  }
+
+
+
+
+// if (!empty($username) && !empty($password)) {
+  if ($li === '') {
 
     // $userQuery = "SELECT * FROM users WHERE username=? LIMIT 2";
     $userQuery = "SELECT * FROM users WHERE LOWER(username) LIKE LOWER(?) LIMIT 2";
@@ -46,7 +49,7 @@ if (is_post_request() && isset($_POST['login'])) {
       if ($userCount > 1) {
         $signal = 'bad';
         $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-        $li = '<li>There are multiple users with the username "' . $username . '". Please use your email address to login.</li>';
+        $li .= '<li class="no-count">There are multiple users with the username "' . $username . '". Please use your email address to login.</li>';
         $class = 'orange';
       } else if (count($errors) === 0) {
 
@@ -78,7 +81,7 @@ if (is_post_request() && isset($_POST['login'])) {
         if (($user['verified']) === 0) {
           $signal = 'bad';
           $msg = '<span class="login-txt"><img src="_images/login.png"></span>';
-          $li = '<li>Email has not been verified</li>';
+          $li .= '<li class="no-count">Email has not been verified</li>';
           $class = 'blue';
         } else {
 
@@ -88,14 +91,10 @@ if (is_post_request() && isset($_POST['login'])) {
             setCookie('token', $token, time() + (1825 * 24 * 60 * 60));
           }
 
-      /*  if statement below set aside so you can easily toggle on and off when testing locally.
-          leaving it on will cause the login form to stall (indefinitely) on "Verifying Account".
-          This will allow you to study that step in dev mode. Don't forget to comment it out
-          for production! */
-            
-      // if (1 == 1) {
-      //   sendVerificationEmail($username, $email, $token);
-      // }
+        /*  local testing */   
+        // if (WWW_ROOT != 'http://localhost/evergreenaa') {
+        //   sleep(3600); 
+        // }
 
           // everything checks out -> you're good to go!
           $signal = 'ok';
@@ -104,14 +103,15 @@ if (is_post_request() && isset($_POST['login'])) {
       } else if ($userCount < 1) {
         $signal = 'bad';
         $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-        $li = '<li>That user does not exist</li>';
+        $li .= '<li class="no-count">That user does not exist</li>';
         $class = 'red';
       } else {
         // the combination of stuff you typed doesn't match anything in the db
         $signal = 'bad';
         $msg = '<span class="login-txt"><img src="_images/try-again.png"></span>';
-        $li = '<li>Wrong Username/Password combination. (Note: Passwords are case sensitive.)</li>';
+        $li .= '<li class="count">Wrong Username/Password combination. (Note: Passwords are case sensitive.)</li>';
         $class = 'red';
+        $count = 'on';
       }
 
     }
@@ -125,6 +125,7 @@ $data = array(
   'li' => $li,
   'class' => $class,
   'password_txt' => $password_txt,
-  'msg_txt' => $msg_txt
+  'msg_txt' => $msg_txt,
+  'count' => $count
 );
 echo json_encode($data);

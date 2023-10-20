@@ -31,9 +31,13 @@ if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset
 include '_includes/head.php'; ?>
 
 <body>
-<?php 
+<?php /* special preload just for index in order to preload the preload image */
+      /* this image will be used everywhere other than the index              */
 if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-	<div class="preload"><p>One day at a time.</p></div>
+	<div class="preload">
+    <p>One day at a time.</p>
+    <img class="plbkg" src="_images/preload.gif">
+  </div>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
