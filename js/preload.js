@@ -1,8 +1,7 @@
 $(window).on('load', function() {
   $(".preload").delay(250).fadeOut(750);
-});
-
-$(window).on('load', function() {
+  $(".preload-dev").delay(250).fadeOut(750);
   $(".preload-manage").delay(200).fadeOut(200);
 });
+
 

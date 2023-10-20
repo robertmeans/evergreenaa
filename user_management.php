@@ -1,4 +1,5 @@
 <?php 
+$layout_context = 'um';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
@@ -6,8 +7,6 @@ if (!isset($_SESSION['mode']) || ($_SESSION['mode'] != 1 || ($_SESSION['admin'] 
 	header('location: ' . WWW_ROOT);
 	exit();
 }
-
-$layout_context = "um";
 
 if (!isset($_SESSION['id'])) {
 	$_SESSION['message'] = "You need to be logged in to access that page.";
@@ -26,10 +25,7 @@ $role = $_SESSION['admin'];
 require '_includes/head.php'; ?>
 
 <body>
-<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-  <div class="preload anni"><img src="_images/preload.gif"></div>
-<?php } ?>	
-	
+<?php preload_config($layout_context); ?>	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>

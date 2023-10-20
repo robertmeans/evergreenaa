@@ -1,8 +1,7 @@
 <?php  
+$layout_context = 'home-private';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-
-$layout_context = "home-private";
 
 // keep this bc it overrides previous setting
 // and allows admin to do whatever they need
@@ -11,12 +10,7 @@ $user_id = $_SESSION['admin'];
 require '_includes/head.php'; ?>
 
 <body>
-<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<div class="preload">
-	<p>One day at a time.</p>
-</div>
-<?php } ?>	
-
+<?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>

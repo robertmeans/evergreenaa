@@ -10,6 +10,7 @@
 .preload.anni {
   background-color: #2a2826;
 }
+.preload-dev img,
 .preload img {
   width: 90%;
   max-width: 500px;
@@ -19,6 +20,7 @@
 }
 .preload,
 .preload-manage,
+.preload-dev,
 .set-tz {
   position: fixed;
   // left: 0px;
@@ -129,6 +131,7 @@
 }
 @media screen and (max-width: 600px) {
   .preload,
+  .preload-dev,
   .preload-manage {
     & > p {
       font-size: 2em;

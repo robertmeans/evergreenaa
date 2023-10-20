@@ -1,16 +1,11 @@
 <?php 
+$layout_context = 'home-public';
 require_once 'config/initialize.php'; 
-
-$layout_context = "home-public";
 
 require '_includes/head.php'; ?>
 
 <body>
-<?php 
-if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-	<div class="preload"><p>One day at a time.</p></div>
-<?php } ?>	
-
+<?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>

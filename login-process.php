@@ -7,7 +7,7 @@ $li = '';
 $class = '';
 $password_txt = '';
 $msg_txt = '';
-$count - '';
+$count = '';
 
 // if user clicks on login
 if (is_post_request() && isset($_POST['login'])) {

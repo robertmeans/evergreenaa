@@ -1,5 +1,21 @@
 <?php
 
+function preload_config($layout_context) {
+  if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
+    if (WWW_ROOT != 'http://localhost/evergreenaa') {
+      echo '<div class="preload anni"><img src="_images/preload.gif"></div>';
+    } else {
+      echo '<div class="preload-dev anni"><img src="_images/preload.gif"></div>';
+    }
+  } else {
+    if (WWW_ROOT != 'http://localhost/evergreenaa') {
+      echo '<div class="preload"><p>One day at a time.</p></div>';
+    } else {
+      echo '<div class="preload-dev"><p>One day at a time.</p></div>';
+    }
+  }
+}
+
 function apply_offset_to_meetings($results, $tz, $time_offset) {
 
   foreach($results as $k=>$v) {

@@ -1,15 +1,11 @@
 <?php
-
-$layout_context = "forgot-password"; 
+$layout_context = 'forgot-password'; 
 
 require_once 'config/initialize.php'; 
 require '_includes/head.php'; ?>
 
 <body>
-<?php 
-if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-    <div class="preload anni"><img src="_images/preload.gif"></div>
-<?php } ?>    
+<?php preload_config($layout_context); ?>    
 <?php require '_includes/nav.php'; ?> 
 <?php require '_includes/msg-why-join.php'; ?> 
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">

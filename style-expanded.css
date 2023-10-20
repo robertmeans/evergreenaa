@@ -170,16 +170,19 @@ html {
   background-color: #2a2826;
 }
 
+.preload-dev img,
 .preload img {
   width: 90%;
   max-width: 500px;
 }
+.preload-dev img .plbkg,
 .preload img .plbkg {
   display: none;
 }
 
 .preload,
 .preload-manage,
+.preload-dev,
 .set-tz {
   position: fixed;
   display: -ms-flexbox;
@@ -198,6 +201,7 @@ html {
 }
 .preload > p,
 .preload-manage > p,
+.preload-dev > p,
 .set-tz > p {
   font-family: 'Caveat', cursive;
   font-size: 3em;
@@ -205,6 +209,7 @@ html {
 }
 .preload > i,
 .preload-manage > i,
+.preload-dev > i,
 .set-tz > i {
   font-size: 2em;
   margin-top: 0.5em;
@@ -300,6 +305,7 @@ html {
 
 @media screen and (max-width: 600px) {
   .preload > p,
+  .preload-dev > p,
   .preload-manage > p {
     font-size: 2em;
   }

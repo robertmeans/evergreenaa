@@ -1,8 +1,7 @@
 <?php 
+$layout_context = 'post-page';
 require_once 'config/initialize.php';
 // require_once 'config/verify_admin.php';
-
-$layout_context = 'post-page';
 
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
@@ -17,10 +16,7 @@ if (isset($_SESSION['id'])) {
 require '_includes/head.php'; ?>
 
 <body>
-<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
- <div class="preload anni"><img src="_images/preload.gif"></div>
-<?php } ?>	
-
+<?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>

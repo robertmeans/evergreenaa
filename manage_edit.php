@@ -1,8 +1,7 @@
 <?php 
+$layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-
-$layout_context = "alt-manage";
 
 if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	header('location: ' . WWW_ROOT);
@@ -256,9 +255,7 @@ $row['sat'] = $sat;
 require '_includes/head.php'; ?>
 
 <body>
-<?php if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-  <div class="preload anni"><img src="_images/preload.gif"></div>
-<?php } ?>
+<?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
