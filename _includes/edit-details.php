@@ -4,9 +4,9 @@
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="visible" value="<?= $row['visible']; ?>">
 		<div class="top-info">
-			<p class="days-held">Group name</p>
+			<p class="days-held">Group | Meeting name</p>
 
-			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } else { echo $row['group_name']; } ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } else { echo $row['group_name']; } ?>" placeholder="Stoned Sober Cosmic Monkeys">
 
 			<p class="days-held">Day(s) meeting is held</p>
 	<div class="align-days<?php if (isset($errors['pick_a_day'])) {
@@ -55,22 +55,21 @@
 </div>
 </div><!-- .top-info -->
 <div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
-	<label for="meet_phone">Phone number</label>
+	<label for="meet_phone">Phone number <a id="toggle-yer-phone-num"><i class="far fa-question-circle fa-fw"></i></a></label>
 
 	<input type="text" class="mtg-update<?php if (isset($errors['meet_phone'])) { echo " fixerror"; } ?>" name="meet_phone" value="<?php
 
-	// if (isset($_POST['meet_phone'])) { $postphone = preg_replace('/[^0-9]/', '', $_POST['meet_phone']); }
+  if (isset($_POST['meet_phone']) && strlen(preg_replace('/[^0-9]/', '', $_POST['meet_phone'])) != 10) {
+    echo preg_replace('/[^0-9]/', '', $_POST['meet_phone']);
 
-	if (isset($_POST['meet_phone'])) {
-    echo '(' .substr($_POST['meet_phone'], 0, 3). ') '.substr($_POST['meet_phone'], 3, 3). '-'.substr($_POST['meet_phone'],6); }
+  } else if (isset($_POST['meet_phone']) && strlen(preg_replace('/[^0-9]/', '', $_POST['meet_phone'])) == 10) {
+    $phone_num = preg_replace('/[^0-9]/', '', $_POST['meet_phone']);
+    echo '(' .substr($phone_num, 0, 3). ') '.substr($phone_num, 3, 3). '-'.substr($phone_num,6);
 
- 	else if (!empty($row['meet_phone'])) { 
+  } else if (!empty($row['meet_phone'])) { 
     echo '(' . substr(h($row['meet_phone']), 0,3) . ') ' . substr(h($row['meet_phone']), 3,3). '-' . substr(h($row['meet_phone']),6); }
-
 	else { }
 		?>" placeholder="10-digit phone #">
-
-
 
 	<label for="one_tap">One Tap Mobile <a id="toggle-one-tap-msg"><i class="far fa-question-circle fa-fw"></i></a></label><?php // #toggle-one-tap-msg is inside lat-long-instructions.php ?>
 	<input type="text" class="mtg-update<?php if (isset($errors['one_tap'])) { echo " fixerror"; } ?>" name="one_tap" value="<?php if (isset($row['one_tap'])) { echo h($row['one_tap']); } ?>" placeholder="One Tap Mobile #">

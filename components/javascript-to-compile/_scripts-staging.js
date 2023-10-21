@@ -142,6 +142,8 @@ $(document).click(function() {
     $("#lat-long").fadeOut(500);
   } else if ($('#one-tap').is(':visible')) {
     $("#one-tap").fadeOut(500);
+  } else if ($('#yer-phone-num').is(':visible')) {
+    $("#yer-phone-num").fadeOut(500);
   } else if ($('#desc-loc').is(':visible')) {
     $("#desc-loc").fadeOut(500);
   } else if ($('#pdf-upload').is(':visible')) {
@@ -434,6 +436,7 @@ $(document).ready(function(){
   $("#role-key").hide();
   $("#lat-long").hide();
   $("#one-tap").hide();
+  $("#yer-phone-num").hide();
   $("#desc-loc").hide();
   $("#pdf-upload").hide();
   $("#link-label").hide();
@@ -698,6 +701,12 @@ $("#toggle-lat-long-msg").click(function(e) {
 
 $("#toggle-one-tap-msg").click(function(e) {
   $("#one-tap").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$("#toggle-yer-phone-num").click(function(e) {
+  $("#yer-phone-num").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });

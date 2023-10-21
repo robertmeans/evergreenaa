@@ -3,9 +3,9 @@
 	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
-			<p class="days-held">Group name</p>
+			<p class="days-held">Group | Meeting name</p>
 
-			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } ?>" placeholder="Group name">
+			<input type="text" class="mtg-update group-name<?php if (isset($errors['group_name'])) { echo " fixerror"; } ?>" name="group_name" value="<?php if (isset($_POST['group_name'])) { echo $_POST['group_name']; } ?>" placeholder="Highly Sober Society of Potato People">
 
 			<p class="days-held">Day(s) meeting is held</p>
 	<div class="align-days<?php if (isset($errors['pick_a_day'])) {
@@ -48,7 +48,7 @@
 
 </div><!-- .top-info -->
 <div class="details-left">
-	<label for="meet_phone">Phone number</label>
+	<label for="meet_phone">Phone number <a id="toggle-yer-phone-num"><i class="far fa-question-circle fa-fw"></i></a></label>
 	<input type="text" class="mtg-update<?php if (isset($errors['meet_phone'])) { echo " fixerror"; } ?>" name="meet_phone" value="<?php
 
 	if (isset($row['meet_phone']) && ($row['meet_phone'] != "")) { 

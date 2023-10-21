@@ -877,6 +877,11 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['meet_phone'] = "You've got too many numbers in your phone number.";
   }
 
+  if (!is_blank($row['meet_phone']) && strlen(preg_replace('/[^0-9]/', '', $row['meet_phone'])) != 10) {
+    $phone = strlen($row['meet_phone']);
+    $errors['meet_phone'] = "You've got " . $phone . " numbers in your phone number. If you're going to provide a phone number it needs to be exactly 10 digits.";
+  }
+
   if (!is_blank($row['meet_id']) && has_length_greater_than($row['meet_id'], 15)) {
     $errors['meet_id'] = "Meeting ID's aren't that long! C'mon man.";
   }
@@ -1092,7 +1097,7 @@ function validate_row($row) {
     $errors[] = "You need a name for your group.";
   }
   if(!has_length($row['group_name'], ['min' => 1, 'max' => 50])) {
-    $errors[] = "Group name can be up to 50 characters.";
+    $errors[] = "Group | Meeting name can be up to 50 characters.";
   }
   return $errors;
 }

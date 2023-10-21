@@ -1,5 +1,6 @@
 a#toggle-lat-long-msg,
 a#toggle-one-tap-msg,
+a#toggle-yer-phone-num,
 a#toggle-descriptive-location,
 a#toggle-pdf-info,
 a#toggle-link-label,
@@ -44,6 +45,7 @@ a#gmaps {
 #gottajoin,
 #lat-long,
 #one-tap,
+#yer-phone-num,
 #desc-loc,
 #pdf-upload,
 #link-label,
@@ -56,6 +58,7 @@ a#gmaps {
   height: 100%;
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0,0,0,0.8);
   z-index: 82;
 
   position: fixed;
@@ -81,6 +84,7 @@ a#gmaps {
     position: relative;
     padding: 50px;
     background-color: rgba(44,73,106,0.99);
+    box-shadow: 0px 0px 15px 5px rgba(255,255,255,0.5);
     width: 80%;
     max-width: 900px;
     margin-bottom: 20px;
@@ -204,6 +208,7 @@ a.youtube {
   #msg-one,
   #lat-long,
   #one-tap,
+  #yer-phone-num,
   #desc-loc,
   #pdf-upload,
   #link-label,
@@ -240,6 +245,7 @@ a.youtube {
   #msg-one,
   #lat-long,
   #one-tap,
+  #yer-phone-num,
   #desc-loc,
   #pdf-upload,
   #link-label,
