@@ -64,7 +64,7 @@ if (is_post_request() && isset($_POST['login'])) {
       $userCount = $result->num_rows;
       $user = $result->fetch_assoc();
 
-      if (password_verify($password, $user['password'])) {
+      if ($userCount == 1 && password_verify($password, $user['password'])) {
         // login success
         $_SESSION['id']       = $user['id_user'];
         $_SESSION['username'] = $user['username'];

@@ -125,7 +125,7 @@ if (is_post_request() && isset($_POST['signup'])) {
     $stmt->bind_param('ssdss', $username, $email, $verified, $token, $password);
 
     if ($stmt-> execute()) {
-      // login user
+      
       $user_id = $conn->insert_id;
 
       $_SESSION['id'] = $user_id;

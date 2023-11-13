@@ -17,7 +17,7 @@ function sendVerificationEmail($username, $email, $token) {
 
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addAddress($email, $username);     // Add a recipient
-      $mail->addReplyTo($email);
+      $mail->addReplyTo('myevergreenaa@gmail.com', 'Evergreen AA Website');
       // $mail->addCC('cc@example.com');
       $mail->addBCC('robert@evergreenwebdesign.com');
 
@@ -28,7 +28,7 @@ function sendVerificationEmail($username, $email, $token) {
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Verify EvergreenAA.com Registration</title>
+    <title>Verify Your EvergreenAA.com Registration</title>
     <style>
       body {
         font-size: 16px;
@@ -58,7 +58,7 @@ function sendVerificationEmail($username, $email, $token) {
       info@evergreenaa.com</p>
 
       <p><u>Copy &amp; paste verification URL</u>:<br>
-      https://evergreenaa.com/index.php?token=' . $token . '
+      https://evergreenaa.com/index.php?token=' . $token . '</p>
     </div>
     
   </body>
@@ -82,7 +82,7 @@ function sendPasswordResetLink($username, $email, $token) {
 
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addAddress($email, $username);     // Add a recipient
-      $mail->addReplyTo($email);
+      $mail->addReplyTo('myevergreenaa@gmail.com', 'Evergreen AA Website');
       // $mail->addCC('cc@example.com');
       $mail->addBCC('robert@evergreenwebdesign.com');
 

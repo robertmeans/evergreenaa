@@ -148,9 +148,12 @@
 				background-color: rgba(0,0,0,0.2);
 			}
 		}
-		& > input.login-pswd {
-			margin-bottom: 0.5em;
-		}
+		& > .login-pswd,
+        #showPassword,
+        #showConf {
+          margin-bottom: 0.5em;
+          letter-spacing: 3px;
+    }
 	}
 
 	.fpwd {

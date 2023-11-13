@@ -2370,8 +2370,11 @@ a.youtube:hover {
 #landing > form > input.submit:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-#landing > form > input.login-pswd {
+#landing > form > .login-pswd,
+#landing > form #showPassword,
+#landing > form #showConf {
   margin-bottom: 0.5em;
+  letter-spacing: 3px;
 }
 #landing .fpwd {
   font-size: 0.8em;
