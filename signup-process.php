@@ -16,6 +16,7 @@ if (is_post_request() && isset($_POST['signup'])) {
   $password = $_POST['password'];
   $passwordConf = $_POST['passwordConf'];
 
+  if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(2); }
 
   // validation
   if (empty($username)) {

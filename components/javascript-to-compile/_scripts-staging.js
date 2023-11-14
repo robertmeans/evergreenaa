@@ -1033,7 +1033,7 @@ $(document).ready(function() {
       beforeSend: function(xhr) {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
-        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
+        $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></span></div>');
 
       },
       success: function(response) {

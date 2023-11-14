@@ -11,7 +11,7 @@ if (is_post_request() && isset($_POST['footercontact'])) {
   $email = trim($_POST['email']);
   $message = trim($_POST['comments']);
 
-  if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(0); }
+  // if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(2); }
 
   // validation
   if (empty($name) || empty($email) || empty($message)) {

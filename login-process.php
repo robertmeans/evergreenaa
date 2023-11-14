@@ -14,6 +14,8 @@ if (is_post_request() && isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+  // if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(2); }
+
   // validation
   if (empty($username)) {
     $signal = 'bad';
