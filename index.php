@@ -46,7 +46,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 	<div id="landing-content">
 
 		<?php if(isset($_SESSION['message'])) { ?>
-		<div class="alert <?= $_SESSION['alert-class']; ?>">
+		<div class="alert <?php if (isset($_SESSION['alert-class'])) { echo $_SESSION['alert-class']; } ?>">
 			<?php 
 				echo $_SESSION['message'];
         $check_for = strval($_SESSION['message']);

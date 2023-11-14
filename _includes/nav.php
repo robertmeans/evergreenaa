@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['mode'])) {
+  $_SESSION['mode'] = 'not-set';
+}
+?>
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();">
 
