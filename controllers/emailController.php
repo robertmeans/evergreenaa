@@ -148,8 +148,8 @@ function footer_contact($name, $email, $message) {
     $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website'); // DO NOT CHANGE!
     $mail->isHTML(true);
     // $mail->addAttachment('_folder/attachment.png');
-    $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><hr><br>' . nl2br($message);
-    $mail->AltBody = 'Name: ' . $name . '<br>Email: ' . $email . '<br><hr><br>' . nl2br($message);
+    $mail->Body    =  'Name: ' . $name . '<br>Email: ' . $email . '<br><br><hr><br>' . nl2br($message);
+    $mail->AltBody = 'Name: ' . $name . '<br>Email: ' . $email . '<br><br><hr><br>' . nl2br($message);
     $mail->addAddress('robert@evergreenwebdesign.com', 'Evergreen Bob'); // email recipient
     $mail->addReplyTo($email, $name);
 

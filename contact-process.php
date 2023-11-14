@@ -11,6 +11,7 @@ if (is_post_request() && isset($_POST['footercontact'])) {
   $email = trim($_POST['email']);
   $message = trim($_POST['comments']);
 
+  if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(0); }
 
   // validation
   if (empty($name) || empty($email) || empty($message)) {
@@ -24,6 +25,7 @@ if (is_post_request() && isset($_POST['footercontact'])) {
   }
 
   if (empty($msg) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(100); }
     if (WWW_ROOT != 'http://localhost/evergreenaa') {
       footer_contact($name, $email, $message);
       $signal = 'ok';
