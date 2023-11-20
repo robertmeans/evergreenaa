@@ -27,7 +27,7 @@ function sendVerificationEmail($username, $email, $token) {
       $mail->Body    =    '<!DOCTYPE html>
   <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Verify Your EvergreenAA.com Registration</title>
     <style>
       body {
@@ -92,7 +92,7 @@ function sendPasswordResetLink($username, $email, $token) {
       $mail->Body    =    '<!DOCTYPE html>
   <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Reset EvergreenAA.com Password</title>
     <style>
       body {
