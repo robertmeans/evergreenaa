@@ -89,7 +89,7 @@ if (!isset($_SESSION['mode'])) {
 			<a href="user_management.php" class="<?php if ($layout_context == 'um') { echo 'nav-active'; } ?>">Manage Users</a>
 		<?php } 
 		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context != 'um') { ?>
-			<a href="user_management.php" onclick="closeNav();">Manage Users</a>
+			<a class="<?php if ($layout_context == 'eeveryone') { echo 'nav-active'; } ?>" href="user_management.php" onclick="closeNav();">Manage Users</a>
 		<?php } 
 
 

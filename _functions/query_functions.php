@@ -547,12 +547,14 @@ function remove_issue($id) {
 function find_all_hosts() {
   global $db;
 
-  $sql = "SELECT m.id_mtg, m.id_user, u.email_opt, u.email FROM users as u ";
+  $sql = "SELECT m.id_mtg, m.id_user, m.visible, u.email_opt, u.email FROM users as u ";
   $sql .= "LEFT JOIN meetings as m ON m.id_user=u.id_user ";
   $sql .= "WHERE m.id_user=u.id_user ";
   $sql .= "AND u.id_user != 1 ";  
   $sql .= "AND u.id_user != 13 ";
   $sql .= "AND u.email_opt != 0 ";
+  $sql .= "AND (m.visible = 2 ";
+  $sql .= "OR m.visible = 3) ";
   $sql .= "GROUP BY u.id_user ";
   $sql .= "ORDER BY LOWER(u.email) ASC";
   
