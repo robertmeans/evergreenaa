@@ -569,6 +569,8 @@ function find_all_users() {
   $sql  = "SELECT * FROM users ";
   $sql .= "WHERE id_user != 1 ";  
   $sql .= "AND id_user != 13 ";
+  $sql .= "AND admin != 85 ";
+  $sql .= "AND admin != 86 ";
   $sql .= "AND email_opt != 0 ";
   $sql .= "ORDER BY LOWER(username) ASC";
 
