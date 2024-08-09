@@ -2305,10 +2305,10 @@ a.youtube:hover {
   transition: background-color 0.2s ease;
 }
 #landing > form > input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.3);
 }
 #landing > form > input::placeholder {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.3);
 }
 #landing > form > input:focus, #landing > form > input:active {
   border-top: 1px solid #fff;
@@ -3939,6 +3939,16 @@ a.new-mtg-btn {
 a.new-mtg-btn:hover {
   background-color: rgba(255, 255, 255, 0.4);
   background-color: rgba(64, 178, 8, 0.4);
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #bebebe;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #bebebe;
 }
 
 form#manage-mtg {

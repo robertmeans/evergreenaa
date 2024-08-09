@@ -850,6 +850,12 @@ a.new-mtg-btn {
 		background-color: rgba(64,178,8,0.4);
 	}
 }
+input,
+textarea {
+  &::placeholder {
+    color: #bebebe;
+  }
+}
 
 form#manage-mtg {
 	display: flex;
