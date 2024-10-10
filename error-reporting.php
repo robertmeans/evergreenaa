@@ -10,4 +10,4 @@ ini_set("display_errors", "0"); // hides errors from browser
 
 ini_set("log_errors", 1);
 
-ini_set("error_log", "_errors.txt"); // prints to file 'php-error.txt' so I can read it in browser. preceeding underscore is so it's at top of list and easy to find.
+ini_set("error_log", "_errors.txt"); 

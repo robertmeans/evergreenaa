@@ -628,6 +628,49 @@ function convert_day($tz, $day, $mtg_time) {
   }
 }
 
+
+function print_day($row) {
+  $p = '';
+
+  if ($row['sun'] == 0) {  } 
+  else if (($row['sun'] !=0) && (($row['mon'] != 0) || ($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) {
+    $p .= "Sun, "; 
+  } else { $p .= "Sun"; }
+
+  if ($row['mon'] == 0) {  }
+  else if (($row['mon'] !=0) && (($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+    $p .= "Mon, "; 
+  } else { $p .= "Mon"; }
+
+  if ($row['tue'] == 0) {  }
+  else if (($row['tue'] !=0) && (($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+    $p .= "Tue, "; 
+  } else { $p .= "Tue"; }
+
+  if ($row['wed'] == 0) {  }
+  else if (($row['wed'] !=0) && (($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
+    $p .= "Wed, "; 
+  } else { $p .= "Wed"; }
+
+  if ($row['thu'] == 0) {  }
+  else if (($row['thu'] !=0) && (($row['fri'] != 0) || ($row['sat'] != 0))) { 
+    $p .= "Thu, "; 
+  } else { $p .= "Thu"; }
+
+  if ($row['fri'] == 0) {  }
+  else if (($row['fri'] !=0) && ($row['sat'] != 0)) { 
+    $p .= "Fri, "; 
+  } else { $p .= "Fri"; }
+
+  if ($row['sat'] == 0) {  } 
+  else { $p .= "Sat "; } // Sat will never have a comma after it so it can stand alone like this
+
+  echo $p;
+}
+
+
+
+
 function find_offset($float) {
   $hours = floor($float);
   $minutes = ($float - $hours) * 60;

@@ -1,44 +1,13 @@
 
 	<div class="manage-glance-wrap">
 		<div class="manage-glance user-glance">
-			<div class="glance-mtg glance-mtg-time">
-				<p><?= date('g:i A', strtotime($rowz['meet_time'])); ?>
+			<div class="glance-mtg glance-mtg-time"> 
+				<p>
 
-				<?php 
-				if ($rowz['sun'] == 0) {  } 
-				else if (($rowz['sun'] !=0) && (($rowz['mon'] != 0) || ($rowz['tue'] != 0) || ($rowz['wed'] != 0) || ($rowz['thu'] != 0) || ($rowz['fri'] != 0) || ($rowz['sat'] != 0))) {
-					echo "Sun, "; 
-				} else { echo "Sun"; }
-
-				if ($rowz['mon'] == 0) {  }
-				else if (($rowz['mon'] !=0) && (($rowz['tue'] != 0) || ($rowz['wed'] != 0) || ($rowz['thu'] != 0) || ($rowz['fri'] != 0) || ($rowz['sat'] != 0))) { 
-					echo "Mon, "; 
-				} else { echo "Mon"; }
-
-				if ($rowz['tue'] == 0) {  }
-				else if (($rowz['tue'] !=0) && (($rowz['wed'] != 0) || ($rowz['thu'] != 0) || ($rowz['fri'] != 0) || ($rowz['sat'] != 0))) { 
-					echo "Tue, "; 
-				} else { echo "Tue"; }
-
-				if ($rowz['wed'] == 0) {  }
-				else if (($rowz['wed'] !=0) && (($rowz['thu'] != 0) || ($rowz['fri'] != 0) || ($rowz['sat'] != 0))) { 
-					echo "Wed, "; 
-				} else { echo "Wed"; }
-
-				if ($rowz['thu'] == 0) {  }
-				else if (($rowz['thu'] !=0) && (($rowz['fri'] != 0) || ($rowz['sat'] != 0))) { 
-					echo "Thu, "; 
-				} else { echo "Thu"; }
-
-				if ($rowz['fri'] == 0) {  }
-				else if (($rowz['fri'] !=0) && ($rowz['sat'] != 0)) { 
-					echo "Fri, "; 
-				} else { echo "Fri"; }
-
-				if ($rowz['sat'] == 0) {  }
-				else { echo "Sat "; }
-
-				?></p>
+				<?php
+          $time = $rowz['meet_time'];
+          $nt = converted_time($time, $tz); 
+          echo $nt . ' - '; print_day($rowz); ?></p>
 
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">

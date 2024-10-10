@@ -20,7 +20,42 @@ $id = $_GET['id'];
 $user_id = $_SESSION['id'];
 $role = $_SESSION['admin'];
 
-$row = transfer_meeting($id);
+
+
+
+// $row = transfer_meeting($id);
+// changed above single line to everything below on 10.09.24 at 10:08
+// and it seems to give the correct day now. still looking for collateral repercussions...
+// start
+
+$row = edit_meeting($id); 
+
+$time = [];
+$time['tz'] = $tz;
+$time['ut'] = $row['meet_time'];
+
+$time['sun'] = $row['sun'];
+$time['mon'] = $row['mon'];
+$time['tue'] = $row['tue'];
+$time['wed'] = $row['wed'];
+$time['thu'] = $row['thu'];
+$time['fri'] = $row['fri'];
+$time['sat'] = $row['sat'];
+
+list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+$row['sun'] = $sun;
+$row['mon'] = $mon;
+$row['tue'] = $tue;
+$row['wed'] = $wed;
+$row['thu'] = $thu;
+$row['fri'] = $fri;
+$row['sat'] = $sat;
+
+// end
+
+
+
 
 require '_includes/head.php'; ?>
 
@@ -42,42 +77,12 @@ require '_includes/head.php'; ?>
 	<h2 id="trans-h2" class="trans-h2">Transfer Meeting</h2>
 	<div id="transfer-host">
 		<p id="current-host" class="current-role">Host: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></p>
-		<p><?= date('g:i A', strtotime($row['meet_time'])) . ' - '; ?>
-				<?php 
-				if ($row['sun'] == 0) {  } 
-				else if (($row['sun'] !=0) && (($row['mon'] != 0) || ($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) {
-					echo "Sun, "; 
-				} else { echo "Sun"; }
 
-				if ($row['mon'] == 0) {  }
-				else if (($row['mon'] !=0) && (($row['tue'] != 0) || ($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
-					echo "Mon, "; 
-				} else { echo "Mon"; }
-
-				if ($row['tue'] == 0) {  }
-				else if (($row['tue'] !=0) && (($row['wed'] != 0) || ($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
-					echo "Tue, "; 
-				} else { echo "Tue"; }
-
-				if ($row['wed'] == 0) {  }
-				else if (($row['wed'] !=0) && (($row['thu'] != 0) || ($row['fri'] != 0) || ($row['sat'] != 0))) { 
-					echo "Wed, "; 
-				} else { echo "Wed"; }
-
-				if ($row['thu'] == 0) {  }
-				else if (($row['thu'] !=0) && (($row['fri'] != 0) || ($row['sat'] != 0))) { 
-					echo "Thu, "; 
-				} else { echo "Thu"; }
-
-				if ($row['fri'] == 0) {  }
-				else if (($row['fri'] !=0) && ($row['sat'] != 0)) { 
-					echo "Fri, "; 
-				} else { echo "Fri"; }
-
-				if ($row['sat'] == 0) {  }
-				else { echo "Sat "; }
-				?>
-				<?= ' - ' . $row['group_name'] ?></p>
+    <?php 
+      $time = $row['meet_time'];
+      $mt = converted_time($time, $tz); 
+    ?>
+		<p><?php echo $mt . ' - '; print_day($row); echo ' - ' . $row['group_name'] ?></p>
 
 		<?php if ($role == 1 || $role ==2 || $role == 3) { ?>
 

@@ -267,6 +267,32 @@ require '_includes/head.php'; ?>
 			<div class="weekday-wrap user-mng">
 
 				<?php while ($rowz = mysqli_fetch_assoc($admin_meetings)) { ?>
+
+        <?php
+        $time = [];
+        $time['tz'] = $tz;
+        $time['ut'] = $rowz['meet_time'];
+
+        $time['sun'] = $rowz['sun'];
+        $time['mon'] = $rowz['mon'];
+        $time['tue'] = $rowz['tue'];
+        $time['wed'] = $rowz['wed'];
+        $time['thu'] = $rowz['thu'];
+        $time['fri'] = $rowz['fri'];
+        $time['sat'] = $rowz['sat'];
+
+        list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
+
+        $rowz['sun'] = $sun;
+        $rowz['mon'] = $mon;
+        $rowz['tue'] = $tue;
+        $rowz['wed'] = $wed;
+        $rowz['thu'] = $thu;
+        $rowz['fri'] = $fri;
+        $rowz['sat'] = $sat;
+        ?>
+
+
 					<?php require '_includes/user-management-user-meetings.php'; ?>
 				<?php } ?>
 
