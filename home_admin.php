@@ -22,10 +22,12 @@ require '_includes/head.php'; ?>
 
 <?php  
 	// this block only needed once for page
-	$dt = new DateTime('now'); 
+  // it's written in "long hand" so I can follow and pick apart each piece
+	$dt = new DateTime('now'); // current datestamp in UTC. DateTime is a class.
 	$user_tz = new DateTimeZone($tz);
 	$dt->setTimezone($user_tz);
 	$offset = $dt->format('P'); // find offset +, - or = +00:00
+  // echo $offset;
 
 	if ($user_id == 1) {
 		$subject_set = get_all_public_and_private_meetings_for_odin();
