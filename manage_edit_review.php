@@ -42,6 +42,7 @@ $time['thu'] = $row['thu'];
 $time['fri'] = $row['fri'];
 $time['sat'] = $row['sat'];
 
+
 list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = apply_offset_to_edit($time);
 
 $row['sun'] = $sun;

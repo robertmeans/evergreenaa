@@ -4,13 +4,8 @@
 <?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host <?php if (isset($_SESSION['mode']) && ($_SESSION['mode'] == 1)) { echo ' admin-links'; } ?>"><?php 
-		// convert time based on visitor's tz for h4 title of modal
-		// you will convert for host's tz in corresponding processing script
-		// i.e, contact-host-process.php or log-issue-process.php
-		// so their email notification's subject line will read correctly
-    $time = $row['meet_time'];
-    $mtg_tz = $row['mtg_tz'];
-    $nt = converted_time($time, $mtg_tz, $tz); 
+
+    $nt = converted_time($row['meet_time'], $row['mtg_tz'], $tz); 
 
 		if ($hide_this != 'yep') { // hides Email Host and Log an Issue on Dashboard page ?>
 		<span data-target="vtz" style="display:none;"><?= $tz; ?></span>

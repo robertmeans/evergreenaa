@@ -19,7 +19,7 @@ function preload_config($layout_context) {
 function apply_offset_to_meetings($results, $tz, $time_offset) {
 
   foreach($results as $k=>$v) {
-    $from_tz_obj = new DateTimeZone('UTC');
+    $from_tz_obj = new DateTimeZone($v['mtg_tz']);
     $to_tz_obj = new DateTimeZone($tz);
 
     $cfoo = new DateTime($v['meet_time'], $from_tz_obj);
@@ -201,13 +201,8 @@ function apply_offset_to_edit($time) {
   $fri = '0';
   $sat = '0';
 
-  $utc = 'UTC';
-  // $time['ut'] = $from_time (user input)
-  // $time['tz'] = $from_tz (user's tz)
-  // $utc = $to_tz (convert to UTC)
-  $from_tz_obj = new DateTimeZone($utc);
+  $from_tz_obj = new DateTimeZone($time['tz']);
   $to_tz_obj = new DateTimeZone($time['tz']);
-  // $ct = "converted time"
   $ct = new DateTime($time['ut'], $from_tz_obj);
   $ct->setTimezone($to_tz_obj);
 
@@ -421,6 +416,12 @@ function pretty_tz($tz) {
     return $tz;  
 }
 
+function format_time($meet_time) {
+  $ct = new DateTime($meet_time);
+  $nct = $ct->format('g:i A');
+  return $nct;
+}
+
 function converted_time($time, $mtg_tz, $tz) {
   if ($mtg_tz === $tz) {
     $ct = new DateTime($time);
@@ -435,18 +436,6 @@ function converted_time($time, $mtg_tz, $tz) {
   }
   return $nct;
 }
-
-// function visitor_to_host($vdt, $vtz, $emhtz) {
-//   $utc = $vtz;
-//   $from_tz_obj = new DateTimeZone($utc);
-//   $to_tz_obj = new DateTimeZone($emhtz);
-
-//   $ct = new DateTime($vdt, $from_tz_obj);
-//   $ct->setTimezone($to_tz_obj);
-//   $nct = $ct->format('g:i A');
-
-//   return $nct;
-// }
 
 function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomorrow, $tz, $time_offset) {
   $user_tz  = new DateTimeZone($tz); // -7/dst: -6
@@ -724,6 +713,5 @@ function display_errors($errors=array()) {
   	}
   	return $output;
 	}
-
 	
 ?>

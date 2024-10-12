@@ -6,13 +6,8 @@
 
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host admin-links">
 	
-		<?php 
-
-      $time = $row['meet_time'];
-      $mtg_tz = $row['mtg_tz'];
-      $nt = converted_time($time, $mtg_tz, $tz);
-
-		?>
+	<?php $nt = converted_time($row['meet_time'], $row['mtg_tz'], $tz); ?>
+  
 		<span data-target="vtz" style="display:none;"><?= $tz; ?></span>
 		<span data-target="mtgtime" style="display:none;"><?= $nt; ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr(ucfirst($today), 0,3); ?></span>

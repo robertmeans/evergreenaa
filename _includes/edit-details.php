@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-	<!-- <p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p> -->
+	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="visible" value="<?= $row['visible']; ?>">
 		<div class="top-info">

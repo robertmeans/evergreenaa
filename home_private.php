@@ -65,9 +65,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    // $mt = new DateTime($today . ' ' . $row['meet_time']);
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i0_'.$i;
 					$pc = 'p0_'.$i;
@@ -97,8 +105,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i1_'.$i;
 					$pc = 'p1_'.$i;
@@ -128,8 +145,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) { // AM meetings
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i2_'.$i;
 					$pc = 'p2_'.$i;
@@ -160,8 +186,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i3_'.$i;
 					$pc = 'p3_'.$i;
@@ -191,8 +226,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i4_'.$i;
 					$pc = 'p4_'.$i;
@@ -222,8 +266,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i5_'.$i;
 					$pc = 'p5_'.$i;
@@ -253,8 +306,17 @@ if ($time_offset != '00') {
 
 				$i = 1;
 				foreach ($sorted as $row) {
-			    $mt = new DateTime($row['meet_time']);
-			    $mt->setTimezone($user_tz);
+
+          if ($row['mtg_tz'] === $tz) {  
+            $mt = new DateTime($row['meet_time']);
+
+          } else {
+            $from_tz_obj = new DateTimeZone($row['mtg_tz']);
+            $to_tz_obj = new DateTimeZone($tz);
+
+            $mt = new DateTime($row['meet_time'], $from_tz_obj);
+            $mt->setTimezone($to_tz_obj);
+          }
 
 					$ic = 'i6_'.$i;
 					$pc = 'p6_'.$i;

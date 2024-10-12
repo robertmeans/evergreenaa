@@ -5,9 +5,9 @@
 				<p>
 
 				<?php
-          $time = $rowz['meet_time'];
-          $nt = converted_time($time, $tz); 
-          echo $nt . ' - '; print_day($rowz); ?></p>
+          $nt = format_time($rowz['meet_time']);  
+          echo $nt . ' - '; print_day($rowz); echo '&nbsp; <span class="gtz">['; pretty_tz($rowz['mtg_tz']); echo ']</span>'; 
+        ?></p>
 
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">

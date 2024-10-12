@@ -4,10 +4,8 @@
 			<div class="glance-mtg glance-mtg-time">
 
 				<p><?php
-          $time = $row['meet_time'];
-          $mtg_tz = $row['mtg_tz'];
-          $nt = converted_time($time, $mtg_tz, $tz); 
-					echo $nt . ' - '; print_day($row); ?></p>
+          $nt = format_time($row['meet_time']); 
+          echo $nt . ' - '; print_day($row); echo '&nbsp; <span class="gtz">['; pretty_tz($row['mtg_tz']); echo ']</span>'; ?></p>
 
 			</div><!-- .glance-time-day -->
 			<div class="glance-mtg glance-group-title">

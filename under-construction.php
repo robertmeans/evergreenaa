@@ -1,10 +1,8 @@
 <?php 
-// turn on & off in initialize.php
-
+require_once 'config/initialize.php';
+// turn on & off in initialize.php after constants are called
 
 $layout_context = "login-page";
-
-require_once 'config/initialize.php';
 
 include '_includes/head.php'; ?>
 
@@ -14,7 +12,8 @@ include '_includes/head.php'; ?>
 <div id="landing">
 	<div class="uc-page">
 		<p>Saturday, October 16 at 1:51 PM Mountain Time</p>
-		<p>Implementing a major update at the moment. The site will be down for about an hour. Sorry for any inconvenience.</p>
+		<p>I'm implementing a super major extra big update at the moment. Come back in about 30 minutes. You won't notice a single difference but trust me, it's phenomonally stupendeous. </p>
+    <p>Sorry for any inconvenience.</p>
 	</div>
 </div><!-- #landing -->
 

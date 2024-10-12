@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-	<!-- <p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p> -->
+	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group | Meeting name</p>
@@ -42,12 +42,12 @@
 
 <div class="mtg-time-tm">	
   <p class="time-held">Time</p>
-	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time'])) { echo $row['meet_time']; } ?>">
+	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time']) && $row['meet_time'] !== 'nofrickinway') { echo $row['meet_time']; } ?>">
 </div>
 
 <div class="mtg-time-tz">  
   <p class="time-held">Timezone</p>
-  <select class="pick-tz" name="mtg-tz"><option value="empty"><?php echo timezone_select_options(); ?></option></select>
+  <select class="pick-tz" name="mtg-tz"><option value="empty"><?php echo timezone_select_options($tz); ?></option></select>
 </div>
 
 </div><!-- .top-info -->

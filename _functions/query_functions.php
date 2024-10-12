@@ -865,8 +865,12 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['pick_a_day'] = "Pick a day or days for your meeting.";
   }
 
-   if (is_blank($row['meet_time'])) {
+  if (is_blank($row['meet_time'])) {
     $errors['meet_time'] = "Please set a time.";
+  }
+
+  if ($row['meet_time'] === 'nofrickinway') {
+    $errors['meet_time'] = "Whatever you put in the time field isn't happening. Try that again.";
   }
 
   if (!is_blank($row['meet_phone']) && has_length_less_than($row['meet_phone'], 10)) {

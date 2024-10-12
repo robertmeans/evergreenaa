@@ -4550,6 +4550,10 @@ span.contact-update-message {
   margin-left: -80px;
 }
 
+span.gtz {
+  font-size: 0.6em;
+}
+
 body.noscrollz {
   overflow: hidden;
 }

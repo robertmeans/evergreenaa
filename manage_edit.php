@@ -103,18 +103,6 @@ $row = [];
 $row['visible'] 		= $_POST['visible'] 									?? '';
 $row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
 
-
-
-
-
-
-
-
-
- 
-
-
-
 // $time = [];
 // $time['tz'] = $tz;
 // $time['ut'] = $_POST['meet_time'] ?? '';
@@ -141,9 +129,32 @@ $row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
 
 
 
-$meettime = $_POST['meet_time'] ?? '';
-$fmt = new DateTime($meettime);
-$row['db_time'] = $fmt->format('Hi');
+
+
+
+
+// $meettime = $_POST['meet_time'] ?? '';
+// $fmt = new DateTime($meettime);
+// $row['db_time'] = $fmt->format('Hi');
+
+if (strtotime($_POST['meet_time'])) {
+  $meettime = $_POST['meet_time'];
+  $fmt = new DateTime($meettime);
+  $row['db_time'] = $fmt->format('Hi');
+} else {
+  $_POST['meet_time'] = '';
+}
+
+
+
+
+
+
+
+
+
+
+
 
 $row['db_sun'] = $_POST['sun'] ?? '';
 $row['db_mon'] = $_POST['mon'] ?? '';
@@ -152,16 +163,6 @@ $row['db_wed'] = $_POST['wed'] ?? '';
 $row['db_thu'] = $_POST['thu'] ?? '';
 $row['db_fri'] = $_POST['fri'] ?? '';
 $row['db_sat'] = $_POST['sat'] ?? '';
-
-
-
-
-
-
-
-
-
-
 
 
 
