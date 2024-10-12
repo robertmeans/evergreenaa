@@ -128,11 +128,6 @@ $row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
 // $row['db_sat'] = $sat;
 
 
-
-
-
-
-
 // $meettime = $_POST['meet_time'] ?? '';
 // $fmt = new DateTime($meettime);
 // $row['db_time'] = $fmt->format('Hi');
@@ -144,16 +139,6 @@ if (strtotime($_POST['meet_time'])) {
 } else {
   $_POST['meet_time'] = '';
 }
-
-
-
-
-
-
-
-
-
-
 
 
 $row['db_sun'] = $_POST['sun'] ?? '';

@@ -84,10 +84,6 @@ $row['id_user'] = $_SESSION['id'];
 $row['mtg_tz'] = $_POST['mtg-tz'];
 
 
-
-
-
-
 if (strtotime($_POST['meet_time'])) {
   $meettime = $_POST['meet_time'];
   $fmt = new DateTime($meettime);
@@ -95,11 +91,6 @@ if (strtotime($_POST['meet_time'])) {
 } else {
   $_POST['meet_time'] = '';
 }
-
-
-
-
-
 
 
 $row['db_sun'] = $_POST['sun'] ?? '';

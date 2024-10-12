@@ -472,7 +472,7 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
 
 
 
-
+/*
 function figger_it_out($time) { 
   // initialize return variables
   $sun = '0';
@@ -607,7 +607,7 @@ function figger_it_out($time) {
 
   return array($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat);
 }
-
+*/
 
 
 
