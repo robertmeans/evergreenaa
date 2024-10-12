@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
+	<!-- <p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p> -->
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<div class="top-info">
 			<p class="days-held">Group | Meeting name</p>
@@ -46,7 +46,7 @@
 </div>
 
 <div class="mtg-time-tz">  
-  <p class="time-held">Timezone of meeting</p>
+  <p class="time-held">Timezone</p>
   <select class="pick-tz" name="mtg-tz"><option value="empty"><?php echo timezone_select_options(); ?></option></select>
 </div>
 

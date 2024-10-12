@@ -7,11 +7,11 @@
 	<div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host admin-links">
 	
 		<?php 
-		// convert time based on visitor's tz for h4 title of modal
-		// you will convert for host's tz in corresponding processing script
-		// i.e, contact-host-process.php or log-issue-process.php	
-			$time = $row['meet_time'];
-			$nt = converted_time($time, $tz); 
+
+      $time = $row['meet_time'];
+      $mtg_tz = $row['mtg_tz'];
+      $nt = converted_time($time, $mtg_tz, $tz);
+
 		?>
 		<span data-target="vtz" style="display:none;"><?= $tz; ?></span>
 		<span data-target="mtgtime" style="display:none;"><?= $nt; ?></span>

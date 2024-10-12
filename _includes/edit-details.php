@@ -1,6 +1,6 @@
 
 <div class="meeting-details">
-	<p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p>
+	<!-- <p class="mtg-tz">Your current timezone is set to: <a id="show-tz" class="inline-show-tz"><?php pretty_tz($tz); ?></a>.</p> -->
 	<form id="manage-mtg" action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="visible" value="<?= $row['visible']; ?>">
 		<div class="top-info">
@@ -45,15 +45,15 @@
   <p class="time-held">Time</p>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
 
-		$time = $row['meet_time']; 
-		$nt = converted_time($time, $tz); 
-		echo $nt;
+    $ndt = new DateTime($row['meet_time']);
+    $time = $ndt->format('g:i A');
+		echo $time;
 
 	} ?>">
 
 </div>
 <div class="mtg-time-tz">  
-  <p class="time-held">Timezone of meeting</p>
+  <p class="time-held">Timezone</p>
   <?php $mtg_tz = $row['mtg_tz']; ?>
   <select class="pick-tz" name="mtg-tz">
     <option value="empty"><?php echo timezone_select_options($mtg_tz); ?>

@@ -4,8 +4,9 @@
 			<div class="glance-mtg glance-mtg-time">
 
 				<p><?php
-					$time = $row['meet_time'];
-					$nt = converted_time($time, $tz); 
+          $time = $row['meet_time'];
+          $mtg_tz = $row['mtg_tz'];
+          $nt = converted_time($time, $mtg_tz, $tz); 
 					echo $nt . ' - '; print_day($row); ?></p>
 
 			</div><!-- .glance-time-day -->

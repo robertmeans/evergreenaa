@@ -421,15 +421,18 @@ function pretty_tz($tz) {
     return $tz;  
 }
 
-function converted_time($time, $tz) {
-  $utc = 'UTC';
-  $from_tz_obj = new DateTimeZone($utc);
-  $to_tz_obj = new DateTimeZone($tz);
+function converted_time($time, $mtg_tz, $tz) {
+  if ($mtg_tz === $tz) {
+    $ct = new DateTime($time);
+    $nct = $ct->format('g:i A');    
+  } else {
+    $from_tz_obj = new DateTimeZone($mtg_tz);
+    $to_tz_obj = new DateTimeZone($tz);
 
-  $ct = new DateTime($time, $from_tz_obj);
-  $ct->setTimezone($to_tz_obj);
-  $nct = $ct->format('g:i A');
-
+    $ct = new DateTime($time, $from_tz_obj);
+    $ct->setTimezone($to_tz_obj);
+    $nct = $ct->format('g:i A');
+  }
   return $nct;
 }
 
@@ -475,7 +478,13 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
   }
 }
 
-function figger_it_out($time) {
+
+
+
+
+
+
+function figger_it_out($time) { 
   // initialize return variables
   $sun = '0';
   $mon = '0';
@@ -609,6 +618,8 @@ function figger_it_out($time) {
 
   return array($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat);
 }
+
+
 
 
 function convert_day($tz, $day, $mtg_time) {

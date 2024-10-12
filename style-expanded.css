@@ -3728,7 +3728,7 @@ a.manage-delete:hover {
   padding: 1em;
 }
 .weekday-edit-wrap .meeting-details .details-right p.add-info {
-  text-decoration: underline;
+  border-bottom: 1px solid #fff;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
@@ -4021,14 +4021,16 @@ form#manage-mtg .pdf-wrap.fixerror a:not(#toggle-link-label):hover {
   background-color: #000;
 }
 form#manage-mtg p.days-held {
-  text-decoration: underline;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
 form#manage-mtg p.time-held {
-  text-decoration: underline;
   font-weight: bold;
   margin: 0.5em 0;
+}
+form#manage-mtg p.days-held,
+form#manage-mtg p.time-held {
+  border-bottom: 1px solid #fff;
 }
 form#manage-mtg .mtg-days {
   display: inline-block;
@@ -4115,10 +4117,16 @@ form#manage-mtg input[type="checkbox"]:checked + label {
   color: #fff;
   display: inline-block;
 }
+form#manage-mtg input[type="checkbox"]:checked + label:hover {
+  color: #fff;
+}
 form#manage-mtg label {
   cursor: pointer;
   line-height: 1.6em;
   color: gray;
+}
+form#manage-mtg label span:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 form#manage-mtg label.vis,
 form#manage-mtg label.pdf-label {

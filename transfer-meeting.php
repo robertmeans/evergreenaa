@@ -80,7 +80,8 @@ require '_includes/head.php'; ?>
 
     <?php 
       $time = $row['meet_time'];
-      $mt = converted_time($time, $tz); 
+      $mtg_tz = $row['mtg_tz'];
+      $mt = converted_time($time, $mtg_tz, $tz); 
     ?>
 		<p><?php echo $mt . ' - '; print_day($row); echo ' - ' . $row['group_name'] ?></p>
 

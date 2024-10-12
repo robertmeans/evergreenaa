@@ -643,7 +643,8 @@ a.manage-delete {
 			width: 50%;
 			padding: 1em;
 			p.add-info {
-				text-decoration: underline;
+				// text-decoration: underline;
+        border-bottom: 1px solid #fff;
 				font-weight: bold;
 				margin-bottom: 0.5em;
 			}
@@ -878,9 +879,6 @@ form#manage-mtg {
 	}
 
 
-
-
-
   .mtg-time-tm,
   .mtg-time-tz {
     display: inline-block;
@@ -911,14 +909,6 @@ form#manage-mtg {
 
 
 
-
-
-
-
-
-
-
-
 	.pdf-wrap.fixerror {
 		border-radius: 0px;
 		padding: 0.5em;
@@ -941,15 +931,19 @@ form#manage-mtg {
 		}
 	}
 	p.days-held {
-		text-decoration: underline;
+		// text-decoration: underline;
 		font-weight: bold;
 		margin-bottom: 0.5em;
 	}
 	p.time-held {
-		text-decoration: underline;
+		// text-decoration: underline;
 		font-weight: bold;
 		margin: 0.5em 0;
 	}
+  p.days-held,
+  p.time-held {
+    border-bottom: 1px solid #fff;
+  }
 	.mtg-days {
 		display: inline-block;
 	}
@@ -1035,17 +1029,29 @@ form#manage-mtg {
 	input[type="checkbox"]:checked + label {
 		color: #fff;
 		display: inline-block;
+    &:hover {
+      color: #fff;
+    }
 	}
 	label {
 		cursor: pointer;
 		line-height: 1.6em;
 		color: gray;
+    span:hover {
+      color: rgba(255,255,255,0.8);
+    }
 	}
 	label.vis,
 	label.pdf-label {
 		color: #fff;
 	}
 }
+
+
+
+
+
+
 .btm-notes {
 	width: 100%;
 	.file-uploads {
