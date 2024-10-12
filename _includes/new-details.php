@@ -39,11 +39,15 @@
 		<label><input type="checkbox" name="sat" value="1" <?php if ((isset($row['sat']) && ($row['sat'])) != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
 	</div>
 </div><!-- .align-days -->
-<p class="time-held">Time</p>
-<div class="mtg-time">	
 
-	<?php /* https://timepicker.co/options/ */ ?>
+<div class="mtg-time-tm">	
+  <p class="time-held">Time</p>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($row['meet_time'])) { echo $row['meet_time']; } ?>">
+</div>
+
+<div class="mtg-time-tz">  
+  <p class="time-held">Timezone of meeting</p>
+  <select class="pick-tz" name="mtg-tz"><option value="empty"><?php echo timezone_select_options(); ?></option></select>
 </div>
 
 </div><!-- .top-info -->

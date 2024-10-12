@@ -101,6 +101,19 @@ $row = [];
 	}
 
 $row['visible'] 		= $_POST['visible'] 									?? '';
+$row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
+
+
+
+
+
+
+
+
+
+
+
+
 
 $time = [];
 $time['tz'] = $tz;
@@ -126,8 +139,23 @@ $row['db_thu'] = $thu;
 $row['db_fri'] = $fri;
 $row['db_sat'] = $sat;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // use this to populate field if there are errors on pg ->
-// comment when testing
 if (isset($_POST['meet_time'])) {
 	$row['meet_time'] = $_POST['meet_time'];
 } else {
@@ -142,15 +170,6 @@ $row['thu'] = $_POST['thu'] ?? '';
 $row['fri'] = $_POST['fri'] ?? '';
 $row['sat'] = $_POST['sat'] ?? '';
 
-// for testing... ->
-// $row['meet_time'] = $ct->format('g:i A');
-// $row['sun'] = $sun;
-// $row['mon'] = $mon;
-// $row['tue'] = $tue;
-// $row['wed'] = $wed;
-// $row['thu'] = $thu;
-// $row['fri'] = $fri;
-// $row['sat'] = $sat;
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 

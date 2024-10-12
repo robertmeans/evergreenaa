@@ -416,6 +416,7 @@ function pretty_tz($tz) {
     elseif ($tz == 'America/Anchorage') { echo 'USA Alaska time'; }
     elseif ($tz == 'Pacific/Honolulu') { echo 'USA Hawaii time'; }
     elseif ($tz == 'UTC') { echo 'UTC/GMT time'; }
+    // else  { echo $tz; } // make it way prettier...
     else  { echo trim(str_replace('_', ' ', substr($tz, strpos($tz, '/') + 1))) . ' time'; } // :-)
     return $tz;  
 }

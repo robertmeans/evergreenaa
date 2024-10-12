@@ -81,6 +81,22 @@ $row = [];
 
 $row['id_user'] = $_SESSION['id'];
 
+$row['mtg_tz'] = $_POST['mtg-tz'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $time = [];
 $time['tz'] = $tz;
 $time['ut'] = $_POST['meet_time'] ?? '';
@@ -105,6 +121,17 @@ $row['db_thu'] = $thu;
 $row['db_fri'] = $fri;
 $row['db_sat'] = $sat;
 
+
+
+
+
+
+
+
+
+
+
+
 // use this to populate field if there are errors on pg ->
 // comment when testing
 $row['meet_time'] = $_POST['meet_time'];
@@ -115,16 +142,6 @@ $row['wed'] = $_POST['wed'] ?? '';
 $row['thu'] = $_POST['thu'] ?? '';
 $row['fri'] = $_POST['fri'] ?? '';
 $row['sat'] = $_POST['sat'] ?? '';
-
-// for testing... ->
-// $row['meet_time'] = $ct->format('g:i A');
-// $row['sun'] = $sun;
-// $row['mon'] = $mon;
-// $row['tue'] = $tue;
-// $row['wed'] = $wed;
-// $row['thu'] = $thu;
-// $row['fri'] = $fri;
-// $row['sat'] = $sat;
 
 $row['group_name'] 		= $_POST['group_name'] 									?? '';
 $row['meet_phone'] 		= preg_replace('/[^0-9]/', '', $_POST['meet_phone']) 	?? '';

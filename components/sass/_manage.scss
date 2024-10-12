@@ -713,6 +713,8 @@ a.manage-delete {
 		justify-content: flex-end;
 	}
 }
+
+
 p.add-info {
 	margin-top: 0.5em;
 }
@@ -874,6 +876,49 @@ form#manage-mtg {
 		background-color: rgba(255,189,192,1);
 		padding: 0.2em;
 	}
+
+
+
+
+
+  .mtg-time-tm,
+  .mtg-time-tz {
+    display: inline-block;
+    margin-top: 1em;
+  }
+  .mtg-time-tz {
+    margin-left: 1em;
+    select.pick-tz {
+      font-size: 1.1em;
+      padding: 0.2em;
+      outline: none;
+      cursor: pointer;
+      background-color: #313131;
+      -webkit-appearance: none;
+      color: #fff;
+      option { 
+        margin: 0 auto;
+        cursor: pointer;
+        color: #fff;
+        background-color: #313131;
+        // -webkit-appearance: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
 	.pdf-wrap.fixerror {
 		border-radius: 0px;
 		padding: 0.5em;
@@ -1248,7 +1293,21 @@ form#manage-mtg {
 	}
 	form#manage-mtg {
 		flex-direction: column;
+
+    .mtg-time-tm,
+    .mtg-time-tz {
+      display: block;
+    }
+    .mtg-time-tz {
+      margin: -0.5em 0 1em 0;
+      select {
+        width: 100%;
+      }
+    }
+
 	}
+
+
 	.weekday-edit-wrap .meeting-details .details-right {
 		// padding: 1em 0em;
 		padding: 0em;

@@ -233,9 +233,10 @@ function create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4
   }
 
   $sql = "INSERT INTO meetings ";
-  $sql .= "(id_user, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, one_tap, meet_id, meet_pswd, meet_url, meet_addr, meet_desc, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, file1, link1, file2, link2, file3, link3, file4, link4, add_note) ";
+  $sql .= "(id_user, mtg_tz, sun, mon, tue, wed, thu, fri, sat, meet_time, group_name, meet_phone, one_tap, meet_id, meet_pswd, meet_url, meet_addr, meet_desc, dedicated_om, code_b, code_d, code_o, code_w, code_beg, code_h, code_sp, code_c, code_m, code_ss, month_speaker, potluck, file1, link1, file2, link2, file3, link3, file4, link4, add_note) ";
   $sql .= "VALUES ("; 
   $sql .= "'" . db_escape($db, $row['id_user'])        . "', ";
+  $sql .= "'" . $row['mtg_tz']            . "', ";
   $sql .= "'" . $row['db_sun']            . "', ";
   $sql .= "'" . $row['db_mon']            . "', ";
   $sql .= "'" . $row['db_tue']            . "', ";
@@ -333,6 +334,7 @@ function update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn
   $sql = "UPDATE meetings SET ";
   $sql .= "issues=0, ";
   $sql .= "visible='"       . $row['visible']           . "', ";
+  $sql .= "mtg_tz='"        . $row['mtg_tz']           . "', ";
   $sql .= "sun='"           . $row['db_sun']           . "', ";
   $sql .= "mon='"           . $row['db_mon']           . "', ";
   $sql .= "tue='"           . $row['db_tue']           . "', ";
@@ -435,7 +437,7 @@ function edit_meeting($id) {
   global $db;
 
   // $sql = "SELECT * FROM meetings WHERE ";
-  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_mtg='" . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1"; 

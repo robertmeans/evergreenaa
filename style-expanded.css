@@ -3973,6 +3973,32 @@ form#manage-mtg .align-days.fixerror {
   background-color: #ffbdc0;
   padding: 0.2em;
 }
+form#manage-mtg .mtg-time-tm,
+form#manage-mtg .mtg-time-tz {
+  display: inline-block;
+  margin-top: 1em;
+}
+form#manage-mtg .mtg-time-tz {
+  margin-left: 1em;
+}
+form#manage-mtg .mtg-time-tz select.pick-tz {
+  font-size: 1.1em;
+  padding: 0.2em;
+  outline: none;
+  cursor: pointer;
+  background-color: #313131;
+  -webkit-appearance: none;
+  color: #fff;
+}
+form#manage-mtg .mtg-time-tz select.pick-tz option {
+  margin: 0 auto;
+  cursor: pointer;
+  color: #fff;
+  background-color: #313131;
+}
+form#manage-mtg .mtg-time-tz select.pick-tz option:hover {
+  cursor: pointer;
+}
 form#manage-mtg .pdf-wrap.fixerror {
   border-radius: 0px;
   padding: 0.5em;
@@ -4340,6 +4366,16 @@ form#manage-mtg label.pdf-label {
   form#manage-mtg {
     -ms-flex-direction: column;
         flex-direction: column;
+  }
+  form#manage-mtg .mtg-time-tm,
+  form#manage-mtg .mtg-time-tz {
+    display: block;
+  }
+  form#manage-mtg .mtg-time-tz {
+    margin: -0.5em 0 1em 0;
+  }
+  form#manage-mtg .mtg-time-tz select {
+    width: 100%;
   }
 
   .weekday-edit-wrap .meeting-details .details-right {

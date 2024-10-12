@@ -40,10 +40,9 @@
 		<label><input type="checkbox" name="sat" value="1" <?php if (isset($_POST['sat']) && $_POST['sat'] != 0) { echo "checked"; } else if (isset($_POST['sat']) && $_POST['sat'] == 0) { echo ""; } else if ($row['sat'] != 0) { echo "checked"; } ?> /> <span>Saturday</span></label>
 	</div>
 </div><!-- .align-days -->
-<p class="time-held">Time</p>
-<div class="mtg-time">	
 
-	<?php /* https://timepicker.co/options/ */ ?>
+<div class="mtg-time-tm">
+  <p class="time-held">Time</p>
 	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
 
 		$time = $row['meet_time']; 
@@ -53,6 +52,15 @@
 	} ?>">
 
 </div>
+<div class="mtg-time-tz">  
+  <p class="time-held">Timezone of meeting</p>
+  <?php $mtg_tz = $row['mtg_tz']; ?>
+  <select class="pick-tz" name="mtg-tz">
+    <option value="empty"><?php echo timezone_select_options($mtg_tz); ?>
+    </option>
+  </select>
+</div>
+
 </div><!-- .top-info -->
 <div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 	<label for="meet_phone">Phone number <a id="toggle-yer-phone-num"><i class="far fa-question-circle fa-fw"></i></a></label>
