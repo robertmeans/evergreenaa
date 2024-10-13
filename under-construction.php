@@ -11,9 +11,10 @@ include '_includes/head.php'; ?>
 
 <div id="landing">
 	<div class="uc-page">
-		<p>Saturday, October 16 at 1:51 PM Mountain Time</p>
-		<p>I'm implementing a super major extra big update at the moment. Come back in about 30 minutes. You won't notice a single difference but trust me, it's phenomonally stupendeous. </p>
+		<p>Saturday, October 12 at 7:50 PM Mountain Time</p>
+		<p>I'm implementing a super major extra big update at the moment. Come back at 8:30 and I should be done. You won't notice a single difference but trust me, it's next-level phenomonally stupendeous.</p>
     <p>Sorry for any inconvenience.</p>
+    <p>Bob</p>
 	</div>
 </div><!-- #landing -->
 
