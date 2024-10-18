@@ -16,9 +16,9 @@
 		<span data-target="ri" style="display:none;"><?= $row['issues']; ?></span>
 		<span data-target="mtgname" style="display:none;"><?php 
 		if (strlen($row['group_name']) < 22) { 
-				echo trim($row['group_name']); 
+				echo trim($row['group_name'] ?? ''); 
 			} else {
-				echo trim(substr($row['group_name'], 0,22)) . '...';
+				echo trim(substr($row['group_name'], 0,22) ?? '') . '...';
 			} 
 		?></span>
 

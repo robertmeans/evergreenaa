@@ -956,7 +956,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   }
   /* finally, to catch the possibility that there were no errors with the file/label area but there was another error on the page when you have hoped to upload a file, you now need to address the broken file selection. the notes (at the very bottom of the error checking stack, gets its own special if() function to manage this.) */
   if (!empty($errors) && (isset($fn1) && $fn1 != '')) {
-    $errors['name_link1'] = "Restore file selection in position 1.";
+    $errors['name_link1'] = "Restore file selection in position 1 and make sure it has a label.";
   }
   // END POSITION 1
 
@@ -976,7 +976,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['name_link2'] = "You set a name but no file in position 2. Please restore file selection.";
   }
   if (!empty($errors) && (isset($fn2) && $fn2 != '')) {
-    $errors['name_link2'] = "Restore file selection in position 2.";
+    $errors['name_link2'] = "Restore file selection in position 2 and make sure it has a label.";
   }  
 
 
@@ -995,7 +995,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['name_link3'] = "You set a name but no file in position 3. Please restore file selection.";
   }
   if (!empty($errors) && (isset($fn3) && $fn3 != '')) {
-    $errors['name_link3'] = "Restore file selection in position 3.";
+    $errors['name_link3'] = "Restore file selection in position 3 and make sure it has a label.";
   }  
 
 
@@ -1014,7 +1014,7 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
     $errors['name_link4'] = "You set a name but no file in position 4. Please restore file selection.";
   }
   if (!empty($errors) && (isset($fn4) && $fn4 != '')) {
-    $errors['name_link4'] = "Restore file selection in position 4.";
+    $errors['name_link4'] = "Restore file selection in position 4 and make sure it has a label.";
   }  
 
   // end file errors for update/edit pages
@@ -1022,16 +1022,16 @@ function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) 
   /* notes gets it's own special version of error checking since it's last. in case this is the ony error on the page and they had everything correct in the file upload area,  you still want to show the file error first since combing down the page the files come before the notes. */
   if ((!is_blank($row['add_note']) && has_length_greater_than($row['add_note'], 1000)) && ((isset($fn1) && $fn1 != '') || (isset($fn2) && $fn2 != '') || (isset($fn3) && $fn3 != '') || (isset($fn4) && $fn4 != ''))) {
     if (isset($fn1) && $fn1 != '') {
-      $errors['name_link1'] = "Restore file selection in position 1.";
+      $errors['name_link1'] = "Restore file selection in position 1 and make sure it has a label.";
     }
     if (isset($fn2) && $fn2 != '') {
-      $errors['name_link2'] = "Restore file selection in position 2";
+      $errors['name_link2'] = "Restore file selection in position 2 and make sure it has a label.";
     }
     if (isset($fn3) && $fn3 != '') {
-      $errors['name_link3'] = "Restore file selection in position 3";
+      $errors['name_link3'] = "Restore file selection in position 3 and make sure it has a label.";
     }
     if (isset($fn4) && $fn4 != '') {
-      $errors['name_link4'] = "Restore file selection in position 4";
+      $errors['name_link4'] = "Restore file selection in position 4 and make sure it has a label.";
     }  
     $errors['add_note'] = "You've got more than 1,000 characters in your note. Dial it down to 1,000 or less please.";
     

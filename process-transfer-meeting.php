@@ -10,7 +10,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 	// $current_user = $_SESSION['admin'];
 	$mtg_id = $_POST['current-mtg'];
 	$host_email = $_POST['host-email'];
-	$email = strtolower(trim($_POST['email']));
+	$email = strtolower(trim($_POST['email'] ?? ''));
 
 if (is_post_request()) {
 

@@ -129,7 +129,7 @@
 
 	<div id="pdf1" class="pdf-wrap pdf1<?php if (isset($errors['name_link1'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="file" class="pdf1_name" id="file1" name="file1" accept=".pdf"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="link1" value="<?php if (isset($row['link1'])) { echo trim(h($row['link1'])); } ?>" maxlength="25"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
+			<input type="file" class="pdf1_name" id="file1" name="file1" accept=".pdf"> <label class="pdf-label">Link 1 label <input type="text" class="pdf1_name" name="link1" value="<?php if (isset($row['link1'])) { echo trim(h($row['link1']) ?? ''); } ?>" maxlength="25"> <a id="toggle-link-label"><i class="far fa-question-circle fa-fw"></i></a></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-1">Remove</a>
@@ -138,7 +138,7 @@
 
 	<div id="pdf2" class="pdf-wrap pdf2<?php if (isset($errors['name_link2'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="file" class="pdf2_name" id="file2" name="file2" accept=".pdf"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="link2" value="<?php if (isset($row['link2'])) { echo trim(h($row['link2'])); } ?>" maxlength="25"></label>
+			<input type="file" class="pdf2_name" id="file2" name="file2" accept=".pdf"> <label class="pdf-label">Link 2 label <input type="text" class="pdf2_name" name="link2" value="<?php if (isset($row['link2'])) { echo trim(h($row['link2']) ?? ''); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-2">Remove</a>
@@ -147,7 +147,7 @@
 
 	<div id="pdf3" class="pdf-wrap pdf3<?php if (isset($errors['name_link3'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="file" class="pdf3_name" id="file3" name="file3" accept=".pdf"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="link3" value="<?php if (isset($row['link3'])) { echo trim(h($row['link3'])); } ?>" maxlength="25"></label>
+			<input type="file" class="pdf3_name" id="file3" name="file3" accept=".pdf"> <label class="pdf-label">Link 3 label <input type="text" class="pdf3_name" name="link3" value="<?php if (isset($row['link3'])) { echo trim(h($row['link3']) ?? ''); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-3">Remove</a>
@@ -156,7 +156,7 @@
 
 	<div id="pdf4" class="pdf-wrap pdf4<?php if (isset($errors['name_link4'])) { echo " fixerror"; } ?>">
 		<div class="pdf-row">
-			<input type="file" class="pdf4_name" id="file4" name="file4" accept=".pdf"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="link4" value="<?php if (isset($row['link4'])) { echo trim(h($row['link4'])); } ?>" maxlength="25"></label>
+			<input type="file" class="pdf4_name" id="file4" name="file4" accept=".pdf"> <label class="pdf-label">Link 4 label <input type="text" class="pdf4_name" name="link4" value="<?php if (isset($row['link4'])) { echo trim(h($row['link4']) ?? ''); } ?>" maxlength="25"></label>
 		</div>
 		<div class="pdf-remove">
 			<a class="pdf-remove pdf-remove-4">Remove</a>

@@ -3,7 +3,7 @@ require_once 'config/initialize.php';
 
 if (is_post_request()) {
 
-	$reason   	= trim(h($_POST['reason']));
+	$reason   	= trim(h($_POST['reason']) ?? '');
 	$user 			= $_POST['user-id'];
 
 	if($reason) {

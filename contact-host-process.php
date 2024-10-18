@@ -17,9 +17,9 @@ require_once '_functions/query_functions.php';
 $db = db_connect();
 
 $mtgid = $_POST['mtgid'];
-$name = trim($_POST['name']);
-$email = trim($_POST['email']);
-$message = trim($_POST['emhmsg']);
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$message = trim($_POST['emhmsg'] ?? '');
 
 $vdt = $_POST['vdt']; // visitor's day + time (really time + day (e.g. '1:15 PM, Sun'))
 $vtz = $_POST['vtz']; // visitor's tz

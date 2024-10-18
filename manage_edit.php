@@ -197,7 +197,7 @@ $row['potluck'] 		= $_POST['potluck']										?? '';
 $row['hid_f1'] 		= $_POST['hid_f1']										?? '';
 
 if (isset($_POST['link1'])) {
-	$row['link1'] 		= trim($_POST['link1'])										?? '';
+	$row['link1'] 		= trim($_POST['link1'] ?? '')										?? '';
 } else {
 	$row['link1'] = '';
 }
@@ -205,14 +205,14 @@ if (isset($_POST['link1'])) {
 $row['hid_f2'] 		= $_POST['hid_f2']										?? '';
 
 if (isset($_POST['link2'])) {
-	$row['link2'] 		= trim($_POST['link2'])										?? '';
+	$row['link2'] 		= trim($_POST['link2'] ?? '')										?? '';
 } else {
 	$row['link2'] = '';
 }
 $row['hid_f3'] 		= $_POST['hid_f3']										?? '';
 
 if (isset($_POST['link3'])) {
-	$row['link3'] 		= trim($_POST['link3'])										?? '';
+	$row['link3'] 		= trim($_POST['link3'] ?? '')										?? '';
 } else {
 	$row['link3'] = '';
 }
@@ -220,7 +220,7 @@ if (isset($_POST['link3'])) {
 $row['hid_f4'] 		= $_POST['hid_f4']										?? '';
 
 if (isset($_POST['link4'])) {
-	$row['link4'] 		= trim($_POST['link4'])										?? '';
+	$row['link4'] 		= trim($_POST['link4'] ?? '')										?? '';
 } else {
 	$row['link4'] = '';
 }

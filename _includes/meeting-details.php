@@ -16,9 +16,9 @@
 		<span data-target="ri" style="display:none;"><?= $row['issues']; ?></span>
 		<span data-target="mtgname" style="display:none;"><?php 
 		if (strlen($row['group_name']) < 22) { 
-				echo trim($row['group_name']); 
+				echo trim($row['group_name'] ?? ''); 
 			} else {
-				echo trim(substr($row['group_name'], 0,22)) . '...';
+				echo trim(substr($row['group_name'], 0,22) ?? '') . '...';
 			} 
 		?></span>
 
@@ -44,17 +44,17 @@
 
 <?php /* } */ ?>
 
-<?php if (($row['dedicated_om'] == '0') && (trim($row['one_tap']) == '') && (trim($row['meet_phone']) == '') && (trim($row['meet_id']) == '') && (trim($row['meet_pswd']) == '') && (trim($row['meet_url']) == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
-					<div class="details-left<?php if (trim($row['meet_url']) != '') { echo " l-stacked"; } ?>">
+<?php if (($row['dedicated_om'] == '0') && (trim($row['one_tap'] ?? '') == '') && (trim($row['meet_phone'] ?? '') == '') && (trim($row['meet_id'] ?? '') == '') && (trim($row['meet_pswd'] ?? '') == '') && (trim($row['meet_url'] ?? '') == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
+					<div class="details-left<?php if (trim($row['meet_url'] ?? '') != '') { echo " l-stacked"; } ?>">
 <?php /* if ($row['dedicated_om'] != 0) { ?><p class="dd-meet">Dedicated Online Meeting</p> } */ ?>
-<?php 					if (trim($row['meet_phone']) != '') { ?>
+<?php 					if (trim($row['meet_phone'] ?? '') != '') { ?>
 						<p class="phone-num01"><i class="fas fa-mobile-alt"></i> <a class="phone" href="tel:<?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?>"><?=  "(" .substr($row['meet_phone'], 0, 3).") ".substr($row['meet_phone'], 3, 3)."-".substr($row['meet_phone'],6); ?></a></p><?php } ?>
 
 <?php     if ($row['meet_url'] != null) { ?>
             <p class="zoom-info">Zoom Information</p>
 <?php } ?>
 
-<?php 	if (trim($row['one_tap']) != '') { ?>
+<?php 	if (trim($row['one_tap'] ?? '') != '') { ?>
 			<p><a href="tel:<?= h($row['one_tap']); ?>" class="zoom ot" target="_blank">ONE TAP MOBILE #</a></p>
 <?php } ?>
 
@@ -64,7 +64,7 @@
 						<a data-role="ic" data-id="<?php if (!isset($ic)) { echo "ic"; } else { echo $ic; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</a>
 
 <?php } ?>
-<?php 		if (trim($row['meet_pswd']) != '') { ?>
+<?php 		if (trim($row['meet_pswd'] ?? '') != '') { ?>
 						<p class="id-num">Password: <input id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" type="text" value="<?php echo $row['meet_pswd']; ?>" class="day-values input-copyz"></p>
 
 						<a data-role="pc" data-id="<?php if (!isset($ic)) { echo "pc"; } else { echo $pc; } ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</a>
@@ -72,14 +72,14 @@
 <?php } ?>
 
 
-<?php 					if (trim($row['meet_url']) != '') { ?>
+<?php 					if (trim($row['meet_url'] ?? '') != '') { ?>
 						<p><a href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM: VIDEO</a></p>
 <?php } ?>
 					</div><!-- .details-left -->
 <?php } ?>
-					<div class="details-right<?php if (trim($row['meet_url']) != '') { echo " rt-stacked"; } ?>" <?php if ($full_width == 'true') { echo " style=\"width:100%;\""; } ?>>
+					<div class="details-right<?php if (trim($row['meet_url'] ?? '') != '') { echo " rt-stacked"; } ?>" <?php if ($full_width == 'true') { echo " style=\"width:100%;\""; } ?>>
 
-<?php 				if (trim($row['meet_addr']) != '') { ?>
+<?php 				if (trim($row['meet_addr'] ?? '') != '') { ?>
 
 						<div id="map">
 							<iframe
@@ -93,7 +93,7 @@
 							</iframe>
 						</div>
 
-<?php 			if ((trim($row['meet_addr']) != '') && (trim($row['meet_desc']) != '')) { ?>
+<?php 			if ((trim($row['meet_addr'] ?? '') != '') && (trim($row['meet_desc'] ?? '') != '')) { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_desc']); ?></p>
 					<?php } else { ?>
 						<p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_addr']); ?></p>
@@ -148,5 +148,5 @@
 						</div>
 					<?php } ?>
 
-					<?php if(trim($row['add_note']) != '') { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
+					<?php if(trim($row['add_note'] ?? '') != '') { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
 				</div><!-- .meeting-details -->

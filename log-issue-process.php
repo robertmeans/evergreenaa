@@ -19,7 +19,7 @@ if (is_post_request() && isset($_POST['mtgname'])) {
   $msg = '';
   $user_id = $_POST['tuid'];
   $mtgid = $_POST['mtgid'];
-  $message = trim($_POST['emhmsg']);
+  $message = trim($_POST['emhmsg'] ?? '');
   $vdt = $_POST['vdt'];
   $vtz = $_POST['vtz'];
   $meetname = $_POST['mtgname']; // all that's here is meeting name (no day or time)

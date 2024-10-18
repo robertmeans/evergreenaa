@@ -7,9 +7,9 @@ require_once 'controllers/emailController.php';
 if (is_post_request() && isset($_POST['footercontact'])) {
   $signal = '';
   $msg = '';
-  $name = trim($_POST['name']);
-  $email = trim($_POST['email']);
-  $message = trim($_POST['comments']);
+  $name = trim($_POST['name'] ?? '');
+  $email = trim($_POST['email'] ?? '');
+  $message = trim($_POST['comments'] ?? '');
 
   // if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(2); }
 

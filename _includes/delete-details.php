@@ -12,7 +12,7 @@
 <?php } ?>
 
 
-<?php 	if (trim($row['one_tap']) != '') { ?>
+<?php 	if (trim($row['one_tap'] ?? '') != '') { ?>
 			<p><a href="tel:<?= h($row['one_tap']); ?>" class="zoom ot" target="_blank">ONE TAP MOBILE #</a></p>
 <?php } ?>
 
