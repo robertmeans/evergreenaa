@@ -801,9 +801,9 @@ $(document).ready(function() {
         $('#send-btn-nope').html('');
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#footer-contact-form').html('<span class="succ">Your message was sent successfully.</span>');
           } else {
@@ -911,7 +911,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#emh-contact').html('<span class="success-emh">Your message was sent successfully.</span>');
           } else {
@@ -921,6 +921,7 @@ $(document).ready(function() {
         } 
       },
       error: function() {
+        // console.log(response);
         $('#emh-contact-msg').html('<div class="alert alert-warning">There was an error between your IP and the server. Please try again later.</div>');
         $('#submit-links').html('<input type="button" id="emh-btn" class="send" value="Send">');
       }, 
@@ -956,7 +957,7 @@ $(document).ready(function() {
         $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/preparing.gif"></span></div>');
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
@@ -1037,7 +1038,7 @@ $(document).ready(function() {
 
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
@@ -1101,7 +1102,7 @@ $(document).ready(function() {
         $('#toggle-btn').html('<div class="verifying-msg"><span class="login-txt"><img src="_images/verifying.gif"></span></div>');
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
@@ -1157,7 +1158,7 @@ $(document).ready(function() {
         // $('#resetpass-btn').html('<span class="login-verify"><img src="_images/verifying.gif"></span>');
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
@@ -1282,7 +1283,7 @@ $(document).ready(function() {
         // $('#submit-links').html('');
       },
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         if(response) {
           // console.log(response);
           if(response['signal'] == 'ok') {
@@ -1374,7 +1375,7 @@ $(document).ready(function() { // 0829210847
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
 
             $('#mb').html('<input type="hidden" name="mtgid" id="mtgid"><input type="hidden" name="mtgname" id="mtgnamez"><input type="hidden" id="user-posting" value="'+username+'"><label>Title | Topic | Headline<input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label><label>Body<textarea name="mb-post" id="emh-msg" class="edit-input link-msg" maxlength="250"></textarea></label><div id="emh-contact-msg"></div><div class="submit-links"><input type="button" id="mb-new" class="send" value="Post it"></div>');
@@ -1422,7 +1423,7 @@ $(document).ready(function() { // 0829210847
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             if (post_pg) {
               // deleted post from single post page ->
@@ -1476,7 +1477,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
 
             if(opt_value == 'Email updates: Enabled') {
@@ -1611,7 +1612,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_username + ' &bullet; ' + new_host);
@@ -1653,7 +1654,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_username + ' &bullet; ' + new_host);
@@ -1695,7 +1696,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == 'ok') {
             $('#trans-h2').html('Meeting Transferred');
             $('#current-host').html('New Host: ' + new_host);
@@ -1813,7 +1814,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == '86') {
             $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - All meetings set to Draft');
@@ -1859,7 +1860,7 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         if(response) {
-          console.log(response);
+          // console.log(response);
           if(response['signal'] == '2') {
             $('#role-h2').html('User Managed');
             $('#current-role').html('Level II Administrator');

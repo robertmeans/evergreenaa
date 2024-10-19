@@ -92,7 +92,7 @@ if (is_post_request() && isset($_POST['mtgid'])) {
       $msg =  'Message sent successfully';
     } catch (Exception $e) {
         $signal = 'bad';
-        $msg = 'Mail Error: ' {$mail->ErrorInfo};
+        $msg = 'Mail Error: ' [$mail->ErrorInfo];
     }
 
   } 
