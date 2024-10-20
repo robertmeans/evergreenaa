@@ -1,5 +1,6 @@
 <?php 
-$layout_context = 'eeveryone';
+// $layout_context = 'eeveryone';
+$layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
