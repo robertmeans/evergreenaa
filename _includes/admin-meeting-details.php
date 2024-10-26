@@ -43,7 +43,11 @@
 
 <?php /* } */ ?>
 
-<?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { ?>
+<?php /* was
+        if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) {  } else { 
+      */ ?>
+<?php if (($row['dedicated_om'] == '0') && (trim($row['one_tap'] ?? '') == '') && (trim($row['meet_phone'] ?? '') == '') && (trim($row['meet_id'] ?? '') == '') && (trim($row['meet_pswd'] ?? '') == '') && (trim($row['meet_url'] ?? '') == '')) { $full_width = 'true'; } else { $full_width = 'false'; ?>
+
 					<div class="details-left <?php if ($row['meet_url'] != null) { echo "l-stacked"; } ?>">
 <?php /* if ($row['dedicated_om'] != 0) { ?><p class="dd-meet">Dedicated Online Meeting</p> } */ ?>
 <?php 					if ($row['meet_phone'] != null) { ?>
@@ -76,7 +80,10 @@
 <?php } ?>
 					</div><!-- .details-left -->
 <?php } ?>
+          <?php /* was...
 					<div class="details-right <?php if ($row['meet_url'] != null) { echo "rt-stacked"; } ?>" <?php if ($row['dedicated_om'] == 0 && $row['meet_phone'] == null && $row['meet_id'] == 0 && $row['meet_pswd'] == null && $row['meet_url'] == null) { echo "style=\"width:100%;\""; } ?>>
+          */ ?>
+          <div class="details-right<?php if (trim($row['meet_url'] ?? '') != '') { echo " rt-stacked"; } ?>" <?php if ($full_width == 'true') { echo " style=\"width:100%;\""; } ?>>
 
 <?php 				if ($row['meet_addr'] != null) { ?>
 
