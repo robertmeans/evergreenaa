@@ -270,7 +270,9 @@ $row['sat'] = $sat;
 require '_includes/head.php'; ?>
 
 <body>
-<?php preload_config($layout_context); ?>
+<?php $theme = configure_theme();
+if ($theme == '0') { preload_config_default($layout_context); }
+else { preload_config_light($layout_context); } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>

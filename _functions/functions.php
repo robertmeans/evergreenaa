@@ -1,6 +1,17 @@
 <?php
 
-function preload_config($layout_context) {
+function configure_theme() {
+    if (isset($_SESSION['db-theme'])) {
+    $theme = $_SESSION['db-theme'];
+  } elseif (!empty($_COOKIE['sessionTheme'])) {
+    $theme = $_COOKIE['sessionTheme'];
+  } else {
+    $theme = '0';
+  }
+  return $theme;
+}
+
+function preload_config_default($layout_context) {
   if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
     if (WWW_ROOT != 'http://localhost/evergreenaa') {
       echo '<div class="preload anni"><img src="_images/preload.gif"></div>';
@@ -15,6 +26,23 @@ function preload_config($layout_context) {
     }
   }
 }
+
+function preload_config_light($layout_context) {
+  if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
+    if (WWW_ROOT != 'http://localhost/evergreenaa') {
+      echo '<div class="preload anni"><img src="_images/preload-light.gif"></div>';
+    } else {
+      echo '<div class="preload-dev anni"><img src="_images/preload-light.gif"></div>';
+    }
+  } else {
+    if (WWW_ROOT != 'http://localhost/evergreenaa') {
+      echo '<div class="preload"><p>One day at a time.</p></div>';
+    } else {
+      echo '<div class="preload-dev"><p>One day at a time.</p></div>';
+    }
+  }
+}
+
 
 function apply_offset_to_meetings($results, $tz, $time_offset) {
 

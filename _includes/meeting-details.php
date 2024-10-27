@@ -7,7 +7,7 @@
 
     $nt = converted_time($row['meet_time'], $row['mtg_tz'], $tz); 
 
-		if ($hide_this != 'yep') { // hides Email Host and Log an Issue on Dashboard page ?>
+		if (isset($hide_this) && $hide_this != 'yep') { // hides Email Host and Log an Issue on Dashboard page ?>
 		<span data-target="vtz" style="display:none;"><?= $tz; ?></span>
 		<span data-target="mtgtime" style="display:none;"><?= $nt; ?></span>
 		<span data-target="mtgday" style="display:none;"><?= substr(ucfirst($today), 0,3); ?></span>

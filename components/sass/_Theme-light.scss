@@ -1,0 +1,96 @@
+body {
+  background-color: #f5f7fb;
+  color: #757575;
+}
+.preload-anni,
+.preload-dev {
+  background-color: #f5f7fb;
+  p {
+    color: #757575;
+  }
+}
+#navigation .top-nav {
+  background-color: #fff;
+  color: #313131;
+  border-color: #757575;
+  &:hover {
+    background-color: #e6e6e6;
+    color: #313131;
+  }
+}
+.top-nav .bars,
+.top-nav .bars:before,
+.top-nav .bars:after {
+  background: #313131;
+}
+.sidenav {
+  background-color: #fff;
+  color: #757575;
+  a.cc-x {
+    border-color: #ccc;
+  }
+  a:hover {
+    background-color: rgba(79,185,247,0.5);
+  }
+  a.nav-active {
+    background-color: rgba(79,185,247,0.3);
+    color: #757575;
+  }
+  .theme-nav a.light.nav-active {
+    color: #757575;
+    background-color: rgba(79,185,247,0.3);
+  }
+}
+.daily-glance {
+  color: #757575;
+  &:hover {
+    background-color: rgba(79,185,247,0.3);
+  }
+  .active {
+    color: #313131;
+  }
+}
+
+.day {
+  color: #757575;
+  color: #5693be;
+}
+.day-content {
+  background-color: rgba(255,255,255,0.7);
+}
+.active {
+  background: #d5d7d9 url(_images/aa-logo_active-light.gif) no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.weekday-wrap,
+.weekday-edit-wrap {
+  background-color: rgba(79,185,247,0.3);
+}
+
+p.logout,
+.manage-simple>p.logout>a {
+  color: #757575;
+}
+.manage-simple {
+  border-color: #757575;
+}
+/* email updates */
+form.email-updates input[type="checkbox"]:checked+label {
+  color: #17a109;
+}
+#landing>form {
+  background-color: rgba(79,185,247,0.3);
+}
+p.mtg-tz {
+  color: #313131;
+}
+
+#msg-one, #gottajoin, #lat-long, #one-tap, #yer-phone-num, #desc-loc, #pdf-upload, #link-label, #role-key, #why-join, #mb-notes {
+  background-color: rgba(255,255,255,0.8);
+  color: #fff;
+}
+
+#msg-one .inside-msg-one, #gottajoin .inside-msg-one, #lat-long .inside-msg-one, #one-tap .inside-msg-one, #yer-phone-num .inside-msg-one, #desc-loc .inside-msg-one, #pdf-upload .inside-msg-one, #link-label .inside-msg-one, #role-key .inside-msg-one, #why-join .inside-msg-one, #mb-notes .inside-msg-one {
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0, 0.5);
+}

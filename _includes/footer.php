@@ -137,17 +137,28 @@
   </div>
 </div> 
 
-<?php require '_includes/msg-message-board-join.php' ?>   
+<?php // require '_includes/msg-message-board-join.php'; /* muted bc not using 10.27.25 */ ?>   
 <?php } ?>
 
 
 <?php
-switch ($layout_context) {
+$theme = configure_theme();
+if ($theme == '0') {
+  switch ($layout_context) {
     case 'home-private'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
     case 'home-public'      :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.js?"         . time() . "\"></script>";  break;
     case 'message-board'    :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board.js?"   . time() . "\"></script>";  break;
     case 'post-page'        :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board.js?"   . time() . "\"></script>";  break;
     default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs.js?" . time() . "\"></script>";  break;
+  }
+} else {
+  switch ($layout_context) {
+    case 'home-private'     :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.light.js?"         . time() . "\"></script>";  break;
+    case 'home-public'      :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.min.light.js?"         . time() . "\"></script>";  break;
+    case 'message-board'    :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board-light.js?"   . time() . "\"></script>";  break;
+    case 'post-page'        :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.msg-board-light.js?"   . time() . "\"></script>";  break;
+    default                 :   echo "<script type=\"text/javascript\" src=\"js/jquery.backstretch.landing-pgs-light.js?" . time() . "\"></script>";  break;
+  }  
 }
 ?>
 <script src="js/jquery.timepicker.min.js?<?php echo time(); ?>"></script>

@@ -9,6 +9,8 @@ if (isset($_SESSION['id'])) {
 	$user_role = '0';
 }
 
+
+/* BEGIN: TZ related */
 // processing has to come before if statements so it can catch a submission (duh)
 if (is_post_request() && isset($_POST['set-tz'])) {
 
@@ -54,3 +56,4 @@ if (isset($_SESSION['db-tz']) && $_SESSION['db-tz'] != 'not-set') {
 	$tz = $_SESSION['session-tz'];
 	return;
 }
+/* END: TZ related */

@@ -11,6 +11,17 @@ function set_timezone($timezone, $user_id) {
   return $result; 
 }
 
+function set_theme($theme, $user_id) {
+  global $db;
+
+  $one = "UPDATE users ";
+  $one .= "SET theme='"  . db_escape($db, $theme) . "' ";
+  $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
+
+  $result = mysqli_query($db, $one);
+  return $result; 
+}
+
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 

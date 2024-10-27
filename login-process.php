@@ -8,6 +8,7 @@ $class = '';
 $password_txt = '';
 $msg_txt = '';
 $count = '';
+$theme = '';
 
 // if user clicks on login
 if (is_post_request() && isset($_POST['login'])) {
@@ -76,6 +77,7 @@ if (is_post_request() && isset($_POST['login'])) {
         $_SESSION['mode']     = $user['mode'];
         $_SESSION['email_opt'] = $user['email_opt'];
         $_SESSION['db-tz']      = $user['tz'];
+        $_SESSION['db-theme'] = $user['theme'];
         $_SESSION['token']    = $user['token'];
 
         // you're not verified yet -> go see a msg telling you we're waiting for

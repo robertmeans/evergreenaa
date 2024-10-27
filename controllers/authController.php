@@ -32,6 +32,7 @@ function remember_me()
 			$_SESSION['mode'] = $user['mode'];
 			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
+      $_SESSION['db-theme'] = $user['theme'];
 		}
 	} 
 }
@@ -61,6 +62,7 @@ function verifyUser($token) {
 			$_SESSION['mode'] = $user['mode'];
 			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
+      $_SESSION['db-theme'] = $user['theme'];
 			$_SESSION['message'] = "Your email address was successfully verified! You can now login.";
 			$_SESSION['alert-class'] = "alert-success";
 			header('location:'. WWW_ROOT . '/verified.php?token=' . $token);

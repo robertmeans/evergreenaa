@@ -13,22 +13,24 @@ module.exports = function(grunt) {
 
 		/* Sass */
 		sass: {
-		  dev: {
-		    options: {
-		      style: 'expanded',
-		      sourcemap: 'none'
-		    },
-		    files: {
-		      'style-expanded.css': 'components/sass/style.scss'
-		    }
-		  },
+		  // dev: {
+		  //   options: {
+		  //     style: 'expanded',
+		  //     sourcemap: 'none'
+		  //   },
+		  //   files: {
+		  //     'style-expanded.css': 'components/sass/style.scss'
+		  //   }
+		  // },
 		  dist: {
 		  	options: {
 		  		style: 'compressed',
 		  		sourcemap: 'none'
 		  	},
 		  	files: {
-		  		'style.css': 'components/sass/style.scss'
+		  		'style-dark.css': 'components/sass/style-dark.scss', // default is Darkmode (value: 0)
+          'style-light.css': 'components/sass/style-light.scss' // light (value: 1)
+
 		  	}
 		  }
 		},

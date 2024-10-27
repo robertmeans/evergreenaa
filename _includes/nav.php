@@ -28,8 +28,31 @@ if (!isset($_SESSION['mode'])) {
 
 <div id="side-nav" class="sidenav">
 	<div id="sidenav-wrapper">
-		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a><?php 
+		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a>
 
+    <div class="theme-nav">
+    <?php $theme = configure_theme(); ?>
+    <?php if ($theme == '0') { ?>
+      <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
+
+      <form action="process-theme.php" method="post">
+        <input type="hidden" name="theme" value="1">
+        <input type="hidden" id="themeurl" name="themeurl">
+        <a class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
+      </form>
+    <?php } else {  ?>
+      <form action="process-theme.php" method="post">
+        <input type="hidden" name="theme" value="0">
+        <input type="hidden" id="themeurl" name="themeurl">
+        <a class="dark<?php if ($theme == '0') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-moon"></i></a>
+      </form>
+
+      <a class="light nav-active"><i class="fas far fa-lightbulb"></i></a>
+    <?php } ?>
+
+    </div>
+
+    <?php 
 		// make sure session is cleared if going from login to homepage via nav
 		if ($layout_context == 'login-page' || (isset($_SESSION['admin']) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86))) { ?>
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
