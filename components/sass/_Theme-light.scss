@@ -50,16 +50,26 @@ body {
     color: #313131;
   }
 }
+@media screen and (max-width: 800px) {
+  .daily-glance-wrap {
+    background-color: rgba(79,185,247,0.3);
+  }
+}
 
 .day {
   color: #757575;
   color: #5693be;
+  &:hover {
+    background: #ffffff url(_images/aa-logo-light-bkg-blue.gif) no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 }
 .day-content {
   background-color: rgba(255,255,255,0.7);
 }
 .active {
-  background: #d5d7d9 url(_images/aa-logo_active-light.gif) no-repeat center center fixed;
+  background: #d5d7d9 url(_images/aa-logo_active-light-yellow.gif) no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -82,8 +92,21 @@ form.email-updates input[type="checkbox"]:checked+label {
 #landing>form {
   background-color: rgba(79,185,247,0.3);
 }
+#landing>form>input {
+  background-color: rgba(79,185,247,0.6);
+  color: #313131;
+  &::placeholder {
+    color: rgba(0,0,0,0.2);
+  }
+}
 p.mtg-tz {
   color: #313131;
+}
+.collapse-btn {
+  background-color: rgba(79,185,247,1);
+  &:hover {
+    background-color: rgba(79,185,247,0.4);
+  }
 }
 
 #msg-one, #gottajoin, #lat-long, #one-tap, #yer-phone-num, #desc-loc, #pdf-upload, #link-label, #role-key, #why-join, #mb-notes {
@@ -93,4 +116,15 @@ p.mtg-tz {
 
 #msg-one .inside-msg-one, #gottajoin .inside-msg-one, #lat-long .inside-msg-one, #one-tap .inside-msg-one, #yer-phone-num .inside-msg-one, #desc-loc .inside-msg-one, #pdf-upload .inside-msg-one, #link-label .inside-msg-one, #role-key .inside-msg-one, #why-join .inside-msg-one, #mb-notes .inside-msg-one {
   box-shadow: 0px 0px 15px 5px rgba(0,0,0, 0.5);
+}
+
+footer {
+  background-color: #efefef;
+  color: #757575;
+  #toggle-contact-form {
+    color: #313131;
+    &:hover {
+      background-color: rgba(79,185,247,1);
+    }
+  }
 }

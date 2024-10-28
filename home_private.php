@@ -13,7 +13,11 @@ else { preload_config_light($layout_context); } ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
+<?php if ($theme == '0') { ?>
 <img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php } else { ?>
+<img class="background-image" src="_images/aa-logo-light_mobile.gif" alt="AA Logo">
+<?php } ?>
 <div id="wrap">
 
 <?php if ($user_role != 86 && $user_role != 85) { ?>
