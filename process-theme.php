@@ -34,17 +34,4 @@ if (is_post_request() && isset($_POST['theme'])) {
 }
 
 
-
-/* what the actual ... ?! */ 
-// if (isset($_SESSION['db-theme'])) {
-//   // they're logged in an their tz has already been set
-//   $theme = $_SESSION['db-theme'];
-//   return;
-// } elseif (!empty($_COOKIE['sessionTheme'])) {
-//   $theme = $_COOKIE['sessionTheme'];
-//   return;
-// } else {
-//   $theme = '0';
-//   return;
-// }
-$theme = configure_theme();
+// $theme = configure_theme();

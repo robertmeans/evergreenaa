@@ -145,7 +145,7 @@ if (is_post_request() && isset($_POST['signup'])) {
       if (WWW_ROOT != 'http://localhost/evergreenaa') {
         sendVerificationEmail($username, $email, $token);
       } else {
-        sleep(3600); // for local testing
+        sleep(3); // for local testing
       }
 
       $signal = 'ok';

@@ -7,7 +7,7 @@ $layout_context = "login-page";
 include '_includes/head.php'; ?>
 
 <body>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 
 <div id="landing">
 	<div class="uc-page">

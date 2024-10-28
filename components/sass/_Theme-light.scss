@@ -30,21 +30,26 @@ body {
     border-color: #ccc;
   }
   a:hover {
-    background-color: rgba(79,185,247,0.5);
+    background-color: rgba(79,185,247,0.8);
   }
   a.nav-active {
     background-color: rgba(79,185,247,0.3);
     color: #757575;
   }
+  a.login i {
+    // color: #2b8719;
+    color: #3dbd24;
+  }
   .theme-nav a.light.nav-active {
-    color: #757575;
-    background-color: rgba(79,185,247,0.3);
+    // color: #757575;
+    color: #fff;
+    background-color: rgba(79,185,247,0.8);
   }
 }
 .daily-glance {
   color: #757575;
   &:hover {
-    background-color: rgba(79,185,247,0.3);
+    background-color: rgba(255,255,0,0.5);
   }
   .active {
     color: #313131;
@@ -57,25 +62,75 @@ body {
 }
 
 .day {
-  color: #757575;
+  // color: #757575;
   color: #5693be;
   &:hover {
-    background: #ffffff url(_images/aa-logo-light-bkg-blue.gif) no-repeat center center fixed;
+    color: #365c78;
+    color: #fff;
+    background: #ffffff url(_images/aa-logo-day-hover-light.gif) no-repeat center center fixed;
     background-size: cover;
     background-attachment: fixed;
   }
 }
 .day-content {
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.3);
+  border-color: #73c5ff;
 }
 .active {
-  background: #d5d7d9 url(_images/aa-logo_active-light-yellow.gif) no-repeat center center fixed;
+  background: #d5d7d9 url(_images/aa-logo_day-active.gif) no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
 }
+span[data-ampm='AM'] {
+  color: #83b0d1;
+}
+span[data-ampm='PM'] {
+  color: #757575;
+}
+.email-host {
+  a {
+    background-color: #e59503;
+    &:hover {
+      background-color: #cc8400;
+    }
+    i.fa-exclamation-triangle,
+    i.fa-envelope {
+      color: #fff;
+    }
+  }
+}
+
+
 .weekday-wrap,
 .weekday-edit-wrap {
-  background-color: rgba(79,185,247,0.3);
+  // background-color: rgba(79,185,247,0.3);
+  background-color: rgba(191,255,173,0.5);
+}
+.zoom-id {
+  background-color: #1791e8;
+  color: #fff;
+  border-color: #1791e8;
+  &:hover {
+    background-color: #0f6aab;
+    color: #fff;
+    border-color: #1791e8;
+  }
+}
+a.inline-show-tz {
+  color: #0096ff;
+  &:hover {
+    color: #ffa500;
+  }
+}
+input.day-values {
+  color: #313131;
+}
+.glance-mtg-type i.fa-video, 
+.glance-group-title i.fa-video {
+  color: #5f798d;
+}
+.glance-mtg-type i.fa-map-marker-alt {
+  color: #ea4335;
 }
 
 p.logout,
@@ -108,6 +163,17 @@ p.mtg-tz {
     background-color: rgba(79,185,247,0.4);
   }
 }
+a.map-dir,
+a.zoom {
+  color: #fff;
+  background-color: #25d422;
+  &:hover {
+    background-color: #1da61b;
+  }
+}
+a.zoom {
+  border-color: transparent;
+}
 
 #msg-one, #gottajoin, #lat-long, #one-tap, #yer-phone-num, #desc-loc, #pdf-upload, #link-label, #role-key, #why-join, #mb-notes {
   background-color: rgba(255,255,255,0.8);
@@ -116,6 +182,28 @@ p.mtg-tz {
 
 #msg-one .inside-msg-one, #gottajoin .inside-msg-one, #lat-long .inside-msg-one, #one-tap .inside-msg-one, #yer-phone-num .inside-msg-one, #desc-loc .inside-msg-one, #pdf-upload .inside-msg-one, #link-label .inside-msg-one, #role-key .inside-msg-one, #why-join .inside-msg-one, #mb-notes .inside-msg-one {
   box-shadow: 0px 0px 15px 5px rgba(0,0,0, 0.5);
+}
+#theModal {
+  background-color: rgba(255,255,255,0.8);
+}
+
+.set-tz {
+  background-color: rgba(255,255,255,0.8);
+  .tz-box {
+    h3 {
+      background-color: #5693be;
+      color: #fff;
+    }
+    .tz-content {
+      background-color: #8abee4;
+      color: #313131;
+      form select.pick-tz,
+      form select.pick-tz option {
+        color: #757575;
+        background-color: #fff;
+      }
+    }
+  }
 }
 
 footer {

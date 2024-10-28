@@ -273,8 +273,24 @@
           background-color: rgba(255,255,255,0.2);
         }
       }
-      &.light {
-        // margin-left: 1.5em;
+      // &.light.nav-active {
+      //   color: #ffff00;
+      // }
+    }
+    .current-theme {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: default;
+      margin-left: 0.5em;
+      // font-size: 0.7em;
+      h4 {
+        font-size: 0.7em;
+        
+      }
+      p {
+        font-size: 0.6em;
+        margin-bottom: 3px;
       }
     }
   }

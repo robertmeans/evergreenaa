@@ -5,12 +5,10 @@ require_once 'config/initialize.php';
 require '_includes/head.php'; ?>
 
 <body>
-<?php $theme = configure_theme();
-if ($theme == '0') { preload_config_default($layout_context); }
-else { preload_config_light($layout_context); } ?>   
+<?php preload_config($layout_context); ?>  
 <?php require '_includes/nav.php'; ?> 
 <?php require '_includes/msg-why-join.php'; ?> 
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="landing">
 	<form id="forgotpass-form">
     <h1 class="text-center">Reset your password</h1>

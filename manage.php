@@ -28,14 +28,12 @@ $email_opt = $_SESSION['email_opt'];
 require '_includes/head.php'; ?>
 
 <body>
-<?php $theme = configure_theme();
-if ($theme == '0') { preload_config_default($layout_context); }
-else { preload_config_light($layout_context); } ?>	
+<?php preload_config($layout_context); ?>	
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	
 	<div class="manage-simple intro">

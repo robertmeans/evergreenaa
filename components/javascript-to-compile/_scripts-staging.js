@@ -51,6 +51,19 @@ function close_navigation_first() {
 }
 
 $(document).ready(function(){
+
+  $("#light-opt").hover(function(){
+    $("#ct-dark").html("<p>Change to:</p><h4>Light Theme</h4>");
+    }, function(){
+    $("#ct-dark").html("<p>Current:</p><h4>Dark Theme</h4>");
+  });
+
+  $("#dark-opt").hover(function(){
+    $("#ct-light").html("<p>Change to:</p><h4>Dark Theme</h4>");
+    }, function(){
+    $("#ct-light").html("<p>Current:</p><h4>Light Theme</h4>");
+  });
+
   $("#toggle-msg-one").click(function(e) {
       e.preventDefault();
       e.stopPropagation();

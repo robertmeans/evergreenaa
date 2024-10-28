@@ -48,7 +48,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 
 <div class="manage-simple-admin">	
@@ -93,7 +93,7 @@ $emaileveryonemsg = $_POST['emaileveryonemsg'] ?? '';
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 
 <div class="manage-simple-admin">	
