@@ -8,7 +8,7 @@ body {
 .preload {
   background-color: #f5f7fb;
   p {
-    color: #628dcf;
+    // color: #628dcf;
     color: #21b3a1;
   }
 }
@@ -210,7 +210,8 @@ form#manage-mtg label {
 .weekday-wrap .meeting-details #add-note {
   background-color: #fff;
 }
-.weekday-wrap .meeting-details #upload-links a.mtg-links {
+.weekday-wrap .meeting-details #upload-links a.mtg-links,
+.weekday-edit-wrap .meeting-details #upload-links a.mtg-links {
   background-color: #25d422;
   &:hover {
     background-color: #1da61b;
@@ -226,7 +227,22 @@ form#manage-mtg label {
 .weekday-wrap .meeting-details .details-left {
   border-color: rgba(0,0,0,0.3);
 }
-
+.manage-glance-review.draft {
+  color: #313131;
+}
+.manage-glance-wrap-review a.manage-edit,
+.manage-glance-wrap-review a.manage-delete {
+  color: #266b85;
+}
+.manage-glance-wrap-review a.manage-delete:hover {
+  color: red;
+}
+.manage-simple.review a.done {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
+  }  
+}
 
 .zoom-id {
   background-color: #1791e8;
@@ -296,10 +312,23 @@ a.zoom {
 a.zoom {
   border-color: transparent;
 }
+h2.change-role {
+  color: #fff;
+}
+#transfer-host #sus-msg .sending-msg {
+  color: #fff;
+  background-color: #2295bf;
+}
+#transfer-host form#suspend-form #sus-reason textarea {
+  background-color: #313131;
+}
 
 #msg-one, #gottajoin, #lat-long, #one-tap, #yer-phone-num, #desc-loc, #pdf-upload, #link-label, #role-key, #why-join, #mb-notes {
   background-color: rgba(255,255,255,0.8);
   color: #fff;
+}
+#msg .email-me {
+  background-color: #000;
 }
 
 #msg-one .inside-msg-one, #gottajoin .inside-msg-one, #lat-long .inside-msg-one, #one-tap .inside-msg-one, #yer-phone-num .inside-msg-one, #desc-loc .inside-msg-one, #pdf-upload .inside-msg-one, #link-label .inside-msg-one, #role-key .inside-msg-one, #why-join .inside-msg-one, #mb-notes .inside-msg-one {
@@ -561,9 +590,14 @@ ul.tab-links li.focus a:hover {
     }
   }
 
-  form.admin-email-form .bccem a {
+form.admin-email-form .bccem a {
   background-color: #25d422;
   &:hover {
   background-color: #1da61b;
   }   
-  }
+}
+
+footer #footer-contact-form span {
+  background-color: #4ac52d;
+  color: #fff;
+}
