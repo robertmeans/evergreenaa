@@ -1045,6 +1045,9 @@ form#manage-mtg {
 	label.pdf-label {
 		color: #fff;
 	}
+  label[for="add_note"] {
+    cursor: default;
+  }
 }
 
 
@@ -1216,7 +1219,7 @@ form#manage-mtg {
     border: 1px dashed rgba(255,255,255,0.3);
     padding: 1em;
     & > h1 {
-    	width: 100;
+    	width: 100%;
     	text-align: center;
     	font-size: 1.6em;
     	font-weight: bold;

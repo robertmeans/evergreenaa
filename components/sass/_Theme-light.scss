@@ -6,7 +6,8 @@ body {
 .preload-dev {
   background-color: #f5f7fb;
   p {
-    color: #757575;
+    color: #628dcf;
+    color: #21b3a1;
   }
 }
 #navigation .top-nav {
@@ -14,11 +15,14 @@ body {
   color: #313131;
   border-color: #757575;
   &:hover {
-    background-color: #e6e6e6;
+    background-color: #fff;
     color: #313131;
   }
-  &.admin-logged:hover {
-    background-color: gold;
+  &.admin-logged {
+    border-color: #d5b400;
+    &:hover {
+      background-color: #ffd700;
+    }
   }
 }
 .top-nav .bars,
@@ -29,6 +33,7 @@ body {
 .sidenav {
   background-color: #fff;
   color: #757575;
+  border-left: 1px solid #dfdfdf;
   a.cc-x {
     border-color: #ccc;
   }
@@ -58,6 +63,9 @@ body {
     background-color: rgba(147,125,6,1);
   }
 }
+.sidenav a.closebtn {
+  color: #44a5cd;
+}
 .sidenav a.closebtn:hover .ctxt {
   color: #fff;
 }
@@ -74,6 +82,10 @@ body {
   .daily-glance-wrap {
     background-color: rgba(79,185,247,0.3);
   }
+}
+.sidenav .visitor-role, .sidenav .member-role {
+  background-color: #274f8d;
+  color: rgba(255,255,255,0.6);
 }
 #login-form #login-btn .login-txt,
 #signup-form #signup-btn .login-txt,
@@ -163,7 +175,28 @@ span[data-ampm='PM'] {
 .weekday-wrap,
 .weekday-edit-wrap {
   // background-color: rgba(79,185,247,0.3);
-  background-color: rgba(191,255,173,0.5);
+  // background-color: rgba(191,255,173,0.5);
+  background-color: rgba(116,180,225,0.22);
+}
+.weekday-edit-wrap .meeting-details .details-right p.add-info,
+form#manage-mtg p.days-held, 
+form#manage-mtg p.time-held {
+  border-color: #757575;
+}
+form#manage-mtg input.mtg-update.group-name.fixerror::placeholder {
+  color: rgba(0,0,0,0.2);
+}
+form#manage-mtg label {
+  color: #757575;
+}
+.btm-notes .file-uploads {
+  border-color: rgba(0,0,0,0.6);
+}
+.btm-notes .file-uploads .pdf-wrap {
+  border-color: rgba(0,0,0,0.3);
+}
+.btm-notes .file-uploads .pdf-remove a:hover {
+  background-color: #c5373d;
 }
 .weekday-wrap .meeting-details #add-note {
   background-color: #fff;
@@ -174,6 +207,17 @@ span[data-ampm='PM'] {
     background-color: #1da61b;
   }
 }
+.btm-notes a.cancel:hover {
+  background-color: #757575;
+}
+.visible h1 {
+  color: #eb800d;
+}
+
+.weekday-wrap .meeting-details .details-left {
+  border-color: rgba(0,0,0,0.3);
+}
+
 
 .zoom-id {
   background-color: #1791e8;
@@ -312,14 +356,60 @@ form#manage-mtg .mtg-time-tz select.pick-tz option {
     } 
 }
 
+.manage-glance.draft {
+  background-color: rgba(255, 255, 0, 0.5);
+  &:hover {
+    background-color: rgba(255,255,0,0.8);
+  }
+}
+.manage-glance-wrap.active .manage-glance.draft {
+  color: #757575;
+}
 
-
-
+form#manage-mtg label span:hover {
+  color: #3f923a;
+}
+form#manage-mtg input:checked+span {
+  color: #000;
+}
+a#toggle-lat-long-msg:hover, a#toggle-one-tap-msg:hover, a#toggle-yer-phone-num:hover, a#toggle-descriptive-location:hover, a#toggle-pdf-info:hover, a#toggle-link-label:hover, a#gottajoin:hover {
+  color: #1ca31c;
+}
+.btm-notes .file-uploads p,
+form#manage-mtg label.pdf-label {
+  color: #757575;
+}
+.btm-notes .file-uploads a#file-upload {
+  color: #48ad48;
+  &:hover {
+    color: #1c6c1c;
+  }
+}
+form#manage-mtg label[for="add_note"] {
+  cursor: default;
+}
+.radio, .radioz {
+  border-color: rgba(81,159,59,0.8);
+}
+.radio:hover, .radioz:hover {
+  color: #fff;
+  background-color: #5191ff;
+}
+.radio.selected, .radioz.selected {
+  color: #fff;
+  border-color: #205da8;
+}
+.btm-notes input[name="update-mtg"] {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
+  }  
+}
 
 
 a.manage-edit,
 a.manage-delete {
-  color: #757575;
+  color: #5fbadd;
 }
 a.manage-edit:hover {
   color: #1da61b;
@@ -328,13 +418,143 @@ a.manage-edit.my-stuff {
   color: #aaa;
 }
 
+
+
 footer {
   background-color: #efefef;
   color: #757575;
   #toggle-contact-form {
     color: #313131;
     &:hover {
-      background-color: rgba(79,185,247,1);
+      background-color: transparent;
+      color: green;
+      border: 1px dotted #808080;
     }
   }
 }
+a.ytv {
+  color: #1da61b;
+  &:hover {
+  color: #1da61b;
+  } 
+}
+footer #footer-contact-form input#name, footer #footer-contact-form input#email, footer #footer-contact-form textarea#comments {
+  font-size: 1.1em;
+  color: #757575;
+  background-color: #fff;
+  &:hover {
+    background-color: #fff;
+  }
+  &:focus {
+    background-color: #fff;
+  }
+}
+footer #footer-contact-form input#emailBob {
+  background-color: #25d422;
+  border: none;
+  &:hover {
+  background-color: #1da61b;
+  border: none;
+  }  
+}
+
+h2.trans-h2 {
+  background-color: #5693be;
+  color: #fff;  
+}
+#transfer-host {
+  background-color: rgba(138,190,228,0.5);
+  color: #757575;  
+}
+.tabs .tab-content {
+  background-color: #549ebe;
+  color: #fff;
+}
+
+
+ul.tab-links a {
+  background-color: #226897;
+  &:hover {
+    background-color: #549ebe;
+  }
+}
+ul.tab-links li.focus a, 
+ul.tab-links li.focus a:hover {
+  background-color: #549ebe;
+}
+#transfer-host form input::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+
+#transfer-form-top #usr-role-go, #transfer-form-top #usr-role-goz, #transfer-form-top #usr-role-gozz, #transfer-form-top #transfer-this-top, #transfer-form-top #transfer-this-topz, #transfer-form-topz #usr-role-go, #transfer-form-topz #usr-role-goz, #transfer-form-topz #usr-role-gozz, #transfer-form-topz #transfer-this-top, #transfer-form-topz #transfer-this-topz, #user-list #usr-role-go, #user-list #usr-role-goz, #user-list #usr-role-gozz, #user-list #transfer-this-top, #user-list #transfer-this-topz, #user-listz #usr-role-go, #user-listz #usr-role-goz, #user-listz #usr-role-gozz, #user-listz #transfer-this-top, #user-listz #transfer-this-topz, #user-listzz #usr-role-go, #user-listzz #usr-role-goz, #user-listzz #usr-role-gozz, #user-listzz #transfer-this-top, #user-listzz #transfer-this-topz, #weekdays #usr-role-go, #weekdays #usr-role-goz, #weekdays #usr-role-gozz, #weekdays #transfer-this-top, #weekdays #transfer-this-topz {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
+  }  
+}
+
+#transfer-host a#transfer-this, #transfer-host a#select-role-first, #transfer-host a#suspend-user, #transfer-host a#not-yourself, #transfer-host a#change-user-role {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
+  } 
+}
+
+#transfer-form-top .mng-usr, #transfer-form-top .transfer-usr, #transfer-form-topz .mng-usr, #transfer-form-topz .transfer-usr, #user-list .mng-usr, #user-list .transfer-usr, #user-listz .mng-usr, #user-listz .transfer-usr, #user-listzz .mng-usr, #user-listzz .transfer-usr, #weekdays .mng-usr, #weekdays .transfer-usr {
+  background-color: #fff;
+  color: #757575;
+  option {
+    background-color: #fff;
+    color: #757575;
+  }
+}
+#transfer-host form input {
+  background-color: rgba(255,255,255,0.8);
+  color: #757575;
+  font-size: 1.1em;
+}
+.manage-simple.s-a {
+  color: #fff;
+  background-color: rgba(227,47,47,0.75);
+}
+.manage-simple.c-a {
+  color: #fff;
+  background-color: rgba(64,178,8,0.75);
+}
+
+.manage-glance-user:hover {
+  background-color: rgba(255,189,76,0.25);
+}
+.manage-glance-wrap.active {
+  .manage-glance-user {
+    color: #313131;
+  }
+}
+.notes-glance p.reason-note {
+  color: #fff;
+}
+.sus-notes, .note-reason, #sus-note {
+  color: #313131;
+}
+#sus-note {
+  color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+    .daily-glance-wrap, .manage-glance-wrap {
+        background-color: rgba(255,189,76,0.25);
+    }
+    .manage-glance-user {
+      border-bottom-color: rgba(0,0,0,0.2);
+    }
+    .weekday-wrap.user-mng.user-empty {
+      padding: 5px;
+    }
+  }
+
+  form.admin-email-form .bccem a {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
+  }   
+  }
