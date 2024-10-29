@@ -38,7 +38,7 @@ if (!isset($_SESSION['mode'])) {
       <form action="process-theme.php" method="post">
         <input type="hidden" name="theme" value="1">
         <input type="hidden" id="themeurl" name="themeurl">
-        <a id="light-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
+        <a id="bright-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
       </form>
 
       <div id="ct-dark" class="current-theme"><p>Current:</p><h4>Dark Theme</h4></div>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['mode'])) {
 
       <a class="light nav-active"><i class="fas far fa-lightbulb"></i></a>
 
-      <div id="ct-light" class="current-theme"><p>Current:</p><h4>Light Theme</h4></div>
+      <div id="ct-bright" class="current-theme"><p>Current:</p><h4>Bright Theme</h4></div>
 
     <?php } ?>
 

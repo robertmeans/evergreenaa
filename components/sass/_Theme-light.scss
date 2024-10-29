@@ -17,6 +17,9 @@ body {
     background-color: #e6e6e6;
     color: #313131;
   }
+  &.admin-logged:hover {
+    background-color: gold;
+  }
 }
 .top-nav .bars,
 .top-nav .bars:before,
@@ -45,6 +48,18 @@ body {
     color: #fff;
     background-color: rgba(79,185,247,0.8);
   }
+  a.admin-login {
+    color: rgba(147,125,6,1);
+    &:hover {
+      color: #ffff00;
+    }
+  }
+  .admin-role {
+    background-color: rgba(147,125,6,1);
+  }
+}
+.sidenav a.closebtn:hover .ctxt {
+  color: #fff;
 }
 .daily-glance {
   color: #757575;
@@ -59,6 +74,50 @@ body {
   .daily-glance-wrap {
     background-color: rgba(79,185,247,0.3);
   }
+}
+#login-form #login-btn .login-txt,
+#signup-form #signup-btn .login-txt,
+#forgotpass-form #forgotpass-btn .login-txt {
+  background-color: #25d422;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: #1da61b;
+  }
+}
+#landing>form .showpassword-wrap #showLoginPass, #landing>form .showpassword-wrap #showSignupPass {
+  color: #3e6a8a;
+}
+#landing>form .showpassword-wrap #showLoginPass.showPassOn, #landing>form .showpassword-wrap #showSignupPass.showPassOn {
+  color: #f5585b;
+}
+
+#landing .fpwd a,
+a.log {
+  color: #3e6a8a;
+}
+.aa-rm-in {
+  border-bottom: 17.32px solid #000;
+  &.checkit {
+    border-bottom: 17.32px solid #2cba00;
+  }
+  &.checkaroo {
+    border-bottom: 17.32px solid #2cba00;
+  }
+  &.checkaroo.checkit {
+    border-bottom: 17.32px solid #2cba00;
+  }
+}
+.aa-rm-out {
+  border: 2px solid #0066ff; 
+}
+.rm-rm {
+  color: #313131;
+  &.hot {
+    color: #2cba00;
+  }
+}
+.rm-rm:hover {
+  color: #2cba00;
 }
 
 .day {
@@ -106,6 +165,16 @@ span[data-ampm='PM'] {
   // background-color: rgba(79,185,247,0.3);
   background-color: rgba(191,255,173,0.5);
 }
+.weekday-wrap .meeting-details #add-note {
+  background-color: #fff;
+}
+.weekday-wrap .meeting-details #upload-links a.mtg-links {
+  background-color: #25d422;
+  &:hover {
+    background-color: #1da61b;
+  }
+}
+
 .zoom-id {
   background-color: #1791e8;
   color: #fff;
@@ -148,10 +217,10 @@ form.email-updates input[type="checkbox"]:checked+label {
   background-color: rgba(79,185,247,0.3);
 }
 #landing>form>input {
-  background-color: rgba(79,185,247,0.6);
+  background-color: rgba(79,185,247,0.2);
   color: #313131;
   &::placeholder {
-    color: rgba(0,0,0,0.2);
+    color: rgba(0,0,0,0.3);
   }
 }
 p.mtg-tz {
@@ -185,6 +254,25 @@ a.zoom {
 }
 #theModal {
   background-color: rgba(255,255,255,0.8);
+  .modal-header,
+  .modal-footer {
+    background-color: #5693be;
+  }
+  .modal-body {
+    background-color: #8abee4;
+    color: #313131;
+    form.emh-form input.edit-input, 
+    form.emh-form textarea.edit-input {
+      color: #313131;
+    }  
+    form.emh-form .submit-links input.send {
+      background-color: #25d422;
+      &:hover {
+        background-color: #1da61b;
+      }
+    }
+
+  }
 }
 
 .set-tz {
@@ -204,6 +292,40 @@ a.zoom {
       }
     }
   }
+}
+
+a.new-mtg-btn {
+  background-color: #25d422;
+  &:hover {
+    background-color: #1da61b;
+  }
+}
+
+
+
+form#manage-mtg .mtg-time-tz select.pick-tz,
+form#manage-mtg .mtg-time-tz select.pick-tz option {
+    color: #757575;
+    background-color: #fff; 
+    &.tzerr {
+      background-color: #ffbdc0;
+    } 
+}
+
+
+
+
+
+
+a.manage-edit,
+a.manage-delete {
+  color: #757575;
+}
+a.manage-edit:hover {
+  color: #1da61b;
+}
+a.manage-edit.my-stuff {
+  color: #aaa;
 }
 
 footer {

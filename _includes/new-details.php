@@ -47,7 +47,8 @@
 
 <div class="mtg-time-tz">  
   <p class="time-held">Timezone</p>
-  <select class="pick-tz" name="mtg-tz"><option value="empty"><?php echo timezone_select_options($tz); ?></option></select>
+  <?php if (isset($row['mtg_tz'])) { $mtgtz = $row['mtg_tz']; } else { $mtgtz = $tz; } ?>
+  <select class="pick-tz<?php if (isset($errors['mtg_tz'])) { echo ' tzerr'; } ?>" name="mtg-tz"><option class="<?php if (isset($errors['mtg_tz'])) { echo 'tzerr'; } ?>" value="empty"><?php echo timezone_select_options($mtgtz); ?></option></select>
 </div>
 
 </div><!-- .top-info -->
