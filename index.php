@@ -34,14 +34,11 @@ include '_includes/head.php'; ?>
 <?php /* special preload just for index in order to preload the preload image */
       /* this image will be used everywhere other than the index              */
 if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-	<div class="preload">
-    <p>One day at a time.</p>
-    <img class="plbkg" src="_images/preload.gif">
-  </div>
+<?php $theme = preload_config($layout_context); ?>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
-<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">
+<?php mobile_bkg_config($theme); ?>
 <div id="landing">
 	<div id="landing-content">
 
@@ -57,6 +54,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 		<?php } ?>
 
     <?php 
+      if (!isset($check_for)) { $check_for = ''; }
       $not_found = 'User not found.';
       if (isset($_SESSION['username']) && strpos($check_for, $not_found) === false) { 
         // if 'User not found' is NOT the session message then greet with their username

@@ -2,12 +2,21 @@ body {
   background-color: #f5f7fb;
   color: #757575;
 }
-.preload-anni,
-.preload-dev {
+.preload-dev,
+.preload-dev.anni,
+.preload.anni,
+.preload {
   background-color: #f5f7fb;
   p {
     color: #628dcf;
     color: #21b3a1;
+  }
+}
+button.verified,
+a.verified {
+  background-color: #25d422;
+  &:hover {
+  background-color: #1da61b;
   }
 }
 #navigation .top-nav {
@@ -542,7 +551,7 @@ ul.tab-links li.focus a:hover {
 
 @media screen and (max-width: 800px) {
     .daily-glance-wrap, .manage-glance-wrap {
-        background-color: rgba(255,189,76,0.25);
+        background-color: rgba(247,255,0,0.25);
     }
     .manage-glance-user {
       border-bottom-color: rgba(0,0,0,0.2);
