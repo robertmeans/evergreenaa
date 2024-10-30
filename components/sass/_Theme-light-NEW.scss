@@ -90,12 +90,6 @@ a.verified {
     color: #313131;
   }
 }
-.daily-glance-wrap.active,
-.manage-glance-wrap.active {
-  background: #ffffff url(_images/aa-logo_day-active.gif) no-repeat center center fixed; // yellow
-  background-size: cover;
-  background-attachment: fixed;  
-}
 @media screen and (max-width: 800px) {
   .daily-glance-wrap {
     background-color: rgba(79,185,247,0.3);
@@ -107,8 +101,7 @@ a.verified {
 }
 #login-form #login-btn .login-txt,
 #signup-form #signup-btn .login-txt,
-#forgotpass-form #forgotpass-btn .login-txt,
-#resetpass-form #resetpass-btn .login-txt {
+#forgotpass-form #forgotpass-btn .login-txt {
   background-color: #25d422;
   transition: all 0.2s ease;
   &:hover {
@@ -150,24 +143,15 @@ a.log {
 .rm-rm:hover {
   color: #2cba00;
 }
-#forgotpass-form .verifying-msg {
-  color: #fff;
-}
-
 
 .day {
   // color: #757575;
   color: #5693be;
   &:hover {
-    // color: #5693be; // original blue
-    // color: #365c78; // dark blue
+    color: #365c78;
     color: #fff;
-    text-shadow: -1px -1px 0 #5d9fcf, 1px -1px 0 #5d9fcf, -1px 1px 0 #5d9fcf, 1px 1px 0 #5d9fcf;
-    // color: #5d9fcf; // light blue
-    // color: #4fb766; // green
     // background: #ffffff url(_images/aa-logo-day-hover-light.gif) no-repeat center center fixed; // blue
-    // background: #ffffff url(_images/aa-logo_day-active-yellow.gif) no-repeat center center fixed; // yellow
-    background: #ffffff url(_images/aa-logo_day-active.webp) no-repeat center center fixed; // tie dye
+    background: #ffffff url(_images/aa-logo_day-active-yellow.gif) no-repeat center center fixed; // yellow
     background-size: cover;
     background-attachment: fixed;
   }
@@ -208,7 +192,6 @@ a.log {
       background-color: transparent;
       // background-color: rgba(255,255,0,0.5);
       color: #5693be;
-      text-shadow: none;
     }
   }
 }

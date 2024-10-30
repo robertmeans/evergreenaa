@@ -24,7 +24,8 @@ include '_includes/head.php'; ?>
     $reset_txt = 'Your password has been updated.';
     $new_mem = 'Your email address was successfully verified! You can now login.';
 
-    if (strpos($reset_pswd, $reset_txt) !== false || strpos($reset_pswd, $new_mem) !== false) {
+    // if (strpos($reset_pswd, $reset_txt) !== false || strpos($reset_pswd, $new_mem) !== false) {
+    if (str_contains($reset_pswd, $reset_txt) !== false || str_contains($reset_pswd, $new_mem) !== false) {
     // strpos() instead of str_contins() bc we're on PHP 7.4 
       echo ' left'; 
     } 
