@@ -25,8 +25,8 @@ include '_includes/head.php'; ?>
     $new_mem = 'Your email address was successfully verified! You can now login.';
 
     // if (strpos($reset_pswd, $reset_txt) !== false || strpos($reset_pswd, $new_mem) !== false) {
+    // ^ previously strpos() instead of str_contins() bc we were on PHP 7.4 
     if (str_contains($reset_pswd, $reset_txt) !== false || str_contains($reset_pswd, $new_mem) !== false) {
-    // strpos() instead of str_contins() bc we're on PHP 7.4 
       echo ' left'; 
     } 
     ?>">
@@ -58,7 +58,7 @@ include '_includes/head.php'; ?>
         <div class="aa-rm-out">
             <div class="aa-rm-in"></div>
         </div>
-        <span class="rm-rm">Remember me</span>
+        <span class="rm-rm">Remember me<span id="rm-rm"></span></span>
     </div>
   </label>
   

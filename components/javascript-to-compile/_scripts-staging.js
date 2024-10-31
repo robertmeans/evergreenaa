@@ -395,9 +395,11 @@ $('input[name="remember_me"]').change(function(){
     if($(this).is(":checked")) {
         $('.aa-rm-in').addClass("checkaroo");
         $('.rm-rm').addClass("hot");
+        $('#rm-rm').html('[on]');
     } else {
         $('.aa-rm-in').removeClass("checkaroo");
         $('.rm-rm').removeClass("hot");
+        $('#rm-rm').html('[off]');
     }
 });
 
