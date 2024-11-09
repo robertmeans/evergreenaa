@@ -103,34 +103,6 @@ $row = [];
 $row['visible'] 		= $_POST['visible'] 									?? '';
 $row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
 
-// $time = [];
-// $time['tz'] = $tz;
-// $time['ut'] = $_POST['meet_time'] ?? '';
-
-// $time['sun'] = $_POST['sun'] ?? '';
-// $time['mon'] = $_POST['mon'] ?? '';
-// $time['tue'] = $_POST['tue'] ?? '';
-// $time['wed'] = $_POST['wed'] ?? '';
-// $time['thu'] = $_POST['thu'] ?? '';
-// $time['fri'] = $_POST['fri'] ?? '';
-// $time['sat'] = $_POST['sat'] ?? '';
-
-// list($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat) = figger_it_out($time);
-
-// // use this for db insert, converted to UTC ->
-// $row['db_time'] = $ct->format('Hi');
-// $row['db_sun'] = $sun;
-// $row['db_mon'] = $mon;
-// $row['db_tue'] = $tue;
-// $row['db_wed'] = $wed;
-// $row['db_thu'] = $thu;
-// $row['db_fri'] = $fri;
-// $row['db_sat'] = $sat;
-
-
-// $meettime = $_POST['meet_time'] ?? '';
-// $fmt = new DateTime($meettime);
-// $row['db_time'] = $fmt->format('Hi');
 
 if (strtotime($_POST['meet_time'])) {
   $meettime = $_POST['meet_time'];
@@ -148,7 +120,6 @@ $row['db_wed'] = $_POST['wed'] ?? '';
 $row['db_thu'] = $_POST['thu'] ?? '';
 $row['db_fri'] = $_POST['fri'] ?? '';
 $row['db_sat'] = $_POST['sat'] ?? '';
-
 
 
 // use this to populate field if there are errors on pg ->

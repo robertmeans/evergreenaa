@@ -31,7 +31,65 @@ if (!isset($_SESSION['mode'])) {
 		<a class="closebtn" onclick="closeNav();"><i class="fas far fa-caret-square-down"></i> <div class="ctxt ctd">Close</div></a>
 
     <div class="theme-nav">
-    <?php $theme = configure_theme(); ?>
+    <?php 
+      $theme = configure_theme(); 
+      $ctpg = basename($_SERVER['PHP_SELF']); 
+
+      if ($ctpg === 'manage_new.php' || $ctpg === 'manage_edit.php') {
+
+      ?>
+      <script> 
+        function doThis() { 
+          var field = document.getElementById("ctpg-hf");
+          field.value = "subfrctnav";
+          document.getElementById("manage-mtg").submit(); 
+        } 
+      </script>
+
+    <?php if ($theme == '0') { ?>
+      <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
+
+      <form action="process-theme.php" method="post">
+        <input type="hidden" name="theme" value="1">
+        <input type="hidden" id="themeurl" name="themeurl">
+        <a id="bright-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="doThis(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
+      </form>
+
+      <div id="ct-dark" class="current-theme"><p>Current:</p><h4>Dark Theme</h4></div>
+
+    <?php } else {  ?>
+      <form action="process-theme.php" method="post">
+        <input type="hidden" name="theme" value="0">
+        <input type="hidden" id="themeurl" name="themeurl">
+        <a id="dark-opt" class="dark<?php if ($theme == '0') { echo ' nav-active'; } ?>"  onclick="doThis(); closeNav();"><i class="fas far fa-moon"></i></a>
+      </form>
+
+      <a class="light nav-active"><i class="fas far fa-lightbulb"></i></a>
+
+      <div id="ct-bright" class="current-theme"><p>Current:</p><h4>Bright Theme</h4></div>
+
+    <?php } ?>
+
+
+      <?php
+
+
+      } else {
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <?php if ($theme == '0') { ?>
       <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
 
@@ -55,6 +113,26 @@ if (!isset($_SESSION['mode'])) {
       <div id="ct-bright" class="current-theme"><p>Current:</p><h4>Bright Theme</h4></div>
 
     <?php } ?>
+
+
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
     <?php 
