@@ -243,6 +243,8 @@
 
 		</div><!-- .visible -->
 
+    <input type="hidden" id="ctpg-hf" name="ctpg-hf" value="notset">
+    <input type="hidden" id="themeurl" name="themeurl">
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="update-mtg" name="update-mtg" class="submit" value="UPDATE">
 		</div><!-- .update-rt -->

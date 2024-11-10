@@ -24,6 +24,8 @@ if (is_post_request()) {
 
 $rando_num = rand(100,999);
 $row = [];
+$url = $_POST['themeurl'];
+$themeChange = $_POST['ctpg-hf'];
 
  	// if everything's good: file selected + label present
 	if (!empty($_FILES['file1']['name'])) {
@@ -198,18 +200,45 @@ if (isset($_POST['link4'])) {
 
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
-	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
-	if ($result === true) {
-		$issue_removed = remove_issue($id); // delete any instances from issues table
-		if ($result === true) {
-	  	header('location: manage_edit_review.php?id=' . $id);
-		  } else {
-			$errors = $result;
-		}
-	} else {
-		$errors = $result;
-	}
+
+
+  if ($themeChange === 'notset') {
+
+  	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+
+  	if ($result === true) {
+  		$issue_removed = remove_issue($id); // delete any instances from issues table
+  		if ($result === true) {
+  	  	header('location: manage_edit_review.php?id=' . $id);
+  		  } else {
+  			$errors = $result;
+  		}
+  	} else {
+  		$errors = $result;
+  	}
+
+  } else {
+
+    $errors = theme_switch_on_form_page($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+    $result = set_theme($themeChange, $user_id);
+
+    if ($result === true) {
+      $_SESSION['db-theme'] = $themeChange;
+      
+    } else {
+      $errors = $result;
+    }
+
+
+
+
+
+  }
+
+
+
+
 }
 
 $row = edit_meeting($id);
@@ -268,7 +297,7 @@ require '_includes/head.php'; ?>
 <div class="manage-simple empty">
 	<?php if (!empty(display_errors($errors))) { ?>
 		<h1 class="edit-h1">Update this Meeting</h1>
-		<?php echo display_errors($errors); ?>
+		<?php if ($themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
 	<?php } else { ?>
 		<h1 class="edit-h1">Edit this meeting</h1>
 	<?php } ?>

@@ -301,6 +301,13 @@ function create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4
   }
 }
 
+function theme_switch_on_form_page($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
+  $errors = validate_theme_mtg($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+  if (!empty($errors)) {
+    return $errors;
+  }  
+}
+
 function update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
   global $db;
 
@@ -855,6 +862,94 @@ function find_meetings_by_id_today($id, $today) {
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);  
   return $result; // returns an assoc. array  
+}
+
+function validate_theme_mtg($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {
+  $errors = [];
+
+  // begin file errors for update/edit pages
+  // BEGIN POSITION 1 - Notes for all positions' validation explanations contained within position 1
+  // ...it's good & complicated so there are a lot of notes.
+  // 1st - check for stand-along issue (this is the only error on page). Each 1 of the 4 potential errors for files can either exist by itself or in conjunction with other errors on the page. If any other error on the page exists then you need to check for it here. 
+
+  // because file selections do not persist across a page refresh it needs to catch when you haven't made an error in the file area but an error exists somewhere else on the page. the whole point here is to keep error messages in order.
+  if ((isset($fn1) && ($fn1 != '')) && is_blank($row['link1'])) {
+    $errors['name_link1'] = "You did not name your link in position 1. Please restore file selection.";
+  }
+  if ((isset($fn1) && $fn1 != '') && $nf1 == '') {
+    $errors['name_link1'] = "File upload in Position 1 needs attention. Please restore file selection.";
+  }
+  /* difference between new and update right here... this one's for 'new' -> if new file is not set but there's a name/label present, let them know. In the update version they are allowed to change the name because it sees that a hidden field with the file name is present. */
+  if (((!isset($fn1) || $fn1 == '') && (trim($row['link1']) != '')) && $row['hid_f1'] == '') {
+    $errors['name_link1'] = "There's a name but no file to upload in position 1. Please restore file selection.";
+  }  
+  /* this one's for 'update' -> this allows you to rename a label. it says, even though you are not uploading a file, I see that you already have one here so go ahead and rename it. (If they hit "Remove" it deletes the hidden value (via .js) from the DB + if they delete the label, it deletes the hidden value (on submit - see #3 if condition after (is_post_request()) in manage_edit.php) from the DB. I kind of covered the bases on this one.) */
+  if ((!isset($fn1) || ($fn1 == '') && $row['hid_f1'] == '') && (trim($row['link1']) != '')) {
+    $errors['name_link1'] = "You set a name but no file in position 1. Please restore file selection.";
+  }
+  /* finally, to catch the possibility that there were no errors with the file/label area but there was another error on the page when you have hoped to upload a file, you now need to address the broken file selection. the notes (at the very bottom of the error checking stack, gets its own special if() function to manage this.) */
+  if (!empty($errors) && (isset($fn1) && $fn1 != '')) {
+    $errors['name_link1'] = "Restore file selection in position 1 and make sure it has a label.";
+  }
+  // END POSITION 1
+
+
+  if ((isset($fn2) && ($fn2 != '')) && is_blank($row['link2'])) {
+    $errors['name_link2'] = "You did not name your link in position 2. Please restore file selection.";
+  }
+  if ((isset($fn2) && $fn2 != '') && $nf2 == '') {
+    $errors['name_link2'] = "File upload in Position 2 needs attention. Please restore file selection.";
+  }
+  // for 'new'
+  if (((!isset($fn2) || ($fn2 == '')) && (trim($row['link2']) != '')) && $row['hid_f2'] == '') {
+    $errors['name_link2'] = "There's a name but no file to upload in position 2. Please restore file selection.";
+  }
+  // for 'update'
+  if ((!isset($fn2) || ($fn2 == '') && $row['hid_f2'] == '') && (trim($row['link2']) != '')) {
+    $errors['name_link2'] = "You set a name but no file in position 2. Please restore file selection.";
+  }
+  if (!empty($errors) && (isset($fn2) && $fn2 != '')) {
+    $errors['name_link2'] = "Restore file selection in position 2 and make sure it has a label.";
+  }  
+
+
+  if ((isset($fn3) && ($fn3 != '')) && is_blank($row['link3'])) {
+    $errors['name_link3'] = "You did not name your link in position 3. Please restore file selection.";
+  }
+  if ((isset($fn3) && $fn3 != '') && $nf3 == '') {
+    $errors['name_link3'] = "File upload in Position 3 needs attention. Please restore file selection.";
+  }
+  // for 'new'
+  if (((!isset($fn3) || ($fn3 == '')) && (trim($row['link3']) != '')) && $row['hid_f3'] == '') {
+    $errors['name_link3'] = "There's a name but no file to upload in position 3. Please restore file selection.";
+  }
+  // for 'update'
+  if ((!isset($fn3) || ($fn3 == '') && $row['hid_f3'] == '') && (trim($row['link3']) != '')) {
+    $errors['name_link3'] = "You set a name but no file in position 3. Please restore file selection.";
+  }
+  if (!empty($errors) && (isset($fn3) && $fn3 != '')) {
+    $errors['name_link3'] = "Restore file selection in position 3 and make sure it has a label.";
+  }  
+
+
+  if ((isset($fn4) && ($fn4 != '')) && is_blank($row['link4'])) {
+    $errors['name_link4'] = "You did not name your link in position 4. Please restore file selection.";
+  }
+  if ((isset($fn4) && $fn4 != '') && $nf4 == '') {
+    $errors['name_link4'] = "File upload in Position 4 needs attention. Please restore file selection.";
+  }
+  // for 'new'
+  if (((!isset($fn4) || ($fn4 == '')) && (trim($row['link4']) != '')) && $row['hid_f4'] == '') {
+    $errors['name_link4'] = "There's a name but no file to upload in position 4. Please restore file selection.";
+  }
+  // for 'update'
+  if ((!isset($fn4) || ($fn4 == '') && $row['hid_f4'] == '') && (trim($row['link4']) != '')) {
+    $errors['name_link4'] = "You set a name but no file in position 4. Please restore file selection.";
+  }
+  if (!empty($errors) && (isset($fn4) && $fn4 != '')) {
+    $errors['name_link4'] = "Restore file selection in position 4 and make sure it has a label.";
+  } 
+  return $errors;
 }
 
 function validate_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4) {

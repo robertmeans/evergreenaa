@@ -21,11 +21,12 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $role = $_SESSION['admin'];
 
-if (is_post_request() && isset($_POST['review-mtg'])) {
+if (is_post_request()) {
 
 $rando_num = rand(100,999);
-
 $row = [];
+$url = $_POST['themeurl'];
+$themeChange = $_POST['ctpg-hf'];
 
 	if (!empty($_FILES['file1']['name'])) {
 		$uploaded_file1 = $_FILES['file1']['name'];
@@ -145,14 +146,35 @@ $row['hid_f4'] = '';
 
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
-	$result = create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
-	if ($result === true) {
-		$new_id = mysqli_insert_id($db);
-	    header('location: manage_new_review.php?id=' . $new_id);
-	} else {
-		$errors = $result;
-	}
+
+
+  if ($themeChange === 'notset') {
+  	$result = create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+
+  	if ($result === true) {
+  		$new_id = mysqli_insert_id($db);
+  	    header('location: manage_new_review.php?id=' . $new_id);
+  	} else {
+  		$errors = $result;
+  	}
+
+  } else {
+
+    $errors = theme_switch_on_form_page($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+    $result = set_theme($themeChange, $user_id);
+
+    if ($result === true) {
+      $_SESSION['db-theme'] = $themeChange;
+
+    } else {
+      $errors = $result;
+    }
+
+
+  }
+
+
 } // end > if (is_post_request()) {
 
 require '_includes/head.php'; ?>
@@ -186,7 +208,7 @@ require '_includes/head.php'; ?>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Add a New Meeting</h1>
-	<?php echo display_errors($errors); ?>
+	<?php if ($themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/new-details.php'; ?>

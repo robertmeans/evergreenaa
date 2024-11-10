@@ -168,12 +168,11 @@
 
 </div>
 
-
-		
 		<label for="add_note">Additional notes</label>
 		<textarea name="add_note" class="meetNotes<?php if (isset($errors['add_note'])) { echo " fixerror"; } ?>" placeholder="Text only. 1,000 characters or less. All formatting will be stripped."><?php if (isset($row['add_note']) && $row['add_note'] != '') { echo nl2br(h($row['add_note'])); } ?></textarea>
 
-    <input type="hidden" id="ctpg-hf" name="ctpg-hf">
+    <input type="hidden" id="ctpg-hf" name="ctpg-hf" value="notset">
+    <input type="hidden" id="themeurl" name="themeurl">
 		<div class="update-rt">
 			<a class="cancel" href="manage.php">CANCEL</a> <input type="submit" id="review-mtg" name="review-mtg" class="submit" value="REVIEW">
 		</div><!-- .update-rt -->

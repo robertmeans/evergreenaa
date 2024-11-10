@@ -49,6 +49,15 @@ function close_navigation_first() {
     stopPropagation();
     }  
 }
+/* special theme update on manage_new.php and manage_edit.php pages */
+function themeSpecialSubmitDark() {
+  document.getElementById("ctpg-hf").value = "0";
+  document.getElementById("manage-mtg").submit();
+}
+function themeSpecialSubmitLight() {
+  document.getElementById("ctpg-hf").value = "1";
+  document.getElementById("manage-mtg").submit();
+}
 
 $(document).ready(function(){
 

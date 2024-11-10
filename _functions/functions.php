@@ -781,12 +781,18 @@ function is_get_request() {
 function display_errors($errors=array()) {
   $output = '';
   if(!empty($errors)) {
+    $num = count($errors);
+
     $output .= "<div class=\"errors\">";
     $output .= "Please fix the following errors:";
     $output .= "<ul>";
 
     if (isset($errors['name_link1']) || isset($errors['name_link2']) || isset($errors['name_link3']) || isset($errors['name_link4'])) {
-      $output .= "<li class=\"foobgar\">NOTE: I can't retain your file selections if there are errors. Every time there is <em>any</em> error you need to reselect the files you want to upload.</li>";
+      if ($num > 1) {
+        $output .= "<li class=\"foobgar\">NOTE: I can't retain your file selections if there are errors. Every time there is <em>any</em> error you need to reselect the files you want to upload.</li>";
+      } else {
+        $output .= "<li class=\"foobgar\">NOTE: I can't retain your file selection if there are errors. Every time there is <em>any</em> error you need to reselect the file you want to upload.</li>";
+      }
     }
 
     foreach($errors as $error) {
@@ -797,5 +803,32 @@ function display_errors($errors=array()) {
   	}
   	return $output;
 	}
+
+function display_theme_errors($errors=array()) {
+  $output = '';
+  if(!empty($errors)) {
+    $num = count($errors);
+
+    $output .= "<div class=\"errors\">";
+    $output .= "Head's up!";
+    $output .= "<ul>";
+
+    if (isset($errors['name_link1']) || isset($errors['name_link2']) || isset($errors['name_link3']) || isset($errors['name_link4'])) {
+      if ($num > 1) {
+        $output .= "<li class=\"foobgar\">So, you changed the theme *after* you edited the file uploads section?! That's in interesting thing to do, but I can't retain your file selections when the screen refreshes. You'll need to reselect the files you want to upload.</li>";
+      } else {
+        $output .= "<li class=\"foobgar\">So, you changed the theme *after* you edited the file uploads section?! That's in interesting thing to do, but I can't retain your file selections when the screen refreshes. You'll need to reselect the file you want to upload.</li>";
+      }
+    }
+
+    foreach($errors as $error) {
+      $output .= "<li>" . h($error) . "</li>";
+    }
+    $output .= "</ul>";
+    $output .= "</div>";
+    }
+    return $output;
+  }
+
 	
 ?>
