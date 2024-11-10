@@ -146,9 +146,6 @@ $row['hid_f4'] = '';
 
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
-
-
-
   if ($themeChange === 'notset') {
   	$result = create_new_meeting($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
 
@@ -171,9 +168,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
       $errors = $result;
     }
 
-
   }
-
 
 } // end > if (is_post_request()) {
 

@@ -851,7 +851,15 @@ form#manage-mtg .details-left {
 		em {
 			font-style: italic;
 		}
+    .iw {
+      font-style: italic;
+    }
 	}
+}
+@media screen and (max-width: 600px) {
+  .errors {
+    padding: 0.5em;
+  }
 }
 
 a.new-mtg-btn {
@@ -919,6 +927,9 @@ form#manage-mtg {
         &:hover {
           cursor: pointer;
         }
+      }
+      &.tzerr {
+        background-color: #ffbdc0;
       }
     }
   }
@@ -1500,4 +1511,9 @@ span.contact-update-message {
 
 span.gtz {
   font-size: 0.6em;
+}
+img.holup {
+  width: 100%;
+  max-width: 220px;
+  margin-bottom: -0.5em;
 }

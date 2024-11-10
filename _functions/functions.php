@@ -810,14 +810,15 @@ function display_theme_errors($errors=array()) {
     $num = count($errors);
 
     $output .= "<div class=\"errors\">";
-    $output .= "Head's up!";
+    // $output .= "Head's up!";
+    $output .= '<img class="holup" src="_images/hol-up.webp">';
     $output .= "<ul>";
 
     if (isset($errors['name_link1']) || isset($errors['name_link2']) || isset($errors['name_link3']) || isset($errors['name_link4'])) {
       if ($num > 1) {
-        $output .= "<li class=\"foobgar\">So, you changed the theme *after* you edited the file uploads section?! That's in interesting thing to do, but I can't retain your file selections when the screen refreshes. You'll need to reselect the files you want to upload.</li>";
+        $output .= "<li class=\"foobgar\">So, you changed the theme <span class=\"iw\">after</span> you edited the file uploads section?! That's an unusual sequence of choices. I can't retain your file selections when the page reloads. You'll need to reselect the files you want to upload.</li>";
       } else {
-        $output .= "<li class=\"foobgar\">So, you changed the theme *after* you edited the file uploads section?! That's in interesting thing to do, but I can't retain your file selections when the screen refreshes. You'll need to reselect the file you want to upload.</li>";
+        $output .= "<li class=\"foobgar\">So, you changed the theme <span class=\"iw\">after</span> you edited the file uploads section?! That's an unusual sequence of choices. I can't retain your file selections when the page reloads. You'll need to reselect the file you want to upload.</li>";
       }
     }
 

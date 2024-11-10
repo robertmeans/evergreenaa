@@ -43,7 +43,7 @@
 
 <div class="mtg-time-tm">
   <p class="time-held">Time</p>
-	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time'])) { echo date('g:i A', strtotime($_POST['meet_time'])); } else { 
+	<input name="meet_time" class="timepicker<?php if (isset($errors['meet_time'])) { echo " fixerror"; } ?>" value="<?php if (isset($_POST['meet_time']) && $_POST['meet_time'] !== '') { echo date('g:i A', strtotime($_POST['meet_time'])); } else if (isset($_POST['meet_time']) && $_POST['meet_time'] === '') { echo ''; /* this is to account for a theme change after removing the time. yeah, I know, this is absolutely ridiculous and nobody will ever see it but hey, I'm having fun! */ } else { 
 
     $ndt = new DateTime($row['meet_time']);
     $time = $ndt->format('g:i A');

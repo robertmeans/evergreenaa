@@ -102,7 +102,7 @@ $themeChange = $_POST['ctpg-hf'];
 		$fn4 = ''; 	
 	}
 
-$row['visible'] 		= $_POST['visible'] 									?? '';
+$row['visible'] = $_POST['visible'] ?? '';
 $row['mtg_tz'] = $_POST['mtg-tz'] ?? '';
 
 
@@ -201,8 +201,6 @@ if (isset($_POST['link4'])) {
 $row['add_note'] 		= $_POST['add_note'] 									?? '';
 
 
-
-
   if ($themeChange === 'notset') {
 
   	$result = update_meeting($id, $row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
@@ -230,14 +228,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
       $errors = $result;
     }
 
-
-
-
-
   }
-
-
-
 
 }
 
