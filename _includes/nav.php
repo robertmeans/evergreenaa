@@ -44,7 +44,8 @@ if (!isset($_SESSION['mode'])) {
 
       <a id="bright-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="themeSpecialSubmitLight(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
 
-      <div id="ct-dark" class="current-theme"><p>Current:</p><h4>Dark Theme</h4></div>
+      <div id="ct-dark" class="current-theme" style="display:block;"><p>Current:</p><h4>Dark Theme</h4></div>
+      <div id="ct-bright" class="current-theme"><p>Change to:</p><h4>Bright Theme</h4></div>
 
     <?php } else {  ?>
 
@@ -52,13 +53,12 @@ if (!isset($_SESSION['mode'])) {
 
       <a class="light nav-active"><i class="fas far fa-lightbulb"></i></a>
 
-      <div id="ct-bright" class="current-theme"><p>Current:</p><h4>Bright Theme</h4></div>
+      <div id="ct-dark" class="current-theme"><p>Change to:</p><h4>Dark Theme</h4></div>
+      <div id="ct-bright" class="current-theme" style="display:block;"><p>Current:</p><h4>Bright Theme</h4></div>
 
     <?php } ?>
 
-
       <?php } else { ?>
-
 
     <?php if ($theme == '0') { ?>
       <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
@@ -69,7 +69,9 @@ if (!isset($_SESSION['mode'])) {
         <a id="bright-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
       </form>
 
-      <div id="ct-dark" class="current-theme"><p>Current:</p><h4>Dark Theme</h4></div>
+
+      <div id="ct-dark" class="current-theme" style="display:flex;"><p>Current:</p><h4>Dark Theme</h4></div>
+      <div id="ct-bright" class="current-theme"><p>Change to:</p><h4>Bright Theme</h4></div>
 
     <?php } else {  ?>
       <form action="process-theme.php" method="post">
@@ -80,29 +82,13 @@ if (!isset($_SESSION['mode'])) {
 
       <a class="light nav-active"><i class="fas far fa-lightbulb"></i></a>
 
-      <div id="ct-bright" class="current-theme"><p>Current:</p><h4>Bright Theme</h4></div>
+      <div id="ct-dark" class="current-theme"><p>Change to:</p><h4>Dark Theme</h4></div>
+      <div id="ct-bright" class="current-theme" style="display:flex;"><p>Current:</p><h4>Bright Theme</h4></div>
 
     <?php } ?>
 
 
 <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
     <?php 

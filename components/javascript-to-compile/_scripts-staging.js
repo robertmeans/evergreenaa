@@ -61,17 +61,37 @@ function themeSpecialSubmitLight() {
 
 $(document).ready(function(){
 
+  // $("#bright-opt").hover(function(){
+  //   $("#ct-dark").html("<p>Change to:</p><h4>Bright Theme</h4>");
+  //   }, function(){
+  //   $("#ct-dark").html("<p>Current:</p><h4>Dark Theme</h4>");
+  // });
+
+  // $("#dark-opt").hover(function(){
+  //   $("#ct-bright").html("<p>Change to:</p><h4>Dark Theme</h4>");
+  //   }, function(){
+  //   $("#ct-bright").html("<p>Current:</p><h4>Bright Theme</h4>");
+  // });
+
+  /* theme slide on nav */
   $("#bright-opt").hover(function(){
-    $("#ct-dark").html("<p>Change to:</p><h4>Bright Theme</h4>");
-    }, function(){
-    $("#ct-dark").html("<p>Current:</p><h4>Dark Theme</h4>");
+    $("#ct-bright").animate({width:'toggle'},300);
+    $("#ct-dark").animate({width:'toggle'},300);
+  }, function(){
+    $("#ct-dark").animate({width:'toggle'},300);
+    $("#ct-bright").animate({width:'toggle'},300);   
   });
 
   $("#dark-opt").hover(function(){
-    $("#ct-bright").html("<p>Change to:</p><h4>Dark Theme</h4>");
+    $("#ct-dark").animate({width:'toggle'},300);
+    $("#ct-bright").animate({width:'toggle'},300);
     }, function(){
-    $("#ct-bright").html("<p>Current:</p><h4>Bright Theme</h4>");
+    $("#ct-bright").animate({width:'toggle'},300);
+    $("#ct-dark").animate({width:'toggle'},300);
   });
+
+
+
 
   $("#toggle-msg-one").click(function(e) {
       e.preventDefault();

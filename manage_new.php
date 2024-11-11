@@ -203,7 +203,7 @@ require '_includes/head.php'; ?>
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">Add a New Meeting</h1>
-	<?php if ($themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
+	<?php if (isset($themeChange) && $themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/new-details.php'; ?>
