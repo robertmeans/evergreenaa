@@ -22,6 +22,51 @@ function set_theme($theme, $user_id) {
   return $result; 
 }
 
+
+function monitor_theme_usage($now, $user_id, $color) {
+  global $db;
+
+  $sql = "INSERT INTO theme_use ";
+  $sql .= "(timestamp, idt_user, color) ";
+  $sql .= "VALUES (";
+  $sql .= "'" . $now . "', ";
+  $sql .= "'" . $user_id . "', "; 
+  $sql .= "'" . $color . "'";
+  $sql .= ")";
+
+  $result = mysqli_query($db, $sql);
+  if ($result) {
+    return true;
+  } else {
+    // echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+
+
+
+
+function theme_count() {
+  global $db;
+
+  $sql = "SELECT * FROM theme_use";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array  
+}
+
+
+
+
+
+
+
+
+
+
+
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 
