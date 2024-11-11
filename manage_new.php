@@ -159,6 +159,15 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
   } else {
 
     $errors = theme_switch_on_form_page($row, $nf1, $fn1, $nf2, $fn2, $nf3, $fn3, $nf4, $fn4);
+
+    if ($user_id != '1' && $_SERVER['REMOTE_ADDR'] !== '174.51.162.17') { /* exclude me from count */
+      $date = new DateTime('now', new DateTimeZone('America/Denver'));
+      $now = $date->format("H:i D, m.d.y");
+
+      if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
+      monitor_theme_usage($now, $user_id, $color);
+    }
+
     $result = set_theme($themeChange, $user_id);
 
     if ($result === true) {

@@ -206,6 +206,20 @@ if (!isset($_SESSION['mode'])) {
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
 
+    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { 
+
+      $theme_changes = theme_count();
+      $result   = mysqli_num_rows($theme_changes);
+
+      if ($result === 0) {
+        echo '<div class="tc-cc-x">0 Theme changes</div>'; 
+      } else if ($result === 1) {
+        echo '<div class="tc-cc-x">1 Theme change!</div>';
+      } else {
+        echo '<div class="tc-cc-x">' . $result . ' Theme changes</div>';
+      }
+    } ?>
+
 	</div><!-- #sidenav-wrapper -->
 
 		<?php
