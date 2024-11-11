@@ -192,19 +192,32 @@ if (!isset($_SESSION['mode'])) {
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
 
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { 
 
-      $theme_changes = theme_count();
-      $result   = mysqli_num_rows($theme_changes);
 
-      if ($result === 0) {
-        echo '<div class="tc-cc-x">0 Theme changes</div>'; 
-      } else if ($result === 1) {
-        echo '<div class="tc-cc-x">1 Theme change!</div>';
-      } else {
-        echo '<div class="tc-cc-x">' . $result . ' Theme changes</div>';
-      }
-    } ?>
+
+    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { ?>
+      <div class="admin-info">
+        <?php
+          $theme_changes = theme_count();
+          $result   = mysqli_num_rows($theme_changes);
+
+          if ($result === 0 || $result > 1) {
+            echo '<div class="tc-cc-x">' . $result . ' Theme changes</div>'; 
+          } else {
+            echo '<div class="tc-cc-x">' . $result . ' Theme change!</div>';
+          } 
+
+          if ($_SERVER['REMOTE_ADDR'] !== '174.51.162.17') {
+            echo '<div class="tc-cc-x">New IP : ' . $_SERVER['REMOTE_ADDR'] . '</div>';
+          }
+        ?>
+      </div>
+    <?php } ?>
+
+
+
+
+
 
 	</div><!-- #sidenav-wrapper -->
 

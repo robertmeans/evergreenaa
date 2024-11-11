@@ -59,14 +59,6 @@ function theme_count() {
 
 
 
-
-
-
-
-
-
-
-
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 
