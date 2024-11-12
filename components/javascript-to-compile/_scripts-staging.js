@@ -205,6 +205,10 @@ $(".nav-active").click(function(e) {
   e.preventDefault();
   e.stopPropagation();
 });
+$(".tc-cc-x").click(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+});
 
 $(document).ready(function(){
   $('#usr-role-go').click(function() {

@@ -341,18 +341,9 @@
 		margin-top: 0;
 		margin-bottom: 2em;
 	}
-
-		// .tooltip {
-		// 	position: absolute;
-		// 	right: -0.4em;
-		// 	bottom: -0.4em;
-		// }
-		// .tooltip .tooltiptext {
-		// 	position: static;
-		// }
-		i.fa-star {
-			color: gold;
-		}
+	i.fa-star {
+		color: gold;
+	}
 
 
 }
@@ -361,9 +352,14 @@
   flex-direction: column;
   margin-bottom: 2em;
 }
-.tc-cc-x {
+.sidenav a.tc-cc-x {
   font-size: 0.75em;
   padding: 0.5em 1em 0.5em 1.5em;
+  cursor: default;
+  &:hover {
+    color: #818181;
+    background-color: inherit;
+  }
 }
 
 @keyframes in {

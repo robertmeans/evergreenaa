@@ -202,12 +202,13 @@ if (!isset($_SESSION['mode'])) {
           $result   = mysqli_num_rows($theme_changes);
 
           if ($result === 0 || $result > 1) {
-            echo '<div class="tc-cc-x">' . $result . ' Theme changes</div>'; 
+            echo '<a class="tc-cc-x">' . $result . ' Theme changes</a>'; 
           } else {
-            echo '<div class="tc-cc-x">' . $result . ' Theme change!</div>';
+            echo '<a class="tc-cc-x">' . $result . ' Theme change!</a>';
           } 
 
-          if ($_SERVER['REMOTE_ADDR'] !== '174.51.162.17') {
+          if ($_SERVER['REMOTE_ADDR'] !== '174.51.162.17' && $_SERVER['REMOTE_ADDR'] !== '::1') {
+            /* $_SERVER['REMOTE_ADDR'] !== '::1' - is localhost */
             echo '<div class="tc-cc-x">New IP : ' . $_SERVER['REMOTE_ADDR'] . '</div>';
           }
         ?>
