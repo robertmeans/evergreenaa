@@ -362,6 +362,59 @@
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+// .sidenav span a.tc-cc-xyz,
+// .sidenav .no-frills {
+//   display: inline;
+//   font-size: 0.75em;
+//   color: #818181;
+// }
+// .sidenav a.tc-cc-xyz {
+//   padding: 1em 0em 1em 1.5em;
+//   &:hover {
+//     background-color: inherit;
+//   }
+// }
+
+
+.sidenav .no-frills {
+  display: flex;
+  font-size: 0.75em;
+  color: #818181;
+  padding: 1em 0em 1em 1.5em;
+  a.ip-css {
+    width: auto;
+    margin: 0 0.25em;
+    padding: 0em;
+    color: inherit;
+    transition: all 0.2s ease;
+    &:hover {
+      color: #fff;
+      background-color: transparent;
+    } 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes in {
     0%   { transform: rotate(360deg); }
     100% { transform: rotate(0deg); }

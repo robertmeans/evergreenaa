@@ -10,16 +10,25 @@ if (isset($_SESSION['id'])) {
 /* BEGIN: Theme related */
 if (is_post_request() && isset($_POST['theme'])) {
 
+  $me = array('1', '2');
+
+  $ip = get_ip_list();
+  $also_me = explode(',', $ip['ip_ignore']);
+
+  $their_ip = $_SERVER['REMOTE_ADDR'];
+  
+
   if ($user_id != 'ns') {
     $theme = $_POST['theme'];
     $url = $_POST['themeurl'];
+    
 
-    if ($user_id != '1' && $_SERVER['REMOTE_ADDR'] !== '174.51.162.17') { /* exclude me from count */
+    if (!in_array($user_id, $me) && !in_array($_SERVER['REMOTE_ADDR'], $also_me)) { /* exclude me from count */
       $date = new DateTime('now', new DateTimeZone('America/Denver'));
       $now = $date->format("H:i D, m.d.y");
 
       if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
-      monitor_theme_usage($now, $user_id, $color);
+      monitor_theme_usage($now, $user_id, $color, $their_ip);
     }
 
     $result = set_theme($theme, $user_id);
@@ -36,12 +45,13 @@ if (is_post_request() && isset($_POST['theme'])) {
     $theme = $_POST['theme'];
     $url = $_POST['themeurl'];
 
+
     $date = new DateTime('now', new DateTimeZone('America/Denver'));
     $now = $date->format("H:i D, m.d.y");
     if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
 
-    if ($_SERVER['REMOTE_ADDR'] !== '174.51.162.17') {
-      monitor_theme_usage($now, $user_id, $color);
+    if (!in_array($_SERVER['REMOTE_ADDR'], $also_me)) {
+      monitor_theme_usage($now, $user_id, $color, $their_ip);
       /* no error checking. if it fails, it fails. not terribly important thing going on here */
     }
 

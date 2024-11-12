@@ -21,7 +21,9 @@ if (is_post_request()) {
 		$nhe = find_new_host($email); // take entered email address
 		$exists = mysqli_num_rows($nhe); // run a query on it
 		$newhost_id = mysqli_fetch_assoc($nhe); // put results in var $newhost_id
-		$new_host = $newhost_id['id_user']; // now you've got the id of new user from entered email
+    if (isset($newhost_id['id_user'])) {
+      $new_host = $newhost_id['id_user']; // now you've got the id of new user from entered email
+    }
 		
 			if ($exists > 0) {
 

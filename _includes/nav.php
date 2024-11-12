@@ -192,33 +192,41 @@ if (!isset($_SESSION['mode'])) {
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
 
-
-
-
     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { ?>
       <div class="admin-info">
         <?php
           $theme_changes = theme_count();
-          $result   = mysqli_num_rows($theme_changes);
+          $all   = mysqli_num_rows($theme_changes);
+          $result = --$all; // subtract the 1 row where I keep ip addresses
 
-          if ($result === 0 || $result > 1) {
+          $current_ip = $_SERVER['REMOTE_ADDR'];
+          $ip = get_ip_list();
+          $ip_string = implode(',', $ip); // convert array to string
+          $my_current_ip = explode(',', $ip['ip_ignore']);
+
+          if ($result === 0 || $result > 2) {
             echo '<a class="tc-cc-x">' . $result . ' Theme changes</a>'; 
           } else {
             echo '<a class="tc-cc-x">' . $result . ' Theme change!</a>';
           } 
 
-          if ($_SERVER['REMOTE_ADDR'] !== '174.51.162.17' && $_SERVER['REMOTE_ADDR'] !== '::1') {
-            /* $_SERVER['REMOTE_ADDR'] !== '::1' - is localhost */
-            echo '<div class="tc-cc-x">New IP : ' . $_SERVER['REMOTE_ADDR'] . '</div>';
+          if (!in_array($current_ip, $my_current_ip)) { ?>
+
+            <form action="process-add-ip.php" method="post">
+              <input type="hidden" name="current-list" value="<?= $ip_string; ?>">
+              <input type="hidden" name="my-new-ip" value="<?= $current_ip; ?>">
+              <input type="hidden" id="navthemeurl" name="this-here-url">
+
+              <span class="no-frills">[ <a class="ip-css" id="add-ip" onclick="$(this).closest('form').submit(); closeNav();">add</a> ] &nbsp;New IP: <?= $current_ip; ?></span>
+            </form>
+
+          <?php
+            // echo '<a class="tc-cc-x">New IP : ' . $current_ip . '</a>';
+            // echo '<br><br>'. print_r($my_current_ip);
           }
         ?>
       </div>
     <?php } ?>
-
-
-
-
-
 
 	</div><!-- #sidenav-wrapper -->
 

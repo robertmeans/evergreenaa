@@ -98,7 +98,14 @@ a.verified {
   background-attachment: fixed;  
 }
 
-
+.sidenav .no-frills {
+  a.ip-css {
+    &:hover {
+      color: #d47f11;
+      background-color: transparent;
+    } 
+  }
+}
 
 
 

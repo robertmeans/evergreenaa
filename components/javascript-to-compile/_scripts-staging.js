@@ -18,6 +18,7 @@ $(document).ready(function() {
   $('#url').val(url);
   $('#tz-url').val(url);
   $('#themeurl').val(url);
+  $('#navthemeurl').val(url);
 
   $('.top-nav').on('click', function() {
     this.classList.toggle('acty');

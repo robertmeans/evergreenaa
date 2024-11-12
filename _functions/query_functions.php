@@ -23,15 +23,16 @@ function set_theme($theme, $user_id) {
 }
 
 
-function monitor_theme_usage($now, $user_id, $color) {
+function monitor_theme_usage($now, $user_id, $color, $their_ip) {
   global $db;
 
   $sql = "INSERT INTO theme_use ";
-  $sql .= "(timestamp, idt_user, color) ";
+  $sql .= "(timestamp, idt_user, color, ip_ignore) ";
   $sql .= "VALUES (";
   $sql .= "'" . $now . "', ";
   $sql .= "'" . $user_id . "', "; 
-  $sql .= "'" . $color . "'";
+  $sql .= "'" . $color . "', ";
+  $sql .= "'" . $their_ip . "'";
   $sql .= ")";
 
   $result = mysqli_query($db, $sql);
@@ -44,9 +45,6 @@ function monitor_theme_usage($now, $user_id, $color) {
   }
 }
 
-
-
-
 function theme_count() {
   global $db;
 
@@ -57,7 +55,29 @@ function theme_count() {
   return $result; // returns an assoc. array  
 }
 
+function get_ip_list() {
+  global $db;
 
+  $sql  = "SELECT ip_ignore FROM theme_use ";
+  $sql .= "WHERE id_theme = 1 ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $row = mysqli_fetch_assoc($result);
+  return $row;
+}
+
+function add_ip($new_ip_list) {
+  global $db;
+
+  $sql  = "UPDATE theme_use ";
+  $sql .= "SET ip_ignore='" . $new_ip_list . "' ";
+  $sql .= "WHERE id_theme=1";
+
+  $result = mysqli_query($db, $sql);
+  return $result;
+}
 
 function get_all_public_meetings() { // for home.php
     global $db;
