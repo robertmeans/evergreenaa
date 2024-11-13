@@ -23,7 +23,8 @@ if (is_post_request() && isset($_POST['theme'])) {
     $url = $_POST['themeurl'];
     
 
-    if (!in_array($user_id, $me) && !in_array($_SERVER['REMOTE_ADDR'], $also_me)) { /* exclude me from count */
+    if (!in_array($user_id, $me) && !in_array($their_ip, $also_me)) { 
+      /* exclude me from count - or anyone using same IP as me */
       $date = new DateTime('now', new DateTimeZone('America/Denver'));
       $now = $date->format("H:i D, m.d.y");
 
@@ -50,7 +51,8 @@ if (is_post_request() && isset($_POST['theme'])) {
     $now = $date->format("H:i D, m.d.y");
     if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
 
-    if (!in_array($_SERVER['REMOTE_ADDR'], $also_me)) {
+    if (!in_array($their_ip, $also_me)) {
+      /* exclude my IP (for testing when not logged in) */
       monitor_theme_usage($now, $user_id, $color, $their_ip);
       /* no error checking. if it fails, it fails. not terribly important thing going on here */
     }
