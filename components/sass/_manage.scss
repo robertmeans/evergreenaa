@@ -72,12 +72,17 @@
       border-radius: 3px;
       margin-left: 5px;
       margin: 3px 0 0 5px;
-      transition: all 0.2s ease;
+
+      box-shadow: 0px 6px 4px -3px rgba(0, 0, 0, 0.3);
+
+      transition: all 0.15s ease;
     
 			&:hover {
+        transform: scale(0.9);
+        box-shadow: -1px 4px 3px -3px rgba(0, 0, 0, 0.86);
 				text-decoration: none;
-        color: #313131;
-        background-color: rgba(255,255,255,0.8);
+        // color: #313131;
+        // background-color: rgba(255,255,255,0.8);
 			}
 		}
     & > a:first-of-type {
@@ -414,6 +419,7 @@ ul.manage-weekdays {
 	border-right: 1px solid transparent;
 	border-bottom: 1px solid rgba(255,255,255,0.15);
 	border-right: 1px solid transparent;
+  transition: all 0.15s ease;
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
@@ -493,14 +499,15 @@ ul.manage-weekdays {
 	padding: 0.5em 1em;
 	background-color: transparent;
 	color: inherit;
-    border-top: 2px solid #fff;
-    border-bottom: dashed 1px #7e7e7e;
-    background-color: #000;
-    background-color: #000;
-    color: #fff;
-    background: #6d94e1 url(_images/aa-logo_active.gif) no-repeat center center fixed;
-    background-size: cover;
-    background-attachment: fixed;
+  border-top: 2px solid #fff;
+  border-bottom: dashed 1px #7e7e7e;
+  background-color: #000;
+  background-color: #000;
+  color: #fff;
+  background: #6d94e1 url(_images/aa-logo_active.gif) no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: all 0.15s ease;
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
@@ -863,6 +870,7 @@ form#manage-mtg .details-left {
 }
 
 a.new-mtg-btn {
+  text-align: center;
 	margin: 1em 0;
 	padding: 1em 2em;
 	color: #fff;
@@ -870,9 +878,12 @@ a.new-mtg-btn {
 	background-color: rgba(64,178,8,1);
 	border: 1px solid #fff;
 	text-decoration: none;
-	transition: all 0.2s ease;
-	text-align: center;
+  // box-shadow: 0px 6px 4px -3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 5px -5px rgba(0, 0, 0, 0.3);
+	transition: all 0.15s ease;
 	&:hover {
+    transform: scale(0.9);
+    box-shadow: -1px 4px 3px -3px rgba(0, 0, 0, 0.86);
 		background-color: rgba(255,255,255,0.4);
 		background-color: rgba(64,178,8,0.4);
 	}

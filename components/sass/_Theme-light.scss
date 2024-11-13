@@ -344,10 +344,13 @@ p.logout,
 .manage-simple>p.logout>a {
   color: #fff;
   background-color: #5693be;
+
+  box-shadow: 0px 6px 4px -3px rgba(0, 0, 0, 0.3);
   &:hover {
-    background-color: #fff;
-    color: #5693be;
-    border-color: #5693be;
+    box-shadow: -1px 4px 3px -3px rgba(0, 0, 0, 0.86);
+    // background-color: #fff;
+    // color: #5693be;
+    // border-color: #5693be;
   }
 }
 
@@ -469,15 +472,34 @@ form#manage-mtg .mtg-time-tz select.pick-tz option {
       background-color: #ffbdc0;
     } 
 }
-
-.manage-glance.draft {
-  background-color: rgba(255, 255, 0, 0.5);
+.manage-glance {
+  background-color: rgba(255,255,255,0.5);
   &:hover {
     background-color: rgba(255,255,0,0.8);
   }
 }
+.manage-glance.draft {
+  // background-color: rgba(255, 255, 0, 0.5);
+  background-color: rgba(32,93,168,0.15);
+  &:hover {
+    // background-color: rgba(255,255,0,0.8);
+    background-color: rgba(32,93,168,0.08);
+    // color: #fff;
+  }
+}
+.manage-glance-wrap.active .manage-glance,
 .manage-glance-wrap.active .manage-glance.draft {
+  background-color: rgba(255,255,0,0.8);
   color: #757575;
+  &:hover {
+    background-color: rgba(255,255,0,0.8);
+  }
+}
+.daily-glance.personal, 
+.daily-glance.personal-odin, 
+.daily-glance.personal-admin,
+.manage-glance.personal {
+  border-left: 1px solid #db6714;
 }
 
 form#manage-mtg label span:hover {

@@ -197,7 +197,7 @@ if (!isset($_SESSION['mode'])) {
         <?php
           $theme_changes = theme_count();
           $all   = mysqli_num_rows($theme_changes);
-          $result = --$all; // subtract the 1 row where I keep ip addresses
+          $result = --$all; // subtract 1 for the row where I store & update my list of ip's
 
           $current_ip = $_SERVER['REMOTE_ADDR'];
           $ip = get_ip_list();
