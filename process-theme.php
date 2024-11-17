@@ -13,7 +13,7 @@ if (is_post_request() && isset($_POST['theme'])) {
   /* this page has to fire in order to log a theme change either to a cookie (for visitors) or a cookie + db for members. the random stuff wrapped in 'if (isset($analytics_on_off))' is to isolate all the *extra* stuff I'm watching without disturbing the basic functionality that's necessary to let the theme toggle work. all the extra stuff can be turned on/off from config/initialize.php. */ 
 
   if (isset($analytics_on_off)) {
-    if (!isset($_SESSION['bbiw'])) {
+    if (!isset($_SESSION['bi'])) { /* using 'bi' here so I can make one change in process-analytics.php to reset all these session vars */
       $me = array('1', '2');
       $ip = get_ip_list();
       $also_me = explode(',', $ip['ip_ignore']);
