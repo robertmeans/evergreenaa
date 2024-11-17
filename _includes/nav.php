@@ -192,8 +192,9 @@ if (!isset($_SESSION['mode'])) {
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
 
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { ?>
+    <?php if (isset($analytics_on_off) && (isset($_SESSION['id']) && $_SESSION['id'] == '1')) { ?>
       <div class="admin-info">
+        <a class="cc-x ial" href="internal_analytics.php">Internal Analytics</a>
         <?php
           $theme_changes = theme_count();
           $all   = mysqli_num_rows($theme_changes);
@@ -221,8 +222,6 @@ if (!isset($_SESSION['mode'])) {
             </form>
 
           <?php
-            // echo '<a class="tc-cc-x">New IP : ' . $current_ip . '</a>';
-            // echo '<br><br>'. print_r($my_current_ip);
           }
         ?>
       </div>

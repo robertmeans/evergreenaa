@@ -662,11 +662,29 @@ $(document).ready(function(){
     /* end file upload */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   /* toggle days of week */
   $('.day').click(function() {
     close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.day-content');
+
+
+    var day = $(this).html();
+    console.log(day);
+
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -676,13 +694,31 @@ $(document).ready(function(){
       $(active).removeClass('active');
     } else {
       $(active).addClass('active');
+
+      $.ajax({
+        url: 'process-analytics.php',
+        type: 'POST',
+        data: {
+          analytics_day: 'day', /* *unique* - used to trigger appropriate query */
+          day: day
+        } /* no success or fail actions necessary */
+      });
+
     }
   });
 
+  /* toggle specific meeting */
   $('.daily-glance-wrap').click(function() {
     close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
+
+
+    var time = $(this).find('.glance-mtg-time p').text();
+    var title = $(this).find('.glance-group-title p').text();
+    var mtg_name = time + ' ' + title;
+    console.log(mtg_name);
+
 
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');
@@ -692,8 +728,38 @@ $(document).ready(function(){
       $(active).removeClass('active');
     } else {
       $(active).addClass('active');
+
+      $.ajax({
+        url: 'process-analytics.php',
+        type: 'POST',
+        data: {
+          analytics_mtgName: 'meeting', /* *unique* - used to trigger appropriate query */
+          mtgName: mtg_name
+        } /* no success or fail actions necessary */
+      });
+
     }
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   $('.manage-glance-wrap').click(function() {
     close_navigation_first();

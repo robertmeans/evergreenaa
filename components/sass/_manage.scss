@@ -140,6 +140,15 @@
 		}
 	}
 }
+
+#ia-wrap {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  padding: 1em;
+}
+
+
 p.address-this {
 	line-height: 1.5em;
 	margin-bottom: 1em;
