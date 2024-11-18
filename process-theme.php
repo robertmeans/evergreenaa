@@ -40,7 +40,7 @@ if (is_post_request() && isset($_POST['theme'])) {
         $now = $date->format("H:i D, m.d.y");
 
         if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
-        monitor_theme_usage($now, $user_id, $color, $their_ip);
+        monitor_theme_usage($now, $user_id, $color, $_SESSION['ti']);
       }
     }
 
@@ -65,7 +65,7 @@ if (is_post_request() && isset($_POST['theme'])) {
     if (isset($analytics_on_off)) {
       if (!in_array($_SESSION['ti'], $_SESSION['am'])) {
         /* exclude my IP (for testing when not logged in) */
-        monitor_theme_usage($now, $user_id, $color, $their_ip);
+        monitor_theme_usage($now, $user_id, $color, $_SESSION['ti']);
         /* no error checking. if it fails, it fails. not terribly important thing going on here */
       }
     }

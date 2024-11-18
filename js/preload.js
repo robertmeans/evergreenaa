@@ -5,7 +5,7 @@ $(window).on('load', function() {
   $(".preload-manage").delay(200).fadeOut(200);
 
   /* all internal analytics below */
-  // var page = window.location.href.split('/').pop().slice(0, -4);
+  /* get page name without extension or query string */
   var page = window.location.href.split('?')[0].split('/').pop().split('.').shift();
   if (page === '') { page = 'index'; }
   if (page === 'manage') { page = 'dashboard'; }

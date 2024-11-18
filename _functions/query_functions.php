@@ -79,6 +79,16 @@ function add_ip($new_ip_list) {
   return $result;
 }
 
+function get_analytic_data() {
+  global $db;
+
+  $sql = "SELECT * FROM analytics ";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array
+}
+
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 

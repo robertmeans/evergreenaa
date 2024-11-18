@@ -205,7 +205,7 @@ if (!isset($_SESSION['mode'])) {
           $ip_string = implode(',', $ip); // convert array to string
           $my_current_ip = explode(',', $ip['ip_ignore']);
 
-          if ($result === 0 || $result > 2) {
+          if ($result === 0 || $result > 1) {
             echo '<a class="tc-cc-x">' . $result . ' Theme changes</a>'; 
           } else {
             echo '<a class="tc-cc-x">' . $result . ' Theme change!</a>';
