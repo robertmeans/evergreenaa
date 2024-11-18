@@ -1,5 +1,6 @@
 <?php  
 $layout_context = 'home-private';
+
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 

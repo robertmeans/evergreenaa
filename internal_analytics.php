@@ -9,7 +9,16 @@ if (!isset($_SESSION['id']) || $_SESSION['id'] != '1') { /* my eyes only */
 }
 
 if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '1') {
-  /* query to set alert to '0' and then set $_SESSION['alertb'] = 0 so it gets rid of the star */
+  /* query to set alert to '0' and then set $_SESSION['alertb'] = 0 AND unset($_SESSION['bbiw']) so it gets rid of the star */
+  global $db;
+
+  $sql  = "UPDATE theme_use ";
+  $sql .= "SET alert=0 ";
+  $sql .= "WHERE id_theme=1";
+
+  mysqli_query($db, $sql);
+
+  $_SESSION['alertb'] = '0'; /* turn off star immediately  */
 }
 
 require '_includes/head.php'; ?>

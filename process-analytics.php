@@ -3,6 +3,17 @@ require_once 'config/initialize.php'; /* toggle all analytics on/off in initiali
 
 if (!isset($analytics_on_off)) { return; } else {
 
+
+
+
+
+  // if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '0') { unset($_SESSION['bbiw']); } /* force a new run through to refresh the (potential) star in navigation that indicates new activity */
+  /* reset $_SESSION['bbiw'] at top of homepage_private.php in order to get refresh the star in nav. if you do it here, it fires on page load when it needs to fire before the DOM reaches the nav */
+
+
+
+
+
   if (!isset($_SESSION['bbiw'])) { /* add extra letter to end of 'bbiw' to reset all the session vars. make sure to make consistent 6 lines below. this way you can force an update to all analytics without causing an undeclared var error even if someone is in a session when you make an update. */
     $me = array('1', '2'); /* id's of those you want to have access to analytics */
     $ip = get_ip_list();
@@ -14,7 +25,9 @@ if (!isset($analytics_on_off)) { return; } else {
     $_SESSION['ca'] = $ip['ip_ignore']; /* compare against */
     $_SESSION['am'] = $also_me;
     $_SESSION['ti'] = $their_ip;
-    $_SESSION['alertb'] = $ip['alert'];
+    if (isset($_SESSION['id']) && ($_SESSION['id'] == '1' || $_SESSION['id'] == '2')) {
+      $_SESSION['alertb'] = $ip['alert']; /*  */
+    }
 
   }
   if (!isset($_SESSION['id'])) { $a_user_id = 'ns'; } else { $a_user_id = $_SESSION['id']; }

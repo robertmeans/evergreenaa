@@ -4,7 +4,7 @@ if (!isset($_SESSION['mode'])) {
 }
 ?>
 <nav id="navigation" class="sm-g">
-	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();">
+	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
 
 		<div class="menu-basket">
 			<div class="bar-box">
@@ -21,7 +21,7 @@ if (!isset($_SESSION['mode'])) {
 </nav>
 
 <nav id="navigation" class="lg-g"><?php // mobile nav ?>
-	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
+	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
 </nav>
 
 <div id="side-nav-bkg">
@@ -194,7 +194,7 @@ if (!isset($_SESSION['mode'])) {
 
     <?php if (isset($analytics_on_off) && (isset($_SESSION['id']) && $_SESSION['id'] == '1')) { ?>
       <div class="admin-info">
-        <a class="cc-x ial" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '1') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
+        <a class="cc-x ial" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
         <?php
           $theme_changes = theme_count();
           $all   = mysqli_num_rows($theme_changes);
