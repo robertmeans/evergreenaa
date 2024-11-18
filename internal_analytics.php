@@ -8,6 +8,10 @@ if (!isset($_SESSION['id']) || $_SESSION['id'] != '1') { /* my eyes only */
   exit();
 }
 
+if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '1') {
+  /* query to set alert to '0' and then set $_SESSION['alertb'] = 0 so it gets rid of the star */
+}
+
 require '_includes/head.php'; ?>
 
 <body>

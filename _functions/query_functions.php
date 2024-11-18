@@ -58,7 +58,7 @@ function theme_count() {
 function get_ip_list() {
   global $db;
 
-  $sql  = "SELECT ip_ignore FROM theme_use ";
+  $sql  = "SELECT * FROM theme_use ";
   $sql .= "WHERE id_theme = 1 ";
   $sql .= "LIMIT 1";
 
