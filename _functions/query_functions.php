@@ -102,14 +102,15 @@ function get_analytic_data() {
   return $result; // returns an assoc. array
 }
 
-function log_activity_for_analytics($now, $email, $page, $day, $mtg_name, $their_ip) {
+function log_activity_for_analytics($now, $email, $device, $page, $day, $mtg_name, $their_ip) {
   global $db; 
 
   $sql = "INSERT INTO analytics ";
-  $sql .= "(occurred, auser_email, page, day_opened, mtg_opened, a_ip) ";
+  $sql .= "(occurred, auser_email, device, page, day_opened, mtg_opened, a_ip) ";
   $sql .= "VALUES (";
   $sql .= "'" . $now . "', ";
   $sql .= "'" . $email . "', ";
+  $sql .= "'" . $device . "', ";
   $sql .= "'" . $page . "', "; 
   $sql .= "'" . $day . "', ";
   $sql .= "'" . $mtg_name . "', ";

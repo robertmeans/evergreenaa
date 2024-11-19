@@ -10,11 +10,20 @@ $(window).on('load', function() {
   if (page === '') { page = 'index'; }
   if (page === 'manage') { page = 'dashboard'; }
 
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    var device = 'mobile';
+  } else {
+    var device = 'desktop';
+  }
+
   $.ajax({
     url: 'process-analytics.php',
     type: 'POST',
     data: {
-      page: page
+      page: page,
+      device: device
     } /* no success or fail actions necessary */
   });
 

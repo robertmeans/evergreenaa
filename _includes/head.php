@@ -49,5 +49,4 @@
   <?php } ?>
 
 	<script src="js/preload.js?<?php echo time(); ?>"></script>
-	
 </head>

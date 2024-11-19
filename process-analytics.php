@@ -3,17 +3,6 @@ require_once 'config/initialize.php'; /* toggle all analytics on/off in initiali
 
 if (!isset($analytics_on_off)) { return; } else {
 
-
-
-
-
-  // if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '0') { unset($_SESSION['bbiw']); } /* force a new run through to refresh the (potential) star in navigation that indicates new activity */
-  /* reset $_SESSION['bbiw'] at top of homepage_private.php in order to get refresh the star in nav. if you do it here, it fires on page load when it needs to fire before the DOM reaches the nav */
-
-
-
-
-
   if (!isset($_SESSION['bbiw'])) { /* add extra letter to end of 'bbiw' to reset all the session vars. make sure to make consistent 6 lines below. this way you can force an update to all analytics without causing an undeclared var error even if someone is in a session when you make an update. */
     $me = array('1', '2'); /* id's of those you want to have access to analytics */
     $ip = get_ip_list();
@@ -44,12 +33,13 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_SESSION['id'])) {         $user_id = $_SESSION['id'];         } else { $user_id = ''; }
     if (isset($_SESSION['username'])) {   $username = $_SESSION['username'];  } else { $username = 'visitor'; }
     if (isset($_SESSION['email'])) {      $email = $_SESSION['email'];        } else { $email = ''; }
+    if (isset($_POST['device'])) {        $device = $_POST['device'];         } else { $device = 'undetected'; }
     if (isset($_POST['page'])) {          $page = $_POST['page'];             } else { $page = ''; }
     if (isset($_POST['day'])) {           $day = $_POST['day'];               } else { $day = ''; }
     if (isset($_POST['mtgName'])) {       $mtg_name = $_POST['mtgName'];      } else { $mtg_name = ''; }
 
 
-    $log_action = log_activity_for_analytics($now, $email, $page, $day, $mtg_name, $their_ip);
+    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $mtg_name, $their_ip);
     $turn_on_alert = update_alert_notification();
    
   }

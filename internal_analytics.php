@@ -59,10 +59,10 @@ require '_includes/head.php'; ?>
 
   <div id="ia-wrap">
     <?php // start grabbing data and filling in page ?>
-    <p><?= $i; ?> Total page loads since Sunday, November 17, 2024 at 17:21</p>
+    <p><?= $i; ?> Interactions</p>
 
     <?php if ($unique_ips > 0) { ?>
-      <p>From <?= $unique_ips; ?> unique IP<?php if ($unique_ips == 0 || $unique_ips > 1) { echo '\'s'; } ?>.</p>
+      <p><?= $unique_ips; ?> unique IP<?php if ($unique_ips == 0 || $unique_ips > 1) { echo '\'s'; } ?></p>
     <?php } ?>
   </div>
 

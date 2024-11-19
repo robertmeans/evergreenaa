@@ -681,10 +681,15 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.day-content');
 
-
     var day = $(this).html();
-    console.log(day);
+    // console.log(day);
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+    if (isMobile) {
+      var device = 'mobile';
+    } else {
+      var device = 'desktop';
+    }
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -700,7 +705,8 @@ $(document).ready(function(){
         type: 'POST',
         data: {
           analytics_day: 'day', /* *unique* - used to trigger appropriate query */
-          day: day
+          day: day,
+          device: device
         } /* no success or fail actions necessary */
       });
 
@@ -713,12 +719,18 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
 
-
     var time = $(this).find('.glance-mtg-time p').text();
     var title = $(this).find('.glance-group-title p').text();
     var mtg_name = time + ' ' + title;
-    console.log(mtg_name);
+    // console.log(mtg_name);
 
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      var device = 'mobile';
+    } else {
+      var device = 'desktop';
+    }
 
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');
@@ -734,7 +746,8 @@ $(document).ready(function(){
         type: 'POST',
         data: {
           analytics_mtgName: 'meeting', /* *unique* - used to trigger appropriate query */
-          mtgName: mtg_name
+          mtgName: mtg_name,
+          device: device
         } /* no success or fail actions necessary */
       });
 
