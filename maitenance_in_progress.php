@@ -1,6 +1,8 @@
 <?php 
 require_once 'config/initialize.php';
-// turn on & off in initialize.php after constants are called
+/* turn this page on & off in initialize.php after constants are called */
+
+if (!isset($mip)) { header('location: ' . WWW_ROOT); exit(); }
 
 $layout_context = "login-page";
 

@@ -3,7 +3,7 @@ $layout_context = 'alt-manage';
 require_once 'config/initialize.php'; /* calls controllers/analytics.php */
 require_once 'config/verify_admin.php';
 
-if (!isset($_SESSION['id']) || $_SESSION['id'] != '1') { /* my eyes only */
+if (!isset($_SESSION['id']) || $_SESSION['id'] != '1') { /* this page is for my eyes only */
   header('location: ' . WWW_ROOT);
   exit();
 }
@@ -12,9 +12,9 @@ if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '1') {
   /* query to set alert to '0' and then set $_SESSION['alertb'] = 0 AND unset($_SESSION['bbiw']) so it gets rid of the star */
   global $db;
 
-  $sql  = "UPDATE theme_use ";
+  $sql  = "UPDATE analytics_admin ";
   $sql .= "SET alert=0 ";
-  $sql .= "WHERE id_theme=1";
+  $sql .= "WHERE id=1";
 
   mysqli_query($db, $sql);
 
@@ -36,8 +36,8 @@ require '_includes/head.php'; ?>
   $i = 0;
   $array = array();
   while ($row = mysqli_fetch_assoc($results)) {
-     $i++;
      $array[] = $row;
+     $i++;
   }
 
   $unique_ips = sizeof(array_column($array, null, 'a_ip'));

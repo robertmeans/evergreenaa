@@ -27,7 +27,7 @@ function monitor_theme_usage($now, $user_id, $color, $their_ip) {
   global $db;
 
   $sql = "INSERT INTO theme_use ";
-  $sql .= "(timestamp, idt_user, color, ip_ignore) ";
+  $sql .= "(timestamp, idt_user, color, ip) ";
   $sql .= "VALUES (";
   $sql .= "'" . $now . "', ";
   $sql .= "'" . $user_id . "', "; 
@@ -58,8 +58,21 @@ function theme_count() {
 function get_ip_list() {
   global $db;
 
-  $sql  = "SELECT * FROM theme_use ";
-  $sql .= "WHERE id_theme = 1 ";
+  $sql  = "SELECT * FROM analytics_admin ";
+  $sql .= "WHERE id = 1 ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $row = mysqli_fetch_assoc($result);
+  return $row;
+}
+
+function get_ip_list_for_nav() {
+  global $db;
+
+  $sql  = "SELECT ip_ignore FROM analytics_admin ";
+  $sql .= "WHERE id = 1 ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
@@ -71,9 +84,9 @@ function get_ip_list() {
 function add_ip($new_ip_list) {
   global $db;
 
-  $sql  = "UPDATE theme_use ";
+  $sql  = "UPDATE analytics_admin ";
   $sql .= "SET ip_ignore='" . $new_ip_list . "' ";
-  $sql .= "WHERE id_theme=1";
+  $sql .= "WHERE id=1";
 
   $result = mysqli_query($db, $sql);
   return $result;
@@ -88,6 +101,42 @@ function get_analytic_data() {
   confirm_result_set($result);  
   return $result; // returns an assoc. array
 }
+
+function log_activity_for_analytics($now, $email, $page, $day, $mtg_name, $their_ip) {
+  global $db; 
+
+  $sql = "INSERT INTO analytics ";
+  $sql .= "(occurred, auser_email, page, day_opened, mtg_opened, a_ip) ";
+  $sql .= "VALUES (";
+  $sql .= "'" . $now . "', ";
+  $sql .= "'" . $email . "', ";
+  $sql .= "'" . $page . "', "; 
+  $sql .= "'" . $day . "', ";
+  $sql .= "'" . $mtg_name . "', ";
+  $sql .= "'" . $their_ip . "'";
+  $sql .= ")";
+
+  $result = mysqli_query($db, $sql); 
+  return $result;
+}
+
+function update_alert_notification() {
+  global $db;
+
+  $sql  = "UPDATE analytics_admin ";
+  $sql .= "SET alert=1 ";
+  $sql .= "WHERE id=1";
+
+  $result = mysqli_query($db, $sql);
+  return $result;
+}
+
+
+
+
+
+
+
 
 function get_all_public_meetings() { // for home.php
     global $db;

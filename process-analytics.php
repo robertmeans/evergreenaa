@@ -33,8 +33,6 @@ if (!isset($analytics_on_off)) { return; } else {
   if (!isset($_SESSION['id'])) { $a_user_id = 'ns'; } else { $a_user_id = $_SESSION['id']; }
 
 
-
-
   if (is_post_request() && (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am']))) {
     
     global $db;
@@ -51,18 +49,8 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_POST['mtgName'])) {       $mtg_name = $_POST['mtgName'];      } else { $mtg_name = ''; }
 
 
-    $sql = "INSERT INTO analytics ";
-    $sql .= "(occurred, auser_email, page, day_opened, mtg_opened, a_ip) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . $now . "', ";
-    $sql .= "'" . $email . "', ";
-    $sql .= "'" . $page . "', "; 
-    $sql .= "'" . $day . "', ";
-    $sql .= "'" . $mtg_name . "', ";
-    $sql .= "'" . $their_ip . "'";
-    $sql .= ")";
-
-    mysqli_query($db, $sql); 
+    $log_action = log_activity_for_analytics($now, $email, $page, $day, $mtg_name, $their_ip);
+    $turn_on_alert = update_alert_notification();
    
   }
 

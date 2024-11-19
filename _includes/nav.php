@@ -197,11 +197,10 @@ if (!isset($_SESSION['mode'])) {
         <a class="cc-x ial" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
         <?php
           $theme_changes = theme_count();
-          $all   = mysqli_num_rows($theme_changes);
-          $result = --$all; // subtract 1 for the row where I store & update my list of ip's
+          $result   = mysqli_num_rows($theme_changes);
 
           $current_ip = $_SERVER['REMOTE_ADDR'];
-          $ip = get_ip_list();
+          $ip = get_ip_list_for_nav();
           $ip_string = implode(',', $ip); // convert array to string
           $my_current_ip = explode(',', $ip['ip_ignore']);
 
