@@ -132,6 +132,14 @@ function update_alert_notification() {
   return $result;
 }
 
+function remove_likely_bots($bot_ips) {
+  global $db;
+
+  $sql  = "DELETE FROM analytics WHERE a_ip IN ";
+  $sql .= "(";
+  $sql .= "'" . $bot_ips . "', ";
+  $sql .= ")";
+}
 
 
 

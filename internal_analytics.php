@@ -34,37 +34,34 @@ require '_includes/head.php'; ?>
   $results = get_analytic_data();
   /* reference:   id  occurred  auser_email page  day_opened  mtg_opened  a_ip */
   $i = 0;
-  $array = [];
-  $ip_counts = [];
-  $ip_counts2 = [];
+  $ip_groups = [];
+
+  $unique_count = 0;
+  $unique_ips = [];
 
   while ($row = mysqli_fetch_assoc($results)) {
-    $array[] = $row;
+    $array = $row;
 
-    /* this shows those ip's that only occur once */
     $ip = $row['a_ip'];
-    $ip2 = $row['auser_email'] . ' ' . $row['page'] . ' ' . $row['a_ip'];
-
-    if (!isset($ip_counts[$ip])) {
-      $ip_counts[$ip] = 1;
+    /* get visits that are likely bots due to no interactions, just page visits */
+    if (!isset($ip_groups[$ip])) {
+        $ip_groups[$ip] = [$row];
     } else {
-      $ip_counts[$ip]++;
+        $ip_groups[$ip][] = $row;
     }
 
-
-    if (!isset($ip_counts2[$ip2])) {
-      $ip_counts2[$ip2] = 1;
-    } else {
-      $ip_counts2[$ip2]++;
+    /* consolidate unique ip's for a count of how many people are using the site */
+    if (!in_array($ip, $unique_ips)) {
+        $unique_ips[] = $ip;
+        $unique_count++;
     }
 
-
-     $i++;
+    /* get total number of rows total interactions */
+    $i++;
   }
 
-  $unique_ips = sizeof(array_column($array, null, 'a_ip'));
 
-  mysqli_free_result($results); 
+  
 ?>
 <div id="manage-wrap">
   
@@ -84,8 +81,8 @@ require '_includes/head.php'; ?>
     <p class="ail"><?php
       echo $i . ' Interactions | ';
 
-      if ($unique_ips == 1 ) { echo $unique_ips . ' unique IP'; } 
-      if ($unique_ips == 0 || $unique_ips > 1) { echo $unique_ips . ' unique Ip\'s'; } 
+      if ($unique_count == 1 ) { echo $unique_count . ' unique IP'; } 
+      if ($unique_count == 0 || $unique_count > 1) { echo $unique_count . ' unique Ip\'s'; } 
 
 
     ?></p>
@@ -93,24 +90,39 @@ require '_includes/head.php'; ?>
 
 
 <?php  /* this grabs each unique ip - an ip that only appears once */
-foreach ($ip_counts as $ip => $count) {
-  if ($count === 1) {
+foreach ($ip_groups as $ip => $rows) {
+  if (count($rows) === 1) {
     // This IP appears only once
-    echo 'Unique: ' .  $ip . '<br>';
-    // You can further process this unique IP, such as storing it in an array or performing other actions.
+    $unique_row = $rows[0];
+    echo "Unique IP: " . $unique_row['a_ip'] . "<br>";
+    // Process the unique row as needed
+  } else {
+    // This IP appears multiple times
+    $first_row = $rows[0];
+    $all_same_except_id_and_occurred = true;
+    foreach ($rows as $row) {
+      if ($row['auser_email'] !== $first_row['auser_email'] ||
+        $row['day_opened'] !== $first_row['day_opened'] ||
+        $row['mtg_opened'] !== $first_row['mtg_opened']) {
+        $all_same_except_id_and_occurred = false;
+        break;
+      }
+    }
+
+    if ($all_same_except_id_and_occurred) {
+      echo "Multiple but same: " . $ip . "<br>";
+        // Process the identical rows as needed
+    }
   }
 }
 
-echo '<br><br>';
 
-foreach ($ip_counts2 as $ip2 => $count) {
-  if ($count !== 1) {
-    // This IP appears only once
-    echo 'Unique: ' .  $ip2 . '<br>';
-    // You can further process this unique IP, such as storing it in an array or performing other actions.
-  }
-}
+/* add link here for - remove_likely_bots($bot_ips); 
+link title idea: Remove Likely Bots
+and put all the results in the foreach above into arrays so you can implode them, etc. */
 
+
+mysqli_free_result($results); 
 ?>
 
 
