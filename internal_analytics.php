@@ -76,26 +76,22 @@ require '_includes/head.php'; ?>
     } ?>" target="_blank">phpMyAdmin</a></p>
   </div>
 
-  <div class="ia-headwrap">
-    <?php // start grabbing data and filling in page ?>
-    <p class="ail"><?php
-      echo $i . ' Interactions | ';
 
-      if ($unique_count == 1 ) { echo $unique_count . ' unique IP'; } 
-      if ($unique_count == 0 || $unique_count > 1) { echo $unique_count . ' unique Ip\'s'; } 
-
-
-    ?></p>
 
 
 
 <?php  /* this grabs each unique ip - an ip that only appears once */
-foreach ($ip_groups as $ip => $rows) {
+
+$single_visit_no_action = []; // $unique_row['a_ip'];
+$multiple_visits_no_action = []; // $multiple_but_same_ip;
+
+foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   if (count($rows) === 1) {
     // This IP appears only once
     $unique_row = $rows[0];
-    echo "Unique IP: " . $unique_row['a_ip'] . "<br>";
+    // echo "Unique IP: " . $unique_row['a_ip'] . "<br>";
     // Process the unique row as needed
+    $single_visit_no_action[] = "'" . $unique_row['a_ip'] . "'";
   } else {
     // This IP appears multiple times
     $first_row = $rows[0];
@@ -110,23 +106,65 @@ foreach ($ip_groups as $ip => $rows) {
     }
 
     if ($all_same_except_id_and_occurred) {
-      echo "Multiple but same: " . $ip . "<br>";
-        // Process the identical rows as needed
+      // echo "Multiple but same: " . $multiple_but_same_ip . "<br>";
+      // Process the identical rows as needed
+      $multiple_visits_no_action[] = "'" . $multiple_but_same_ip . "'";
     }
   }
 }
-
-
-/* add link here for - remove_likely_bots($bot_ips); 
-link title idea: Remove Likely Bots
-and put all the results in the foreach above into arrays so you can implode them, etc. */
-
-
-mysqli_free_result($results); 
 ?>
 
 
+  <div class="ia-headwrap">
+    <?php // start grabbing data and filling in page ?>
+    <p class="ail"><?php
+      echo $i . ' Interactions | ';
+
+      if ($unique_count == 1 ) { echo $unique_count . ' unique IP'; } 
+      if ($unique_count == 0 || $unique_count > 1) { echo $unique_count . ' unique IP\'s'; } 
+
+      if ($unique_count > 0) { 
+      $list_to_delete = implode(', ', $single_visit_no_action) . ', ' . implode(', ', $multiple_visits_no_action); 
+
+      if ($single_visit_no_action || $multiple_visits_no_action) {
+      ?>
+       <div id="clean-up-btn"><input type="hidden" id="ip-delete-list" value="<?php echo $list_to_delete; ?>"><a class="analytics-cleanup">Clean up</a></div>
+      <?php } 
+        }
+
+    ?></p>
   </div>
+
+<?php if ($single_visit_no_action || $multiple_visits_no_action) { ?>
+  <div id="replace-this" class="ia-ip-list">
+    <div class="col unique-ips">
+      <h1>Unique IP</h1>
+      <p class="ip-notes">appears only once, no actions taken</p>
+      <?php 
+      $new_single_visit_list = [];
+      foreach ($single_visit_no_action as $item) {
+        $new_single_visit_list[] = str_replace("'", "", $item) . "<br>"; // remove all single quotes
+      }
+      echo implode("", $new_single_visit_list);
+
+      ?>
+    </div>
+    <div class="col multi-visits">
+      <h1>Multiple visits</h1>
+      <p class="ip-notes">no action taken</p>
+      <?php 
+      $new_multiple_visits = [];
+      foreach ($multiple_visits_no_action as $item) {
+        $new_multiple_visits[] = str_replace("'", "", $item) . "<br>";
+      }
+      echo implode("", $new_multiple_visits); 
+
+      ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php mysqli_free_result($results); ?>
 
 </div><!-- #manage-wrap -->
 

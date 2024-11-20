@@ -22,7 +22,8 @@ if (!isset($analytics_on_off)) { return; } else {
   if (!isset($_SESSION['id'])) { $a_user_id = 'ns'; } else { $a_user_id = $_SESSION['id']; }
 
 
-  if (is_post_request() && (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am']))) {
+  /* primary processing begin */
+  if ((is_post_request() && isset($_POST['primary_key'])) && (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am']))) {
     
     global $db;
 
@@ -43,6 +44,33 @@ if (!isset($analytics_on_off)) { return; } else {
     $turn_on_alert = update_alert_notification();
    
   }
+  /* primary processing end */
 
-}
+
+  /* delete list if ip's from internal_analytics.php page - begin */
+  if (is_post_request() && isset($_POST['delete_ip_list_key'])) {
+    $delete_signal = '';
+    $delete_msg = '';
+    $bot_ips = $_POST['ip_delete_list'];
+
+    $results = remove_likely_bots($bot_ips);
+
+    if ($results === true) {
+      $delete_signal = 'ok';
+      $delete_msg =  'Delete successful!'; 
+    } else {
+      $delete_signal = 'bad';
+      $delete_msg = 'Hmm, that didn\'t seem to take. There\'s no telling what happened. That query is complex so maybe it did work but threw a 0 when it should have thrown a 1 back and it really did work - ? Refresh the page and find out.';
+    }
+    $data = array(
+      'delete_signal' => $delete_signal,
+      'delete_msg' => $delete_msg
+    );
+    echo json_encode($data);
+
+  }
+  /* delete list if ip's from internal_analytics.php page - end */
+
+} /* close of $analytics_on_off() */
+
 

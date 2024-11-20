@@ -731,9 +731,10 @@ $(document).ready(function(){
 
       $.ajax({
         url: 'process-analytics.php',
-        type: 'POST',
+        method: 'POST', 
+        dataType: 'text', 
         data: {
-          analytics_day: 'day', /* *unique* - used to trigger appropriate query */
+          primary_key: 'set', /* used to identify appropriate process */
           day: day,
           device: device
         } /* no success or fail actions necessary */
@@ -753,14 +754,6 @@ $(document).ready(function(){
     var mtg_name = time + ' ' + title;
     // console.log(mtg_name);
 
-    // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // if (isMobile) {
-    //   var device = 'mobile';
-    // } else {
-    //   var device = 'desktop';
-    // }
-
     var deviceType = detectDeviceType(); /* declared at top of page */
     // console.log("Device Type: " + deviceType); 
 
@@ -773,7 +766,6 @@ $(document).ready(function(){
        var device = 'desktop';
     }
 
-
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');
     $(toggle).slideToggle();
@@ -785,9 +777,10 @@ $(document).ready(function(){
 
       $.ajax({
         url: 'process-analytics.php',
-        type: 'POST',
+        method: 'POST', 
+        dataType: 'text', 
         data: {
-          analytics_mtgName: 'meeting', /* *unique* - used to trigger appropriate query */
+          primary_key: 'set', /* used to identify appropriate process */
           mtgName: mtg_name,
           device: device
         } /* no success or fail actions necessary */
@@ -797,7 +790,39 @@ $(document).ready(function(){
   });
 
 
+  $('.analytics-cleanup').click(function() {
+    var ip_delete_list = $('#ip-delete-list').val();
+    // console.log(ip_delete_list);
 
+      $.ajax({
+        dataType: "JSON",
+        url: 'process-analytics.php',
+        method: 'POST', 
+        data: {
+          delete_ip_list_key: 'set', /* used to identify appropriate process */
+          ip_delete_list: ip_delete_list
+        }, 
+        beforeSend: function(xhr) {
+
+        }, 
+        success: function(response) {
+          if (response) {
+            if (response['delete_signal'] == 'ok') {
+              $('#clean-up-btn').html('');
+              $('#replace-this').html('<div class="col-full-width">' + response['delete_msg'] + '</div>');
+            } else {
+              $('#replace-this').html('<div class="col-full-width">nope: ' + response['delete_msg'] + '</div>');
+            }
+          }
+        },
+        error: function() {
+
+        },
+        complete: function() { }
+      });
+
+
+  });
 
 
 
