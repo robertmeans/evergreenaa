@@ -113,7 +113,7 @@ function log_activity_for_analytics($now, $email, $device, $page, $day, $mtg_nam
   $sql .= "'" . $device . "', ";
   $sql .= "'" . $page . "', "; 
   $sql .= "'" . $day . "', ";
-  $sql .= "'" . $mtg_name . "', ";
+  $sql .= "'" . db_escape($db, $mtg_name) . "', ";
   $sql .= "'" . $their_ip . "'";
   $sql .= ")";
 

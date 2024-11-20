@@ -12,6 +12,22 @@
 //       }
 //   });
 // });
+
+function detectDeviceType() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (/iPad|Android|Silk/i.test(navigator.userAgent)) {
+      return "tablet";
+    } else {
+      return "mobile";
+    }
+  } else {
+    return "desktop";
+  }
+}
+
+
+
+
 // Navigation
 $(document).ready(function() {
   var url = window.location.href;
@@ -683,13 +699,26 @@ $(document).ready(function(){
 
     var day = $(this).html();
     // console.log(day);
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (isMobile) {
+    // if (isMobile) {
+    //   var device = 'mobile';
+    // } else {
+    //   var device = 'desktop';
+    // }
+
+    var deviceType = detectDeviceType(); /* declared at top of page */
+    // console.log("Device Type: " + deviceType); 
+
+    // Use the deviceType variable to customize your website's behavior
+    if (deviceType === "mobile") {
       var device = 'mobile';
+    } else if (deviceType === "tablet") {
+       var device = 'tablet';
     } else {
-      var device = 'desktop';
+       var device = 'desktop';
     }
+
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -724,13 +753,26 @@ $(document).ready(function(){
     var mtg_name = time + ' ' + title;
     // console.log(mtg_name);
 
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (isMobile) {
+    // if (isMobile) {
+    //   var device = 'mobile';
+    // } else {
+    //   var device = 'desktop';
+    // }
+
+    var deviceType = detectDeviceType(); /* declared at top of page */
+    // console.log("Device Type: " + deviceType); 
+
+    // Use the deviceType variable to customize your website's behavior
+    if (deviceType === "mobile") {
       var device = 'mobile';
+    } else if (deviceType === "tablet") {
+       var device = 'tablet';
     } else {
-      var device = 'desktop';
+       var device = 'desktop';
     }
+
 
     $('.weekday-wrap').not(toggle).slideUp();
     $('.daily-glance-wrap').not(active).removeClass('active');

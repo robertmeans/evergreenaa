@@ -10,13 +10,28 @@ $(window).on('load', function() {
   if (page === '') { page = 'index'; }
   if (page === 'manage') { page = 'dashboard'; }
 
-  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-  if (isMobile) {
+  // if (isMobile) {
+  //   var device = 'mobile';
+  // } else {
+  //   var device = 'desktop';
+  // }
+
+
+  var deviceType = detectDeviceType(); /* declared in _scripts-staging.js */
+  // console.log("Device Type: " + deviceType); 
+
+  // Use the deviceType variable to customize your website's behavior
+  if (deviceType === "mobile") {
     var device = 'mobile';
+  } else if (deviceType === "tablet") {
+     var device = 'tablet';
   } else {
-    var device = 'desktop';
+     var device = 'desktop';
   }
+
+
 
   $.ajax({
     url: 'process-analytics.php',

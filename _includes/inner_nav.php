@@ -11,7 +11,7 @@
 	 	<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a>
 	 	<?php } ?>
     <?php if (isset($analytics_on_off) && $_SESSION['id'] == '1') { ?>
-      <a href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
+      <a class="<?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>new-action<?php } ?>" href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
     <?php } ?>
  	</p>
  <?php } ?>
@@ -28,7 +28,7 @@
 	 	<a href="<?= WWW_ROOT . '/manage.php' ?>">Dashboard</a>
 
     <?php if (isset($analytics_on_off) && $_SESSION['id'] == '1') { ?>
-      <a href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
+      <a class="<?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>new-action<?php } ?>" href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
     <?php } ?>
 
 	</p>
@@ -42,7 +42,7 @@
 	 	<a href="<?= WWW_ROOT . '/user_management.php' ?>">User Management</a>
 	 	<?php } ?>
     <?php if (isset($analytics_on_off) &&  $_SESSION['id'] == '1' && basename($_SERVER['PHP_SELF']) !== 'internal_analytics.php') { ?>
-      <a href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
+      <a class="<?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>new-action<?php } ?>" href="<?= WWW_ROOT . '/internal_analytics.php' ?>">Analytics</a>
     <?php } ?>  
 	</p>
  <?php } ?>

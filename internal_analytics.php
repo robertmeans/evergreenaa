@@ -34,9 +34,31 @@ require '_includes/head.php'; ?>
   $results = get_analytic_data();
   /* reference:   id  occurred  auser_email page  day_opened  mtg_opened  a_ip */
   $i = 0;
-  $array = array();
+  $array = [];
+  $ip_counts = [];
+  $ip_counts2 = [];
+
   while ($row = mysqli_fetch_assoc($results)) {
-     $array[] = $row;
+    $array[] = $row;
+
+    /* this shows those ip's that only occur once */
+    $ip = $row['a_ip'];
+    $ip2 = $row['auser_email'] . ' ' . $row['page'] . ' ' . $row['a_ip'];
+
+    if (!isset($ip_counts[$ip])) {
+      $ip_counts[$ip] = 1;
+    } else {
+      $ip_counts[$ip]++;
+    }
+
+
+    if (!isset($ip_counts2[$ip2])) {
+      $ip_counts2[$ip2] = 1;
+    } else {
+      $ip_counts2[$ip2]++;
+    }
+
+
      $i++;
   }
 
@@ -57,13 +79,41 @@ require '_includes/head.php'; ?>
     } ?>" target="_blank">phpMyAdmin</a></p>
   </div>
 
-  <div id="ia-wrap">
+  <div class="ia-headwrap">
     <?php // start grabbing data and filling in page ?>
-    <p><?= $i; ?> Interactions</p>
+    <p class="ail"><?php
+      echo $i . ' Interactions | ';
 
-    <?php if ($unique_ips > 0) { ?>
-      <p><?= $unique_ips; ?> unique IP<?php if ($unique_ips == 0 || $unique_ips > 1) { echo '\'s'; } ?></p>
-    <?php } ?>
+      if ($unique_ips == 1 ) { echo $unique_ips . ' unique IP'; } 
+      if ($unique_ips == 0 || $unique_ips > 1) { echo $unique_ips . ' unique Ip\'s'; } 
+
+
+    ?></p>
+
+
+
+<?php  /* this grabs each unique ip - an ip that only appears once */
+foreach ($ip_counts as $ip => $count) {
+  if ($count === 1) {
+    // This IP appears only once
+    echo 'Unique: ' .  $ip . '<br>';
+    // You can further process this unique IP, such as storing it in an array or performing other actions.
+  }
+}
+
+echo '<br><br>';
+
+foreach ($ip_counts2 as $ip2 => $count) {
+  if ($count !== 1) {
+    // This IP appears only once
+    echo 'Unique: ' .  $ip2 . '<br>';
+    // You can further process this unique IP, such as storing it in an array or performing other actions.
+  }
+}
+
+?>
+
+
   </div>
 
 </div><!-- #manage-wrap -->
