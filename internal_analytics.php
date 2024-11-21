@@ -159,30 +159,19 @@ foreach ($all_records as $row) {
   $desktop_count = [];
 
   foreach ($all_records as $row) {
-    if (!empty($row['page'] && $row['page'] === 'index') && empty($row['day_opened']) && empty($row['mtg_opened'])) {
-      $homepage_loads++;
+    if (!empty($row['page']) && $row['page'] === 'index') { $homepage_loads++; }
+
+    if (isset($row['day_opened'])) { 
+      $day = $row['day_opened']; 
+      if ($day === 'Sunday')    { $sunday_opened++;     }
+      if ($day === 'Monday')    { $monday_opened++;     }
+      if ($day === 'Tuesday')   { $tuesday_opened++;    }
+      if ($day === 'Wednesday') { $wednesday_opened++;  }
+      if ($day === 'Thursday')  { $thursday_opened++;   }
+      if ($day === 'Friday')    { $friday_opened++;     }
+      if ($day === 'Saturday')  { $saturday_opened++;   }
     }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Sunday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $sunday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Monday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $monday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Tuesday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $tuesday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Wednesday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $wednesday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Thursday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $thursday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Friday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $friday_opened++;
-    }
-    if (!empty($row['day_opened'] && $row['day_opened'] === 'Saturday') && empty($row['page']) && empty($row['mtg_opened'])) {
-      $saturday_opened++;
-    }
+
     if (!empty($row['device']) && ($row['device'] === 'mobile')) {
       $mobile_count[] = $row;
       $mobile++;

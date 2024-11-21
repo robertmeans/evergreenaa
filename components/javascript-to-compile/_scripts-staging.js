@@ -25,9 +25,6 @@ function detectDeviceType() {
   }
 }
 
-
-
-
 // Navigation
 $(document).ready(function() {
   var url = window.location.href;
@@ -699,13 +696,6 @@ $(document).ready(function(){
 
     var day = $(this).html();
     // console.log(day);
-    // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // if (isMobile) {
-    //   var device = 'mobile';
-    // } else {
-    //   var device = 'desktop';
-    // }
 
     var deviceType = detectDeviceType(); /* declared at top of page */
     // console.log("Device Type: " + deviceType); 
@@ -718,7 +708,6 @@ $(document).ready(function(){
     } else {
        var device = 'desktop';
     }
-
 
     $('.day-content').not(toggle).slideUp();
     $('.day').not(active).removeClass('active');
@@ -789,57 +778,37 @@ $(document).ready(function(){
     }
   });
 
-
   $('.analytics-cleanup').click(function() {
     var ip_delete_list = $('#ip-delete-list').val();
     // console.log(ip_delete_list);
 
-      $.ajax({
-        dataType: "JSON",
-        url: 'process-analytics.php',
-        method: 'POST', 
-        data: {
-          delete_ip_list_key: 'set', /* used to identify appropriate process */
-          ip_delete_list: ip_delete_list
-        }, 
-        beforeSend: function(xhr) {
+    $.ajax({
+      dataType: "JSON",
+      url: 'process-analytics.php',
+      method: 'POST', 
+      data: {
+        delete_ip_list_key: 'set', /* used to identify appropriate process */
+        ip_delete_list: ip_delete_list
+      }, 
+      beforeSend: function(xhr) {
 
-        }, 
-        success: function(response) {
-          if (response) {
-            if (response['delete_signal'] == 'ok') {
-              $('#clean-up-btn').html('');
-              $('#replace-this').html('<div class="col-full-width">' + response['delete_msg'] + '</div>');
-            } else {
-              $('#replace-this').html('<div class="col-full-width">nope: ' + response['delete_msg'] + '</div>');
-            }
+      }, 
+      success: function(response) {
+        if (response) {
+          if (response['delete_signal'] == 'ok') {
+            $('#clean-up-btn').html('');
+            $('#replace-this').html('<div class="col-full-width">' + response['delete_msg'] + '</div>');
+          } else {
+            $('#replace-this').html('<div class="col-full-width">nope: ' + response['delete_msg'] + '</div>');
           }
-        },
-        error: function() {
+        }
+      },
+      error: function() {
 
-        },
-        complete: function() { }
-      });
-
-
+      },
+      complete: function() { }
+    });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   $('.manage-glance-wrap').click(function() {
     close_navigation_first();

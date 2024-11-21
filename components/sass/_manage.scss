@@ -9,7 +9,11 @@
 	flex-wrap: wrap;
 	line-height: 1.5em;
 	padding: 100px 20px;
-	
+}
+@media screen and (max-width: 600px) {
+  #manage-wrap {
+    padding: 100px 10px;
+  }
 }
 .confirm {
 	text-align: center;

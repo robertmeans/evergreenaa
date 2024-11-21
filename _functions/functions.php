@@ -11,7 +11,6 @@ function configure_theme() {
   return $theme;
 }
 
-
 function preload_config($layout_context) {
   if (isset($_SESSION['db-theme'])) {
     $theme = $_SESSION['db-theme'];
