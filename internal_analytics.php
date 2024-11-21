@@ -38,11 +38,30 @@ require '_includes/head.php'; ?>
   $unique_count = 0;
   $unique_ips = [];
 
+  $all_mobile = '';
+  $all_tablet = '';
+  $all_desktop = '';
+
+  $mobile_count_a = 0;
+  $mobile_unique_a = [];
+
+  $tablet_count_a = 0;
+  $tablet_unique_a = [];
+
+  $desktop_count_a = 0;
+  $desktop_unique_a = [];
+
   while ($row = mysqli_fetch_assoc($results)) {
 
     $all_records[] = $row; /* grab everything for later processing */
 
     $ip = $row['a_ip']; /* 'bout to do tricky stuff based on IP addresses... */
+
+    if (isset($row['device']) && $row['device'] === 'mobile') { $all_mobile = $row['device'] . ' ' . $row['a_ip']; }
+    if (isset($row['device']) && $row['device'] === 'tablet') { $all_tablet = $row['device'] . ' ' . $row['a_ip']; }
+    if (isset($row['device']) && $row['device'] === 'desktop') { $all_desktop = $row['device'] . ' ' . $row['a_ip']; }
+
+
     /* get visits that are likely bots due to no interactions, just page visits */
     if (!isset($ip_groups[$ip])) {
         $ip_groups[$ip] = [$row];
@@ -50,10 +69,25 @@ require '_includes/head.php'; ?>
         $ip_groups[$ip][] = $row;
     }
     /* consolidate unique ip's for a count of how many people are using the site */
-    if (!in_array($ip, $unique_ips)) {
+    if (!empty($ip) && !in_array($ip, $unique_ips)) {
         $unique_ips[] = $ip;
         $unique_count++;
     }
+
+    if (!empty($all_mobile) && !in_array($all_mobile, $mobile_unique_a)) {
+      $mobile_unique_a[] = $all_mobile;
+      $mobile_count_a++;
+    }
+    if (!empty($all_tablet) && !in_array($all_tablet, $tablet_unique_a)) {
+      $tablet_unique_a[] = $all_tablet;
+      $tablet_count_a++;
+    }
+    if (!empty($all_desktop) && !in_array($all_desktop, $desktop_unique_a)) {
+      $desktop_unique_a[] = $all_desktop;
+      $desktop_count_a++;
+    }
+
+
 
     $i++; /* get total number of rows - everything included */
   }
@@ -115,9 +149,51 @@ foreach ($all_records as $row) {
 
 /* begin - homepage only count */
   $homepage_loads = 0;
+  $sunday_opened = 0; $monday_opened = 0; $tuesday_opened = 0; $wednesday_opened = 0; $thursday_opened = 0; $friday_opened = 0; $saturday_opened = 0;
+
+  $mobile = 0;
+  $tablet = 0;
+  $desktop = 0;
+  $mobile_count = [];
+  $tablet_count = [];
+  $desktop_count = [];
+
   foreach ($all_records as $row) {
-    if (!empty($row['page']) && empty($row['day_opened']) && empty($row['mtg_opened'])) {
+    if (!empty($row['page'] && $row['page'] === 'index') && empty($row['day_opened']) && empty($row['mtg_opened'])) {
       $homepage_loads++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Sunday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $sunday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Monday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $monday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Tuesday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $tuesday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Wednesday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $wednesday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Thursday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $thursday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Friday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $friday_opened++;
+    }
+    if (!empty($row['day_opened'] && $row['day_opened'] === 'Saturday') && empty($row['page']) && empty($row['mtg_opened'])) {
+      $saturday_opened++;
+    }
+    if (!empty($row['device']) && ($row['device'] === 'mobile')) {
+      $mobile_count[] = $row;
+      $mobile++;
+    }
+    if (!empty($row['device']) && ($row['device'] === 'tablet')) {
+      $tablet_count[] = $row;
+      $tablet++;
+    }
+    if (!empty($row['device']) && ($row['device'] === 'desktop')) {
+      $desktop_count[] = $row;
+      $desktop++;
     }
   }
 /* end - homepage only count */
@@ -129,13 +205,28 @@ foreach ($all_records as $row) {
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
       $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
 
-      echo 'Since: ' . $new_start_formatted . '<br>' . $i - $homepage_loads . ' Interactions | ';
+      echo 'Since: ' . $new_start_formatted . '<br>' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . ' Interactions | ';
 
       if ($unique_count == 1 ) { echo $unique_count . ' unique IP'; } 
       if ($unique_count == 0 || $unique_count > 1) { echo $unique_count . ' unique IP\'s'; } 
 
       if ($unique_count > 0) { 
-      $list_to_delete = implode(', ', $single_visit_no_action) . ', ' . implode(', ', $multiple_visits_no_action); 
+      // $list_to_delete = implode(', ', $single_visit_no_action) . ', ' . implode(', ', $multiple_visits_no_action); 
+      $formatted_single_visit = [];
+      foreach ($single_visit_no_action as $item) {
+        $formatted_single_visit[] = str_replace("'", "", $item);
+      }
+      $formatted_multiple_visits = [];
+      foreach ($multiple_visits_no_action as $item) {
+        $formatted_multiple_visits[] = str_replace("'", "", $item);
+      }
+
+      if ($unique_count == 1) {
+        $list_to_delete = implode(', ', $formatted_single_visit) . implode(', ', $formatted_multiple_visits);
+      } else {
+        $list_to_delete = implode(', ', $formatted_single_visit) . ', ' . implode(', ', $formatted_multiple_visits);
+      }
+
 
       if ($single_visit_no_action || $multiple_visits_no_action) {
       ?>
@@ -177,6 +268,33 @@ foreach ($all_records as $row) {
   <?php } ?>
   </div>
 <?php } ?>
+
+  <div class="ia-ip-list ip-notes">
+    <div class="col">
+      
+      <p><u>Unique IP addresses</u><br><?= $mobile_count_a; ?> Mobile &nbsp;●&nbsp; <?= $tablet_count_a; ?> Tablet &nbsp;●&nbsp; <?= $desktop_count_a; ?> Desktop</p>
+      <?php /* both the one above and the one below work - only using one, of couse.
+      <p><?= count($mobile_unique_a); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_unique_a); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_unique_a); ?> Desktop</p>
+      */ ?>
+
+      <br>
+
+      <p><u>Individual interactions</u><br><?= $mobile; ?> Mobile &nbsp;●&nbsp; <?= $tablet; ?> Tablet &nbsp;●&nbsp; <?= $desktop; ?> Desktop</p>
+      <?php /* both the one above and the one below work - only using one...
+      <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_count); ?> Desktop</p>
+      */ ?>
+
+      <br>
+
+      <p><?= $sunday_opened ?> - Sunday opened</p>
+      <p><?= $monday_opened ?> - Monday opened</p>
+      <p><?= $tuesday_opened ?> - Tuesday opened</p>
+      <p><?= $wednesday_opened ?> - Wednesday opened</p>
+      <p><?= $thursday_opened ?> - Thursday opened</p>
+      <p><?= $friday_opened ?> - Friday opened</p>
+      <p><?= $saturday_opened ?> - Saturday opened</p>
+    </div>
+  </div>
 
 <?php mysqli_free_result($results); ?>
 
