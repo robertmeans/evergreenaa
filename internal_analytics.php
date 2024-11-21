@@ -221,6 +221,7 @@ foreach ($all_records as $row) {
         $formatted_multiple_visits[] = str_replace("'", "", $item);
       }
 
+      /* you need to do something here to account for $formatted_single or $formatted_multiple only having 1 value and therefore does not need the trailing comma */
       if ($unique_count == 1) {
         $list_to_delete = implode(', ', $formatted_single_visit) . implode(', ', $formatted_multiple_visits);
       } else {
