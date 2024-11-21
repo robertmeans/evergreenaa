@@ -210,24 +210,15 @@ foreach ($all_records as $row) {
       if ($unique_count == 1 ) { echo $unique_count . ' unique IP'; } 
       if ($unique_count == 0 || $unique_count > 1) { echo $unique_count . ' unique IP\'s'; } 
 
+      /* get $list_to_delete right before sending it to db! */
       if ($unique_count > 0) { 
-      // $list_to_delete = implode(', ', $single_visit_no_action) . ', ' . implode(', ', $multiple_visits_no_action); 
-      $formatted_single_visit = [];
-      foreach ($single_visit_no_action as $item) {
-        $formatted_single_visit[] = str_replace("'", "", $item);
-      }
-      $formatted_multiple_visits = [];
-      foreach ($multiple_visits_no_action as $item) {
-        $formatted_multiple_visits[] = str_replace("'", "", $item);
-      }
-
-      /* you need to do something here to account for $formatted_single or $formatted_multiple only having 1 value and therefore does not need the trailing comma */
-      if ($unique_count == 1) {
-        $list_to_delete = implode(', ', $formatted_single_visit) . implode(', ', $formatted_multiple_visits);
-      } else {
-        $list_to_delete = implode(', ', $formatted_single_visit) . ', ' . implode(', ', $formatted_multiple_visits);
-      }
-
+        if (count($single_visit_no_action) === 1 && count($multiple_visits_no_action) === 0) {
+          $list_to_delete = implode(', ', $single_visit_no_action);
+        } else if (count($multiple_visits_no_action) === 1 && count($single_visit_no_action) === 0) {
+          $list_to_delete = implode(', ', $multiple_visits_no_action);
+        } else { 
+          $list_to_delete = implode(', ', $single_visit_no_action) . ', ' . implode(', ', $multiple_visits_no_action);
+        } 
 
       if ($single_visit_no_action || $multiple_visits_no_action) {
       ?>

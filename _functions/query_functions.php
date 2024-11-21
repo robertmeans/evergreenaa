@@ -137,8 +137,7 @@ function remove_likely_bots($bot_ips) {
 
   $sql  = "DELETE FROM analytics WHERE a_ip IN ";
   $sql .= "(";
-  // $sql .= $bot_ips;
-  $sql .= "'" . $bot_ips . "'";
+  $sql .= $bot_ips;
   $sql .= ")";
 
   $result = mysqli_query($db, $sql);
