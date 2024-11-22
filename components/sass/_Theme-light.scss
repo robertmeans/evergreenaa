@@ -355,6 +355,25 @@ p.logout,
   }
 }
 
+#manage-wrap {
+  #clean-up-btn {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 1em;
+  }
+  a.analytics-cleanup {
+    background-color: #5693be;
+  }
+}
+.ia-ip-list .col.unique-ips,
+.ia-ip-list .col.multi-visits {
+  border-color: #757575;
+}
+.ia-ip-list .col p.ip-notes {
+  background-color: rgba(79,185,247,0.2);
+}
+
+
 .manage-simple {
   border-color: #757575;
 }

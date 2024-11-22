@@ -5,6 +5,8 @@
 	if ((($row['id_user']) == $_SESSION['id']) && (($row['visible'] == 1) || ($row['visible'] == 2) || ($row['visible'] == 3))) { ?>
 
 	<div class="daily-glance-wrap">
+    <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
+    <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 
@@ -62,6 +64,8 @@
 <?php } else if ((($row['id_user']) != $_SESSION['id']) && ((($row['visible'] == 2) || ($row['visible'] == 3)))) { ?>
 
 	<div class="daily-glance-wrap">
+    <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
+    <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 
@@ -120,6 +124,8 @@
 <?php } else if  ($row['visible'] != 0 && $row['visible'] != 1 && $row['visible'] != 2) { ?>	
 
 	<div class="daily-glance-wrap">
+    <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
+    <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 				<p><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>

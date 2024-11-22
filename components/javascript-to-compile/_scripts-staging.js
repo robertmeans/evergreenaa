@@ -333,6 +333,32 @@ $(document).ready(function() {
 // copy to clipboard ID: data-role=ci
 $(document).ready(function() {
 
+
+  // clipboard for IP addresses in internal_analytics
+  $(document).on('click','a[data-role=svna]',function() {
+    var ip   = $(this).data('id');
+
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = ip;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+
+    var originalIcon = "<i class=\"far fa-copy fa-fw\"></i>"+ip;
+    var changeBack  = $(this);
+
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> IP Copied!");
+    $(this).addClass('copied');
+
+    setTimeout(function() {
+      changeBack.removeClass('copied');
+      changeBack.html(originalIcon);
+    }, 1000);
+ 
+  });
+
+
   // clipboard for ID & BCC email addresses
   $(document).on('click','a[data-role=ic]',function() {
     var id   = $(this).data('id');
@@ -738,10 +764,13 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
 
+    var mtg_id = $(this).find('[data-role=mtg-id]').val();
+    var usr_id = $(this).find('[data-role=usr-id]').val();
+
     var time = $(this).find('.glance-mtg-time p').text();
     var title = $(this).find('.glance-group-title p').text();
     var mtg_name = time + ' ' + title;
-    // console.log(mtg_name);
+    // console.log(usr_id);
 
     var deviceType = detectDeviceType(); /* declared at top of page */
     // console.log("Device Type: " + deviceType); 
@@ -770,8 +799,10 @@ $(document).ready(function(){
         dataType: 'text', 
         data: {
           primary_key: 'set', /* used to identify appropriate process */
-          mtgName: mtg_name,
-          device: device
+          device: device,
+          host_id: usr_id,
+          mtg_id: mtg_id,
+          mtgName: mtg_name
         } /* no success or fail actions necessary */
       });
 
@@ -797,9 +828,17 @@ $(document).ready(function(){
         if (response) {
           if (response['delete_signal'] == 'ok') {
             $('#clean-up-btn').html('');
-            $('#replace-this').html('<div class="col-full-width">' + response['delete_msg'] + '</div>');
+            $('#replace-this').html('<div class="col-full-width ds">' + response['delete_msg'] + '</div>');
+
+            setTimeout(function() {
+              $("#replace-this").animate({ height: "0px" }, 1000); 
+            }, 3000); /* wait 3 seconds then close drawer in 1 second */
+            setTimeout(function() {
+              $("#replace-this").html(''); 
+            }, 4000); /* wait 4 seconds (3 + 1 from above) and reomve div */
+
           } else {
-            $('#replace-this').html('<div class="col-full-width">nope: ' + response['delete_msg'] + '</div>');
+            $('#replace-this').html('<div class="col-full-width dns">nope: ' + response['delete_msg'] + '</div>');
           }
         }
       },

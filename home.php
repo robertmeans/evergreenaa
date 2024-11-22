@@ -71,7 +71,6 @@ if ($time_offset != '00') {
               $mt->setTimezone($to_tz_obj);
             }
 
-
 						$ic = 'i0_'.$i;
 						$pc = 'p0_'.$i;
 

@@ -102,17 +102,19 @@ function get_analytic_data() {
   return $result; // returns an assoc. array
 }
 
-function log_activity_for_analytics($now, $email, $device, $page, $day, $mtg_name, $their_ip) {
+function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_name, $their_ip) {
   global $db; 
 
   $sql = "INSERT INTO analytics ";
-  $sql .= "(occurred, auser_email, device, page, day_opened, mtg_opened, a_ip) ";
+  $sql .= "(occurred, auser_email, device, page, day_opened, host_id, mtg_id, mtg_opened, a_ip) ";
   $sql .= "VALUES (";
   $sql .= "'" . $now . "', ";
   $sql .= "'" . $email . "', ";
   $sql .= "'" . $device . "', ";
   $sql .= "'" . $page . "', "; 
   $sql .= "'" . $day . "', ";
+  $sql .= "'" . $host_id . "', ";
+  $sql .= "'" . $mtg_id . "', ";
   $sql .= "'" . db_escape($db, $mtg_name) . "', ";
   $sql .= "'" . $their_ip . "'";
   $sql .= ")";
@@ -160,7 +162,7 @@ function remove_likely_bots($bot_ips) {
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 
-    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note FROM meetings as m ";
 
     $sql .= "WHERE m.visible != 0 ";
     $sql .= "AND m.visible != 1 ";

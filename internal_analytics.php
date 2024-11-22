@@ -196,7 +196,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       <?php 
       $new_single_visit_list = [];
       foreach ($single_visit_no_action as $item) {
-        $new_single_visit_list[] = str_replace("'", "", $item) . "<br>"; // remove all single quotes
+        $ip = str_replace("'", "", $item);
+        $new_single_visit_list[] = '<div class="svna"><a data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a></div><br>'; // remove all single quotes
       }
       echo implode("", $new_single_visit_list);
 
@@ -209,7 +210,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       <?php 
       $new_multiple_visits = [];
       foreach ($multiple_visits_no_action as $item) {
-        $new_multiple_visits[] = str_replace("'", "", $item) . "<br>";
+        $ip = str_replace("'", "", $item);
+        $new_multiple_visits[] = '<div class="svna"><a data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a></div><br>';
       }
       echo implode("", $new_multiple_visits); 
 
