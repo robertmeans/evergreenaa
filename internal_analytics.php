@@ -225,6 +225,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <div class="col">
       
       <p><u>Unique IP addresses</u><br>
+        <p class="expl">These numbers represent the devices that were used at unique IP addresses. There could be multiple devices used at the same IP which explains why the sum of these numbers is different than the "unique IP's" above.</p>
       <p><?= count($mobile_unique_a); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_unique_a); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_unique_a); ?> Desktop</p>
       <br>
       <p><u>Individual interactions</u><br>
