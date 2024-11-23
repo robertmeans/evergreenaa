@@ -1,3 +1,6 @@
+a#toggle-total-interactions
+a#toggle-unique-ip,
+a#toggle-individual-interactions,
 a#toggle-lat-long-msg,
 a#toggle-one-tap-msg,
 a#toggle-yer-phone-num,
@@ -51,7 +54,10 @@ a#gmaps {
 #link-label,
 #role-key,
 #why-join,
-#mb-notes {
+#mb-notes,
+#total-interactions,
+#unique-ip,
+#individual-interactions {
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -78,6 +84,9 @@ a#gmaps {
     justify-content: center;
     align-items: center;
     padding: 20px 20px 0px;
+    h1 {
+      color: #fff;
+    }
   }
 
  .inside-msg-one {
@@ -213,7 +222,10 @@ a.youtube {
   #pdf-upload,
   #link-label,
   #role-key, 
-  #mb-notes {
+  #mb-notes,
+  #total-interactions,
+  #unique-ip,
+  #individual-interactions {
     .msg-bkg {
       justify-content: flex-start;
       overflow-y: auto;
@@ -250,7 +262,10 @@ a.youtube {
   #pdf-upload,
   #link-label,
   #role-key,
-  #mb-notes {
+  #mb-notes,
+  #total-interactions,
+  #unique-ip,
+  #individual-interactions {
     .msg-bkg {
       // padding: 0px;
     }

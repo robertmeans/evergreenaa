@@ -364,6 +364,15 @@ p.logout,
   a.analytics-cleanup {
     background-color: #5693be;
   }
+
+  a.tgl-msg {
+    color: rgba(86,147,190,0.6);
+    &:hover {
+      color: #5693be;
+    }
+  }
+
+
 }
 .ia-ip-list .col.unique-ips,
 .ia-ip-list .col.multi-visits {

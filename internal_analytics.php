@@ -29,6 +29,11 @@ require '_includes/head.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
+
+<?php require '_includes/msg-total-interactions.php'; ?>
+<?php // require '_includes/msg-role-key.php'; ?>
+<?php // require '_includes/msg-role-key.php'; ?>
+
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <?php
 
@@ -168,6 +173,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       if (count($unique_ips) == 1 ) { echo count($unique_ips) . ' unique IP'; } 
       if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo count($unique_ips) . ' unique IP\'s'; } 
 
+      if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; }
       /* get $list_to_delete right before sending it to db! */
       if (count($unique_ips) > 0) { 
         if (count($single_visit_no_action) === 1 && count($multiple_visits_no_action) === 0) {
@@ -224,11 +230,11 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div class="ia-ip-list ip-notes">
     <div class="col">
       
-      <p><u>Unique IP addresses</u><br>
+      <p><u>Unique IP addresses</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a><br>
         <p class="expl">These numbers represent the devices that were used at unique IP addresses. There could be multiple devices used at the same IP which explains why the sum of these numbers is different than the "unique IP's" above.</p>
       <p><?= count($mobile_unique_a); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_unique_a); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_unique_a); ?> Desktop</p>
       <br>
-      <p><u>Individual interactions</u><br>
+      <p><u>Individual interactions</u><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><br>
       <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_count); ?> Desktop</p>
 
       <br>

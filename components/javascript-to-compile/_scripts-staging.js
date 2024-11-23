@@ -176,6 +176,48 @@ $(document).ready(function(){
     }
   });  
 
+
+
+
+
+
+
+
+
+  // $("#toggle-total-interactions").click(function(e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+
+  //   if ($('#total-interactions').is(':hidden')) {
+  //       $("#total-interactions").fadeIn(500);
+  //   } else {
+  //       $("#total-interactions").fadeOut(500); 
+  //   }
+  // }); 
+  // $("#toggle-unique-ip").click(function(e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+
+  //   if ($('#unique-ip').is(':hidden')) {
+  //       $("#unique-ip").fadeIn(500);
+  //   } else {
+  //       $("#unique-ip").fadeOut(500); 
+  //   }
+  // }); 
+  // $("#toggle-individual-interactions").click(function(e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+
+  //   if ($('#individual-interactions').is(':hidden')) {
+  //       $("#individual-interactions").fadeIn(500);
+  //   } else {
+  //       $("#individual-interactions").fadeOut(500); 
+  //   }
+  // }); 
+
+
+
+
 });
 
 $(document).click(function() {
@@ -191,8 +233,19 @@ $(document).click(function() {
     $("#why-join").fadeOut(500);
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
+
   // } else if ($('#tz').is(':visible')) {
   //   $("#tz").fadeOut(500);
+
+  } else if ($('#total-interactions').is(':visible')) {
+    $("#total-interactions").fadeOut(500);
+  } else if ($('#unique-ip').is(':visible')) {
+    $("#unique-ip").fadeOut(500);
+  } else if ($('#individual-interactions').is(':visible')) {
+    $("#individual-interactions").fadeOut(500);
+
+
+
   } else if ($('#mb-notes').is(':visible')) {
     $("#mb-notes").fadeOut(500); 
   } else if ($('#lat-long').is(':visible')) {
@@ -521,6 +574,9 @@ $(document).ready(function(){
   $("#why-join").hide();
   $("#gottajoin").hide();
   $("#mb-notes").hide();
+  $("#total-interactions").hide();
+  $("#unique-ip").hide();
+  $("#individual-interactions").hide();
   $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
@@ -929,6 +985,23 @@ $("#toggle-pdf-info").click(function(e) {
 
 $("#toggle-link-label").click(function(e) {
   $("#link-label").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+
+$("#toggle-total-interactions").click(function(e) {
+  $("#total-interactions").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$("#toggle-unique-ip").click(function(e) {
+  $("#unique-ip").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+$("#toggle-individual-interactions").click(function(e) {
+  $("#individual-interactions").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
