@@ -831,11 +831,11 @@ $(document).ready(function(){
             $('#replace-this').html('<div class="col-full-width ds">' + response['delete_msg'] + '</div>');
 
             setTimeout(function() {
-              $("#replace-this").animate({ height: "0px" }, 1000); 
-            }, 3000); /* wait 3 seconds then close drawer in 1 second */
+              $("#replace-this").animate({ height: "0px" }, 250); 
+            }, 1250); /* wait 3 seconds then close drawer in 1 second */
             setTimeout(function() {
               $("#replace-this").html(''); 
-            }, 4000); /* wait 4 seconds (3 + 1 from above) and reomve div */
+            }, 1500); /* wait 4 seconds (3 + 1 from above) and reomve div */
 
           } else {
             $('#replace-this').html('<div class="col-full-width dns">nope: ' + response['delete_msg'] + '</div>');
