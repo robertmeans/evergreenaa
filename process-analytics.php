@@ -4,7 +4,7 @@ require_once 'config/initialize.php'; /* toggle all analytics on/off in initiali
 if (!isset($analytics_on_off)) { return; } else {
 
   if (!isset($_SESSION['bbiw'])) { /* add extra letter to end of 'bbiw' to reset all the session vars. make sure to make consistent 6 lines below. this way you can force an update to all analytics without causing an undeclared var error even if someone is in a session when you make an update. */
-    $me = array('1', '2'); /* id's of those you want to have access to analytics */
+    $me = array('1', '2'); /* id's of those who will not get tracked regardless of IP */
     $ip = get_ip_list();
     $also_me = explode(',', $ip['ip_ignore']);
     $their_ip = $_SERVER['REMOTE_ADDR'];
@@ -17,13 +17,14 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_SESSION['id']) && ($_SESSION['id'] == '1' || $_SESSION['id'] == '2')) {
       $_SESSION['alertb'] = $ip['alert']; /*  */
     }
-
   }
   if (!isset($_SESSION['id'])) { $a_user_id = 'ns'; } else { $a_user_id = $_SESSION['id']; }
 
-
   /* primary processing begin */
   if ((is_post_request() && isset($_POST['primary_key'])) && (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am']))) {
+
+    /* don't track index */
+    if (isset($_POST['page']) && $_POST['page'] === 'index') { return; } 
     
     global $db;
 
@@ -46,7 +47,6 @@ if (!isset($analytics_on_off)) { return; } else {
    
   }
   /* primary processing end */
-
 
   /* delete list if ip's from internal_analytics.php page - begin */
   if (is_post_request() && isset($_POST['delete_ip_list_key'])) {

@@ -18,6 +18,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 }
 
 $id = $_GET['id'];
+if (isset($_SESSION['ti'])) { $their_ip = $_SESSION['ti']; } else { $their_ip = '0'; }
 
 // If validation fails -> this page is rendered
 if (is_post_request()) {
@@ -225,7 +226,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
       $now = $date->format("H:i D, m.d.y");
 
       if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
-      monitor_theme_usage($now, $user_id, $color);
+      monitor_theme_usage($now, $user_id, $color, $their_ip);
     }
     
     $result = set_theme($themeChange, $user_id);

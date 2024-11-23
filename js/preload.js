@@ -24,8 +24,10 @@ $(window).on('load', function() {
 
   $.ajax({
     url: 'process-analytics.php',
-    type: 'POST',
+    method: 'POST', 
+    dataType: 'text', 
     data: {
+      primary_key: 'set',
       page: page,
       device: device
     } /* no success or fail actions necessary */

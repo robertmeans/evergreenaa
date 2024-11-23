@@ -20,6 +20,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 }
 
 $role = $_SESSION['admin'];
+if (isset($_SESSION['ti'])) { $their_ip = $_SESSION['ti']; } else { $their_ip = '0'; }
 
 if (is_post_request()) {
 
@@ -164,8 +165,8 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
       $date = new DateTime('now', new DateTimeZone('America/Denver'));
       $now = $date->format("H:i D, m.d.y");
 
-      if ($theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
-      monitor_theme_usage($now, $user_id, $color);
+      if (!isset($theme) || $theme === '0') { $color = 'Dark'; } else { $color = 'Bright'; }
+      monitor_theme_usage($now, $user_id, $color, $their_ip);
     }
 
     $result = set_theme($themeChange, $user_id);
