@@ -736,3 +736,11 @@ footer #footer-contact-form span {
     background-color: rgba(79,185,247,0.15);
   }
 }
+
+.ia-ip-list {
+  .col {
+    &.v {
+      border-left: 1px solid rgba(79,185,247,0.8);
+    }
+  }
+}
