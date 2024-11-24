@@ -67,9 +67,9 @@ require '_includes/head.php'; ?>
       if ($day === 'Saturday')  { $saturday_opened++;   }
     }
 
-    if (!empty($row['device']) && ($row['device'] === 'mobile')) {  $mobile_count[]   = $row; }
-    if (!empty($row['device']) && ($row['device'] === 'tablet')) {  $tablet_count[]   = $row; }
-    if (!empty($row['device']) && ($row['device'] === 'desktop')) { $desktop_count[]  = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'mobile') && $row['page'] === '') {  $mobile_count[]   = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'tablet') && $row['page'] === '') {  $tablet_count[]   = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'desktop') && $row['page'] === '') { $desktop_count[]  = $row; }
 
     $ip = $row['a_ip']; /* 'bout to do tricky stuff based on IP addresses... */
 
@@ -150,16 +150,21 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <?php // start grabbing data and filling in page ?>
     <p class="ail"><?php
 
+      /* Start date of currently displayed results */
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
-      $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
+      // $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
+      $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
 
-      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp;';
+      /* Interactions */
+      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp; ';
 
+      /* Unique IP's */
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
       if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
 
       if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; }
-      /* get $list_to_delete right before sending it to db! */
+
+      /* Clean up button - collect IP's into comma separated string */
       if (count($unique_ips) > 0) { 
         if (count($single_visit_no_action) === 1 && count($multiple_visits_no_action) === 0) {
           $list_to_delete = implode(', ', $single_visit_no_action);
@@ -212,16 +217,41 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   </div>
 <?php } ?>
 
-  <div class="ia-ip-list ip-notes">
-    <div class="col">
-      
-      <p><u>Unique IP addresses</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a><br>
-      <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
-      <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
-      <br>
-      <p><u>Individual interactions</u><?php /* <a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a> */ ?><br>
-      <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_count); ?> Desktop</p>
 
+
+
+
+
+
+
+
+
+
+
+
+  <div class="ia-ip-list ip-notes">
+
+
+
+    <div class="col sp">
+      <div><?php /* so you can treat this as one block */ ?>
+      <?php /* Unique IP's for per device */ ?>
+      <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a>
+        <br>
+      <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; 
+         <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; 
+         <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
+         <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
+      <br>
+      <p><u>Individual interactions</u><?php /* */ ?><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><?php /* */ ?><br>
+      <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; 
+         <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; 
+         <?= count($desktop_count); ?> Desktop</p>
+         <input type="hidden" id="totb-in-int" value="<?php echo count($mobile_count) + count($tablet_count) + count($desktop_count); ?>">
+      </div>
+    </div>
+    <div class="col v">
+      <div><?php /* so you can treat this as one block */ ?>
       <div class="aweek-wrap">
         <div class="aweek-row">
           <div class="anum">Views</div><div class="aday">&nbsp;</div>
@@ -249,7 +279,12 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
         </div>
         
       </div>
+      </div>
     </div>
+
+
+
+
   </div>
 
 </div><!-- #manage-wrap -->

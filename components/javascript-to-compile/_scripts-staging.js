@@ -1009,9 +1009,6 @@ $("#toggle-total-interactions").click(function(e) {
 
 
 
-
-
-
 $("#toggle-unique-ip").click(function(e) {
   $("#unique-ip").fadeIn(500);
     e.preventDefault();
@@ -1029,10 +1026,10 @@ $("#toggle-unique-ip").click(function(e) {
 
     var tots = int_uniip - sum_devices; /* Unique IP's - sum of unique IP's for devices */
 
-    if (tots > 0) {
-      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is less than the ' + uniip + ' unique IP\'s from above. There are fewer IP addresses spread between the 3 devices because, for example, 1 person can use all 3 devices in the same house under the same wifi. Each device would be unique but the IP would be the same for all 3.');
-    } else if (tots < 0) {
-      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is more than the ' + uniip + ' unique IP\'s from above. That\'s because multiple devices can be using the same IP address. A good example would be someone on their home wifi using their computer, tablet and cell phone on the Internet. 3 devices all using the same IP.');
+    if (tots > 0) { /* why do the 3 device IP's add up to LESS than "Unique IP's" above? (localhost) */
+      $("#msg-uni-ipz").html('Something can\'t be right here... These 3 devices add up to ' + sum_devices + ' which is less than the ' + uniip + ' unique IP\'s from above. If anyone ever sees this message please email me through the contact form at the bottom of this page so I can investigate.');
+    } else if (tots < 0) { /* why do the 3 device IP's add up to MORE than "Unique IP's" above? (online) : SOLVED */
+      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>If you\'re wondering why these 3 devices add up to ' + sum_devices + ' which is more than the "' + uniip + ' unique IP\'s" from above, it\'s because multiple devices can be using the same IP address. A good example would be someone at home using 1 computer + 1 tablet + 1 cell phone on the same wifi connection. That\'s 3 devices using 1 unique IP.');
     } else {
       $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>It\'s unusual to have these 3 add up to equal the (' + uniip + ') unique IP\'s above but they do!');
     }
@@ -1049,6 +1046,13 @@ $("#toggle-individual-interactions").click(function(e) {
   $("#individual-interactions").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
+
+    var sum_device = $("#totb-in-int").val();
+    var total_inter = $("#js-total-interactions").text();
+    
+    $("#msgb-tot-in-int").html(sum_device);
+    $("#msgb-tot-in").html(total_inter);
+
 });
 
 
