@@ -1030,7 +1030,7 @@ $("#toggle-unique-ip").click(function(e) {
     var tots = int_uniip - sum_devices; /* Unique IP's - sum of unique IP's for devices */
 
     if (tots > 0) {
-      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is less than the ' + uniip + ' unique IP\'s from above. Think of it this way, you could have 1 cell phone and 100 unique IP\'s because when using cellular data the IP changes all the time.');
+      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is less than the ' + uniip + ' unique IP\'s from above. There are fewer IP addresses spread between the 3 devices because, for example, 1 person can use all 3 devices in the same house under the same wifi. Each device would be unique but the IP would be the same for all 3.');
     } else if (tots < 0) {
       $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is more than the ' + uniip + ' unique IP\'s from above. That\'s because multiple devices can be using the same IP address. A good example would be someone on their home wifi using their computer, tablet and cell phone on the Internet. 3 devices all using the same IP.');
     } else {
@@ -1050,11 +1050,6 @@ $("#toggle-individual-interactions").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 });
-
-
-
-
-
 
 
 

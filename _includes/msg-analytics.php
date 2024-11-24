@@ -30,7 +30,7 @@
       <i class="far fa-times-circle"></i>
       <h1>Individual Interactions</h1>
 
-      <p></p>
+      <p>Self-explanatory but still, I put this here in case I want to do something creative with it in the future. :)</p>
 
     </div><!-- .inside-msg-one -->
   </div><!-- .msg-bkg -->

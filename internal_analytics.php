@@ -30,7 +30,7 @@ require '_includes/head.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 
-<?php require '_includes/msg-total-interactions.php'; ?>
+<?php require '_includes/msg-analytics.php'; ?>
 <?php // require '_includes/msg-role-key.php'; ?>
 <?php // require '_includes/msg-role-key.php'; ?>
 
@@ -38,32 +38,17 @@ require '_includes/head.php'; ?>
 <?php
 
   $results = get_analytic_data();
-  /* fields are:   id,  occurred,  auser_email, page,  day_opened,  mtg_opened,  a_ip */
+  /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened,  a_ip */
   $i = 0;
 
-  $homepage_loads   = 0;
-  $sunday_opened    = 0; 
-  $monday_opened    = 0; 
-  $tuesday_opened   = 0; 
-  $wednesday_opened = 0; 
-  $thursday_opened  = 0; 
-  $friday_opened    = 0; 
-  $saturday_opened  = 0;
-
-  $ip_groups        = [];
-  $unique_ips       = [];
-
-  $mobile_count     = [];
-  $tablet_count     = [];
-  $desktop_count    = [];
-
-  $all_mobile       = '';
-  $all_tablet       = '';
-  $all_desktop      = '';
-
-  $mobile_unique_a  = [];
-  $tablet_unique_a  = [];
-  $desktop_unique_a = [];
+  $homepage_loads   = 0;  $ip_groups        = [];  $mobile_unique_a  = [];
+  $sunday_opened    = 0;  $unique_ips       = [];  $tablet_unique_a  = [];
+  $monday_opened    = 0;  $mobile_count     = [];  $desktop_unique_a = [];
+  $tuesday_opened   = 0;  $tablet_count     = []; 
+  $wednesday_opened = 0;  $desktop_count    = []; 
+  $thursday_opened  = 0;  $all_mobile       = ''; 
+  $friday_opened    = 0;  $all_tablet       = ''; 
+  $saturday_opened  = 0;  $all_desktop      = '';
 
   while ($row = mysqli_fetch_assoc($results)) {
 
@@ -168,7 +153,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
       $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
 
-      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | ';
+      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp;';
 
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
       if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
@@ -234,18 +219,36 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
       <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
       <br>
-      <p><u>Individual interactions</u><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><br>
+      <p><u>Individual interactions</u><?php /* <a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a> */ ?><br>
       <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_count); ?> Desktop</p>
 
-      <br>
-
-      <p><?= $sunday_opened ?> - Sunday opened</p>
-      <p><?= $monday_opened ?> - Monday opened</p>
-      <p><?= $tuesday_opened ?> - Tuesday opened</p>
-      <p><?= $wednesday_opened ?> - Wednesday opened</p>
-      <p><?= $thursday_opened ?> - Thursday opened</p>
-      <p><?= $friday_opened ?> - Friday opened</p>
-      <p><?= $saturday_opened ?> - Saturday opened</p>
+      <div class="aweek-wrap">
+        <div class="aweek-row">
+          <div class="anum">Views</div><div class="aday">&nbsp;</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $sunday_opened ?></div><div class="aday">Sunday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $monday_opened ?></div><div class="aday">Monday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $tuesday_opened ?></div><div class="aday">Tuesday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $wednesday_opened ?></div><div class="aday">Wednesday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $thursday_opened ?></div><div class="aday">Thursday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $friday_opened ?></div><div class="aday">Friday</div>
+        </div>
+        <div class="aweek-row">
+          <div class="anum"><?= $saturday_opened ?></div><div class="aday">Saturday</div>
+        </div>
+        
+      </div>
     </div>
   </div>
 

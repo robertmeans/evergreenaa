@@ -728,3 +728,11 @@ footer #footer-contact-form span {
   background-color: #4ac52d;
   color: #fff;
 }
+
+
+
+.aweek-wrap {
+  .aweek-row:nth-child(even) {
+    background-color: rgba(79,185,247,0.15);
+  }
+}
