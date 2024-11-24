@@ -990,21 +990,74 @@ $("#toggle-link-label").click(function(e) {
 });
 
 
+
+
+
+
 $("#toggle-total-interactions").click(function(e) {
   $("#total-interactions").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
+
+    var total_inter = $("#js-total-interactions").text();
+    var uniip = $("#js-unique-ip").text();
+
+    $("#msg-tot-in").html(total_inter);
+    $("#msg-uni-ip").html(uniip);
 });
+
+
+
+
+
+
+
 $("#toggle-unique-ip").click(function(e) {
   $("#unique-ip").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
+
+    var total_inter = $("#js-total-interactions").text();
+    var uniip = $("#js-unique-ip").text();
+    var int_uniip = parseInt(uniip);
+
+    var uipmobile = $("#uipmobile").text();
+    var uiptablet = $("#uiptablet").text();
+    var uipdesktop = $("#uipdesktop").text();
+    var sum_device = $("#sum-devices").val();
+    var sum_devices = parseInt(sum_device);
+
+    var tots = int_uniip - sum_devices; /* Unique IP's - sum of unique IP's for devices */
+
+    if (tots > 0) {
+      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is less than the ' + uniip + ' unique IP\'s from above. Think of it this way, you could have 1 cell phone and 100 unique IP\'s because when using cellular data the IP changes all the time.');
+    } else if (tots < 0) {
+      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>You may be wondering why these 3 devices add up to ' + sum_devices + ' which is more than the ' + uniip + ' unique IP\'s from above. That\'s because multiple devices can be using the same IP address. A good example would be someone on their home wifi using their computer, tablet and cell phone on the Internet. 3 devices all using the same IP.');
+    } else {
+      $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>It\'s unusual to have these 3 add up to equal the (' + uniip + ') unique IP\'s above but they do!');
+    }
+
+
+
+    // $("#msg-uni-ipz").html('here is going to be a whole new message');
+    // $("#msg-uni-ipz").html(tots);
 });
+
+
+
 $("#toggle-individual-interactions").click(function(e) {
   $("#individual-interactions").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });
+
+
+
+
+
+
+
+
 
 // prevent these links from closing msg
 $(".pdf-remove").click(function(e) {

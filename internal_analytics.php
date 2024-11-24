@@ -168,10 +168,10 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
       $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
 
-      echo 'Since: ' . $new_start_formatted . '<br>' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . ' Interactions | ';
+      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | ';
 
-      if (count($unique_ips) == 1 ) { echo count($unique_ips) . ' unique IP'; } 
-      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo count($unique_ips) . ' unique IP\'s'; } 
+      if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
+      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
 
       if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; }
       /* get $list_to_delete right before sending it to db! */
@@ -231,8 +231,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <div class="col">
       
       <p><u>Unique IP addresses</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a><br>
-        <p class="expl">These numbers represent the devices that were used at unique IP addresses. There could be multiple devices used at the same IP which explains why the sum of these numbers is different than the "unique IP's" above.</p>
-      <p><?= count($mobile_unique_a); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_unique_a); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_unique_a); ?> Desktop</p>
+      <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
+      <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
       <br>
       <p><u>Individual interactions</u><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><br>
       <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; <?= count($desktop_count); ?> Desktop</p>
