@@ -1,6 +1,5 @@
 <?php  
 $layout_context = 'home-private';
-
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
@@ -12,7 +11,7 @@ require '_includes/head.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
-<?php require '_includes/msg-theme-message.php'; ?>
+<?php include '_includes/msg-theme-message.php'; ?>
 <?php mobile_bkg_config($theme); ?>
 <div id="wrap">
 

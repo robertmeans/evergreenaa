@@ -2243,11 +2243,6 @@ $(document).ready(function() {
     $.ajax({
       dataType: "JSON",
       url: "process-theme-popup.php",
-      // method: 'POST', 
-      // dataType: 'text', 
-      // data: {
-      //   popup: 'set', /* used to identify appropriate process */
-      // }, /* no success or fail actions necessary */
       success: function(response) {
         // console.log(response);
         if(response) {
@@ -2258,8 +2253,9 @@ $(document).ready(function() {
 
             setTimeout(function() {
               $("#theme-options").fadeIn(500);
-              }, 1500);
+              }, 750);
 
+            // $("#theme-options").show(); /* for testing/dev */
 
           } else {
             /* do nothing */

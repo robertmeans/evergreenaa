@@ -7,7 +7,7 @@
       } else { $greeting = ''; } ?>
 
 			<i class="far fa-times-circle"></i>
-			<h1>Light this sucker up!</h1>
+			<h1><i class="far fas fa-lightbulb"></i>&nbsp; Light this sucker up!</h1>
 
 			<p>Hey<?= $greeting ?>, did you know there's a "Bright Theme" option? Just in case the long days of winter leave you wanting to chipper up this joint - open the Menu and you'll find it at the top.</p>
 

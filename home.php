@@ -10,7 +10,7 @@ require '_includes/head.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
-<?php require '_includes/msg-theme-message.php'; ?>
+<?php include '_includes/msg-theme-message.php'; ?>
 <?php mobile_bkg_config($theme); ?>
 <div id="wrap">
 	

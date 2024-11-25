@@ -1,16 +1,32 @@
 <?php
 require_once 'config/initialize.php';
 
+/*  files involved with this popup:
+    1. config/initialize.php
+    2. _includes/msg-theme-message.php
+    3. javascript-to-compile/_scripts-staging.js
+    4. included in: home, home_private and home_admin
+*/
+
 if (!isset($theme_popup_on_off)) { return; } else {
 
-  if (!empty($_COOKIE['theme-popup'])) { 
-    // return;
-    $popup_signal = 'nope';
-  } else {
-    setCookie('theme-popup', 'shown', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-    // $_SESSION['theme-popup'] = 'shown';
+  // if (empty($_COOKIE['theme-popup'])) { /* dev */
+  if (!empty($_COOKIE['theme-popup'])) { /* production */
 
-    $popup_signal = 'ok'; 
+    $popup_signal = 'nope';
+
+  } else {
+    /* just a layer of reduncancy to ensure nobody accidently sees this popup a 2nd time */
+    if (  (!empty($_COOKIE['sessionTheme']) && $_COOKIE['sessionTheme'] == '1') || 
+          (isset($_SESSION['db-theme']) && $_SESSION['db-theme'] == '1')      ) {
+      $popup_signal = 'nope';
+    } else {
+
+      setCookie('theme-popup', 'shown', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
+      $popup_signal = 'ok'; 
+
+    }
+
   }
   $data = array(
     'popup_signal' => $popup_signal
