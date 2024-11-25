@@ -244,6 +244,8 @@ $(document).click(function() {
   } else if ($('#individual-interactions').is(':visible')) {
     $("#individual-interactions").fadeOut(500);
 
+  } else if ($('#theme-options').is(':visible')) {
+    $("#theme-options").fadeOut(500);
 
 
   } else if ($('#mb-notes').is(':visible')) {
@@ -574,9 +576,9 @@ $(document).ready(function(){
   $("#why-join").hide();
   $("#gottajoin").hide();
   $("#mb-notes").hide();
-  $("#total-interactions").hide();
   $("#unique-ip").hide();
   $("#individual-interactions").hide();
+  $("#total-interactions").hide();
   $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
@@ -1006,7 +1008,7 @@ $("#toggle-total-interactions").click(function(e) {
     $("#msg-uni-ip").html(uniip);
 });
 
-
+  
 
 
 $("#toggle-unique-ip").click(function(e) {
@@ -1054,6 +1056,14 @@ $("#toggle-individual-interactions").click(function(e) {
     $("#msgb-tot-in").html(total_inter);
 
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -2224,4 +2234,47 @@ $(document).ready(function() {
       }
     }) // end ajax call process_change_role.php
   }); // end click function
+}); // end document.ready
+
+
+$(document).ready(function() {
+  $("#theme-options").hide();
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-theme-popup.php",
+      // method: 'POST', 
+      // dataType: 'text', 
+      // data: {
+      //   popup: 'set', /* used to identify appropriate process */
+      // }, /* no success or fail actions necessary */
+      success: function(response) {
+        // console.log(response);
+        if(response) {
+          // console.log(response);
+          if(response['popup_signal'] == 'ok') {
+            var url = window.location.href;
+            $('#themepopupurl').val(url);
+
+            setTimeout(function() {
+              $("#theme-options").fadeIn(500);
+              }, 1500);
+
+
+          } else {
+            /* do nothing */
+          }
+        } 
+      },
+      error: function() {
+
+      }, 
+      complete: function() {
+
+      }
+    })
+
+
+
+  
 }); // end document.ready

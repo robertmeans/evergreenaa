@@ -67,9 +67,9 @@ require '_includes/head.php'; ?>
       if ($day === 'Saturday')  { $saturday_opened++;   }
     }
 
-    if (!empty($row['device']) && ($row['device'] === 'mobile') && $row['page'] === '') {  $mobile_count[]   = $row; }
-    if (!empty($row['device']) && ($row['device'] === 'tablet') && $row['page'] === '') {  $tablet_count[]   = $row; }
-    if (!empty($row['device']) && ($row['device'] === 'desktop') && $row['page'] === '') { $desktop_count[]  = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'mobile' && $row['page'] === '')) {  $mobile_count[]   = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'tablet' && $row['page'] === '')) {  $tablet_count[]   = $row; }
+    if (!empty($row['device']) && ($row['device'] === 'desktop' && $row['page'] === '')) { $desktop_count[]  = $row; }
 
     $ip = $row['a_ip']; /* 'bout to do tricky stuff based on IP addresses... */
 
@@ -154,16 +154,32 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
       // $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
       $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
+      $total_interactions = $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened);
 
-      /* Interactions */
-      echo 'Since: ' . $new_start_formatted . '</p><p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp; ';
+      /* yeesh, this seems overly complicated... */
+      date_default_timezone_set('America/Denver');
+      $now = time();
+      $start_date = $dateTime->format('Y-m-d');
+      $start_dateb = strtotime($start_date);
+      $datediff = $now - $start_dateb;
+      $daysdiff = floor($datediff / (60 * 60 * 24));
+
+      /* Interactions 
+      echo 'Since: ' . $new_start_formatted . '</p>
+      <p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp; '; */
+
+      ?>Since: <?= $new_start_formatted; ?></p>
+      <p><?= $daysdiff; ?> days</p>
+      <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
+
 
       /* Unique IP's */
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
       if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
 
-      if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; }
+      if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; } ?>
 
+      <?php
       /* Clean up button - collect IP's into comma separated string */
       if (count($unique_ips) > 0) { 
         if (count($single_visit_no_action) === 1 && count($multiple_visits_no_action) === 0) {
@@ -217,21 +233,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   </div>
 <?php } ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="ia-ip-list ip-notes">
-
-
 
     <div class="col sp">
       <div><?php /* so you can treat this as one block */ ?>
@@ -250,6 +252,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
          <input type="hidden" id="totb-in-int" value="<?php echo count($mobile_count) + count($tablet_count) + count($desktop_count); ?>">
       </div>
     </div>
+    <div class="col b"><div></div></div>
     <div class="col v">
       <div><?php /* so you can treat this as one block */ ?>
       <div class="aweek-wrap">
@@ -281,9 +284,6 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       </div>
       </div>
     </div>
-
-
-
 
   </div>
 

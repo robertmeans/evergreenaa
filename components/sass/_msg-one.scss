@@ -57,7 +57,8 @@ a#gmaps {
 #mb-notes,
 #total-interactions,
 #unique-ip,
-#individual-interactions {
+#individual-interactions,
+#theme-options {
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -225,7 +226,8 @@ a.youtube {
   #mb-notes,
   #total-interactions,
   #unique-ip,
-  #individual-interactions {
+  #individual-interactions,
+  #theme-options {
     .msg-bkg {
       justify-content: flex-start;
       overflow-y: auto;
@@ -265,7 +267,8 @@ a.youtube {
   #mb-notes,
   #total-interactions,
   #unique-ip,
-  #individual-interactions {
+  #individual-interactions,
+  #theme-options {
     .msg-bkg {
       // padding: 0px;
     }

@@ -38,6 +38,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <?php } ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
+<?php require '_includes/msg-theme-message.php'; ?>
 <?php mobile_bkg_config($theme); ?>
 <div id="landing">
 	<div id="landing-content">
