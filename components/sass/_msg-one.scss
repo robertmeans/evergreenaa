@@ -1,6 +1,7 @@
 a#toggle-total-interactions
 a#toggle-unique-ip,
 a#toggle-individual-interactions,
+a#toggle-clean-up-ips,
 a#toggle-lat-long-msg,
 a#toggle-one-tap-msg,
 a#toggle-yer-phone-num,
@@ -58,6 +59,7 @@ a#gmaps {
 #total-interactions,
 #unique-ip,
 #individual-interactions,
+#clean-up-ips,
 #theme-options {
   cursor: pointer;
   position: relative;
@@ -227,6 +229,7 @@ a.youtube {
   #total-interactions,
   #unique-ip,
   #individual-interactions,
+  #clean-up-ips,
   #theme-options {
     .msg-bkg {
       justify-content: flex-start;
@@ -268,6 +271,7 @@ a.youtube {
   #total-interactions,
   #unique-ip,
   #individual-interactions,
+  #clean-up-ips,
   #theme-options {
     .msg-bkg {
       // padding: 0px;

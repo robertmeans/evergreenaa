@@ -75,18 +75,6 @@ function themeSpecialSubmitLight() {
 
 $(document).ready(function(){
 
-  // $("#bright-opt").hover(function(){
-  //   $("#ct-dark").html("<p>Change to:</p><h4>Bright Theme</h4>");
-  //   }, function(){
-  //   $("#ct-dark").html("<p>Current:</p><h4>Dark Theme</h4>");
-  // });
-
-  // $("#dark-opt").hover(function(){
-  //   $("#ct-bright").html("<p>Change to:</p><h4>Dark Theme</h4>");
-  //   }, function(){
-  //   $("#ct-bright").html("<p>Current:</p><h4>Bright Theme</h4>");
-  // });
-
   /* theme slide on nav */
   $("#bright-opt").hover(function(){
     $("#ct-bright").animate({width:'toggle'},300);
@@ -103,8 +91,6 @@ $(document).ready(function(){
     $("#ct-bright").animate({width:'toggle'},300);
     $("#ct-dark").animate({width:'toggle'},300);
   });
-
-
 
 
   $("#toggle-msg-one").click(function(e) {
@@ -176,48 +162,6 @@ $(document).ready(function(){
     }
   });  
 
-
-
-
-
-
-
-
-
-  // $("#toggle-total-interactions").click(function(e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-
-  //   if ($('#total-interactions').is(':hidden')) {
-  //       $("#total-interactions").fadeIn(500);
-  //   } else {
-  //       $("#total-interactions").fadeOut(500); 
-  //   }
-  // }); 
-  // $("#toggle-unique-ip").click(function(e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-
-  //   if ($('#unique-ip').is(':hidden')) {
-  //       $("#unique-ip").fadeIn(500);
-  //   } else {
-  //       $("#unique-ip").fadeOut(500); 
-  //   }
-  // }); 
-  // $("#toggle-individual-interactions").click(function(e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-
-  //   if ($('#individual-interactions').is(':hidden')) {
-  //       $("#individual-interactions").fadeIn(500);
-  //   } else {
-  //       $("#individual-interactions").fadeOut(500); 
-  //   }
-  // }); 
-
-
-
-
 });
 
 $(document).click(function() {
@@ -234,8 +178,9 @@ $(document).click(function() {
   } else if ($('#gottajoin').is(':visible')) {
     $("#gottajoin").fadeOut(500);
 
-  // } else if ($('#tz').is(':visible')) {
-  //   $("#tz").fadeOut(500);
+  /* this is for copy & paste purposes   */
+  // } else if ($('#replace-id').is(':visible')) {
+  //   $("#replace-id").fadeOut(500);
 
   } else if ($('#total-interactions').is(':visible')) {
     $("#total-interactions").fadeOut(500);
@@ -243,11 +188,10 @@ $(document).click(function() {
     $("#unique-ip").fadeOut(500);
   } else if ($('#individual-interactions').is(':visible')) {
     $("#individual-interactions").fadeOut(500);
-
+  } else if ($('#clean-up-ips').is(':visible')) {
+    $("#clean-up-ips").fadeOut(500);
   } else if ($('#theme-options').is(':visible')) {
     $("#theme-options").fadeOut(500);
-
-
   } else if ($('#mb-notes').is(':visible')) {
     $("#mb-notes").fadeOut(500); 
   } else if ($('#lat-long').is(':visible')) {
@@ -579,6 +523,7 @@ $(document).ready(function(){
   $("#unique-ip").hide();
   $("#individual-interactions").hide();
   $("#total-interactions").hide();
+  $("#clean-up-ips").hide();
   $("#tz").hide();
   $("#role-key").hide();
   $("#lat-long").hide();
@@ -759,19 +704,6 @@ $(document).ready(function(){
     /* end file upload */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   /* toggle days of week */
   $('.day').click(function() {
     close_navigation_first();
@@ -824,6 +756,7 @@ $(document).ready(function(){
 
     var mtg_id = $(this).find('[data-role=mtg-id]').val();
     var usr_id = $(this).find('[data-role=usr-id]').val();
+    var mtg_days = $(this).find('[data-role=mtgdz]').val();
 
     var time = $(this).find('.glance-mtg-time p').text();
     var title = $(this).find('.glance-group-title p').text();
@@ -860,7 +793,8 @@ $(document).ready(function(){
           device: device,
           host_id: usr_id,
           mtg_id: mtg_id,
-          mtgName: mtg_name
+          mtgName: mtg_name,
+          mtg_days: mtg_days
         } /* no success or fail actions necessary */
       });
 
@@ -991,11 +925,6 @@ $("#toggle-link-label").click(function(e) {
     e.stopPropagation();
 });
 
-
-
-
-
-
 $("#toggle-total-interactions").click(function(e) {
   $("#total-interactions").fadeIn(500);
     e.preventDefault();
@@ -1007,9 +936,6 @@ $("#toggle-total-interactions").click(function(e) {
     $("#msg-tot-in").html(total_inter);
     $("#msg-uni-ip").html(uniip);
 });
-
-  
-
 
 $("#toggle-unique-ip").click(function(e) {
   $("#unique-ip").fadeIn(500);
@@ -1036,13 +962,7 @@ $("#toggle-unique-ip").click(function(e) {
       $("#msg-uni-ipz").html('These represent individuals on various devices. <br><br>It\'s unusual to have these 3 add up to equal the (' + uniip + ') unique IP\'s above but they do!');
     }
 
-
-
-    // $("#msg-uni-ipz").html('here is going to be a whole new message');
-    // $("#msg-uni-ipz").html(tots);
 });
-
-
 
 $("#toggle-individual-interactions").click(function(e) {
   $("#individual-interactions").fadeIn(500);
@@ -1057,16 +977,11 @@ $("#toggle-individual-interactions").click(function(e) {
 
 });
 
-
-
-
-
-
-
-
-
-
-
+$("#toggle-clean-up-ips").click(function(e) {
+  $("#clean-up-ips").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
 
 // prevent these links from closing msg
 $(".pdf-remove").click(function(e) {
@@ -1165,8 +1080,6 @@ $(document).ready(function() {
 });
 
 
-
-
 // submit initial timezone cookie + db
 $(document).ready(function() {
   $(document).on('click','#init-tz-submit', function() {
@@ -1184,7 +1097,6 @@ $(document).ready(function() {
     }
   });
 });
-
 
 
 // email host modal
@@ -1364,7 +1276,6 @@ $(document).ready(function() {
     }
 
 
-
     $.ajax({
       dataType: "JSON",
       url: "login-process.php",
@@ -1529,7 +1440,6 @@ $(document).ready(function() {
   });
 
 }); // $(document).ready forgot password end
-
 
 
 
@@ -2237,6 +2147,7 @@ $(document).ready(function() {
 }); // end document.ready
 
 
+/* theme popup message */
 $(document).ready(function() {
   $("#theme-options").hide();
 
@@ -2269,8 +2180,5 @@ $(document).ready(function() {
 
       }
     })
-
-
-
   
 }); // end document.ready

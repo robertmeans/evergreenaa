@@ -3,6 +3,7 @@
 <div class="daily-glance-wrap">
   <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
   <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
+  <input type="hidden" data-role="mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
 	<div class="daily-glance<?php if ($row['visible'] == 1 && (($row['admin'] != 1 || $row['admin'] != 2) && $row['id_user'] != $_SESSION['id']) ) { echo ' personal-other'; } if ($row['visible'] == 1 && ($row['admin'] == 1 || $row['admin'] == 2)) { echo ' personal-odin'; } ?>">
 		<div class="glance-mtg glance-mtg-time">
 			<p><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
@@ -36,6 +37,7 @@
 	<div class="daily-glance-wrap">
     <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
+    <input type="hidden" data-role="mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 				<p><?= $mt->format('g:i') ?>&nbsp;<span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
@@ -61,6 +63,7 @@
 	<div class="daily-glance-wrap">
     <input type="hidden" data-role="mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="usr-id" value="<?= $row['id_user']; ?>">
+    <input type="hidden" data-role="mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
 		<div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
 			<div class="glance-mtg glance-mtg-time">
 				<p><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>

@@ -102,11 +102,11 @@ function get_analytic_data() {
   return $result; // returns an assoc. array
 }
 
-function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_name, $their_ip) {
+function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_name, $their_ip) {
   global $db; 
 
   $sql = "INSERT INTO analytics ";
-  $sql .= "(occurred, auser_email, device, page, day_opened, host_id, mtg_id, mtg_opened, a_ip) ";
+  $sql .= "(occurred, auser_email, device, page, day_opened, host_id, mtg_id, mtg_days, mtg_opened, a_ip) ";
   $sql .= "VALUES (";
   $sql .= "'" . $now . "', ";
   $sql .= "'" . $email . "', ";
@@ -115,6 +115,7 @@ function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id
   $sql .= "'" . $day . "', ";
   $sql .= "'" . $host_id . "', ";
   $sql .= "'" . $mtg_id . "', ";
+  $sql .= "'" . $mtg_days . "', ";
   $sql .= "'" . db_escape($db, $mtg_name) . "', ";
   $sql .= "'" . $their_ip . "'";
   $sql .= ")";

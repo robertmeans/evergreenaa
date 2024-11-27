@@ -41,14 +41,14 @@ require '_includes/head.php'; ?>
   /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened,  a_ip */
   $i = 0;
 
-  $homepage_loads   = 0;  $ip_groups        = [];  $mobile_unique_a  = [];
-  $sunday_opened    = 0;  $unique_ips       = [];  $tablet_unique_a  = [];
-  $monday_opened    = 0;  $mobile_count     = [];  $desktop_unique_a = [];
-  $tuesday_opened   = 0;  $tablet_count     = []; 
+  $homepage_loads   = 0;  $ip_groups        = [];  $all_mobile       = '';  
+  $sunday_opened    = 0;  $unique_ips       = [];  $all_tablet       = '';  
+  $monday_opened    = 0;  $mobile_count     = [];  $all_desktop      = '';  
+  $tuesday_opened   = 0;  $tablet_count     = [];  $weekdays         = '';
   $wednesday_opened = 0;  $desktop_count    = []; 
-  $thursday_opened  = 0;  $all_mobile       = ''; 
-  $friday_opened    = 0;  $all_tablet       = ''; 
-  $saturday_opened  = 0;  $all_desktop      = '';
+  $thursday_opened  = 0;  $mobile_unique_a  = [];   
+  $friday_opened    = 0;  $tablet_unique_a  = [];   
+  $saturday_opened  = 0;  $desktop_unique_a = [];  
 
   while ($row = mysqli_fetch_assoc($results)) {
 
@@ -203,31 +203,35 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div id="replace-this" class="ia-ip-list">
   <?php if ($single_visit_no_action) { ?>
     <div class="col unique-ips">
-      <h1>Unique IP</h1>
+      <div><h1>Unique IP</h1><a class="tgl-msg" id="toggle-clean-up-ips"><i class="far fa-question-circle fa-fw"></i></a></div>
       <p class="ip-notes">appears only once, no actions taken</p>
+      <div class="div-svna">
       <?php 
       $new_single_visit_list = [];
       foreach ($single_visit_no_action as $item) {
         $ip = str_replace("'", "", $item);
-        $new_single_visit_list[] = '<div class="svna"><a data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a></div><br>'; // remove all single quotes
+        $new_single_visit_list[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>'; // remove all single quotes
       }
       echo implode("", $new_single_visit_list);
 
       ?>
     </div>
+    </div>
   <?php } if ($multiple_visits_no_action) { ?>
     <div class="col multi-visits">
       <h1>Multiple visits</h1>
       <p class="ip-notes">no action taken</p>
+      <div class="div-svna">
       <?php 
       $new_multiple_visits = [];
       foreach ($multiple_visits_no_action as $item) {
         $ip = str_replace("'", "", $item);
-        $new_multiple_visits[] = '<div class="svna"><a data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a></div><br>';
+        $new_multiple_visits[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
       }
       echo implode("", $new_multiple_visits); 
 
       ?>
+    </div>
     </div>
   <?php } ?>
   </div>
@@ -284,6 +288,11 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       </div>
       </div>
     </div>
+
+  </div>
+
+  <div class="ia-ip-list ip-notes">
+    <?php /* put stuff that uses mtg_days here */ ?>
 
   </div>
 
