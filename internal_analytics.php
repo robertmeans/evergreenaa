@@ -207,21 +207,11 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <div class="col unique-ips">
       <div><h1>Unique IP</h1><a class="tgl-msg" id="toggle-clean-up-ips"><i class="far fa-question-circle fa-fw"></i></a></div>
       <p class="ip-notes">appears only once, no actions taken</p>
-
-
-
-
-
-
-
-
-
-
       <div class="div-svna">
       <?php 
       $new_single_visit_list = [];
-      foreach ($single_visit_no_action as $ip) {
-        // $ip = str_replace("'", "", $item); // remove all single quotes
+      foreach ($single_visit_no_action as $item) {
+        $ip = str_replace("'", "", $item); // remove all single quotes
         // $ip = $item;
         $new_single_visit_list[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
       }
@@ -229,15 +219,6 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
       ?>
     </div>
-
-
-
-
-
-
-
-
-
     </div>
   <?php } if ($multiple_visits_no_action) { ?>
     <div class="col multi-visits">
@@ -246,8 +227,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       <div class="div-svna">
       <?php 
       $new_multiple_visits = [];
-      foreach ($multiple_visits_no_action as $ip) {
-        // $ip = str_replace("'", "", $item); // remove all single quotes
+      foreach ($multiple_visits_no_action as $item) {
+        $ip = str_replace("'", "", $item); // remove all single quotes
         $new_multiple_visits[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
       }
       echo implode("", $new_multiple_visits); 

@@ -138,16 +138,14 @@ function update_alert_notification() {
 function remove_likely_bots($bot_ips) {
   global $db;
 
-  $sql  = "DELETE FROM analytics WHERE IN ";
+  $sql  = "DELETE FROM analytics WHERE a_ip IN ";
   $sql .= "(";
-  // $sql .= "'" . db_escape($db, $bot_ips) . "'";
   $sql .= $bot_ips;
-  // $sql .= "76.130.56.38, 174.201.5.237";
   $sql .= ")";
 
   $result = mysqli_query($db, $sql);
 
-  if ($result) { 
+  if ($result) {
     return true;
   } else {
     echo mysqli_error($db);
