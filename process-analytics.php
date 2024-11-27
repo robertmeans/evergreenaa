@@ -52,7 +52,7 @@ if (!isset($analytics_on_off)) { return; } else {
   /* delete list if ip's from internal_analytics.php page - begin */
   if (is_post_request() && isset($_POST['delete_ip_list_key'])) {
 
-    $bot_ips = $_POST['ip_delete_list'];
+    $bot_ips = $_POST['ip_delete_list']; 
 
     $results = remove_likely_bots($bot_ips);
 

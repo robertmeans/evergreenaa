@@ -97,6 +97,46 @@
   }
 }
 
+.manage-simple {
+  p.my-sort {
+    a.phpma {
+      display: inline-block;
+      line-height: 1em;
+      text-decoration: none;
+      color: #fff;
+      padding: 0.5em 1em;
+      border: 1px solid #fff;
+
+background-color: rgba(239,239,240,0.25);
+  border: 1px solid #d9d9d9;
+
+      border-radius: 3px;
+      margin-left: 5px;
+      margin: 3px 0 0 5px;
+      box-shadow: 0px 6px 4px -3px rgba(0, 0, 0, 0.3);
+      transition: all 0.15s ease;
+      &:hover {
+        transform: scale(0.9);
+        box-shadow: -1px 4px 3px -3px rgba(0, 0, 0, 0.86);
+        text-decoration: none;
+      }
+      .pc {
+        font-family: Arial, sans-serif;
+        font-style: italic;
+        color: #bcc6f3;
+      }
+      .ma {
+        font-family: arial, sans-serif;
+        font-style: italic;
+        font-weight: bold;
+        color: #f89c0e;
+      }
+    }
+  }
+}
+
+
+
 #replace-this {
   a.tgl-msg {
     display: inline-block;

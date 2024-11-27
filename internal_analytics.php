@@ -107,7 +107,7 @@ require '_includes/head.php'; ?>
     <h1 class="my-meet">Internal Analytics</h1><p class="my-sort"><a class="phpma" href="<?php 
     if (WWW_ROOT === 'http://localhost/evergreenaa') { ?>http://localhost/phpmyadmin/<?php 
     } else { ?>https://p3plzcpnl504722.prod.phx3.secureserver.net:2083/cpsess0249341861/frontend/jupiter/sql/PhpMyAdmin.html<?php 
-    } ?>" target="_blank">phpMyAdmin</a></p>
+    } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p>
   </div>
 
 <?php  
@@ -121,8 +121,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     $unique_row = $rows[0];
     // echo "Unique IP: " . $unique_row['a_ip'] . "<br>";
     // Process the unique row as needed
-    // $single_visit_no_action[] = "'" . $unique_row['a_ip'] . "'"; /* not sure why I had these wrapped in single quotes */
-    $single_visit_no_action[] = $unique_row['a_ip'];
+    $single_visit_no_action[] = "'" . $unique_row['a_ip'] . "'"; /* not sure why I had these wrapped in single quotes */
+    // $single_visit_no_action[] = $unique_row['a_ip'];
   } else {
     // This IP appears multiple times
     $first_row = $rows[0];
@@ -139,8 +139,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     if ($all_same_except_id_and_occurred) {
       // echo "Multiple but same: " . $multiple_but_same_ip . "<br>";
       // Process the identical rows as needed
-      // $multiple_visits_no_action[] = "'" . $multiple_but_same_ip . "'"; /* not sure why I had these wrapped in single quotes */
-      $multiple_visits_no_action[] = $multiple_but_same_ip;
+      $multiple_visits_no_action[] = "'" . $multiple_but_same_ip . "'"; /* not sure why I had these wrapped in single quotes */
+      // $multiple_visits_no_action[] = $multiple_but_same_ip;
     }
   }
 }
