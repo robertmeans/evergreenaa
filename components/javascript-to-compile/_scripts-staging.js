@@ -814,7 +814,7 @@ $(document).ready(function(){
         ip_delete_list: ip_delete_list
       }, 
       beforeSend: function(xhr) {
-
+        console.log(ip_delete_list);
       }, 
       success: function(response) {
         if (response) {
