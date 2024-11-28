@@ -557,6 +557,16 @@
 		.top-nav {
 			padding: 0.55em 1.25em;
 		}
+    .phperror {
+      margin-right: 80px;
+      a.per {
+        padding: 0.55em 1em 0.5em 1em;
+        &:hover {
+          padding-top: 0.75em;
+          background-color: red;
+        }
+      }
+    } 
 	}
 	#navigation.sm-g {
 		display: none;

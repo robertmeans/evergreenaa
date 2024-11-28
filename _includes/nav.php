@@ -29,6 +29,12 @@ if (!isset($_SESSION['mode'])) {
 
 <nav id="navigation" class="lg-g"><?php // mobile nav ?>
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
+
+  <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
+    <div class="phperror"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
+  <?php clearstatcache("_errors.txt"); } ?>
+  
 </nav>
 
 <div id="side-nav-bkg">
