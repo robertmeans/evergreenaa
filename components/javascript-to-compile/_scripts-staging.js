@@ -755,8 +755,9 @@ $(document).ready(function(){
     var toggle = $(this).next('.weekday-wrap');
 
     var mtg_id = $(this).find('[data-role=mtg-id]').val();
-    var usr_id = $(this).find('[data-role=usr-id]').val();
+    var host_id = $(this).find('[data-role=hid]').val();
     var mtg_days = $(this).find('[data-role=mtgdz]').val();
+    var mtg_day = $(this).find('[data-role=mtg-day]').val();
 
     var time = $(this).find('.glance-mtg-time p').text();
     var title = $(this).find('.glance-group-title p').text();
@@ -791,10 +792,11 @@ $(document).ready(function(){
         data: {
           primary_key: 'set', /* used to identify appropriate process */
           device: device,
-          host_id: usr_id,
+          host_id: host_id,
           mtg_id: mtg_id,
           mtgName: mtg_name,
-          mtg_days: mtg_days
+          mtg_days: mtg_days,
+          mtgDay: mtg_day
         } /* no success or fail actions necessary */
       });
 

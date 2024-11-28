@@ -41,9 +41,10 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_POST['host_id'])) {       $host_id = $_POST['host_id'];       } else { $host_id = ''; }
     if (isset($_POST['mtg_id'])) {        $mtg_id = $_POST['mtg_id'];         } else { $mtg_id = ''; }
     if (isset($_POST['mtgName'])) {       $mtg_name = $_POST['mtgName'];      } else { $mtg_name = ''; }
-    if (isset($_POST['mtg_days'])) {      $mtg_days = $_POST['mtg_days'];     } else { $mtg_days = 'na'; }
+    if (isset($_POST['mtg_days'])) {      $mtg_days = $_POST['mtg_days'];     } else { $mtg_days = ''; }
+    if (isset($_POST['mtgDay'])) {        $mtg_day = $_POST['mtgDay'];        } else { $mtg_day = ''; }
 
-    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_name, $their_ip);
+    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $mtg_name, $their_ip);
     $turn_on_alert = update_alert_notification();
    
   }
