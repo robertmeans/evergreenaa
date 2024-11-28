@@ -1,4 +1,6 @@
 <?php
+
+
 if (!isset($_SESSION['mode'])) {
   $_SESSION['mode'] = 'not-set';
 }
@@ -12,12 +14,17 @@ if (!isset($_SESSION['mode'])) {
 			</div> 
 			<div class="mt">Menu</div>
 		</div>
-
 		<?php /* works - just needs an if statement to wrap it...
 		<div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div> 
 		*/ ?>
 
 	</div>
+
+  <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
+    <div class="phperror"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
+  <?php clearstatcache("_errors.txt"); } ?>
+
 </nav>
 
 <nav id="navigation" class="lg-g"><?php // mobile nav ?>

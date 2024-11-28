@@ -37,18 +37,49 @@
 			position: static;
 		}
 		i.fa-star {
-			// position: absolute;
-			// right: -0.4em;
-			// bottom: -0.4em;
 			color: gold;
 		}
-
     &.new-action {
       background-color: #98e22b;
     }
-
-    
 	}
+
+
+
+  .phperror {
+    position: fixed;
+    top: 0;
+    width: 96%;
+    max-width: 55px;
+    display: flex;
+    // justify-content: flex-end;
+    margin-right: 120px;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+    // padding: 0.5em 1em 0.5em 1em;
+    // margin-top: -0.25em;
+    border-top: none;
+    border-right: 1px solid rgba(255,255,255,0.6);
+    border-bottom-right-radius: 3px;
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+    border-bottom-left-radius: 3px;
+    border-left: 1px solid rgba(255,255,255,0.6);
+    transition: all 0.2s ease; 
+
+    a.per {
+      color: #fff;
+      padding: 0.5em 1em 0.5em 1em;
+      transition: all 0.2s ease;
+      &:hover {
+        padding-top: 0.75em;
+        background-color: red;
+      }
+    }
+
+  }
+
+
 	.top-nav.admin-logged {
 		background-color: gold;
 		color: #000;
@@ -59,6 +90,12 @@
       background-color: #98e22b;
     }
 	}
+  .top-nav,
+  .top-nav.admin-logged {
+    &.errorsfound {
+      background-color: red;
+    }
+  }
 }
 
 #navigation.sm-g .top-nav {

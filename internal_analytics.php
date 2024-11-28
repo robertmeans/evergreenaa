@@ -105,9 +105,25 @@ require '_includes/head.php'; ?>
 
   <div class="manage-simple analy"> 
     <h1 class="my-meet">Internal Analytics</h1><p class="my-sort"><a class="phpma" href="<?php 
-    if (WWW_ROOT === 'http://localhost/evergreenaa') { ?>http://localhost/phpmyadmin/<?php 
-    } else { ?>https://p3plzcpnl504722.prod.phx3.secureserver.net:2083/cpsess0249341861/frontend/jupiter/sql/PhpMyAdmin.html<?php 
-    } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p>
+      if (WWW_ROOT === 'http://localhost/evergreenaa') { 
+        ?>http://localhost/phpmyadmin/<?php 
+      } else { 
+        ?>https://p3plzcpnl504722.prod.phx3.secureserver.net:2083/cpsess0249341861/frontend/jupiter/sql/PhpMyAdmin.html<?php 
+      } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a><?php
+
+      if (filesize("_errors.txt") > 0) { 
+        clearstatcache("_errors.txt"); /* not positive this is in the right place - to be investigated further... */
+        ?><a class="er" href="<?php
+
+        if (WWW_ROOT === 'http://localhost/evergreenaa') {
+          ?>http://localhost/evergreenaa/_errors.txt<?php
+        } else {
+          ?>https://evergreenaa.com/_errors.txt<?php
+        } 
+
+        ?>" target="_blank"><i class="fas far fa-exclamation-circle"></i></a><?php
+      } 
+      ?></p>
   </div>
 
 <?php  
