@@ -44,7 +44,7 @@ require '_includes/head.php'; ?>
   $homepage_loads   = 0;  $ip_groups        = [];  $all_mobile       = '';  
   $sunday_opened    = 0;  $unique_ips       = [];  $all_tablet       = '';  
   $monday_opened    = 0;  $mobile_count     = [];  $all_desktop      = '';  
-  $tuesday_opened   = 0;  $tablet_count     = [];  $weekdays         = '';
+  $tuesday_opened   = 0;  $tablet_count     = [];  
   $wednesday_opened = 0;  $desktop_count    = []; 
   $thursday_opened  = 0;  $mobile_unique_a  = [];   
   $friday_opened    = 0;  $tablet_unique_a  = [];   
@@ -137,16 +137,12 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     }
 
     if ($all_same_except_id_and_occurred) {
-      // echo "Multiple but same: " . $multiple_but_same_ip . "<br>";
       // Process the identical rows as needed
-      $multiple_visits_no_action[] = "'" . $multiple_but_same_ip . "'"; /* not sure why I had these wrapped in single quotes */
-      // $multiple_visits_no_action[] = $multiple_but_same_ip;
+      $multiple_visits_no_action[] = "'" . $multiple_but_same_ip . "'"; 
     }
   }
 }
 /* end - this grabs each unique ip */
-
-
 ?>
   <div class="ia-headwrap">
     <?php // start grabbing data and filling in page ?>
@@ -154,7 +150,6 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
       /* Start date of currently displayed results */
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
-      // $new_start_formatted = $dateTime->format('l, F d, Y \a\t H:i:s A');
       $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
       $total_interactions = $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened);
 
@@ -166,14 +161,9 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $datediff = $now - $start_dateb;
       $daysdiff = floor($datediff / (60 * 60 * 24));
 
-      /* Interactions 
-      echo 'Since: ' . $new_start_formatted . '</p>
-      <p><span id="js-total-interactions">' . $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened) . '</span>&nbsp;Interactions | &nbsp; '; */
-
       ?>Since: <?= $new_start_formatted; ?></p>
       <p><?= $daysdiff; ?> days</p>
       <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
-
 
       /* Unique IP's */
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
@@ -212,8 +202,10 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $new_single_visit_list = [];
       foreach ($single_visit_no_action as $item) {
         $ip = str_replace("'", "", $item); // remove all single quotes
-        // $ip = $item;
-        $new_single_visit_list[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
+        $new_single_visit_list[] = '<a class="svna';
+        /* add a border-bottom for each except last if there are 3+ */
+        if (count($single_visit_no_action) > 2) { $new_single_visit_list[] .= ' bb'; }
+        $new_single_visit_list[] .= '" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
       }
       echo implode("", $new_single_visit_list);
 
@@ -229,7 +221,10 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $new_multiple_visits = [];
       foreach ($multiple_visits_no_action as $item) {
         $ip = str_replace("'", "", $item); // remove all single quotes
-        $new_multiple_visits[] = '<a class="svna" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
+        $new_multiple_visits[] = '<a class="svna';
+        /* add a border-bottom for each except last if there are 3+ */
+        if (count($multiple_visits_no_action) > 2) { $new_multiple_visits[] .= ' bb'; }
+        $new_multiple_visits[] .= '" data-role="svna" data-id="'.$ip.'"><i class="far fa-copy fa-fw"></i>' .  $ip . '</a>';
       }
       echo implode("", $new_multiple_visits); 
 
@@ -262,32 +257,29 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <div class="col b"><div></div></div>
     <div class="col v">
       <div><?php /* so you can treat this as one block */ ?>
+      <?php
+      /* prepare data */
+      $weekdays = array('Sunday' => $sunday_opened,
+                        'Monday' => $monday_opened,
+                        'Tuesday' => $tuesday_opened,
+                        'Wednesday' => $wednesday_opened,
+                        'Thursday' => $thursday_opened,
+                        'Friday' => $friday_opened,
+                        'Saturday' => $saturday_opened,
+                      );
+      arsort($weekdays); /* sort by value */
+      ?>
       <div class="aweek-wrap">
-        <div class="aweek-row">
-          <div class="anum">Views</div><div class="aday">&nbsp;</div>
+        <div class="aweek-row-top">
+          <div class="anum">Days Opened</div><div class="aday">&nbsp;</div>
         </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $sunday_opened ?></div><div class="aday">Sunday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $monday_opened ?></div><div class="aday">Monday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $tuesday_opened ?></div><div class="aday">Tuesday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $wednesday_opened ?></div><div class="aday">Wednesday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $thursday_opened ?></div><div class="aday">Thursday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $friday_opened ?></div><div class="aday">Friday</div>
-        </div>
-        <div class="aweek-row">
-          <div class="anum"><?= $saturday_opened ?></div><div class="aday">Saturday</div>
-        </div>
-        
+        <?php
+        foreach ($weekdays as $day => $num) { ?>
+          <div class="aweek-row">
+            <div class="anum"><?= $num ?></div><div class="aday"><?= $day ?></div>
+          </div>
+        <?php } ?>
+
       </div>
       </div>
     </div>

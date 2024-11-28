@@ -81,6 +81,12 @@
             color: #22b629;
           }
         }
+        a.svna.bb {
+          border-bottom: 1px dotted rgba(255,255,255,0.3);
+        }
+        a.svna.bb:last-child {
+          border: none;
+        }
       }
     }
 
@@ -215,6 +221,10 @@ background-color: rgba(239,239,240,0.25);
       padding: 0px 5px;
       width: 200px;
     }
+  }
+  .aweek-row-top {
+    display: flex;
+    margin-bottom: 0.5em;
   }
     .aweek-row:nth-child(even) {
     background-color: rgba(255,255,255,0.1);
