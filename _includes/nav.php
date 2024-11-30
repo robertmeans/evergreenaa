@@ -5,6 +5,23 @@ if (!isset($_SESSION['mode'])) {
   $_SESSION['mode'] = 'not-set';
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
 
@@ -14,11 +31,12 @@ if (!isset($_SESSION['mode'])) {
 			</div> 
 			<div class="mt">Menu</div>
 		</div>
-		<?php /* works - just needs an if statement to wrap it...
-		<div class="tooltip"><span class="tooltiptext type">New posts</span><i class="fas far fa-regular fa-star"></i></div> 
-		*/ ?>
 
 	</div>
+
+
+
+
 
   <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
   <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
@@ -27,8 +45,12 @@ if (!isset($_SESSION['mode'])) {
 
 </nav>
 
-<nav id="navigation" class="lg-g"><?php // mobile nav ?>
+<nav id="navigation" class="lg-g"><?php /* mobile nav */ ?>
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
+
+
+
+
 
   <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
   <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
@@ -36,6 +58,20 @@ if (!isset($_SESSION['mode'])) {
   <?php clearstatcache("_errors.txt"); } ?>
   
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div id="side-nav-bkg">
 

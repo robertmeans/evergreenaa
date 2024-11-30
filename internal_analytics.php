@@ -254,9 +254,9 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   </div>
 <?php } ?>
 
-  <div class="ia-ip-list ip-notes">
+  <div class="ia-ip-list">
 
-    <div class="col sp">
+    <div class="col sp"><?php /* sp = special, bc this one has extra margin to push it down on desktop */ ?>
       <div><?php /* so you can treat this as one block */ ?>
       <?php /* Unique IP's for per device */ ?>
       <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a>
@@ -273,8 +273,8 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
          <input type="hidden" id="totb-in-int" value="<?php echo count($mobile_count) + count($tablet_count) + count($desktop_count); ?>">
       </div>
     </div>
-    <div class="col b"><div></div></div>
-    <div class="col v">
+    <div class="col b"><div></div></div><?php /* border, single pixel (center divider) */ ?>
+    <div class="col">
       <div><?php /* so you can treat this as one block */ ?>
       <?php
       /* prepare data */
@@ -305,10 +305,31 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   </div>
 
-  <div class="ia-ip-list ip-notes">
-    <?php /* put stuff that uses mtg_days here */ ?>
+
+
+  <div class="ia-ip-list">
+    <div class="col">
+  
+
+
+  <?php
+
+  $results = get_meetings_for_analytics();
+
+  while ($row = mysqli_fetch_assoc($results)) {
+    echo $row['id_mtg'] . ' | ' . $row['id_user'] . ' | ' . $row['group_name'] . '<br>';
+  }
+
+  mysqli_free_result($results);
+  ?>
+
+
+    </div>
 
   </div>
+
+
+
 
 </div><!-- #manage-wrap -->
 

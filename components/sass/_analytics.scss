@@ -40,9 +40,6 @@
       padding: 0px;
       border-left: 1px solid rgba(255,255,255,0.3);
     }
-    &.v {
-      // border-left: 1px solid rgba(255,255,255,0.3);
-    }
     h1 {
       text-decoration: underline;
       display: inline-block;
@@ -244,9 +241,6 @@
     flex-direction: column;
     .col.sp {
       margin: 0;
-    }
-    .col.v {
-      margin-top: 1em;
     }
     .col.b {
       display: none;

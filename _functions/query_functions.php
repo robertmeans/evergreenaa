@@ -203,6 +203,21 @@ function get_meetings_for_members($id_user) { /* home_private.php ...yea, I know
     return $result;
 }
 
+function get_meetings_for_analytics() { /* home_private.php ...yea, I know this is the same as the one above */
+    global $db;
+
+    $sql = "SELECT m.id_mtg, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+    $sql .= "WHERE (m.visible != 0 ";
+    $sql .= "AND m.visible != 1)";
+    // $sql .= "OR ";
+    // $sql .= "(m.visible = 1 ";
+    // $sql .= "AND u.id_user='" . db_escape($db, $id_user) . "');";
+
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
 function verify_this_user($id) {
   global $db;
 
