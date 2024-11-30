@@ -29,16 +29,13 @@ require '_includes/head.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
-
 <?php require '_includes/msg-analytics.php'; ?>
-<?php // require '_includes/msg-role-key.php'; ?>
-<?php // require '_includes/msg-role-key.php'; ?>
 
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <?php
 
   $results = get_analytic_data();
-  /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened,  a_ip */
+  /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened, mtg_days, mtg_day,  a_ip */
   $i = 0;
 
   $homepage_loads   = 0;  $ip_groups        = [];  $all_mobile       = '';  
@@ -178,7 +175,13 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $daysdiff = floor($datediff / (60 * 60 * 24));
 
       ?>Since: <?= $new_start_formatted; ?></p>
-      <p><?= $daysdiff; ?> days</p>
+
+      <?php if ($daysdiff == 1) { ?>
+        <p><?= $daysdiff; ?> day</p>
+      <?php } else { ?>
+        <p><?= $daysdiff; ?> days</p>
+      <?php } ?>
+
       <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
 
       /* Unique IP's */
