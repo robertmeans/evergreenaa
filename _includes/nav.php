@@ -1,26 +1,9 @@
 <?php
 
-
 if (!isset($_SESSION['mode'])) {
   $_SESSION['mode'] = 'not-set';
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
@@ -35,42 +18,74 @@ if (!isset($_SESSION['mode'])) {
 	</div>
 
 
-
-
-
-  <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php /* BEGIN: Desktop - for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php /* pairs with script directly below nav */                                              ?>
   <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
-    <div class="phperror"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
-  <?php clearstatcache("_errors.txt"); } ?>
+    <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
+      <?php } else { ?>
+        <div class="phperror" data-role="error-notification"></div>
+  <?php  } ?>
+  <?php /* END: Desktop - frontend error alert */ ?>
 
 </nav>
 
 <nav id="navigation" class="lg-g"><?php /* mobile nav */ ?>
 	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
 
-
-
-
-
-  <?php /* for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php /* BEGIN: Mobile - for my eyes only - frontend alert if there's an error on the site */ ?>
+  <?php /* pairs with script directly below nav */                                              ?>
   <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
-    <div class="phperror"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
-  <?php clearstatcache("_errors.txt"); } ?>
+    <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
+      <?php } else { ?>
+        <div class="phperror" data-role="error-notification"></div>
+  <?php  } ?>
+  <?php /* END:  Mobile - frontend error alert */ ?>
   
 </nav>
 
+<?php /* for my eyes only - error reporting */ 
+  if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { ?>
+    <script> 
+      var error_location = "_errors.txt";
 
+      function checkFileExists(error_location) {
 
+        $.ajax({
+          url: "process-error-checking.php",
+          data: { filename: "_errors.txt" }, // Replace with your actual filename
+          success: function(response) {
+            if (response === "File is not empty") {
 
+              // $(".phperror").animate({ height: "37px" }, 200);
+              $(".phperror").addClass("on");
+              $('div[data-role=error-notification]').html('<a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>');
 
+              //console.log("File is not empty");
+            } else {
 
+              // $(".phperror").animate({ height: "0px" }, 200);
+              // setTimeout(function() {
+              //   $(".phperror").removeClass("on");
+              //   $('div[data-role=error-notification]').html(''); 
+              // }, 199);
 
+              $(".phperror").removeClass("on");
+              $('div[data-role=error-notification]').html('');
 
+              //console.log("File is empty or does not exist");
+            }
+          }
+        });
+      }
 
-
-
-
-
+      $(document).ready(function() {
+          setInterval(function() {
+            checkFileExists(error_location);
+          }, 3000);
+          // console.log('yo');   
+      });
+    </script>
+  <?php } ?>
 
 
 <div id="side-nav-bkg">
