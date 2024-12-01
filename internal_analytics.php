@@ -41,7 +41,7 @@ require '_includes/head.php'; ?>
   $homepage_loads   = 0;  $ip_groups        = [];  $all_mobile       = '';  
   $sunday_opened    = 0;  $unique_ips       = [];  $all_tablet       = '';  
   $monday_opened    = 0;  $mobile_count     = [];  $all_desktop      = '';  
-  $tuesday_opened   = 0;  $tablet_count     = [];  
+  $tuesday_opened   = 0;  $tablet_count     = [];  $itemCounts       = [];
   $wednesday_opened = 0;  $desktop_count    = []; 
   $thursday_opened  = 0;  $mobile_unique_a  = [];   
   $friday_opened    = 0;  $tablet_unique_a  = [];   
@@ -68,13 +68,11 @@ require '_includes/head.php'; ?>
     if (!empty($row['device']) && ($row['device'] === 'tablet' && $row['page'] === '')) {  $tablet_count[]   = $row; }
     if (!empty($row['device']) && ($row['device'] === 'desktop' && $row['page'] === '')) { $desktop_count[]  = $row; }
 
-    $ip = $row['a_ip']; /* 'bout to do tricky stuff based on IP addresses... */
-
     if (isset($row['device']) && $row['device'] === 'mobile') { $all_mobile = $row['device'] . ' ' .    $row['a_ip']; }
     if (isset($row['device']) && $row['device'] === 'tablet') { $all_tablet = $row['device'] . ' ' .    $row['a_ip']; }
     if (isset($row['device']) && $row['device'] === 'desktop') { $all_desktop = $row['device'] . ' ' .  $row['a_ip']; }
 
-
+    $ip = $row['a_ip']; 
     /* get visits that are likely bots due to no interactions, just page visits */
     if (!isset($ip_groups[$ip])) {
         $ip_groups[$ip] = [$row];
@@ -83,6 +81,23 @@ require '_includes/head.php'; ?>
     }
     /* consolidate unique ip's for a count of how many people are using the site */
     if (!empty($ip) && !in_array($ip, $unique_ips)) { $unique_ips[] = $ip; }
+
+
+
+    if ($row['mtg_day'] !== '') {
+      $item = $row['mtg_day'] . ' ' . $row['mtg_opened'];
+    } else {
+      $item = '';
+    }
+
+    if (isset($itemCounts[$item])) {
+        $itemCounts[$item]++;
+    } else {
+        // Otherwise, initialize its count to 1
+        $itemCounts[$item] = 1;
+    }
+
+
 
     if (!empty($all_mobile) && !in_array($all_mobile, $mobile_unique_a))    { $mobile_unique_a[]  = $all_mobile;  }
     if (!empty($all_tablet) && !in_array($all_tablet, $tablet_unique_a))    { $tablet_unique_a[]  = $all_tablet;  }
@@ -300,13 +315,22 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   <?php
 
-  $results = get_meetings_for_analytics();
+  // $results = get_meetings_for_analytics();
 
-  while ($row = mysqli_fetch_assoc($results)) {
-    echo $row['id_mtg'] . ' | ' . $row['id_user'] . ' | ' . $row['group_name'] . '<br>';
+  // while ($row = mysqli_fetch_assoc($results)) {
+  //   echo $row['id_mtg'] . ' | ' . $row['id_user'] . ' | ' . $row['group_name'] . '<br>';
+  // }
+
+  // mysqli_free_result($results);
+
+arsort($itemCounts);
+foreach ($itemCounts as $item => $count) {
+  if ($item !== '') {
+    echo "$count: $item" . "<br>";
   }
+}
 
-  mysqli_free_result($results);
+
   ?>
 
 

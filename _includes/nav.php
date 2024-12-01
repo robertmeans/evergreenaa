@@ -20,7 +20,7 @@ if (!isset($_SESSION['mode'])) {
 
   <?php /* BEGIN: Desktop - for my eyes only - frontend alert if there's an error on the site */ ?>
   <?php /* pairs with script directly below nav */                                              ?>
-  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
+  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
     <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
       <?php } else { ?>
         <div class="phperror" data-role="error-notification"></div>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['mode'])) {
 
   <?php /* BEGIN: Mobile - for my eyes only - frontend alert if there's an error on the site */ ?>
   <?php /* pairs with script directly below nav */                                              ?>
-  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && filesize("_errors.txt") > 0) { ?>
+  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
     <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
       <?php } else { ?>
         <div class="phperror" data-role="error-notification"></div>
