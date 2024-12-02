@@ -103,7 +103,7 @@
       <form id="mb" class="emh-form">
         <input type="hidden" name="mtgid" id="mtgid">
         <input type="hidden" name="mtgname" id="mtgnamez">
-        <input type="hidden" id="user-posting" value="<?= $_SESSION['username'] ?>">
+        <input type="hidden" id="user-posting" value="<?php if (isset($_SESSION['username'])) { echo $_SESSION['username']; } else { echo 'visitor'; } ?>">
 
         <label>Title | Topic | Headline
         <input id="mb-title" name="mb-title" class="edit-input link-name" type="text" maxlength="50"></label>
