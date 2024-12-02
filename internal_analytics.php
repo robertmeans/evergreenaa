@@ -43,7 +43,7 @@ require '_includes/head.php'; ?>
   $monday_opened    = 0;  $mobile_count     = [];  $all_desktop      = '';  
   $tuesday_opened   = 0;  $tablet_count     = [];  $itemCounts       = [];
   $wednesday_opened = 0;  $desktop_count    = [];  $activeMtgs       = []; 
-  $thursday_opened  = 0;  $mobile_unique_a  = [];   
+  $thursday_opened  = 0;  $mobile_unique_a  = [];  $analytics_start_date = '';
   $friday_opened    = 0;  $tablet_unique_a  = [];   
   $saturday_opened  = 0;  $desktop_unique_a = [];  
 
@@ -178,6 +178,10 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div class="ia-headwrap">
     <?php // start grabbing data and filling in page ?>
     <p class="ail"><?php
+
+    if ($analytics_start_date == '') {
+      $analytics_start_date = '05:30:00 Wed, 01.06.71';
+    }
 
       /* Start date of currently displayed results */
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
