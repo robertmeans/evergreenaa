@@ -3,7 +3,8 @@ body.noscrollz {
 }
 
 /* The Modal (background) */
-#theModal {
+#theModal,
+#theModal-ia {
   display: none; /* turn this modal on or off for dev at btm of script */
   position: fixed;
   z-index: 84;
@@ -49,11 +50,6 @@ body.noscrollz {
     text-decoration: none;
     background-color: rgba(205,51,51,1);
     cursor: pointer;
-  }
-}
-@media screen and (max-width: 800px) {
-  .closefp {
-    font-size: 1em;
   }
 }
 
@@ -170,6 +166,51 @@ body.noscrollz {
     }
   }
 }
+}
+#theModal-ia {
+  .modal-body {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    p {
+      line-height: 1.25em;
+      margin-bottom: 0.5em;
+    }
+    .ia-btns {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 1em;
+      a.iabtn,
+      a.iabtn.closefp {
+        margin: 0;
+        font-size: 1em;
+        font-weight: normal;
+        border-radius: 0px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 25px;
+        width: 48%;
+        border: 1px solid #fff;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        &:hover {
+          transform: scale(0.9);
+
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #theModal .closefp,
+  #theModal-ia .closefp {
+    font-size: 1em;
+  }
 }
 
 span.sending-msg {

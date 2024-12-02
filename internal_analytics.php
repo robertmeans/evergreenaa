@@ -126,19 +126,9 @@ require '_includes/head.php'; ?>
 
 
 <?php /* put links to backup & delete here */ ?>
-<?php
-
-
-?>
   <div class="db-mng-links">
-    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export DB</a> <!-- <a class="link" href="process-analytics-reset.php"><i class="fas far fa-trash"></i> Restart Analytics</a> --></p>
+    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export DB</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Restart Analytics</a></p>
   </div>
-
-
-
-
-
-
 
 
 <?php  
@@ -180,8 +170,9 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <p class="ail"><?php
 
     if ($analytics_start_date == '') {
-      $analytics_start_date = '05:30:00 Wed, 01.06.71';
-    }
+      echo 'Recent reset. No new data to process yet.</p>';
+      echo '</div>'; /* if there is no new data, the opening div.ia-headwrap has been closed and nothing else on page will print */
+    } else { /* else, we can continue processing page... (this else closes at btm of page above '</div><!-- #manage-wrap -->' ) */
 
       /* Start date of currently displayed results */
       $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
@@ -195,15 +186,15 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       $start_dateb = strtotime($start_date);
       $datediff = $now - $start_dateb;
       $daysdiff = floor($datediff / (60 * 60 * 24));
+   
+      echo 'Since: ' . $new_start_formatted . '</p>';
+      if ($daysdiff == 1) {
+        echo '<p>' . $daysdiff . ' day</p>';
+      } else {
+        echo '<p>' . $daysdiff . ' days</p>';
+      }
 
-      ?>Since: <?= $new_start_formatted; ?></p>
-
-      <?php if ($daysdiff == 1) { ?>
-        <p><?= $daysdiff; ?> day</p>
-      <?php } else { ?>
-        <p><?= $daysdiff; ?> days</p>
-      <?php } ?>
-
+      ?>
       <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
 
       /* Unique IP's */
@@ -377,6 +368,38 @@ foreach ($itemCounts as $item => $count) {
     </div>
   </div>
 
+<?php } /* end else */ ?>
+
 </div><!-- #manage-wrap -->
+
+
+
+
+<div id="theModal-ia" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="static closefp"><i class="fas fa-fw fa-times"></i></a>
+        <h4 class="modal-title">Reset Analytics</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <h3>&nbsp;</h3>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+
+
+
+
+
+
 
 <?php require '_includes/footer.php'; ?>

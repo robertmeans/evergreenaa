@@ -803,6 +803,127 @@ $(document).ready(function(){
     }
   });
 
+
+
+
+
+
+
+
+
+
+
+
+  /* reset analytics */
+  $(document).on('click', 'a[data-role=pa-reset]', function() { 
+    var theModal_ia   = document.getElementById("theModal-ia");
+
+    var currentDate = new Date();
+
+    // Get the day, month, date, year, hours, and minutes
+    var day = currentDate.toLocaleString('en-US', { weekday: 'short' });
+    var dayb = currentDate.getDate().toString().padStart(2, '0');
+    var month = currentDate.toLocaleString('en-US', { month: 'short' });
+    var monthb = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    var year = currentDate.getFullYear().toString().slice(-2);
+    var hours = currentDate.getHours().toString().padStart(2, '0');
+    var minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    var seconds = currentDate.getSeconds().toString().padStart(2, '0');
+    var newsd = day + ", " + month + " " + dayb + ", '" + year + " at " + hours + ":" + minutes;
+    var dbnsd = hours + ":" + minutes + ":" + seconds + " " + monthb + "." + dayb + "." + year;
+
+
+    $('.modal-body').html('<p>This will clear all current analytical data from database and start over with a start date of:</p><p id="new-start-date">'+newsd+'</p><input type="hidden" id="new-ia-start" value="'+dbnsd+'"><div class="ia-btns"><a class="iabtn" data-role="submit-ia-reset">Reset</a> <a class="iabtn closefp">Cancel</a></div>');
+
+
+    $('body').addClass('noscrollz');
+    theModal_ia.style.display = "block";
+
+  });
+
+
+
+
+
+
+
+  $(document).on('click', 'a[data-role=submit-ia-reset]', function() { 
+    var theModal_ia   = document.getElementById("theModal-ia");
+    var new_DB_start = $('#new-ia-start').val();
+
+    $.ajax({
+      dataType: "JSON",
+      url: "process-analytics-reset.php",
+      method: "POST", 
+      data: {
+        new_DB_start_date: new_DB_start 
+      },
+      beforeSend: function(xhr) {
+        console.log(new_DB_start);
+      }, 
+      success: function(response) {
+        if (response) {
+          if (response['signal'] == 'ok') {
+
+            $('body').removeClass('noscrollz');
+            theModal_ia.style.display = "none";
+
+
+          } else {
+            $('.modal-body').html('<p>That didn\'t work.</p>');
+          }
+        }
+      },
+      error: function() {
+        $('.modal-body').html('<p>That didn\'t workz.</p>');
+      },
+      complete: function() { }
+
+    });
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $(document).on('click', '.closefp', function() {
+    var theModal_ia   = document.getElementById("theModal-ia");
+    
+    $('body').removeClass('noscrollz');
+    theModal_ia.style.display = "none";
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   $('.analytics-cleanup').click(function() {
     var ip_delete_list = $('#ip-delete-list').val();
     // console.log(ip_delete_list);
@@ -883,10 +1004,6 @@ $(document).ready(function(){
     return false;
   })
 }); /* document.ready end */
-
-// setTimeout(function() {
-//   $("#success-wrap").fadeOut(1500);
-// }, 2000);
 
 
 // toggle lat, long coordinates explanation on 

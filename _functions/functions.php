@@ -849,5 +849,19 @@ function display_theme_errors($errors=array()) {
     return $output;
   }
 
+
+function ewd_copyright($startYear) {
+  $currentYear = date('Y');
+  if ($startYear < $currentYear) {
+    $currentYear = date('y');
+    // return "<i class=\"fas fa-peace\"></i> $startYear&ndash;$currentYear";
+    return "<i class=\"far fa-heart\"></i> $startYear&ndash;$currentYear";
+  } else {
+    // return "<i class=\"fas fa-peace\"></i> $startYear";
+    return "<i class=\"far fa-heart\"></i> $startYear";
+  }
+}
+
+
 	
 ?>
