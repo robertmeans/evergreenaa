@@ -2181,6 +2181,6 @@ $(document).ready(function() {
       complete: function() {
 
       }
-    })
+    });
   
 }); // end document.ready

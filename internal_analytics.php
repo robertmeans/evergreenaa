@@ -42,7 +42,7 @@ require '_includes/head.php'; ?>
   $sunday_opened    = 0;  $unique_ips       = [];  $all_tablet       = '';  
   $monday_opened    = 0;  $mobile_count     = [];  $all_desktop      = '';  
   $tuesday_opened   = 0;  $tablet_count     = [];  $itemCounts       = [];
-  $wednesday_opened = 0;  $desktop_count    = []; 
+  $wednesday_opened = 0;  $desktop_count    = [];  $activeMtgs       = []; 
   $thursday_opened  = 0;  $mobile_unique_a  = [];   
   $friday_opened    = 0;  $tablet_unique_a  = [];   
   $saturday_opened  = 0;  $desktop_unique_a = [];  
@@ -124,6 +124,23 @@ require '_includes/head.php'; ?>
       } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p>
   </div>
 
+
+<?php /* put links to backup & delete here */ ?>
+<?php
+
+
+?>
+  <div class="db-mng-links">
+    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export DB</a> <!-- <a class="link" href="process-analytics-reset.php"><i class="fas far fa-trash"></i> Restart Analytics</a> --></p>
+  </div>
+
+
+
+
+
+
+
+
 <?php  
 /* begin - this grabs each unique ip */
 $single_visit_no_action = []; // $unique_row['a_ip'];
@@ -204,7 +221,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
       if ($single_visit_no_action || $multiple_visits_no_action) {
       ?>
-       <div id="clean-up-btn"><input type="hidden" id="ip-delete-list" value="<?php echo $list_to_delete; ?>"><a class="analytics-cleanup">Clean up</a></div>
+       <div id="clean-up-btn"><input type="hidden" id="ip-delete-list" value="<?php echo $list_to_delete; ?>"><a class="analytics-cleanup">Delete "no action" IP's below</a></div>
       <?php } 
         }
 
@@ -330,15 +347,10 @@ foreach ($itemCounts as $item => $count) {
   }
 }
 
-
   ?>
 
-
     </div>
-
   </div>
-
-
 
 
 </div><!-- #manage-wrap -->
