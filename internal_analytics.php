@@ -328,7 +328,20 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div class="ia-ip-list">
     <div class="col">
   
-
+    <div class="rowa-header">
+      <div class="counta">
+        Count
+      </div>
+      <div class="daya">
+        Day
+      </div>
+      <div class="timea">
+        Time
+      </div>
+      <div class="mtgnamea">
+        Meeting Name
+      </div>
+    </div>
 
   <?php
 
@@ -343,7 +356,28 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 arsort($itemCounts);
 foreach ($itemCounts as $item => $count) {
   if ($item !== '') {
-    echo "$count: $item" . "<br>";
+    $words = explode(' ', $item);
+    $day = $words[0];
+    $time = $words[1] . ' ' . $words[2];
+    $stringend = array_slice($words, 3);
+    $mtgname = implode(' ', $stringend);
+    ?>
+    <div class="rowa">
+      <div class="counta">
+        <?= $count; ?>
+      </div>
+      <div class="daya">
+        <?= $day; ?>
+      </div>
+      <div class="timea">
+        <?= $time; ?>
+      </div>
+      <div class="mtgnamea">
+        <?= $mtgname; ?>
+      </div>
+    </div>
+    <?php
+    // echo "$count: $day, $time - $mtgname" . "<br>";
   }
 }
 

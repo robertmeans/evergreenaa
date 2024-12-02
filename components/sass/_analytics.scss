@@ -86,7 +86,54 @@
         }
       }
     }
-
+    .rowa-header,
+    .rowa {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      .counta,
+      .daya,
+      .timea,
+      .mtgnamea {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        padding: 0.25em 0.5em;
+        word-break: break-word;
+        width: 100%;
+      }
+      .counta {
+        max-width: 100px;
+        justify-content: center;
+      }
+      .daya {
+        max-width: 120px;
+      }
+      .timea {
+        max-width: 100px;
+      }
+      .mtgnamea {
+        max-width: 680px;
+      }
+    }
+    .rowa-header {
+      background-color: rgba(255,255,255,0.8);
+      color: rgba(0,0,0,0.5);
+      margin-top: 1em;
+      .counta,
+      .daya,
+      .timea,
+      .mtgnamea {
+        padding: 0.25em 0.5em;
+      }
+      .counta {
+        justify-content: flex-start;
+      }
+    }
+    .rowa:nth-child(even) {
+      background-color: rgba(255,255,255,0.1);
+    }
   }
   .col-full-width {
     width: 100%;
