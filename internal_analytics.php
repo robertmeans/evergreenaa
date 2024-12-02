@@ -323,8 +323,6 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   </div>
 
-
-
   <div class="ia-ip-list">
     <div class="col">
   
@@ -343,16 +341,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       </div>
     </div>
 
-  <?php
-
-  // $results = get_meetings_for_analytics();
-
-  // while ($row = mysqli_fetch_assoc($results)) {
-  //   echo $row['id_mtg'] . ' | ' . $row['id_user'] . ' | ' . $row['group_name'] . '<br>';
-  // }
-
-  // mysqli_free_result($results);
-
+<?php
 arsort($itemCounts);
 foreach ($itemCounts as $item => $count) {
   if ($item !== '') {
@@ -380,12 +369,9 @@ foreach ($itemCounts as $item => $count) {
     // echo "$count: $day, $time - $mtgname" . "<br>";
   }
 }
-
-  ?>
-
+?>
     </div>
   </div>
-
 
 </div><!-- #manage-wrap -->
 
