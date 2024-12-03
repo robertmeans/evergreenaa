@@ -150,6 +150,23 @@
 	}
 }
 
+@media screen and (max-width: 600px) {
+  .manage-simple {
+    & > p.logout {
+      text-align: center;
+      & > a {
+        display: block;
+        padding: 1em;
+        margin: 0 auto 0.5em;
+      }
+      & > a:first-of-type {
+        // margin: 0;
+      }
+    }
+  }
+}
+
+
 p.address-this {
 	line-height: 1.5em;
 	margin-bottom: 1em;
