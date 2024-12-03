@@ -49,7 +49,8 @@ require '_includes/head.php'; ?>
 
   while ($row = mysqli_fetch_assoc($results)) {
 
-    if ($i === 0) { $analytics_start_date = $row['occurred']; }
+    if ($i === 0) { $analytics_start_date = $row['occurred']; } /* grab reset date */
+    // if ($row['page'] == 'xxx') { continue; } /* skip the rest bc I record the date in the 1st record after a reset and differentiate it by setting page = 'xxx' */
 
     if (isset($row['page']) && $row['page'] === 'index') { $homepage_loads++; }
 
@@ -125,9 +126,14 @@ require '_includes/head.php'; ?>
   </div>
 
 
-<?php /* put links to backup & delete here */ ?>
+<?php /* put links to backup & delete here */ 
+    $analytics_begin = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
+    $analytics_start_for_export = $analytics_begin->format('mdyHi');
+?>
   <div class="db-mng-links">
-    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export DB</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Restart Analytics</a></p>
+    <input type="hidden" id="as-date" value="<?= $analytics_start_for_export; ?>">
+    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 0) { ?><a class="link" href="process-sql-table-analytics-export.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
+  } ?></p>
   </div>
 
 
@@ -168,15 +174,17 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div class="ia-headwrap">
     <?php // start grabbing data and filling in page ?>
     <p class="ail"><?php
+    $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
+    $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
 
-    if ($analytics_start_date == '') {
+    if ($i === 0) {
       echo 'Recent reset. No new data to process yet.</p>';
+      echo '<p>New start date: ' . $new_start_formatted . '</p>';
       echo '</div>'; /* if there is no new data, the opening div.ia-headwrap has been closed and nothing else on page will print */
     } else { /* else, we can continue processing page... (this else closes at btm of page above '</div><!-- #manage-wrap -->' ) */
 
       /* Start date of currently displayed results */
-      $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
-      $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
+
       $total_interactions = $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened);
 
       /* yeesh, this seems overly complicated... */
@@ -318,12 +326,13 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   </div>
 
+<?php // if (count($itemCounts) > 0) { ?>
   <div class="ia-ip-list">
     <div class="col">
   
     <div class="rowa-header">
       <div class="counta">
-        Count
+        Count <?= count($itemCounts); ?>
       </div>
       <div class="daya">
         Day
@@ -367,6 +376,7 @@ foreach ($itemCounts as $item => $count) {
 ?>
     </div>
   </div>
+<?php // } ?>
 
 <?php } /* end else */ ?>
 
@@ -393,11 +403,6 @@ foreach ($itemCounts as $item => $count) {
     </div>
   </div>
 </div> 
-
-
-
-
-
 
 
 

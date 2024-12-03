@@ -102,6 +102,16 @@ function get_analytic_data() {
   return $result; // returns an assoc. array
 }
 
+function get_analytic_start_date() {
+  global $db;
+
+  $sql = "SELECT * FROM analytics LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result; // returns an assoc. array
+}
+
 function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $mtg_name, $their_ip) {
   global $db; 
 
@@ -122,6 +132,15 @@ function log_activity_for_analytics($now, $email, $device, $page, $day, $host_id
   $sql .= ")";
 
   $result = mysqli_query($db, $sql); 
+  return $result;
+}
+
+function reset_analytics() {
+  global $db;
+
+  $sql  = "TRUNCATE TABLE analytics";
+
+  $result = mysqli_query($db, $sql);
   return $result;
 }
 

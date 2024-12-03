@@ -830,7 +830,7 @@ $(document).ready(function(){
     var minutes = currentDate.getMinutes().toString().padStart(2, '0');
     var seconds = currentDate.getSeconds().toString().padStart(2, '0');
     var newsd = day + ", " + month + " " + dayb + ", '" + year + " at " + hours + ":" + minutes;
-    var dbnsd = hours + ":" + minutes + ":" + seconds + " " + monthb + "." + dayb + "." + year;
+    var dbnsd = hours + ":" + minutes + ":" + seconds + " " + day + ", " + monthb + "." + dayb + "." + year;
 
 
     $('.modal-body').html('<p>This will clear all current analytical data from database and start over with a start date of:</p><p id="new-start-date">'+newsd+'</p><input type="hidden" id="new-ia-start" value="'+dbnsd+'"><div class="ia-btns"><a class="iabtn" data-role="submit-ia-reset">Reset</a> <a class="iabtn closefp">Cancel</a></div>');
@@ -859,34 +859,48 @@ $(document).ready(function(){
         new_DB_start_date: new_DB_start 
       },
       beforeSend: function(xhr) {
-        console.log(new_DB_start);
+        // console.log(new_DB_start);
       }, 
       success: function(response) {
         if (response) {
           if (response['signal'] == 'ok') {
 
-            $('body').removeClass('noscrollz');
-            theModal_ia.style.display = "none";
+            $('.modal-body').html('<p>' + response['msg'] + '</p>');
 
+            setTimeout(function() {
+              $('body').removeClass('noscrollz');
+              theModal_ia.style.display = "none"; 
+            }, 1000); 
+            setTimeout(function() {
+              location.reload(); 
+            }, 1001);
 
           } else {
-            $('.modal-body').html('<p>That didn\'t work.</p>');
+            $('.modal-body').html('<p>' + response['msg'] + '</p>');
           }
         }
       },
       error: function() {
-        $('.modal-body').html('<p>That didn\'t workz.</p>');
+        $('.modal-body').html('<p>' + response['msg'] + '</p>');
       },
       complete: function() { }
 
     });
 
 
-
-
-
-
   });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -947,10 +961,10 @@ $(document).ready(function(){
 
             setTimeout(function() {
               $("#replace-this").animate({ height: "0px" }, 250); 
-            }, 1250); /* wait 3 seconds then close drawer in 1 second */
+            }, 1250); 
             setTimeout(function() {
               $("#replace-this").html(''); 
-            }, 1500); /* wait 4 seconds (3 + 1 from above) and reomve div */
+            }, 1500); 
 
           } else {
             $('#replace-this').html('<div class="col-full-width dns">nope: ' + response['delete_msg'] + '</div>');
