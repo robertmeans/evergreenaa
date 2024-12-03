@@ -27,7 +27,7 @@
     flex: 1;
     width: 98%;
     padding: 1em;
-    margin: 0 0.25em 0 0;
+    // margin: 0 0.25em 0 0;
     transition: all 0.2s ease;
     &.sp {
       margin-top: 1em;
@@ -39,6 +39,9 @@
       margin: 1em 0;
       padding: 0px;
       border-left: 1px solid rgba(255,255,255,0.3);
+    }
+    &.daysop {
+      margin: 1em 0;
     }
     h1 {
       text-decoration: underline;
@@ -285,6 +288,8 @@
   }
 }
 
+
+
 .aweek-wrap {
   display: flex;
   flex-direction: column;
@@ -317,17 +322,45 @@
   } 
 }
 
+@media screen and (max-width: 600px) {
+  #manage-wrap {
+    .db-mng-links {
+      margin: 0em;
+      a.link {
+        margin: 0em auto 0.75em;
+        width: 100%;
+        padding: 1em;
+      }
+    }
+    a.analytics-cleanup {
+      padding: 1em;
+    }
+    #clean-up-btn {
+      margin: 1em 0;
+    }
+  }
+  .ia-headwrap {
+    p.ail {
+      margin-top: 0.5em;
+    }
+  }
+  .aweek-wrap {
+    max-width: none;
+  }
+
+}
+
+
 @media screen and (max-width: 800px) {
   .ia-ip-list {
     flex-direction: column;
     .col.sp {
-      margin: 0;
+      margin: 0.5em 0;
     }
     .col.b {
       display: none;
     }
   }
-
 }
 
 /* putting this here bc, why not? */
@@ -363,3 +396,4 @@ a.theme-popup-btn {
     font-size: 0.8em;    
   }
 }
+

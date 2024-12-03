@@ -50,7 +50,7 @@ require '_includes/head.php'; ?>
   while ($row = mysqli_fetch_assoc($results)) {
 
     if ($i === 0) { $analytics_start_date = $row['occurred']; } /* grab reset date */
-    // if ($row['page'] == 'xxx') { continue; } /* skip the rest bc I record the date in the 1st record after a reset and differentiate it by setting page = 'xxx' */
+    if ($row['page'] == 'xxx') { $i++; continue; } /* skip the rest bc I record the date in the 1st record after a reset (via using link on this page) and differentiate it by setting page = 'xxx'. I'm leaving this as it's own separate if statement just in case I delete everything from the analytics table via phpMyAdmin and therefore there is no page = 'xxx' record. */
 
     if (isset($row['page']) && $row['page'] === 'index') { $homepage_loads++; }
 
@@ -73,7 +73,10 @@ require '_includes/head.php'; ?>
     if (isset($row['device']) && $row['device'] === 'tablet') { $all_tablet = $row['device'] . ' ' .    $row['a_ip']; }
     if (isset($row['device']) && $row['device'] === 'desktop') { $all_desktop = $row['device'] . ' ' .  $row['a_ip']; }
 
-    $ip = $row['a_ip']; 
+
+
+
+    $ip = $row['a_ip'];  
     /* get visits that are likely bots due to no interactions, just page visits */
     if (!isset($ip_groups[$ip])) {
         $ip_groups[$ip] = [$row];
@@ -137,7 +140,10 @@ require '_includes/head.php'; ?>
   </div>
 
 
-<?php  
+<?php 
+
+/* NOTE: some logic no longer makes sense due to implementing the "Reset Analytics" feature. this does not take into account those people who were on the site before the reset and then get counted as 1 visit afterwards. originally, it made sense if an IP only showed up once, that wouldn't make any since because they would not have interacted with the site in any practical way. now, they could have just left a tab open and after a reset, I won't see any of their prior activity. */
+
 /* begin - this grabs each unique ip */
 $single_visit_no_action = []; // $unique_row['a_ip'];
 $multiple_visits_no_action = []; // $multiple_but_same_ip;
@@ -174,6 +180,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   <div class="ia-headwrap">
     <?php // start grabbing data and filling in page ?>
     <p class="ail"><?php
+    date_default_timezone_set('America/Denver');
     $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
     $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
 
@@ -187,20 +194,24 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
       $total_interactions = $i - ($homepage_loads + $sunday_opened + $monday_opened + $tuesday_opened + $wednesday_opened + $thursday_opened + $friday_opened + $saturday_opened);
 
-      /* yeesh, this seems overly complicated... */
-      date_default_timezone_set('America/Denver');
-      $now = time();
-      $start_date = $dateTime->format('Y-m-d');
-      $start_dateb = strtotime($start_date);
-      $datediff = $now - $start_dateb;
-      $daysdiff = floor($datediff / (60 * 60 * 24));
+      /* thanks chatGPT... */
+      
+      $currentTime = new DateTime();
+      $interval = $currentTime->diff($dateTime);
+
+      if ($interval->days === 1) { $d = 'day'; } else { $d = 'days'; }
+      if ($interval->h === 1) { $h = 'hour'; } else { $h = 'hours'; }
+      if ($interval->i === 1) { $min = 'minute'; } else { $min = 'minutes'; }
    
       echo 'Since: ' . $new_start_formatted . '</p>';
-      if ($daysdiff == 1) {
-        echo '<p>' . $daysdiff . ' day</p>';
+
+      if ($interval->days < 1) {
+        // Show the difference in hours and minutes
+        echo "<p>" .$interval->h. " ".$h." and " .$interval->i. " ".$min."</p>";
       } else {
-        echo '<p>' . $daysdiff . ' days</p>';
-      }
+        // Show the difference in days, hours, and minutes
+        echo "<p>".$interval->days." ".$d.", ".$interval->h." ".$h.", and ".$interval->i." ".$min."</p>";
+      } 
 
       ?>
       <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
@@ -295,7 +306,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       </div>
     </div>
     <div class="col b"><div></div></div><?php /* border, single pixel (center divider) */ ?>
-    <div class="col">
+    <div class="col daysop">
       <div><?php /* so you can treat this as one block */ ?>
       <?php
       /* prepare data */
