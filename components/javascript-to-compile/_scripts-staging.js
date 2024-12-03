@@ -899,25 +899,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   $(document).on('click', '.closefp', function() {
     var theModal_ia   = document.getElementById("theModal-ia");
     

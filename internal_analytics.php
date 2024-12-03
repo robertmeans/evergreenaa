@@ -132,7 +132,7 @@ require '_includes/head.php'; ?>
 ?>
   <div class="db-mng-links">
     <input type="hidden" id="as-date" value="<?= $analytics_start_for_export; ?>">
-    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 0) { ?><a class="link" href="process-sql-table-analytics-export.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
+    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 1) { ?><a class="link" href="process-sql-table-analytics-export.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
   } ?></p>
   </div>
 
@@ -177,7 +177,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     $dateTime = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
     $new_start_formatted = $dateTime->format('D, M d, \'y \a\t H:i');
 
-    if ($i === 0) {
+    if ($i === 1) {
       echo 'Recent reset. No new data to process yet.</p>';
       echo '<p>New start date: ' . $new_start_formatted . '</p>';
       echo '</div>'; /* if there is no new data, the opening div.ia-headwrap has been closed and nothing else on page will print */
