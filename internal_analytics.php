@@ -44,7 +44,7 @@ require '_includes/head.php'; ?>
   $tuesday_opened   = 0;  $tablet_count     = [];  $itemCounts       = [];
   $wednesday_opened = 0;  $desktop_count    = [];  $activeMtgs       = []; 
   $thursday_opened  = 0;  $mobile_unique_a  = [];  $analytics_start_date = '';
-  $friday_opened    = 0;  $tablet_unique_a  = [];   
+  $friday_opened    = 0;  $tablet_unique_a  = [];  $dirCounts        = [];  
   $saturday_opened  = 0;  $desktop_unique_a = [];  
 
   while ($row = mysqli_fetch_assoc($results)) {
@@ -88,18 +88,48 @@ require '_includes/head.php'; ?>
 
 
 
+
+    /* the following is a great little block o' code that will be repurposed a few times */
+    /* if $row['mtg_day'] is not empty, they opened a specific meeting */
+    /* (more specifically, they clicked on a, '.daily-glance-wrap')    */
     if ($row['mtg_day'] !== '') {
-      $item = $row['mtg_day'] . ' ' . $row['mtg_opened'];
+      /* create a record of this meeting, separate day from name by a space for treating the string as an array later so you can grab the specific information you need based on its place in the array */
+      $item = $row['mtg_id'] . ' ' . $row['mtg_day'] . ' ' . $row['mtg_opened'];
     } else {
       $item = '';
     }
-
+    /* put this $item into an array of its own so you can run a count() on it later */
     if (isset($itemCounts[$item])) {
-        $itemCounts[$item]++;
+      $itemCounts[$item]++;
     } else {
-        // Otherwise, initialize its count to 1
-        $itemCounts[$item] = 1;
+      // Otherwise, initialize its count to 1
+      $itemCounts[$item] = 1;
     }
+
+
+
+
+    /* they clicked on "Directions"... */
+    if ($row['dir'] !== '') {
+      $itemb = $row['mtg_id'] . ' ' . $row['mtg_day'] . ' ' . $row['mtg_opened'];
+    } else {
+      $itemb = '';
+    }
+    if (isset($dirCounts[$itemb])) {
+      $dirCounts[$itemb]++;
+    } else {
+      $dirCounts[$itemb] = 1;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -361,9 +391,10 @@ arsort($itemCounts);
 foreach ($itemCounts as $item => $count) {
   if ($item !== '') {
     $words = explode(' ', $item);
-    $day = $words[0];
-    $time = $words[1] . ' ' . $words[2];
-    $stringend = array_slice($words, 3);
+    $meet_id = $words[0];
+    $day = $words[1];
+    $time = $words[2] . ' ' . $words[3];
+    $stringend = array_slice($words, 4);
     $mtgname = implode(' ', $stringend);
     ?>
     <div class="rowa">

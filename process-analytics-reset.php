@@ -18,13 +18,16 @@ if (is_post_request() && isset($_POST['new_DB_start_date'])) {
   $mtg_id = '';
   $mtg_name = ''; 
   $mtg_days = ''; 
-  $mtg_day = ''; 
+  $mtg_day = '';
+  $onetap = '0';
+  $zoom = '0';
+  $dir = '0'; 
 
   $reset = reset_analytics();
 
   if ($reset) {
 
-    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $mtg_name, $their_ip);
+    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $onetap, $zoom, $dir, $mtg_name, $their_ip);
 
     if ($log_action) {
       $signal = 'ok';

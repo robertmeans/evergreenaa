@@ -38,13 +38,24 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_POST['device'])) {        $device = $_POST['device'];         } else { $device = 'undetected'; }
     if (isset($_POST['page'])) {          $page = $_POST['page'];             } else { $page = ''; }
     if (isset($_POST['day'])) {           $day = $_POST['day'];               } else { $day = ''; }
+
+
     if (isset($_POST['host_id'])) {       $host_id = $_POST['host_id'];       } else { $host_id = ''; }
     if (isset($_POST['mtg_id'])) {        $mtg_id = $_POST['mtg_id'];         } else { $mtg_id = ''; }
     if (isset($_POST['mtgName'])) {       $mtg_name = $_POST['mtgName'];      } else { $mtg_name = ''; }
     if (isset($_POST['mtg_days'])) {      $mtg_days = $_POST['mtg_days'];     } else { $mtg_days = ''; }
     if (isset($_POST['mtgDay'])) {        $mtg_day = $_POST['mtgDay'];        } else { $mtg_day = ''; }
 
-    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $mtg_name, $their_ip);
+
+    if (isset($_POST['onetap'])) {        $onetap = $_POST['onetap'];         } else { $onetap = ''; }
+    if (isset($_POST['zoom'])) {          $zoom = $_POST['zoom'];             } else { $zoom = ''; }
+    if (isset($_POST['dir'])) {           $dir = $_POST['dir'];               } else { $dir = ''; }
+
+
+
+
+
+    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $onetap, $zoom, $dir, $mtg_name, $their_ip);
     $turn_on_alert = update_alert_notification();
    
   }

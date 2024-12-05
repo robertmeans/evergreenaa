@@ -754,15 +754,16 @@ $(document).ready(function(){
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
 
-    var mtg_id = $(this).find('[data-role=mtg-id]').val();
-    var host_id = $(this).find('[data-role=hid]').val();
-    var mtg_days = $(this).find('[data-role=mtgdz]').val();
-    var mtg_day = $(this).find('[data-role=mtg-day]').val();
+    var id = $(this).data('id');
+    var mtg_id = $('[data-role='+id+'_mtg-id]').val();
+    var host_id = $('[data-role='+id+'_hid]').val();
+    var mtg_days = $('[data-role='+id+'_mtgdz]').val();
+    var mtg_day = $('[data-role='+id+'_mtg-day]').val();
 
-    var time = $(this).find('.glance-mtg-time p').text();
-    var title = $(this).find('.glance-group-title p').text();
+    var time = $('[data-role='+id+'_mtgtm]').text();
+    var title = $('[data-role='+id+'_mtggn]').text();
     var mtg_name = time + ' ' + title;
-    // console.log(usr_id);
+    // console.log(mtg_name);
 
     var deviceType = detectDeviceType(); /* declared at top of page */
     // console.log("Device Type: " + deviceType); 
@@ -803,6 +804,138 @@ $(document).ready(function(){
     }
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $('a[data-role=one-tap]').click(function() {
+    var id = $(this).data('id');
+    var mtg_id = $('[data-role='+id+'_mtg-id]').val();
+    var host_id = $('[data-role='+id+'_hid]').val();
+    var mtg_days = $('[data-role='+id+'_mtgdz]').val();
+    var mtg_day = $('[data-role='+id+'_mtg-day]').val();
+
+    var time = $('[data-role='+id+'_mtgtm]').text();
+    var title = $('[data-role='+id+'_mtggn]').text();
+    var mtg_name = time + ' ' + title;
+
+    var deviceType = detectDeviceType(); /* declared at top of page */
+    if (deviceType === "mobile") {
+      var device = 'mobile';
+    } else if (deviceType === "tablet") {
+       var device = 'tablet';
+    } else {
+       var device = 'desktop';
+    }
+
+    $.ajax({
+      url: 'process-analytics.php',
+      method: 'POST', 
+      dataType: 'text', 
+      data: {
+        primary_key: 'set', /* used to identify appropriate process */
+        device: device,
+        host_id: host_id,
+        mtg_id: mtg_id,
+        mtgName: mtg_name,
+        mtg_days: mtg_days,
+        mtgDay: mtg_day,
+        onetap: '1'
+      } /* no success or fail actions necessary */
+    });
+
+  });
+
+  $('a[data-role=join-zoom]').click(function() { 
+    var id = $(this).data('id');
+    var mtg_id = $('[data-role='+id+'_mtg-id]').val();
+    var host_id = $('[data-role='+id+'_hid]').val();
+    var mtg_days = $('[data-role='+id+'_mtgdz]').val();
+    var mtg_day = $('[data-role='+id+'_mtg-day]').val();
+
+    var time = $('[data-role='+id+'_mtgtm]').text();
+    var title = $('[data-role='+id+'_mtggn]').text();
+    var mtg_name = time + ' ' + title;
+    
+    var deviceType = detectDeviceType(); /* declared at top of page */
+    if (deviceType === "mobile") {
+      var device = 'mobile';
+    } else if (deviceType === "tablet") {
+       var device = 'tablet';
+    } else {
+       var device = 'desktop';
+    }
+
+    $.ajax({
+      url: 'process-analytics.php',
+      method: 'POST', 
+      dataType: 'text', 
+      data: {
+        primary_key: 'set', /* used to identify appropriate process */
+        device: device,
+        host_id: host_id,
+        mtg_id: mtg_id,
+        mtgName: mtg_name,
+        mtg_days: mtg_days,
+        mtgDay: mtg_day,
+        zoom: '1'
+      } /* no success or fail actions necessary */
+    });
+
+  });
+
+  $('a[data-role=directions]').click(function() {
+    var id = $(this).data('id');
+    var mtg_id = $('[data-role='+id+'_mtg-id]').val();
+    var host_id = $('[data-role='+id+'_hid]').val();
+    var mtg_days = $('[data-role='+id+'_mtgdz]').val();
+    var mtg_day = $('[data-role='+id+'_mtg-day]').val();
+
+    var time = $('[data-role='+id+'_mtgtm]').text();
+    var title = $('[data-role='+id+'_mtggn]').text();
+    var mtg_name = time + ' ' + title;
+    
+    var deviceType = detectDeviceType(); /* declared at top of page */
+    if (deviceType === "mobile") {
+      var device = 'mobile';
+    } else if (deviceType === "tablet") {
+       var device = 'tablet';
+    } else {
+       var device = 'desktop';
+    }
+
+    $.ajax({
+      url: 'process-analytics.php',
+      method: 'POST', 
+      dataType: 'text', 
+      data: {
+        primary_key: 'set', /* used to identify appropriate process */
+        device: device,
+        host_id: host_id,
+        mtg_id: mtg_id,
+        mtgName: mtg_name,
+        mtg_days: mtg_days,
+        mtgDay: mtg_day,
+        dir: '1'
+      } /* no success or fail actions necessary */
+    });
+
+  });
 
 
 
