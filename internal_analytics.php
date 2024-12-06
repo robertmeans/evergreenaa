@@ -373,7 +373,11 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
   
     <div class="rowa-header">
       <div class="counta">
-        Count <?= count($itemCounts); ?>
+        Count <?php // echo count($itemCounts) - 1; 
+        /* sub 1 bc otherwise it starts at 0 and the count is 1 too many */
+        /* it is counting the number of meetings that have been opened.  */
+        /* and I have to make the base = 1 so that mtgs that are only    */
+        /* counted once will at least have a count of 1.                 */?>
       </div>
       <div class="daya">
         Day
