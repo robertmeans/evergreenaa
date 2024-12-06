@@ -367,62 +367,20 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   </div>
 
-<?php // if (count($itemCounts) > 0) { ?>
-  <div class="ia-ip-list">
-    <div class="col">
-  
-    <div class="rowa-header">
-      <div class="counta">
-        Count <?php // echo count($itemCounts) - 1; 
-        /* sub 1 bc otherwise it starts at 0 and the count is 1 too many */
-        /* it is counting the number of meetings that have been opened.  */
-        /* and I have to make the base = 1 so that mtgs that are only    */
-        /* counted once will at least have a count of 1.                 */?>
-      </div>
-      <div class="daya">
-        Day
-      </div>
-      <div class="timea">
-        Time
-      </div>
-      <div class="mtgnamea">
-        Meeting Name
-      </div>
-    </div>
 
-<?php
-arsort($itemCounts);
-foreach ($itemCounts as $item => $count) {
-  if ($item !== '') {
-    $words = explode(' ', $item);
-    $meet_id = $words[0];
-    $day = $words[1];
-    $time = $words[2] . ' ' . $words[3];
-    $stringend = array_slice($words, 4);
-    $mtgname = implode(' ', $stringend);
-    ?>
-    <div class="rowa">
-      <div class="counta">
-        <?= $count; ?>
-      </div>
-      <div class="daya">
-        <?= $day; ?>
-      </div>
-      <div class="timea">
-        <?= $time; ?>
-      </div>
-      <div class="mtgnamea">
-        <?= $mtgname; ?>
-      </div>
-    </div>
-    <?php
-    // echo "$count: $day, $time - $mtgname" . "<br>";
-  }
-}
-?>
-    </div>
-  </div>
-<?php // } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -508,9 +466,9 @@ if ($mtg_count > 0) {
       </div>
       <div class="mtgnamea">
         <?php echo $mtgname;
-        if ($row['dir_count'] !== '0') { echo '<br>Directions: ' . $row['dir_count']; }
-        if ($row['onetap_count'] !== '0') { echo '<br>One Tap: ' . $row['onetap_count']; }
-        if ($row['zoom_count'] !== '0') { echo '<br>Zoom: ' . $row['zoom_count']; } ?>
+        if ($row['dir_count'] !== '0') { echo '<div class="clickcount">Directions: ' . $row['dir_count'] . '</div>'; }
+        if ($row['onetap_count'] !== '0') { echo '<div class="clickcount">One Tap: ' . $row['onetap_count'] . '</div>'; }
+        if ($row['zoom_count'] !== '0') { echo '<div class="clickcount">Zoom: ' . $row['zoom_count'] . '</div>'; } ?>
       </div>
     </div>
 

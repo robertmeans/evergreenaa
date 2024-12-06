@@ -118,6 +118,14 @@
       }
       .mtgnamea {
         max-width: 680px;
+        display: flex;
+        flex-direction: column;
+        .clickcount {
+          display: flex;
+          padding: 0.25em 0.5em;
+          font-size: 0.75em;
+          line-height: 1em;
+        }
       }
     }
     .rowa-header {
