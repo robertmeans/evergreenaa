@@ -27,35 +27,36 @@ if (!isset($analytics_on_off)) { return; } else {
     if (isset($_POST['page']) && $_POST['page'] === 'index') { return; } 
     
     global $db;
+    $row = [];
 
     $date = new DateTime('now', new DateTimeZone('America/Denver'));
-    $now = $date->format("H:i:s D, m.d.y");
-    $their_ip = $_SESSION['ti'];
+    $row['now'] = $date->format("H:i:s D, m.d.y");
+    $row['their-ip'] = $_SESSION['ti'];
 
-    if (isset($_SESSION['id'])) {         $user_id = $_SESSION['id'];         } else { $user_id = ''; }
-    if (isset($_SESSION['username'])) {   $username = $_SESSION['username'];  } else { $username = 'visitor'; }
-    if (isset($_SESSION['email'])) {      $email = $_SESSION['email'];        } else { $email = ''; }
-    if (isset($_POST['device'])) {        $device = $_POST['device'];         } else { $device = 'undetected'; }
-    if (isset($_POST['page'])) {          $page = $_POST['page'];             } else { $page = ''; }
-    if (isset($_POST['day'])) {           $day = $_POST['day'];               } else { $day = ''; }
-
-
-    if (isset($_POST['host_id'])) {       $host_id = $_POST['host_id'];       } else { $host_id = ''; }
-    if (isset($_POST['mtg_id'])) {        $mtg_id = $_POST['mtg_id'];         } else { $mtg_id = ''; }
-    if (isset($_POST['mtgName'])) {       $mtg_name = $_POST['mtgName'];      } else { $mtg_name = ''; }
-    if (isset($_POST['mtg_days'])) {      $mtg_days = $_POST['mtg_days'];     } else { $mtg_days = ''; }
-    if (isset($_POST['mtgDay'])) {        $mtg_day = $_POST['mtgDay'];        } else { $mtg_day = ''; }
+    if (isset($_SESSION['id'])) {         $row['user-id'] = $_SESSION['id'];         } else { $row['user-id'] = ''; }
+    if (isset($_SESSION['username'])) {   $row['username'] = $_SESSION['username'];  } else { $row['username'] = 'visitor'; }
+    if (isset($_SESSION['email'])) {      $row['email'] = $_SESSION['email'];        } else { $row['email'] = ''; }
+    if (isset($_POST['device'])) {        $row['device'] = $_POST['device'];         } else { $row['device'] = 'undetected'; }
+    if (isset($_POST['page'])) {          $row['page'] = $_POST['page'];             } else { $row['page'] = ''; }
+    if (isset($_POST['day'])) {           $row['day'] = $_POST['day'];               } else { $row['day'] = ''; }
 
 
-    if (isset($_POST['onetap'])) {        $onetap = $_POST['onetap'];         } else { $onetap = ''; }
-    if (isset($_POST['zoom'])) {          $zoom = $_POST['zoom'];             } else { $zoom = ''; }
-    if (isset($_POST['dir'])) {           $dir = $_POST['dir'];               } else { $dir = ''; }
+    if (isset($_POST['host_id'])) {       $row['host-id'] = $_POST['host_id'];       } else { $row['host-id'] = ''; }
+    if (isset($_POST['mtg_id'])) {        $row['mtg-id'] = $_POST['mtg_id'];         } else { $row['mtg-id'] = ''; }
+    if (isset($_POST['mtgName'])) {       $row['mtg-name'] = $_POST['mtgName'];      } else { $row['mtg-name'] = ''; }
+    if (isset($_POST['mtg_days'])) {      $row['mtg-days'] = $_POST['mtg_days'];     } else { $row['mtg-days'] = ''; }
+    if (isset($_POST['mtgDay'])) {        $row['mtg-day'] = $_POST['mtgDay'];        } else { $row['mtg-day'] = ''; }
 
 
+    if (isset($_POST['onetap'])) {        $row['onetap'] = $_POST['onetap'];         } else { $row['onetap'] = ''; }
+    if (isset($_POST['zoom'])) {          $row['zoom'] = $_POST['zoom'];             } else { $row['zoom'] = ''; }
+    if (isset($_POST['dir'])) {           $row['dir'] = $_POST['dir'];               } else { $row['dir'] = ''; }
 
 
 
-    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $onetap, $zoom, $dir, $mtg_name, $their_ip);
+
+
+    $log_action = log_activity_for_analytics($row);
     $turn_on_alert = update_alert_notification();
    
   }

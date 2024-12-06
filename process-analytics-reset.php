@@ -6,28 +6,30 @@ require_once 'config/verify_admin.php';
 if (is_post_request() && isset($_POST['new_DB_start_date'])) {
 
   global $db;
+  $row = [];
 
-  $now = $_POST['new_DB_start_date'];
-  $user_id = ''; 
-  $username = ''; 
-  $email = ''; 
-  $device = ''; 
-  $page = 'xxx'; 
-  $day = ''; 
-  $host_id = ''; 
-  $mtg_id = '';
-  $mtg_name = ''; 
-  $mtg_days = ''; 
-  $mtg_day = '';
-  $onetap = '0';
-  $zoom = '0';
-  $dir = '0'; 
+  $row['now'] = $_POST['new_DB_start_date'];
+  $row['user-id'] = ''; 
+  $row['username'] = ''; 
+  $row['email'] = ''; 
+  $row['device'] = ''; 
+  $row['page'] = 'xxx'; 
+  $row['day'] = ''; 
+  $row['host-id'] = ''; 
+  $row['mtg-id'] = '';
+  $row['mtg-name'] = ''; 
+  $row['mtg-days'] = ''; 
+  $row['mtg-day'] = '';
+  $row['onetap'] = '0';
+  $row['zoom'] = '0';
+  $row['dir'] = '0'; 
+  $row['their-ip'] = '';
 
   $reset = reset_analytics();
 
   if ($reset) {
 
-    $log_action = log_activity_for_analytics($now, $email, $device, $page, $day, $host_id, $mtg_id, $mtg_days, $mtg_day, $onetap, $zoom, $dir, $mtg_name, $their_ip);
+    $log_action = log_activity_for_analytics($row);
 
     if ($log_action) {
       $signal = 'ok';
