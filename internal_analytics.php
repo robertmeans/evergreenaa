@@ -218,7 +218,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       echo 'Recent reset. No new data to process yet.</p>';
       echo '<p>New start date: ' . $new_start_formatted . '</p>';
       echo '</div>'; /* if there is no new data, the opening div.ia-headwrap has been closed and nothing else on page will print */
-    } else { /* else, we can continue processing page... (this else closes at btm of page above '</div><!-- #manage-wrap -->' ) */
+    } else { /* 1206241005 - else, we can continue processing page... (this else closes at btm of page above '</div><!-- #manage-wrap -->' ) */
 
       /* Start date of currently displayed results */
 
@@ -424,7 +424,135 @@ foreach ($itemCounts as $item => $count) {
   </div>
 <?php // } ?>
 
-<?php } /* end else */ ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+$mtg_results = get_analytic_mtg_info();
+$mtg_count = mysqli_num_rows($mtg_results);
+
+if ($mtg_count > 0) {
+?>
+
+
+
+  <div class="ia-ip-list">
+    <div class="col">
+  
+    <div class="rowa-header">
+      <div class="counta">
+        Count
+      </div>
+      <div class="daya">
+        Day
+      </div>
+      <div class="timea">
+        Time
+      </div>
+      <div class="mtgnamea">
+        Meeting Name
+      </div>
+    </div>
+
+
+
+<?php 
+  
+  while ($row = mysqli_fetch_assoc($mtg_results)) { 
+  if ($row['mtg_id'] !== '' && $row['mtg_id'] !== '0') {
+
+  $words = explode(' ', $row['mtg_opened']);
+  // $meet_id = $words[0];
+  $day = $words[1];
+  $time = $words[0] . ' ' . $words[1];
+  $stringend = array_slice($words, 2);
+  $mtgname = implode(' ', $stringend);
+
+
+  ?>
+
+    <div class="rowa">
+      <div class="counta">
+        <?= $row['total_count']; ?>
+      </div>
+      <div class="daya">
+        <?= $row['mtg_day']; ?>
+      </div>
+      <div class="timea">
+        <?= $time; ?>
+      </div>
+      <div class="mtgnamea">
+        <?php echo $mtgname;
+        if ($row['dir_count'] !== '0') { echo '<br>Directions: ' . $row['dir_count']; }
+        if ($row['onetap_count'] !== '0') { echo '<br>One Tap: ' . $row['onetap_count']; }
+        if ($row['zoom_count'] !== '0') { echo '<br>Zoom: ' . $row['zoom_count']; } ?>
+      </div>
+    </div>
+
+<?php }
+} ?>
+
+
+
+    </div>
+  </div>
+
+
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php } /* 1206241005 - end else */ ?>
 
 </div><!-- #manage-wrap -->
 

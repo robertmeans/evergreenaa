@@ -92,7 +92,7 @@
     .rowa-header,
     .rowa {
       display: flex;
-      align-items: center;
+      // align-items: center;
       width: 100%;
       max-width: 900px;
       .counta,
@@ -101,7 +101,7 @@
       .mtgnamea {
         display: flex;
         // justify-content: center;
-        align-items: center;
+        // align-items: center;
         padding: 0.25em 0.5em;
         word-break: break-word;
         width: 100%;

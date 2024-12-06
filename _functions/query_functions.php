@@ -109,8 +109,53 @@ function get_analytic_start_date() {
 
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);  
-  return $result; // returns an assoc. array
+  return $result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function get_analytic_mtg_info() {
+  global $db;
+
+  $sql = "
+  SELECT 
+      mtg_id, mtg_day, mtg_opened,
+      COUNT(*) AS total_count,
+      COUNT(CASE WHEN dir IS NOT NULL AND dir != '' THEN 1 END) AS dir_count,
+      COUNT(CASE WHEN onetap IS NOT NULL AND onetap != '' THEN 1 END) AS onetap_count,
+      COUNT(CASE WHEN zoom IS NOT NULL AND zoom != '' THEN 1 END) AS zoom_count
+  FROM analytics
+  GROUP BY mtg_id 
+  ORDER BY total_count DESC
+  ";
+
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);  
+  return $result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function log_activity_for_analytics($row) {
   global $db; 

@@ -20,9 +20,9 @@ if (is_post_request() && isset($_POST['new_DB_start_date'])) {
   $row['mtg-name'] = ''; 
   $row['mtg-days'] = ''; 
   $row['mtg-day'] = '';
-  $row['onetap'] = '0';
-  $row['zoom'] = '0';
-  $row['dir'] = '0'; 
+  $row['onetap'] = '';
+  $row['zoom'] = '';
+  $row['dir'] = ''; 
   $row['their-ip'] = '';
 
   $reset = reset_analytics();
