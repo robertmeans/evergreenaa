@@ -43,6 +43,14 @@ if ($time_offset != '00') {
 
 ?>
 
+
+
+
+
+
+
+
+
 	<li class="ctr-day">
 		<button id="open-sunday" class="day">Sunday</button>
 		<div id="sunday-content" class="day-content">
@@ -53,13 +61,8 @@ if ($time_offset != '00') {
 				$today = 'Sunday';
 				list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
-			  // $user_tz  = new DateTimeZone($tz); // -7/dst: -6
-			  // $lc = substr($t, 0,3);
-
 					$i = 1;
 					foreach ($sorted as $row) {
-				    // $mt = new DateTime($row['meet_time']);
-				    // $mt->setTimezone($user_tz);
 
             if ($row['mtg_tz'] === $tz) {  
               $mt = new DateTime($row['meet_time']);
@@ -87,6 +90,21 @@ if ($time_offset != '00') {
 
 		</div><!-- #sunday-content .day-content -->
 	</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<li class="ctr-day">
 		<button id="open-monday" class="day">Monday</button>

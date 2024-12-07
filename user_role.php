@@ -1,10 +1,25 @@
 <?php 
-// $layout_context = 'eeveryone';
-$layout_context = 'alt-manage';
+$layout_context = 'um-alt';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-// you can only manage users if you're Admin 1 or 3
+/* you can only manage users if you're Admin 1 or 3 */
+/* 
++++++++++++++++ FULL EXPLANATION OF $_SESSION['admin'] VALUE +++++++++++++++
+for crying out loud I (unintentionally) made this overly complicated (1 being the "best" but 3 being "better" than 2...?!).
+
+1 = this value has to be manually inserted via phpMyAdmin. there is no other way to make someone '$_SESSION['admin'] == '1''. this gives this person 'Odin' reign over the entire site
+
+2 = Admin Priviliges Level II [Edit + Transfer all meetings]
+
+3 = Admin priviliges Top Tier [Manage Users + Edit + Transfer + Delete all meetings] - this is the closest thing to '1'. for now there are some features (e.g., email_members.php, internal_analytics.php) that are only accessible to '1'.
+
+85 = user suspended but any member/public meetings were kept as active
+
+86 = user is suspended and meetings were put into draft
+
+
+*/
 if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
 	header('location: ' . WWW_ROOT);
 	exit();

@@ -1,8 +1,6 @@
 <?php $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>
-<?php if (isset($_SESSION['id'])) { ?>
-<?php /* 
-      user is logged in, show them their Private, their Members and their Public meetings (1's, 2's and 3's)
-*/ ?><?php
+<?php if (isset($_SESSION['id'])) { 
+  /* user is logged in, show them their Private, their Members and their Public meetings (1's, 2's and 3's) */ 
   if (show_member_all_their_meetings($row)) { ?>
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
@@ -61,10 +59,8 @@
     </div><!-- .daily-glance -->
   </div>
 
-<?php /* 
-      user is logged in. show them other people's Members (2's) and Public (3's) meetings 
-*/ ?>
-<?php } else if (show_members_and_public_meetings($row)) { ?>
+<?php /* user is logged in. show them other people's Members (2's) and Public (3's) meetings */ 
+  } else if (show_members_and_public_meetings($row)) { ?>
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
@@ -81,8 +77,7 @@
         <p data-role="<?= $pc; ?>_mtggn"><?= $row['group_name']; ?></p>
       </div><!-- .glance-group -->
       <div class="glance-mtg glance-mtg-type">
-
-<?php 
+    <?php 
         if ($row['meet_url'] != null) { ?>
           <div class="tooltip">
             <span class="tooltiptext type">Zoom Meeting</span><i class="fas far fa-video fa-fw"></i>
@@ -123,10 +118,8 @@
   </div>
 <?php } ?>
 
-<?php /* 
-      no session id set - general public - only show public (3's) meetings
-*/ ?>
-<?php } else if (show_general_public_meetings($row)) { ?>  
+<?php /* no session id set - general public - only show public (3's) meetings */ 
+  } else if (show_general_public_meetings($row)) { ?>  
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">

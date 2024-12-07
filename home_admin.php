@@ -63,9 +63,6 @@ if ($time_offset != '00') {
 			$today = 'Sunday';
 			list($yesterday, $tomorrow, $y, $d, $t) = day_range($today);
 
-		  
-		  // $lc = substr($t, 0,3);
-
 				$i = 1;
 				foreach ($sorted as $row) {
 

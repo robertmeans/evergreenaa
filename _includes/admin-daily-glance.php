@@ -37,7 +37,7 @@
   </div><!-- .daily-glance -->
 </div>
 
-<?php } else { ?>
+<?php /* close 'ODIN's' version */ } else { /* else everything else. closes at very btm of pg */ ?>
 
 <?php // show THEIR MEETINGS
   if ($row['id_user'] == $_SESSION['id']) { ?>
