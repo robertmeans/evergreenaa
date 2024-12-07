@@ -258,7 +258,7 @@ if (!isset($_SESSION['mode'])) {
 
     <?php if (isset($analytics_on_off) && (isset($_SESSION['id']) && $_SESSION['id'] == '1')) { ?>
       <div class="admin-info">
-        <a class="cc-x ial" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
+        <a class="cc-x ial<?php if ($layout_context == 'analytics') { echo ' nav-active'; } ?>" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
         <?php
           $theme_changes = theme_count();
           $result   = mysqli_num_rows($theme_changes);

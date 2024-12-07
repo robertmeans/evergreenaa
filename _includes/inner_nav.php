@@ -34,7 +34,7 @@
 	</p>
  <?php } ?>
 
- <?php if ($layout_context == "alt-manage" && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) { ?>
+ <?php if (($layout_context == "alt-manage" || $layout_context == "analytics") && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) { ?>
  	<p class="logout">
 	 	<a href="<?= WWW_ROOT ?>">Home</a>
 	 	<a href="<?= WWW_ROOT . '/manage.php' ?>">Dashboard</a>
@@ -47,7 +47,7 @@
 	</p>
  <?php } ?>
 
- <?php  if ($layout_context == "alt-manage" && ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3)){ ?>
+ <?php  if (($layout_context == "alt-manage" || $layout_context == "analytics") && ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3)){ ?>
  	<p class="logout">
 	 	<a href="<?= WWW_ROOT ?>">Home</a>
 	 	<a href="<?= WWW_ROOT . '/manage.php' ?>">Dashboard</a>
