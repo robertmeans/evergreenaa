@@ -937,19 +937,12 @@ $(document).ready(function(){
     var newsd = day + ", " + month + " " + dayb + ", '" + year + " at " + hours + ":" + minutes;
     var dbnsd = hours + ":" + minutes + ":" + seconds + " " + day + ", " + monthb + "." + dayb + "." + year;
 
-
     $('.modal-body').html('<p>This will clear all current analytical data from database and start over with a start date of:</p><p id="new-start-date">'+newsd+'</p><input type="hidden" id="new-ia-start" value="'+dbnsd+'"><div class="ia-btns"><a class="iabtn" data-role="submit-ia-reset">Reset</a> <a class="iabtn closefp">Cancel</a></div>');
-
 
     $('body').addClass('noscrollz');
     theModal_ia.style.display = "block";
 
   });
-
-
-
-
-
 
 
   $(document).on('click', 'a[data-role=submit-ia-reset]', function() { 
@@ -991,17 +984,7 @@ $(document).ready(function(){
       complete: function() { }
 
     });
-
-
   });
-
-
-
-
-
-
-
-
 
 
   $(document).on('click', '.closefp', function() {
@@ -1010,18 +993,6 @@ $(document).ready(function(){
     $('body').removeClass('noscrollz');
     theModal_ia.style.display = "none";
   });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   $('.analytics-cleanup').click(function() {
@@ -1237,7 +1208,6 @@ $(".youtube").click(function(e) {
     e.stopPropagation();
 });
 
-
 // checkboxes on update forms - prevent multiple options
 
 // open, men's or womens?
@@ -1250,16 +1220,6 @@ $(".oc").change(function() {
     $(".oc").not(this).prop('checked', false);
 });
 
-
-
-
-
-// footer ajax contact
-// $("#footer-contact-form").keyup(function(event) {
-//   if (event.keyCode === 13) {
-//     $("#emailBob").click();
-//   }
-// });
 $(document).ready(function() {
 
   $(document).on('click','#emailBob', function() {
@@ -1917,14 +1877,6 @@ $(document).ready(function() { // 0829210847
       }
     })
   });
-
-// located in the pages preceding them
-// message-board.php: $('#post-topics').load('load-message-board.php');
-// post.php:          $('#replies').load('load-posts.php');
-// ^^ those 2 are for background loding
-// post.php:          $(document).on('click', 'a[data-role=delete-reply]', function()...
-// post.php:          $(document).on('click', '#toggle-post-reply', function() ...
-// post.php:          $(document).on('click','#reply', function() ...
 
 }); // 0829210847
 
