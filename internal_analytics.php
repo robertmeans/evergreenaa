@@ -367,64 +367,21 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 
 $mtg_results = get_analytic_mtg_info();
 $mtg_count = mysqli_num_rows($mtg_results);
 
-if ($mtg_count > 0) {
+if ($mtg_count > 0) { /* 1206241530 */
 ?>
 
-
-
+  <div class="mbh">Meeting Breakdown</div>
   <div class="ia-ip-list">
     <div class="col">
   
     <div class="rowa-header">
       <div class="counta">
-        Count
+        Viewed
       </div>
       <div class="daya">
         Day
@@ -438,7 +395,6 @@ if ($mtg_count > 0) {
     </div>
 
 
-
 <?php 
   
   while ($row = mysqli_fetch_assoc($mtg_results)) { 
@@ -450,8 +406,6 @@ if ($mtg_count > 0) {
   $time = $words[0] . ' ' . $words[1];
   $stringend = array_slice($words, 2);
   $mtgname = implode(' ', $stringend);
-
-
   ?>
 
     <div class="rowa">
@@ -472,49 +426,19 @@ if ($mtg_count > 0) {
       </div>
     </div>
 
-<?php }
-} ?>
-
+<?php } /* end if */
+} /* end while */ ?>
 
 
     </div>
   </div>
 
 
-<?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <?php } /* 1206241530 */ ?>
 
 <?php } /* 1206241005 - end else */ ?>
 
 </div><!-- #manage-wrap -->
-
-
 
 
 <div id="theModal-ia" class="modal fade" role="dialog">
@@ -535,8 +459,5 @@ if ($mtg_count > 0) {
     </div>
   </div>
 </div> 
-
-
-
 
 <?php require '_includes/footer.php'; ?>

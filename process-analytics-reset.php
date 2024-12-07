@@ -46,13 +46,6 @@ if (is_post_request() && isset($_POST['new_DB_start_date'])) {
   }
 
 
-
-
-
-
-
-
-
 } else {
   $signal = 'nope';
   $msg = 'I\'m not doing that. How did you even get this far? Seriously, there\'s no situation where this message should ever be seen in fact, I don\'t even know why I\'m writing it.';

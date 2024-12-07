@@ -113,16 +113,6 @@ function get_analytic_start_date() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 function get_analytic_mtg_info() {
   global $db;
 
@@ -130,7 +120,6 @@ function get_analytic_mtg_info() {
   SELECT 
       mtg_id, mtg_day, mtg_opened,
       COUNT(CASE WHEN onetap = '' AND zoom = '' AND dir = '' THEN 1 END) AS total_count,
-
       COUNT(CASE WHEN dir IS NOT NULL AND dir != '' THEN 1 END) AS dir_count,
       COUNT(CASE WHEN onetap IS NOT NULL AND onetap != '' THEN 1 END) AS onetap_count,
       COUNT(CASE WHEN zoom IS NOT NULL AND zoom != '' THEN 1 END) AS zoom_count
@@ -168,16 +157,6 @@ function get_analytic_mtg_info_ORIGINAL() {
   return $result;
 }
 */
-
-
-
-
-
-
-
-
-
-
 
 function log_activity_for_analytics($row) {
   global $db; 

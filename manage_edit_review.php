@@ -83,7 +83,7 @@ require '_includes/head.php'; ?>
 	<h1>Quick view</h1>
 		
 		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
-
+      <?php $pc = '001'; ?>
 			<?php require '_includes/review-glance.php'; ?>
 			<div class="weekday-edit-wrap">
 				<?php require '_includes/meeting-details.php'; ?>

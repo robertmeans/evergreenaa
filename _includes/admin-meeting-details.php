@@ -1,4 +1,5 @@
-<?php $emh = rand(10000, 99999); /* I've really got no idea why I'm using this instead of $ic or $pc ? */ ?>
+<?php // $emh = rand(10000, 99999); /* I've really got no idea why I'm using this instead of $ic or $pc ? */ ?>
+<?php $emh = $pc . 'sp'; /* 'sp' = special */ ?>
 <div class="meeting-details">
 
 <?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>

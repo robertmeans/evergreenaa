@@ -804,25 +804,7 @@ $(document).ready(function(){
     }
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  /* analytics - one tap mobile */
   $('a[data-role=one-tap]').click(function() {
     var id = $(this).data('id');
     var mtg_id = $('[data-role='+id+'_mtg-id]').val();
@@ -860,7 +842,7 @@ $(document).ready(function(){
     });
 
   });
-
+  /* analytics - zoom */
   $('a[data-role=join-zoom]').click(function() { 
     var id = $(this).data('id');
     var mtg_id = $('[data-role='+id+'_mtg-id]').val();
@@ -898,7 +880,7 @@ $(document).ready(function(){
     });
 
   });
-
+  /* analytics - directions */
   $('a[data-role=directions]').click(function() {
     var id = $(this).data('id');
     var mtg_id = $('[data-role='+id+'_mtg-id]').val();
@@ -936,16 +918,6 @@ $(document).ready(function(){
     });
 
   });
-
-
-
-
-
-
-
-
-
-
 
   /* reset analytics */
   $(document).on('click', 'a[data-role=pa-reset]', function() { 
@@ -1776,7 +1748,7 @@ $(document).ready(function() {
       data: $('#emh-contact').serialize(),
       beforeSend: function(xhr) {
         $('#emh-contact-msg').html('<span class="sending-msg"><img src="_images/sending.gif"></span>');
-        // $('#submit-links').html('');
+        $('#submit-links').html('');
       },
       success: function(response) {
         // console.log(response);

@@ -69,7 +69,7 @@ require '_includes/head.php'; ?>
 <?php if ($result > 0) { ?>
 
 <?php // if user has meetings to manage, display them in order: Day > time, starting with Sun ?>
-
+    <?php $pc = 0; ?>
 		<?php while ($row = mysqli_fetch_assoc($any_meetings_for_user)) { ?>
 
 			<?php
@@ -96,13 +96,12 @@ require '_includes/head.php'; ?>
 			$row['sat'] = $sat;
 
 			?>
-
 			<?php require '_includes/manage-glance.php'; ?>
 			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
-		<?php } ?>
+		<?php $pc++; } ?>
 
 	<?php  
 	} else { // user has no meetings to manage
