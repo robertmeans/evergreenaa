@@ -52,10 +52,6 @@ function preload_config($layout_context) {
   return $theme;
 }
 
-
-
-
-
 /* maybe come back to this one day. rn, not the time */
 // function required_files($layout_context) {
 //   $load_files = '';
@@ -80,37 +76,34 @@ function mobile_bkg_config($theme) {
 }
 
 
-// function preload_config_default($layout_context) {
-//   if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
-//     if (WWW_ROOT != 'http://localhost/evergreenaa') {
-//       echo '<div class="preload anni"><img src="_images/preload.gif"></div>';
-//     } else {
-//       echo '<div class="preload-dev anni"><img src="_images/preload.gif"></div>';
-//     }
-//   } else {
-//     if (WWW_ROOT != 'http://localhost/evergreenaa') {
-//       echo '<div class="preload"><p>One day at a time.</p></div>';
-//     } else {
-//       echo '<div class="preload-dev"><p>One day at a time.</p></div>';
-//     }
-//   }
-// }
 
-// function preload_config_light($layout_context) {
-//   if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
-//     if (WWW_ROOT != 'http://localhost/evergreenaa') {
-//       echo '<div class="preload anni"><img src="_images/preload-light.gif"></div>';
-//     } else {
-//       echo '<div class="preload-dev anni"><img src="_images/preload-light.gif"></div>';
-//     }
-//   } else {
-//     if (WWW_ROOT != 'http://localhost/evergreenaa') {
-//       echo '<div class="preload"><p>One day at a time.</p></div>';
-//     } else {
-//       echo '<div class="preload-dev"><p>One day at a time.</p></div>';
-//     }
-//   }
-// }
+
+
+
+
+
+function show_member_all_their_meetings($row) {
+  if ((($row['id_user']) == $_SESSION['id']) && (($row['visible'] == 1) || ($row['visible'] == 2) || ($row['visible'] == 3))) {
+    return true;
+  } else { return false; }
+}
+
+function show_members_and_public_meetings($row) {
+  if ((($row['id_user']) != $_SESSION['id']) && ((($row['visible'] == 2) || ($row['visible'] == 3)))) {
+    return true;
+  } else { return false; }
+}
+
+function show_general_public_meetings($row) {
+  if ($row['visible'] != 0 && $row['visible'] != 1 && $row['visible'] != 2) {
+    return true;
+  } else { return false; }
+}
+
+
+
+
+
 
 
 
@@ -569,150 +562,6 @@ function convert_timezone($ey, $et, $etm, $meet_time, $yesterday, $today, $tomor
   }
 }
 
-
-
-
-
-
-/*
-function figger_it_out($time) { 
-  // initialize return variables
-  $sun = '0';
-  $mon = '0';
-  $tue = '0';
-  $wed = '0';
-  $thu = '0';
-  $fri = '0';
-  $sat = '0';
-
-  $utc = 'UTC';
-  // $time['ut'] = $from_time (user input)
-  // $time['tz'] = $from_tz (user's tz)
-  // $utc = $to_tz (convert to UTC)
-  $from_tz_obj = new DateTimeZone($time['tz']);
-  $to_tz_obj = new DateTimeZone($utc);
-  // $ct = "converted time"
-  $ct = new DateTime($time['ut'], $from_tz_obj);
-  $ct->setTimezone($to_tz_obj);
-
-  if($time['sun'] == '1') {
-    $csun = new DateTime('Sunday ' . $time['ut'], $from_tz_obj);
-    $csun->setTimezone($to_tz_obj);
-    $nsun = $csun->format('l Hi');
-
-    if (strpos($nsun, 'Saturday') !== false) {
-      $sat = '1';
-    }
-    if (strpos($nsun, 'Sunday') !== false) {
-      $sun = '1';
-    }    
-    if (strpos($nsun, 'Monday') !== false) {
-      $mon = '1';
-    }
-  } 
-
-  if($time['mon'] == '1') {
-    $cmon = new DateTime('Monday ' . $time['ut'], $from_tz_obj);
-    $cmon->setTimezone($to_tz_obj);
-
-    $nmon = $cmon->format('l Hi');
-    if (strpos($nmon, 'Sunday') !== false) {
-      $sun = '1';
-    }   
-    if (strpos($nmon, 'Monday') !== false) {
-      $mon = '1';
-    }
-    if (strpos($nmon, 'Tuesday') !== false) {
-      $tue = '1';
-    }
-  }     
-
-  if($time['tue'] == '1') {
-    $ctue = new DateTime('Tuesday ' . $time['ut'], $from_tz_obj);
-    $ctue->setTimezone($to_tz_obj);
-
-    $ntue = $ctue->format('l Hi');
-    if (strpos($ntue, 'Monday') !== false) {
-      $mon = '1';
-    }
-    if (strpos($ntue, 'Tuesday') !== false) {
-      $tue = '1';
-    }    
-    if (strpos($ntue, 'Wednesday') !== false) {
-      $wed = '1';
-    }
-  } 
-
-  if($time['wed'] == '1') {
-    $cwed = new DateTime('Wednesday ' . $time['ut'], $from_tz_obj);
-    $cwed->setTimezone($to_tz_obj);
-
-    $nwed = $cwed->format('l Hi');
-    if (strpos($nwed, 'Tuesday') !== false) {
-      $tue = '1';
-    }   
-    if (strpos($nwed, 'Wednesday') !== false) {
-      $wed = '1';
-    }    
-    if (strpos($nwed, 'Thursday') !== false) {
-      $thu = '1';
-    }
-  } 
-
-  if($time['thu'] == '1') {
-    $cthu = new DateTime('Thursday ' . $time['ut'], $from_tz_obj);
-    $cthu->setTimezone($to_tz_obj);
-
-    $nthu = $cthu->format('l Hi');
-    if (strpos($nthu, 'Wednesday') !== false) {
-      $wed = '1';
-    }    
-    if (strpos($nthu, 'Thursday') !== false) {
-      $thu = '1';
-    }    
-    if (strpos($nthu, 'Friday') !== false) {
-      $fri = '1';
-    }
-  } 
-
-  if($time['fri'] == '1') {
-    $cfri = new DateTime('Friday ' . $time['ut'], $from_tz_obj);
-    $cfri->setTimezone($to_tz_obj);
-
-    $nfri = $cfri->format('l Hi');
-    if (strpos($nfri, 'Thursday') !== false) {
-      $thu = '1';
-    }    
-    if (strpos($nfri, 'Friday') !== false) {
-      $fri = '1';
-    }    
-    if (strpos($nfri, 'Saturday') !== false) {
-      $sat = '1';
-    }
-  } 
-
-  if($time['sat'] == '1') {
-    $csat = new DateTime('Saturday ' . $time['ut'], $from_tz_obj);
-    $csat->setTimezone($to_tz_obj);
-
-    $nsat = $csat->format('l Hi');
-    if (strpos($nsat, 'Friday') !== false) {
-      $fri = '1';
-    }    
-    if (strpos($nsat, 'Saturday') !== false) {
-      $sat = '1';
-    }    
-    if (strpos($nsat, 'Sunday') !== false) {
-      $sun = '1';
-    }
-  } 
-
-  return array($ct, $sun, $mon, $tue, $wed, $thu, $fri, $sat);
-}
-*/
-
-
-
 function convert_day($tz, $day, $mtg_time) {
 
   $user_tz  = new DateTimeZone($tz);
@@ -730,7 +579,6 @@ function convert_day($tz, $day, $mtg_time) {
     }
   }
 }
-
 
 function print_day($row) {
   $p = '';
@@ -770,9 +618,6 @@ function print_day($row) {
 
   echo $p;
 }
-
-
-
 
 function find_offset($float) {
   $hours = floor($float);
@@ -843,12 +688,12 @@ function display_theme_errors($errors=array()) {
     foreach($errors as $error) {
       $output .= "<li>" . h($error) . "</li>";
     }
+
     $output .= "</ul>";
     $output .= "</div>";
-    }
-    return $output;
   }
-
+  return $output;
+}
 
 function ewd_copyright($startYear) {
   $currentYear = date('Y');

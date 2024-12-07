@@ -22,7 +22,7 @@ include '_includes/head.php'; ?>
 
 </body>
 <?php require '_includes/footer.php'; ?>
-<?php exit() ?>
+<?php // exit(); /* can't imagine what I had this here for - ? */ ?>
 
 
 

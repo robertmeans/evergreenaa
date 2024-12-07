@@ -1,13 +1,14 @@
+<?php $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>
 <?php if (isset($_SESSION['id'])) { ?>
 <?php /* 
       user is logged in, show them their Private, their Members and their Public meetings (1's, 2's and 3's)
 */ ?><?php
-  if ((($row['id_user']) == $_SESSION['id']) && (($row['visible'] == 1) || ($row['visible'] == 2) || ($row['visible'] == 3))) { ?>
+  if (show_member_all_their_meetings($row)) { ?>
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
     <div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
       <div class="glance-mtg glance-mtg-time">
@@ -63,12 +64,12 @@
 <?php /* 
       user is logged in. show them other people's Members (2's) and Public (3's) meetings 
 */ ?>
-<?php } else if ((($row['id_user']) != $_SESSION['id']) && ((($row['visible'] == 2) || ($row['visible'] == 3)))) { ?>
+<?php } else if (show_members_and_public_meetings($row)) { ?>
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
     <div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
       <div class="glance-mtg glance-mtg-time">
@@ -125,12 +126,12 @@
 <?php /* 
       no session id set - general public - only show public (3's) meetings
 */ ?>
-<?php } else if  ($row['visible'] != 0 && $row['visible'] != 1 && $row['visible'] != 2) { ?>  
+<?php } else if (show_general_public_meetings($row)) { ?>  
 
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
     <div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
       <div class="glance-mtg glance-mtg-time">

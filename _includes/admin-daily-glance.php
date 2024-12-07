@@ -1,11 +1,18 @@
 <?php // ODIN'S version ?>
+<?php $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>
 <?php if ($_SESSION['admin'] == 1) { ?>
 <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-  <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+  <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
-  <div class="daily-glance<?php if ($row['visible'] == 1 && (($row['admin'] != 1 || $row['admin'] != 2) && $row['id_user'] != $_SESSION['id']) ) { echo ' personal-other'; } if ($row['visible'] == 1 && ($row['admin'] == 1 || $row['admin'] == 2)) { echo ' personal-odin'; } ?>">
+  <div class="daily-glance<?php 
+    if ($row['visible'] == 1 && (($row['admin'] != 1 || $row['admin'] != 2) && $row['id_user'] != $_SESSION['id']) ) { 
+      echo ' personal-other'; 
+    } 
+    if ($row['visible'] == 1 && ($row['admin'] == 1 || $row['admin'] == 2)) { 
+      echo ' personal-odin'; 
+    } ?>">
     <div class="glance-mtg glance-mtg-time">
       <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
     </div><!-- .glance-time-day -->
@@ -38,9 +45,15 @@
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
-    <div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
+    <div class="daily-glance<?php 
+      if ($row['visible'] == 0) { 
+        echo ' draft'; 
+      } 
+      if ($row['visible'] == 1) { 
+        echo ' personal'; 
+      }  ?>">
       <div class="glance-mtg glance-mtg-time">
         <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?>&nbsp;<span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
       </div><!-- .glance-time-day -->
@@ -65,9 +78,15 @@
   <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
-    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>">
+    <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
     <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
-    <div class="daily-glance<?php if ($row['visible'] == 0) { echo ' draft'; } if ($row['visible'] == 1) { echo ' personal'; }  ?>">
+    <div class="daily-glance<?php 
+      if ($row['visible'] == 0) { 
+        echo ' draft'; 
+      } 
+      if ($row['visible'] == 1) { 
+        echo ' personal'; 
+      }  ?>">
       <div class="glance-mtg glance-mtg-time">
         <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
       </div><!-- .glance-time-day -->
