@@ -1,5 +1,5 @@
 <?php 
-$layout_context = 'alt-manage';
+$layout_context = 'analytics';
 require_once 'config/initialize.php'; /* calls controllers/analytics.php */
 require_once 'config/verify_admin.php';
 

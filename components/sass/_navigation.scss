@@ -409,6 +409,9 @@
   a.cc-x.ial {
     margin-top: -2em;
     margin-bottom: 0em;
+    &.nav-active {
+      cursor: default;
+    }
   }
 	i.fa-star {
 		color: gold;

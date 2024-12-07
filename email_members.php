@@ -28,6 +28,7 @@ $result = find_all_users();
 
 <?php require '_includes/head.php'; ?>
 <body>	
+<?php preload_config($layout_context); ?>   
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-extras.php'; ?>
@@ -61,4 +62,4 @@ $result = find_all_users();
 </div><!-- #manage-wrap -->
 
 <?php require '_includes/footer.php'; ?>
-<?php mysqli_free_result($result); ?>
+<?php // mysqli_free_result($result); ?>
