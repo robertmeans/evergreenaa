@@ -13,33 +13,37 @@ if (isset($_GET['password-token'])) {
 	resetPassword($passwordToken);
 }
 
-if (!isset($_SESSION['verified'])) {
-	require 'home.php';
-	exit;
-}
+
 
 if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
 	require 'home_admin.php';
 	exit;
 }
 
-if (((isset($_SESSION['verified']) && ($_SESSION['verified'] != "0")) && (!isset($_SESSION['message'])))) {
-	require 'home_private.php';
-	exit;
+if ( !isset($_SESSION['verified']) || ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message'])) ) {
+  require 'home.php';
+  exit;
 }
+
+// if (   ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message']))   ) {
+// 	require 'home_private.php';
+// 	exit;
+// }
 
 include '_includes/head.php'; ?>
 
 <body>
-<?php /* special preload just for index in order to preload the preload image */
-      /* this image will be used everywhere other than the index              */
-if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
-<?php $theme = preload_config($layout_context); ?>
-<?php } ?>
-<?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-why-join.php'; ?>
-<?php include '_includes/msg-theme-message.php'; ?>
-<?php mobile_bkg_config($theme); ?>
+<?php 
+/* special preload just for index in order to preload the preload image */
+/* this image will be used everywhere other than the index              */
+if (WWW_ROOT != 'http://localhost/evergreenaa') { 
+  $theme = preload_config($layout_context);
+} 
+require '_includes/nav.php';
+require '_includes/msg-why-join.php';
+include '_includes/msg-theme-message.php';
+mobile_bkg_config($theme); 
+?>
 <div id="landing">
 	<div id="landing-content">
 

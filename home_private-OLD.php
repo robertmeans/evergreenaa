@@ -25,8 +25,22 @@ require '_includes/head.php'; ?>
 	$dt->setTimezone($user_tz);
 	$offset = $dt->format('P'); // find offset +, - or = +00:00
 
+
+
+
+
+
+  
 	// get raw, UTC, data
 	$subject_set = get_meetings_for_members($user_id);
+
+
+
+
+
+
+
+
 
 	if ($offset == '+00:00') { 
 		$time_offset = '00';

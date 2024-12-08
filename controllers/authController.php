@@ -9,9 +9,9 @@ $verified = "";
 $admin = "";
 $visible = "";
 
-function remember_me()
-{
+function remember_me() {
 	global $conn;
+
 	if (!empty($_COOKIE['token'])) {
 		$token = $_COOKIE['token']; 
 		
@@ -75,9 +75,9 @@ function verifyUser($token) {
 }
 
 
-function resetPassword($token) 
-{
+function resetPassword($token) {
 	global $conn;
+  
 	$sql = "SELECT * FROM users WHERE token='$token' LIMIT 1";
 	$result = mysqli_query($conn, $sql);
 	$user = mysqli_fetch_assoc($result);
