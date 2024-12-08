@@ -23,7 +23,7 @@
       } 
     ?></span>
 
-    <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3))) { ?>
+    <?php if (is_admin()) { ?>
       <a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> <?= $row['username'] . ' &bullet; ' . $row['email'] ?></a> <a data-role="<?php if ((isset($row['idi_user'])) && ($row['idi_user'] == $_SESSION['id'])) { echo 'logissued'; } else { echo 'logissue'; } ?>" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log an issue</a>
     <?php } else { ?>
       <a class="emh-link" data-role="emh" data-id="<?= $emh . '_' . $row['id_mtg']; ?>"><i class="far fa-envelope"></i> Email Host</a> <a data-role="<?php if ((isset($row['idi_user'])) && ($row['idi_user'] == $_SESSION['id'])) { echo 'logissued'; } else { echo 'logissue'; } ?>" data-id="<?= $emh . '_' . $row['id_mtg']; ?>" class="emh-link"><i class="fas fa-exclamation-triangle"></i> Log an issue</a>

@@ -13,22 +13,10 @@ if (isset($_GET['password-token'])) {
 	resetPassword($passwordToken);
 }
 
-
-
-if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
-	require 'home_admin.php';
-	exit;
-}
-
-if ( !isset($_SESSION['verified']) || ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message'])) ) {
+if (show_homepage()) {
   require 'home.php';
   exit;
 }
-
-// if (   ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message']))   ) {
-// 	require 'home_private.php';
-// 	exit;
-// }
 
 include '_includes/head.php'; ?>
 

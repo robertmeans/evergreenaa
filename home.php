@@ -32,6 +32,13 @@ if ($user_role != 86 && $user_role != 85) {
   if (!isset($_SESSION['verified'])) {
     /* visitors - not logged in */
     $subject_set = get_all_public_meetings();
+  } else if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
+    /* admin */
+    if ($user_id == 1) {
+      $subject_set = get_all_public_and_private_meetings_for_odin();
+    } else {
+      $subject_set = get_all_public_and_private_meetings_for_today($user_id); 
+    } 
   } else {
     /* member - logged in */
     $subject_set = get_meetings_for_members($user_id);  

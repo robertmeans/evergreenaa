@@ -79,7 +79,11 @@ function mobile_bkg_config($theme) {
 
 
 
-
+function show_homepage() {
+  if (!isset($_SESSION['verified']) || ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message']))) {
+    return true; 
+    } else { return false; }  
+}
 
 
 function show_member_all_their_meetings($row) {
@@ -100,7 +104,17 @@ function show_general_public_meetings($row) {
   } else { return false; }
 }
 
+function is_admin() {
+  if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) {
+    return true;
+  } else { return false; }
+}
 
+function is_user($row) {
+  if ((isset($row) && isset($_SESSION['id'])) && $row['id_user'] == $_SESSION['id']) {
+    return true;
+  } else { return false; }
+}
 
 
 
