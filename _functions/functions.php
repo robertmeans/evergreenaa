@@ -104,6 +104,14 @@ function show_general_public_meetings($row) {
   } else { return false; }
 }
 
+
+
+
+
+
+
+
+
 function is_admin() {
   if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) {
     return true;
@@ -115,6 +123,52 @@ function is_user($row) {
     return true;
   } else { return false; }
 }
+
+function prez($row) { /* President = 99 | There should be only 1 President */
+  if ($row['role'] < 100) {
+    return true;
+  } else { return false; }
+}
+
+function exec($row) { /* Executive = 80 */
+  if (isset($row['role']) && $row['role'] < 81) {
+    return true;
+  } else { return false; }
+}
+
+function admin($row) { /* Administrator = 60 */
+  if (isset($row['role']) && $row['role'] < 61) {
+    return true;
+  } else { return false; }
+}
+
+function manager($row) { /* Administrator = 40 */
+  if (isset($row['role']) && $row['role'] < 41) {
+    return true;
+  } else { return false; }
+}
+
+function member($row) { /* Member = 20 */
+  if (isset($row['role']) && $row['role'] < 21) {
+    return true;
+  } else { return false; }
+}
+
+function suspended($row) { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
+  if (isset($row['role']) && $row['role'] < 5) {
+    return true;
+  } else { return false; }
+}
+
+function owner($row) {
+  if ((isset($row['id_user']) && isset($_SESSION['id'])) && $row['id_user'] == $_SESSION['id']) {
+    return true;
+  } else { return false; }
+}
+
+
+
+
 
 
 
