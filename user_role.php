@@ -7,7 +7,7 @@ require_once 'config/verify_admin.php';
 /* 
 +++++++++++++++ FULL EXPLANATION OF $_SESSION['admin'] VALUE +++++++++++++++
 clearly I created this hiearachy of tiers only moments after I got sober because it is the most convoluted pile of insanity ever...
- 
+
 for crying out loud I (unintentionally) made this overly complicated (1 being the "best" but 3 being "better" than 2...?!).
 
 1 = this value has to be manually inserted via phpMyAdmin. there is no other way to make someone '$_SESSION['admin'] == '1''. this gives this person 'Odin' reign over the entire site
@@ -118,11 +118,6 @@ require '_includes/head.php'; ?>
 							Downgrade <?= $row['username'] . ' to Member' ?>
 						</div>
 					<?php } ?>
-					<?php /* if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { // just me ?>
-						<div class='radioz' value="3">
-							Upgrade <?= $row['username'] . ' ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
-						</div>
-					<?php } */ ?>
 
 
 					<?php if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) && $row['admin'] == 2) { ?>
@@ -141,11 +136,7 @@ require '_includes/head.php'; ?>
 							</div>
 
 						<?php } else { // user is suspended ?>
-						<?php /* 
-							<div class='radioz' value="3">
-								Reinstate <?= $row['username'] . ' with ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings]' ?>
-							</div>
-						*/ ?>
+
 							<div class='radioz' value="2">
 								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings ]' ?>
 							</div>
