@@ -3,18 +3,7 @@ $layout_context = 'um';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-if (!isset($_SESSION['mode']) || ($_SESSION['mode'] != 1 || ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3))) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
-
-if (!isset($_SESSION['id'])) {
-	$_SESSION['message'] = "You need to be logged in to access that page.";
-	$_SESSION['alert-class'] = "alert-danger";
-	header('location: ' . WWW_ROOT . '/login.php');
-	exit();
-}
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
+if (!is_executive()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }

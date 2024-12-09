@@ -57,7 +57,7 @@
 
     if (is_owner($row) || is_manager() && in_admin_mode()) { 
 
-      ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip<?php if (is_owner($row)) { echo ' right'; } ?>"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
+      ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
     <?php } ?>
 

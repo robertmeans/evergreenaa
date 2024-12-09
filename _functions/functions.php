@@ -188,12 +188,6 @@ function in_admin_mode() {
 
 
 
-
-
-
-
-
-
 function is_suspended() { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
   if (isset($_SESSION['role']) && $_SESSION['role'] < 5) {
     return true;
@@ -205,10 +199,6 @@ function is_owner($row) {
     return true;
   } else { return false; }
 }
-
-
-
-
 
 
 

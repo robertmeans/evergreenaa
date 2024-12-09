@@ -16,7 +16,7 @@ require '_includes/head.php'; ?>
 <div id="wrap">
   
 <?php 
-if ($user_role != 86 && $user_role != 85) { 
+if (!is_suspended()) { 
   /* $user_role set in set_timezone.php called in initialize.php */ 
 ?>
 <ul id="weekdays">
@@ -28,7 +28,6 @@ if ($user_role != 86 && $user_role != 85) {
   $dt->setTimezone($user_tz);
   $offset = $dt->format('P'); // find offset +, - or = +00:00
 
-
   /* get correct data set */
   if (is_visitor()) {
     $subject_set = get_all_public_meetings();
@@ -37,15 +36,6 @@ if ($user_role != 86 && $user_role != 85) {
   } else {
     $subject_set = get_meetings_for_members($user_id);  
   }
-
-
-
-
-
-
-
-
-
 
   if ($offset == '+00:00') { 
     $time_offset = '00';
@@ -110,7 +100,7 @@ foreach ($days as $today) { ?>
 
 </ul><!-- #weekdays -->
 
-<?php } else { // $user_role = 85 || 86 which means they're suspended ?>
+<?php } else { // suspended (kept meetings) = 1, (meetings into draft) = 2 ?>
 <?php 
   $sus_stuff = suspended_msg($user_id);
   $row = mysqli_fetch_assoc($sus_stuff);

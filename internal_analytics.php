@@ -74,8 +74,6 @@ require '_includes/head.php'; ?>
     if (isset($row['device']) && $row['device'] === 'desktop') { $all_desktop = $row['device'] . ' ' .  $row['a_ip']; }
 
 
-
-
     $ip = $row['a_ip'];  
     /* get visits that are likely bots due to no interactions, just page visits */
     if (!isset($ip_groups[$ip])) {
@@ -85,8 +83,6 @@ require '_includes/head.php'; ?>
     }
     /* consolidate unique ip's for a count of how many people are using the site */
     if (!empty($ip) && !in_array($ip, $unique_ips)) { $unique_ips[] = $ip; }
-
-
 
 
     /* the following is a great little block o' code that will be repurposed a few times */
@@ -107,8 +103,6 @@ require '_includes/head.php'; ?>
     }
 
 
-
-
     /* they clicked on "Directions"... */
     if ($row['dir'] !== '') {
       $itemb = $row['mtg_id'] . ' ' . $row['mtg_day'] . ' ' . $row['mtg_opened'];
@@ -120,17 +114,6 @@ require '_includes/head.php'; ?>
     } else {
       $dirCounts[$itemb] = 1;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     if (!empty($all_mobile) && !in_array($all_mobile, $mobile_unique_a))    { $mobile_unique_a[]  = $all_mobile;  }

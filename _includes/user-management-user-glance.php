@@ -1,25 +1,24 @@
 	<div class="manage-glance-wrap u-m">
 		<div class="manage-glance-user">
 			<div class="manage-user-left">
-			<?php if (($row['id_user'] == $_SESSION['id']) && $row['admin'] == 2) { ?>
-					You, of course &bullet; Tier II Admin
-			<?php } else if (($row['id_user'] == $_SESSION['id']) && $row['admin'] == 3) { ?>
-					You, of course &bullet; Top Tier Admin
-			<?php } else if ($row['admin'] == 1) { ?>
-					<?php // SQL = WHERE u.admin=2 OR u.admin=3 -> that's why this won't show... ?>
-					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Website Guy
-			<?php } else if ($row['admin'] == 2) { ?>
-					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Tier II Admin
-			<?php } else if ($row['admin'] == 3) { ?>
-					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>&bullet; Top Tier Admin
-			<?php } else { ?>
-					<?= $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ' ?>
-			<?php }
-				?>
+			<?php 
+      if (is_owner($row) && declare_executive()) { 
+					echo 'You, of course &bullet; Site Executive';
+			 } else if (is_owner($row) && declare_admin()) { 
+					echo 'You, of course &bullet; Site Administrator';
+			 } else if ($row['admin'] == 1) { 
+					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Website Guy';
+			 } else if ($row['admin'] == 2) {  
+					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Tier II Admin';
+			 } else if ($row['admin'] == 3) { 
+					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Top Tier Admin';
+			 } else { 
+					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ';
+			 } ?>
 			</div>
 			<div class="manage-user-right">
 
-			<?php if ($row['id_user'] == $_SESSION['id']) { ?>
+			<?php if (is_owner($row)) { ?>
 				<a class="manage-edit my-stuff"><div class="tooltip right"><span class="tooltiptext">Don't play with yourself</span><i class="far fas fa-user-cog"></i></div></a>
 			<?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { ?>	
 				<a class="manage-edit my-stuff"><div class="tooltip right"><span class="tooltiptext">Top Tier Admin are off limits</span><i class="far fas fa-user-cog"></i></div></a>
