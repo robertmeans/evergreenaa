@@ -1,4 +1,4 @@
-<?php // $emh = rand(10000, 99999); /* I've really got no idea why I'm using this instead of $ic or $pc ? */ ?>
+<?php if (!isset($pc)) { $pc = '1'; } ?>
 <?php $emh = $pc . 'sp'; /* 'sp' = special */ ?>
 <div class="meeting-details">
 

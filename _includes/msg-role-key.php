@@ -1,4 +1,4 @@
-<?php if (!isset($_SESSION['admin'])) { // Visitor to home.php ?>
+<?php if (is_visitor()) { ?>
 <div id="role-key">
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
@@ -10,12 +10,12 @@
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
-<?php } else if ($_SESSION['admin'] == 1) { // Bob mode ?>
+<?php } else if (is_president()) { ?>
 <div id="role-key">
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Top Dog</h1>
+			<h1>President</h1>
 
 			<p>You can do anything you want here while in Admin Mode including:</p>
 			<ul>
@@ -30,18 +30,18 @@
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
-<?php } else if ($_SESSION['admin'] == 3) { // Top Tier Admin ?>	
+<?php } else if (declare_executive()) { ?>	
 <div id="role-key">
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Admin Top Tier privileges</h1>
+			<h1>Executive privileges</h1>
 			<p>While in Admin Mode you can:</p>
 			<ul>
-				<li>Edit any meeting (including Tier II Admin)</li>
-				<li>Transfer any meeting (including Tier II Admin)</li>
-				<li>Delete any meeting (including Tier II Admin)</li>
-				<li>Assign or revoke Admin II privileges</li>
+				<li>Edit any meeting (except other Executive's)</li>
+				<li>Transfer any meeting (except other Executive's)</li>
+				<li>Delete any meeting (except other Executive's)</li>
+				<li>Assign or revoke Admin, Manager or Member privileges</li>
 				<li>Suspend or unsuspend users</li>
 				<li>See username + email address of meeting host when viewing a meeting on the homepage</li>
 			</ul>
@@ -49,12 +49,12 @@
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
-<?php } else if ($_SESSION['admin'] == 2) { // Tier II Admin ?>
+<?php } else if (declare_admin()) { ?>
 <div id="role-key">
 	<div class="msg-bkg">
 		<div class="inside-msg-one">
 			<i class="far fa-times-circle"></i>
-			<h1>Admin Tier II privileges</h1>
+			<h1>Administrator privileges</h1>
 			<p>While in Admin Mode you can:</p>
 			<ul>
 				<li>Edit any meeting (except other Admins) - You can change other meetings to Draft or Private thereby effectively removing them from view but you cannot delete any meetings other than your own.</li>
@@ -64,6 +64,21 @@
 
 		</div><!-- .inside-msg-one -->
 	</div><!-- .msg-bkg -->
+</div><!-- #msg-two -->
+<?php } else if (declare_manager()) { ?>
+<div id="role-key">
+  <div class="msg-bkg">
+    <div class="inside-msg-one">
+      <i class="far fa-times-circle"></i>
+      <h1>Manager privileges</h1>
+      <ul>
+        <li>Edit Member's meetings (except other Admins) - You can change other meetings to Draft or Private thereby effectively removing them from view but you cannot delete any meetings other than your own.</li>
+        <li>Transfer any meeting (except other Admins)</li>
+        <li>See username + email address of meeting host when viewing a meeting on the homepage</li>
+      </ul>
+
+    </div><!-- .inside-msg-one -->
+  </div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
 <?php } else { //                                 Member ?>		
 <div id="role-key">

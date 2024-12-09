@@ -110,57 +110,97 @@ function show_general_public_meetings($row) {
 
 
 
+function is_visitor() {
+  if (!isset($_SESSION['verified'])) {
+    return true;
+  } else { return false; }
+}
 
 
+
+
+/* explanation: I gave everyone (except President (there can be only one)) a 10-digit range just to be flexible - in case some reason comes up to add more roles, I can plug them in wherever I need them. */
+function is_president() { /* President = 99 | There should be only 1 President */
+  if (isset($_SESSION['role']) && $_SESSION['role'] == 99) {
+    return true;
+  } else { return false; }
+}
+function declare_executive() { /* Executive = 80 */
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 81 && $_SESSION['role'] > 71)) {
+    return true;
+  } else { return false; }
+}
+function declare_admin() { /* Administrator = 60 */
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 61 && $_SESSION['role'] > 51)) {
+    return true;
+  } else { return false; }
+}
+function declare_manager() { /* Administrator = 40 */
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 41 && $_SESSION['role'] > 31)) {
+    return true;
+  } else { return false; }
+}
+
+function declare_member() { /* Member = 20 */
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 21 && $_SESSION['role'] > 9)) {
+    return true;
+  } else { return false; }
+}
+
+
+/* explanation: if 'is_executive()' then everyone up the line from executive gets access, etc. this way you can always default to the lowest role you want to provide access to and everyone up the line will also inherit those permissions. */
+function is_executive() {
+  if (is_president() || declare_executive()) {
+    return true;
+  } else {
+    return false;
+  }
+}
 function is_admin() {
-  if (isset($_SESSION['admin']) && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3)) {
+  if (is_president() || declare_executive() || declare_admin()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function is_manager() {
+  if (is_president() || declare_executive() || declare_admin() || declare_manager()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function is_member() {
+  if (is_president() || declare_executive() || declare_admin() || declare_manager() || declare_member()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function in_admin_mode() {
+  if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
     return true;
   } else { return false; }
 }
 
-function is_user($row) {
-  if ((isset($row) && isset($_SESSION['id'])) && $row['id_user'] == $_SESSION['id']) {
+
+
+
+
+
+
+
+
+
+
+function is_suspended() { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
+  if (isset($_SESSION['role']) && $_SESSION['role'] < 5) {
     return true;
   } else { return false; }
 }
 
-function prez($row) { /* President = 99 | There should be only 1 President */
-  if ($row['role'] < 100) {
-    return true;
-  } else { return false; }
-}
-
-function exec($row) { /* Executive = 80 */
-  if (isset($row['role']) && $row['role'] < 81) {
-    return true;
-  } else { return false; }
-}
-
-function admin($row) { /* Administrator = 60 */
-  if (isset($row['role']) && $row['role'] < 61) {
-    return true;
-  } else { return false; }
-}
-
-function manager($row) { /* Administrator = 40 */
-  if (isset($row['role']) && $row['role'] < 41) {
-    return true;
-  } else { return false; }
-}
-
-function member($row) { /* Member = 20 */
-  if (isset($row['role']) && $row['role'] < 21) {
-    return true;
-  } else { return false; }
-}
-
-function suspended($row) { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
-  if (isset($row['role']) && $row['role'] < 5) {
-    return true;
-  } else { return false; }
-}
-
-function owner($row) {
+function is_owner($row) {
   if ((isset($row['id_user']) && isset($_SESSION['id'])) && $row['id_user'] == $_SESSION['id']) {
     return true;
   } else { return false; }

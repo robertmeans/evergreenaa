@@ -6,12 +6,8 @@
   <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
   <div class="daily-glance<?php 
-    if ($row['visible'] == 1 && (($row['admin'] != 1 || $row['admin'] != 2) && $row['id_user'] != $_SESSION['id']) ) { 
-      echo ' personal-other'; 
-    } 
-    if ($row['visible'] == 1 && ($row['admin'] == 1 || $row['admin'] == 2)) { 
-      echo ' personal-odin'; 
-    } ?>">
+    if ($row['visible'] == 1 && (is_president() && !is_owner($row))) { echo ' personal-other'; } 
+    if ($row['visible'] == 1 && is_owner($row)) { echo ' personal-odin'; } ?>">
     <div class="glance-mtg glance-mtg-time">
       <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
     </div><!-- .glance-time-day -->
@@ -20,30 +16,21 @@
     </div><!-- .glance-group -->
     <div class="glance-mtg glance-mtg-type">
     
+<?php if (is_admin() && in_admin_mode()) { 
 
-
-
-
-
-<?php if (is_admin()) { 
-
-  if (is_user($row)) { ?>
+  if (is_owner($row)) { ?>
     <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Stuff</span><i class="far fas fa-user-cog"></i></div></a>
   <?php } else { ?>
     <a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
   <?php } ?>
 
-
   <a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 
   <a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="far fas fa-minus-circle"></i></div></a>
 
+<?php } 
 
-<?php } ?>
-
-
-
-<?php if (!is_admin()) {
+  if (!is_admin() || is_admin() && !in_admin_mode()) {
 
     if ($row['meet_url'] != '') { ?>
       <div class="tooltip">
@@ -66,23 +53,13 @@
     ?>
   </div>
 
-<?php }  ?>
+<?php } 
 
-      <?php if (is_user($row) || is_admin()) { 
+    if (is_owner($row) || is_manager() && in_admin_mode()) { 
 
-        ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip<?php if (is_user($row)) { echo ' right'; } ?>"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
+      ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip<?php if (is_owner($row)) { echo ' right'; } ?>"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
-
-
-      <?php } ?>
-
-  
-
-
-
-
-
-
+    <?php } ?>
 
     </div><!-- .glance-mtg-type -->
   </div><!-- .daily-glance -->

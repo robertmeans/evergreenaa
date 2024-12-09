@@ -1,12 +1,5 @@
-<?php
-
-if (!isset($_SESSION['mode'])) {
-  $_SESSION['mode'] = 'not-set';
-}
-?>
-
 <nav id="navigation" class="sm-g">
-	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
+	<div class="top-nav <?php if (is_manager() && in_admin_mode()) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
 
 		<div class="menu-basket">
 			<div class="bar-box">
@@ -17,34 +10,33 @@ if (!isset($_SESSION['mode'])) {
 
 	</div>
 
-
-  <?php /* BEGIN: Desktop - for my eyes only - frontend alert if there's an error on the site */ ?>
-  <?php /* pairs with script directly below nav */                                              ?>
-  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
-    <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
-      <?php } else { ?>
-        <div class="phperror" data-role="error-notification"></div>
-  <?php  } ?>
-  <?php /* END: Desktop - frontend error alert */ ?>
+  <?php /* BEGIN: Desktop - for my eyes only - frontend alert if there's an error on the site pairs with script directly below nav */ 
+  if (is_president() && filesize("_errors.txt") > 0) { ?>
+    <div class="phperror on" data-role="error-notification">
+      <a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>
+    </div>
+  <?php } else { ?>
+    <div class="phperror" data-role="error-notification"></div>
+  <?php  } /* END: Desktop - frontend error alert */ ?>
 
 </nav>
 
 <nav id="navigation" class="lg-g"><?php /* mobile nav */ ?>
-	<div class="top-nav <?php if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1)) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
+	<div class="top-nav <?php if (is_manager() && in_admin_mode()) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
 
-  <?php /* BEGIN: Mobile - for my eyes only - frontend alert if there's an error on the site */ ?>
-  <?php /* pairs with script directly below nav */                                              ?>
-  <?php if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
-    <div class="phperror on" data-role="error-notification"><a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a></div>
-      <?php } else { ?>
-        <div class="phperror" data-role="error-notification"></div>
-  <?php  } ?>
-  <?php /* END:  Mobile - frontend error alert */ ?>
+  <?php /* BEGIN: Mobile - for my eyes only - frontend alert if there's an error on the site pairs with script directly below nav */
+  if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
+    <div class="phperror on" data-role="error-notification">
+      <a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>
+    </div>
+  <?php } else { ?>
+    <div class="phperror" data-role="error-notification"></div>
+  <?php  } /* END:  Mobile - frontend error alert */ ?>
   
 </nav>
 
 <?php /* for my eyes only - error reporting */ 
-  if (isset($_SESSION['id']) && $_SESSION['id'] == '1') { ?>
+  if (is_president()) { ?>
     <script> 
       var error_location = "_errors.txt";
 
@@ -56,18 +48,11 @@ if (!isset($_SESSION['mode'])) {
           success: function(response) {
             if (response === "File is not empty") {
 
-              // $(".phperror").animate({ height: "37px" }, 200);
               $(".phperror").addClass("on");
               $('div[data-role=error-notification]').html('<a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>');
 
               //console.log("File is not empty");
             } else {
-
-              // $(".phperror").animate({ height: "0px" }, 200);
-              // setTimeout(function() {
-              //   $(".phperror").removeClass("on");
-              //   $('div[data-role=error-notification]').html(''); 
-              // }, 199);
 
               $(".phperror").removeClass("on");
               $('div[data-role=error-notification]').html('');
@@ -157,7 +142,7 @@ if (!isset($_SESSION['mode'])) {
     </div>
     <?php 
 		// make sure session is cleared if going from login to homepage via nav
-		if ($layout_context == 'login-page' || (isset($_SESSION['admin']) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86))) { ?>
+		if ($layout_context == 'login-page' || is_suspended()) { ?>
 			<a href="<?= WWW_ROOT . '/logout.php' ?>" onclick="closeNav();">Homepage</a>
 		<?php } else { ?>
 			<a href="<?= WWW_ROOT ?>" class="<?php if ($layout_context == 'home-public' || $layout_context == 'home-private') { echo 'nav-active'; } ?>">Homepage</a>
@@ -190,13 +175,17 @@ if (!isset($_SESSION['mode'])) {
     <?php /* start 003 comment } (end 003 comment)*/ // end else ?>
 
 		<?php
-		if (isset($_SESSION['verified']) && $_SESSION['verified'] != '0' && isset($_SESSION['id']) && $layout_context == 'dashboard') { ?>
-			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>">My Dashboard</a>
-		<?php } 
-		if (isset($_SESSION['verified']) && $_SESSION['verified'] != '0' && isset($_SESSION['id']) && $layout_context != 'dashboard') { ?>
-			<a href="manage.php" class="<?php if ($layout_context == 'dashboard') { echo 'nav-active'; } ?>" onclick="closeNav();">My Dashboard</a>
+		if (is_member()) { ?>
+			<a href="manage.php"<?php 
+      if ($layout_context == 'dashboard') { 
+        echo ' class="nav-active"'; 
+      } 
+      if ($layout_context != 'dashboard') { 
+        echo ' onclick="closeNav();"'; 
+      } ?>>My Dashboard</a>
 		<?php } 
 
+ 
 		if ($layout_context != "login-page") { ?>
 			<a id="show-tz">Timezone: <?php 
 				if ($tz == 'America/New_York') { echo 'USA Eastern'; }
@@ -210,44 +199,44 @@ if (!isset($_SESSION['mode'])) {
 					 ?></a>
 		<?php }
 
-
-		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context == 'um') { ?>
-			<a href="user_management.php" class="<?php if ($layout_context == 'um') { echo 'nav-active'; } ?>">Manage Users</a>
+		if (is_executive() && in_admin_mode()) { ?>
+			<a href="user_management.php"<?php 
+      if ($layout_context == 'um') { 
+        echo ' class="nav-active"';
+      } 
+      if ($layout_context != 'um') { 
+        echo ' onclick="closeNav();"'; 
+      } ?>>Manage Users</a>
 		<?php } 
-		if ((isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3))) && $layout_context != 'um') { ?>
-      <a href="user_management.php" onclick="closeNav();">Manage Users</a>
-			<?php /* <a class="<?php if ($layout_context == 'eeveryone') { echo 'nav-active'; } ?>" href="user_management.php" onclick="closeNav();">Manage Users</a> */ ?>
-		<?php } 
+ 
 
-
-		// my eyes only 
-		if (isset($_SESSION['admin']) && ($_SESSION['mode'] == 1 && $_SESSION['admin'] == 1)) { ?>
+		if (is_executive() && in_admin_mode()) { ?>
 			<a href="email_members.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
 		<?php } 
 
-		if (isset($_SESSION['admin']) && (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 0)) { ?>
+		if (is_admin()) { ?>
 			<form action="process-admin-mode.php" method="post">
+      <?php if (!in_admin_mode()) { ?>
 				<input type="hidden" name="mode" value="1">
-				<input type="hidden" id="url" name="url">
-				<a class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
-			</form>
-		<?php } 
-		if (isset($_SESSION['admin']) && (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) && $_SESSION['mode'] == 1)) { ?>
-			<form action="process-admin-mode.php" method="post">
-				<input type="hidden" name="mode" value="0">
-				<input type="hidden" id="url" name="url">
-				<a class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a>	
-			</form>
-
+        <input type="hidden" id="url" name="url">
+        <a class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
+      <?php } else { ?>
+        <input type="hidden" name="mode" value="0">
+        <input type="hidden" id="url" name="url">
+        <a class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a> 
+      <?php } ?>
+			</form>	
 		<?php } 
 
-		if (!isset($_SESSION['id']) && $layout_context != "login-page") { ?>
+
+		if (is_visitor() && $layout_context != "login-page") { ?>
 			<a href="login.php" class="login" onclick="closeNav();"><i class="fas far fa-power-off"></i> Login</span></a>
 		<?php } else if ($layout_context != "login-page") { ?>
 			<a href="logout.php" class="logout" onclick="closeNav();"><i class="fas far fa-power-off"></i> Logout</a>
 		<?php } 
 
-		if (!isset($_SESSION['id']) && ($layout_context != "login-page")) { ?>
+
+		if (is_visitor() && $layout_context != "login-page") { ?>
 			<a href="<?= WWW_ROOT . '/signup.php' ?>" class="cc-x">Create an Account</a>
 			<a id="toggle-why-join" class="cc-x eotw">Why Join?</a>
 		<?php } else if ($layout_context == "login-page") { ?>
@@ -256,9 +245,16 @@ if (!isset($_SESSION['mode'])) {
 			<a id="toggle-msg-one" class="cc-x eotw">Extras</a>
 		<?php } ?>
 
-    <?php if (isset($analytics_on_off) && (isset($_SESSION['id']) && $_SESSION['id'] == '1')) { ?>
+    <?php if (isset($analytics_on_off) && is_executive()) { ?>
       <div class="admin-info">
-        <a class="cc-x ial<?php if ($layout_context == 'analytics') { echo ' nav-active'; } ?>" href="internal_analytics.php"><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?><i class="fas far fa-star"></i><?php } ?> Internal Analytics</a>
+        <a class="cc-x ial<?php 
+        if ($layout_context == 'analytics') { 
+          echo ' nav-active'; 
+        } ?>" href="internal_analytics.php"><?php 
+        if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>
+          <i class="fas far fa-star"></i>
+        <?php } ?> Internal Analytics</a>
+
         <?php
           $theme_changes = theme_count();
           $result   = mysqli_num_rows($theme_changes);
@@ -293,26 +289,25 @@ if (!isset($_SESSION['mode'])) {
 	</div><!-- #sidenav-wrapper -->
 
 		<?php
-		if (isset($_SESSION['admin']) && $layout_context != 'login-page') {
-		 if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
+		if (is_member() && $layout_context != 'login-page') { ?>
 			<div class="admin-role">
-				<?php if ($_SESSION['admin'] == 1) { ?>
-					The Bob <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-				<?php } else if ($_SESSION['admin'] == 2) { ?>
-					<?= $_SESSION['username'] . ': '; ?>Tier II Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-				<?php } else if ($_SESSION['admin'] == 3) { ?>
-					<?= $_SESSION['username'] . ': '; ?>Top Tier Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
+				<?php if (is_president()) { ?>
+					Site President <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
+				<?php } else if (is_executive()) { ?>
+					<?= $_SESSION['username'] . ': '; ?>Site Executive <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
+				<?php } else if (is_admin()) { ?>
+					<?= $_SESSION['username'] . ': '; ?>Site Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
+        <?php } else if (is_manager()) { ?>
+          <?= $_SESSION['username'] . ': '; ?>Site Manager <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
+        <?php } else if (is_member()) { ?>
+          <?= $_SESSION['username'] . ': '; ?>Member <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 				<?php } ?>
 			</div>
-		<?php } else if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) { ?>
+		<?php } else if (is_suspended()) { ?>
 			<div class="sus-user">
 				<?= $_SESSION['username'] . ': '; ?>Suspended Account
 			</div>
-		<?php } else { ?>
-			<div class="member-role">
-				Member: <?= $_SESSION['username'] . ' '; ?> <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-			</div>		
-			<?php } 
+		<?php  
 			} else { ?>
 			<div class="visitor-role">
 				Welcome Visitor <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>

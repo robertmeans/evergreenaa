@@ -9,6 +9,7 @@ require '_includes/head.php'; ?>
 <?php require '_includes/nav.php'; ?>
 <?php require '_includes/msg-set-timezone.php'; ?>
 <?php require '_includes/msg-why-join.php'; ?>
+<?php require '_includes/msg-extras.php'; ?>
 <?php require '_includes/msg-role-key.php'; ?>
 <?php include '_includes/msg-theme-message.php'; ?>
 <?php mobile_bkg_config($theme); ?>
@@ -29,18 +30,11 @@ if ($user_role != 86 && $user_role != 85) {
 
 
   /* get correct data set */
-  if (!isset($_SESSION['verified'])) {
-    /* visitors - not logged in */
+  if (is_visitor()) {
     $subject_set = get_all_public_meetings();
-  } else if (isset($_SESSION['mode']) && $_SESSION['mode'] == 1) {
-    /* admin */
-    if ($user_id == 1) {
-      $subject_set = get_all_public_and_private_meetings_for_odin();
-    } else {
-      $subject_set = get_all_public_and_private_meetings_for_today($user_id); 
-    } 
+  } else if (is_president()) {
+    $subject_set = get_all_public_and_private_meetings();
   } else {
-    /* member - logged in */
     $subject_set = get_meetings_for_members($user_id);  
   }
 
@@ -75,7 +69,9 @@ foreach ($days as $today) { ?>
   <li class="ctr-day">
     <button id="open-<?php echo strtolower($today); ?>" class="day"><?= $today; ?></button>
     <div id="<?php echo strtolower($today); ?>-content" class="day-content">
-    <?php include '_includes/collapse-day.php'; ?>
+    <div class="collapse-day">
+      <span class="collapse-btn"><i class="fas fa-angle-double-up"></i></span>
+    </div>
     <p class="inline-tz"><a class="inline-show-tz"><?php pretty_tz($tz); ?></span></a></p>
 
       <?php
