@@ -223,8 +223,8 @@ require '_includes/head.php'; ?>
 	} else { // user has no meetings to manage
 		echo "<p style=\"margin-top:0.5em;padding:0px 1em;\">There are no members currently suspended.</p>";
 	}  
-		mysqli_free_result($suspended_users_meetings);
-		mysqli_free_result($any_meetings_for_user); ?>
+		// mysqli_free_result($suspended_users_meetings);
+		// mysqli_free_result($any_meetings_for_user); ?>
 
 </ul><!-- .manage-weekdays -->
 

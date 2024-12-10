@@ -11,11 +11,6 @@ if (!is_executive()) {
 $id = $_GET['user'];
 $role = $_SESSION['admin'];
 
-if ($id != 1 && ($id == '' || $id == $_SESSION['id'])) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
-
 $row = get_user_by_id($id);
 $users_mtgs = find_meetings_for_manage_page($id);
 $mtg_found  = mysqli_num_rows($users_mtgs);
@@ -35,7 +30,7 @@ require '_includes/head.php'; ?>
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 
-	<?php if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) { ?>
+	<?php if (is_executive()) { ?>
 
 		<?php if ($id == 1) { ?>
 			<h2 id="role-h2" class="demote">Nope</h2>
@@ -128,18 +123,18 @@ require '_includes/head.php'; ?>
 					<?php } ?>
 
 
-          <?php if (($row['admin'] != 85 && $row['admin'] != 86) && $mtg_found === 0) { ?> 
-            <div class='radioz' value="85">
+          <?php if (!is_suspended() && $mtg_found === 0) { ?> 
+            <div class='radioz' value="2">
               Suspend <?= $row['username'] ?><br>This user has no meetings
             </div>
           <?php } ?>
 
 
-					<?php if (($row['admin'] != 85 && $row['admin'] != 86) && $mtg_found > 0) { ?> 
-						<div class='radioz' value="85">
+					<?php if (!is_suspended() && $mtg_found > 0) { ?> 
+						<div class='radioz' value="2">
 							Suspend <?= $row['username'] ?> but KEEP meetings
 						</div>
-						<div class='radioz' value="86">
+						<div class='radioz' value="1">
 							Suspend <?= $row['username'] ?> and REMOVE meetings [Draft]
 						</div>
 					<?php } ?>
@@ -228,6 +223,6 @@ require '_includes/head.php'; ?>
 
 	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">How'd you get this far?</p>"; } ?>
 
-</div><!-- #manage-wrap -->
+</div><!-- #host-manage-wrap -->
 
 <?php require '_includes/footer.php'; ?>

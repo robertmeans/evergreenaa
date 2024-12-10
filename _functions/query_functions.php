@@ -338,7 +338,7 @@ function suspend_user_total($role, $reason, $user_id) {
 
   $one = "UPDATE users u ";
   $one .= "JOIN meetings m ON u.id_user=m.id_user ";
-  $one .= "SET u.admin='"  . db_escape($db, $role) . "', ";
+  $one .= "SET u.role='"  . db_escape($db, $role) . "', ";
   $one .= "u.sus_notes='"  . db_escape($db, $reason) . "', ";
   $one .= "u.mode=0, ";
   $one .= "m.visible=0 ";
@@ -353,7 +353,7 @@ function suspend_user_partial($role, $reason, $user_id) {
 
   $one = "UPDATE users ";
   // $one .= "JOIN meetings m ON u.id_user=m.id_user ";
-  $one .= "SET admin='"  . db_escape($db, $role) . "', ";
+  $one .= "SET role='"  . db_escape($db, $role) . "', ";
   $one .= "mode=0, ";
   $one .= "sus_notes='"  . db_escape($db, $reason) . "' ";
   $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
@@ -804,8 +804,8 @@ function find_all_users() {
   $sql  = "SELECT * FROM users ";
   $sql .= "WHERE id_user != 1 ";  
   $sql .= "AND id_user != 13 ";
-  $sql .= "AND admin != 85 ";
-  $sql .= "AND admin != 86 ";
+  $sql .= "AND role != 1 ";
+  $sql .= "AND role != 2 ";
   $sql .= "AND email_opt != 0 ";
   $sql .= "ORDER BY LOWER(username) ASC";
 
@@ -1035,7 +1035,7 @@ function user_manage_page_glance() {
   global $db;
 
   $sql = "SELECT * FROM users ";
-  $sql .= "WHERE admin=85 OR admin=86 ";
+  $sql .= "WHERE role=1 OR role=2 ";
   $sql .= "GROUP BY username ";
   $sql .= "ORDER BY LOWER(username) ASC;";
 
