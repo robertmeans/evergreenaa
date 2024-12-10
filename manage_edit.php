@@ -3,16 +3,7 @@ $layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
-
-if (!isset($_SESSION['id'])) {
-	header('location: ' . WWW_ROOT);
-	exit();
-}
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
+if (is_suspended() || is_visitor()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
@@ -243,7 +234,7 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 }
 
 $row = edit_meeting($id);
-$role = $_SESSION['admin'];
+$role = $_SESSION['role'];
 
 // get days sorted based on TZ
 $time = [];
@@ -284,9 +275,9 @@ require '_includes/head.php'; ?>
 <div id="manage-wrap">
 	<?php // print_r($row); ?>
 <div class="manage-simple intro">
-	<?php if (($row['id_user'] == $_SESSION['id']) || ($role != 1 && $role != 2 && $role != 3)) { ?>
+	<?php if (is_owner($row) || is_manager()) { ?>
 	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
-<?php } else if ($role == 1) { ?>
+<?php } else if (is_president()) { ?>
 	<p>Hey Me,</p>
 	<p>Quit talking to yourself.</p>
 <?php } else { ?>
@@ -321,7 +312,7 @@ require '_includes/head.php'; ?>
 	}
 	?>
 
-	<?php if (($row['id_user'] == $_SESSION['id']) || ($role == 1 || $role == 2 || $role == 3)) { ?>
+	<?php if (is_owner($row) || is_manager()) { ?>
 
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/edit-details.php'; ?>

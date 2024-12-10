@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 0 || $_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if (is_suspended() || is_visitor() || !is_manager()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }

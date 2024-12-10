@@ -126,17 +126,17 @@ function is_president() { /* President = 99 | There should be only 1 President *
   } else { return false; }
 }
 function declare_executive() { /* Executive = 80 */
-  if (isset($_SESSION['role']) && ($_SESSION['role'] < 81 && $_SESSION['role'] > 71)) {
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 81 && $_SESSION['role'] > 69)) {
     return true;
   } else { return false; }
 }
 function declare_admin() { /* Administrator = 60 */
-  if (isset($_SESSION['role']) && ($_SESSION['role'] < 61 && $_SESSION['role'] > 51)) {
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 61 && $_SESSION['role'] > 49)) {
     return true;
   } else { return false; }
 }
 function declare_manager() { /* Administrator = 40 */
-  if (isset($_SESSION['role']) && ($_SESSION['role'] < 41 && $_SESSION['role'] > 31)) {
+  if (isset($_SESSION['role']) && ($_SESSION['role'] < 41 && $_SESSION['role'] > 29)) {
     return true;
   } else { return false; }
 }

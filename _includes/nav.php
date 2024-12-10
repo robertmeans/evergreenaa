@@ -214,7 +214,7 @@
 			<a href="email_members.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
 		<?php } 
 
-		if (is_admin()) { ?>
+		if (is_manager()) { ?>
 			<form action="process-admin-mode.php" method="post">
       <?php if (!in_admin_mode()) { ?>
 				<input type="hidden" name="mode" value="1">
