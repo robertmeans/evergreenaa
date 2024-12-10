@@ -8,13 +8,12 @@ if (!is_executive()) {
 	exit();
 }
 
-$id = $_GET['user'];
-$role = $_SESSION['admin'];
+$id = $_GET['user'][0];
+$role = $_SESSION['role'];
 
 $row = get_user_by_id($id);
 $users_mtgs = find_meetings_for_manage_page($id);
 $mtg_found  = mysqli_num_rows($users_mtgs);
-
 
 require '_includes/head.php'; ?>
 
@@ -30,111 +29,145 @@ require '_includes/head.php'; ?>
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 
-	<?php if (is_executive()) { ?>
 
-		<?php if ($id == 1) { ?>
+
+		<?php if ($row['role'] == 99) { ?>
 			<h2 id="role-h2" class="demote">Nope</h2>
-		<?php } else if ($row['admin'] == 85 || $row['admin'] == 86) { ?>
+		<?php } else if ($row['role'] == 0 || $row['role'] == 1) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */
+          /* suspended + kept meetings = 1
+             suspended + meetings into draft = 2 */ ?>
 			<h2 id="role-h2" class="change-role">Reinstate User</h2>
-		<?php } else if ($row['admin'] == 0 || $row['admin'] == 2) { ?>
+
+		<?php } else if ($row['role'] == 20 || $row['role'] == 40 || $row['role'] == 60 || $row['role'] == 80) { ?>
 			<h2 id="role-h2" class="change-role">Manage User</h2>
-		<?php } else if ($_SESSION['admin'] != 1 && ($row['admin'] == 1 || $row['admin'] == 3)) { ?>
-			<h2 id="role-h2" class="demote">Top Tier Admin are off limits</h2>
+		<?php } else if ($role == 80 && $row['role'] == 80) { ?>
+			<h2 id="role-h2" class="demote">Other Executives are off limits</h2>
 		<?php } else { ?>
 			<h2 id="role-h2" class="demote">Demote Admin</h2>
 		<?php } ?>
 	<div id="transfer-host">
-		<p id="current-role" class="current-role"><?php if ($row['admin'] == 0) { ?>
-				Member
-			<?php } else if ($row['admin'] == 1) { ?>
-				Bob's stuff
-			<?php } else if ($row['admin'] == 2) { ?>
-				Level II Administrator
-			<?php } else if ($row['admin'] == 85) { ?>
-				Suspended: Meetings remain active
-			<?php } else if ($row['admin'] == 86) { ?>
+		<p id="current-role" class="current-role"><?php 
+            if ($row['role'] == 20) { ?>
+				      Member
+			<?php } else if ($row['role'] == 99) { ?>
+				      You're trying something sneaky.
+			<?php } else if ($row['role'] == 80) { ?>
+				      Site Executive
+      <?php } else if ($row['role'] == 60) { ?>
+              Site Administrator
+      <?php } else if ($row['role'] == 40) { ?>
+              Site Manager
+			<?php } else if ($row['role'] == 1) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */ ?>
+				      Suspended: Meetings remain active
+			<?php } else if ($row['role'] == 2) { ?>
 				Suspended: Meetings set to Draft
-			<?php } else { ?>
-				Top Tier Administrator
 			<?php } ?>
 		</p>
 
-		<?php if ($id == 1) { ?>
-			<p class="bob-1">Bob</p>
-		<?php } else { ?>
+		<?php if ($row['role'] != 99) { ?>
 			<p class="th-un">Username: <?= $row['username'] ?></p>
 			<p class="th-em">Email: <?= $row['email'] ?></p>
-		<?php } ?>
+		<?php } else { echo '<p class="th-em">&nbsp;</p>'; } ?>
 
-<?php if ($_SESSION['admin'] == 1 || ($row['admin'] != 1 && $row['admin'] != 3)) { ?>
+
+
+
+
+
+
+
+
+
+<?php if (is_president() || $row['role'] != 80) { ?>
 		<form id="suspend-form">
 
 			<div class="radio-groupz">
-				<?php if ($id == 1) { ?>
+				<?php if ($row['role'] == 99) { ?>
 					<div class="radio-bob">
 						No way, José.
-					</div>
-				<?php } else if ($id == $_SESSION['id']) { ?>
-					<div class="radio-bob">
-						Read the text below...
 					</div>
 				<?php } else { ?>
 
 
-					<?php if ($_SESSION['admin'] == 1 && ($row['admin'] == 0 || $row['admin'] == 2 || $row['admin'] == 85 || $row['admin'] == 86)) { // just me ?>
-						<div class='radioz' value="3">
-							Upgrade <?= $row['username'] . ' to ADMIN priviliges: TOP TIER <br> [ Manage Users + Edit + Transfer + Delete : All meetings ]' ?>
+					<?php if (is_president() && ($row['role'] == 0 || $row['role'] == 1 || $row['role'] == 20 || $row['role'] == 40 || $row['role'] == 60)) { // just me ?>
+						<div class='radioz' value="80">
+							Upgrade <?= $row['username'] . ' to Executive | Top Level <br> [ Manage Users + Edit + Transfer + Delete : All meetings ]' ?>
 						</div>					
 					<?php } ?>
-					<?php if ($_SESSION['admin'] == 1 && $row['admin'] == 3) { // just me ?> 
-						<div class='radioz' value="2">
-							Downgrade <?= $row['username'] . ' to Level II Admin <br> [ Edit + Transfer : All meetings ]' ?>
+          
+					<?php if (is_president() && $row['role'] == 80) { // just me ?> 
+						<div class='radioz' value="60">
+							Downgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
 						</div>
-						<div class='radioz' value="0">
+            <div class='radioz' value="40">
+              Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+            </div>
+						<div class='radioz' value="20">
 							Downgrade <?= $row['username'] . ' to Member' ?>
 						</div>
 					<?php } ?>
 
 
-					<?php if (($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) && $row['admin'] == 2) { ?>
-					<?php /* me + Top Tier can downgrade Level II Admin to Member */ ?>
-						<div class='radioz' value="0">
-							Downgrade <?= $row['username'] . ' to Member' ?>
+					<?php if (declare_executive() && ($row['role'] == 40 || $row['role'] == 60)) { ?>
+						<div class='radioz' value="40">
+							Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
 						</div>
+            <div class='radioz' value="20">
+              Downgrade <?= $row['username'] . ' to Member' ?>
+            </div>
 					<?php } ?>	
 
 
-					<?php if ($row['admin'] != 1 && $row['admin'] != 2 && $row['admin'] != 3) { ?>
-					<?php /* user is currently Member or suspended */ ?>
-						<?php if ($row['admin'] == 0) { // user is Member ?>
-							<div class='radioz' value="2">
-								Grant <?= $row['username'] . ' ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings ]' ?>
+
+
+
+
+
+
+
+
+					<?php if ($row['role'] != 0 && $row['role'] != 1) { ?>
+
+
+						<?php if ($row['role'] == 20) { // user is Member ?>
+							<div class='radioz' value="40">
+								Grant <?= $row['username'] . ' Manager permissions <br> [ Edit : All meetings ]' ?>
 							</div>
+              <div class='radioz' value="60">
+                Grant <?= $row['username'] . ' Administer permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+              </div>
+            <?php } ?>
+
 
 						<?php } else { // user is suspended ?>
-
-							<div class='radioz' value="2">
-								Reinstate <?= $row['username'] . ' with ADMIN priviliges: Level II <br> [ Edit + Transfer : All meetings ]' ?>
+              <div class='radioz' value="60">
+                Reinstate <?= $row['username'] . ' with Administer permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+              </div>
+							<div class='radioz' value="40">
+								Reinstate <?= $row['username'] . ' with Manager permissions <br> [ Edit : All meetings ]' ?>
 							</div>
-							<div class='radioz' value="0">
+							<div class='radioz' value="20">
 								Reinstate <?= $row['username'] . ' as Member' ?>
 							</div>
 						<?php } ?>
-					<?php } ?>
 
 
-          <?php if (!is_suspended() && $mtg_found === 0) { ?> 
-            <div class='radioz' value="2">
+
+
+
+
+          <?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found === 0) { ?> 
+            <div class='radioz' value="1">
               Suspend <?= $row['username'] ?><br>This user has no meetings
             </div>
           <?php } ?>
 
 
-					<?php if (!is_suspended() && $mtg_found > 0) { ?> 
-						<div class='radioz' value="2">
+					<?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found > 0) { ?> 
+						<div class='radioz' value="1">
 							Suspend <?= $row['username'] ?> but KEEP meetings
 						</div>
-						<div class='radioz' value="1">
+						<div class='radioz' value="0">
 							Suspend <?= $row['username'] ?> and REMOVE meetings [Draft]
 						</div>
 					<?php } ?>
@@ -142,7 +175,7 @@ require '_includes/head.php'; ?>
 				<?php } ?>
 
 				<?php /* 	grab value and put it into hidden field to submit */ ?>
-				<input type="hidden" name="admin">
+				<input type="hidden" name="role">
 				<input type="hidden" name="mode" value="<?= $row['mode'] ?>">
 			 </div>
 
@@ -153,16 +186,25 @@ require '_includes/head.php'; ?>
 		</form>
 <?php } ?>		
 
+
+
+
+
+
+
+
+
 		<div id="sus-msg"></div>
 		<div id="whoops"></div>
 
 		<div id="th-btn">
-			<?php if ($id == 1) { // me ?>
-				<a id="not-yourself" class="not-odin">Bob's stuff is off limits</a>
-			<?php } else if ($_SESSION['id'] != 1 && $row['admin'] == 3) { // someone trying to work on Top Tier other than me ?>
-				<a id="not-yourself" class="not-odin">Off limits</a>
+			<?php if ($row['role'] == 99) { // me ?>
+				<a id="not-yourself" class="not-odin">The President's stuff is off limits</a>
+			
 			<?php } else if ($id == $_SESSION['id']) { // they changed the $_GET in url to their # ?>
-				<a id="not-yourself">Don't play with yourself</a>
+				<a id="not-yourself">You can't change your own role.</a>
+      <?php } else if (!is_president() && $row['role'] == 80) { // someone trying to work on Top Tier other than me ?>
+        <a id="not-yourself" class="not-odin">Other Executives are off limits</a>
 			<?php } else { ?>
 
 				<div id="gdtrfb">
@@ -173,6 +215,10 @@ require '_includes/head.php'; ?>
 		</div>
 	</div>
 
+
+
+
+<?php if ($row['role'] != 99) { ?>
 <h1 class="usr-role-mtg"><?= $row['username'] . '\'s ' ?>Meetings</h1>
 
 <ul class="manage-weekdays">
@@ -220,8 +266,13 @@ require '_includes/head.php'; ?>
 	} mysqli_free_result($users_mtgs); ?>
 
 </ul><!-- .manage-weekdays -->
+<?php } ?>
 
-	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">How'd you get this far?</p>"; } ?>
+
+
+
+
+
 
 </div><!-- #host-manage-wrap -->
 

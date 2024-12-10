@@ -367,7 +367,7 @@ function change_user_role($user_id, $role, $mode) {
 
   $one = "UPDATE users ";
   // $one .= "JOIN meetings m ON u.id_user=m.id_user ";
-  $one .= "SET admin='"  . db_escape($db, $role) . "', ";
+  $one .= "SET role='"  . db_escape($db, $role) . "', ";
   $one .= "mode='"  . db_escape($db, $mode) . "', ";
   $one .= "sus_notes='' ";
   $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
@@ -820,7 +820,7 @@ function find_all_users_to_manage($user_id) {
   global $db;
 
   $sql  = "SELECT joined, id_user, username, email  FROM users ";
-  $sql .= "WHERE id_user != 1 ";
+  $sql .= "WHERE role != 99 ";
   $sql .= "AND id_user != 13 ";
   $sql .= "AND id_user != '" . $user_id . "' ";
   $sql .= "ORDER BY LOWER(username) ASC";
@@ -1019,7 +1019,7 @@ function find_meetings_by_id($id) {
 function find_meetings_for_manage_page($user_id) {
   global $db;
 
-  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.tz, u.email_opt FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.role, u.tz, u.email_opt FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_user='" . db_escape($db, $user_id) . "';";
   // $sql .= "GROUP BY m.group_name ";
@@ -1049,7 +1049,7 @@ function find_users_for_admin_glance() {
   global $db;
 
   $sql = "SELECT * FROM users ";
-  $sql .= "WHERE admin=2 OR admin=3 ";
+  $sql .= "WHERE role=40 OR role=60 OR role=80 ";
   $sql .= "GROUP BY username ";
   $sql .= "ORDER BY LOWER(username) ASC;";
 

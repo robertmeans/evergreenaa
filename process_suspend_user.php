@@ -4,25 +4,25 @@ require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
 	$user_id = $_POST['user'];
-	$role = $_POST['admin'];
+	$role = $_POST['role'];
 	$reason = trim(h($_POST['reason']) ?? '');
 
 if (is_post_request()) {
  
-	if ($_SESSION['admin'] != 1 && $_SESSION['admin'] != 3) {
+	if ($_SESSION['role'] != 99 && $_SESSION['role'] != 80) {
 		$signal = 'bad';
 		$msg = 'It appears you lack the necessary clearance to do this.';
 	} else {
 
 	 if (trim($reason)) {
-			if ($role == '85') { // start
+			if ($role == '1') { // start
 
 				if (strlen($reason) < 250) {
 
 					$suspend_this_user = suspend_user_partial($role, $reason, $user_id);
 
 				  if ($suspend_this_user === true) {
-						$signal = '85';
+						$signal = '1';
 					  $msg =  'success';
 				  } else {
 				  	$signal = 'bad';
@@ -36,13 +36,13 @@ if (is_post_request()) {
 
 			} // end
 
-			if ($role == '86') {
+			if ($role == '0') {
 
 				if (strlen($reason) < 250) {
 					$suspend_this_user = suspend_user_total($role, $reason, $user_id);
 
 				  if ($suspend_this_user === true) {
-						$signal = '86';
+						$signal = '0';
 					  $msg =  'Transfer successful!';
 				  } else {
 				  	$signal = 'bad';

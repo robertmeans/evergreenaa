@@ -2167,13 +2167,13 @@ $('.radio-groupz .radioz').click(function(){
     return;
   }
 
-    $(this).parent().find('.radioz').removeClass('selected');
+    $('.radioz:not(this)').removeClass('selected');
     $(this).addClass('selected');
     var val = $(this).attr('value');
     //alert(val);
-    $(this).parent().find('input[name=admin]').val(val);
+    $(this).parent().find('input[name=role]').val(val);
 
-    if ($(this).parent().find('input').val() == 0 || $(this).parent().find('input').val() == 2 || $(this).parent().find('input').val() == 3) {
+    if ($(this).parent().find('input').val() == 80 || $(this).parent().find('input').val() == 60 || $(this).parent().find('input').val() == 40 || $(this).parent().find('input').val() == 20) {
 
         if ($('#sus-reason').is(':hidden')) {
           $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
@@ -2186,7 +2186,7 @@ $('.radio-groupz .radioz').click(function(){
           }
 
         } 
-      else if ($(this).parent().find('input').val() == 85) {
+      else if ($(this).parent().find('input').val() == 1) {
         if ($('#sus-reason').is(':hidden')) {
           $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
@@ -2199,7 +2199,7 @@ $('.radio-groupz .radioz').click(function(){
         }
 
       } 
-      else if ($(this).parent().find('input').val() == 86) {
+      else if ($(this).parent().find('input').val() == 0) {
         if ($('#sus-reason').is(':hidden')) {
           $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
@@ -2235,14 +2235,14 @@ $(document).ready(function() {
         // console.log(response);
         if(response) {
           // console.log(response);
-          if(response['signal'] == '86') {
+          if(response['signal'] == '0') {
             $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - All meetings set to Draft');
             $('#suspend-form').html('');
             $('#sus-msg').html('<span class="sending-msg downgraded">You done smoked that cat right up outta here!</span>');
             $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
-          } else if(response['signal'] == '85') {
+          } else if(response['signal'] == '1') {
             $('#role-h2').html('User Demoted');
             $('#current-role').html('Suspended - Any meetings remain active');
             $('#suspend-form').html('');
@@ -2281,25 +2281,32 @@ $(document).ready(function() {
         // console.log(response);
         if(response) {
           // console.log(response);
-          if(response['signal'] == '2') {
+          if(response['signal'] == '80') {
             $('#role-h2').html('User Managed');
-            $('#current-role').html('Level II Administrator');
+            $('#current-role').html('Site Executive');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN Level II</span>');
+            $('#sus-msg').html('<span class="sending-msg">New role set to Site Executive successfully</span>');
             $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
-          } else if(response['signal'] == '3') {
+          } else if(response['signal'] == '60') {
             $('#role-h2').html('User Managed');
-            $('#current-role').html('Top Tier Administrator');
+            $('#current-role').html('Site Administrator');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User priviliges set to ADMIN TOP TIER</span>');
+            $('#sus-msg').html('<span class="sending-msg">New role set to Site Administrator successfully</span>');
             $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
-          } else if(response['signal'] == '0') {
+          } else if(response['signal'] == '40') {
+            $('#role-h2').html('User Managed');
+            $('#current-role').html('Site Manager');
+            $('#suspend-form').html('');
+            $('#sus-msg').html('<span class="sending-msg">New role set to Site Manager successfully</span>');
+            $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
+            $('#th-btn').html('');
+          } else if(response['signal'] == '20') {
             $('#role-h2').html('User Managed');
             $('#current-role').html('Member');
             $('#suspend-form').html('');
-            $('#sus-msg').html('<span class="sending-msg">User priviliges set to Member successfully</span>');
+            $('#sus-msg').html('<span class="sending-msg">New role set to Member successfully</span>');
             $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             $('#th-btn').html('');
           } else {

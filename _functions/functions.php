@@ -119,7 +119,7 @@ function is_visitor() {
 
 
 
-/* explanation: I gave everyone (except President (there can be only one)) a 10-digit range just to be flexible - in case some reason comes up to add more roles, I can plug them in wherever I need them. */
+/* explanation: I gave everyone (except President (there can be only one)) a 10-digit range just to be flexible - in case some reason comes up to add more roles, I can plug them in wherever I need them. - 'declare_' functions are used to reference that specific role whereas 'is_' functions are used for permissions. */
 function is_president() { /* President = 99 | There should be only 1 President */
   if (isset($_SESSION['role']) && $_SESSION['role'] == 99) {
     return true;
@@ -188,8 +188,8 @@ function in_admin_mode() {
 
 
 
-function is_suspended() { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
-  if (isset($_SESSION['role']) && $_SESSION['role'] < 5) {
+function is_suspended() { 
+  if (isset($_SESSION['role']) && $_SESSION['role'] < 5) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */
     return true;
   } else { return false; }
 }

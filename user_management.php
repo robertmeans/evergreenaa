@@ -9,7 +9,7 @@ if (!is_executive()) {
 }
 
 $user_id = $_SESSION['id'];
-$role = $_SESSION['admin'];
+$role = $_SESSION['role'];
 
 require '_includes/head.php'; ?>
 
@@ -23,16 +23,16 @@ require '_includes/head.php'; ?>
 <div id="manage-wrap">
 	
 	<div class="manage-simple intro">
-	<?php if ($role == 1) { ?>
-		<p>My User Management</p>
+	<?php if ($role == 99) { ?>
+		<p>Site President Management</p>
 	<?php } else { ?>
-		<p><?= ' ' . $_SESSION['username'] . '\'s User Management' ?></p>
+		<p><?= ' ' . $_SESSION['username'] . ' | User Management' ?></p>
 	<?php } ?>
 
 
 <?php require '_includes/inner_nav.php'; ?>
 </div>
-		<?php if ($role == 1 || $role == 3) { ?>
+		<?php if (is_executive()) { ?>
 
 		<?php // dropdown list of users for admin
 		$user_management_list = find_all_users_to_manage($user_id);
