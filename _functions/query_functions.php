@@ -234,8 +234,8 @@ function remove_likely_bots($bot_ips) {
 function get_all_public_meetings() { // for home.php
     global $db;
     // we don't need to check for who submitted an issue in this query because this is exclusively for visitors who cannot submit an issue anyway. 
-    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note FROM meetings as m ";
-
+    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.role FROM meetings as m ";
+    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     $sql .= "WHERE m.visible != 0 ";
     $sql .= "AND m.visible != 1 ";
     $sql .= "AND m.visible != 2;"; 
@@ -246,7 +246,7 @@ function get_all_public_meetings() { // for home.php
 // function get_all_public_and_private_meetings_for_today($id_user) { /* home_admin.php ...yea, I know this is the same as the one below */
 //     global $db;
 
-//     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+//     $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.role, u.tz FROM meetings as m ";
 //     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
 //     $sql .= "WHERE (m.visible != 0 ";
 //     $sql .= "AND m.visible != 1) ";
@@ -261,7 +261,7 @@ function get_all_public_meetings() { // for home.php
 function get_meetings_for_members($id_user) { /* home_private.php ...yea, I know this is the same as the one above */
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.role, u.tz FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     $sql .= "WHERE (m.visible != 0 ";
     $sql .= "AND m.visible != 1) ";
@@ -276,7 +276,7 @@ function get_meetings_for_members($id_user) { /* home_private.php ...yea, I know
 function get_meetings_for_analytics() { 
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, u.id_user, u.username, u.email, u.admin FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, u.id_user, u.username, u.email, u.role FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     $sql .= "WHERE (m.visible != 0 ";
     $sql .= "AND m.visible != 1)";
@@ -288,7 +288,7 @@ function get_meetings_for_analytics() {
 function verify_this_user($id) {
   global $db;
 
-  $sql = "SELECT admin, mode, email_opt FROM users WHERE ";
+  $sql = "SELECT role, mode, email_opt FROM users WHERE ";
   $sql .= "id_user='" . db_escape($db, $id) . "' ";
  
   $result = mysqli_query($db, $sql);
@@ -299,7 +299,7 @@ function verify_this_user($id) {
 function get_all_public_and_private_meetings() { // home_private.php (for admin 1 only)
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.mode, u.tz, u.email_opt FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.role, u.mode, u.tz, u.email_opt FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     $sql .= "WHERE m.visible != 0;"; 
 
@@ -310,7 +310,7 @@ function get_all_public_and_private_meetings() { // home_private.php (for admin 
 function suspend_user_info($id) {
     global $db;
 
-    $sql = "SELECT m.id_mtg, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.sus_notes FROM meetings as m ";
+    $sql = "SELECT m.id_mtg, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.role, u.sus_notes FROM meetings as m ";
     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
     $sql .= "WHERE m.id_mtg='" . db_escape($db, $id) . "' ";
     $sql .= "LIMIT 1";
@@ -676,7 +676,7 @@ function edit_meeting($id) {
   global $db;
 
   // $sql = "SELECT * FROM meetings WHERE ";
-  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.admin, u.tz FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.issues, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.id_user, u.username, u.email, u.role, u.tz FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_mtg='" . db_escape($db, $id) . "' ";
   $sql .= "LIMIT 1"; 
@@ -871,7 +871,7 @@ function get_host_address($mtgid) {
 function get_mb_posts() {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
+  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.role FROM mb_topics as mb ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mb.idt_user ";
   $sql .= "ORDER by opened DESC";
 
@@ -957,7 +957,7 @@ function add_mb_reply($row) {
 function get_this_post($post) {
   global $db;
 
-  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.admin FROM mb_topics as mb ";
+  $sql = "SELECT mb.opened, mb.idt_topic, mb.idt_user, mb.mb_header, mb.mb_body, u.username, u.email, u.mode, u.role FROM mb_topics as mb ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mb.idt_user ";
   $sql .= "WHERE idt_topic='" . $post . "' ";
   $sql .= "LIMIT 1";
@@ -969,7 +969,7 @@ function get_this_post($post) {
 function get_mb_pg_replies($this_post) {
   global $db;
 
-  $sql = "SELECT mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
+  $sql = "SELECT mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.role FROM mb_replies as mbr ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mbr.idr_user ";
   $sql .= "LEFT JOIN mb_topics as mbt on mbt.idt_topic=mbr.idr_topic ";
   $sql .= "WHERE mbr.idr_topic='" . $this_post . "';";
@@ -983,7 +983,7 @@ function get_mb_pg_replies($this_post) {
 function get_mb_replies($post) {
   global $db;
 
-  $sql = "SELECT mbt.idt_topic, mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.admin FROM mb_replies as mbr ";
+  $sql = "SELECT mbt.idt_topic, mbt.idt_user, mbr.replied, mbr.id_reply, mbr.idr_topic, mbr.idr_user, mbr.reply, u.username, u.email, u.mode, u.role FROM mb_replies as mbr ";
   $sql .= "LEFT JOIN users as u ON u.id_user=mbr.idr_user ";
   $sql .= "LEFT JOIN mb_topics as mbt on mbt.idt_topic=mbr.idr_topic ";
   $sql .= "WHERE mbr.idr_topic='" . $post . "'";
@@ -1019,7 +1019,7 @@ function find_meetings_by_id($id) {
 function find_meetings_for_manage_page($user_id) {
   global $db;
 
-  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin, u.role, u.tz, u.email_opt FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.id_user, m.issues, m.mtg_tz, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.role, u.role, u.tz, u.email_opt FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_user='" . db_escape($db, $user_id) . "';";
   // $sql .= "GROUP BY m.group_name ";
@@ -1061,7 +1061,7 @@ function find_users_for_admin_glance() {
 function user_manage_page_details($userz_id) {
   global $db;
 
-  $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.admin FROM meetings as m ";
+  $sql = "SELECT m.id_mtg, m.id_user, m.visible, m.mtg_tz, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, m.address, m.city, m.state, m.zip, m.address_url, m.meet_phone, m.one_tap, m.meet_id, m.meet_pswd, m.meet_url, m.meet_addr, m.meet_desc, m.dedicated_om, m.code_b, m.code_d, m.code_o, m.code_w, m.code_beg, m.code_h, m.code_sp, m.code_c, m.code_m, m.code_ss, m.month_speaker, m.potluck, m.link1, m.file1, m.link2, m.file2, m.link3, m.file3, m.link4, m.file4, m.add_note, u.username, u.email, u.role FROM meetings as m ";
   $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
   $sql .= "WHERE m.id_user='" . db_escape($db, $userz_id) . "' ";
   $sql .= "AND (m.visible=2 OR m.visible=3) ";

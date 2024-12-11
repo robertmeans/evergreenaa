@@ -8,7 +8,7 @@ if (!is_executive()) {
 	exit();
 }
 
-$id = $_GET['user'][0];
+$id = $_GET['user'];
 $role = $_SESSION['role'];
 
 $row = get_user_by_id($id);
@@ -71,13 +71,6 @@ require '_includes/head.php'; ?>
 
 
 
-
-
-
-
-
-
-
 <?php if (is_president() || $row['role'] != 80) { ?>
 		<form id="suspend-form">
 
@@ -118,14 +111,6 @@ require '_includes/head.php'; ?>
 					<?php } ?>	
 
 
-
-
-
-
-
-
-
-
 					<?php if ($row['role'] != 0 && $row['role'] != 1) { ?>
 
 
@@ -150,10 +135,6 @@ require '_includes/head.php'; ?>
 								Reinstate <?= $row['username'] . ' as Member' ?>
 							</div>
 						<?php } ?>
-
-
-
-
 
 
           <?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found === 0) { ?> 
@@ -188,12 +169,6 @@ require '_includes/head.php'; ?>
 
 
 
-
-
-
-
-
-
 		<div id="sus-msg"></div>
 		<div id="whoops"></div>
 
@@ -217,14 +192,13 @@ require '_includes/head.php'; ?>
 
 
 
-
 <?php if ($row['role'] != 99) { ?>
 <h1 class="usr-role-mtg"><?= $row['username'] . '\'s ' ?>Meetings</h1>
 
 <ul class="manage-weekdays">
 <?php if ($mtg_found > 0) { ?>
 
-<?php $pc = 0; // if user has meetings to manage, display them in order: Day > time, starting with Sun ?>
+<?php $ic = 0; $pc = 0; // if user has meetings to manage, display them in order: Day > time, starting with Sun ?>
 
 		<?php while ($row = mysqli_fetch_assoc($users_mtgs)) { ?>
 
@@ -258,7 +232,7 @@ require '_includes/head.php'; ?>
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->
 
-		<?php $pc++; } ?>
+		<?php $ic++; $pc++; } ?>
 
 	<?php  
 	} else { // user has no meetings to manage

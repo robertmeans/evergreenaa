@@ -20,15 +20,14 @@
 				?><?= $rowz['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<?php if (($rowz['id_user'] == $_SESSION['id']) || ($_SESSION['admin'] == 1 || ($_SESSION['admin'] == 3 && ($rowz['admin'] != 1 && $rowz['admin'] != 2 && $rowz['admin'] != 3)))) { ?>
+				<?php if ($rowz['id_user'] == $_SESSION['id'] || $_SESSION['role'] == 99) { ?>
 
 				<a class="manage-edit" href="manage_edit.php?id=<?= h(u($rowz['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
 				<a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($rowz['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="fas fa-people-arrows"></i></div></a>
 
-				<?php if ($_SESSION['admin'] == 1) { ?>
-					<a class="manage-delete" href="manage_delete.php?id=<?= h(u($rowz['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="fas fa-minus-circle"></i></div></a>
-				<?php } ?>
+				<a class="manage-delete" href="manage_delete.php?id=<?= h(u($rowz['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="fas fa-minus-circle"></i></div></a>
+
 
 			<?php } ?>
 			

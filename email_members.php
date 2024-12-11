@@ -3,7 +3,7 @@ require_once 'config/initialize.php';
 
 $layout_context = "alt-manage";
 
-if ($_SESSION['id'] != 1) {
+if (!is_executive()) {
 	header('location: https://www.merriam-webster.com/dictionary/go%20away');
 	exit();
 }

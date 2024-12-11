@@ -17,7 +17,7 @@
 				?><?= $row['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<p><?php if (($row['id_user'] == $_SESSION['id']) || $_SESSION['admin'] == "1") { ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
+				<p><?php if (is_owner($row) || is_manager()) { ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i></a>
 
 				<?php } ?>
 			</p>

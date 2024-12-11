@@ -21,13 +21,6 @@ $user_id = $_SESSION['id'];
 $role = $_SESSION['admin'];
 
 
-
-
-// $row = transfer_meeting($id);
-// changed above single line to everything below on 10.09.24 at 10:08
-// and it seems to give the correct day now. still looking for collateral repercussions...
-// start
-
 $row = edit_meeting($id); 
 
 $time = [];
@@ -55,8 +48,6 @@ $row['sat'] = $sat;
 // end
 
 
-
-
 require '_includes/head.php'; ?>
 
 <body>
@@ -72,11 +63,11 @@ require '_includes/head.php'; ?>
 	<div class="manage-simple intro">
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
-	<?php if ((($row['id_user'] == $_SESSION['id']) && ($row['id_mtg'] == $id)) || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
+	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['role'] == 99 || $_SESSION['role'] == 80 || $_SESSION['role'] == 60) { ?>
 
 	<h2 id="trans-h2" class="trans-h2">Transfer Meeting</h2>
 	<div id="transfer-host">
-		<p id="current-host" class="current-role">Host: <?= $row['username'] . ' &bullet; ' . $row['email'] ?></p>
+		<p id="current-host" class="current-role">Host: <?php if (is_owner($row)) { echo 'You'; } else { echo $row['username'] . ' &bullet; ' . $row['email']; } ?></p>
 
     <?php 
       $time = $row['meet_time'];
@@ -210,7 +201,7 @@ require '_includes/head.php'; ?>
 	</div>
 
 	<?php } else { ?>
-		<p style="margin:1.5em 0 0 1em;width:96%;max-width:600px;">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>
+		<p style="margin:1.5em 0 0 1em;width:96%;max-width:600px;">Either this is an Executive, in which case you cannot transfer their meeting, or the Internet hiccuped. Either way, hold your breath and try again if you think you're seeing this in error.</p>
 	<?php } ?>
 
 </div><!-- #manage-wrap -->

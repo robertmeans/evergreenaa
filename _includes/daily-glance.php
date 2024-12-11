@@ -16,7 +16,7 @@
     </div><!-- .glance-group -->
     <div class="glance-mtg glance-mtg-type">
     
-<?php if (is_admin() && in_admin_mode()) { 
+<?php if (is_president() || (is_admin() && in_admin_mode() && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) { 
 
   if (is_owner($row)) { ?>
     <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Stuff</span><i class="far fas fa-user-cog"></i></div></a>
@@ -30,7 +30,7 @@
 
 <?php } 
 
-  if (!is_admin() || is_admin() && !in_admin_mode()) {
+  if (!is_admin() || (is_admin() && !in_admin_mode()) || (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40)) {
 
     if ($row['meet_url'] != '') { ?>
       <div class="tooltip">
@@ -55,7 +55,7 @@
 
 <?php } 
 
-    if (is_owner($row) || is_manager() && in_admin_mode()) { 
+    if (is_owner($row) || (is_manager() && in_admin_mode() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) { 
 
       ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 
