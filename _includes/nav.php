@@ -211,7 +211,7 @@
  
 
 		if (is_executive() && in_admin_mode()) { ?>
-			<a href="email_members.php" class="<?php if ($layout_context == 'alt-manage') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
+			<a href="email_members.php" class="<?php if ($layout_context === 'email-members') { echo 'nav-active'; } ?>" onclick="closeNav();">Email Everyone</a>
 		<?php } 
 
 		if (is_manager()) { ?>

@@ -1,5 +1,5 @@
 <?php 
-$layout_context = 'alt-manage';
+$layout_context = 'alt-delete';
 
 require_once 'config/initialize.php';
 
@@ -65,34 +65,47 @@ require '_includes/head.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 
+<?php 
+  if  (
+      is_owner($row) ||
+      is_president() ||
+      is_manager() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40 
+      ) {
+?>
+
 <div class="confirm warning">WARNING!</div>
 <div class="manage-simple intro">
 
-	<?php if (($row['id_user'] == $_SESSION['id']) || $role == 1 || $role == 3) { ?>
-	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
-<?php } else if ($role == 1) { ?>
-	<p>Hey Me,</p>
-	<p>Quit talking to yourself.</p>
-<?php } else { ?>
-	<p><i class="fas fa-exclamation-triangle"></i><?php echo " " . $_SESSION['username'] . ", "; ?> Are you sure you really want to go through with this?</p>
-<?php } ?>
+	<div class="watchout"><i class="fas fa-exclamation-triangle"></i><p><?= $_SESSION['username']; ?>, Keep in mind, you can always put this into draft so it's not visible anywhere. If you want it gone for good, scroll to bottom and "Delete" it into oblivion!</p></div>
+
 <?php require '_includes/inner_nav.php'; ?>
 
 </div>
 <div class="manage-simple empty">
 	<h1 class="edit-h1">DELETE this Meeting</h1>
 
-	<?php if (($row['id_user'] == $_SESSION['id']) || $role == 1 || $role == 3) { ?>
-
-		<?php require '_includes/delete-glance.php'; ?>
+		<?php 
+    $pc = '1'; 
+    $mt = new DateTime($row['meet_time']); 
+    // require '_includes/delete-glance.php';
+    require '_includes/daily-glance.php'; ?>
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/delete-details.php'; ?>
 		</div><!-- .weekday-edit-wrap -->
 
-	<?php } else if (($row['id_user'] != $_SESSION['id']) || $_SESSION['admin'] == 2) { ?>
-			<p style="margin:1.5em 0 0 1em;">As an Admin you can do a lot of things but deleting other people's meetings is not one. You can &quot;downgrade&quot; this meeting to Draft or Private by using <a class="manage-edit spec" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><i class="far fa-edit"></i> Edit Meeting</a> instead.</p>
 	<?php } else { ?>
-		<p style="margin:1.5em 0 0 1em;">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>
+
+  <div class="manage-simple intro">
+  <?php require '_includes/inner_nav.php'; ?>
+  </div>
+
+  <div style="margin:0 1em; max-width: 600px;">
+    <p>This meegting belongs to another admin and therefore cannot be deleted by anyone but them.<br>
+      <br>
+    Hey wait a second... the bigger takeaway here is that, unless I missed hiding a delete button somewhere, you're trying to do something sneaky! :/</p>
+  </div>
+
+
 	<?php } ?>
 
 </div><!-- .manage-simple-content -->

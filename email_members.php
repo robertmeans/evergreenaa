@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/initialize.php';
 
-$layout_context = "alt-manage";
+$layout_context = "email-members";
 
 if (!is_executive()) {
 	header('location: https://www.merriam-webster.com/dictionary/go%20away');

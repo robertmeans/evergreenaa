@@ -236,6 +236,11 @@ $row['add_note'] 		= $_POST['add_note'] 									?? '';
 $row = edit_meeting($id);
 $role = $_SESSION['role'];
 
+if (!is_owner($row) && !is_manager()) {
+  header('location: ' . WWW_ROOT);
+  exit();
+}
+
 // get days sorted based on TZ
 $time = [];
 $time['tz'] = $tz;
@@ -273,53 +278,64 @@ require '_includes/head.php'; ?>
 <?php require '_includes/link-label-txt.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
-	<?php // print_r($row); ?>
-<div class="manage-simple intro">
-	<?php if (is_owner($row) || is_manager()) { ?>
-	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
-<?php } else if (is_president()) { ?>
-	<p>Hey Me,</p>
-	<p>Quit talking to yourself.</p>
+<?php 
+  if  (
+      is_owner($row) ||
+      is_president() ||
+      is_manager() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40 
+      ) {
+?>
+
+  <div class="manage-simple intro">
+  <?php require '_includes/inner_nav.php'; ?>
+  </div>
+  <div class="manage-simple empty">
+  	<?php if (!empty(display_errors($errors))) { ?>
+  		<h1 class="edit-h1">Update this Meeting</h1>
+  		<?php if ($themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
+  	<?php } else { ?>
+  		<h1 class="edit-h1">Edit this meeting</h1>
+  	<?php } ?>
+
+  	<?php 
+  	$result = display_issues($id);
+  	$issues_found = mysqli_num_rows($result);
+
+  	if ($issues_found > 0) { 
+  		if ($issues_found == 1) { ?>
+  		<p class="address-this">Please resolve the following issue that was submitted by another member:</p>
+  	<?php } else { ?>
+  		<p class="address-this">Please resolve the following issues that were submitted by other members.</p>
+
+  		<?php }
+  		while($rowz = mysqli_fetch_assoc($result)) { ?>
+  			<p class="display-issues"><?= nl2br($rowz['the_issue']); ?></p>
+  	<?php 
+  		}
+  	}
+  	?>
+
+  	<?php if (is_owner($row) || is_manager()) { ?>
+
+  		<div class="weekday-edit-wrap">
+  			<?php require '_includes/edit-details.php'; ?>
+  		</div><!-- .weekday-wrap -->
+
+  	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>		
+
+  </div>
+
 <?php } else { ?>
-	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
-	<p>Clean it up!</p>
+
+  <div class="manage-simple intro">
+  <?php require '_includes/inner_nav.php'; ?>
+  </div>
+
+  <div style="margin:0 1em; max-width: 600px;">
+    <p>This meegting belongs to another admin and therefore cannot be edited by anyone but them.<br>
+      <br>
+    Hey wait a second... the bigger takeaway here is that, unless I missed hiding an edit button somewhere, you're trying to do something sneaky! :/</p>
+  </div>
 <?php } ?>
-<?php require '_includes/inner_nav.php'; ?>
-</div>
-<div class="manage-simple empty">
-	<?php if (!empty(display_errors($errors))) { ?>
-		<h1 class="edit-h1">Update this Meeting</h1>
-		<?php if ($themeChange === 'notset') { echo display_errors($errors); } else { echo display_theme_errors($errors); } ?>
-	<?php } else { ?>
-		<h1 class="edit-h1">Edit this meeting</h1>
-	<?php } ?>
-
-	<?php 
-	$result = display_issues($id);
-	$issues_found = mysqli_num_rows($result);
-
-	if ($issues_found > 0) { 
-		if ($issues_found == 1) { ?>
-		<p class="address-this">Please resolve the following issue that was submitted by another member:</p>
-	<?php } else { ?>
-		<p class="address-this">Please resolve the following issues that were submitted by other members.</p>
-
-		<?php }
-		while($rowz = mysqli_fetch_assoc($result)) { ?>
-			<p class="display-issues"><?= nl2br($rowz['the_issue']); ?></p>
-	<?php 
-		}
-	}
-	?>
-
-	<?php if (is_owner($row) || is_manager()) { ?>
-
-		<div class="weekday-edit-wrap">
-			<?php require '_includes/edit-details.php'; ?>
-		</div><!-- .weekday-wrap -->
-
-	<?php } else { echo "<p style=\"margin:1.5em 0 0 1em;\">Either the Internet hiccuped and you ended up here or you're trying to be sneaky. Either way, hold your breath and try again.</p>"; } ?>		
-
-</div>
 </div><!-- #manage-wrap -->
 <?php require '_includes/footer.php'; ?>

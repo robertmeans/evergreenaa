@@ -12,11 +12,24 @@
       <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
     </div><!-- .glance-time-day -->
     <div class="glance-mtg glance-group-title">
-      <p data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p>
+    <?php 
+      if  (
+          !is_owner($row) && 
+          (is_admin() && in_admin_mode() && ($row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40))
+          ) { ?>
+
+        <div class="tooltip"><span class="tooltiptext">Meeting belongs to management</span><p class="adgrp" data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p></div>
+
+    <?php } else { ?>
+        <p data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p>
+    <?php } ?>
     </div><!-- .glance-group -->
     <div class="glance-mtg glance-mtg-type">
     
-<?php if (is_president() || (is_admin() && in_admin_mode() && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) { 
+<?php if  (
+          is_president() && in_admin_mode() || 
+          is_admin() && in_admin_mode() && ($row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
+          ) { 
 
   if (is_owner($row)) { ?>
     <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Stuff</span><i class="far fas fa-user-cog"></i></div></a>
@@ -26,11 +39,19 @@
 
   <a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 
+<?php if ($layout_context !== 'alt-delete') { ?>
   <a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="far fas fa-minus-circle"></i></div></a>
+<?php } ?>
 
 <?php } 
 
-  if (!is_admin() || (is_admin() && !in_admin_mode()) || (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40)) {
+  if  (
+      !is_admin() || 
+      is_admin() && !in_admin_mode() || 
+        (
+          (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president()
+        )
+      ) {
 
     if ($row['meet_url'] != '') { ?>
       <div class="tooltip">
@@ -55,11 +76,14 @@
 
 <?php } 
 
-    if (is_owner($row) || (is_manager() && in_admin_mode() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) { 
+    if  (is_owner($row) || 
+        is_president() && in_admin_mode() || 
+        is_manager() && in_admin_mode() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
+        ) { 
 
-      ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
+      ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a><?php
 
-    <?php } ?>
+      } ?>
 
     </div><!-- .glance-mtg-type -->
   </div><!-- .daily-glance -->

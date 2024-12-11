@@ -4,11 +4,11 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	// justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 	line-height: 1.5em;
-	padding: 100px 20px;
+	padding: 60px 20px;
 }
 @media screen and (max-width: 600px) {
   #manage-wrap {
@@ -51,8 +51,20 @@
 		font-size: 1.4em;
 		display: inline-block;
 	}
+  .watchout {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+    .fas {
+      margin-right: 0.5em;
+    }
+  }
 	& > p {
-		margin-bottom: 1em;
+		margin-bottom: 1em; 
+    // &.watchout {
+    //   display: flex;
+    //   align-items: center;
+    // }
 	}
 	i.fa-exclamation-triangle {
 		color: rgba(222,44,13,1);
@@ -1536,6 +1548,9 @@ span.contact-update-message {
 }
 .daily-glance .glance-group-title {
 	flex: 4;
+  p.adgrp {
+    color: #faa624;
+  }
 	// align-items: center;
 }
 .daily-glance .glance-mtg-type {
