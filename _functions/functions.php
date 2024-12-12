@@ -157,7 +157,7 @@ function is_executive() {
   }
 }
 function is_admin() {
-  if (is_president() || declare_executive() || declare_admin()) {
+  if (is_president() || declare_executive() || declare_admin() || declare_manager()) {
     return true;
   } else {
     return false;

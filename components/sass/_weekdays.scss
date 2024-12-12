@@ -116,7 +116,11 @@ li.ctr-day {
 p.no-mtgs {
 	padding: 2em 0em 1em;
 }
-
+.mtgdays {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 1em -1em;
+}
 .daily-glance-wrap {
 	width: 100%;
 	max-width: 900px;

@@ -1,4 +1,18 @@
-<?php $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; ?>
+<?php 
+  $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; 
+
+  $dayNames = [];
+  if ($row['sun'] == '1') { array_push($dayNames, 'Sun'); }
+  if ($row['mon'] == '1') { array_push($dayNames, 'Mon'); }
+  if ($row['tue'] == '1') { array_push($dayNames, 'Tue'); }
+  if ($row['wed'] == '1') { array_push($dayNames, 'Wed'); }
+  if ($row['thu'] == '1') { array_push($dayNames, 'Thu'); }
+  if ($row['fri'] == '1') { array_push($dayNames, 'Fri'); }
+  if ($row['sat'] == '1') { array_push($dayNames, 'Sat'); }
+  
+  if ($layout_context === 'alt-delete') { ?>
+  <div class="mtgdays">Held on: <?= implode(', ', $dayNames); ?></div>
+<?php } ?>
 
 <div class="daily-glance-wrap" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
@@ -14,11 +28,15 @@
     <div class="glance-mtg glance-group-title">
     <?php 
       if  (
-          !is_owner($row) && 
+          !is_owner($row) &&  
           (is_admin() && in_admin_mode() && ($row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40))
-          ) { ?>
-
-        <div class="tooltip"><span class="tooltiptext">Meeting belongs to management</span><p class="adgrp" data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p></div>
+          ) { 
+            if ($row['role'] < 41 && $row['role'] > 29) { $host_role = ' <span style="color:red;">Manager</span>'; }
+            if ($row['role'] < 61 && $row['role'] > 49) { $host_role = ' <span style="color:red;">Administrator</span>'; }
+            if ($row['role'] < 81 && $row['role'] > 69) { $host_role = ' <span style="color:red;">Executive</span>'; }
+            if ($row['role'] == 99) { $host_role = ' <span style="color:red;">President</span>'; }
+    ?>
+        <div class="tooltip"><span class="tooltiptext"><?= $row['username'] . '\'s:' . $host_role; ?></span><p class="adgrp" data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p></div>
 
     <?php } else { ?>
         <p data-role="<?= $pc; ?>_mtggn"><?= $row['group_name'] ?></p>
@@ -28,11 +46,12 @@
     
 <?php if  (
           is_president() && in_admin_mode() || 
-          is_admin() && in_admin_mode() && ($row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
+          (is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) || 
+          is_admin() && is_owner($row) && in_admin_mode()
           ) { 
 
   if (is_owner($row)) { ?>
-    <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Stuff</span><i class="far fas fa-user-cog"></i></div></a>
+    <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Meeting</span><i class="far fas fa-user-cog"></i></div></a>
   <?php } else { ?>
     <a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
   <?php } ?>
@@ -48,9 +67,10 @@
   if  (
       !is_admin() || 
       is_admin() && !in_admin_mode() || 
-        (
-          (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president()
-        )
+       (
+         (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president() && !is_owner($row)
+       ) || 
+       declare_manager() && !is_owner($row) 
       ) {
 
     if ($row['meet_url'] != '') { ?>

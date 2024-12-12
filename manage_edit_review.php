@@ -82,7 +82,15 @@ require '_includes/head.php'; ?>
 <div class="manage-simple review">
 	<h1>Quick view</h1>
 		
-		<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3) { ?>
+		<?php 
+
+  if  (
+      is_owner($row) ||
+      is_president() ||
+      is_manager() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40 
+      ) {
+
+     ?>
       <?php $pc = '001'; ?>
 			<?php require '_includes/review-glance.php'; ?>
 			<div class="weekday-edit-wrap">
