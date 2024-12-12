@@ -2151,7 +2151,13 @@ $(document).ready(function() {
 /* visible divs as radio buttons for User Management */
 $('.radio-groupz .radioz').click(function(){
     close_navigation_first();
-    var sus_note = $('#sus-note').val();
+
+    if ($('#sus-note').val() == 'undefined') {
+      var sus_note = '';
+    } else {
+      var sus_note = $('#sus-note').val();
+    }
+    $('#sus-msg').html('');
   // The Stanton Mandate:
   // See that links toggle on and off 
   if ($(this).hasClass('user-suspended') && $(this).hasClass('selected')) {
@@ -2182,18 +2188,24 @@ $('.radio-groupz .radioz').click(function(){
             $('#role-h2').removeClass('downgrade');
             $('#role-h2').addClass('upgrade');
             $('#gdtrfb').html('<a id="change-user-role">Change User Role</a>');
-            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
+            $('#sus-msg').html('');
+            $('#sus-reason').slideToggle().html('<p>Reason</p><textarea id="sus-note" name="reason" maxlength="250">' + sus_note + '</textarea>');
           }
 
         } 
       else if ($(this).parent().find('input').val() == 1) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
-          $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea id="sus-note" name="reason" maxlength="250">' + sus_note + '</textarea>');
+            if ($(this).hasClass('tuhnm')) {
+              $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User</a>');
+            } else {
+              $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
+            }
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
           $(this).addClass('user-suspended');
         } else {
+          $('#sus-msg').html('');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Keep Meetings</a>');
           $(this).addClass('user-suspended');
         }
@@ -2201,12 +2213,13 @@ $('.radio-groupz .radioz').click(function(){
       } 
       else if ($(this).parent().find('input').val() == 0) {
         if ($('#sus-reason').is(':hidden')) {
-          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea name="reason" maxlength="250">' + sus_note + '</textarea>');
+          $('#sus-reason').slideToggle().html('<p>Reason</p><textarea id="sus-note" name="reason" maxlength="250">' + sus_note + '</textarea>');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $('#role-h2').removeClass('upgrade');
           $('#role-h2').addClass('downgrade');
           $(this).addClass('user-suspended');
         } else {
+          $('#sus-msg').html('');
           $('#gdtrfb').html('<a id="suspend-user" class="user-suspended">Suspend User + Suspend Meetings</a>');
           $(this).addClass('user-suspended');
         }

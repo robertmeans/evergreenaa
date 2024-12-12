@@ -15,6 +15,11 @@ $row = get_user_by_id($id);
 $users_mtgs = find_meetings_for_manage_page($id);
 $mtg_found  = mysqli_num_rows($users_mtgs);
 
+if (!is_president() && $row['role'] > 79) {
+  header('location: ' . WWW_ROOT);
+  exit();
+}
+
 require '_includes/head.php'; ?>
 
 <body>
@@ -29,13 +34,9 @@ require '_includes/head.php'; ?>
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
 
-
-
 		<?php if ($row['role'] == 99) { ?>
 			<h2 id="role-h2" class="demote">Nope</h2>
-		<?php } else if ($row['role'] == 0 || $row['role'] == 1) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */
-          /* suspended + kept meetings = 1
-             suspended + meetings into draft = 2 */ ?>
+		<?php } else if ($row['role'] == 0 || $row['role'] == 1) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */ ?>
 			<h2 id="role-h2" class="change-role">Reinstate User</h2>
 
 		<?php } else if ($row['role'] == 20 || $row['role'] == 40 || $row['role'] == 60 || $row['role'] == 80) { ?>
@@ -69,8 +70,6 @@ require '_includes/head.php'; ?>
 			<p class="th-em">Email: <?= $row['email'] ?></p>
 		<?php } else { echo '<p class="th-em">&nbsp;</p>'; } ?>
 
-
-
 <?php if (is_president() || $row['role'] != 80) { ?>
 		<form id="suspend-form">
 
@@ -80,7 +79,6 @@ require '_includes/head.php'; ?>
 						No way, José.
 					</div>
 				<?php } else { ?>
-
 
 					<?php if (is_president() && ($row['role'] == 0 || $row['role'] == 1 || $row['role'] == 20 || $row['role'] == 40 || $row['role'] == 60)) { // just me ?>
 						<div class='radioz' value="80">
@@ -100,49 +98,76 @@ require '_includes/head.php'; ?>
 						</div>
 					<?php } ?>
 
+          <?php if (is_president() && $row['role'] == 60) { // just me ?> 
+            <div class='radioz' value="40">
+              Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+            </div>
+            <div class='radioz' value="20">
+              Downgrade <?= $row['username'] . ' to Member' ?>
+            </div>
+          <?php } ?>
 
-					<?php if (declare_executive() && ($row['role'] == 40 || $row['role'] == 60)) { ?>
-						<div class='radioz' value="40">
-							Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+          <?php if (is_president() && $row['role'] == 40) { // just me ?> 
+            <div class='radioz' value="60">
+              Upgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+            </div>
+            <div class='radioz' value="20">
+              Downgrade <?= $row['username'] . ' to Member' ?>
+            </div>
+          <?php } ?>
+
+          <?php if (is_president() && $row['role'] == 20) { // just me ?> 
+            <div class='radioz' value="60">
+              Upgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+            </div>
+            <div class='radioz' value="40">
+              Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+            </div>
+          <?php } ?>
+
+          <?php if (declare_executive() && $row['role'] == 60) { ?>
+            <div class='radioz' value="40">
+              Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+            </div>
+            <div class='radioz' value="20">
+              Downgrade <?= $row['username'] . ' to Member' ?>
+            </div>
+          <?php } ?>
+					<?php if (declare_executive() && $row['role'] == 40) { ?>
+						<div class='radioz' value="60">
+							Upgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
 						</div>
             <div class='radioz' value="20">
               Downgrade <?= $row['username'] . ' to Member' ?>
             </div>
 					<?php } ?>	
-
-
-					<?php if ($row['role'] != 0 && $row['role'] != 1) { ?>
-
-
-						<?php if ($row['role'] == 20) { // user is Member ?>
-							<div class='radioz' value="40">
-								Grant <?= $row['username'] . ' Manager permissions <br> [ Edit : All meetings ]' ?>
-							</div>
-              <div class='radioz' value="60">
-                Grant <?= $row['username'] . ' Administer permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>
-              </div>
-            <?php } ?>
-
-
-						<?php } else { // user is suspended ?>
-              <div class='radioz' value="60">
-                Reinstate <?= $row['username'] . ' with Administer permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>
-              </div>
-							<div class='radioz' value="40">
-								Reinstate <?= $row['username'] . ' with Manager permissions <br> [ Edit : All meetings ]' ?>
-							</div>
-							<div class='radioz' value="20">
-								Reinstate <?= $row['username'] . ' as Member' ?>
-							</div>
-						<?php } ?>
-
-
-          <?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found === 0) { ?> 
-            <div class='radioz' value="1">
-              Suspend <?= $row['username'] ?><br>This user has no meetings
+          <?php if (declare_executive() && $row['role'] == 20) { ?>
+            <div class='radioz' value="60">
+              Upgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+            </div>
+            <div class='radioz' value="40">
+              Upgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
             </div>
           <?php } ?>
 
+					<?php if ($row['role'] == 0 && $row['role'] == 1) { ?>
+
+            <div class='radioz' value="60">
+              Reinstate <?= $row['username'] . ' with Administrator permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>
+            </div>
+						<div class='radioz' value="40">
+							Reinstate <?= $row['username'] . ' with Manager permissions <br> [ Edit : All meetings ]' ?>
+						</div>
+						<div class='radioz' value="20">
+							Reinstate <?= $row['username'] . ' as Member' ?>
+						</div>
+					<?php } ?>
+
+          <?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found === 0) { ?> 
+            <div class='radioz tuhnm' value="1">
+              Suspend <?= $row['username'] ?><br>This user has no meetings
+            </div>
+          <?php } ?>
 
 					<?php if ($row['role'] != 0 && $row['role'] != 1 && $mtg_found > 0) { ?> 
 						<div class='radioz' value="1">
@@ -167,8 +192,6 @@ require '_includes/head.php'; ?>
 		</form>
 <?php } ?>		
 
-
-
 		<div id="sus-msg"></div>
 		<div id="whoops"></div>
 
@@ -189,8 +212,6 @@ require '_includes/head.php'; ?>
 		<?php } ?>
 		</div>
 	</div>
-
-
 
 <?php if ($row['role'] != 99) { ?>
 <h1 class="usr-role-mtg"><?= $row['username'] . '\'s ' ?>Meetings</h1>
@@ -241,12 +262,6 @@ require '_includes/head.php'; ?>
 
 </ul><!-- .manage-weekdays -->
 <?php } ?>
-
-
-
-
-
-
 
 </div><!-- #host-manage-wrap -->
 
