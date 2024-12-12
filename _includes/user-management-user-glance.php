@@ -5,13 +5,13 @@
       if (is_owner($row) && declare_executive()) { 
 					echo 'You, of course &bullet; Site Executive';
 			 } else if ($row['role'] == 99) { 
-					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; President';
+					echo  'President &bullet; ' . $row['username'] . ' &bullet; ' . strtolower($row['email']);
 			 } else if ($row['role'] == 80) {  
-					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Executive';
+					echo  'Executive &bullet; ' . $row['username'] . ' &bullet; ' . strtolower($row['email']);
        } else if ($row['role'] == 60) {  
-          echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Administrator';
+          echo  'Administrator &bullet; ' . $row['username'] . ' &bullet; ' . strtolower($row['email']);
        } else if ($row['role'] == 40) {  
-          echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' &bullet; Manager';
+          echo  'Manager &bullet; ' . $row['username'] . ' &bullet; ' . strtolower($row['email']);
 			 } else { 
 					echo $row['username'] . ' &bullet; ' . strtolower($row['email']) . ' ';
 			 } ?>

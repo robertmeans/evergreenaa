@@ -148,5 +148,19 @@
             </div>
           <?php } ?>
 
+        <?php if ($layout_context === 'delete-mtg') { ?>
+          <div class="btm-notes">
+        <?php } ?>
+
           <?php if(trim($row['add_note'] ?? '') != '') { ?><div id="add-note"><p><?= nl2br(h($row['add_note'])) ?></p></div><?php } ?>
+
+        <?php if ($layout_context === 'delete-mtg') { ?>
+          <div class="update-rt">
+            <form action="delete_meeting.php?id=<?= h(u($id)); ?>" method="post">
+            <a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">    
+            </form>
+          </div><!-- .update-rt -->
+        </div><!-- .btm-notes -->
+        <?php } ?>
+
         </div><!-- .meeting-details -->

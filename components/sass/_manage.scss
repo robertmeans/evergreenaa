@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	// justify-content: center;
-	align-items: center;
+	// align-items: center;
 	flex-wrap: wrap;
 	line-height: 1.5em;
 	padding: 60px 20px;
@@ -16,8 +16,8 @@
   }
 }
 .confirm {
-	text-align: center;
-	font-size: 3.2em;
+	// text-align: center;
+	font-size: 1.8em;
 	margin-bottom: 0.3em;
 	font-family: 'Special Elite', cursive;
 	color: rgba(223,147,39,1);
@@ -71,6 +71,10 @@
 		margin-right: 0.2em;
 		font-size: 2em;
 	}
+  a.emh-link i.fa-exclamation-triangle {
+    font-size: 1em;
+    margin-right: 0.5em;
+  }
 	& > p.logout {
 		bottom: 5px;
 		right: 0px;
@@ -113,6 +117,9 @@
 	}
 	&.review {
 		border-bottom: none;
+    h1 {
+      margin-bottom: 10px;
+    }
 		a.done {
 			margin: 1em auto;
 			padding: 1em 2em;
@@ -121,11 +128,14 @@
 			color: #fff;
 			text-decoration: none;
 			display: flex;
-			width: 80%;
+			width: 96%;
+      max-width: 200px;
 			justify-content: center;
 			align-items: center;
+      transition: all 0.2s ease;
 			&:hover {
 				background-color: rgba(64,178,8,0.4);
+        transform: scale(0.9);
 			}
 		}
 
@@ -152,7 +162,7 @@
 
 	}	
 	&.intro {
-		padding: 0px 2em 0.6em;
+		padding: 0px 1em 0.5em;
 	}
 	&.empty {
 		border-bottom: none;
@@ -508,6 +518,7 @@ ul.manage-weekdays {
 .daily-glance.personal-other {
 	border-left: 1px solid red;
 }
+
 .daily-glance-wrap.active > .daily-glance.personal {
 	border-left: 1px solid transparent;
 }
@@ -1355,7 +1366,7 @@ form#manage-mtg {
 
 @media screen and (max-width: 800px) {
 	.confirm {
-		font-size: 2.5em;
+		font-size: 1.5em;
 	}
 	.manage-simple {
 		text-align: left;

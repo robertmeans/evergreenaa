@@ -1,5 +1,5 @@
 <?php 
-$layout_context = 'alt-delete';
+$layout_context = 'delete-mtg';
 
 require_once 'config/initialize.php';
 
@@ -9,20 +9,17 @@ if (!isset($_SESSION['id'])) {
 	header('location: ' . WWW_ROOT . '/login.php');
 	exit();
 }
-if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
+if ((isset($_SESSION['id']) && !$_SESSION['verified']) || !isset($_GET['id'])) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 
-if (!isset($_GET['id'])) {
-	header('location: ' . WWW_ROOT);
-}
-
-// if user clicks UPDATE MEETING
-if (is_post_request()) {
+// if user clicks 'DELETE'
+if (is_post_request() && isset($_POST['delete-mtg'])) {
 
 	delete_meeting($id);
 	header('location: manage.php');
+  exit();
 
 } else {
 	$id = $_GET['id'];
@@ -85,12 +82,13 @@ require '_includes/head.php'; ?>
 	<h1 class="edit-h1">DELETE this Meeting</h1>
 
 		<?php 
-    $pc = '1'; 
+    $pc = '1';
+    $ic = '1'; 
     $mt = new DateTime($row['meet_time']); 
     // require '_includes/delete-glance.php';
     require '_includes/daily-glance.php'; ?>
 		<div class="weekday-edit-wrap">
-			<?php require '_includes/delete-details.php'; ?>
+			<?php require '_includes/meeting-details.php'; ?>
 		</div><!-- .weekday-edit-wrap -->
 
 	<?php } else { ?>

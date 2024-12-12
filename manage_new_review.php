@@ -67,10 +67,11 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	
-<div class="confirm">TEST & SELECT AUDIENCE</div>	
+<div class="confirm">REVIEW & SAVE</div>	
 <div class="manage-simple intro">
 	<?php if ($role != 1 && $role != 2) { ?>
-	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Or save it for later.</p>
+  <p>One more step!</p>
+	<p>Scroll to the bottom to select your audience and click "DONE". Confirm all the details along the way and if you need to make changes, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a>.</p>
 <?php } else if ($role == 1) { ?>
 	<p>Hey Me,</p>
 	<p>Quit talking to yourself.</p>
@@ -84,9 +85,11 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <div class="manage-simple review">
 	<h1>Quick view</h1>
 		
-		<?php if ($row['id_user'] == $_SESSION['id']) { ?>
-
-			<?php require '_includes/new-review-glance.php'; ?>
+		<?php if ($row['id_user'] == $_SESSION['id']) { 
+      $pc = '1';
+      $ic = '1'; 
+      $mt = new DateTime($row['meet_time']);
+			require '_includes/daily-glance.php'; ?>
 			<div class="weekday-edit-wrap">
 				<?php require '_includes/meeting-details.php'; ?>
 

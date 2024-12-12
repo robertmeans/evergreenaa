@@ -143,6 +143,9 @@ p.no-mtgs {
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
+  // &.alt-page {
+  //   background-color: rgba(0,0,0,0.3);
+  // }
 	.glance-mtg {
 		display: flex;
 		flex: 1;
@@ -157,10 +160,49 @@ p.no-mtgs {
 	}
 }
 
+
+
+.daily-glance-wrap {
+  &.alt-page {
+    border: none;
+    &.active {
+      border: none;
+      background: none;
+      background-color: transparent;
+    }
+  }
+  .daily-glance {
+    &.alt-page {
+      cursor: default;
+      background-color: rgba(0,0,0,0.3);
+    }
+  }
+}
+
+
+
+
+// .daily-glance-wrap.alt-page,
+// .daily-glance-wrap.alt-page.active {
+//   border: none;
+//   // background-color: rgba(0,0,0,0.3);
+//   .daily-glance.alt-page {
+//     cursor: default;
+//   }
+// }
+
+
+
+
+
+
+
+
 .weekday-wrap.note-here {
 		border-bottom-left-radius: 15px;
 	}
-.weekday-wrap {
+.weekday-wrap,
+.weekday-edit-wrap {
 	width: 100%;
 	max-width: 900px;
 	padding: 0px 20px 20px;

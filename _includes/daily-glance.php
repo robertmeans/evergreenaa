@@ -10,16 +10,17 @@
   if ($row['fri'] == '1') { array_push($dayNames, 'Fri'); }
   if ($row['sat'] == '1') { array_push($dayNames, 'Sat'); }
   
-  if ($layout_context === 'alt-delete') { ?>
+  if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { ?>
   <div class="mtgdays">Held on: <?= implode(', ', $dayNames); ?></div>
 <?php } ?>
 
-<div class="daily-glance-wrap" data-id="<?= $pc; ?>">
+<div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; } ?>" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-day" value="<?= $today; ?>">
   <div class="daily-glance<?php 
+    if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; }
     if ($row['visible'] == 1 && (is_president() && !is_owner($row))) { echo ' personal-other'; } 
     if ($row['visible'] == 1 && is_owner($row)) { echo ' personal-odin'; } ?>">
     <div class="glance-mtg glance-mtg-time">
@@ -58,7 +59,7 @@
 
   <a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 
-<?php if ($layout_context !== 'alt-delete') { ?>
+<?php if ($layout_context !== 'delete-mtg') { ?>
   <a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="far fas fa-minus-circle"></i></div></a>
 <?php } ?>
 

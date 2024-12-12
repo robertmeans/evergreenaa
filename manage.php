@@ -95,8 +95,10 @@ require '_includes/head.php'; ?>
 			$row['fri'] = $fri;
 			$row['sat'] = $sat;
 
-			?>
-			<?php require '_includes/manage-glance.php'; ?>
+    $pc = '1';
+    $ic = '1'; 
+    $mt = new DateTime($row['meet_time']); 
+    require '_includes/daily-glance.php'; ?>
 			<div class="weekday-wrap<?php if ('visible' == 0) { echo ' draft-bkg'; }  ?>">
 				<?php require '_includes/meeting-details.php'; ?>
 			</div><!-- .weekday-wrap -->

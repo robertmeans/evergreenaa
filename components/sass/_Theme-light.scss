@@ -91,6 +91,24 @@ a.verified {
     color: #313131;
   }
 }
+
+.daily-glance-wrap {
+  &.alt-page {
+    border: none;
+    &.active {
+      border: none;
+      background: none;
+      background-color: transparent;
+    }
+  }
+  .daily-glance {
+    &.alt-page {
+      cursor: default;
+      background-color: rgba(116, 180, 225, 0.22);
+    }
+  }
+}
+
 .daily-glance-wrap.active,
 .manage-glance-wrap.active {
   background: #ffffff url(_images/aa-logo_day-active.gif) no-repeat center center fixed; // yellow

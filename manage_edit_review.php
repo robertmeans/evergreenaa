@@ -64,18 +64,11 @@ require '_includes/head.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	
-<div class="confirm">TEST & CONFIRM!</div>	
+<div class="confirm">LAST PASS</div>	
 <div class="manage-simple intro">
 
-	<?php if ($role != 1 && $role != 2) { ?>
-	<p>Take a look. Is everything the way you want it? If not, click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> and polish this sucker up! Or save it for later.</p>
-<?php } else if ($role == 1) { ?>
-	<p>Hey Me,</p>
-	<p>Quit talking to yourself.</p>
-<?php } else { ?>
-	<p>Hey<?= ' ' . $_SESSION['username'] . ',' ?></p>
-	<p>Make sure everything's just right.</p>
-<?php } ?>
+  <p>At this point you're done, unless you'd like to change the audience or put this into Draft. You know the drill - scroll to the bottom or click the <a class="manage-edit inline" href="manage_edit.php?id=<?= h(u($id)); ?>"><i class="far fa-edit"></i> edit button</a> to make any additional changes.</p>
+
 <?php require '_includes/inner_nav.php'; ?>
 
 </div>
@@ -90,9 +83,10 @@ require '_includes/head.php'; ?>
       is_manager() && $row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40 
       ) {
 
-     ?>
-      <?php $pc = '001'; ?>
-			<?php require '_includes/review-glance.php'; ?>
+      $pc = '1';
+      $ic = '1'; 
+      $mt = new DateTime($row['meet_time']);
+      require '_includes/daily-glance.php'; ?>
 			<div class="weekday-edit-wrap">
 				<?php require '_includes/meeting-details.php'; ?>
 
