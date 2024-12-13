@@ -7,11 +7,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php $theme = preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-set-timezone.php'; ?>
-<?php require '_includes/msg-why-join.php'; ?>
-<?php require '_includes/msg-extras.php'; ?>
-<?php require '_includes/msg-role-key.php'; ?>
-<?php include '_includes/msg-theme-message.php'; ?>
+<?php require '_includes/messages.php'; ?>
 <?php mobile_bkg_config($theme); ?>
 <div id="wrap">
   

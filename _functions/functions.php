@@ -52,20 +52,6 @@ function preload_config($layout_context) {
   return $theme;
 }
 
-/* maybe come back to this one day. rn, not the time */
-// function required_files($layout_context) {
-//   $load_files = '';
-//   if ($layout_context === 'home-private') {
-//     $load_files .= require "_includes/nav.php"; ;
-//     $load_files .= require "_includes/msg-set-timezone.php"; ;
-//     $load_files .= require "_includes/msg-extras.php"; ;
-//     $load_files .= require "_includes/msg-role-key.php"; ;
-//     $load_files .= include "_includes/msg-theme-message.php";;
-//   }
-
-//   echo $load_files;
-// }
-
 
 function mobile_bkg_config($theme) {
   if ($theme == '0') { 

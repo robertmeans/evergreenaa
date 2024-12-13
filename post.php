@@ -18,10 +18,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-set-timezone.php'; ?>
-<?php require '_includes/msg-why-join.php'; ?>
-<?php require '_includes/msg-extras.php'; ?>
-<?php require '_includes/msg-role-key.php'; ?>
+<?php require '_includes/messages.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
 <div id="wrap">
 
@@ -158,6 +155,9 @@ $(document).ready(function() {
     var reply = $('#mb-replyz').val().trim();
     var empty = '';
 
+    var serializedData = $('#post-reply').serialize();
+    var customData = { new_message_board_reply: 'key' }; // can make comma separated array here
+
     if (reply == '') {
       $('#post-error').html('<p class="post-error">You can\'t submit an empty reply.</p>');
       return;
@@ -166,9 +166,9 @@ $(document).ready(function() {
     // event.preventDefault();
     $.ajax({
       dataType: "JSON",
-      url: "process-mb.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#post-reply').serialize(),
+      data: serializedData + '&' + $.param(customData),,
       beforeSend: function(xhr) {
         // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
       },
@@ -207,11 +207,14 @@ $(document).ready(function() {
     var id = $(this).data('id');
     var li_id = id.substring(id.indexOf('_') + 1);
 
+    var serializedData = $('#'+id).serialize();
+    var customData = { delete_message_board_reply: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-delete-mb-reply.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#'+id).serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
       },

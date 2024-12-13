@@ -126,8 +126,7 @@
     </div>
   </div>
 </div> 
-
-<?php // require '_includes/msg-message-board-join.php'; /* muted bc not using 10.27.25 */ ?>   
+   
 <?php } ?>
 
 

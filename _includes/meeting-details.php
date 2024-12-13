@@ -156,8 +156,9 @@
 
         <?php if ($layout_context === 'delete-mtg') { ?>
           <div class="update-rt">
-            <form action="delete_meeting.php?id=<?= h(u($id)); ?>" method="post">
-            <a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">    
+            <form action="processing.php" method="post">
+              <input type="hidden" name="delete_meeting_routine" value="<?= h(u($id)); ?>">
+              <a class="cancel" href="manage.php">CANCEL</a> <input type="submit" name="delete-mtg" class="submit" value="DELETE">    
             </form>
           </div><!-- .update-rt -->
         </div><!-- .btm-notes -->

@@ -7,8 +7,7 @@ include '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-why-join.php'; ?>
-<?php require '_includes/msg-role-key.php'; ?>
+<?php require '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="landing">
 	<form id="signup-form">

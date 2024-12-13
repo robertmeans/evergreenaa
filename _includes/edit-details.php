@@ -84,7 +84,7 @@
 	else { }
 		?>" placeholder="10-digit phone #">
 
-	<label for="one_tap">One Tap Mobile <a id="toggle-one-tap-msg"><i class="far fa-question-circle fa-fw"></i></a></label><?php // #toggle-one-tap-msg is inside lat-long-instructions.php ?>
+	<label for="one_tap">One Tap Mobile <a id="toggle-one-tap-msg"><i class="far fa-question-circle fa-fw"></i></a></label>
 	<input type="text" class="mtg-update<?php if (isset($errors['one_tap'])) { echo " fixerror"; } ?>" name="one_tap" value="<?php if (isset($row['one_tap'])) { echo h($row['one_tap']); } ?>" placeholder="One Tap Mobile #">
 
 	<label for="meet_id">ID number</label>

@@ -28,14 +28,8 @@ function remember_me() {
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = $user['verified'];
-
-
-			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
-
       $_SESSION['role'] = $user['role'];
-
-
 			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
       $_SESSION['db-theme'] = $user['theme'];
@@ -64,14 +58,8 @@ function verifyUser($token) {
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['verified'] = 1;
-
-
-			$_SESSION['admin'] = $user['admin'];
 			$_SESSION['mode'] = $user['mode'];
-
       $_SESSION['role'] = $user['role'];
-
-
 			$_SESSION['email_opt'] = $user['email_opt'];
 			$_SESSION['db-tz'] = $user['tz'];
       $_SESSION['db-theme'] = $user['theme'];

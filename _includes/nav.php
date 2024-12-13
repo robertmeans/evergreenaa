@@ -43,8 +43,8 @@
       function checkFileExists(error_location) {
 
         $.ajax({
-          url: "process-error-checking.php",
-          data: { filename: "_errors.txt" }, // Replace with your actual filename
+          url: "processing.php",
+          data: { filename_of_errors: "_errors.txt" }, // Replace with your actual filename
           success: function(response) {
             if (response === "File is not empty") {
 
@@ -112,7 +112,7 @@
     <?php if ($theme == '0') { ?>
       <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
 
-      <form action="process.php" method="post">
+      <form action="processing.php" method="post">
         <input type="hidden" name="theme" value="1">
         <input type="hidden" name="change-theme" value="key">
         <input type="hidden" id="themeurl" name="themeurl">
@@ -124,7 +124,7 @@
       <div id="ct-bright" class="current-theme"><p>Change to:</p><h4>Bright Theme</h4></div>
 
     <?php } else {  ?>
-      <form action="process.php" method="post">
+      <form action="processing.php" method="post">
         <input type="hidden" name="theme" value="0">
         <input type="hidden" name="change-theme" value="key">
         <input type="hidden" id="themeurl" name="themeurl">
@@ -217,7 +217,7 @@
 		<?php } 
 
 		if (is_manager()) { ?>
-			<form action="process.php" method="post">
+			<form action="processing.php" method="post">
       <?php if (!in_admin_mode()) { ?>
 				<input type="hidden" name="mode" value="1">
         <input type="hidden" name="process-admin-mode" value="key">
@@ -276,7 +276,7 @@
 
           if (!in_array($current_ip, $my_current_ip)) { ?>
 
-            <form action="process.php" method="post">
+            <form action="processing.php" method="post">
               <input type="hidden" name="current-list" value="<?= $ip_string; ?>">
               <input type="hidden" name="my-new-ip" value="<?= $current_ip; ?>">
               <input type="hidden" id="navthemeurl" name="this-here-url">

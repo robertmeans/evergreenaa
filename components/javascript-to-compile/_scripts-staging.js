@@ -295,11 +295,14 @@ $(document).ready(function() {
     var id = $(this).data('id');
     var new_note = $('#sus-note').val().replaceAll('\n', '<br>').trim();
     
+    var serializedData = $('#revise-sus-note').serialize();
+    var customData = { suspension_explanation: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-edit-sus_note.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#revise-sus-note').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         // unnecessarily clutters up the (very quick) update process by putting stuff here
       },
@@ -735,7 +738,7 @@ $(document).ready(function(){
       $(active).addClass('active');
 
       $.ajax({
-        url: 'process.php',
+        url: 'processing.php',
         method: 'POST', 
         dataType: 'text', 
         data: {
@@ -788,7 +791,7 @@ $(document).ready(function(){
       $(active).addClass('active');
 
       $.ajax({
-        url: 'process.php',
+        url: 'processing.php',
         method: 'POST', 
         dataType: 'text', 
         data: {
@@ -828,7 +831,7 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process.php',
+      url: 'processing.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
@@ -867,7 +870,7 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process.php',
+      url: 'processing.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
@@ -906,7 +909,7 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process.php',
+      url: 'processing.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
@@ -956,7 +959,7 @@ $(document).ready(function(){
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       method: "POST", 
       data: {
         new_DB_start_date: new_DB_start 
@@ -1006,7 +1009,7 @@ $(document).ready(function(){
 
     $.ajax({
       dataType: "JSON",
-      url: 'process.php',
+      url: 'processing.php',
       method: 'POST', 
       data: {
         master_analytics_key: 'set',
@@ -1382,11 +1385,14 @@ $(document).ready(function() {
   $(document).on('click','#signup-btn', function() {
     var current_loc = window.location.href;
 
+    var serializedData = $('#signup-form').serialize();
+    var customData = { sign_up_process_routine: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "signup-process.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#signup-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
@@ -1460,12 +1466,14 @@ $(document).ready(function() {
       login_attempts += 0;
     }
 
+    var serializedData = $('#login-form').serialize();
+    var customData = { login_routine: 'key' }; // can make comma separated array here
 
     $.ajax({
       dataType: "JSON",
-      url: "login-process.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#login-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
@@ -1525,12 +1533,15 @@ $(document).ready(function() {
 
   $(document).on('click','#forgotpass-btn', function() {
     // var current_loc = window.location.href;
+    var serializedData = $('#forgotpass-form').serialize();
+    var customData = { forgot_password_routine: 'key' }; // can make comma separated array here
+
 
     $.ajax({
       dataType: "JSON",
-      url: "forgot_password-process.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#forgotpass-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
@@ -1581,11 +1592,14 @@ $(document).ready(function() {
   $(document).on('click','#resetpass-btn', function() {
     var current_loc = window.location.href;
 
+    var serializedData = $('#resetpass-form').serialize();
+    var customData = { reset_password_routine: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "reset_password-process.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#resetpass-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#login-alert').removeClass(); // reset class every click
         $('#errors').html('');
@@ -1774,6 +1788,9 @@ $(document).ready(function() { // 0829210847
     var post = $('#emh-msg').val(); 
     var numberOfLineBreaks = (post.match(/\n/g)||[]).length;
 
+    var serializedData = $('#mb').serialize();
+    var customData = { new_message_board_post: 'key' }; // can make comma separated array here
+
     if ((numberOfLineBreaks > 0) || (post.trim().length > 80)) {
       var body = post.split('\n', 1)[0].substring(0,80) + '...';  
     } else if (post.trim().length > 80) {
@@ -1800,9 +1817,9 @@ $(document).ready(function() { // 0829210847
 
     $.ajax({
       dataType: "JSON",
-      url: "process-mb.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#mb').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
       },
@@ -1846,11 +1863,14 @@ $(document).ready(function() { // 0829210847
     var li_id = id.substring(id.indexOf('_') + 1);
     var post_pg = $('#ybcwpb');
 
+    var serializedData = $('#'+id).serialize();
+    var customData = { delete_message_board_post: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-delete-mb-post.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#'+id).serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         // $('#emh-contact-msg').html('<span class="sending-msg">Posting - one moment...</span>');
       },
@@ -1892,11 +1912,14 @@ $(document).ready(function() {
     close_navigation_first();
     var opt_value = $('#opt-inout').html();
 
+    var serializedData = $('#emailopt-form').serialize();
+    var customData = { email_opt_in_or_out: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-email-optinout.php",
+      url: "processing.php",
       type: "POST",
-      data: $('#emailopt-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         // $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
       },
@@ -2032,7 +2055,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
@@ -2077,7 +2100,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
@@ -2122,7 +2145,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
@@ -2255,7 +2278,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: serializedData + '&' + $.param(customData),
 
@@ -2305,7 +2328,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
@@ -2354,7 +2377,7 @@ $(document).ready(function() {
       complete: function() {
 
       }
-    }) // end ajax call process.php
+    }) // end ajax call processing.php
   }); // end click function
 }); // end document.ready
 
@@ -2365,7 +2388,7 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process.php",
+      url: "processing.php",
       type: "POST",
       data: {
         process_theme_popup: 'key'

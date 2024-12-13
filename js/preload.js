@@ -23,7 +23,7 @@ $(window).on('load', function() {
   }
 
   $.ajax({
-    url: 'process.php',
+    url: 'processing.php',
     method: 'POST', 
     dataType: 'text', 
     data: {
