@@ -23,11 +23,12 @@ $(window).on('load', function() {
   }
 
   $.ajax({
-    url: 'process-analytics.php',
+    url: 'process.php',
     method: 'POST', 
     dataType: 'text', 
     data: {
       primary_key: 'set',
+      master_analytics_key: 'set',
       page: page,
       device: device
     } /* no success or fail actions necessary */

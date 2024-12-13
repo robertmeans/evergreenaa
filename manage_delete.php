@@ -85,7 +85,6 @@ require '_includes/head.php'; ?>
     $pc = '1';
     $ic = '1'; 
     $mt = new DateTime($row['meet_time']); 
-    // require '_includes/delete-glance.php';
     require '_includes/daily-glance.php'; ?>
 		<div class="weekday-edit-wrap">
 			<?php require '_includes/meeting-details.php'; ?>

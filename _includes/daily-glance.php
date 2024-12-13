@@ -1,6 +1,12 @@
 <?php 
   $mtg_days = $row['sun'].$row['mon'].$row['tue'].$row['wed'].$row['thu'].$row['fri'].$row['sat']; 
 
+  $visible = '';
+  if ($row['visible'] == '0') { $visible = 'DRAFT'; }
+  if ($row['visible'] == '1') { $visible = 'PRIVATE'; }
+  if ($row['visible'] == '2') { $visible = 'MEMBER-ONLY'; }
+  if ($row['visible'] == '3') { $visible = 'PUBLIC'; }
+
   $dayNames = [];
   if ($row['sun'] == '1') { array_push($dayNames, 'Sun'); }
   if ($row['mon'] == '1') { array_push($dayNames, 'Mon'); }
@@ -11,7 +17,7 @@
   if ($row['sat'] == '1') { array_push($dayNames, 'Sat'); }
   
   if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { ?>
-  <div class="mtgdays">Held on: <?= implode(', ', $dayNames); ?></div>
+  <div class="mtgdays"><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></div>
 <?php } ?>
 
 <div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; } ?>" data-id="<?= $pc; ?>">

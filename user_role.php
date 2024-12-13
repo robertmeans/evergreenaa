@@ -121,7 +121,7 @@ require '_includes/head.php'; ?>
               Upgrade <?= $row['username'] . ' to Administrator <br> [ Edit + Transfer + Delete : All meetings ]' ?>
             </div>
             <div class='radioz' value="40">
-              Downgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
+              Upgrade <?= $row['username'] . ' to Manager <br> [ Edit : All meetings ]' ?>
             </div>
           <?php } ?>
 
@@ -150,7 +150,7 @@ require '_includes/head.php'; ?>
             </div>
           <?php } ?>
 
-					<?php if ($row['role'] == 0 && $row['role'] == 1) { ?>
+					<?php if ($row['role'] == 0 || $row['role'] == 1) { ?>
 
             <div class='radioz' value="60">
               Reinstate <?= $row['username'] . ' with Administrator permissions <br> [ Edit + Transfer + Delete : All meetings ]' ?>

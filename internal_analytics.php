@@ -3,7 +3,7 @@ $layout_context = 'analytics';
 require_once 'config/initialize.php'; /* calls controllers/analytics.php */
 require_once 'config/verify_admin.php';
 
-if (!isset($_SESSION['id']) || $_SESSION['id'] != '1') { /* this page is for my eyes only */
+if (!isset($_SESSION['role']) || !is_executive()) { /* this page is for my eyes only */
   header('location: ' . WWW_ROOT);
   exit();
 }
@@ -148,7 +148,7 @@ require '_includes/head.php'; ?>
 ?>
   <div class="db-mng-links">
     <input type="hidden" id="as-date" value="<?= $analytics_start_for_export; ?>">
-    <p><a class="link" href="process-sql-export.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 1) { ?><a class="link" href="process-sql-table-analytics-export.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
+    <p><a class="link" href="export-entire-db.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 1) { ?><a class="link" href="export-analytics-table.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
   } ?></p>
   </div>
 

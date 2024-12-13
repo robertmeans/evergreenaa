@@ -14,7 +14,7 @@ if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
 
 if (is_post_request()) {
 
-	if($email) {
+	if ($email) {
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 

@@ -735,11 +735,12 @@ $(document).ready(function(){
       $(active).addClass('active');
 
       $.ajax({
-        url: 'process-analytics.php',
+        url: 'process.php',
         method: 'POST', 
         dataType: 'text', 
         data: {
           primary_key: 'set', /* used to identify appropriate process */
+          master_analytics_key: 'set',
           day: day,
           device: device
         } /* no success or fail actions necessary */
@@ -787,11 +788,12 @@ $(document).ready(function(){
       $(active).addClass('active');
 
       $.ajax({
-        url: 'process-analytics.php',
+        url: 'process.php',
         method: 'POST', 
         dataType: 'text', 
         data: {
           primary_key: 'set', /* used to identify appropriate process */
+          master_analytics_key: 'set',
           device: device,
           host_id: host_id,
           mtg_id: mtg_id,
@@ -826,11 +828,12 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process-analytics.php',
+      url: 'process.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
         primary_key: 'set', /* used to identify appropriate process */
+        master_analytics_key: 'set',
         device: device,
         host_id: host_id,
         mtg_id: mtg_id,
@@ -864,11 +867,12 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process-analytics.php',
+      url: 'process.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
         primary_key: 'set', /* used to identify appropriate process */
+        master_analytics_key: 'set',
         device: device,
         host_id: host_id,
         mtg_id: mtg_id,
@@ -902,11 +906,12 @@ $(document).ready(function(){
     }
 
     $.ajax({
-      url: 'process-analytics.php',
+      url: 'process.php',
       method: 'POST', 
       dataType: 'text', 
       data: {
         primary_key: 'set', /* used to identify appropriate process */
+        master_analytics_key: 'set',
         device: device,
         host_id: host_id,
         mtg_id: mtg_id,
@@ -951,7 +956,7 @@ $(document).ready(function(){
 
     $.ajax({
       dataType: "JSON",
-      url: "process-analytics-reset.php",
+      url: "process.php",
       method: "POST", 
       data: {
         new_DB_start_date: new_DB_start 
@@ -1001,9 +1006,10 @@ $(document).ready(function(){
 
     $.ajax({
       dataType: "JSON",
-      url: 'process-analytics.php',
+      url: 'process.php',
       method: 'POST', 
       data: {
+        master_analytics_key: 'set',
         delete_ip_list_key: 'set', /* used to identify appropriate process */
         ip_delete_list: ip_delete_list
       }, 
@@ -2021,11 +2027,14 @@ $(document).ready(function() {
     var new_username = $('#new-usrnm-top').val();
     var new_host = $('#new-email-top').val();
 
+    var serializedData = $('#transfer-form-top').serialize();
+    var customData = { transfer_meeting_key: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-transfer-meeting.php",
+      url: "process.php",
       type: "POST",
-      data: $('#transfer-form-top').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
       },
@@ -2063,11 +2072,14 @@ $(document).ready(function() {
     var new_username = $('#new-usrnm-topz').val();
     var new_host = $('#new-email-topz').val();
 
+    var serializedData = $('#transfer-form-topz').serialize();
+    var customData = { transfer_meeting_key: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-transfer-meeting.php",
+      url: "process.php",
       type: "POST",
-      data: $('#transfer-form-topz').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
       },
@@ -2105,11 +2117,14 @@ $(document).ready(function() {
     close_navigation_first();
     var new_host = $('#new-email').val();
 
+    var serializedData = $('#transfer-form').serialize();
+    var customData = { transfer_meeting_key: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process-transfer-meeting.php",
+      url: "process.php",
       type: "POST",
-      data: $('#transfer-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#trans-msg').html('<span class="sending-msg">Transferring - one moment...</span>');
       },
@@ -2230,17 +2245,20 @@ $('.radio-groupz .radioz').click(function(){
       }
 });
 
-
 // Suspend user
 $(document).ready(function() {
   $(document).on('click','#suspend-user', function() {
     close_navigation_first();
 
+    var serializedData = $('#suspend-form').serialize();
+    var customData = { sssuser: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process_suspend_user.php",
+      url: "process.php",
       type: "POST",
-      data: $('#suspend-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
+
       beforeSend: function(xhr) {
         $('#sus-msg').html('<span class="sending-msg">Working on it - one moment...</span>');
       },
@@ -2282,11 +2300,14 @@ $(document).ready(function() {
   $(document).on('click','#change-user-role', function() {
     close_navigation_first();
 
+    var serializedData = $('#suspend-form').serialize();
+    var customData = { change_user_rl: 'key' }; // can make comma separated array here
+
     $.ajax({
       dataType: "JSON",
-      url: "process_change_role.php",
+      url: "process.php",
       type: "POST",
-      data: $('#suspend-form').serialize(),
+      data: serializedData + '&' + $.param(customData),
       beforeSend: function(xhr) {
         $('#sus-msg').html('<span class="sending-msg">Working on it - one moment...</span>');
       },
@@ -2333,7 +2354,7 @@ $(document).ready(function() {
       complete: function() {
 
       }
-    }) // end ajax call process_change_role.php
+    }) // end ajax call process.php
   }); // end click function
 }); // end document.ready
 
@@ -2344,7 +2365,11 @@ $(document).ready(function() {
 
     $.ajax({
       dataType: "JSON",
-      url: "process-theme-popup.php",
+      url: "process.php",
+      type: "POST",
+      data: {
+        process_theme_popup: 'key'
+      },
       success: function(response) {
         // console.log(response);
         if(response) {

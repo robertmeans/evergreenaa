@@ -1,5 +1,6 @@
 #manage-wrap {
 	width: 100%;
+  max-width: 900px;
 	height: auto;
 	min-height: 100vh;
 	display: flex;
@@ -7,6 +8,7 @@
 	// justify-content: center;
 	// align-items: center;
 	flex-wrap: wrap;
+  margin: 0 auto;
 	line-height: 1.5em;
 	padding: 60px 20px;
 }
@@ -921,7 +923,9 @@ form#manage-mtg .details-left {
 
 a.new-mtg-btn {
   text-align: center;
-	margin: 1em 0;
+	margin: 1em auto;
+  width: 100%;
+  max-width: 300px;
 	padding: 1em 2em;
 	color: #fff;
 	background-color: rgba(0,0,0,0.9);

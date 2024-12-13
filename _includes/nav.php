@@ -112,8 +112,9 @@
     <?php if ($theme == '0') { ?>
       <a class="dark nav-active"><i class="fas far fa-moon"></i></a>
 
-      <form action="process-theme.php" method="post">
+      <form action="process.php" method="post">
         <input type="hidden" name="theme" value="1">
+        <input type="hidden" name="change-theme" value="key">
         <input type="hidden" id="themeurl" name="themeurl">
         <a id="bright-opt" class="light<?php if ($theme == '1') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-lightbulb"></i></a>
       </form>
@@ -123,8 +124,9 @@
       <div id="ct-bright" class="current-theme"><p>Change to:</p><h4>Bright Theme</h4></div>
 
     <?php } else {  ?>
-      <form action="process-theme.php" method="post">
+      <form action="process.php" method="post">
         <input type="hidden" name="theme" value="0">
+        <input type="hidden" name="change-theme" value="key">
         <input type="hidden" id="themeurl" name="themeurl">
         <a id="dark-opt" class="dark<?php if ($theme == '0') { echo ' nav-active'; } ?>"  onclick="$(this).closest('form').submit(); closeNav();"><i class="fas far fa-moon"></i></a>
       </form>
@@ -215,13 +217,15 @@
 		<?php } 
 
 		if (is_manager()) { ?>
-			<form action="process-admin-mode.php" method="post">
+			<form action="process.php" method="post">
       <?php if (!in_admin_mode()) { ?>
 				<input type="hidden" name="mode" value="1">
+        <input type="hidden" name="process-admin-mode" value="key">
         <input type="hidden" id="url" name="url">
         <a class="admin-login" onclick="$(this).closest('form').submit(); closeNav();">Enter Admin Mode</a>
       <?php } else { ?>
         <input type="hidden" name="mode" value="0">
+        <input type="hidden" name="process-admin-mode" value="key">
         <input type="hidden" id="url" name="url">
         <a class="admin-logout" onclick="$(this).closest('form').submit(); closeNav();">Exit Admin Mode</a> 
       <?php } ?>
@@ -272,7 +276,7 @@
 
           if (!in_array($current_ip, $my_current_ip)) { ?>
 
-            <form action="process-add-ip.php" method="post">
+            <form action="process.php" method="post">
               <input type="hidden" name="current-list" value="<?= $ip_string; ?>">
               <input type="hidden" name="my-new-ip" value="<?= $current_ip; ?>">
               <input type="hidden" id="navthemeurl" name="this-here-url">
