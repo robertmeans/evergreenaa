@@ -7,7 +7,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php $theme = preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <?php mobile_bkg_config($theme); ?>
 <div id="wrap">
   

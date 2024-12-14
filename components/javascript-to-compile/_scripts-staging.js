@@ -2165,7 +2165,7 @@ $(document).ready(function() {
             $('#trans-msg').html('<span class="sending-msg">Transfer successful!</span>');
 
             // 0823211116
-            if ($('#imnadmin').length) { // only shows on page if $_SESSION['admin'] != 0
+            if ($('#imnadmin').length) { 
             // don't show reload link if they're not admin.
               $('#whoops').html('<span class="sending-msg whoops">Whoops! Re-assign that one.</span>');
             } 

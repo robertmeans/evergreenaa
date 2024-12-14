@@ -3,7 +3,7 @@ $layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if (is_suspended()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
@@ -25,7 +25,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 $id_user = $_SESSION['id'];
-$role = $_SESSION['admin'];
+$role = $_SESSION['role'];
 
 $row = edit_meeting($id);
 
@@ -58,7 +58,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	

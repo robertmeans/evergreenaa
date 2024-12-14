@@ -6,7 +6,7 @@ $layout_context = 'message-board';
 
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
-	$user_role = $_SESSION['admin'];
+	$user_role = $_SESSION['role'];
 }
 
 require '_includes/head.php'; ?>
@@ -20,7 +20,7 @@ require '_includes/head.php'; ?>
 <?php } ?>
 
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
 <div id="wrap">
 

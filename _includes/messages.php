@@ -145,7 +145,7 @@ if ($new_tz == 'member') { ?>
   <div class="msg-bkg">
     <div class="inside-msg-one">
       <i class="far fa-times-circle"></i>
-      <h1>President</h1>
+      <h1>Website President</h1>
 
       <p>You can do anything you want here while in Admin Mode including:</p>
       <ul>

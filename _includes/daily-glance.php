@@ -54,14 +54,17 @@
 <?php if  (
           is_president() && in_admin_mode() || 
           (is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) || 
-          is_admin() && is_owner($row) && in_admin_mode()
+          is_admin() && is_owner($row) && in_admin_mode() ||
+          is_owner($row) && !is_suspended()
           ) { 
 
-  if (is_owner($row)) { ?>
-    <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Meeting</span><i class="far fas fa-user-cog"></i></div></a>
-  <?php } else { ?>
-    <a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
-  <?php } ?>
+  if (is_executive()) {
+    if (is_owner($row)) { ?>
+      <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Meeting</span><i class="far fas fa-user-cog"></i></div></a>
+    <?php } else { ?>
+      <a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
+    <?php }
+    } ?>
 
   <a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
 
@@ -72,12 +75,15 @@
 <?php } 
 
   if  (
-      !is_admin() || 
-      is_admin() && !in_admin_mode() || 
-       (
-         (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president() && !is_owner($row)
-       ) || 
-       declare_manager() && !is_owner($row) 
+        (
+        !is_admin() || 
+        is_admin() && !in_admin_mode() || 
+         (
+           (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president() && !is_owner($row)
+         ) || 
+         declare_manager() && !is_owner($row)
+         ) && 
+       $layout_context !== 'dashboard'
       ) {
 
     if ($row['meet_url'] != '') { ?>

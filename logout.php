@@ -16,7 +16,7 @@ $_SESSION['id'] = "";
 $_SESSION['username'] = "";
 $_SESSION['email'] = "";
 $_SESSION['verified'] = "";
-$_SESSION['admin'] = "";
+$_SESSION['role'] = "";
 $_SESSION['mode'] = "";
 session_destroy();
 

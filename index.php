@@ -28,7 +28,7 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') {
   $theme = preload_config($layout_context);
 } 
 require '_includes/nav.php';
-require '_includes/messages.php';
+require_once '_includes/messages.php';
 mobile_bkg_config($theme); 
 ?>
 <div id="landing">

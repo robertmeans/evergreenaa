@@ -1,11 +1,10 @@
 <?php 
 $layout_context = 'dashboard';
 require_once 'config/initialize.php';
-require_once 'config/verify_admin.php';
 
-if ((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86)) {
-	header('location: ' . WWW_ROOT);
-	exit();
+if (is_suspended()) {
+  header('location: ' . WWW_ROOT);
+  exit();
 }
 
 if (!isset($_SESSION['id'])) {
@@ -14,13 +13,14 @@ if (!isset($_SESSION['id'])) {
 	header('location: ' . WWW_ROOT . '/login.php');
 	exit();
 }
+
 if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
-	$role = $_SESSION['admin'];
+	$role = $_SESSION['role'];
 }
 $hide_this = "yep";
 $email_opt = $_SESSION['email_opt'];
@@ -30,7 +30,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>	
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	

@@ -2,7 +2,7 @@
 $layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if (is_suspended()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
@@ -18,7 +18,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 
 $id = $_GET['id'];
 $user_id = $_SESSION['id'];
-$role = $_SESSION['admin'];
+$role = $_SESSION['role'];
 
 
 $row = edit_meeting($id); 
@@ -53,7 +53,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 
 
@@ -183,7 +183,7 @@ require '_includes/head.php'; ?>
 			<input type="email" id="new-email" name="email" placeholder="Enter member's email address">
 		</form>
 
-		<?php if ($_SESSION['admin'] == 0) { /* only show to non-admin folks because admin can hit the "whoops" link to reload the page and transfer to someone else */ ?>
+		<?php if (declare_member()) { /* only show to non-admin folks because admin can hit the "whoops" link to reload the page and transfer to someone else */ ?>
 			<div id="trans-msg">
 				<p class="host-disclaimer">Note: You are transfering this meeting to someone else. It will no longer be in your account but will jump up and git on over into their account right here directly. There's no going back. It's adios amigos. Make sure you've said your goodbyes and are secure in the decisions you're making here today. Some things in life are profound. (This isn't one, however.)</p>
 			</div>
@@ -191,15 +191,15 @@ require '_includes/head.php'; ?>
 			<div id="trans-msg"></div>
 		<?php } ?>
 
-		<?php if ($_SESSION['admin'] != 0) { echo '<div id="imnadmin"></div>'; } /* this is so we have something to identify whether or not we're dealing with admin. if we are, show them the "Whoops" link after submit so they can do-over if necessary. otherwise, a regular member couldn't transfer the meeting if it's not in their account so don't bother showing them this link. (sorce in _scripts.staging.js - search: 0823211116 ) */ ?>
+		<?php if (is_admin() || is_owner($row)) { echo '<div id="imnadmin"></div>'; } /* this is so we have something to identify whether or not we're dealing with admin. if we are, show them the "Whoops" link after submit so they can do-over if necessary. otherwise, a regular member couldn't transfer the meeting if it's not in their account so don't bother showing them this link. (sorce in _scripts.staging.js - search: 0823211116 ) */ ?>
 		<div id="whoops"></div>
 		<div id="th-btn">
-			<a id="transfer-this" class="<?php if ($_SESSION['admin'] != 0) { echo 'ap'; } ?>">TRANSFER</a>
+			<a id="transfer-this" class="<?php if (is_admin() || is_owner($row)) { echo 'ap'; } ?>">TRANSFER</a>
 		</div>
 	</div>
 
 	<?php } else { ?>
-		<p style="margin:1.5em 0 0 1em;width:96%;max-width:600px;">Either this is an Executive, in which case you cannot transfer their meeting, or the Internet hiccuped. Either way, hold your breath and try again if you think you're seeing this in error.</p>
+		<p style="margin:1.5em 0 0 1em;width:96%;max-width:900px;">Looks like this meeting is assigned to an Executive, in which case you cannot transfer their meeting, or the Internet hiccuped. Either way, hold your breath and try again if you think you're seeing this in error.</p>
 	<?php } ?>
 
 </div><!-- #manage-wrap -->

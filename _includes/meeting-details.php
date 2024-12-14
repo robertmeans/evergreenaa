@@ -2,8 +2,6 @@
 <?php $emh = $pc . 'sp'; /* 'sp' = special */ ?>
 <div class="meeting-details">
 
-<?php /* if (isset($_SESSION['admin']) && $_SESSION['admin'] == "1") { */ ?>
-
   <div id="<?= $emh . '_' . $row['id_mtg']; ?>" class="email-host <?php if (isset($_SESSION['mode']) && ($_SESSION['mode'] == 1)) { echo ' admin-links'; } ?>"><?php 
 
     $nt = converted_time($row['meet_time'], $row['mtg_tz'], $tz); 

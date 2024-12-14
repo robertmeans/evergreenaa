@@ -3,7 +3,7 @@ $layout_context = 'alt-manage';
 require_once 'config/initialize.php';
 require_once 'config/verify_admin.php';
 
-if ($_SESSION['admin'] == 85 || $_SESSION['admin'] == 86) {
+if (is_suspended()) {
 	header('location: ' . WWW_ROOT);
 	exit();
 }
@@ -19,7 +19,7 @@ if ((isset($_SESSION['id'])) && (!$_SESSION['verified'])) {
 	exit();
 }
 
-$role = $_SESSION['admin'];
+$role = $_SESSION['role'];
 if (isset($_SESSION['ti'])) { $their_ip = $_SESSION['ti']; } else { $their_ip = '0'; }
 
 if (is_post_request()) {
@@ -187,7 +187,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	

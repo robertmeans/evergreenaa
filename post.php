@@ -18,7 +18,7 @@ require '_includes/head.php'; ?>
 <body>
 <?php preload_config($layout_context); ?>
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/messages.php'; ?>
+<?php require_once '_includes/messages.php'; ?>
 <img class="background-image" src="_images/message-board-mobile.jpg" alt="AA Logo">
 <div id="wrap">
 
