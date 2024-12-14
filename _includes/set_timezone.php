@@ -3,7 +3,7 @@ require_once 'config/initialize.php';
 
 if (isset($_SESSION['id'])) {
 	$user_id = $_SESSION['id'];
-	$user_role = $_SESSION['admin'];
+	$user_role = $_SESSION['role'];
 } else {
 	$user_id = 'ns';
 	$user_role = '0';

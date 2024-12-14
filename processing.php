@@ -495,6 +495,22 @@ if (isset($_POST['my-new-ip'])) {
   }
 } /* close 'my-new-ip' */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* BEGIN: theme popup */
 if (isset($_POST['process_theme_popup'])) {
 
@@ -545,6 +561,11 @@ if (isset($_POST['process_theme_popup'])) {
 
 } /* 'process_theme_popup' */
 
+
+
+
+
+
 /* BEGIN: toggling admin mode on & off */
 if (isset($_POST['process-admin-mode'])) {
 
@@ -563,8 +584,20 @@ if (isset($_POST['process-admin-mode'])) {
   }
 } /* close 'process-admin-mode' */
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* BEGIN: changing theme */
-if (isset($_POST['change-theme'])) { /* this wraps everything, all the way to the btm */
+if (isset($_POST['change-theme'])) { 
 
   if (isset($_SESSION['id'])) {
     $user_id = $_SESSION['id'];
@@ -640,6 +673,17 @@ if (isset($_POST['change-theme'])) { /* this wraps everything, all the way to th
   }
   
 } /* 'change-theme' */
+
+
+
+
+
+
+
+
+
+
+
 
 /* BEGIN: change user role */
 if (isset($_POST['change_user_rl'])) {
