@@ -1,5 +1,5 @@
 
-	<div class="manage-glance-wrap">
+	<div class="manage-glance-wrap um">
 		<div class="manage-glance user-glance">
 			<div class="glance-mtg glance-mtg-time"> 
 				<p>
@@ -20,7 +20,7 @@
 				?><?= $rowz['group_name']; ?></p>
 			</div><!-- .glance-group -->
 			<div class="glance-mtg glance-mtg-type">
-				<?php if ($rowz['id_user'] == $_SESSION['id'] || $_SESSION['role'] == 99) { ?>
+				<?php if ($rowz['id_user'] == $_SESSION['id'] || is_president() && ($rowz['id_user'] != $_SESSION['id'])) { ?>
 
 				<a class="manage-edit" href="manage_edit.php?id=<?= h(u($rowz['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a>
 

@@ -61,7 +61,7 @@ require '_includes/head.php'; ?>
 	<div class="manage-simple intro">
 	<?php require '_includes/inner_nav.php'; ?>
 	</div>
-	<?php if ($row['id_user'] == $_SESSION['id'] || $_SESSION['role'] == 99 || $_SESSION['role'] == 80 || $_SESSION['role'] == 60) { ?>
+	<?php if ($row['id_user'] == $_SESSION['id'] || is_admin()) { ?>
 
 	<h2 id="trans-h2" class="trans-h2">Transfer Meeting</h2>
 	<div id="transfer-host">
@@ -74,7 +74,7 @@ require '_includes/head.php'; ?>
     ?>
 		<p><?php echo $mt . ' - '; print_day($row); echo ' - ' . $row['group_name'] ?></p>
 
-		<?php if ($role == 1 || $role ==2 || $role == 3) { ?>
+		<?php if (is_admin()) { ?>
 
 		<?php // dropdown for admin
 		$user_management_list = find_all_users_to_manage($user_id);

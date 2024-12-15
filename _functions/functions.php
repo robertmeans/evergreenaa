@@ -21,7 +21,7 @@ function preload_config($layout_context) {
   }
 
   if ($theme == '0') {
-    if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
+    if ($layout_context != 'home') {
       if (WWW_ROOT != 'http://localhost/evergreenaa') {
         echo '<div class="preload anni"><img src="_images/preload.gif"></div>';
       } else {
@@ -35,7 +35,7 @@ function preload_config($layout_context) {
       }
     }
   } else {
-    if ($layout_context != 'home-private' &&  $layout_context != 'home-public') {
+    if ($layout_context != 'home') {
       if (WWW_ROOT != 'http://localhost/evergreenaa') {
         echo '<div class="preload anni"><img src="_images/preload-light.gif"></div>';
       } else {
@@ -52,7 +52,6 @@ function preload_config($layout_context) {
   return $theme;
 }
 
-
 function mobile_bkg_config($theme) {
   if ($theme == '0') { 
     echo '<img class="background-image" src="_images/aa-logo-dark_mobile.gif" alt="AA Logo">';
@@ -60,10 +59,6 @@ function mobile_bkg_config($theme) {
     echo '<img class="background-image" src="_images/aa-logo-light_mobile.gif" alt="AA Logo">';
    }
 }
-
-
-
-
 
 function show_homepage() {
   if (!isset($_SESSION['verified']) || ((isset($_SESSION['verified']) && $_SESSION['verified'] != "0") && !isset($_SESSION['message']))) {
@@ -90,20 +85,11 @@ function show_general_public_meetings($row) {
   } else { return false; }
 }
 
-
-
-
-
-
-
 function is_visitor() {
   if (!isset($_SESSION['verified'])) {
     return true;
   } else { return false; }
 }
-
-
-
 
 /* explanation: I gave everyone (except President (there can be only one)) a 10-digit range just to be flexible - in case some reason comes up to add more roles, I can plug them in wherever I need them. - 'declare_' functions are used to reference that specific role whereas 'is_' functions are used for permissions. */
 function is_president() { /* President = 99 | There should be only 1 President */
@@ -132,7 +118,6 @@ function declare_member() { /* Member = 20 */
     return true;
   } else { return false; }
 }
-
 
 /* explanation: if 'is_executive()' then everyone up the line from executive gets access, etc. this way you can always default to the lowest role you want to provide access to and everyone up the line will also inherit those permissions. */
 function is_executive() {
@@ -170,10 +155,6 @@ function in_admin_mode() {
   } else { return false; }
 }
 
-
-
-
-
 function is_suspended() { 
   if (isset($_SESSION['role']) && $_SESSION['role'] < 5) { /* suspended + kept mtgs = 1, suspended + mtgs-to-draft = 0 */
     return true;
@@ -185,9 +166,6 @@ function is_owner($row) {
     return true;
   } else { return false; }
 }
-
-
-
 
 
 

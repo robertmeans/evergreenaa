@@ -1,5 +1,5 @@
 <?php 
-$layout_context = 'home-public';
+$layout_context = 'home';
 require_once 'config/initialize.php'; 
 
 require '_includes/head.php'; ?>

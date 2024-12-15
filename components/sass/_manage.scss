@@ -457,7 +457,11 @@ ul.manage-weekdays {
 	// exclusively	
 	margin-top: 1em;
 	cursor: pointer;
+  &.um {
+    margin-top: 0;
+  }
 }
+
 .manage-glance {
 	display: flex;
 	justify-content: space-between;

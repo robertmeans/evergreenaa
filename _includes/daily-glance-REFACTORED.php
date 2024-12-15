@@ -50,67 +50,81 @@
     <?php } ?>
     </div><!-- .glance-group -->
     <div class="glance-mtg glance-mtg-type">
-    
-<?php if  (
-          is_president() && in_admin_mode() || 
-          (
-            is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
-          ) || 
-          is_admin() && is_owner($row) && in_admin_mode() ||
-          is_owner($row) && !is_admin() && $layout_context !== 'home' ||
-          is_owner($row) && is_admin() && $layout_context !== 'home'
-          ) { 
-
-  if (is_executive() && ($layout_context === 'home' || $layout_context === 'um-alt')) {
-    if (is_owner($row)) { ?>
-      <a class="manage-edit my-stuff"><div class="tooltip"><span class="tooltiptext">My Meeting</span><i class="far fas fa-user-cog"></i></div></a>
-    <?php } else { ?>
-      <a class="manage-edit" href="user_role.php?id=<?= h(u($row['id_mtg'])) . '&user=' . h(u($row['id_user'])); ?>"><div class="tooltip"><span class="tooltiptext">Manage User</span><i class="far fas fa-user-cog"></i></div></a>
-    <?php }
-    } ?>
-
-  <a class="manage-edit" href="transfer-meeting.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip"><span class="tooltiptext">Transfer Meeting</span><i class="far fas fa-people-arrows"></i></div></a>
-
-<?php if ($layout_context !== 'delete-mtg') { ?>
-  <a class="manage-delete" href="manage_delete.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Delete Meeting</span><i class="far fas fa-minus-circle"></i></div></a>
-<?php } ?>
-
-<?php } 
-
-  if  (
-        (
-        !is_admin() || 
-        is_admin() && !in_admin_mode() || 
-         (
-           (is_admin() && $row['role'] == 99 || $row['role'] == 80 || $row['role'] == 60 || $row['role'] == 40) && !is_president() && !is_owner($row)
-         ) || 
-         declare_manager() && !is_owner($row)
-         ) && 
-       $layout_context === 'home'
-      ) {
-
-    if ($row['meet_url'] != '') { ?>
-      <div class="tooltip">
-        <span class="tooltiptext type">Zoom Meeting</span><i class="fas far fa-video fa-fw"></i>
-      </div> 
-    <?php } 
-
-    if ($row['meet_addr'] != '') { ?>
-      <div class="tooltip">
-        <span class="tooltiptext type">In-Person Meeting</span><i class="fas far fa-map-marker-alt fa-fw"></i>
-      </div>
-    <?php   } ?>
   
-  <div class="ctr-type">
-    <?php 
-    if ($row['code_o'] != 0) { echo 'Open meeting'; } 
-    else if ($row['code_w'] != 0) { echo 'Women\'s meeting'; } 
-    else if ($row['code_m'] != 0) { echo 'Men\'s meeting'; } 
-    else { echo 'Join us'; }
-    ?>
-  </div>
 
-<?php } 
+
+
+<?php /* refactored via chatGPT */
+function renderTooltip($type, $iconClass) {
+    echo "<div class=\"tooltip\">\n";
+    echo "  <span class=\"tooltiptext type\">$type</span><i class=\"$iconClass\"></i>\n";
+    echo "</div>\n";
+}
+
+function getMeetingType($row) {
+    if ($row['code_o'] != 0) return 'Open meeting';
+    if ($row['code_w'] != 0) return "Women's meeting";
+    if ($row['code_m'] != 0) return "Men's meeting";
+    return 'Join us';
+}
+
+function shouldDisplay($row, $layout_context) {
+    $isSpecialRole = in_array($row['role'], [99, 80, 60, 40]);
+
+    return (
+        (!is_admin() || (is_admin() && !in_admin_mode())) ||
+        ($isSpecialRole && !is_president() && !is_owner($row)) ||
+        (declare_manager() && !is_owner($row))
+    ) && $layout_context !== 'dashboard';
+}
+
+function shouldAllowAdminActions($row, $layout_context) {
+    $isSpecialRole = !in_array($row['role'], [99, 80, 60, 40]);
+
+    return (
+        (is_president() && in_admin_mode()) ||
+        (is_admin() && in_admin_mode() && !declare_manager() && $isSpecialRole) ||
+        (is_admin() && is_owner($row) && in_admin_mode()) ||
+        (is_owner($row) && !is_suspended())
+    );
+}
+
+function renderAdminActions($row, $layout_context) {
+    if (is_executive() && in_array($layout_context, ['home', 'um-alt'])) {
+        if (is_owner($row)) {
+            echo "<a class=\"manage-edit my-stuff\"><div class=\"tooltip\"><span class=\"tooltiptext\">My Meeting</span><i class=\"far fas fa-user-cog\"></i></div></a>\n";
+        } else {
+            echo "<a class=\"manage-edit\" href=\"user_role.php?id=" . h(u($row['id_mtg'])) . "&user=" . h(u($row['id_user'])) . "\"><div class=\"tooltip\"><span class=\"tooltiptext\">Manage User</span><i class=\"far fas fa-user-cog\"></i></div></a>\n";
+        }
+    }
+
+    echo "<a class=\"manage-edit\" href=\"transfer-meeting.php?id=" . h(u($row['id_mtg'])) . "\"><div class=\"tooltip\"><span class=\"tooltiptext\">Transfer Meeting</span><i class=\"far fas fa-people-arrows\"></i></div></a>\n";
+
+    if ($layout_context !== 'delete-mtg') {
+        echo "<a class=\"manage-delete\" href=\"manage_delete.php?id=" . h(u($row['id_mtg'])) . "\"><div class=\"tooltip right\"><span class=\"tooltiptext\">Delete Meeting</span><i class=\"far fas fa-minus-circle\"></i></div></a>\n";
+    }
+}
+
+  if (shouldDisplay($row, $layout_context)) {
+      if (!empty($row['meet_url'])) {
+          renderTooltip('Zoom Meeting', 'fas far fa-video fa-fw');
+      }
+
+      if (!empty($row['meet_addr'])) {
+          renderTooltip('In-Person Meeting', 'fas far fa-map-marker-alt fa-fw');
+      }
+
+      echo "<div class=\"ctr-type\">" . getMeetingType($row) . "</div>\n";
+  }
+
+
+  if (shouldAllowAdminActions($row, $layout_context)) {
+      renderAdminActions($row, $layout_context);
+  } 
+
+/* end refactoring */
+
+
 
     if  (is_owner($row) || 
         is_president() && in_admin_mode() || 

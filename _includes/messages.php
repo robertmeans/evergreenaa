@@ -85,7 +85,7 @@ if ($new_tz == 'member') { ?>
 </div>
 <?php /* END: set timezone */ ?>
 
-<?php if ($layout_context === 'home-public' || $layout_context === 'login-page') { ?>
+<?php if ($layout_context === 'home' || $layout_context === 'login-page') { ?>
 <div id="theme-options">
   <div class="msg-bkg">
     <div class="inside-msg-one">
@@ -110,9 +110,9 @@ if ($new_tz == 'member') { ?>
     </div><!-- .inside-msg-one -->
   </div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
-<?php } /* $layout_context === 'home-public' || $layout_context === 'login-page' */ ?>
+<?php } /* $layout_context === 'home' || $layout_context === 'login-page' */ ?>
 
-<?php if ($layout_context === 'forgot-password' || $layout_context === 'home-public' || $layout_context === 'login-page' || $layout_context === 'message-board' || $layout_context === 'post-page') { ?>
+<?php if ($layout_context === 'forgot-password' || $layout_context === 'home' || $layout_context === 'login-page' || $layout_context === 'message-board' || $layout_context === 'post-page') { ?>
 <div id="why-join">
   <div class="msg-bkg">
     <div class="inside-msg-one">
@@ -126,7 +126,7 @@ if ($new_tz == 'member') { ?>
     </div><!-- .inside-msg-one -->
   </div><!-- .msg-bkg -->
 </div><!-- #msg-two -->
-<?php } /* $layout_context === 'home-public' || $layout_context === 'login-page' */ ?>
+<?php } /* $layout_context === 'home' || $layout_context === 'login-page' */ ?>
 
 <?php if (is_visitor()) { ?>
 <div id="role-key">

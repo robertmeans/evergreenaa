@@ -97,7 +97,7 @@ li.ctr-day {
 	background: #6d94e1 url('_images/aa-logo_active.gif') no-repeat center center fixed;
 	background-size: cover;
 	background-attachment: fixed;
-	border-left: 1px solid transparent;
+	// border-left: 1px solid transparent;
 }
 .day-content {
 	font-size: 18px;
@@ -121,6 +121,8 @@ p.no-mtgs {
   max-width: 900px;
   padding: 8px 20px 8px 18px;
   margin-bottom: -1em;
+  margin: 5px 0 -1em;
+  border-top: 1px solid rgba(255,255,255,0.2);
   background-color: rgba(0,0,0,0.5);
   cursor: default;
 }

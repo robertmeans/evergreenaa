@@ -53,12 +53,9 @@
     
 <?php if  (
           is_president() && in_admin_mode() || 
-          (
-            is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
-          ) || 
+          (is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)) || 
           is_admin() && is_owner($row) && in_admin_mode() ||
-          is_owner($row) && !is_admin() && $layout_context !== 'home' ||
-          is_owner($row) && is_admin() && $layout_context !== 'home'
+          is_owner($row) && !is_suspended()
           ) { 
 
   if (is_executive() && ($layout_context === 'home' || $layout_context === 'um-alt')) {
@@ -86,7 +83,7 @@
          ) || 
          declare_manager() && !is_owner($row)
          ) && 
-       $layout_context === 'home'
+       $layout_context !== 'dashboard'
       ) {
 
     if ($row['meet_url'] != '') { ?>

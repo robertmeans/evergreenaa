@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 
 
-<?php $layout_context = "home-public";
+<?php $layout_context = "home";
  
 require_once 'config/initialize.php'; 
 
