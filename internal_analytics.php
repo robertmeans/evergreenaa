@@ -332,12 +332,12 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       ?>
       <div class="aweek-wrap">
         <div class="aweek-row-top">
-          <div class="anum">Days Opened</div><div class="aday">&nbsp;</div>
+          <div class="anum">Days Opened<a class="tgl-msg" id="toggle-days-opened"><i class="far fa-question-circle fa-fw"></i></a></div>
         </div>
         <?php
         foreach ($weekdays as $day => $num) { ?>
           <div class="aweek-row">
-            <div class="anum"><?= $num ?></div><div class="aday"><?= $day ?></div>
+            <div class="anum"><?= $num; ?></div><div class="aday"><?= $day; ?></div>
           </div>
         <?php } ?>
 

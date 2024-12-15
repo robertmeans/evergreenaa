@@ -186,6 +186,8 @@ $(document).click(function() {
     $("#total-interactions").fadeOut(500);
   } else if ($('#unique-ip').is(':visible')) {
     $("#unique-ip").fadeOut(500);
+  } else if ($('#days-opened').is(':visible')) {
+    $("#days-opened").fadeOut(500);
   } else if ($('#individual-interactions').is(':visible')) {
     $("#individual-interactions").fadeOut(500);
   } else if ($('#clean-up-ips').is(':visible')) {
@@ -524,6 +526,7 @@ $(document).ready(function(){
   $("#gottajoin").hide();
   $("#mb-notes").hide();
   $("#unique-ip").hide();
+  $("#days-opened").hide();
   $("#individual-interactions").hide();
   $("#total-interactions").hide();
   $("#clean-up-ips").hide();
@@ -1120,6 +1123,12 @@ $("#toggle-pdf-info").click(function(e) {
 
 $("#toggle-link-label").click(function(e) {
   $("#link-label").fadeIn(500);
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$("#toggle-days-opened").click(function(e) {
+  $("#days-opened").fadeIn(500);
     e.preventDefault();
     e.stopPropagation();
 });

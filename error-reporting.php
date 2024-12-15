@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('America/Denver');
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 // error_reporting(0);  // turns off all error reporting
