@@ -297,13 +297,13 @@
 			<div class="admin-role">
 				<?php if (is_president()) { ?>
 					Site President <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-				<?php } else if (is_executive()) { ?>
+				<?php } else if (declare_executive()) { ?>
 					<?= $_SESSION['username'] . ': '; ?>Site Executive <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-				<?php } else if (is_admin()) { ?>
+				<?php } else if (declare_admin()) { ?>
 					<?= $_SESSION['username'] . ': '; ?>Site Admin <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-        <?php } else if (is_manager()) { ?>
+        <?php } else if (declare_manager()) { ?>
           <?= $_SESSION['username'] . ': '; ?>Site Manager <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
-        <?php } else if (is_member()) { ?>
+        <?php } else if (declare_member()) { ?>
           <?= $_SESSION['username'] . ': '; ?>Member <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
 				<?php } ?>
 			</div>

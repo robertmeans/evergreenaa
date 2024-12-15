@@ -168,13 +168,14 @@ if ($new_tz == 'member') { ?>
       <h1>Executive privileges</h1>
       <p>While in Admin Mode you can:</p>
       <ul>
-        <li>Edit any meeting (except other Executive's)</li>
-        <li>Transfer any meeting (except other Executive's)</li>
-        <li>Delete any meeting (except other Executive's)</li>
+        <li>Edit any meeting*</li>
+        <li>Transfer any meeting*</li>
+        <li>Delete any meeting*</li>
         <li>Assign or revoke Admin, Manager or Member privileges</li>
         <li>Suspend or unsuspend users</li>
         <li>See username + email address of meeting host when viewing a meeting on the homepage</li>
       </ul>
+      <p>*Excluding those belonging to other management</p>
 
     </div><!-- .inside-msg-one -->
   </div><!-- .msg-bkg -->

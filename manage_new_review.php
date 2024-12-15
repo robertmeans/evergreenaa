@@ -61,7 +61,6 @@ if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 <?php } ?>
 
 <?php require '_includes/nav.php'; ?>
-<?php require '_includes/msg-extras.php'; ?>
 <?php require_once '_includes/messages.php'; ?>
 <?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
