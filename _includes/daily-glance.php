@@ -29,6 +29,9 @@
     if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; }
     if ($row['visible'] == 1 && (is_president() && !is_owner($row)) && $layout_context === 'home') { echo ' personal-other'; } 
     if ($row['visible'] == 1 && is_owner($row) && $layout_context === 'home') { echo ' personal-odin'; } ?>">
+
+
+
     <div class="glance-mtg glance-mtg-time">
       <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
     </div><!-- .glance-time-day -->
@@ -122,5 +125,6 @@
       } ?>
 
     </div><!-- .glance-mtg-type -->
+
   </div><!-- .daily-glance -->
 </div>

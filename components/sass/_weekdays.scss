@@ -133,6 +133,7 @@ p.no-mtgs {
 	// exclusively	
 	margin-top: 1em;
 }
+
 .daily-glance {
 	display: flex;
 	justify-content: space-between;
@@ -151,6 +152,8 @@ p.no-mtgs {
   // &.alt-page {
   //   background-color: rgba(0,0,0,0.3);
   // }
+
+
 	.glance-mtg {
 		display: flex;
 		flex: 1;
@@ -163,6 +166,8 @@ p.no-mtgs {
 	.glance-mtg-type {
 		justify-content: flex-end;
 	}
+
+
 }
 
 
