@@ -1,3 +1,4 @@
+<?php if (file_exists("_errors.txt")) { $fileExists = true; } else { $fileExists = false; } ?>
 <nav id="navigation" class="sm-g">
 	<div class="top-nav <?php if (is_manager() && in_admin_mode()) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();">
 
@@ -11,7 +12,8 @@
 	</div>
 
   <?php /* BEGIN: Desktop - for my eyes only - frontend alert if there's an error on the site pairs with script directly below nav */ 
-  if (is_president() && filesize("_errors.txt") > 0) { ?>
+  
+  if (is_president() && ($fileExists && filesize("_errors.txt") > 0)) { ?>
     <div class="phperror on" data-role="error-notification">
       <a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>
     </div>
@@ -25,7 +27,7 @@
 	<div class="top-nav <?php if (is_manager() && in_admin_mode()) { ?>admin-logged<?php } ?><?php if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?> new-action<?php } ?>" onclick="openNav();"><i class="fas fa-bars"></i></div>
 
   <?php /* BEGIN: Mobile - for my eyes only - frontend alert if there's an error on the site pairs with script directly below nav */
-  if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && (filesize("_errors.txt") > 0)) { ?>
+  if ((isset($_SESSION['id']) && $_SESSION['id'] == '1') && ($fileExists && filesize("_errors.txt") > 0)) { ?>
     <div class="phperror on" data-role="error-notification">
       <a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>
     </div>
@@ -34,44 +36,6 @@
   <?php  } /* END:  Mobile - frontend error alert */ ?>
   
 </nav>
-
-<?php /* for my eyes only - error reporting */ 
-  if (is_president()) { ?>
-    <script> 
-      var error_location = "_errors.txt";
-
-      function checkFileExists(error_location) {
-
-        $.ajax({
-          url: "processing.php",
-          data: { filename_of_errors: "_errors.txt" }, // Replace with your actual filename
-          success: function(response) {
-            if (response === "File is not empty") {
-
-              $(".phperror").addClass("on");
-              $('div[data-role=error-notification]').html('<a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>');
-
-              //console.log("File is not empty");
-            } else {
-
-              $(".phperror").removeClass("on");
-              $('div[data-role=error-notification]').html('');
-
-              //console.log("File is empty or does not exist");
-            }
-          }
-        });
-      }
-
-      $(document).ready(function() {
-          setInterval(function() {
-            checkFileExists(error_location);
-          }, 3000);
-          // console.log('yo');   
-      });
-    </script>
-  <?php } ?>
-
 
 <div id="side-nav-bkg">
 
@@ -294,6 +258,14 @@
 
 		<?php
 		if (is_member() && $layout_context != 'login-page') { ?>
+
+      <?php if (is_president() && ($fileExists && filesize("_errors.txt") > 0)) { ?>
+        <div class="admin-role er err-on" data-role="error-reset"><div class="del-err"><i class="far fas fa-minus-circle"></i> Reset Errors</div></div>
+      <?php } else { ?>
+        <div class="admin-role er err-off" data-role="error-reset"></div>
+      <?php } ?>
+
+
 			<div class="admin-role">
 				<?php if (is_president()) { ?>
 					Site President <a id="toggle-role-key"><i class="fas fa-info-circle"></i></a>
@@ -320,3 +292,86 @@
 </div><!-- #side-nav -->
 
 </div><!-- #side-nav-bkg -->
+
+<?php /* for my eyes only - error reporting */ 
+if (is_president()) { ?>
+  <script> 
+    var error_location = "_errors.txt";
+
+    function checkFileExists(error_location) {
+
+      $.ajax({
+        url: "processing.php",
+        data: { filename_of_errors: "_errors.txt" }, // Replace with your actual filename
+        success: function(response) {
+          if (response === "File is not empty") {
+
+            $(".phperror").addClass("on");
+            $('div[data-role=error-notification]').html('<a class="per" href="_errors.txt" target="_blank"><i class="fas far fa-exclamation-circle"></i></a>');
+
+            $("div[data-role=error-reset]").removeClass("err-off");
+            $("div[data-role=error-reset]").addClass("err-on");
+            $("div[data-role=error-reset]").html('<div class="del-err"><i class="far fas fa-minus-circle"></i> Reset Errors</div>');
+
+            //console.log("File is not empty");
+          } else {
+
+            $(".phperror").removeClass("on");
+            $('div[data-role=error-notification]').html('');
+
+            $("div[data-role=error-reset]").removeClass('err-on');
+            $("div[data-role=error-reset]").addClass("err-off");
+            $("div[data-role=error-reset]").html('');
+
+            //console.log("File is empty or does not exist");
+          }
+        }
+      });
+    }
+
+    $(document).ready(function() {
+      setInterval(function() {
+        checkFileExists(error_location);
+      }, 3000);
+
+      $(document).on('click','div[data-role=error-reset]', function(e) { 
+        e.preventDefault();
+        e.stopPropagation();
+
+        $.ajax({
+          dataType: "JSON",
+          url: "processing.php",
+          type: "POST",
+          data: {
+            process_reset_errors: 'key'
+          },
+          success: function(response) {
+            // console.log(response);
+            if(response) {
+              // console.log(response);
+              if(response['popup_signal'] == 'ok') {
+                var url = window.location.href;
+                $('#themepopupurl').val(url);
+
+                setTimeout(function() {
+                  $("#theme-options").fadeIn(500);
+                  }, 750);
+
+                // $("#theme-options").show(); /* for testing/dev */
+
+              } else {
+                /* do nothing */
+              }
+            } 
+          },
+          error: function() {
+
+          }, 
+          complete: function() {
+
+          }
+        });
+      });    
+    });
+  </script>
+<?php } ?>

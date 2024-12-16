@@ -17,6 +17,18 @@ require_once 'config/initialize.php';
 
 if (is_post_request()) { /* closes at very bottom of page */
 
+/* BEGIN: reset errors (President only) */
+if (isset($_POST['process_reset_errors'])) {
+  $filename = "_errors.txt";
+  if (unlink($filename)) {
+    echo 'ok';
+    } else {
+      echo 'nope';
+    }
+  }
+
+/* END: reset errors */
+
 /* BEGIN: login */
 if (isset($_POST['login_routine'])) {
 

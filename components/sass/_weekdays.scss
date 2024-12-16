@@ -149,11 +149,6 @@ p.no-mtgs {
 	&:hover {
 		background-color: rgba(0,0,0,0.2);
 	}
-  // &.alt-page {
-  //   background-color: rgba(0,0,0,0.3);
-  // }
-
-
 	.glance-mtg {
 		display: flex;
 		flex: 1;
@@ -166,8 +161,6 @@ p.no-mtgs {
 	.glance-mtg-type {
 		justify-content: flex-end;
 	}
-
-
 }
 
 
@@ -188,24 +181,6 @@ p.no-mtgs {
     }
   }
 }
-
-
-
-
-// .daily-glance-wrap.alt-page,
-// .daily-glance-wrap.alt-page.active {
-//   border: none;
-//   // background-color: rgba(0,0,0,0.3);
-//   .daily-glance.alt-page {
-//     cursor: default;
-//   }
-// }
-
-
-
-
-
-
 
 
 .weekday-wrap.note-here {
