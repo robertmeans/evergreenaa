@@ -16,9 +16,7 @@
   if ($row['fri'] == '1') { array_push($dayNames, 'Fri'); }
   if ($row['sat'] == '1') { array_push($dayNames, 'Sat'); }
   
-  if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { ?>
-  <div class="mtgdays"><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></div>
-<?php } ?>
+?>
 
 <div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; } ?>" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
@@ -29,6 +27,17 @@
     if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; }
     if ($row['visible'] == 1 && (is_president() && !is_owner($row)) && $layout_context === 'home') { echo ' personal-other'; } 
     if ($row['visible'] == 1 && is_owner($row) && $layout_context === 'home') { echo ' personal-odin'; } ?>">
+
+
+
+
+
+<?php
+  if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { ?>
+  <div class="mtgdays"><p><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></p></div>
+<?php } ?>
+
+
 
 
 

@@ -436,7 +436,6 @@ li.focus a:hover {
 	}
 
 
-
 	.daily-glance,
 	.manage-glance {
 		padding: 0.5em;
@@ -477,10 +476,26 @@ li.focus a:hover {
 	}
 	.daily-glance-wrap,
 	.manage-glance-wrap {
-		//background-color: rgba(45,74,107,0.7);
 		background-color: rgba(0,0,0,0.45);
 	}
-	// .manage-glance .glance-mtg-type {
-	// 	padding: 0px;
-	// }
 }
+
+.daily-glance {
+  flex-wrap: wrap;
+  .mtgdays {
+    display: flex;
+    // flex: auto;
+    // flex: 4;
+    width: 100%;
+  }
+}
+
+// .bundle {
+//   display: flex;
+//   width: 100%;
+//   flex-direction: column;
+//   margin: -0.5em -1em;
+//   .mtgdays {
+//     margin: 0;
+//   }
+// }
