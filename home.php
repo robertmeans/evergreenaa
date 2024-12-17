@@ -5,16 +5,13 @@ require_once 'config/initialize.php';
 require '_includes/head.php'; ?>
 
 <body>
-<?php $theme = preload_config($layout_context); ?>
-<?php require '_includes/nav.php'; ?>
-<?php require_once '_includes/messages.php'; ?>
-<?php mobile_bkg_config($theme); ?>
+<?php $theme = preload_config($layout_context);
+require '_includes/nav.php';
+require_once '_includes/messages.php';
+mobile_bkg_config($theme); ?>
 <div id="wrap">
   
-<?php 
-if (!is_suspended()) { 
-  /* $user_role set in set_timezone.php called in initialize.php */ 
-?>
+<?php if (!is_suspended()) { ?>
 <ul id="weekdays">
 
 <?php  
@@ -96,8 +93,8 @@ foreach ($days as $today) { ?>
 
 </ul><!-- #weekdays -->
 
-<?php } else { // suspended (kept meetings) = 1, (meetings into draft) = 2 ?>
-<?php 
+<?php } else { /* suspended (kept meetings) = 1, (meetings into draft) = 2 */
+ 
   $sus_stuff = suspended_msg($user_id);
   $row = mysqli_fetch_assoc($sus_stuff);
 ?>

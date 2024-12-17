@@ -224,6 +224,7 @@
         <?php } ?> Internal Analytics</a>
 
         <?php
+          if (is_president()) {
           $theme_changes = theme_count();
           $result   = mysqli_num_rows($theme_changes);
 
@@ -250,6 +251,8 @@
 
           <?php
           }
+        }
+
         ?>
       </div>
     <?php } ?>

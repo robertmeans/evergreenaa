@@ -1047,7 +1047,7 @@ $(document).ready(function(){
     });
   });
 
-  $('.manage-glance-wrap').click(function() {
+  $('.manage-glance-wrap.u-m').click(function() { 
     close_navigation_first();
     var active = $(this);
     var toggle = $(this).next('.weekday-wrap');
@@ -1062,6 +1062,8 @@ $(document).ready(function(){
       $(active).addClass('active');
     }
   });
+
+
 
   /* collapse day button */
   $('.collapse-day').click(function() {

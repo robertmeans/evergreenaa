@@ -28,10 +28,10 @@ $email_opt = $_SESSION['email_opt'];
 require '_includes/head.php'; ?>
 
 <body>
-<?php preload_config($layout_context); ?>	
-<?php require '_includes/nav.php'; ?>
-<?php require_once '_includes/messages.php'; ?>
-<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
+<?php preload_config($layout_context);	
+require '_includes/nav.php';
+require_once '_includes/messages.php';
+$theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	
 	<div class="manage-simple intro">

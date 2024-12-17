@@ -17,7 +17,6 @@
   if ($row['sat'] == '1') { array_push($dayNames, 'Sat'); }
   
 ?>
-
 <div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo 'alt-page'; } ?>" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
@@ -28,20 +27,10 @@
     if ($row['visible'] == 1 && (is_president() && !is_owner($row)) && $layout_context === 'home') { echo ' personal-other'; } 
     if ($row['visible'] == 1 && is_owner($row) && $layout_context === 'home') { echo ' personal-odin'; }
      if (show_mtgdays($layout_context)) { echo ' md'; } ?>">
-
-
-
-
-
     <?php
       if (show_mtgdays($layout_context)) { ?>
       <div class="mtgdays"><p><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></p></div>
     <?php } ?>
-
-
-
-
-
     <div class="glance-mtg glance-mtg-time">
       <p data-role="<?= $pc; ?>_mtgtm"><?= $mt->format('g:i') ?> <span data-ampm='<?= $mt->format('A') ?>'><?= $mt->format('A') ?></span></p>
     </div><!-- .glance-time-day -->
@@ -124,14 +113,9 @@
   </div>
 
 <?php } 
-
     if  (showEditIcon($row)) { 
-
       ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a><?php
-
       } ?>
-
     </div><!-- .glance-mtg-type -->
-
   </div><!-- .daily-glance -->
 </div>

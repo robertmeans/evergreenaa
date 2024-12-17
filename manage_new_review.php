@@ -58,11 +58,10 @@ require '_includes/head.php'; ?>
 <?php 
 if (WWW_ROOT != 'http://localhost/evergreenaa') { ?>
 	<div class="preload"><p>One meeting at a time.</p></div>
-<?php } ?>
-
-<?php require '_includes/nav.php'; ?>
-<?php require_once '_includes/messages.php'; ?>
-<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
+<?php } 
+require '_includes/nav.php'; 
+require_once '_includes/messages.php'; 
+$theme = configure_theme(); mobile_bkg_config($theme); ?>
 <div id="manage-wrap">
 	
 <div class="confirm">REVIEW & SAVE</div>	

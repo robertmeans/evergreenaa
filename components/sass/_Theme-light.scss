@@ -822,8 +822,25 @@ footer #footer-contact-form span {
     &.b {
       border-left: 1px solid rgba(79,185,247,0.8);
     }
+    .rowa-header {
+      background-color: rgba(79,185,247,1);
+      color: #fff;
+    }
+    .rowa:nth-child(even) {
+      background-color: rgba(79,185,247,0.15);
+    }
   }
 }
+// .ia-ip-list {
+//   .col {
+//     .rowa:nth-child(even) {
+//       background-color: rgba(79,185,247,0.15);
+//     }
+//   }
+// }
+
+
+
 h2#role-h2 {
   color: #fff;
 }

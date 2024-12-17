@@ -1,9 +1,9 @@
 <?php 
 $layout_context = 'analytics';
-require_once 'config/initialize.php'; /* calls controllers/analytics.php */
+require_once 'config/initialize.php'; 
 require_once 'config/verify_admin.php';
 
-if (!isset($_SESSION['role']) || !is_executive()) { /* this page is for my eyes only */
+if (!isset($_SESSION['role']) || !is_executive()) { 
   header('location: ' . WWW_ROOT);
   exit();
 }
@@ -24,12 +24,10 @@ if (isset($_SESSION['alertb']) && $_SESSION['alertb'] == '1') {
 require '_includes/head.php'; ?>
 
 <body>
-<?php preload_config($layout_context); ?> 
-<?php require '_includes/nav.php'; ?>
-<?php require_once '_includes/messages.php'; ?>
-
-<?php $theme = configure_theme(); mobile_bkg_config($theme); ?>
-<?php
+<?php preload_config($layout_context); 
+require '_includes/nav.php';
+require_once '_includes/messages.php';
+$theme = configure_theme(); mobile_bkg_config($theme);
 
   $results = get_analytic_data();
   /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened, mtg_days, mtg_day,  a_ip */
@@ -130,16 +128,17 @@ require '_includes/head.php'; ?>
   </div>
 
   <div class="manage-simple analy"> 
-    <h1 class="my-meet">Internal Analytics</h1><p class="my-sort"><a class="phpma" href="<?php 
+    <h1 class="my-meet">Internal Analytics</h1><?php if (is_president()) { ?><p class="my-sort"><a class="phpma" href="<?php 
       if (WWW_ROOT === 'http://localhost/evergreenaa') { 
         ?>http://localhost/phpmyadmin/<?php 
       } else { 
         ?>https://p3plzcpnl504722.prod.phx3.secureserver.net:2083/cpsess0249341861/frontend/jupiter/sql/PhpMyAdmin.html<?php 
-      } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p>
+      } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p><?php } ?>
   </div>
 
 
-<?php /* put links to backup & delete here */ 
+<?php if (is_president()) { 
+    /* put links to backup & delete here */ 
     $analytics_begin = DateTime::createFromFormat('H:i:s D, m.d.y', $analytics_start_date);
     $analytics_start_for_export = $analytics_begin->format('mdyHi');
 ?>
@@ -148,9 +147,10 @@ require '_includes/head.php'; ?>
     <p><a class="link" href="export-entire-db.php"><i class="fas far fa-file-download"></i> Export Entire DB</a> <?php if ($i > 1) { ?><a class="link" href="export-analytics-table.php"><i class="fas far fa-file-download"></i> Export analytics Table</a> <a class="link" data-role="pa-reset"><i class="fas far fa-trash"></i> Reset Analytics</a><?php
   } ?></p>
   </div>
+<?php } else { ?>
+    <p>While this page is available for Executives to view, beware, it's really just a playground for development ideas and is subject to reset without notice. If you use this page please contact me at the bottom of the site under, "comments | questions | suggestions" and let me know if this would be a useful feature for you.</p>
 
-
-<?php 
+<?php }
 
 /* NOTE: some logic no longer makes sense due to implementing the "Reset Analytics" feature. this does not take into account those people who were on the site before the reset and then get counted as 1 visit afterwards. originally, it made sense if an IP only showed up once, that wouldn't make any since because they would not have interacted with the site in any practical way. now, they could have just left a tab open and after a reset, I won't see any of their prior activity. */
 
