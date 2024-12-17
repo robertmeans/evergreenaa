@@ -459,6 +459,12 @@ ul.manage-weekdays {
 	cursor: pointer;
   &.um {
     margin-top: 0;
+    &.active {
+      background-image: none;
+      background-color: inherit;
+      border: none;
+      pointer-events: none;
+    }
   }
 }
 
@@ -529,17 +535,6 @@ ul.manage-weekdays {
 	border-left: 1px solid transparent;
 }
 
-// .daily-glance .glance-mtg-type {
-// 	padding: 0em 1em 0em 0em;
-// }
-// @media screen and (max-width: 800px) {
-// 	.daily-glance .glance-mtg-time {
-// 		padding-bottom: 0.5em;
-// 	}
-// 	.daily-glance .glance-mtg-type {
-// 		padding: 0.5em 1em 0em 0em;
-// 	}	
-// }
 
 .manage-glance-wrap-review {
 	width: 100%;

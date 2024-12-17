@@ -90,6 +90,16 @@ a.verified {
   .active {
     color: #313131;
   }
+  &.md {
+    background-color: rgba(255,255,0,0.2);
+    &:hover {
+      background-color: rgba(255,255,0,0.4);
+    }
+  }
+
+
+
+
 }
 
 .daily-glance-wrap {
@@ -115,6 +125,8 @@ a.verified {
   background-size: cover;
   background-attachment: fixed;  
 }
+
+
 
 .sidenav .no-frills {
   a.ip-css {
@@ -566,6 +578,31 @@ form#manage-mtg .mtg-time-tz select.pick-tz option {
     background-color: rgba(255,255,0,0.8);
   }
 }
+.manage-glance-wrap {
+  &.active {
+    background-color: rgba(255,255,255,0.5);
+    &:hover {
+      background-color: rgba(255,255,255,0.5);
+    }
+  }
+  &.um {
+    // &:hover {
+    //   background-color: transparent;
+    // }
+    &.active {
+      background: none;
+      background-color: rgba(255,255,255,0.5);
+      // border: none;
+      // pointer-events: none;      
+    }
+  }
+}
+
+.manage-glance-wrap.active .manage-glance:hover, 
+.manage-glance-wrap.active .manage-glance.draft:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
 .daily-glance.personal, 
 .daily-glance.personal-odin, 
 .daily-glance.personal-admin,
@@ -730,7 +767,8 @@ ul.tab-links li.focus a:hover {
 }
 
 .manage-glance-user:hover {
-  background-color: rgba(255,189,76,0.25);
+  // background-color: rgba(255,189,76,0.25);
+  background-color: rgba(255,255,0,0.5);
 }
 .manage-glance-wrap.active {
   .manage-glance-user {
@@ -790,7 +828,18 @@ h2#role-h2 {
   color: #fff;
 }
 
-.mtgdays {
-  background-color: rgba(116,180,225,0.5);
-  border-top: 1px solid rgba(116,180,225,0.8);
+.manage-glance {
+  &.user-glance {
+    &:hover {
+      background-color: rgba(255,255,255,0.5);
+      &.active {
+        background-color: rgba(255,255,255,0.5);
+      }
+    }
+  }
+}
+.manage-glance-wrap.um.active .manage-glance.user-glance {
+  background-color: rgba(255,255,255,0.5);
+  // background-image: none;
+  // background: none;
 }

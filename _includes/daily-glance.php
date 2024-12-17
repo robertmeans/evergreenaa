@@ -18,7 +18,7 @@
   
 ?>
 
-<div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; } ?>" data-id="<?= $pc; ?>">
+<div class="daily-glance-wrap<?php if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo 'alt-page'; } ?>" data-id="<?= $pc; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtg-id" value="<?= $row['id_mtg']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_hid" value="<?= $row['id_user']; ?>">
   <input type="hidden" data-role="<?= $pc; ?>_mtgdz" value="<?= $mtg_days; ?>">
@@ -26,16 +26,17 @@
   <div class="daily-glance<?php 
     if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage') { echo ' alt-page'; }
     if ($row['visible'] == 1 && (is_president() && !is_owner($row)) && $layout_context === 'home') { echo ' personal-other'; } 
-    if ($row['visible'] == 1 && is_owner($row) && $layout_context === 'home') { echo ' personal-odin'; } ?>">
+    if ($row['visible'] == 1 && is_owner($row) && $layout_context === 'home') { echo ' personal-odin'; }
+     if (show_mtgdays($layout_context)) { echo ' md'; } ?>">
 
 
 
 
 
-<?php
-  if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { ?>
-  <div class="mtgdays"><p><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></p></div>
-<?php } ?>
+    <?php
+      if (show_mtgdays($layout_context)) { ?>
+      <div class="mtgdays"><p><?= $visible; ?> | Held on: <?= implode(', ', $dayNames); ?></p></div>
+    <?php } ?>
 
 
 
@@ -124,10 +125,7 @@
 
 <?php } 
 
-    if  (is_owner($row) || 
-        is_president() && in_admin_mode() || 
-        is_manager() && in_admin_mode() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
-        ) { 
+    if  (showEditIcon($row)) { 
 
       ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a><?php
 

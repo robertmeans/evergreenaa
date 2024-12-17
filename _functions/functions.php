@@ -11,6 +11,18 @@ function configure_theme() {
   return $theme;
 }
 
+function showEditIcon($row) {
+if  (is_owner($row) || 
+        is_president() && in_admin_mode() || 
+        is_manager() && in_admin_mode() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
+        ) { return true; } else { return false; }
+
+}
+
+function show_mtgdays($layout_context) {
+  if ($layout_context === 'delete-mtg' || $layout_context === 'alt-manage'|| $layout_context === 'um-alt'|| $layout_context === 'dashboard') { return true; } else { return false; }
+}
+
 function preload_config($layout_context) {
   if (isset($_SESSION['db-theme'])) {
     $theme = $_SESSION['db-theme'];
