@@ -341,6 +341,7 @@ function suspend_user_total($role, $reason, $user_id) {
   $one .= "SET u.role='"  . db_escape($db, $role) . "', ";
   $one .= "u.sus_notes='"  . db_escape($db, $reason) . "', ";
   $one .= "u.mode=0, ";
+  $one .= "admin=0, ";
   $one .= "m.visible=0 ";
   $one .= "WHERE u.id_user='"  . db_escape($db, $user_id) . "'";
 
@@ -355,6 +356,7 @@ function suspend_user_partial($role, $reason, $user_id) {
   // $one .= "JOIN meetings m ON u.id_user=m.id_user ";
   $one .= "SET role='"  . db_escape($db, $role) . "', ";
   $one .= "mode=0, ";
+  $one .= "admin=0, ";
   $one .= "sus_notes='"  . db_escape($db, $reason) . "' ";
   $one .= "WHERE id_user='"  . db_escape($db, $user_id) . "'";
 
