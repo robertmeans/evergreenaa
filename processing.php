@@ -534,7 +534,7 @@ if (isset($_POST['process_theme_popup'])) {
       1. config/initialize.php
       2. _includes/messages.php
       3. javascript-to-compile/_scripts-staging.js
-      4. included in: home, home_private and home_admin
+      4. included in: home
   */
 
   if (!isset($theme_popup_on_off)) { return; } else { /* '$theme_popup_on_off' master switch in initialize.php */
