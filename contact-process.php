@@ -10,6 +10,7 @@ if (is_post_request() && isset($_POST['footercontact'])) {
   $name = trim($_POST['name'] ?? '');
   $email = trim($_POST['email'] ?? '');
   $message = trim($_POST['comments'] ?? '');
+  // $message = trim(htmlspecialchars($_POST['comments'], ENT_QUOTES, 'UTF-8')); /* doesn't fix things by itself */
 
   // if (WWW_ROOT == 'http://localhost/evergreenaa') { sleep(2); }
 
