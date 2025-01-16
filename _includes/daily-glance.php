@@ -54,7 +54,7 @@
     <div class="glance-mtg glance-mtg-type">
     
 <?php if  (
-          is_president() && in_admin_mode() || 
+          (is_president() && in_admin_mode()) || (is_president() && $layout_context === 'um-alt') || 
           (
             is_admin() && in_admin_mode() && !declare_manager() && ($row['role'] != 99 && $row['role'] != 80 && $row['role'] != 60 && $row['role'] != 40)
           ) || 
@@ -113,7 +113,7 @@
   </div>
 
 <?php } 
-    if  (showEditIcon($row)) { 
+    if  (showEditIcon($row) || is_president() && $layout_context === 'um-alt') { 
       ?><a class="manage-edit" href="manage_edit.php?id=<?= h(u($row['id_mtg'])); ?>"><div class="tooltip right"><span class="tooltiptext">Edit Meeting</span><i class="far fa-edit"></i></div></a><?php
       } ?>
     </div><!-- .glance-mtg-type -->
