@@ -10,6 +10,7 @@ require_once 'config/constants.php';
 
 function sendVerificationEmail($username, $email, $token) {
   $mail = new PHPMailer(true);
+  $mail->CharSet = 'UTF-8';
 
   try {
 
@@ -75,6 +76,7 @@ function sendVerificationEmail($username, $email, $token) {
 function sendPasswordResetLink($username, $email, $token) {
 
   $mail = new PHPMailer(true);
+  $mail->CharSet = 'UTF-8';
 
   try {
 
@@ -139,6 +141,7 @@ function sendPasswordResetLink($username, $email, $token) {
 function footer_contact($name, $email, $message) {
 
   $mail = new PHPMailer(true);
+  $mail->CharSet = 'UTF-8';
 
   try {
 
@@ -165,6 +168,7 @@ function footer_contact($name, $email, $message) {
 
 function email_everyone_BCC($msgsubject, $email_addresses, $message) {
   $mail = new PHPMailer(true);
+  $mail->CharSet = 'UTF-8';
 
   try {
       // $mail->Host       = 'smtp.gmail.com';
@@ -199,6 +203,7 @@ function email_everyone_BCC($msgsubject, $email_addresses, $message) {
 
 function email_everyone_PERSONAL($msgsubject, $send_to, $message) {
   $mail = new PHPMailer(true);
+  $mail->CharSet = 'UTF-8';
 
   try {
       $mail->Host       = 'smtp.gmail.com';

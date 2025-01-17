@@ -71,6 +71,7 @@ if (is_post_request() && isset($_POST['mtgid'])) {
   	$mtgname = $mtgdt . ' - ' . $meetname;
 
     $mail = new PHPMailer(true);
+    $mail->CharSet = 'UTF-8';
 
     try { 
 
