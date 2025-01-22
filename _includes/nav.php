@@ -218,10 +218,7 @@
         <a class="cc-x ial<?php 
         if ($layout_context == 'analytics') { 
           echo ' nav-active'; 
-        } ?>" href="internal_analytics.php"><?php 
-        if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>
-          <i class="fas far fa-star"></i>
-        <?php } ?> Internal Analytics</a>
+        } ?>" href="internal_analytics.php">Internal Analytics</a>
 
         <?php
           if (is_president()) {
@@ -233,13 +230,29 @@
           $ip_string = implode(',', $ip); // convert array to string
           $my_current_ip = explode(',', $ip['ip_ignore']);
 
-          if ($result === 0 || $result > 1) {
-            echo '<a class="tc-cc-x">' . $result . ' Theme changes</a>'; 
-          } else {
-            echo '<a class="tc-cc-x">' . $result . ' Theme change!</a>';
-          } 
 
-          if (!in_array($current_ip, $my_current_ip)) { ?>
+
+
+
+          if ($result === 0 || $result > 1) { ?>
+            <a class="tc-cc-x"><?php 
+              if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>
+                <i class="fas far fa-star"></i>
+              <?php } echo $result; ?> Theme changes</a> 
+          <?php } else { ?>
+            <a class="tc-cc-x"><?php 
+              if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>
+                <i class="fas far fa-star"></i>
+              <?php } echo $result; ?> Theme change!</a>
+          <?php } ?> 
+
+
+
+
+
+
+
+          <?php if (!in_array($current_ip, $my_current_ip)) { ?>
 
             <form action="processing.php" method="post">
               <input type="hidden" name="current-list" value="<?= $ip_string; ?>">

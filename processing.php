@@ -510,19 +510,6 @@ if (isset($_POST['my-new-ip'])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* BEGIN: theme popup */
 if (isset($_POST['process_theme_popup'])) {
 
@@ -651,6 +638,9 @@ if (isset($_POST['change-theme'])) {
       }
     }
 
+    /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
+    $turn_on_alert = update_alert_notification();
+
     /* now update their theme in the users table */
     $result = set_theme($theme, $user_id);
     /* they're not getting a cookie because, ultimately, if they're logged in, what's in the db will take precedence over a cookie anyway. when they're logged in $theme = $_SESSION['db-theme']. see functions.php: 'configure_theme()' */
@@ -678,6 +668,9 @@ if (isset($_POST['change-theme'])) {
         /* no error checking. if it fails, it fails. not terribly important thing going on here */
       }
     }
+    
+    /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
+    $turn_on_alert = update_alert_notification();
 
     setCookie('sessionTheme', $theme, time() + (3650 * 24 * 60 * 60), '/'); // 10 years
     $_SESSION['session-theme'] = $theme;
@@ -972,7 +965,7 @@ if (isset($_POST['master_analytics_key'])) {
       if (isset($_POST['dir'])) {           $row['dir'] = $_POST['dir'];               } else { $row['dir'] = ''; }
 
       $log_action = log_activity_for_analytics($row);
-      $turn_on_alert = update_alert_notification();
+      // $turn_on_alert = update_alert_notification();
      
     }
     /* primary processing end */

@@ -461,7 +461,8 @@
   margin-bottom: 2em;
   i.fa-star {
     font-size: 1em;
-    padding: 0em 0.5em 0em 1em;
+    padding: 0em 0.5em 0em;
+    margin-left: -0.5em;
     color: #98e22b;
   }
 }
@@ -469,7 +470,7 @@
 
 .sidenav a.tc-cc-x {
   font-size: 0.75em;
-  padding: 0.5em 1em 0.5em 2.5em;
+  padding: 0.5em 1em 0.5em 1.5em;
   cursor: default;
   &:hover {
     color: #818181;
