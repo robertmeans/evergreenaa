@@ -638,8 +638,11 @@ if (isset($_POST['change-theme'])) {
       }
     }
 
-    /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
-    $turn_on_alert = update_alert_notification();
+    if (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am'])) {
+    /* ^^ omit MY theme changes from this */
+      /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
+      $turn_on_alert = update_alert_notification();
+    }
 
     /* now update their theme in the users table */
     $result = set_theme($theme, $user_id);
@@ -668,9 +671,12 @@ if (isset($_POST['change-theme'])) {
         /* no error checking. if it fails, it fails. not terribly important thing going on here */
       }
     }
-    
-    /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
-    $turn_on_alert = update_alert_notification();
+
+    if (!in_array($a_user_id, $_SESSION['bi']) && !in_array($_SESSION['ti'], $_SESSION['am'])) { 
+    /* ^^ omit MY theme changes from this */   
+      /* set alert to '1' so I get a visual notification on the frontend (menu tab changes to green) */
+      $turn_on_alert = update_alert_notification();
+    }
 
     setCookie('sessionTheme', $theme, time() + (3650 * 24 * 60 * 60), '/'); // 10 years
     $_SESSION['session-theme'] = $theme;

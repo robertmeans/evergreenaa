@@ -230,10 +230,6 @@
           $ip_string = implode(',', $ip); // convert array to string
           $my_current_ip = explode(',', $ip['ip_ignore']);
 
-
-
-
-
           if ($result === 0 || $result > 1) { ?>
             <a class="tc-cc-x"><?php 
               if (isset($_SESSION['alertb']) && $_SESSION['alertb'] !== '0') { ?>
@@ -245,11 +241,6 @@
                 <i class="fas far fa-star"></i>
               <?php } echo $result; ?> Theme change!</a>
           <?php } ?> 
-
-
-
-
-
 
 
           <?php if (!in_array($current_ip, $my_current_ip)) { ?>
