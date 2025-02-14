@@ -125,9 +125,9 @@
               if ($row['code_ss'] != 0)   { ?> <li>Step Study: We discuss the 12 steps</li>   
             <?php }
               if ($row['code_sp'] != 0)   { ?> <li>Speaker Meeting</li>         
-            <?php }
+            <?php } /*
               if ($row['month_speaker'] != 0)   { ?> <li>Speaker Meeting on last Sunday of month</li>
-            <?php }
+            <?php } */
               if ($row['potluck'] != 0)     { ?> <li>Potluck</li>           
 <?php  }   ?>
             </ul>

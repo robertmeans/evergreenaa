@@ -140,9 +140,11 @@
 
 	<input type="hidden" name="code_sp" value="0">
 	<label><input type="checkbox" name="code_sp" <?php if (isset($_POST['code_sp']) && $_POST['code_sp'] != 0) { echo "checked"; } else if (isset($_POST['code_sp']) && $_POST['code_sp'] == 0) { } else if ($row['code_sp'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting</span></label>
-
+  
+  <?php /* 
 	<input type="hidden" name="month_speaker" value="0">
 	<label><input type="checkbox" name="month_speaker" <?php if (isset($_POST['month_speaker']) && $_POST['month_speaker'] != 0) { echo "checked"; } else if (isset($_POST['month_speaker']) && $_POST['month_speaker'] == 0) { } else if ($row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting on last Sunday of month</span></label>
+  */ ?>
 
 	<input type="hidden" name="potluck" value="0">
 	<label><input type="checkbox" name="potluck" <?php if (isset($_POST['potluck']) && $_POST['potluck'] != 0) { echo "checked"; } else if (isset($_POST['potluck']) && $_POST['potluck'] == 0) { } else if ($row['potluck'] == "1") { echo "checked"; } ?> value="1" /> <span>Potluck</span></label>

@@ -113,9 +113,11 @@
 
 	<input type="hidden" name="code_sp" value="0">
 	<label><input type="checkbox" name="code_sp" <?php if (isset($row['code_sp']) && $row['code_sp'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting</span></label>
-
+  
+  <?php /*
 	<input type="hidden" name="month_speaker" value="0">
 	<label><input type="checkbox" name="month_speaker" <?php if (isset($row['month_speaker']) && $row['month_speaker'] == "1") { echo "checked"; } ?> value="1" /> <span>Speaker Meeting on last Sunday of month</span></label>
+  */ ?>
 
 	<input type="hidden" name="potluck" value="0">
 	<label><input type="checkbox" name="potluck" <?php if (isset($row['potluck']) && $row['potluck'] == "1") { echo "checked"; } ?> value="1" /> <span>Potluck</span></label>
