@@ -366,7 +366,8 @@ $(document).ready(function() {
   // clipboard for ID & BCC email addresses
   $(document).on('click','a[data-role=ic]',function() {
     var id   = $(this).data('id');
-    var text = document.getElementById(id).value;
+    // var text = document.getElementById(id).value;
+    var text = $('#' + id).text();
 
     var elem = document.createElement("textarea");
     document.body.appendChild(elem);
@@ -375,10 +376,10 @@ $(document).ready(function() {
     document.execCommand("copy");
     document.body.removeChild(elem);
 
-    var originalIcon = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy ID</a>";
+    var originalIcon = "<i class=\"far fa-copy fa-fw\"></i>";
     var changeBack  = $(this);
 
-    $(this).html("<i class=\"fas fa-check fa-fw\"></i> ID Copied!");
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> Copied!");
     $(this).addClass('copied');
 
     setTimeout(function() {
@@ -391,7 +392,8 @@ $(document).ready(function() {
   // clipboard for password
   $(document).on('click','a[data-role=pc]',function() {
     var id   = $(this).data('id');
-    var text = document.getElementById(id).value;
+    // var text = document.getElementById(id).value;
+    var text = $('#' + id).text();
 
     var elem = document.createElement("textarea");
     document.body.appendChild(elem);
@@ -400,10 +402,10 @@ $(document).ready(function() {
     document.execCommand("copy");
     document.body.removeChild(elem);
 
-    var originalIcon = "<i class=\"far fa-arrow-alt-circle-up\"></i> Copy Password</a>";
+    var originalIcon = "<i class=\"far fa-copy fa-fw\"></i>";
     var changeBack  = $(this);
 
-    $(this).html("<i class=\"fas fa-check fa-fw\"></i> Password Copied!");
+    $(this).html("<i class=\"fas fa-check fa-fw\"></i> Copied!");
     $(this).addClass('copied');
 
     setTimeout(function() {

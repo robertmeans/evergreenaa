@@ -253,7 +253,16 @@ p.no-mtgs {
 		}
 		p.id-num {
 			// margin-top: 1.5em;
-			margin-bottom: 0.75em;
+			// margin-bottom: 0.75em;
+      display: flex;
+      align-items: center;
+      margin: 0.5em 0;
+      &.pwdinfo {
+        margin-bottom: 1.25em;
+      }
+      .zinfo {
+        margin-left: 0.5em;
+      }
 		}
 		.details-left {
 			display: flex;
@@ -618,8 +627,7 @@ span[data-ampm='PM'] {
 }
 
 
-input.day-values
- {
+input.day-values {
   font-size: 18px;
   border: none;
   background-color: inherit;
@@ -636,6 +644,12 @@ input.day-values
   & > i.far {
   	margin-right: 0.5em;
   }
+}
+a.zoom-ctc {
+  color: #5cd359;
+  font-size: 0.9em;
+  margin-left: 1em;
+  cursor: pointer;
 }
 .zoom-id,
 a.zoom {

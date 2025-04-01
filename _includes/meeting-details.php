@@ -58,17 +58,12 @@
 <?php } ?>
 
 <?php if (($row['meet_id'] != '') && ($row['meet_id'] != 'No ID Necessary')) { ?>
-        <p class="id-num">ID: <input id="<?= $ic; ?>" type="text" value="<?php echo $row['meet_id']; ?>" class="day-values input-copy"></p>
-          <a data-role="ic" data-id="<?= $ic; ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy ID</a>
-
+        <p class="id-num">ID: <span id="<?= $ic; ?>" class="zinfo"><?= $row['meet_id']; ?></span><a data-role="ic" data-id="<?= $ic; ?>" class="zoom-ctc"><i class="far fa-copy fa-fw"></i></a></p>
 <?php } ?>
+
 <?php if (trim($row['meet_pswd'] ?? '') != '') { ?>
-            <p class="id-num">Password: <input id="<?= $pc; ?>" type="text" value="<?php echo $row['meet_pswd']; ?>" class="day-values input-copyz"></p>
-
-            <a data-role="pc" data-id="<?= $pc; ?>" class="zoom-id"><i class="far fa-arrow-alt-circle-up"></i> Copy Password</a>
-
+        <p class="id-num pwdinfo">Password: <span id="<?= $pc; ?>" class="zinfo"><?= $row['meet_pswd']; ?></span><a data-role="pc" data-id="<?= $pc; ?>" class="zoom-ctc"><i class="far fa-copy fa-fw"></i></a></p>
 <?php } ?>
-
 
 <?php if (trim($row['meet_url'] ?? '') != '') { ?>
         <p><a data-role="join-zoom" data-id="<?= $pc; ?>" href="<?= h($row['meet_url']); ?>" class="zoom" target="_blank">JOIN ZOOM: VIDEO</a></p>
