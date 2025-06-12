@@ -10,41 +10,31 @@ $admin = "";
 $visible = "";
 
 function remember_me() {
-  global $pdo_db;
+	global $conn;
 
-  if (!empty($_COOKIE['token'])) {
-    $token = $_COOKIE['token'];
+	if (!empty($_COOKIE['token'])) {
+		$token = $_COOKIE['token']; 
+		
+		$sql = "SELECT * FROM users WHERE token=? LIMIT 1";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param('s', $token);
 
-    try {
-      $sql  = "SELECT id_user, username, email, verified, mode, role, email_opt, tz, theme ";
-      $sql .= "FROM users ";
-      $sql .= "WHERE token = :token ";
-      $sql .= "LIMIT 1";
+		if ($stmt->execute()) {
+			$result = $stmt->get_result();
+			$user = $result->fetch_assoc();
 
-      $stmt = $pdo_db->prepare($sql);
-      $stmt->execute(['token' => $token]);
-
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      if ($user) {
-        // put variables in session
-        $_SESSION['id'] = $user['id_user'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['verified'] = $user['verified'];
-        $_SESSION['mode'] = $user['mode'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['email_opt'] = $user['email_opt'];
-        $_SESSION['db-tz'] = $user['tz'];
-        $_SESSION['db-theme'] = $user['theme'];
-      }
-
-    } catch (PDOException $e) {
-      error_log('Remember Me Error: ' . $e->getMessage());
-      // Optional: clear the cookie to prevent repeated failure
-      setcookie('token', '', time() - 3600, '/');
-    }
-  }
+			// put variables in session
+			$_SESSION['id'] = $user['id_user'];
+			$_SESSION['username'] = $user['username'];
+			$_SESSION['email'] = $user['email'];
+			$_SESSION['verified'] = $user['verified'];
+			$_SESSION['mode'] = $user['mode'];
+      $_SESSION['role'] = $user['role'];
+			$_SESSION['email_opt'] = $user['email_opt'];
+			$_SESSION['db-tz'] = $user['tz'];
+      $_SESSION['db-theme'] = $user['theme'];
+		}
+	} 
 }
 
 remember_me();
