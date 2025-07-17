@@ -87,9 +87,9 @@
             </div>
 
 <?php if ((trim($row['meet_addr'] ?? '') != '') && (trim($row['meet_desc'] ?? '') != '')) { ?>
-        <p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_desc']); ?></p>
+        <p class="desc"><?= nl2br($row['meet_desc']); ?></p>
       <?php } else { ?>
-        <p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_addr']); ?></p>
+        <p class="desc"><?= nl2br($row['meet_addr']); ?></p>
       <?php } ?>
 
         <a data-role="directions" data-id="<?= $pc; ?>" class="map-dir" href="https://maps.apple.com/?q=<?= preg_replace( "/\r|\n/", " ", h($row['meet_addr'])); ?>" target="_blank">Directions</a>

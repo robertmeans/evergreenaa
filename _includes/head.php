@@ -12,7 +12,7 @@
 	<link rel="icon" type="image/ico" href="_images/favicon.ico">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="description" content="A convenient utility to consolidate and organize all of your AA meeting information in one location.">
-	<meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
 
 	<meta property="og:url" content="https://evergreenaa.com/" />
 	<meta property="og:type" content="website" />

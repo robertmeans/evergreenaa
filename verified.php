@@ -23,6 +23,41 @@ if (isset($_SESSION['reset-token'])) {
 
 
 
+
+
+
+
+
+
+
+// global $pdo_db;
+
+// try {
+//   $stmt = $pdo_db->prepare("
+//     SELECT 
+//       verified 
+//     FROM users 
+//     WHERE token = :token 
+//     LIMIT 1
+//   ");
+//   $stmt->execute(['token' => $token]);
+//   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//   if ($user['verified'] == '1') {
+//     $_SESSION['message'] = "Your email address was successfully verified! You can now login.";
+//     $_SESSION['alert-class'] = "alert-success";
+//     header('location:'. WWW_ROOT . '/login.php');
+//     exit();    
+//   } else {
+//     header('location:'. WWW_ROOT);
+//     exit();    
+//   }
+// }
+
+
+
+
+
 $sql = "SELECT * FROM users WHERE token='$token' LIMIT 1";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);

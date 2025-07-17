@@ -236,6 +236,10 @@ p.no-mtgs {
 			color: #fff;
 			cursor: pointer;
 		}
+    p.desc {
+      text-align: center;
+      margin-bottom: 1em;
+    }
 		p {
 			line-height: 1.5em;
 		}
@@ -707,3 +711,4 @@ a.zoom {
 	}
 
 }
+
