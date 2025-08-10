@@ -555,7 +555,7 @@ function timezone_select_options($selected_timezone="America/Denver") {
   if ($selected_timezone == 'Pacific/Honolulu') { $output .= " selected"; } 
   $output .= ">USA Hawaii</option>";
 
-  $output .= "<option value=\"empty\">- - - - - - - - - - - - - - - - - - -</option>";
+  $output .= "<option value=\"empty\">- - - - - - - - - - - - - - - -</option>";
 
   foreach($tz_idents as $zone) {
     $output .= "<option value=\"{$zone}\"";
