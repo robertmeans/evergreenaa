@@ -87,12 +87,24 @@
             </div>
 
 <?php if ((trim($row['meet_addr'] ?? '') != '') && (trim($row['meet_desc'] ?? '') != '')) { ?>
-        <p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_desc']); ?></p>
+        <p class="desc"><?= nl2br($row['meet_desc']); ?></p>
       <?php } else { ?>
-        <p style="text-align:center;margin-bottom:1em;"><?= nl2br($row['meet_addr']); ?></p>
-      <?php } ?>
+        <p class="desc"><?= nl2br($row['meet_addr']); ?></p>
+      <?php }  
 
-        <a data-role="directions" data-id="<?= $pc; ?>" class="map-dir" href="https://maps.apple.com/?q=<?= preg_replace( "/\r|\n/", " ", h($row['meet_addr'])); ?>" target="_blank">Directions</a>
+        // Clean up the meeting address for the query
+        $meetingAddress = preg_replace("/\r|\n/", " ", $row['meet_addr']);
+        $encodedAddress = urlencode($meetingAddress);
+
+        // Choose Apple Maps or Google Maps
+        if ($isApple) {
+          $mapUrl = "https://maps.apple.com/?q={$encodedAddress}";
+        } else {
+          $mapUrl = "https://www.google.com/maps/search/?api=1&query={$encodedAddress}";
+        }
+      ?>
+
+        <a data-role="directions" data-id="<?= $pc; ?>" class="map-dir" href="<?= $mapUrl; ?>" target="_blank">Directions</a>
 
 <?php } ?>
 
