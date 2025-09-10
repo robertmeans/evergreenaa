@@ -1181,7 +1181,8 @@ $("#toggle-individual-interactions").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    var sum_device = $("#totb-in-int").val();
+    var sum_devicez = parseInt($("#totb-in-int").val(), 10) || 0; // ensure it's an integer
+    var sum_device = sum_devicez.toLocaleString(); // adds commas
     var total_inter = $("#js-total-interactions").text();
     
     $("#msgb-tot-in-int").html(sum_device);

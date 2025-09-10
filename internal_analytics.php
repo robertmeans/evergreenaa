@@ -220,15 +220,15 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
         echo "<p>" .$interval->h. " ".$h." and " .$interval->i. " ".$min."</p>";
       } else {
         // Show the difference in days, hours, and minutes
-        echo "<p>".$interval->days." ".$d.", ".$interval->h." ".$h.", and ".$interval->i." ".$min."</p>";
+        echo "<p>".number_format($interval->days)." ".$d.", ".$interval->h." ".$h.", and ".$interval->i." ".$min."</p>";
       } 
 
       ?>
-      <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
+      <p><span id="js-total-interactions"><?= number_format($total_interactions); ?></span>&nbsp;Interactions |&nbsp;<?php
 
       /* Unique IP's */
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
-      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
+      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . number_format(count($unique_ips)) . '</span>&nbsp;unique IP\'s'; } 
 
       if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; } ?>
 
@@ -303,15 +303,15 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
       <?php /* Unique IP's for per device */ ?>
       <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a>
         <br>
-      <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; 
-         <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; 
-         <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
+      <p><span id="uipmobile"><?= number_format(count($mobile_unique_a)); ?></span> Mobile &nbsp;●&nbsp; 
+         <span id="uiptablet"><?= number_format(count($tablet_unique_a)); ?></span> Tablet &nbsp;●&nbsp; 
+         <span id="uipdesktop"><?= number_format(count($desktop_unique_a)); ?></span> Desktop</p>
          <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
       <br>
       <p><u>Individual interactions</u><?php /* */ ?><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><?php /* */ ?><br>
-      <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; 
-         <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; 
-         <?= count($desktop_count); ?> Desktop</p>
+      <p><?= number_format(count($mobile_count)); ?> Mobile &nbsp;●&nbsp; 
+         <?= number_format(count($tablet_count)); ?> Tablet &nbsp;●&nbsp; 
+         <?= number_format(count($desktop_count)); ?> Desktop</p>
          <input type="hidden" id="totb-in-int" value="<?php echo count($mobile_count) + count($tablet_count) + count($desktop_count); ?>">
       </div>
     </div>
@@ -337,7 +337,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
         <?php
         foreach ($weekdays as $day => $num) { ?>
           <div class="aweek-row">
-            <div class="anum"><?= $num; ?></div><div class="aday"><?= $day; ?></div>
+            <div class="anum"><?= number_format($num); ?></div><div class="aday"><?= $day; ?></div>
           </div>
         <?php } ?>
 
@@ -390,7 +390,7 @@ if ($mtg_count > 0) { /* 1206241530 */
 
     <div class="rowa">
       <div class="counta">
-        <?= $row['total_count']; ?>
+        <?= number_format($row['total_count']); ?>
       </div>
       <div class="daya">
         <?= $row['mtg_day']; ?>
