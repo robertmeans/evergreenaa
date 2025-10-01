@@ -225,6 +225,15 @@ function remove_likely_bots($bot_ips) {
   } 
 }
 
+function get_meeting_count_for_analytics() { 
+    global $db;
+
+    $sql = "SELECT visible, sun, mon, tue, wed, thu, fri, sat FROM meetings";
+
+    $result = mysqli_query($db, $sql); 
+    return $result;
+}
+
 
 
 
@@ -273,17 +282,19 @@ function get_meetings_for_members($id_user) { /* home_private.php ...yea, I know
     return $result;
 }
 
-function get_meetings_for_analytics() { 
-    global $db;
 
-    $sql = "SELECT m.id_mtg, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, u.id_user, u.username, u.email, u.role FROM meetings as m ";
-    $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
-    $sql .= "WHERE (m.visible != 0 ";
-    $sql .= "AND m.visible != 1)";
+/* not sure what my intentions were here but I'm keeping it just in case I want to someday understand what I was originally thinking. */
+// function get_meetings_for_analytics() { 
+//     global $db;
 
-    $result = mysqli_query($db, $sql); 
-    return $result;
-}
+//     $sql = "SELECT m.id_mtg, m.visible, m.sun, m.mon, m.tue, m.wed, m.thu, m.fri, m.sat, m.meet_time, m.group_name, u.id_user, u.username, u.email, u.role FROM meetings as m ";
+//     $sql .= "LEFT JOIN users as u ON u.id_user=m.id_user ";
+//     $sql .= "WHERE (m.visible != 0 ";
+//     $sql .= "AND m.visible != 1)";
+
+//     $result = mysqli_query($db, $sql); 
+//     return $result;
+// }
 
 function verify_this_user($id) {
   global $db;

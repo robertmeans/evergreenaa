@@ -30,6 +30,7 @@ require_once '_includes/messages.php';
 $theme = configure_theme(); mobile_bkg_config($theme);
 
   $results = get_analytic_data();
+  $mtgCount = get_meeting_count_for_analytics();
   /* fields are:   id,  occurred,  auser_email, device,  page,  day_opened, host_id, mtg_id,  mtg_opened, mtg_days, mtg_day,  a_ip */
   $i = 0;
 
@@ -116,9 +117,46 @@ $theme = configure_theme(); mobile_bkg_config($theme);
     if (!empty($all_desktop) && !in_array($all_desktop, $desktop_unique_a)) { $desktop_unique_a[] = $all_desktop; }
 
     $i++; /* get total number of rows - everything included */
-  } /* end while loop */
- 
+  } /* end while($results) loop */
   mysqli_free_result($results); 
+
+
+  $days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']; 
+  $dayCounts = array_fill_keys($days, 0);
+  $draftCounts = array_fill_keys($days, 0);
+  $privateCounts = array_fill_keys($days, 0);
+  $memberOnlyCounts = array_fill_keys($days, 0);
+  $publicCounts = array_fill_keys($days, 0);
+
+  while ($row = mysqli_fetch_assoc($mtgCount)) {
+    foreach ($days as $day) {
+      if (!empty($row[$day])) {
+        if ($row['visible'] != 0) {
+          $dayCounts[$day]++;
+        }
+        if ($row['visible'] == 0) {
+          $draftCounts[$day]++;
+        }
+        if ($row['visible'] == 1) {
+          $privateCounts[$day]++;
+        }
+        if ($row['visible'] == 2) {
+          $memberOnlyCounts[$day]++;
+        }
+        if ($row['visible'] == 3) {
+          $publicCounts[$day]++;
+        }
+      }
+    }
+  } /* end while($mtgCount) loop */
+  mysqli_free_result($mtgCount);
+
+  // Totals
+  $totalMeetingCount = array_sum($dayCounts);
+  $draftMeetingCount = array_sum($draftCounts);
+  $privateMeetingCount = array_sum($privateCounts);
+  $memberOnlyMeetingCount = array_sum($memberOnlyCounts);
+  $publicMeetingCount = array_sum($publicCounts);
 
 ?>
 <div id="manage-wrap">
@@ -220,15 +258,15 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
         echo "<p>" .$interval->h. " ".$h." and " .$interval->i. " ".$min."</p>";
       } else {
         // Show the difference in days, hours, and minutes
-        echo "<p>".$interval->days." ".$d.", ".$interval->h." ".$h.", and ".$interval->i." ".$min."</p>";
+        echo "<p>".number_format($interval->days)." ".$d.", ".$interval->h." ".$h.", and ".$interval->i." ".$min."</p>";
       } 
 
       ?>
-      <p><span id="js-total-interactions"><?= $total_interactions; ?></span>&nbsp;Interactions |&nbsp;<?php
+      <p><span id="js-total-interactions"><?= number_format($total_interactions); ?></span>&nbsp;Interactions |&nbsp;<?php
 
       /* Unique IP's */
       if (count($unique_ips) == 1 ) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP'; } 
-      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . count($unique_ips) . '</span>&nbsp;unique IP\'s'; } 
+      if (count($unique_ips) == 0 || count($unique_ips) > 1) { echo '<span id="js-unique-ip">' . number_format(count($unique_ips)) . '</span>&nbsp;unique IP\'s'; } 
 
       if (count($unique_ips) !== 0) { echo '<a class="tgl-msg" id="toggle-total-interactions"><i class="far fa-question-circle fa-fw"></i></a>'; } ?>
 
@@ -301,18 +339,26 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
     <div class="col sp"><?php /* sp = special, bc this one has extra margin to push it down on desktop */ ?>
       <div><?php /* so you can treat this as one block */ ?>
       <?php /* Unique IP's for per device */ ?>
-      <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a>
-        <br>
-      <p><span id="uipmobile"><?= count($mobile_unique_a); ?></span> Mobile &nbsp;●&nbsp; 
-         <span id="uiptablet"><?= count($tablet_unique_a); ?></span> Tablet &nbsp;●&nbsp; 
-         <span id="uipdesktop"><?= count($desktop_unique_a); ?></span> Desktop</p>
-         <input type="hidden" id="sum-devices" value="<?php echo (count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
+
+      <?php /* <p>Total Meetings: <?= number_format($totalMeetingCount); ?></p> */ ?>
+      <p>Public Meetings: <?= number_format($publicMeetingCount); ?></p>
+      <p>Member Only Meetings: <?= number_format($memberOnlyMeetingCount); ?></p>
+      <p>Private Meetings: <?= number_format($privateMeetingCount); ?></p>
+      <p>Drafts: <?= number_format($draftMeetingCount); ?></p>
+      <br>
+
+      <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a></p>
+
+      <p><span id="uipmobile"><?= number_format(count($mobile_unique_a)); ?></span> Mobile &nbsp;●&nbsp; 
+         <span id="uiptablet"><?= number_format(count($tablet_unique_a)); ?></span> Tablet &nbsp;●&nbsp; 
+         <span id="uipdesktop"><?= number_format(count($desktop_unique_a)); ?></span> Desktop</p>
+         <input type="hidden" id="sum-devices" value="<?= number_format(count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
       <br>
       <p><u>Individual interactions</u><?php /* */ ?><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><?php /* */ ?><br>
-      <p><?= count($mobile_count); ?> Mobile &nbsp;●&nbsp; 
-         <?= count($tablet_count); ?> Tablet &nbsp;●&nbsp; 
-         <?= count($desktop_count); ?> Desktop</p>
-         <input type="hidden" id="totb-in-int" value="<?php echo count($mobile_count) + count($tablet_count) + count($desktop_count); ?>">
+      <p><?= number_format(count($mobile_count)); ?> Mobile &nbsp;●&nbsp; 
+         <?= number_format(count($tablet_count)); ?> Tablet &nbsp;●&nbsp; 
+         <?= number_format(count($desktop_count)); ?> Desktop</p>
+         <input type="hidden" id="totb-in-int" value="<?= number_format(count($mobile_count) + count($tablet_count) + count($desktop_count)); ?>">
       </div>
     </div>
     <div class="col b"><div></div></div><?php /* border, single pixel (center divider) */ ?>
@@ -337,7 +383,7 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
         <?php
         foreach ($weekdays as $day => $num) { ?>
           <div class="aweek-row">
-            <div class="anum"><?= $num; ?></div><div class="aday"><?= $day; ?></div>
+            <div class="anum"><?= number_format($num); ?></div><div class="aday"><?= $day; ?></div>
           </div>
         <?php } ?>
 
@@ -390,7 +436,7 @@ if ($mtg_count > 0) { /* 1206241530 */
 
     <div class="rowa">
       <div class="counta">
-        <?= $row['total_count']; ?>
+        <?= number_format($row['total_count']); ?>
       </div>
       <div class="daya">
         <?= $row['mtg_day']; ?>
@@ -400,9 +446,9 @@ if ($mtg_count > 0) { /* 1206241530 */
       </div>
       <div class="mtgnamea">
         <?php echo $mtgname;
-        if ($row['dir_count'] !== '0') { echo '<div class="clickcount">Directions: ' . $row['dir_count'] . '</div>'; }
-        if ($row['onetap_count'] !== '0') { echo '<div class="clickcount">One Tap: ' . $row['onetap_count'] . '</div>'; }
-        if ($row['zoom_count'] !== '0') { echo '<div class="clickcount">Zoom: ' . $row['zoom_count'] . '</div>'; } ?>
+        if ($row['dir_count'] !== '0') { echo '<div class="clickcount">Directions: ' . number_format($row['dir_count']) . '</div>'; }
+        if ($row['onetap_count'] !== '0') { echo '<div class="clickcount">One Tap: ' . number_format($row['onetap_count']) . '</div>'; }
+        if ($row['zoom_count'] !== '0') { echo '<div class="clickcount">Zoom: ' . number_format($row['zoom_count']) . '</div>'; } ?>
       </div>
     </div>
 

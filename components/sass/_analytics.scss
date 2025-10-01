@@ -21,6 +21,7 @@
   width: 100%;
   max-width: 900px;
   font-size: 1.5em;
+  margin-top: 1em;
   margin-bottom: -0.75em;
 }
 .ia-ip-list {
@@ -38,7 +39,7 @@
     // margin: 0 0.25em 0 0;
     transition: all 0.2s ease;
     &.sp {
-      margin-top: 1em;
+      // margin-top: 1em;
       transition: all 0.2s ease;
     }
     &.b {
