@@ -349,15 +349,43 @@ foreach ($ip_groups as $multiple_but_same_ip => $rows) {
 
       <p><u>Unique IP addresses per device</u><a class="tgl-msg" id="toggle-unique-ip"><i class="far fa-question-circle fa-fw"></i></a></p>
 
-      <p><span id="uipmobile"><?= number_format(count($mobile_unique_a)); ?></span> Mobile &nbsp;●&nbsp; 
-         <span id="uiptablet"><?= number_format(count($tablet_unique_a)); ?></span> Tablet &nbsp;●&nbsp; 
-         <span id="uipdesktop"><?= number_format(count($desktop_unique_a)); ?></span> Desktop</p>
+      <?php
+      $devices = [
+        'Mobile'  => count($mobile_unique_a),
+        'Tablet'  => count($tablet_unique_a),
+        'Desktop' => count($desktop_unique_a),
+      ];
+
+      arsort($devices); // highest -> lowest, preserves keys
+
+      $parts = [];
+      foreach ($devices as $label => $count) {
+        $id = 'uip' . strtolower($label); // uipmobile/uiptablet/uipdesktop
+        $parts[] = '<span id="' . $id . '">' . number_format($count) . '</span> ' . $label;
+      }
+      ?>
+      <p><?= implode(' &nbsp;●&nbsp; ', $parts); ?></p>
+
          <input type="hidden" id="sum-devices" value="<?= number_format(count($mobile_unique_a) + count($tablet_unique_a) + count($desktop_unique_a)); ?>">
       <br>
       <p><u>Individual interactions</u><?php /* */ ?><a class="tgl-msg" id="toggle-individual-interactions"><i class="far fa-question-circle fa-fw"></i></a><?php /* */ ?><br>
-      <p><?= number_format(count($mobile_count)); ?> Mobile &nbsp;●&nbsp; 
-         <?= number_format(count($tablet_count)); ?> Tablet &nbsp;●&nbsp; 
-         <?= number_format(count($desktop_count)); ?> Desktop</p>
+
+      <?php
+      $devices = [
+        'Mobile'  => count($mobile_count),
+        'Tablet'  => count($tablet_count),
+        'Desktop' => count($desktop_count),
+      ];
+
+      arsort($devices); // largest -> smallest
+
+      $parts = [];
+      foreach ($devices as $label => $count) {
+        $parts[] = number_format($count) . ' ' . $label;
+      }
+      ?>
+      <p><?= implode(' &nbsp;●&nbsp; ', $parts); ?></p>
+
          <input type="hidden" id="totb-in-int" value="<?= number_format(count($mobile_count) + count($tablet_count) + count($desktop_count)); ?>">
       </div>
     </div>
