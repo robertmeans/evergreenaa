@@ -546,7 +546,10 @@ if (isset($_POST['process_theme_popup'])) {
         $popup_signal = 'nope';
       } else {
         setCookie('theme-popup', 'shown', time() + (3650 * 24 * 60 * 60), '/'); // 10 years
-        $popup_signal = 'ok'; 
+        
+        // ** changed signal to 'nope' to turn this feature off on 01.02.26 because it had somehow reset (maybe bc I cleared cache somewhere along the way(?)) - regardless, I felt this feature could be retired at this point.
+        // $popup_signal = 'ok'; 
+        $popup_signal = 'nope';
 
       }
 
