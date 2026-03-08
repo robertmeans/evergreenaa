@@ -9,22 +9,31 @@ require_once 'vendor/autoload.php';
 require_once 'config/constants.php';
 
 function sendVerificationEmail($username, $email, $token) {
+  
   $mail = new PHPMailer(true);
   $mail->CharSet = 'UTF-8';
 
   try {
 
-      mail_config();  
+      // turned off when moved to VeeroTech and replaced with what's below
+      // mail_config();   
 
+      $mail->isSMTP();
+      $mail->Host       = 'mail.evergreenaa.com';           // Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                               // Enable SMTP authentication
+      $mail->Username   = 'donotreply@evergreenaa.com';            // SMTP username
+      $mail->Password   = 'AAgD42R6=7D7pIAA';                  // SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        // Enable implicit SSL encryption
+      $mail->Port       = 465; 
+
+      // $mail->SMTPDebug = 2; // or 3
+      // $mail->Debugoutput = 'error_log';
+
+      $mail->Subject = 'Verify Your EvergreenAA Registration';
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
-      $mail->addAddress($email, $username);     // Add a recipient
-      $mail->addReplyTo('myevergreenaa@gmail.com', 'Evergreen AA Website');
-      // $mail->addCC('cc@example.com');
-      $mail->addBCC('robert@evergreenwebdesign.com');
+      $mail->isHTML(true);
 
       // Content
-      $mail->isHTML(true);
-      $mail->Subject = 'Verify Your EvergreenAA Registration';
       $mail->Body    =    '<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -64,7 +73,13 @@ function sendVerificationEmail($username, $email, $token) {
     
   </body>
   </html>';
+
       $mail->AltBody = 'Hello ' . $username . ', Please copy and paste this verification link into your browser address bar to validate your EvergreenAA.com registration: https://evergreenaa.com/index.php?token=' . $token;
+
+      $mail->addAddress($email, $username);     // Add a recipient
+      $mail->addReplyTo('myevergreenaa@gmail.com', 'Evergreen AA Website');
+      // $mail->addCC('cc@example.com');
+      $mail->addBCC('robert@evergreenwebdesign.com');
 
       $mail->send();
 
@@ -80,7 +95,16 @@ function sendPasswordResetLink($username, $email, $token) {
 
   try {
 
-      mail_config();
+      // turned off when moved to VeeroTech and replaced with what's below
+      // mail_config();   
+
+      $mail->isSMTP();
+      $mail->Host       = 'mail.evergreenaa.com';           // Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                               // Enable SMTP authentication
+      $mail->Username   = 'donotreply@evergreenaa.com';            // SMTP username
+      $mail->Password   = 'AAgD42R6=7D7pIAA';                  // SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        // Enable implicit SSL encryption
+      $mail->Port       = 465; 
 
       $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website');
       $mail->addAddress($email, $username);     // Add a recipient
@@ -145,7 +169,19 @@ function footer_contact($name, $email, $message) {
 
   try {
 
-    mail_config();
+    // turned off when moved to VeeroTech and replaced with what's below
+    // mail_config();   
+
+    $mail->isSMTP();
+    $mail->Host       = 'mail.evergreenaa.com';           // Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                               // Enable SMTP authentication
+    $mail->Username   = 'donotreply@evergreenaa.com';            // SMTP username
+    $mail->Password   = 'AAgD42R6=7D7pIAA';                  // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        // Enable implicit SSL encryption
+    $mail->Port       = 465; 
+
+    // $mail->SMTPDebug = 2; // or 3
+    // $mail->Debugoutput = 'error_log';
 
     $mail->Subject = "Evergreen AA: comments | questions | suggestions";
     $mail->setFrom('donotreply@evergreenaa.com', 'Evergreen AA Website'); // DO NOT CHANGE!

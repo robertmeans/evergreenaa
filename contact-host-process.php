@@ -75,11 +75,23 @@ if (is_post_request() && isset($_POST['mtgid'])) {
 
     try { 
 
-      mail_config(); 
+      // turned off when moved to VeeroTech and replaced with what's below
+      // mail_config();   
+
+      $mail->isSMTP();
+      $mail->Host       = 'mail.evergreenaa.com';           // Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                               // Enable SMTP authentication
+      $mail->Username   = 'donotreply@evergreenaa.com';            // SMTP username
+      $mail->Password   = 'AAgD42R6=7D7pIAA';                  // SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        // Enable implicit SSL encryption
+      $mail->Port       = 465; 
+
+      // $mail->SMTPDebug = 2; // or 3
+      // $mail->Debugoutput = 'error_log';
 
       $mail->setFrom('donotreply@evergreenaa.com', 'EvergreenAA Website');
       $mail->addAddress($emhemail, $emhuser);     // Add a recipient
-      $mail->addReplyTo($email, $name);
+      $mail->addReplyTo($email);
       // $mail->addCC('cc@example.com');
       $mail->addBCC('robert@evergreenwebdesign.com');
 

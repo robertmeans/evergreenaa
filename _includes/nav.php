@@ -308,7 +308,7 @@ if (is_president()) { ?>
     function checkFileExists(error_location) {
 
       $.ajax({
-        url: "processing.php",
+        url: "error-checking.php",
         data: { filename_of_errors: "_errors.txt" }, // Replace with your actual filename
         success: function(response) {
           if (response === "File is not empty") {
@@ -347,7 +347,7 @@ if (is_president()) { ?>
 
         $.ajax({
           dataType: "JSON",
-          url: "processing.php",
+          url: "error-checking.php",
           type: "POST",
           data: {
             process_reset_errors: 'key'
