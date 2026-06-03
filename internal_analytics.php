@@ -170,7 +170,7 @@ $theme = configure_theme(); mobile_bkg_config($theme);
       if (WWW_ROOT === 'http://localhost/evergreenaa') { 
         ?>http://localhost/phpmyadmin/<?php 
       } else { 
-        ?>https://p3plzcpnl504722.prod.phx3.secureserver.net:2083/cpsess0249341861/frontend/jupiter/sql/PhpMyAdmin.html<?php 
+        ?>https://rssd4972.webaccountserver.com:2083/cpsess7098243882/frontend/jupiter/sql/PhpMyAdmin.html<?php 
       } ?>" target="_blank"><span class="pc">php</span><span class="ma">MyAdmin</span></a></p><?php } ?>
   </div>
 
