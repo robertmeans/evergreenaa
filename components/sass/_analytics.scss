@@ -78,6 +78,8 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 0.25em;
+        max-height: 200px;
+        overflow-y: scroll;
         i {
           margin-right: 0.25em;
           opacity: 0.6;
